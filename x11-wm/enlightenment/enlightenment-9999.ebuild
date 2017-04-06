@@ -38,18 +38,26 @@ IUSE_E_MODULES=(
 
 IUSE="doc egl nls pam spell static-libs systemd ukit wayland ${IUSE_E_MODULES[@]/#/+}"
 
-RDEPEND="
+REQUIRED_USE="
+	wayland? ( egl )
+	egl? ( wayland )
+"
+
+DEPEND="
 	pam? ( sys-libs/pam )
-	systemd? ( sys-apps/systemd )
-	wayland? (
-		dev-libs/efl[wayland]
-		>=dev-libs/wayland-1.10.0
-		>=x11-libs/pixman-0.31.1
-		>=x11-libs/libxkbcommon-0.3.1
-	)
+	systemd? (
+		sys-apps/systemd
+		wayland? (
+			dev-libs/efl[egl,gles,wayland]
+			>=dev-libs/wayland-1.10.0
+			>=x11-libs/pixman-0.31.1
+			>=x11-libs/libxkbcommon-0.3.1
+		) )
 	>=dev-libs/efl-1.18[X]
-	x11-libs/xcb-util-keysyms"
-DEPEND="${RDEPEND}"
+	x11-libs/xcb-util-keysyms
+"
+
+RDEPEND="${DEPEND}"
 
 # Doesn't apply need to update?
 #PATCHES=(
