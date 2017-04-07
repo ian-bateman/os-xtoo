@@ -36,7 +36,7 @@ IUSE_E_MODULES=(
 	${__NORM_MODS[@]/#/enlightenment_modules_}
 )
 
-IUSE="doc egl nls pam spell static-libs systemd ukit wayland ${IUSE_E_MODULES[@]/#/+}"
+IUSE="doc egl nls pam spell static-libs systemd udisks wayland ${IUSE_E_MODULES[@]/#/+}"
 
 REQUIRED_USE="
 	wayland? ( egl )
@@ -54,6 +54,7 @@ DEPEND="
 			>=x11-libs/libxkbcommon-0.3.1
 		) )
 	>=dev-libs/efl-1.18[X]
+	udisks? ( sys-fs/udisks )
 	x11-libs/xcb-util-keysyms
 "
 
