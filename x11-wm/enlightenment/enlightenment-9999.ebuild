@@ -40,8 +40,9 @@ IUSE="bluetooth connman doc egl nls pam spell static-libs systemd udisks
 	wayland wifi ${IUSE_E_MODULES[@]/#/+}"
 
 REQUIRED_USE="
-	wayland? ( egl )
 	egl? ( wayland )
+	wayland? ( egl )
+	wifi? ( connman )
 "
 
 DEPEND="
@@ -63,12 +64,8 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
-# Doesn't apply need to update?
-#PATCHES=(
-#	"${FILESDIR}/quickstart.diff"
-#)
-
 # Sanity check to make sure module lists are kept up-to-date.
+# Needs to be modified for USE modules, bluetooth, connman, and wifi
 check_modules() {
 	local detected=$(
 		awk -F'[\\[\\](, ]' '$1 == "AC_E_OPTIONAL_MODULE" { print $3 }' \
