@@ -47,7 +47,7 @@ REQUIRED_USE="
 
 DEPEND="
 	bluetooth? ( net-wireless/bluez )
-	connman? ( net-misc/connman )
+	connman? ( net-misc/econnman )
 	pam? ( sys-libs/pam )
 	systemd? (
 		sys-apps/systemd
