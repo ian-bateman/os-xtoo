@@ -21,14 +21,14 @@ __CONF_MODS=(
 	window-manipulation window-remembers
 )
 __NORM_MODS=(
-	appmenu backlight bluez4 battery
-	clock conf connman cpufreq everything
+	appmenu backlight battery
+	clock conf cpufreq everything
 	fileman fileman-opinfo gadman geolocation
 	ibar ibox lokker
 	mixer msgbus music-control notification
 	pager packagekit pager-plain policy-mobile quickaccess
 	shot start syscon systray tasks teamwork temperature tiling time
-	winlist wireless wizard wl-desktop-shell wl-drm wl-text-input
+	winlist wizard wl-desktop-shell wl-drm wl-text-input
 	wl-weekeyboard wl-wl wl-x11 xkbswitch xwayland
 )
 IUSE_E_MODULES=(
@@ -36,7 +36,8 @@ IUSE_E_MODULES=(
 	${__NORM_MODS[@]/#/enlightenment_modules_}
 )
 
-IUSE="doc egl nls pam spell static-libs systemd udisks wayland ${IUSE_E_MODULES[@]/#/+}"
+IUSE="bluetooth connman doc egl nls pam spell static-libs systemd udisks
+	wayland wifi ${IUSE_E_MODULES[@]/#/+}"
 
 REQUIRED_USE="
 	wayland? ( egl )
@@ -44,7 +45,8 @@ REQUIRED_USE="
 "
 
 DEPEND="
-	enlightenment_modules_connman? ( net-misc/connman )
+	bluetooth? ( net-wireless/bluez )
+	connman? ( net-misc/connman )
 	pam? ( sys-libs/pam )
 	systemd? (
 		sys-apps/systemd
@@ -91,18 +93,21 @@ check_modules() {
 }
 
 src_configure() {
-	check_modules
+#	check_modules
 
 	E_ECONF=(
 		--disable-install-sysactions
+		$(use_enable bluetooth bluez4)
+		$(use_enable connman )
 		$(use_enable doc)
 		$(use_enable nls)
 		$(use_enable pam)
 		$(use_enable systemd)
 		--enable-device-udev
-		$(use_enable ukit mount-udisks)
+		$(use_enable udisks mount-udisks)
 		$(use_enable egl wayland-egl)
 		$(use_enable wayland)
+		$(use_enable wifi wireless)
 	)
 	local u c
 	for u in ${IUSE_E_MODULES[@]} ; do
