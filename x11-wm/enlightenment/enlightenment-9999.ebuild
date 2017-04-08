@@ -44,6 +44,7 @@ REQUIRED_USE="
 "
 
 DEPEND="
+	enlightenment_modules_connman? ( net-misc/connman )
 	pam? ( sys-libs/pam )
 	systemd? (
 		sys-apps/systemd
@@ -54,7 +55,7 @@ DEPEND="
 			>=x11-libs/libxkbcommon-0.3.1
 		) )
 	>=dev-libs/efl-1.18[X]
-	udisks? ( sys-fs/udisks )
+	udisks? ( sys-fs/udisks:2 )
 	x11-libs/xcb-util-keysyms
 "
 
