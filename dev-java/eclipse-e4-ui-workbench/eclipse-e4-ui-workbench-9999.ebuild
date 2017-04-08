@@ -41,6 +41,7 @@ CP_DEPEND="
 	~dev-java/eclipse-e4-core-di-annotations-${PV}:${SLOT}
 	~dev-java/eclipse-e4-core-di-extensions-${PV}:${SLOT}
 	~dev-java/eclipse-e4-core-services-${PV}:${SLOT}
+	~dev-java/eclipse-e4-ui-di-${PV}:${SLOT}
 	~dev-java/eclipse-e4-ui-model-workbench-${PV}:${SLOT}
 	~dev-java/eclipse-e4-ui-services-${PV}:${SLOT}
 	dev-java/eclipse-emf-common:${EEMF_SLOT}
@@ -53,7 +54,6 @@ CP_DEPEND="
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
 "
-#	~dev-java/eclipse-e4-ui-di-${PV}:${SLOT}
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
