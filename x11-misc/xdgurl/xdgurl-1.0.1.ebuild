@@ -1,18 +1,18 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
-#inherit cmake-utils
+MY_PN="ocs-url"
+MY_PV="release-${PV}"
+MY_P="${MY_PN}-${MY_PV}"
+BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
 
 DESCRIPTION="An install helper program for desktop stuff"
-HOMEPAGE="https://github.com/${PN}/${PN}/wiki"
-SRC_URI="https://github.com/${PN}/${PN}/archive/release-${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="${BASE_URI}/wiki"
+SRC_URI="${BASE_URI}/archive/release-${PV}.tar.gz -> ${MY_P}.tar.gz"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
-DEPEND=""
-RDEPEND=""
-
-S="${WORKDIR}/${PN}-release-${PV}/"
+S="${WORKDIR}/${MY_P}/"
