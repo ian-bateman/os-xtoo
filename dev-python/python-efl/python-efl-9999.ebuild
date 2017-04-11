@@ -27,12 +27,20 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 
 IUSE="doc"
+
+if [[ ${PV} == 1.18.0 ]]; then
+	RDEPEND="=dev-libs/efl-1.18.4"
+else
+	RDEPEND="dev-libs/efl"
+fi
+
 RDEPEND="
-		>=dev-python/cython-0.21
-		>=dev-python/dbus-python-1.2.0-r1
-		>=dev-libs/efl-1.18.0
-		doc? ( dev-python/sphinx )
-		${PYTHON_DEPS}"
+	>=dev-python/cython-0.21
+	>=dev-python/dbus-python-1.2.0-r1
+	${RDEPEND}
+	doc? ( dev-python/sphinx )
+	${PYTHON_DEPS}
+"
 
 DEPEND="${RDEPEND}"
 
