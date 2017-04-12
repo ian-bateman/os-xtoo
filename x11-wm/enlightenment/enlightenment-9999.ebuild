@@ -49,14 +49,14 @@ DEPEND="
 	bluetooth? ( net-wireless/bluez )
 	connman? ( net-misc/econnman )
 	pam? ( sys-libs/pam )
-	systemd? (
-		sys-apps/systemd
-		wayland? (
-			dev-libs/efl[egl,gles,wayland]
-			>=dev-libs/wayland-1.10.0
-			>=x11-libs/pixman-0.31.1
-			>=x11-libs/libxkbcommon-0.3.1
-		) )
+	systemd? ( sys-apps/systemd )
+	wayland? (
+		!systemd? ( sys-auth/elogind )
+		dev-libs/efl[egl,gles,wayland]
+		>=dev-libs/wayland-1.10.0
+		>=x11-libs/pixman-0.31.1
+		>=x11-libs/libxkbcommon-0.3.1
+	)
 	>=dev-libs/efl-1.18[X]
 	udisks? ( sys-fs/udisks:2 )
 	x11-libs/xcb-util-keysyms
