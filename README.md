@@ -56,7 +56,7 @@ Which might as well run that live as well.
 
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
-[Netbeaners] (https://netbeans.org). That will be added someday but for 
+[Netbeaners](https://netbeans.org). That will be added someday but for 
 now is maintained fairly well in Gentoo's main repository. Due to being 
 dependencies of other applications. Many pieces of Eclipse IDE are 
 packaged from source and more are being added. Only as needed as part of 
@@ -88,7 +88,7 @@ done when the package is used directly as a library in a project and/or
 via an existing application that uses it directly. Step 3 is a 
 finalization step.
 
-# Stability
+## Stability
 Packages in this repository may never be marked stable. This is not 
 meant to say some are not stable. Stability on such a platform can 
 be considered a misnomer at times. Other things are to fast moving to 
