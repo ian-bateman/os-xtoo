@@ -6,20 +6,14 @@
 
 EAPI="6"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="autotools git-r3"
-	EGIT_REPO_URI="https://git.enlightenment.org/libs/${PN}.git"
-else
-	SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.gz"
-	KEYWORDS="~amd64"
-fi
+E_TYPE="libs"
 
-inherit eutils ${ECLASS}
+inherit e versionator
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="http://www.enlightenment.org/"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-SLOT="0"
+SLOT="0/$(get_version_component_range 1-2)"
 
 IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua nls +opengl ssl physics pixman +png +ppm postscript psd pulseaudio rawphoto scim sdl sound static-libs +svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine xpm"
 
@@ -133,11 +127,6 @@ DEPEND="${COMMON_DEP}
 	test? ( dev-libs/check )"
 
 S="${WORKDIR}/${P/_/-}"
-
-src_prepare() {
-	default
-	[[ ${PV} = 9999 ]] && eautoreconf
-}
 
 src_configure() {
 	local config=()
