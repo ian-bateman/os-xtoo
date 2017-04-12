@@ -59,6 +59,7 @@ DEPEND="
 	)
 	>=dev-libs/efl-1.18[X]
 	udisks? ( sys-fs/udisks:2 )
+	x11-base/xorg-x11
 	x11-libs/xcb-util-keysyms
 "
 
