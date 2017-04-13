@@ -45,10 +45,12 @@ presently the official desktop being used by Obsidian-Studios, Inc. The
 ebuilds in this repository are not perfect. They should be some of the
 better quality ones around. Despite being an initial work in progress.
 
-There are some known issues. It is best to mask ELF 1.19 betas till 
-official released. Many EFL/ELM based applications do not build nor work 
-with EFL 1.19. That requires live versions. Most anything released 
-requires 1.18.4. With the exception of Enlightenment desktop itself, 
+If you have any issues with E packages in this repository. Let us know 
+and we will address them ASAP.
+
+There are some known issues. Many EFL/ELM based applications do not 
+build nor work with EFL 1.19. That requires live versions. Most anything 
+released requires 1.18.4. With the exception of Enlightenment desktop itself, 
 terminology, and some other applications. Python EFL libraries do not 
 work with 1.19, nor any EFL/ELM application written in Python. EDI is 
 also broken on 1.19. All fixed in git, thus live versions for 1.19. 
