@@ -1,7 +1,5 @@
-app-editors/epad
+app-editors/ecrire
 dev-libs/efl
-dev-python/python-efl
-dev-python/python-elm-extensions
 media-gfx/ephoto
 media-video/rage
 x11-terms/terminology
