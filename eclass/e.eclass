@@ -64,7 +64,7 @@ RDEPEND="${CDEPEND}
 IUSE="nls ${E_CMAKE:+debug} doc static-libs"
 S="${WORKDIR}/${P/_/-}"
 
-EXPORT_FUNCTIONS src_prepare src_configure src_install
+EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 
 # @FUNCTION: e_src_prepare
 # @DESCRIPTION:
@@ -107,12 +107,29 @@ e_src_configure() {
 	fi
 }
 
+# @FUNCTION: e_src_compile
+# @DESCRIPTION:
+# default src_compile for e ebuilds
+e_src_compile() {
+	debug-print-function ${FUNCNAME} $*
+	if [[ ${E_CMAKE} ]]; then
+		cmake-utils_src_compile
+	else
+		default
+	fi
+	prune_libtool_files
+}
+
 # @FUNCTION: e_src_install
 # @DESCRIPTION:
 # default src_install for e ebuilds
 e_src_install() {
 	debug-print-function ${FUNCNAME} $*
-	default
+	if [[ ${E_CMAKE} ]]; then
+		cmake-utils_src_install
+	else
+		default
+	fi
 	prune_libtool_files
 }
 
