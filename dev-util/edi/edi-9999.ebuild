@@ -10,9 +10,8 @@ inherit e
 DESCRIPTION="An EFL based / focussed IDE"
 HOMEPAGE="https://phab.enlightenment.org/w/projects/${PN}/"
 LICENSE="BSD-2"
-SLOT="0"
 
-IUSE="doc nls static-libs"
+S="${WORKDIR}/${P/_beta*/}"
 
 if [[ ${PV} == 0.4.0 ]]; then
 	RDEPEND="=dev-libs/efl-1.18.4"
