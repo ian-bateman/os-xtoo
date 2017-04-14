@@ -8,7 +8,8 @@
 # @MAINTAINER: wlt@o-sinc.com
 # @BLURB: Enlightenment package management common code
 
-[[ -z ${_E_ECLASS} ]] && _E_ECLASS=1
+if [[ -z ${_E_ECLASS} ]]; then
+_E_ECLASS=1
 
 inherit eutils libtool
 
@@ -17,44 +18,71 @@ inherit eutils libtool
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
+# @ECLASS-VARIABLE: E_BASE_URI
+# @DESCRIPTION:
+# default url for enlightenment git repos
+E_BASE_URI=${E_BASE_URI:="enlightenment.org"}
+
+# @ECLASS-VARIABLE: E_GIT_URI
+# @DESCRIPTION:
+# default url for enlightenment git repos
+E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
+
 # @ECLASS-VARIABLE: E_ECONF
 # @DESCRIPTION:
 # Array of flags to pass to econf (obsoletes MY_ECONF)
 E_ECONF=()
 
 if [[ ${PV} == 9999 ]]; then
-	inherit autotools git-r3
-	EGIT_REPO_URI="https://git.enlightenment.org/${E_TYPE}/${PN}.git"
+	EGIT_REPO_URI="${E_GIT_URI}/${E_TYPE}/${PN}.git"
 	SLOT="${PV}"
+	WANT_AUTOCONF=latest
+	WANT_AUTOMAKE=latest
+	inherit autotools git-r3
 else
-        SRC_URI="http://download.enlightenment.org/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"
+        SRC_URI="https://download.${E_BASE_URI}/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"
 	KEYWORDS="~amd64"
-	SLOT="${PV%%.*}"
+	SLOT="0"
 fi
 
+CDEPEND="dev-libs/efl"
+DEPEND="${CDEPEND}
+	doc? ( app-doc/doxygen )"
+RDEPEND="${CDEPEND}
+	nls? ( sys-devel/gettext )"
+IUSE="nls doc static-libs"
 S="${WORKDIR}/${P/_/-}"
 
-E_EXPF="src_install"
-case "${EAPI:-0}" in
-2|3|4|5|6) E_EXPF+="src_prepare src_configure" ;;
-*) ;;
-esac
+EXPORT_FUNCTIONS src_prepare src_configure src_install
 
+# @FUNCTION: e_src_prepare
+# @DESCRIPTION:
+# default src_prepare for e ebuilds
 e_src_prepare() {
+	debug-print-function ${FUNCNAME} $*
 	default
-	[[ ${PV} = 9999 ]] && eautoreconf
+	if [[ ${PV} == 9999 ]]; then
+		ewarn "ran eautopoint"
+		eautoreconf
+	fi
+	epunt_cxx
+	elibtoolize
 }
 
 e_src_configure() {
-	        has nls ${IUSE} && \
-			E_ECONF+=( $(use_enable nls) )
-	        has static-libs ${IUSE} && \
-			E_ECONF+=( $(use_enable static-libs static) )
+	debug-print-function ${FUNCNAME} $*
+        has nls ${IUSE} && \
+		E_ECONF+=( $(use_enable nls) )
+        has static-libs ${IUSE} && \
+		E_ECONF+=( $(use_enable static-libs static) )
 
         econf ${MY_ECONF} "${E_ECONF[@]}"
 }
 
 e_src_install() {
+	debug-print-function ${FUNCNAME} $*
 	default
 	prune_libtool_files
 }
+
+fi
