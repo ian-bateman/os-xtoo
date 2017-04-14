@@ -3,21 +3,22 @@
 
 EAPI="6"
 
-E_TYPE="apps"
+if [[ ${PV} == 9999 ]]; then
+	E_TYPE="tools"
+else
+	E_TYPE="apps"
+fi
 
 inherit e
 
 DESCRIPTION="EFL Edje Theme Editor"
 HOMEPAGE="https://phab.enlightenment.org/w/projects/${PN}/"
 LICENSE="BSD-2"
-SLOT="0"
-
-IUSE="doc nls static-libs"
 
 if [[ ${PV} == 0.7.0 ]]; then
-	RDEPEND="=dev-libs/efl-1.18.4"
+	DEPEND="=dev-libs/efl-1.18.4"
 else
-	RDEPEND="dev-libs/efl"
+	DEPEND="dev-libs/efl"
 fi
 
-DEPEND="${RDEPEND}"
+RDEPEND="${RDEPEND}"
