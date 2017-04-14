@@ -13,44 +13,55 @@ _E_ECLASS=1
 
 inherit eutils libtool
 
-# @ECLASS-VARIABLE: E_TYPE
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# if defined, the type of package, apps, bindings, tools
-
 # @ECLASS-VARIABLE: E_BASE_URI
 # @DESCRIPTION:
 # default url for enlightenment git repos
 E_BASE_URI=${E_BASE_URI:="enlightenment.org"}
 
-# @ECLASS-VARIABLE: E_GIT_URI
+# @ECLASS-VARIABLE: E_CMAKE
+# @DEFAULT_UNSET
 # @DESCRIPTION:
-# default url for enlightenment git repos
-E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
+# if defined, use cmake to build instead of autotools
 
 # @ECLASS-VARIABLE: E_ECONF
 # @DESCRIPTION:
 # Array of flags to pass to econf (obsoletes MY_ECONF)
 E_ECONF=()
 
+# @ECLASS-VARIABLE: E_GIT_URI
+# @DESCRIPTION:
+# default url for enlightenment git repos
+E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
+
+# @ECLASS-VARIABLE: E_TYPE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# if defined, the type of package, apps, bindings, tools
+
 if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${E_GIT_URI}/${E_TYPE}/${PN}.git"
 	SLOT="${PV}"
-	WANT_AUTOCONF=latest
-	WANT_AUTOMAKE=latest
-	inherit autotools git-r3
+	if [[ ! ${E_CMAKE} ]]; then
+		WANT_AUTOCONF=latest
+		WANT_AUTOMAKE=latest
+		inherit autotools
+	fi
+	inherit git-r3
 else
         SRC_URI="https://download.${E_BASE_URI}/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"
 	KEYWORDS="~amd64"
 	SLOT="0"
 fi
 
+[[ ${E_CMAKE} ]] && inherit cmake-utils
+
 CDEPEND="dev-libs/efl"
 DEPEND="${CDEPEND}
+	${E_CMAKE:+dev-util/cmake}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
-IUSE="nls doc static-libs"
+IUSE="nls ${E_CMAKE:+debug} doc static-libs"
 S="${WORKDIR}/${P/_/-}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_install
@@ -61,24 +72,44 @@ EXPORT_FUNCTIONS src_prepare src_configure src_install
 e_src_prepare() {
 	debug-print-function ${FUNCNAME} $*
 	default
-	if [[ ${PV} == 9999 ]]; then
-		ewarn "ran eautopoint"
-		eautoreconf
+	if [[ ! ${E_CMAKE} ]]; then
+		if [[ ${PV} == 9999 ]]; then
+			eautoreconf
+		fi
+		epunt_cxx
+		elibtoolize
 	fi
-	epunt_cxx
-	elibtoolize
 }
 
+# @FUNCTION: e_src_configure
+# @DESCRIPTION:
+# default src_configure for e ebuilds
 e_src_configure() {
 	debug-print-function ${FUNCNAME} $*
-        has nls ${IUSE} && \
-		E_ECONF+=( $(use_enable nls) )
-        has static-libs ${IUSE} && \
-		E_ECONF+=( $(use_enable static-libs static) )
+	if [[ ${E_CMAKE} ]]; then
+		local mytype="release"
+	        use debug && mytype="debug"
+		local mycmakeargs=(
+			-DCMAKE_INSTALL_PREFIX="${EROOT}"
+			-DCMAKE_BUILD_TYPE=${mytype}
+			-DCMAKE_DOC=$(usex doc)
+			-DCMAKE_NLS=$(usex nls)
+			-DCMAKE_STATIC=$(usex static-libs)
+		)
+		cmake-utils_src_configure
+	else
+	        has nls ${IUSE} && \
+			E_ECONF+=( $(use_enable nls) )
+	        has static-libs ${IUSE} && \
+			E_ECONF+=( $(use_enable static-libs static) )
 
-        econf ${MY_ECONF} "${E_ECONF[@]}"
+		econf ${MY_ECONF} "${E_ECONF[@]}"
+	fi
 }
 
+# @FUNCTION: e_src_install
+# @DESCRIPTION:
+# default src_install for e ebuilds
 e_src_install() {
 	debug-print-function ${FUNCNAME} $*
 	default
