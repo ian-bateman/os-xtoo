@@ -30,14 +30,14 @@ preserved. It can be relocated, and/or credit mentioned to original
 source, such as
 
 ```shell
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 #
-# Original work Copyright 2016 Obsidian-Studios, Inc.
+# Original work Copyright 2017 Obsidian-Studios, Inc.
 # Ebuild written by "William L. Thomson Jr." <wlt@o-sinc.com>
 # <link to ebuild in this repo>
 ```
+
 ## E
 This repo has initial support for 
 [Enlightenment](https://www.enlightenment.org/) desktop. This is 
