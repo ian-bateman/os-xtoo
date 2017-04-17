@@ -15,69 +15,22 @@ if [[ ${PV} == 9999* ]]; then
 	MY_S="${MY_PN}"
 else
 	GIT_COMMIT="ffdec3f6a5f29eb8a848b6a2417e0a1b45d32fcc"
-#https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/ffdec3f6a5f29eb8a848b6a2417e0a1b45d32fcc.tar.gz
 	SRC_URI="https://${BASE_URI}/snapshot/${GIT_COMMIT}.tar.gz -> ${BASE_PN}-${PV}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${MY_P}/${PN:0:4}"
+	MY_S="${GIT_COMMIT}"
 fi
 
 inherit savedconfig ${ECLASS}
 
-DESCRIPTION="Linux firmware files"
+DESCRIPTION="${MY_PN^^} Linux firmware files"
 HOMEPAGE="https://${BASE_URI}"
 LICENSE="GPL-1 GPL-2 GPL-3 BSD freedist"
 SLOT="0"
-IUSE="savedconfig"
-
-DEPEND=""
-#RDEPEND="( ! sys-kernel/linux-firmware )"
-#add anything else that collides to this
 
 S="${WORKDIR}/${MY_S}"
 
-src_unpack() {
-	if [[ ${PV} == 99999999* ]]; then
-		git-3_src_unpack
-	else
-		default
-		# rename directory from git snapshot tarball
-		mv ${BASE_PN}-*/ ${MY_P} || die
-	fi
-}
-
-src_prepare() {
-	default
-	echo "# Remove files that shall not be installed from this list." > ${PN}.conf
-	find * \( \! -type d -and \! -name ${PN}.conf \) >> ${PN}.conf
-
-	if use savedconfig; then
-		restore_config ${PN}.conf
-		ebegin "Removing all files not listed in config"
-		find * \( \! -type d -and \! -name ${PN}.conf \) \
-			| sort ${PN}.conf ${PN}.conf - \
-			| uniq -u | xargs -r rm
-		eend $? || die
-		# remove empty directories, bug #396073
-		find -type d -empty -delete || die
-	fi
-}
-
 src_install() {
-	if use !savedconfig; then
-		save_config ${PN}.conf
-	fi
-	rm ${PN}.conf || die
-	insinto /lib/firmware/${MY_PN}
-	doins -r *
-}
-
-pkg_preinst() {
-	if use savedconfig; then
-		ewarn "USE=savedconfig is active. You must handle file collisions manually."
-	fi
-}
-
-pkg_postinst() {
-	elog "If you are only interested in particular firmware files, edit the saved"
-	elog "configfile and remove those that you do not want."
+	insinto /lib/firmware
+	doins -r "${MY_PN}"
+	FILES=( "${MY_PN}"/*.bin )
 }
