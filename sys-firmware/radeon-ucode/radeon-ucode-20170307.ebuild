@@ -1,0 +1,38 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI="6"
+
+MY_PN="${PN/-ucode/}"
+MY_P="${MY_PN}-${PV}"
+
+BASE_PN="linux-firmware"
+BASE_URI="git.kernel.org/pub/scm/linux/kernel/git/firmware/${BASE_PN}.git"
+
+if [[ ${PV} == 9999* ]]; then
+	ECLASS="git-r3"
+	EGIT_REPO_URI="git://${BASE_URI}"
+	MY_S="${MY_PN}"
+else
+	GIT_COMMIT="ffdec3f6a5f29eb8a848b6a2417e0a1b45d32fcc"
+	SRC_URI="https://${BASE_URI}/snapshot/${GIT_COMMIT}.tar.gz -> ${BASE_PN}-${PV}.tar.gz"
+	MY_S="${MY_P}/${PN:0:6}"
+fi
+
+inherit linux-info
+
+DESCRIPTION="IRQ microcode for r6xx/r7xx/Evergreen/N.Islands/S.Islands Radeon GPUs and APUs"
+HOMEPAGE="https://people.freedesktop.org/~agd5f/radeon_ucode/"
+LICENSE="radeon-ucode"
+KEYWORDS="~amd64"
+SLOT="0"
+
+RDEPEND="!sys-kernel/linux-firmware[-savedconfig]"
+
+S="${WORKDIR}/${MY_S}"
+
+src_install() {
+	insinto /lib/firmware
+	doins -r radeon
+	FILES=( radeon/*.bin )
+}
