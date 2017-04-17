@@ -33,27 +33,33 @@ E_ECONF=()
 # default url for enlightenment git repos
 E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
 
+# @ECLASS-VARIABLE: E_SNAP
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# if defined, use snap hash for git snapshot instead of versioned tarball
+
 # @ECLASS-VARIABLE: E_TYPE
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
+if [[ ${E_CMAKE} ]]; then
+	inherit cmake-utils
+elif [[ ${PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
+	WANT_AUTOCONF=latest
+	WANT_AUTOMAKE=latest
+	inherit autotools
+fi
+
 if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${E_GIT_URI}/${E_TYPE}/${PN}.git"
 	SLOT="${PV}"
-	if [[ ! ${E_CMAKE} ]]; then
-		WANT_AUTOCONF=latest
-		WANT_AUTOMAKE=latest
-		inherit autotools
-	fi
 	inherit git-r3
 else
         SRC_URI="https://download.${E_BASE_URI}/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"
 	KEYWORDS="~amd64"
 	SLOT="0"
 fi
-
-[[ ${E_CMAKE} ]] && inherit cmake-utils
 
 CDEPEND="dev-libs/efl"
 DEPEND="${CDEPEND}
@@ -73,7 +79,7 @@ e_src_prepare() {
 	debug-print-function ${FUNCNAME} $*
 	default
 	if [[ ! ${E_CMAKE} ]]; then
-		if [[ ${PV} == 9999 ]]; then
+		if [[ ${PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 			eautoreconf
 		fi
 		epunt_cxx
