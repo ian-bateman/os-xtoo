@@ -16,7 +16,7 @@ if [[ ${PV} == 9999* ]]; then
 else
 	GIT_COMMIT="ffdec3f6a5f29eb8a848b6a2417e0a1b45d32fcc"
 	SRC_URI="https://${BASE_URI}/snapshot/${GIT_COMMIT}.tar.gz -> ${BASE_PN}-${PV}.tar.gz"
-	MY_S="${MY_P}/${PN:0:6}"
+	MY_S="${GIT_COMMIT}"
 fi
 
 inherit linux-info
@@ -33,6 +33,6 @@ S="${WORKDIR}/${MY_S}"
 
 src_install() {
 	insinto /lib/firmware
-	doins -r radeon
-	FILES=( radeon/*.bin )
+	doins -r ${MY_PN}
+	FILES=( ${MY_PN}/*.bin )
 }
