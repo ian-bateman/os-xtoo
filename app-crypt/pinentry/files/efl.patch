@@ -141,20 +141,19 @@ index 0000000..b986a04
 +pinentry_efl_SOURCES = pinentry-efl.c
 diff --git a/efl/pinentry-efl.c b/efl/pinentry-efl.c
 new file mode 100644
-index 0000000..a20506a
+index 0000000..3140f3c
 --- /dev/null
 +++ b/efl/pinentry-efl.c
-@@ -0,0 +1,522 @@
+@@ -0,0 +1,530 @@
 +/* pinentry-efl.c
 +   Copyright (C) 2017 Obsidian-Studios, Inc.
 +     Author William L. Thomson Jr. <wlt@o-sinc.com>
-+   Copyright (C) 2016 Mike Blumenkrantz <zmike@osg.samsung.com>
 +
 +   Based on pinentry-gtk2.c
 +   Copyright (C) 1999 Robert Bihlmeyer <robbe@orcus.priv.at>
 +   Copyright (C) 2001, 2002, 2007, 2015 g10 Code GmbH
 +   Copyright (C) 2004 by Albrecht Dreß <albrecht.dress@arcor.de>
-+ 
++
 +   pinentry-efl is a pinentry application for the EFL widget set.
 +   It tries to follow the Gnome Human Interface Guide as close as
 +   possible.
@@ -206,6 +205,9 @@ index 0000000..a20506a
 +#define VERSION
 +#endif
 +
++#define ENTRY_HIDE "Hide entry"
++#define ENTRY_SHOW "Show entry"
++
 +static int pargc;
 +static char **pargv;
 +
@@ -216,7 +218,7 @@ index 0000000..a20506a
 +static confirm_value_t confirm_value;
 +static Eina_Bool got_input;
 +static Ecore_Timer *timer;
-+static Evas_Object *win, *entry, *error_label, *repeat_entry, *qualitybar;
++static Evas_Object *win, *entry, *error_label, *check_label, *repeat_entry, *qualitybar;
 +static int confirm_mode;
 +
 +const static int WIDTH = 480;
@@ -272,9 +274,15 @@ index 0000000..a20506a
 +on_check (void *data EINA_UNUSED, Evas_Object *obj, void *event EINA_UNUSED)
 +{
 +    if(elm_check_selected_get(obj))
++    {
 +        elm_entry_password_set(entry, EINA_FALSE);
++        elm_object_text_set(check_label,ENTRY_HIDE);
++    }
 +    else
++    {
 +        elm_entry_password_set(entry, EINA_TRUE);
++        elm_object_text_set(check_label,ENTRY_SHOW);
++    }
 +}
 +
 +static void
@@ -456,12 +464,12 @@ index 0000000..a20506a
 +      evas_object_show(obj);
 +
 +      /* Check Label */
-+      obj = elm_label_add(table);
-+      elm_object_text_set(obj,"Make visible");
-+      evas_object_size_hint_weight_set(obj, 0, 0);
-+      evas_object_size_hint_align_set(obj, 0, 0);
-+      elm_table_pack(table, obj, 2, row, 4, 1);
-+      evas_object_show(obj);
++      check_label = elm_label_add(table);
++      elm_object_text_set(check_label,ENTRY_SHOW);
++      evas_object_size_hint_weight_set(check_label, 0, 0);
++      evas_object_size_hint_align_set(check_label, 0, 0);
++      elm_table_pack(table, check_label, 2, row, 4, 1);
++      evas_object_show(check_label);
 +      row++;
 +
 +      if (pinentry->quality_bar)
@@ -603,7 +611,7 @@ index 0000000..a20506a
 +  evas_object_show(win);
 +
 +  if (pinentry->timeout > 0)
-+    timer = ecore_timer_add (pinentry->timeout, timeout_cb, pinentry);
++    timer = ecore_timer_add (pinentry->timeout, (Ecore_Task_Cb)timeout_cb, pinentry);
 +}
 +
 +static int
