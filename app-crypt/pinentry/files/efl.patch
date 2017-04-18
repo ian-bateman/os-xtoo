@@ -141,10 +141,10 @@ index 0000000..b986a04
 +pinentry_efl_SOURCES = pinentry-efl.c
 diff --git a/efl/pinentry-efl.c b/efl/pinentry-efl.c
 new file mode 100644
-index 0000000..ec51e6a
+index 0000000..a20506a
 --- /dev/null
 +++ b/efl/pinentry-efl.c
-@@ -0,0 +1,537 @@
+@@ -0,0 +1,522 @@
 +/* pinentry-efl.c
 +   Copyright (C) 2017 Obsidian-Studios, Inc.
 +     Author William L. Thomson Jr. <wlt@o-sinc.com>
@@ -244,7 +244,6 @@ index 0000000..ec51e6a
 +static void
 +changed_text_handler (void *data EINA_UNUSED, Evas_Object *obj, void *event EINA_UNUSED)
 +{
-+  char textbuf[50];
 +  const char *s;
 +  int length;
 +  int percent;
@@ -265,24 +264,8 @@ index 0000000..ec51e6a
 +    s = "";
 +  length = strlen (s);
 +  percent = length? pinentry_inq_quality (pinentry, s, length) : 0;
-+  if (!length)
-+    {
-+      strcpy(textbuf, " ");
-+    }
-+  else if (percent < 0)
-+    {
-+      snprintf (textbuf, sizeof textbuf, "(%d%%)", -percent);
-+      textbuf[sizeof textbuf -1] = 0;
-+      percent = -percent;
-+    }
-+  else
-+    {
-+      snprintf (textbuf, sizeof textbuf, "%d%%", percent);
-+      textbuf[sizeof textbuf -1] = 0;
-+    }
 +  evas_object_color_set(qualitybar, 255 - ( 2.55 * percent ), 2.55 * percent, 0, 255);
 +  elm_progressbar_value_set (qualitybar, (double) percent / 100.0);
-+  elm_object_text_set (qualitybar, textbuf);
 +}
 +
 +static void
@@ -361,7 +344,7 @@ index 0000000..ec51e6a
 +  return ECORE_CALLBACK_DONE;
 +}
 +
-+static Evas_Object *
++static void
 +create_window (pinentry_t ctx)
 +{
 +  char *txt;
@@ -387,13 +370,24 @@ index 0000000..ec51e6a
 +      free (txt);
 +    }
 +
++  /* Description Label */
 +  if (pinentry->description)
 +    {
-+      /* Description Label */
++      char* aligned;
++      int len;
++
 +      obj = elm_label_add(table);
 +      elm_label_line_wrap_set (obj, ELM_WRAP_WORD);
 +      txt = pinentry_utf8_to_local (pinentry->lc_ctype, pinentry->description);
-+      elm_object_text_set(obj,txt);
++      len = strlen(txt)+20; // 20 chars for align tag
++      aligned = calloc(len+1,sizeof(char));
++      if(aligned)
++        {
++          snprintf(aligned,len, "<align=left>%s</align>",txt);
++          elm_object_text_set(obj,aligned);
++          free (aligned);
++        } else
++          elm_object_text_set(obj,txt);
 +      free (txt);
 +      evas_object_size_hint_weight_set(obj, EVAS_HINT_EXPAND, 0);
 +      evas_object_size_hint_align_set(obj, EVAS_HINT_FILL, 0);
@@ -483,14 +477,8 @@ index 0000000..ec51e6a
 +          evas_object_show(obj);
 +
 +	  qualitybar = elm_progressbar_add(table);
-+          elm_object_text_set(qualitybar," ");
 +          evas_object_color_set(qualitybar, 255, 0, 0, 255);
 +          evas_object_show(qualitybar);
-+	  elm_progressbar_unit_format_set (qualitybar, "%");
-+/*
-+          elm_progressbar_pulse_set(qualitybar, EINA_TRUE);
-+          elm_progressbar_pulse(qualitybar, EINA_TRUE);
-+*/
 +          if (pinentry->quality_bar_tt)
 +	    elm_object_tooltip_text_set (qualitybar,
 +					 pinentry->quality_bar_tt);
@@ -616,14 +604,11 @@ index 0000000..ec51e6a
 +
 +  if (pinentry->timeout > 0)
 +    timer = ecore_timer_add (pinentry->timeout, timeout_cb, pinentry);
-+
-+  return win;
 +}
 +
 +static int
 +efl_cmd_handler (pinentry_t pe)
 +{
-+  Evas_Object *w;
 +  int want_pass = !!pe->pin;
 +
 +  got_input = EINA_FALSE;
@@ -637,7 +622,7 @@ index 0000000..ec51e6a
 +  if (pe->display)
 +    ecore_x_init (pe->display);
 +  elm_init (pargc, pargv);
-+  w = create_window (pe);
++  create_window (pe);
 +  ecore_main_loop_begin ();
 +
 +  if (timer)
