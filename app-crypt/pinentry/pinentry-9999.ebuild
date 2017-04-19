@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI="6"
 
 BASE_URI="https://github.com/gpg/${PN}"
 
@@ -10,15 +10,16 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	if [[ ${PV} == 1.0.1.20170308 ]]; then
+	if [[ ${PV} == 1.0.1.20170308* ]]; then
 		MY_PV="5c3f796798d655b5583257f9dfc81ae9c1427fb3"
 		MY_P="${PN}-${MY_PV}"
 		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+		KEYWORDS="~amd64"
 	else
 		MY_P="${P}"
 		SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+		KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 	fi
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 	MY_S="${MY_P}"
 fi
 
