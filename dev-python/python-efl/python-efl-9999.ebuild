@@ -11,18 +11,12 @@ E_PYTHON="yes"
 
 PYTHON_COMPAT=( python{3_2,3_4,3_6} pypy2_0 )
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="https://git.enlightenment.org/bindings/${PN}.git"
-else
-	SRC_URI="http://download.enlightenment.org/rel/bindings/${PN}/${P}.tar.gz"
-	KEYWORDS="~amd64"
-fi
+E_TYPE="bindings"
 
-inherit eutils distutils-r1 ${ECLASS}
+inherit e distutils-r1
 
 DESCRIPTION="Python bindings for EFL"
-HOMEPAGE="http://www.enlightenment.org/about-epour"
+HOMEPAGE="https://phab.enlightenment.org/w/projects/python_bindings_for_efl/"
 LICENSE="LGPL-2.1"
 SLOT="0"
 
