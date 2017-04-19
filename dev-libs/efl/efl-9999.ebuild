@@ -11,9 +11,9 @@ E_TYPE="libs"
 inherit e versionator
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
-HOMEPAGE="http://www.enlightenment.org/"
+HOMEPAGE="https://www.enlightenment.org/"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-SLOT="0/$(get_version_component_range 1-2)"
+SLOT="0"
 
 IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua nls +opengl ssl physics pixman +png +ppm postscript psd pulseaudio rawphoto scim sdl sound static-libs +svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine xpm"
 
