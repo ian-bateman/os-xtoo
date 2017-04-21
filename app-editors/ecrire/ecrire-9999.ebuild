@@ -4,7 +4,6 @@
 EAPI="6"
 
 E_CMAKE="yes"
-E_SNAP="2f09e4083dafa8f6e5a7186a6366de6325209060"
 E_TYPE="apps"
 
 inherit e
@@ -13,9 +12,7 @@ DESCRIPTION="An EFL based text editor"
 HOMEPAGE="https://git.enlightenment.org/apps/ecrire.git"
 LICENSE="GPL-3"
 if [[ ${PV} != 9999 ]]; then
-	MY_P="${PN}-${E_SNAP}"
-	SRC_URI="${HOMEPAGE}/snapshot/${MY_P}.tar.xz"
-	S="${WORKDIR}/${MY_P}"
+	SRC_URI="https://github.com/Obsidian-StudiosInc/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
 src_configure() {
