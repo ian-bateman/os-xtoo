@@ -15,6 +15,9 @@ E_TYPE="bindings"
 
 inherit e distutils-r1
 
+[[ ${PV} != 1.18.0 ]] && \
+	SRC_URI="${SRC_URI/${E_TYPE}\/${PN}/${E_TYPE}/python}"
+
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="https://phab.enlightenment.org/w/projects/python_bindings_for_efl/"
 LICENSE="LGPL-2.1"
@@ -24,8 +27,6 @@ IUSE="doc"
 
 if [[ ${PV} == 1.18.0 ]]; then
 	RDEPEND="=dev-libs/efl-1.18.4"
-else
-	RDEPEND="dev-libs/efl"
 fi
 
 RDEPEND="
