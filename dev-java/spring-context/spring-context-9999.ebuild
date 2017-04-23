@@ -63,11 +63,12 @@ S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main/java"
 
-PATCHES=(
-	"${FILESDIR}/jrubyexception.patch"
-)
-
 java_prepare() {
+	#Fix jruby API change
+	sed -i -e 's|rubyEx.message|rubyEx.getMessage()|' \
+		"${S}/${JAVA_SRC_DIR}/org/springframework/scripting/jruby/JRubyScriptFactory.java" \
+		|| die "Could not fix jruby"
+
 	local files
 	files=(
 		"org/springframework/scripting/support/ScriptFactoryPostProcessor.java"
