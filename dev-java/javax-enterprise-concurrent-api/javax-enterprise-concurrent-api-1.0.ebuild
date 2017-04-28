@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -13,7 +13,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="JSR 236: Concurrency Utilities for Java EE"
 HOMEPAGE="https://java.net/projects/concurrency-ee-spec"
-SRC_URI="https://central.maven.org/maven2/${PN:0:5}/${PN:6:10}/${PN:17:10}/${MY_PN}/${PV}/${MY_P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/${PN:0:5}/${PN:6:10}/${PN:17:10}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 
 LICENSE="|| ( CDDL GPL-2 )"
 KEYWORDS="~amd64"
