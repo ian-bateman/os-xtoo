@@ -17,9 +17,11 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+#	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+	SRC_URI="mirror://apache/${PN}/${PV}/sources/apache-${PN}-src-${PV}.zip -> ${P}.zip"
 	KEYWORDS="~amd64"
-	MY_S="${PN}-${MY_P}"
+#	MY_S="${PN}-${MY_P}"
+	MY_S="${P}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
@@ -32,16 +34,17 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/ant-ivy:2
 	>=dev-java/antlr-2.7.7-r7:0
-	dev-java/asm:4
+	dev-java/asm:5
 	dev-java/commons-cli:1
 	dev-java/jansi:0
 	dev-java/xstream:0
 "
 
-DEPEND="${CDEPEND}
+DEPEND="app-arch/unzip
+	${CP_DEPEND}
 	>=virtual/jdk-1.7"
 
-RDEPEND="${CDEPEND}
+RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.7"
 
 S="${WORKDIR}/${MY_S}"
@@ -89,10 +92,10 @@ generate_exceptionutils() {
 	mv "gradle/utils.gradle" "${EU}" || die
 	eend $?
 
-	ejavac -classpath "$(java-pkg_getjar --build-only asm-4 asm.jar)" ${EU}
+	ejavac -classpath "$(java-pkg_getjar --build-only asm-5 asm.jar)" ${EU}
 
 	ebegin "Running ${EU%.java}"
-	$(java-config -J) -classpath "$(java-pkg_getjar --build-only asm-4 asm.jar):." ${EU%.java} || die
+	$(java-config -J) -classpath "$(java-pkg_getjar --build-only asm-5 asm.jar):." ${EU%.java} || die
 	eend $?
 }
 
@@ -106,11 +109,22 @@ src_compile() {
 	sources=groovy_sources.lst
 	classes=target/groovy_classes
 	find "${S}/src/main" -name \*.groovy > ${sources}
-	groovyc -d ${classes} \
-		-cp "${PN}.jar:$(java-pkg_getjars ant-ivy-2)" @${sources} \
+	sed -i -e "s|\$GROOVY_HOME/lib/@GROOVYJAR@|${S}/${PN}.jar:$(java-pkg_getjars antlr,asm-5,commons-cli-1)|" \
+		"src/bin/startGroovy" \
+		|| die "Could not modify startGroovy"
+	chmod 775 "src/bin/groovyc" "src/bin/startGroovy"\
+		|| die "Failed to make groovyc,startGroovy executable"
+	"src/bin/groovyc" -d ${classes} \
+		-cp "${PN}.jar:$(java-pkg_getjars ant-ivy-2,commons-cli-1)" \
+		@${sources} \
 		|| die "Failed to compile groovy files"
 	# ugly should be included with existing
 	jar uf ${PN}.jar -C ${classes} . || die "update jar failed"
+
+	# revert modifications
+	sed -i -e "s|${S}/${PN}.jar.*|\$GROOVY_HOME/lib/@GROOVYJAR@|" \
+		"src/bin/startGroovy" \
+		|| die "Could not revert startGroovy"
 
 }
 
