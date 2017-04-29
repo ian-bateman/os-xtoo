@@ -12,7 +12,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Glassfish JSR196 implementation"
 HOMEPAGE="https://www.jcp.org/en/jsr/detail?id=196"
-SRC_URI="https://central.maven.org/maven2/org/glassfish/${MY_PN}/${PV}/${MY_P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${MY_PN}/${PV}/${MY_P}-sources.jar"
 
 LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="0"
