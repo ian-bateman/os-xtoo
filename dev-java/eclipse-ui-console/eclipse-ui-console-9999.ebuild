@@ -43,7 +43,7 @@ CP_DEPEND="
 	~dev-java/eclipse-text-${PV}:${SLOT}
 	~dev-java/eclipse-ui-workbench-${PV}:${SLOT}
 	~dev-java/eclipse-ui-workbench-texteditor-${PV}:${SLOT}
-	dev-java/icu4j:56
+	dev-java/icu4j:59
 	dev-java/osgi-core-api:6
 "
 
