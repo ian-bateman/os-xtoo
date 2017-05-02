@@ -42,6 +42,8 @@ CP_DEPEND="
 	~dev-java/netty-transport-${PV}:${SLOT}
 "
 
+[[ ${PV} == 4.1.10 ]] && CP_DEPEND+="dev-java/conscrypt:0"
+
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
 
