@@ -3,17 +3,12 @@
 [![Build Status](https://img.shields.io/travis/Obsidian-StudiosInc/os-xtoo/master.svg?colorA=9977bb&style=plastic)](https://travis-ci.org/Obsidian-StudiosInc/os-xtoo)
 [![Build Status](https://img.shields.io/shippable/5840e5d8e2ab4d0f0058b4b7/master.svg?colorA=9977bb&style=plastic)](https://app.shippable.com/projects/5840e5d8e2ab4d0f0058b4b7/)
 
-Obsidian-Studios, Inc. funtoo/gentoo overlay (a.k.a wltjr's overlay)
-Making Gentoo Java Great Again!
-
-Things that could and should be in Gentoo but are not.
-
-Go GENTOO! :-1:
-
 ## About
+Obsidian-Studios, Inc. funtoo/gentoo overlay (a.k.a wltjr's overlay)
+
 This overlay mostly contains Java related ebuilds. Most of the 
 ebuilds are not in tree, but some are corrections, newer versions 
-and/or slot changes. Initial support for Java 9, JDK only at this time. 
+and/or slot changes. Initial support for Java 9, JDK only at this time.
 
 Effort will be made to keep packages in this overlay up to date. All 
 ebuilds in this overlay should be production quality and many are used 
