@@ -22,7 +22,7 @@ HOMEPAGE="https://blog.qmx.me"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="dev-java/asm:4"
+CP_DEPEND="dev-java/asm:5"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
