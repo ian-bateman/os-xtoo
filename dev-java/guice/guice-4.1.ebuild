@@ -16,7 +16,7 @@ SLOT="$(get_major_version)"
 KEYWORDS="~amd64"
 
 CP_DEPEND="
-	dev-java/asm:4
+	dev-java/asm:5
 	dev-java/aopalliance:1
 	dev-java/guava:21
 	dev-java/javax-inject:0
