@@ -20,7 +20,7 @@ LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="$(get_major_version)"
 KEYWORDS="~amd64"
 
-CP_DEPEND="dev-java/asm:4
+CP_DEPEND="dev-java/asm:5
 	dev-java/glassfish-hk2-api:0
 	dev-java/glassfish-hk2-locator:0
 	dev-java/glassfish-hk2-utils:0
