@@ -26,7 +26,10 @@ DESCRIPTION="Enforce access restrictions to deprecated code"
 LICENSE="MIT"
 SLOT="0"
 
-CP_DEPEND="dev-java/annotation-indexer:0"
+CP_DEPEND="
+	dev-java/annotation-indexer:0
+	dev-java/asm:5
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
