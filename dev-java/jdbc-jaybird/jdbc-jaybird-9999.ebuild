@@ -30,8 +30,8 @@ SLOT="0"
 IUSE="jni"
 
 CP_DEPEND="
-	dev-java/antlr:4
-	dev-java/jna:4
+	>=dev-java/antlr-4.7:4
+	>=dev-java/jna-4.4.0:4
 "
 
 RDEPEND="${CP_DEPEND}
@@ -65,9 +65,9 @@ java_prepare() {
 	java-pkg_jar-from --build-only glassfish-connector-api \
 		glassfish-connector-api.jar connector-api-1.5.jar
 
-	java-pkg_jar-from --build-only jna-4 jna.jar jna-4.2.2.jar
+	java-pkg_jar-from --build-only jna-4 jna.jar jna-4.4.0.jar
 	java-pkg_jar-from --build-only antlr-4 antlr-runtime.jar \
-		antlr-runtime-4.6.jar
+		antlr-runtime-4.7.jar
 
 	# the build.xml unpacks this and uses stuff
 	touch empty
