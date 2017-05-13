@@ -10,10 +10,12 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	if [[ ${PV} == 1.0.1.20170308* ]]; then
-		MY_PV="5c3f796798d655b5583257f9dfc81ae9c1427fb3"
+	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
+		#MY_PV="5c3f796798d655b5583257f9dfc81ae9c1427fb3"
+		MY_PV="4101806bf73caf25c8ce4e455b154901da1fe788"
 		MY_P="${PN}-${MY_PV}"
-		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
+			https://github.com/Obsidian-StudiosInc/pinentry/commit/0adff7bea93274a2f13f725530ff2b814f7cbab4.patch -> ${P}-efl.patch"
 		KEYWORDS="~amd64"
 	else
 		MY_P="${P}"
@@ -78,11 +80,11 @@ DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO )
 
 src_prepare() {
 	default
-	use efl && eapply "${FILESDIR}/efl.patch"
-	if [[ ${PV} == 1.0.1.20170308 ]]; then
+	use efl && eapply "${DISTDIR}/${P}-efl.patch"
+	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
 		echo "
-@set UPDATED 8 March 2017
-@set UPDATED-MONTH March 2017
+@set UPDATED 12 May 2017
+@set UPDATED-MONTH May 2017
 @set EDITION ${PV}
 @set VERSION ${PV}
 " > "${S}"/doc/version.texi
