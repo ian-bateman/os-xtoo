@@ -33,6 +33,7 @@ BCV="1.56"
 CP_DEPEND="
 	dev-java/bcpkix:${BCV}
 	dev-java/bcprov:${BCV}
+	dev-java/conscrypt:0
 	dev-java/jetty-alpn-api:0
 	dev-java/jetty-npn-api:0
 	~dev-java/netty-buffer-${PV}:${SLOT}
@@ -41,10 +42,6 @@ CP_DEPEND="
 	dev-java/netty-tcnative:2
 	~dev-java/netty-transport-${PV}:${SLOT}
 "
-
-if [[ ${PV} == 4.0.46 ]] || [[ ${PV} == 4.1.10 ]]; then
-	CP_DEPEND+="dev-java/conscrypt:0"
-fi
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
