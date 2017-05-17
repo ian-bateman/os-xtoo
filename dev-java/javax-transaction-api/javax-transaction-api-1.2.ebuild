@@ -7,14 +7,12 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
-MY_PN="${PN//-/.}"
-MY_PN="${MY_PN/n.a/n-a}"
-MY_PV="${PV/_beta/-b0}"
-MY_P="${MY_PN}-${MY_PV}"
+MY_PN="${PN/-/.}"
+MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Java Transaction API"
-HOMEPAGE="https://java.net/projects/jta-spec/"
-SRC_URI="https://central.maven.org/maven2/${PN:0:5}/${PN:6:11}/${MY_PN}/${MY_PV}/${MY_P}-sources.jar"
+HOMEPAGE="https://github.com/javaee/jta-spec"
+SRC_URI="https://repo1.maven.org/maven2/${PN:0:5}/${PN:6:11}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 
 LICENSE="CDDL GPL-2-with-classpath-exception"
 KEYWORDS="~amd64"
