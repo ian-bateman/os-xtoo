@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="project">
+    <email>wlt@o-sinc.com</email>
+  </maintainer>
+  <use>
+    <flag name="elementary">Install theme for Elementary/EFL</flag>
+    <flag name="terminology">Install theme for Terminology</flag>
+  </use>
+</pkgmetadata>
