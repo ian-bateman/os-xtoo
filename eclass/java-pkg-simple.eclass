@@ -46,6 +46,19 @@ S="${WORKDIR}"
 # Extra list of colon separated path elements to be put on the
 # classpath when compiling sources.
 
+# @ECLASS-VARIABLE: JAVA_RES_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Directories relative to ${S} which contain the resources of the
+# application. The default of "" will be treated mostly as ${S}
+# itself. For the generated source package (if source is listed in
+# ${JAVA_PKG_IUSE}), it is important that these directories are
+# actually the roots of the corresponding resource trees.
+#
+# @CODE
+#	JAVA_RES_DIR="src/main/resources"
+# @CODE
+
 # @ECLASS-VARIABLE: JAVA_SRC_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -128,14 +141,19 @@ java-pkg-simple_src_compile() {
 	if [[ -e ${classes}/META-INF/MANIFEST.MF ]]; then
 		jar_args="cfm ${JAVA_JAR_FILENAME} ${classes}/META-INF/MANIFEST.MF"
 	fi
-	jar ${jar_args} -C ${classes} . || die "jar failed"
-
-	# Add resources in the sources to the jar
-	if [[ -z ${JAVA_ADDRES_DIRS} ]] && \
+	if [[ -z ${JAVA_RES_DIR} ]] && \
 		[[ -d "${S}/src/main/resources" ]]; then
-		JAVA_SRC_DIR="src/main/resources"
+		JAVA_RES_DIR="src/main/resources"
 	fi
-	java-pkg_addres ${JAVA_JAR_FILENAME} ${JAVA_SRC_DIR:-.} ${JAVA_ADDRES_ARGS}
+	if [[ -n ${JAVA_RES_DIR} ]]; then
+		for r in "${JAVA_RES_DIR}"; do
+			if [[ -d "${r}" ]]; then
+				cp -rv "${r}"/* ${classes} \
+					|| die "Failed to cp resources for jar"
+			fi
+		done
+	fi
+	jar ${jar_args} -C ${classes} . || die "jar failed"
 }
 
 # @FUNCTION: java-pkg-simple_src_install
