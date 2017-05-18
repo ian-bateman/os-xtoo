@@ -45,7 +45,6 @@ RDEPEND="${CP_DEPEND}
 #S="${WORKDIR}/${MY_P}/${PN:7}"
 
 #JAVA_SRC_DIR="src/main/java"
-#JAVA_ADDRES_DIRS="src/main/resources"
 
 #java_prepare() {
 #	xjc -enableIntrospection -extension \
