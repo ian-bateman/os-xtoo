@@ -27,4 +27,3 @@ DEPEND=">=virtual/jdk-1.8"
 S="${WORKDIR}/${MY_PN}.project-${MY_P}/${PN}/"
 
 JAVA_SRC_DIR="src/main/java"
-JAVA_ADDRES_DIRS="src/main/resources"
