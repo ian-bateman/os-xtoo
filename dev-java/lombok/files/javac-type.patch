@@ -1,0 +1,34 @@
+diff --git a/src/utils/lombok/javac/Javac.java b/src/utils/lombok/javac/Javac.java
+index 6f99463b..aaad31d6 100644
+--- a/src/utils/lombok/javac/Javac.java
++++ b/src/utils/lombok/javac/Javac.java
+@@ -343,15 +343,24 @@ public class Javac {
+ 	}
+ 	
+ 	private static class JCNoType extends Type implements NoType {
++
++		public com.sun.tools.javac.code.TypeTag tag;
++		public int	iTag;
++
+ 		public JCNoType(int tag) {
+-			super(tag, null);
++			super(null);
++			iTag = tag;
+ 		}
+-		
++
++		public com.sun.tools.javac.code.TypeTag getTag() {
++			return(tag);
++		}
++
+ 		@Override
+ 		public TypeKind getKind() {
+-			if (tag == ((Integer) CTC_VOID.value).intValue()) return TypeKind.VOID;
+-			if (tag == ((Integer) CTC_NONE.value).intValue()) return TypeKind.NONE;
+-			throw new AssertionError("Unexpected tag: " + tag);
++			if (iTag == ((Integer) CTC_VOID.value).intValue()) return TypeKind.VOID;
++			if (iTag == ((Integer) CTC_NONE.value).intValue()) return TypeKind.NONE;
++			throw new AssertionError("Unexpected tag: " + iTag);
+ 		}
+ 		
+ 		@Override
