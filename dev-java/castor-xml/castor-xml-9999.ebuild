@@ -54,6 +54,6 @@ RDEPEND="${CP_DEPEND}
 #	xjc -enableIntrospection -extension \
 #		-d "${S}/${JAVA_SRC_DIR}" \
 #		-p org.exolab.castor.mapping.xml \
-#		"${S}/${JAVA_ADDRES_DIRS}/org/exolab/castor/mapping/mapping.xsd" \
+#		"${S}/${JAVA_RES_DIR}/org/exolab/castor/mapping/mapping.xsd" \
 #		|| die "Failed to generate java files via xjc"
 #}
