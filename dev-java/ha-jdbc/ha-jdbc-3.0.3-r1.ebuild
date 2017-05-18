@@ -42,7 +42,6 @@ DEPEND="${CP_DEPEND}
 S="${WORKDIR}/${P}/"
 
 JAVA_SRC_DIR="src/main/java"
-JAVA_ADDRES_DIRS="src/main/resources"
 
 java_prepare() {
 
