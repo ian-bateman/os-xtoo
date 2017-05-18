@@ -50,6 +50,6 @@ RDEPEND="${CP_DEPEND}
 #	xjc -enableIntrospection -extension \
 #		-d "${S}/${JAVA_SRC_DIR}" \
 #		-p org.exolab.castor.builder.binding.xml \
-#		"${S}/${JAVA_ADDRES_DIRS}/org/exolab/castor/builder/binding" \
+#		"${S}/${JAVA_RES_DIR}/org/exolab/castor/builder/binding" \
 #		|| die "Failed to generate java files via xjc"
 #}
