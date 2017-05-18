@@ -37,4 +37,3 @@ RDEPEND="${CP_DEPEND}
 #S="${WORKDIR}/${MY_P}/${PN:7:8}/${MY_PN}"
 
 #JAVA_SRC_DIR="src/main/java"
-#JAVA_ADDRES_DIRS="src/main/resources"
