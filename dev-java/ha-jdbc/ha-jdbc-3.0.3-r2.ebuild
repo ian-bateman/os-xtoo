@@ -49,8 +49,8 @@ java_prepare() {
 		${JAVA_SRC_DIR}/net/sf/hajdbc/Version.properties \
 		|| die "Could not set version"
 
-	cp "${WORKDIR}/${PN}.xsd" ${JAVA_ADDRES_DIRS}/ \
-		|| die "Could not copy ${PN}-${MY_MM}.xsd to resources"
+	cp src/site/resources/xsd/ha-jdbc-2.0.xsd src/main/resources/ \
+		|| die "Could not copy ${PN}-*.xsd to resources"
 
 	# Change from Java Edition to Regular
 	# does not build/compile
