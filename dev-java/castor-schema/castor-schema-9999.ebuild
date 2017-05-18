@@ -46,7 +46,7 @@ RDEPEND="${CP_DEPEND}
 
 #java_prepare() {
 #	local my_path
-#	my_path="${S}/${JAVA_ADDRES_DIRS}/org/exolab/castor/xml/schema/annotations"
+#	my_path="${S}/${JAVA_RES_DIR}/org/exolab/castor/xml/schema/annotations"
 #	xjc -enableIntrospection -extension \
 #		-d "${S}/${JAVA_SRC_DIR}" \
 #		-p org.exolab.castor.xml.schema.annotations.jdo \
