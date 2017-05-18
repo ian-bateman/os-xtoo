@@ -68,6 +68,7 @@ src_compile() {
 		|| die "Failed to compile antlr grammar files"
 	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/${PN}-runtime.jar"
 	JAVA_JAR_FILENAME="${S}/${PN}-tool.jar"
+	JAVA_RES_DIR="${S}/tool/resources"
 	java-pkg-simple_src_compile
 }
 
