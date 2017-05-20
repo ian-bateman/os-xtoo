@@ -29,6 +29,14 @@ DEPEND="${RDEPEND}"
 
 [[ ${PV} == 9999 ]] && DEPEND="app-arch/unzip ${DEPEND}"
 
+src_prepare() {
+	default
+	sed -i -e \
+		's|flamerobin.png $(DESTDIR)$(datadir)/pixmaps)|fricon128.png $(DESTDIR)$(datadir)/pixmaps/flamerobin.png)|' \
+		"${S}/Makefile.in" \
+		|| die "Could not sed/swap icon"
+}
+
 src_configure() {
 	# temp hack since configure is not executable
 	chmod +x configure
