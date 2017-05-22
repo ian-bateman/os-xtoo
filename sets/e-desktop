@@ -1,7 +1,9 @@
+app-arch/epack
 app-editors/ecrire
 app-misc/equate
 dev-libs/efl
 media-gfx/ephoto
 media-video/rage
+x11-misc/emprint
 x11-terms/terminology
 x11-wm/enlightenment
