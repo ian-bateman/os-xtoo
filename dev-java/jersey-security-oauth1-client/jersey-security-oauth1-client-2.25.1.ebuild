@@ -12,7 +12,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Jersey RESTful Web Services in Java Security OAuth1 Client"
 HOMEPAGE="https://${PN:0:6}.java.net/"
-SRC_URI="https://central.maven.org/maven2/org/glassfish/${PN:0:6}/${PN:7:8}/${MY_PN}/${PV}/${MY_P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${PN:0:6}/${PN:7:8}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 # Missing .internal.LocalizationMessages
 #SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
