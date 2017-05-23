@@ -9,7 +9,7 @@ MY_GPV="${PV%*\.*}"
 MY_PV="v3-rev${PV#*.*.*.}-${PV%*\.*}"
 MY_P="${PN}-${MY_PV}"
 
-SRC_URI="https://central.maven.org/maven2/com/google/apis/${PN}/${MY_PV}/${MY_P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/com/google/apis/${PN}/${MY_PV}/${MY_P}-sources.jar"
 KEYWORDS="~amd64"
 
 inherit java-pkg-2 java-pkg-simple
