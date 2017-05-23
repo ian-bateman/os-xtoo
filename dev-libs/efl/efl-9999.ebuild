@@ -15,16 +15,20 @@ HOMEPAGE="https://www.enlightenment.org/"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 SLOT="0"
 
-IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua nls +opengl ssl physics pixman +png +ppm postscript psd pulseaudio rawphoto scim sdl sound static-libs +svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine xpm"
+IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig
+	fribidi gif +gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k
+	libressl neon oldlua nls opengl ssl pdf physics pixman +png +ppm
+	postscript psd pulseaudio rawphoto scim sdl sound static-libs
+	+svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine
+	xpm"
 
 REQUIRED_USE="
+	X		( || ( gles opengl ) )
 	pulseaudio?	( sound )
 	opengl?		( || ( X sdl wayland ) )
-	gles?		( || ( X wayland ) )
-	gles?		( !sdl )
-	gles?		( egl )
+	gles?		( egl !sdl || ( X wayland ) )
 	sdl?		( opengl )
-	wayland?	( egl !opengl gles )
+	wayland?	( egl gles !opengl )
 	xim?		( X )
 "
 
@@ -81,6 +85,7 @@ COMMON_DEP="
 	nls? ( sys-devel/gettext )
 	!oldlua? ( >=dev-lang/luajit-2.0.0 )
 	oldlua? ( dev-lang/lua:* )
+	pdf? ( app-text/poppler )
 	physics? ( sci-physics/bullet )
 	pixman? ( x11-libs/pixman )
 	postscript? ( app-text/libspectre:* )
@@ -168,28 +173,13 @@ src_configure() {
 		has_version '<media-video/vlc-3.0.0' && config+=( --with-generic_vlc )
 	fi
 
-	# wayland
-	config+=(
-		$(use_enable egl)
-		$(use_enable wayland)
-	)
-
-	#if use drm && use systemd; then
-		config+=(
-			$(use_enable drm)
-		)
-	#else
-	#	einfo "You cannot build DRM support without systemd support, disabling drm engine"
-	#	config+=(
-	#		--disable-drm
-	#	)
-	#fi
 	config+=(
 		$(use_enable avahi)
 		$(use_enable bmp image-loader-bmp)
 		$(use_enable bmp image-loader-wbmp)
-		$(use_enable drm)
 		$(use_enable cxx-bindings cxx-bindings)
+		$(use_enable drm)
+		$(use_enable drm gl-drm)
 		$(use_enable doc)
 		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
@@ -205,7 +195,10 @@ src_configure() {
 		$(use_enable ibus)
 		$(use_enable nls)
 		$(use_enable oldlua lua-old)
+		$(use_enable pdf poppler)
 		$(use_enable physics)
+		# bug 501074. Is it still valid?
+		# seems so https://phab.enlightenment.org/T4964#80912
 		$(use_enable pixman)
 		$(use_enable pixman pixman-font)
 		$(use_enable pixman pixman-rect)
@@ -217,18 +210,19 @@ src_configure() {
 		$(use_enable ppm image-loader-pmaps)
 		$(use_enable postscript spectre)
 		$(use_enable psd image-loader-psd)
-
 		$(use_enable pulseaudio)
 		$(use_enable pulseaudio audio)
 		$(use_enable rawphoto libraw)
 		$(use_enable scim)
 		$(use_enable sdl)
 		$(use_enable static-libs static)
+		$(use_enable svg librsvg)
 		$(use_enable systemd)
 		$(use_enable tga image-loader-tga)
 		$(use_enable tiff image-loader-tiff)
 		$(use_enable tslib)
 		$(use_enable v4l2)
+		$(use_enable wayland)
 		$(use_enable webp image-loader-webp)
 		$(use_enable xpm image-loader-xpm)
 		$(use_enable xim)
@@ -238,7 +232,6 @@ src_configure() {
 		--enable-image-loader-generic
 		--enable-image-loader-ico
 		--enable-image-loader-jpeg # required by ethumb
-		$(use_enable svg librsvg)
 		--enable-image-loader-tga
 		--enable-image-loader-wbmp
 
@@ -256,15 +249,6 @@ src_configure() {
 		#--enable-xinput2 # enable it
 		--enable-elput
 		--disable-xpresent
-
-		# bug 501074. Is it still valid?
-		#--disable-pixman
-		#--disable-pixman-font
-		#--disable-pixman-rect
-		#--disable-pixman-line
-		#--disable-pixman-poly
-		#--disable-pixman-image
-		#--disable-pixman-image-scale-sample
 
 		--with-profile=$(usex debug debug release)
 		--with-glib=$(usex glib yes no)
