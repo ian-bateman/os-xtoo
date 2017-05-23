@@ -12,7 +12,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Jersey RESTful Web Services in Java Core Common"
 HOMEPAGE="https://${MY_PN}.java.net/"
-SRC_URI="https://central.maven.org/maven2/org/glassfish/${PN:0:6}/bundles/repackaged/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${PN:0:6}/bundles/repackaged/${PN}/${PV}/${P}-sources.jar"
 
 LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="$(get_major_version)"
