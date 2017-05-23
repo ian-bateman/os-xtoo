@@ -12,7 +12,7 @@ MY_PN="${PN:0:6}"
 
 DESCRIPTION="Jersey RESTful Web Services in Java Media Multipart"
 HOMEPAGE="https://${MY_PN}.java.net/"
-SRC_URI="https://central.maven.org/maven2/org/glassfish/${MY_PN}/${PN:7:5}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${MY_PN}/${PN:7:5}/${PN}/${PV}/${P}-sources.jar"
 # Missing org.glassfish.jersey.media.multipart.internal.LocalizationMessages
 #SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/2.22.2.tar.gz -> ${MY_P}.tar.gz"
 
