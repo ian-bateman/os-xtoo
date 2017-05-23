@@ -16,7 +16,7 @@ if [[ ${PV} == 9999 ]]; then
 	MY_S="${P}"
 else
 #	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	SRC_URI="https://central.maven.org/maven2/net/sourceforge/${PN:0:8}/${PN}/${PV}/${P}-sources.jar"
+	SRC_URI="https://repo1.maven.org/maven2/net/sourceforge/${PN:0:8}/${PN}/${PV}/${P}-sources.jar"
 	KEYWORDS="~amd64"
 #	MY_S="${PN}-${MY_P}"
 fi
