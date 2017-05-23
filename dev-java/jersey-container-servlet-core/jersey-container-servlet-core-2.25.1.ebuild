@@ -12,7 +12,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Jersey RESTful Web Services in Java Core Servlet"
 HOMEPAGE="https://${MY_PN}.java.net/"
-SRC_URI="https://central.maven.org/maven2/org/glassfish/${MY_PN}/containers/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${MY_PN}/containers/${PN}/${PV}/${P}-sources.jar"
 # Missing org.glassfish.jersey.servlet.internal.LocalizationMessages
 #SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
