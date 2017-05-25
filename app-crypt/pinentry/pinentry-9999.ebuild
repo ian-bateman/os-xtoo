@@ -11,11 +11,11 @@ if [[ ${PV} == 9999 ]]; then
 	MY_S="${P}"
 else
 	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
-		#MY_PV="5c3f796798d655b5583257f9dfc81ae9c1427fb3"
 		MY_PV="4101806bf73caf25c8ce4e455b154901da1fe788"
 		MY_P="${PN}-${MY_PV}"
+		MY_PATCH="56987f187fbd82a2bf95220e2173a6180cf241da"
 		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
-			https://github.com/Obsidian-StudiosInc/pinentry/commit/0adff7bea93274a2f13f725530ff2b814f7cbab4.patch -> ${P}-efl.patch"
+			https://github.com/Obsidian-StudiosInc/pinentry/commit/${MY_PATCH}.patch -> ${P}-efl.patch"
 		KEYWORDS="~amd64"
 	else
 		MY_P="${P}"
