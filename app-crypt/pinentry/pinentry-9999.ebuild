@@ -13,7 +13,7 @@ else
 	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
 		MY_PV="4101806bf73caf25c8ce4e455b154901da1fe788"
 		MY_P="${PN}-${MY_PV}"
-		MY_PATCH="56987f187fbd82a2bf95220e2173a6180cf241da"
+		MY_PATCH="659c14bfb71ba7b27c078e59b85d5f8de0cd2090"
 		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
 			https://github.com/Obsidian-StudiosInc/pinentry/commit/${MY_PATCH}.patch -> ${P}-efl.patch"
 		KEYWORDS="~amd64"
