@@ -1,6 +1,3 @@
-# Funny, gentoo trying to catch up... masking fb 3.x...
-dev-db/firebird
-
 # Unmask for spring, till bump
 dev-java/jruby
 
