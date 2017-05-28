@@ -6,7 +6,7 @@ EAPI="6"
 inherit autotools eutils flag-o-matic multilib readme.gentoo-r1 user versionator
 
 MY_PN=${PN/f/F}
-MY_P=${MY_PN}-$(replace_version_separator 4 -)-0
+MY_P=${MY_PN}-$(replace_version_separator 4 -)
 MY_P=${MY_P/rc/ReleaseCandidate}
 MY_MM="$(get_version_component_range 1-2)"
 
