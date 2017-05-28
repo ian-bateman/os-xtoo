@@ -1,6 +1,3 @@
-# Unmask for spring, till bump
-dev-java/jruby
-
 # Dumb dev decided to mask entire package vs specific version...
 dev-java/spring-aop
 dev-java/spring-beans
