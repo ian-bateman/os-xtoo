@@ -26,6 +26,7 @@ GUICE_SLOT="4"
 
 CP_DEPEND="
 	dev-java/android-util:0
+	dev-java/jsr305:0
 	dev-java/okio:0
 "
 
