@@ -48,6 +48,7 @@ REQUIRED_USE="
 DEPEND="
 	bluetooth? ( net-wireless/bluez )
 	connman? ( net-misc/econnman )
+	enlightenment_modules_notification? ( x11-misc/notification-daemon )
 	pam? ( sys-libs/pam )
 	systemd? ( sys-apps/systemd )
 	wayland? (
