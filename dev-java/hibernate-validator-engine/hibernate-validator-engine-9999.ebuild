@@ -49,7 +49,6 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_P}/${PN:20}"
 
-
 java_prepare() {
 	xjc -enableIntrospection \
 		-p org.hibernate.validator.internal.xml.binding \
