@@ -52,11 +52,9 @@ src_configure() {
 	local u MY_CONF=()
 	for u in ${IUSE}; do
 		if [[ "${u}" == "postscript" ]]; then
-			use ${u/+/} && \
-				MY_CONF+=( $(use_enable postscript ps) )
+			MY_CONF+=( $(use_enable postscript ps) )
 		else
-			use ${u/+/} && \
-				MY_CONF+=( $(use_enable ${u/+/}) )
+			MY_CONF+=( $(use_enable ${u/+/}) )
 		fi
 	done
 	econf "${MY_CONF[@]}"
