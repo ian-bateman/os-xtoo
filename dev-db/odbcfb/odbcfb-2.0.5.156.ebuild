@@ -1,4 +1,4 @@
-# Copyright 2015-2017 Obsidian-Studios, Inc.
+# Copyright 2015-2016 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -38,6 +38,10 @@ src_prepare() {
 		-e "s|COMPFLAGS   += -m32||" \
 		-e "s|LINKFLAGS	= -shared -m32|LINKFLAGS	= -shared|" \
 		Makefile || die "Fixing Makefile via sed failed"
+
+	sed -i -e 's|major"."minor"."buildnum|major "." minor "." buildnum|' \
+		"${S}/SetupAttributes.h" \
+		|| die "Could not sed borland version in SetupAttributes.h"
 
 	# code needs to be fixed upstream, temp hack
 	# "use hardened &&" fails for some reason thus if
