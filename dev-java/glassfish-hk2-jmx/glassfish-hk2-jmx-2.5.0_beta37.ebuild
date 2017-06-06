@@ -29,4 +29,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_P}/${PN:10}"
-
