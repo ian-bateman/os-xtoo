@@ -146,9 +146,9 @@ java-pkg-simple_src_compile() {
 		JAVA_RES_DIR="src/main/resources"
 	fi
 	if [[ -n ${JAVA_RES_DIR} ]]; then
-		for r in "${JAVA_RES_DIR}"; do
+		for r in ${JAVA_RES_DIR}; do
 			if [[ -d "${r}" ]]; then
-				cp -rv "${r}"/* ${classes} \
+				cp -r "${r}"/* ${classes} \
 					|| die "Failed to cp resources for jar"
 			fi
 		done
