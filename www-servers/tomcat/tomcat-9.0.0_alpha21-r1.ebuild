@@ -18,17 +18,21 @@ KEYWORDS="~amd64 ~amd64-linux"
 IUSE="systemd extra-webapps"
 LICENSE="Apache-2.0"
 
+ECJ_SLOT="4.6"
+SAPI_SLOT="4.0"
+
 CDEPEND="
 	~dev-java/tomcat-server-${PV}:${SLOT}
-	~dev-java/tomcat-servlet-api-${PV}:4.0
+	~dev-java/tomcat-servlet-api-${PV}:${SAPI_SLOT}
 "
 DEPEND="${CDEPEND}
 	app-admin/pwgen
 	>=virtual/jdk-1.8
 "
 RDEPEND="${CDEPEND}
+	dev-java/eclipse-ecj:${ECJ_SLOT}
 	!<dev-java/tomcat-native-1.1.24
-	>=virtual/jre-1.8
+	>=virtual/jdk-1.8
 	systemd? ( sys-apps/systemd )
 "
 
@@ -84,6 +88,14 @@ src_install() {
 	)
 	for jar in ${JARS[@]}; do
 		dosym "/usr/share/${PN}-server-${SLOT}/lib/${jar}.jar" \
+			"${dest}/lib/${jar}.jar"
+	done
+
+	dosym "/usr/share/eclipse-ecj-${ECJ_SLOT}/lib/eclipse-ecj.jar" \
+		"${dest}/lib/eclipse-ecj.jar"
+
+	for jar in el-api jsp-api servlet-api; do
+		dosym "/usr/share/tomcat-servlet-api-${SAPI_SLOT}/lib/${jar}.jar" \
 			"${dest}/lib/${jar}.jar"
 	done
 
