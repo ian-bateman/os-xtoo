@@ -28,7 +28,11 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
 SLOT="$(get_version_component_range 1-2)"
 
-#CP_DEPEND="dev-java/ant-core:0"
+# antadapter deps
+#CP_DEPEND="
+#	dev-java/ant-core:0
+#	~dev-java/eclipse-jdt-core-${PV}:${SLOT}
+#"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
@@ -38,8 +42,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/org.${MY_PN}/"
 
-JAVA_SRC_DIR="batch compiler"
-
 # Upstream jar has antadapter we should as well, but lots of deps
-#JAVA_SRC_DIR="antadapter batch compiler"
-#JAVA_GENTOO_CLASSPATH_EXTRA="model"
+#JAVA_SRC_DIR="antadapter batch compiler ../eclipse.jdt.core/src"
+JAVA_SRC_DIR="batch compiler ../eclipse.jdt.core/src"
+JAVA_RES_DIR="${JAVA_SRC_DIR}"
