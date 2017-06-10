@@ -18,12 +18,15 @@ depend() {
 start()	{
 	ebegin "Starting ${RC_SVCNAME}"
 
+	. @GENTOO_PORTAGE_EPREFIX@/usr/libexec/tomcat/server-9 start
+
 	start-stop-daemon  --start \
 		--quiet --background \
 		--chdir "${CATALINA_TMPDIR}" \
 		--user ${CATALINA_USER}:${CATALINA_GROUP} \
 		--make-pidfile --pidfile ${PIDFILE} \
-		--exec @GENTOO_PORTAGE_EPREFIX@/usr/libexec/tomcat/server-@SLOT@ -- start
+		--exec ${TOMCAT_SS_CMD} \
+		-- ${TOMCAT_SS_ARGS}
 
 	eend $?
 }
@@ -31,10 +34,13 @@ start()	{
 stop()	{
 	ebegin "Stopping '${RC_SVCNAME}'"
 
+	. @GENTOO_PORTAGE_EPREFIX@/usr/libexec/tomcat/server-9 stop
+
 	start-stop-daemon --stop \
 		--quiet --retry=60 \
 		--pidfile ${PIDFILE} \
-		--exec @GENTOO_PORTAGE_EPREFIX@/usr/libexec/tomcat/server-@SLOT@ -- stop
+		--exec ${TOMCAT_SS_CMD} \
+		-- ${TOMCAT_SS_ARGS}
 
 	eend $?
 }
@@ -42,18 +48,16 @@ stop()	{
 forcestop()	{
 	ebegin "Forcing '${RC_SVCNAME}' to stop"
 
-	export JAVA_HOME=`java-config ${TOMCAT_JVM:+--select-vm ${TOMCAT_JVM}} --jre-home`
-	export CLASSPATH="${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/tomcat-juli.jar"
+	. @GENTOO_PORTAGE_EPREFIX@/usr/libexec/tomcat/server-9 stop
 
 	start-stop-daemon --stop \
 		--quiet --retry=60 \
 		--pidfile ${PIDFILE} \
-		--exec ${JAVA_HOME}/bin/java \
-		-- \
-			${JAVA_OPTS} \
-			-classpath "${CLASSPATH}"
-			${CATALINA_OPTS} \
-			stop ${STD_OUT}
+		--signal=9
+
+	if service_started "${RC_SVCNAME}"; then
+		mark_service_stopped "${RC_SVCNAME}"
+	fi
 
 	eend $?
 }

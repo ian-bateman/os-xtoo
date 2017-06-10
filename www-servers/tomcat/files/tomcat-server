@@ -2,11 +2,6 @@
 # Copyright 2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-# Check for OpenRC and include gentoo-functions if needed
-if [[ -z "${RC_SVCNAME}" ]]; then
-	source @GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh
-fi
-
 : ${CATALINA_HOME:=@GENTOO_PORTAGE_EPREFIX@/usr/share/tomcat-@SLOT@/}
 : ${TOMCATS_BASE:=@GENTOO_PORTAGE_EPREFIX@/var/lib/tomcat/}
 : ${CATALINA_BASE:=${TOMCATS_BASE}tomcat-@SLOT@/}
@@ -67,28 +62,30 @@ if [[ "$1" == "start" ]]; then
 
 	cd "${CATALINA_WORKDIR}"
 
-	${JAVA_HOME}/bin/${cmd} \
-		${JAVA_OPTS} \
+	export TOMCAT_SS_CMD=${JAVA_HOME}/bin/${cmd}
+	export TOMCAT_SS_ARGS="${JAVA_OPTS} \
 		${JAVA_INSTANCE_OPTS} \
 		${args} \
-		-Dcatalina.base="${CATALINA_BASE}" \
-		-Dcatalina.home="${CATALINA_HOME}" \
-		-Djava.io.tmpdir="${CATALINA_TMPDIR}" \
-		-Dgentoo.classpath="${GCLASSPATH//:/,}" \
-		-classpath "${CLASSPATH}" \
+		-Dcatalina.base=${CATALINA_BASE} \
+		-Dcatalina.home=${CATALINA_HOME} \
+		-Djava.io.tmpdir=${CATALINA_TMPDIR} \
+		-classpath ${CLASSPATH} \
 		org.apache.catalina.startup.Bootstrap \
 		${CATALINA_OPTS} \
-		${TOMCAT_START}
+		${TOMCAT_START}"
 elif [[ "$1" == "stop" ]]; then
-	${JAVA_HOME}/bin/java \
-		${JAVA_OPTS} \
+	export TOMCAT_SS_CMD=${JAVA_HOME}/bin/java
+	export TOMCAT_SS_ARGS="${JAVA_OPTS} \
 		${JAVA_INSTANCE_OPTS} \
-		-Dcatalina.base="${CATALINA_BASE}" \
-		-Dcatalina.home="${CATALINA_HOME}" \
-		-Djava.io.tmpdir="${CATALINA_TMPDIR}" \
-		-Dgentoo.classpath="" \
-		-classpath "${CLASSPATH}" \
+		-Dcatalina.base=${CATALINA_BASE} \
+		-Dcatalina.home=${CATALINA_HOME} \
+		-Djava.io.tmpdir=${CATALINA_TMPDIR} \
+		-classpath ${CLASSPATH} \
 		org.apache.catalina.startup.Bootstrap \
 		${CATALINA_OPTS} \
-		stop
+		stop"
+fi
+
+if [[ -z "${RC_SVCNAME}" ]]; then
+	${TOMCAT_SS_CMD:=${JAVA_HOME}/bin/java} ${TOMCAT_SS_ARGS}
 fi
