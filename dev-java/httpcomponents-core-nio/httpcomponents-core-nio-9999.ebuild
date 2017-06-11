@@ -5,9 +5,9 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-MY_PN="httpcore"
+MY_PN="${PN:0:19}"
 MY_P="${MY_PN}-${PV}"
-MY_MOD="${MY_PN}-${PN:20}"
+MY_MOD="${PN/components-/}"
 BASE_URI="https://github.com/apache/${MY_PN}"
 
 if [[ ${PV} == 9999 ]]; then
