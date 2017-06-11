@@ -7,7 +7,7 @@ JAVA_PKG_IUSE="doc source"
 
 MY_PN="${PN:0:5}"
 MY_P="${MY_PN}-${PV}"
-BASE_URI="https://github.com/apache/${PN}"
+BASE_URI="https://github.com/apache/${MY_PN}"
 
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
