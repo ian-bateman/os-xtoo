@@ -52,11 +52,11 @@ elif [[ ${PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 fi
 
 if [[ ${PV} == 9999 ]]; then
-	EGIT_REPO_URI="${E_GIT_URI}/${E_TYPE}/${PN}.git"
+	EGIT_REPO_URI=${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${PN}.git"}
 	SLOT="${PV}"
 	inherit git-r3
 else
-        SRC_URI="https://download.${E_BASE_URI}/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"
+        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"}
 	KEYWORDS="~amd64"
 	SLOT="0"
 fi
@@ -68,7 +68,7 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
 IUSE="nls ${E_CMAKE:+debug} doc static-libs"
-S="${WORKDIR}/${P/_/-}"
+S=${S:="${WORKDIR}/${P/_/-}"}
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 
