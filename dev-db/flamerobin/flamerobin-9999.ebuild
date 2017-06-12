@@ -11,7 +11,7 @@ else
 	SRC_URI="https://github.com/mariuz/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
-WX_GTK_VER="3.0"
+WX_GTK_VER="3.0-gtk3"
 
 inherit eutils wxwidgets ${ECLASS}
 
