@@ -41,4 +41,7 @@ DOCS=( README.md )
 src_prepare() {
 	default
 	sed -i -e "s|/usr/s|s|" setup.py || die "Could not sed setup.py"
+	sed -i -e "s|Icon=epymc|Icon=/usr/share/icons/hicolor/64x64/apps/epymc.png|" \
+		data/desktop/epymc_xsession.desktop \
+		|| die "Failed to sed/fix epymc_xsession.desktop Icon"
 }
