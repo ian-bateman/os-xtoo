@@ -1,3 +1,6 @@
+# Gentoo thinks it can't build with Java 8 :P
+dev-java/jdbc-jaybird
+
 # Dumb dev decided to mask entire package vs specific version...
 dev-java/spring-aop
 dev-java/spring-beans
