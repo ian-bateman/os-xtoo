@@ -14,26 +14,28 @@ BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
-	S="${WORKDIR}/${P}/core"
+	MY_S="${P}/core"
 else
 	SRC_URI="${BASE_URI}/archive/rel/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	S="${WORKDIR}/${MY_PN}-rel-${MY_P}/core"
+	MY_S="${MY_PN}-rel-${MY_P}/core"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="JClouds Core"
-SLOT="0"
 HOMEPAGE="https://jclouds.apache.org/"
 LICENSE="Apache-2.0"
+SLOT="0"
 
 GUICE_SLOT="4"
 
 CP_DEPEND="
 	dev-java/auto-service:0
-	dev-java/guava:20
+	dev-java/auto-common:0
+	dev-java/error-prone-annotations:0
 	dev-java/gson:2.2.2
+	dev-java/guava:20
 	dev-java/guice:${GUICE_SLOT}
 	dev-java/guice-extensions-assistedinject:${GUICE_SLOT}
 	dev-java/javax-inject:0
@@ -47,13 +49,7 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
-if [[ ${PV} == 9999 ]]; then
-	S="${WORKDIR}/${P}/core"
-else
-	S="${WORKDIR}/${MY_PN}-rel-${MY_P}/core"
-fi
-
-JAVA_SRC_DIR="src/main/java"
+S="${WORKDIR}/${MY_S}"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-${SLOT}-guice_java_1.8.patch"
