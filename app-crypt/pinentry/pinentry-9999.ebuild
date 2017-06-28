@@ -13,7 +13,7 @@ else
 	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
 		MY_PV="4101806bf73caf25c8ce4e455b154901da1fe788"
 		MY_P="${PN}-${MY_PV}"
-		MY_PATCH="017032d17d759ee37616b84a5f96ed90b46ebe19"
+		MY_PATCH="69e67861cd1026da063e4d86ccdd071fba804fad"
 		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
 			https://github.com/Obsidian-StudiosInc/pinentry/commit/${MY_PATCH}.patch -> ${P}-efl.patch"
 		KEYWORDS="~amd64"
@@ -82,6 +82,10 @@ src_prepare() {
 	default
 	use efl && eapply "${DISTDIR}/${P}-efl.patch"
 	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
+		# delete hack that negates value from pinentry_inq_quality
+		sed -i -e '128,131d' efl/pinentry-efl.c \
+			|| die "Failed to remove quality hack"
+
 		echo "
 @set UPDATED 12 May 2017
 @set UPDATED-MONTH May 2017
