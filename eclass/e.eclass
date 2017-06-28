@@ -11,7 +11,7 @@
 if [[ -z ${_E_ECLASS} ]]; then
 _E_ECLASS=1
 
-inherit eutils libtool
+inherit eutils epunt-cxx libtool
 
 # @ECLASS-VARIABLE: E_BASE_URI
 # @DESCRIPTION:
