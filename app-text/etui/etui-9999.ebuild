@@ -5,7 +5,7 @@ EAPI="6"
 
 E_BASE_URI="https://github.com/vtorri/etui"
 E_GIT_URI="${E_BASE_URI}.git"
-E_SNAP="c3b318f2cb377331047c803f8675ea38bc856e9a"
+E_SNAP="6ac21a4d956ab1f899e9f63ca4873877d2d3a7b4"
 
 inherit e
 
