@@ -4,7 +4,7 @@
 EAPI="6"
 
 E_BASE_URI="github.com"
-E_SNAP="3c3420b46dab76252a1d1f27a4bb29f27db54a46"
+E_SNAP="81bd57ee27990a2fa6c804b04ff552c143cbed5c"
 E_TYPE="rbtylee"
 E_SRC_URI="${E_BASE_URI}/${E_TYPE}/e21-modules-extra"
 
