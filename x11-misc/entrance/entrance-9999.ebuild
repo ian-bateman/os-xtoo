@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-E_SNAP="06cde44dcf4b224a7a590dc63b952b54d3c67516"
+E_SNAP="597eb70ef2b937241ba01e5020332215bb956328"
 E_TYPE="misc"
 
 inherit autotools e
