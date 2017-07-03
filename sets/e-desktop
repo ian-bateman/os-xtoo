@@ -4,6 +4,9 @@ app-misc/equate
 dev-libs/efl
 media-gfx/ephoto
 media-video/rage
+x11-misc/clipboard
 x11-misc/emprint
+x11-misc/entrance
 x11-terms/terminology
 x11-wm/enlightenment
+x11-misc/verne
