@@ -61,6 +61,7 @@ DEPEND="
 	udisks? ( sys-fs/udisks:2 )
 	x11-base/xorg-x11
 	x11-libs/xcb-util-keysyms
+	x11-themes/hicolor-icon-theme
 "
 
 RDEPEND="${DEPEND}"
