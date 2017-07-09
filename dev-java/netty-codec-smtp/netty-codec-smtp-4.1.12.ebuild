@@ -1,1 +1,0 @@
-netty-codec-smtp-9999.ebuild
