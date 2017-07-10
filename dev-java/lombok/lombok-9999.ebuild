@@ -37,7 +37,10 @@ CP_DEPEND="
 	dev-java/eclipse-core-resources:${ECLIPSE_SLOT}
 	dev-java/eclipse-core-runtime:${ECLIPSE_SLOT}
 	dev-java/eclipse-equinox-common:${ECLIPSE_SLOT}
+	dev-java/freemarker:2.3
+	dev-java/java2html:0
 	dev-java/lombok-patcher:0
+	dev-java/markdownj:0
 	dev-java/osgi-core-api:6
 	dev-java/spi:0
 "
@@ -59,4 +62,9 @@ JAVA_GENTOO_CLASSPATH_EXTRA="${JAVA_HOME}/lib/tools.jar"
 java_prepare() {
 	rm -r src/{javac-only-stubs,stubsstubs,testAP,useTestAP} \
 		|| die "Failed to remove sources not to be included"
+}
+
+src_compile() {
+	export JAVA_GENTOO_CLASSPATH_EXTRA="${JAVA_HOME}/lib/tools.jar"
+	java-pkg-simple_src_compile
 }
