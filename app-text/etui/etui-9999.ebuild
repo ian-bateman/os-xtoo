@@ -16,7 +16,7 @@ fi
 
 DESCRIPTION="Multi-document rendering library using the EFL"
 HOMEPAGE="${E_BASE_URI}"
-LICENSE="GPL-3"
+LICENSE="LGPL-3 djvu? ( GPL-2 ) pdf? ( AGPL-3 )"
 SLOT="0"
 IUSE="cb djvu +pdf postscript tiff"
 
@@ -32,9 +32,7 @@ DEPEND="
 		media-libs/openjpeg:2
 		sys-libs/zlib
 	)
-	postscript? (
-		app-text/ghostscript-gpl
-	)
+	postscript? ( app-text/ghostscript-gpl )
 	tiff? ( media-libs/tiff:* )
 "
 # Needed for postscript
@@ -43,7 +41,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local u MY_CONF=( --enable-gpl )
+	local u MY_CONF=( )
 	for u in ${IUSE}; do
 		if [[ "${u}" == "postscript" ]]; then
 			MY_CONF+=( $(use_enable postscript ps) )
@@ -51,6 +49,7 @@ src_configure() {
 			MY_CONF+=( $(use_enable ${u/+/}) )
 		fi
 	done
+	use djvu && MY_CONF+=( --enable-gpl ) # hopefully temporary
 	use pdf && MY_CONF+=( --with-mupdf-shared-libs="-lmupdf" )
 	econf "${MY_CONF[@]}"
 }
