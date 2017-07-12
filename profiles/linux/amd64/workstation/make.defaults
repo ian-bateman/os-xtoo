@@ -1,0 +1,76 @@
+# Copyright 2017 Obsidian-Studios, Inc.
+# Distributed under the terms of the GNU General Public License v2
+
+USE="X aalib acpi alsa -apache2 asf bash-completion bzip2 \
+     cairo cdr crypt cups dbus dhcp directfb drm dvd dvdr encode ffmpeg \
+     flash firebird flac -fortran gsm -gpm jabber javamail jpeg2k \
+     mad mmx mmxext -msn -nas nptl offensive ogg openntpd -oss \
+     quicktime real samba scanner sdk sse sse2 ssl svg svga symlink \
+     tiff truetype usb vorbis win32codecs wmf zlib esd a52 expat \
+     nfs nls branding gnutls gdbm aac rtc udev lm_sensors -sensord \
+     xvid xvmc xml jpeg opengl png gif -sdl mpeg imagemagick spell \
+     pdf -apm mp3 cdda xv graphviz fontconfig -smartcard lcms \
+     javascript libnotify sound wavpack sourceview subversion regex \
+     threads -tk -debug -ldap -acl -kerberos applet pnm gpg cvs git \
+     -networkmana -gconf amr xulrunner aspell pulseaudio \
+     id3tag xcb md5sum ssh v4l2 v4l network -mysql -joystick \
+     consolekit libffi -ncurses fbcondecor exif audio video sip h323 wav \
+     nio2 xrender extras syslog -mudflap policykit fts3 extensions \
+     glib ofx libgda -gphoto2 autoipd -ruby -nfsv3 xine -python \
+     -cddb -cdparanoia archive webkit upnp xinerama -dhcpcd inotify \
+     -kde gtkstyle mng declarative sql script kate \
+     thumbnail -skype -yahoo plasma winpopup qalculate xcomposite lame \
+     -nautilus oscar -gnome -qt-faststart sse3 ssse3 -eds faac vpx \
+     -gnome-keyring -gdu -snmp -semantic-desktop -berkdb -gimp -iconv \
+     gs openexr -phonon -gstreamer kipi -avahi -server dts \
+     -xscreensaver -cxx -glade equalizer realtime twolame webkit2 prison -lvm1 \
+     -java -gtk -gtk3 -vdpau webp caps -bindist ipv6 -libav -qt5 xkb \
+     -python_targets_python3_3 wayland egl gles2 -nsplugin mtp sqlite \
+     bluetooth -gcj -qt4 qt3support x264 readline pcre openmp printsupport"
+
+ALSA_CARDS="hda-intel"
+
+ALSA_PCM_PLUGINS="asym dmix dsnoop empty extplug iec958 ioplug plug rate route softvol"
+
+APACHE2_MODULES=""
+
+#CALLIGRA_FEATURES="braindump flow karbon kexi krita plan sheets stage tables words"
+CALLIGRA_FEATURES="sheets words"
+
+CAMERAS=""
+
+CPU_FLAGS_X86="mmx mmxext sse sse2"
+
+ENLIGHTENMENT_MODULES="appmenu backlight battery clock 
+conf conf-applications conf-bindings conf-dialogs conf-display 
+conf-interaction conf-intl conf-menus conf-paths conf-performance 
+conf-randr conf-shelves conf-theme conf-window-manipulation 
+conf-window-remembers cpufreq everything fileman 
+fileman-opinfo gadman geolocation ibar ibox lokker mixer msgbus 
+music-control notification packagekit pager pager-plain 
+policy-mobile quickaccess shot start syscon systray tasks 
+teamwork temperature tiling time winlist wizard 
+wl-desktop-shell wl-drm wl-text-input wl-weekeyboard wl-wl wl-x11 
+xkbswitch xwayland"
+
+INPUT_DEVICES="evdev -keyboard synaptics wacom"
+
+#JAVA_PKG_DEBUG="true"
+
+LCD_DEVICES=""
+
+LIBREOFFICE_EXTENSIONS=""
+
+LLVM_TARGETS="AMDGPU NVPTX X86"
+
+NETBEANS_MODULES="apisupport groovy gsf harness ide java javafx j2ee nb webcommon websvccommon visualweb"
+
+OFFICE_IMPLEMENTATION="openoffice"
+
+RUBY_TARGETS="ruby21 ruby24"
+
+SANE_BACKENDS="hp"
+
+VIDEO_CARDS="intel i965 nvidia radeon"
+
+MAKEOPTS="-j3"

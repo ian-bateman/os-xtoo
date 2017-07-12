@@ -1,0 +1,174 @@
+app-arch/bzip2 static-libs
+app-cdr/k3b sox
+app-crypt/gcr gtk
+app-crypt/gpgme cxx qt5
+app-crypt/heimdal -ssl -threads
+app-crypt/pinentry efl -gtk ncurses -qt4
+app-crypt/qca qt4 qt5
+app-emulation/libvirt -libvirtd python -qemu
+app-emulation/libvirt-glib python
+app-emulation/qemu -fdt -filecaps -pin-upstream-blobs
+app-emulation/virt-manager -spice
+app-mobilephone/heimdall qt4
+app-mobilephone/obexd -server
+app-mobilephone/obex-data-server gtk
+app-office/calligra word-perfect linguas_en_GB
+app-office/calligra-l10n linguas_en_GB
+app-office/gnucash -doc
+app-office/gnumeric -introspection -libgda
+app-office/openoffice java
+app-office/openoffice-bin java
+app-text/asciidoc python_single_target_python2_7
+#app-text/mupdf -opengl static-libs
+app-text/poppler cxx qt5
+app-text/xmlto text
+dev-db/mariadb client-libs embedded server
+dev-db/mysql client-libs embedded server
+dev-db/sqlite secure-delete unlock-notify
+dev-java/antlr cxx java
+dev-java/commons-fileupload doc
+dev-java/edtftpj doc
+dev-java/ha-jdbc doc
+dev-java/itext doc
+dev-java/jazzy doc
+dev-java/jdbc-jaybird doc
+dev-java/jdom doc
+dev-java/jexcelapi doc
+dev-java/junit source
+dev-java/recaptcha4j doc
+dev-java/servletapi doc
+dev-java/oracle-javamail doc
+dev-java/oracle-jdk-bin javafx nsplugin
+dev-java/protobuf-java nano
+dev-java/swing-layout source
+dev-lang/python ncurses tk
+dev-libs/DirectFB -egl nvidia
+dev-libs/boost python
+#dev-libs/efl -egl -gles harfbuzz ibus opengl physics postscript psd -sdl -static-libs vlc -wayland
+dev-libs/efl egl gles harfbuzz ibus -opengl physics postscript psd -sdl -static-libs vlc wayland
+dev-libs/gmp cxx
+dev-libs/libcdio cddb
+dev-libs/libdbusmenu gtk3
+dev-libs/libgcrypt static-libs
+dev-libs/libgpg-error static-libs
+dev-libs/libindicate gtk
+dev-libs/libxml2 icu python
+dev-libs/libpcre pcre16
+dev-libs/openssl -sslv3
+dev-libs/popt static-libs
+dev-libs/protobuf java
+dev-libs/pwlib ldap
+dev-python/PyQt5 widgets
+dev-python/pyudev -pyqt4
+dev-qt/qtcore icu
+dev-qt/qtgui accessibility
+dev-qt/qtscript scripttools
+dev-qt/qtsql mysql
+dev-qt/qtwebkit icu -gstreamer -printsupport qml
+dev-scheme/guile deprecated discouraged
+dev-util/android-studio-bin system-jvm
+dev-util/cmake -qt4
+dev-util/glade gnome
+dev-util/netbeans apisupport cnd experimental harness ide identity j2ee mobility nb profiler ruby soa stableuc testtools uml visualweb
+dev-vcs/cvs -server
+dev-vcs/git gtk python
+dev-vcs/subversion -dso -java -kde -kwallet perl
+gnome-base/gvfs -gphoto2 -http
+kde-apps/kcontrol -handbook
+kde-apps/kdebase-runtime-meta -oldwallet
+kde-apps/kdesdk-kioslaves -subversion
+kde-apps/krdc rdesktop vnc
+kde-apps/kdesu -handbook
+kde-apps/solid-runtime -bluetooth
+kde-base/kdebase-runtime-meta -oldwallet
+kde-base/solid networkmanager
+kde-base/systemsettings gtk
+mail-client/claws-mail calendar -libcanberra networkmanager ntp session startup-notification
+media-fonts/dejavu -fontforge -X
+media-gfx/exiv2 xmp
+media-gfx/gimp smp
+media-gfx/imagemagick autotrace cxx pango
+media-gfx/sane-backends -v4l
+media-libs/flac cxx
+media-libs/freetype static-libs
+media-libs/gst-plugins-bad egl -gles2 -opengl
+media-libs/gst-plugins-base theora
+media-libs/harfbuzz icu
+media-libs/imlib2 X
+media-libs/jpeg static-libs
+media-libs/libjpeg-turbo static-libs
+media-libs/libcanberra gtk gtk3
+media-libs/libmypaint gegl
+media-libs/lcms python static-libs
+media-libs/libmng static-libs
+media-libs/libpng apng static-libs
+media-libs/libsdl joystick
+media-libs/mesa classic g3dvl gbm gles1 gles2 static static-libs opencl vdpau wayland
+media-libs/mlt -kdenlive melt -kde -qt4
+media-libs/phonon designer qt4 qt5
+media-libs/phonon-vlc qt4 qt5
+media-libs/libsdl2 gles
+media-libs/libvpx postproc svc
+media-libs/xine-lib gtk -vis
+media-sound/pulseaudio gnome
+media-sound/rhythmbox python
+media-video/libav theora
+media-video/ffmpeg ebur128 encode opus theora
+media-video/mplayer iconv -pnm
+media-video/ushare dlna
+media-video/vlc -audioqueue -qt4 qt5
+net-analyzer/mtr gtk
+net-analyzer/nmap gtk
+net-analyzer/wireshark -qt4
+net-dns/avahi mdnsresponder-compat
+net-ftp/gftp gtk
+net-fs/samba -aio client -cups -gpg system-mitkrb5
+net-libs/farsight2 python
+net-libs/glib-networking -libproxy
+net-libs/gtk-vnc gtk3 python
+net-libs/libpcap ipv6
+net-libs/libproxy python -kde
+net-libs/opal sipim
+net-libs/ptlib http dtmf
+net-libs/telepathy-qt farstream
+net-libs/webkit-gtk gstreamer -opengl
+net-libs/xulrunner -wifi
+net-misc/networkmanager dhclient -dhcpcd -modemmanager -nss -ppp
+net-misc/openssh -X
+net-misc/spice-gtk gtk3 -pulseaudio python
+net-nds/openldap berkdb -gnutls odbc -minimal
+net-print/hplip snmp -qt5
+net-vpn/tinc
+net-wireless/bluez pcmcia
+net-wireless/wpa_supplicant -qt4 -qt5
+sys-apps/busybox mdev sep-usr static
+sys-apps/pciutils -zlib
+sys-apps/portage python3
+sys-apps/util-linux ncurses static-libs
+sys-auth/polkit -gtk
+sys-devel/gcc cxx -gtk
+sys-devel/gdb python
+sys-fs/lvm2 -udev
+sys-libs/gdbm berkdb
+sys-libs/glibc debug
+sys-libs/ntdb python
+sys-libs/talloc python
+sys-libs/tdb python
+sys-libs/tevent python
+sys-libs/zlib minizip static-libs
+sys-power/apcupsd gnome
+virtual/ffmpeg theora
+virtual/jpeg static-libs
+virtual/mysql embedded
+virtual/udev gudev
+www-client/chromium bindist gtk3 pic -system-libvpx -tcmalloc
+www-client/firefox bindist hwaccel startup-notification system-cairo system-jpeg system-harfbuzz system-libevent system-libvpx system-sqlite wifi
+x11-base/xorg-server glamor kdrive xephyr xnest xorg
+x11-drivers/nvidia-drivers compat gtk3
+x11-drivers/xf86-video-intel dri dri3 sna uxa
+x11-libs/wxGTK -webkit
+x11-libs/libdrm libkms
+x11-libs/goffice gnome
+x11-libs/vte python
+x11-misc/lightdm gtk
+x11-wm/enlightenment egl udisks wayland -wifi

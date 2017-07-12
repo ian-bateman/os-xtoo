@@ -1,0 +1,6 @@
+app-doc/doxygen sqlite
+dev-libs/glib fam
+kde-frameworks/kcoreaddons fam
+kde-frameworks/kdelibs fam
+media-sound/audacity ffmpeg
+x11-libs/cairo directfb gles2
