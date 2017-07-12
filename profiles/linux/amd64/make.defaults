@@ -1,0 +1,110 @@
+# Copyright 2017 Obsidian-Studios, Inc.
+# Distributed under the terms of the GNU General Public License v2
+
+# Based on several Gentoo profiles
+# Copyright 1999-2017 Gentoo Foundation
+
+# Arch config
+
+ARCH="amd64"
+ACCEPT_KEYWORDS="${ARCH} ~${ARCH}"
+
+CHOST="x86_64-pc-linux-gnu"
+CFLAGS="-O2 -pipe -march=amdfam10 -mcx16 -msahf -mabm -mlzcnt"
+CXXFLAGS="${CFLAGS}"
+FFLAGS="${CFLAGS}"
+FCFLAGS="${CFLAGS}"
+LDFLAGS="-Wl,-O1 "
+
+MULTILIB_ABIS="amd64 x86"
+DEFAULT_ABI="amd64"
+
+LIBDIR_amd64="lib64"
+# TODO: move this to a deprecated subprofile
+LIBDIR_x86="lib32"
+LIBDIR_x32="libx32"
+SYMLINK_LIB="yes"
+
+# 64bit specific settings.
+CFLAGS_amd64="-m64"
+LDFLAGS_amd64="-m elf_x86_64"
+CHOST_amd64="x86_64-pc-linux-gnu"
+
+# 32bit specific settings.
+CFLAGS_x86="-m32"
+LDFLAGS_x86="-m elf_i386"
+CHOST_x86="i686-pc-linux-gnu"
+
+# 64-32bit specific settings.
+CFLAGS_x32="-mx32"
+LDFLAGS_x32="-m elf32_x86_64"
+CHOST_x32="x86_64-pc-linux-gnux32"
+
+CPU_FLAGS_X86="mmx mmxext sse sse2"
+
+ABI="amd64"
+ABI_X86="64"
+
+# Portage USE internals
+IUSE_IMPLICIT="abi_x86_64 prefix prefix-chain prefix-guest"
+
+USE_EXPAND="ABI_MIPS ABI_PPC ABI_S390 ABI_X86 ALSA_CARDS APACHE2_MODULES APACHE2_MPMS CALLIGRA_FEATURES CALLIGRA_EXPERIMENTAL_FEATURES CAMERAS COLLECTD_PLUGINS CPU_FLAGS_ARM CPU_FLAGS_X86 CROSSCOMPILE_OPTS CURL_SSL ELIBC ENLIGHTENMENT_MODULES FFTOOLS GPSD_PROTOCOLS GRUB_PLATFORMS INPUT_DEVICES KERNEL L10N LCD_DEVICES LIBREOFFICE_EXTENSIONS LINGUAS LIRC_DEVICES LLVM_TARGETS MONKEYD_PLUGINS NETBEANS_MODULES NGINX_MODULES_HTTP NGINX_MODULES_MAIL NGINX_MODULES_STREAM OFED_DRIVERS OFFICE_IMPLEMENTATION OPENMPI_FABRICS OPENMPI_OFED_FEATURES OPENMPI_RM PHP_TARGETS PYTHON_SINGLE_TARGET PYTHON_TARGETS QEMU_SOFTMMU_TARGETS QEMU_USER_TARGETS ROS_MESSAGES RUBY_TARGETS SANE_BACKENDS USERLAND UWSGI_PLUGINS VIDEO_CARDS VOICEMAIL_STORAGE XFCE_PLUGINS XTABLES_ADDONS"
+USE_EXPAND_HIDDEN="ABI_MIPS ABI_PPC ABI_S390 CPU_FLAGS_ARM CROSSCOMPILE_OPTS ELIBC KERNEL USERLAND"
+USE_EXPAND_IMPLICIT="ARCH ELIBC KERNEL USERLAND"
+USE_EXPAND_VALUES_ARCH="alpha amd64 amd64-fbsd amd64-linux arm arm-linux arm64 hppa ia64 m68k m68k-mint mips nios2 ppc ppc64 ppc64-linux ppc-aix ppc-macos riscv s390 sh sparc sparc64-solaris sparc-fbsd sparc-solaris x64-cygwin x64-macos x64-solaris x86 x86-cygwin x86-fbsd x86-linux x86-macos x86-solaris x86-winnt"
+USE_EXPAND_VALUES_ELIBC="AIX bionic Cygwin Darwin DragonFly FreeBSD glibc HPUX Interix mingw mintlib musl NetBSD OpenBSD SunOS uclibc Winnt"
+USE_EXPAND_VALUES_KERNEL="AIX Darwin FreeBSD freemint HPUX linux NetBSD OpenBSD SunOS Winnt"
+USE_EXPAND_VALUES_USERLAND="BSD GNU"
+USE_EXPAND_UNPREFIXED="ARCH"
+
+PROFILE_ONLY_VARIABLES="${PROFILE_ONLY_VARIABLES} ARCH USE_EXPAND_VALUES_ARCH"
+PROFILE_ONLY_VARIABLES="${PROFILE_ONLY_VARIABLES} ELIBC IUSE_IMPLICIT KERNEL USERLAND USE_EXPAND_IMPLICIT USE_EXPAND_UNPREFIXED USE_EXPAND_VALUES_ELIBC USE_EXPAND_VALUES_KERNEL USE_EXPAND_VALUES_USERLAND"
+
+#
+# General config
+#
+USE="cracklib e2fsprogs kmod multilib pam prefix seccomp tcpd unicode xattr"
+
+ACCEPT_LICENSE="*"
+
+AUTOCLEAN="yes"
+
+COLLISION_IGNORE="/lib/modules/* *.py[co] *\$py.class */dropin.cache"
+UNINSTALL_IGNORE="/lib/modules/* /var/run /var/lock"
+
+ELIBC="glibc"
+
+FEATURES="buildpkg"
+
+FETCHCOMMAND="/usr/bin/wget -t 1 -T 15 --passive-ftp \${URI} -O \${DISTDIR}/\${FILE}"
+RESUMECOMMAND="/usr/bin/wget -c -t 1 -T 15 --passive-ftp \${URI} -O \${DISTDIR}/\${FILE}"
+GENTOO_MIRRORS="http://gentoo.mirrors.pair.com/ \
+http://mirrors.tds.net/gentoo \
+http://distro.ibiblio.org/pub/linux/distributions/gentoo/"
+
+INPUT_DEVICES="keyboard"
+
+JAVA_PKG_STRICT="true"
+
+KERNEL="linux"
+
+L10N="en en_US"
+LINGUAS="${L10N}"	# legacy
+LC_MESSAGES="C"
+
+PORTAGE_COMPRESS="xz"
+PORTAGE_ECLASS_WARNING_ENABLE="0"
+PORTAGE_NICENESS=15
+PORTAGE_TMPDIR="/tmp"
+PORTDIR=/usr/portage
+PKGDIR=${PORTDIR}/packages/amd64
+
+PYTHON_TARGETS="python2_7 python3_4"
+PYTHON_SINGLE_TARGET="python3_4"
+
+QEMU_SOFTMMU_TARGETS="i386 x86_64"
+QEMU_USER_TARGETS="i386 x86_64"
+
+RUBY_TARGETS="ruby24"
+
+USERLAND="GNU"

@@ -1,0 +1,3 @@
+sys-apps/busybox -pam
+sys-apps/sandbox abi_x86_32
+sys-devel/gcc pie
