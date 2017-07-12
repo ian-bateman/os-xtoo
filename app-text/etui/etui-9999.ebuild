@@ -5,7 +5,7 @@ EAPI="6"
 
 E_BASE_URI="https://github.com/vtorri/etui"
 E_GIT_URI="${E_BASE_URI}.git"
-E_SNAP="6ac21a4d956ab1f899e9f63ca4873877d2d3a7b4"
+E_SNAP="7e29b8e49cb98f33d825d30ea573f154fa584a7d"
 
 inherit e
 
@@ -42,14 +42,8 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	sed -i -e "s|-lm|-lmupdf|" "${S}/m4/etui_check.m4" \
-		|| die "Could not fix build sed -lm -> -lmupdf"
-	e_src_prepare
-}
-
 src_configure() {
-	local u MY_CONF=()
+	local u MY_CONF=( --enable-gpl )
 	for u in ${IUSE}; do
 		if [[ "${u}" == "postscript" ]]; then
 			MY_CONF+=( $(use_enable postscript ps) )
@@ -57,5 +51,6 @@ src_configure() {
 			MY_CONF+=( $(use_enable ${u/+/}) )
 		fi
 	done
+	use pdf && MY_CONF+=( --with-mupdf-shared-libs="-lmupdf" )
 	econf "${MY_CONF[@]}"
 }
