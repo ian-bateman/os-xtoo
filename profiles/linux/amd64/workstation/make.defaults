@@ -34,8 +34,7 @@ ALSA_PCM_PLUGINS="asym dmix dsnoop empty extplug iec958 ioplug plug rate route s
 
 APACHE2_MODULES=""
 
-#CALLIGRA_FEATURES="braindump flow karbon kexi krita plan sheets stage tables words"
-CALLIGRA_FEATURES="sheets words"
+CALLIGRA_FEATURES=""
 
 CAMERAS=""
 
