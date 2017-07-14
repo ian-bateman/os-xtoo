@@ -18,9 +18,11 @@
 *app-arch/rpm2targz
 *app-arch/unrar
 *app-benchmarks/iozone
+*app-cdr/xfburn
 *app-cdr/uif2iso
 *app-crypt/gnupg
 *app-crypt/gpgme
+*app-crypt/seahorse
 *app-doc/doxygen
 *app-editors/ecrire
 *app-editors/hexedit
@@ -33,7 +35,6 @@
 *app-misc/figlet
 *app-misc/screen
 *app-mobilephone/heimdall
-*app-mobilephone/qtadb
 *app-office/glabels
 *app-office/gnucash
 *app-office/openoffice-bin
@@ -44,6 +45,7 @@
 *app-shells/gentoo-bashcomp
 *app-text/dos2unix
 *app-text/enchant
+*app-text/etui
 *app-text/ghostscript-gpl
 *app-text/htmltidy
 *dev-db/flamerobin
@@ -106,15 +108,8 @@
 *dev-vcs/git
 *dev-vcs/mercurial
 *dev-vcs/rcs
-*kde-apps/k3b
-*kde-apps/konsole:5
-*kde-apps/kwalletd
-*kde-apps/kwalletmanager
-*kde-apps/kwrite:5
-*kde-apps/okular
-#*kde-frameworks/kdelibs:4
+*gnome-extra/nm-applet
 *kde-frameworks/oxygen-icons
-*kde-plasma/plasma-meta:5
 *media-fonts/corefonts
 *media-fonts/dejavu
 #*media-fonts/font-adobe-100dpi
@@ -124,6 +119,7 @@
 #*media-fonts/font-adobe-utopia-type1
 #*media-fonts/freefont
 #*media-fonts/freefonts
+*media-fonts/noto
 #*media-fonts/terminus-font
 *media-gfx/ephoto
 *media-gfx/gimp
@@ -145,6 +141,7 @@
 *media-video/ushare
 *net-analyzer/iftop
 *net-analyzer/mtr
+*net-analyzer/netcat6
 *net-analyzer/nmap
 *net-analyzer/ssldump
 *net-analyzer/tcpdump
@@ -215,7 +212,6 @@
 *x11-misc/emprint
 *x11-misc/entrance
 *x11-misc/read-edid
-*x11-misc/sddm
 *x11-misc/synergy
 *x11-misc/xclip
 *x11-misc/xdgurl
