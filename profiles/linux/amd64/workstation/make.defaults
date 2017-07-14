@@ -26,7 +26,7 @@ USE="X aalib acpi alsa -apache2 asf bash-completion bzip2 \
      -xscreensaver -cxx -glade equalizer realtime twolame webkit2 prison -lvm1 \
      -java -gtk -gtk3 -vdpau webp caps -bindist ipv6 -libav -qt5 xkb \
      -python_targets_python3_3 wayland egl gles2 -nsplugin mtp sqlite \
-     bluetooth -gcj -qt4 qt3support x264 readline pcre openmp printsupport"
+     bluetooth -gcj -qt4 -qt3support x264 readline pcre openmp printsupport"
 
 ALSA_CARDS="hda-intel"
 
