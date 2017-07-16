@@ -80,12 +80,13 @@ DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO )
 
 src_prepare() {
 	default
-	use efl && eapply "${DISTDIR}/${P}-efl.patch"
-	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
+	if use efl ;then
+		eapply "${DISTDIR}/${P}-efl.patch"
 		# delete hack that negates value from pinentry_inq_quality
 		sed -i -e '128,131d' efl/pinentry-efl.c \
 			|| die "Failed to remove quality hack"
-
+	fi
+	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
 		echo "
 @set UPDATED 12 May 2017
 @set UPDATED-MONTH May 2017
