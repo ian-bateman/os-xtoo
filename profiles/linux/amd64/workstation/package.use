@@ -86,6 +86,7 @@ media-libs/mlt melt
 media-libs/libsdl2 gles
 media-libs/libvpx postproc svc
 media-libs/xine-lib gtk -vis
+media-sound/gmusicbrowser mplayer
 media-sound/pulseaudio gnome
 media-video/libav theora
 media-video/ffmpeg ebur128 encode opus theora
