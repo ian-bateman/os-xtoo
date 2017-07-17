@@ -33,5 +33,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_P}/${PN:10}"
-
-JAVA_RES_DIR="${PN:10}/src/main/resources"
