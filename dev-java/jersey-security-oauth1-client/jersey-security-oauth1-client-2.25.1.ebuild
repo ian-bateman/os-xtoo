@@ -8,13 +8,14 @@ JAVA_PKG_IUSE="doc source"
 inherit java-pkg-2 java-pkg-simple
 
 MY_PN="${PN: 16}"
-MY_P="${MY_PN}-${PV}"
+MY_PV="${PV/_beta/-b}"
+MY_P="${MY_PN}-${MY_PV}"
 
 DESCRIPTION="Jersey RESTful Web Services in Java Security OAuth1 Client"
 HOMEPAGE="https://${PN:0:6}.java.net/"
-SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${PN:0:6}/${PN:7:8}/${MY_PN}/${PV}/${MY_P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${PN:0:6}/${PN:7:8}/${MY_PN}/${MY_PV}/${MY_P}-sources.jar"
 # Missing .internal.LocalizationMessages
-#SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+#SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="$(get_major_version)"
