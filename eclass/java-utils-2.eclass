@@ -1887,6 +1887,12 @@ java-utils-2_src_prepare() {
 
 	java-pkg_func-exists java_prepare && java_prepare
 
+	# Remove Java 9 module-info.java if not >= jdk 9
+	if ! java-pkg_is-vm-version-ge "9" ; then
+		debug-print "$FUNCNAME: removing Java 9 module-info.java"
+		find . -name module-info.java -type f -delete
+	fi
+
 	# Check for files in JAVA_RM_FILES array.
 	if [[ ${JAVA_RM_FILES[@]} ]]; then
 		debug-print "$FUNCNAME: removing unneeded files"
