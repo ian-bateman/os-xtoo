@@ -10,9 +10,11 @@ BASE_URI="https://github.com/${PN}/${PN}"
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
+	MY_S="${P}"
 else
-	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/version-${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
+	MY_S="${P/-/-version-}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
@@ -36,7 +38,7 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
-S="${WORKDIR}/${P}"
+S="${WORKDIR}/${MY_S}"
 
 PATCHES=(
 	"${FILESDIR}/xpp3-add-removeAttribute.patch"
