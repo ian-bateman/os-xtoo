@@ -108,6 +108,7 @@
 *dev-vcs/git
 *dev-vcs/mercurial
 *dev-vcs/rcs
+*gnome-base/libgnome-keyring
 *gnome-extra/nm-applet
 *kde-frameworks/oxygen-icons
 *media-fonts/corefonts
