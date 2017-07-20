@@ -52,7 +52,7 @@ DEPEND="
 	systemd? ( sys-apps/systemd )
 	wayland? (
 		!systemd? ( sys-auth/elogind )
-		dev-libs/efl[egl,gles,wayland]
+		dev-libs/efl[egl,gles2,wayland]
 		>=dev-libs/wayland-1.10.0
 		>=x11-libs/pixman-0.31.1
 		>=x11-libs/libxkbcommon-0.3.1
