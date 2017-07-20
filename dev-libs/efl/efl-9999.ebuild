@@ -16,19 +16,19 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 SLOT="0"
 
 IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig
-	fribidi gif +gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k
+	fribidi gif +gles2 glib gnutls gstreamer harfbuzz +ico ibus jpeg2k
 	libressl neon oldlua nls opengl ssl pdf physics pixman +png +ppm
 	postscript psd pulseaudio rawphoto scim sdl sound static-libs
 	+svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine
 	xpm"
 
 REQUIRED_USE="
-	X		( || ( gles opengl ) )
+	X		( || ( gles2 opengl ) )
 	pulseaudio?	( sound )
 	opengl?		( || ( X sdl wayland ) )
-	gles?		( egl !sdl || ( X wayland ) )
+	gles2?		( egl !sdl || ( X wayland ) )
 	sdl?		( opengl )
-	wayland?	( egl gles !opengl )
+	wayland?	( egl gles2 !opengl )
 	xim?		( X )
 "
 
@@ -57,7 +57,7 @@ COMMON_DEP="
 		x11-libs/libXrandr
 		x11-libs/libXrender
 		x11-libs/libXtst
-		gles? (
+		gles2? (
 			media-libs/mesa[egl,gles2]
 			x11-libs/libXrender
 		)
@@ -96,7 +96,7 @@ COMMON_DEP="
 	)
 	scim?	( app-i18n/scim )
 	sdl? (
-		>=media-libs/libsdl2-2.0.0:0[opengl?,gles?]
+		>=media-libs/libsdl2-2.0.0:0[opengl?,gles]
 	)
 
 	svg? ( gnome-base/librsvg )
@@ -154,13 +154,13 @@ src_configure() {
 	)
 	if use opengl; then
 		config+=( --with-opengl=full )
-		use gles &&  \
-			einfo "You enabled both USE=opengl and USE=gles, using opengl"
-	elif use gles; then
+		use gles2 &&  \
+			einfo "You enabled both USE=opengl and USE=gles2, using opengl"
+	elif use gles2; then
 		config+=( --with-opengl=es )
 		if use sdl; then
 			config+=( --with-opengl=none )
-			ewarn "You enabled both USE=sdl and USE=gles which isn't currently supported."
+			ewarn "You enabled both USE=sdl and USE=gles2 which isn't currently supported."
 			ewarn "Disabling gl for all backends."
 		fi
 	else
