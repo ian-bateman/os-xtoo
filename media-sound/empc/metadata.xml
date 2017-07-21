@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>wlt@o-sinc.com</email>
+  </maintainer>
+  <use>
+    <flag name="glyr">Enable remote media fetching using a metadata aggregator</flag>
+    <flag name="id3tag">Enable read metadata from id3 tags</flag>
+  </use>
+</pkgmetadata>
