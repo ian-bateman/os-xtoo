@@ -15,8 +15,11 @@ E_TYPE="bindings"
 
 inherit e distutils-r1
 
-[[ ${PV} != 1.18.0 ]] && \
+if [[ "${PV}" == "1.20.0_beta1" ]] ; then
+	SRC_URI="https://download.${E_BASE_URI}/pre-releases/${P/_/-}.tar.gz"
+else
 	SRC_URI="${SRC_URI/${E_TYPE}\/${PN}/${E_TYPE}/python}"
+fi
 
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="https://phab.enlightenment.org/w/projects/python_bindings_for_efl/"
@@ -24,10 +27,6 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 
 IUSE="doc"
-
-if [[ ${PV} == 1.18.0 ]]; then
-	RDEPEND="=dev-libs/efl-1.18.4"
-fi
 
 RDEPEND="
 	>=dev-python/cython-0.21
@@ -39,4 +38,4 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${P}"
+S="${WORKDIR}/${P/_/-}"
