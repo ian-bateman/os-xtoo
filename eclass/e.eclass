@@ -33,6 +33,24 @@ E_ECONF=()
 # default url for enlightenment git repos
 E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
 
+# @ECLASS-VARIABLE: E_PN
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# default package name for enlightenment packages
+E_PN="${E_PN:=${PN}}"
+
+# @ECLASS-VARIABLE: E_PV
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# default package version for enlightenment packages
+E_PV="${E_PV:=${PV/_/-}}"
+
+# @ECLASS-VARIABLE: E_PV
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# default package for enlightenment packages
+E_P="${E_P:=${E_PN}-${E_PV}}"
+
 # @ECLASS-VARIABLE: E_SNAP
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -45,18 +63,18 @@ E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
 
 if [[ ${E_CMAKE} ]]; then
 	inherit cmake-utils
-elif [[ ${PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
+elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	WANT_AUTOCONF=latest
 	WANT_AUTOMAKE=latest
 	inherit autotools
 fi
 
-if [[ ${PV} == 9999 ]]; then
-	EGIT_REPO_URI=${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${PN}.git"}
-	SLOT="${PV}"
+if [[ ${E_PV} == 9999 ]]; then
+	EGIT_REPO_URI=${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
+	SLOT="${E_PV}"
 	inherit git-r3
 else
-        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${PN}/${P/_/-}.tar.gz"}
+        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.gz"}
 	KEYWORDS="~amd64"
 	SLOT="0"
 fi
@@ -68,7 +86,7 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
 IUSE="nls ${E_CMAKE:+debug} doc static-libs"
-S=${S:="${WORKDIR}/${P/_/-}"}
+S=${S:="${WORKDIR}/${E_P}"}
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 
@@ -79,7 +97,7 @@ e_src_prepare() {
 	debug-print-function ${FUNCNAME} $*
 	default
 	if [[ ! ${E_CMAKE} ]]; then
-		if [[ ${PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
+		if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 			eautoreconf
 		fi
 		epunt_cxx
