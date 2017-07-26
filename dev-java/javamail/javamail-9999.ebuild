@@ -36,6 +36,7 @@ RDEPEND=">=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}"
 
+JAVA_RES_DIR="mail/src/main/resources"
 JAVA_SRC_DIR="
 	mail/src/main/java
 	mail/src/main/resources
