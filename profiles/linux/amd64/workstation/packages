@@ -92,6 +92,7 @@
 *dev-java/scribejava-core
 *dev-java/tomcat-server
 *dev-libs/efl
+*dev-perl/Gtk2-AppIndicator
 *dev-util/android-studio-bin
 *dev-util/android-tools
 *dev-util/ccache
