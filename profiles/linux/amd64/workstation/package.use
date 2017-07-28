@@ -43,7 +43,7 @@ dev-libs/boost python
 dev-libs/efl egl gles harfbuzz ibus -opengl physics postscript psd -sdl -static-libs vlc wayland
 dev-libs/gmp cxx
 dev-libs/libcdio cddb
-dev-libs/libdbusmenu gtk3
+dev-libs/libdbusmenu gtk gtk3
 dev-libs/libgcrypt static-libs
 dev-libs/libgpg-error static-libs
 dev-libs/libindicate gtk
