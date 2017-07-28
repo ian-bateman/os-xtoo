@@ -1,0 +1,6 @@
+app-admin/ulogd
+gnome-extra/nm-applet
+net-firewall/iptables
+net-misc/networkmanager
+net-vpn/tinc
+net-wireless/iw
