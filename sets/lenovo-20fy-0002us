@@ -1,3 +1,4 @@
+@nvidia
 sys-firmware/iwl8000-ucode
 x11-drivers/xf86-input-wacom
 x11-drivers/xf86-video-intel
