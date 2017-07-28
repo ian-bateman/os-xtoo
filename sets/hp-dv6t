@@ -1,4 +1,5 @@
 @ati
+@laptop
 net-wireless/broadcom-sta
 sys-apps/pcmciautils
 sys-firmware/brcm-ucode
