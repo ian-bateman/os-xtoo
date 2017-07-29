@@ -69,12 +69,20 @@ elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	inherit autotools
 fi
 
-if [[ ${E_PV} == 9999 ]]; then
+if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	EGIT_REPO_URI=${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
+fi
+
+if [[ ${E_PV} == 9999 ]]; then
 	SLOT="${E_PV}"
 	inherit git-r3
 else
-        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.gz"}
+	if [[ ${E_SNAP} ]]; then
+		SRC_URI="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.gz -> ${E_P}.tar.gz"
+		S="${WORKDIR}/${E_SNAP}"
+	else
+	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.gz"}
+	fi
 	KEYWORDS="~amd64"
 	SLOT="0"
 fi
@@ -86,7 +94,7 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
 IUSE="nls ${E_CMAKE:+debug} doc static-libs"
-S=${S:="${WORKDIR}/${E_P}"}
+S="${S:=${WORKDIR}/${E_P}}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 
