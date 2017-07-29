@@ -29,9 +29,9 @@ DEPEND="debug? ( dev-util/valgrind
 "
 RDEPEND="
 	>=app-eselect/eselect-java-1
-	java-config? ( <dev-java/java-config-2.2.1 )
+	java-config? ( >dev-java/java-config-2.2.0 )
 	!java-config? (
-		>=dev-java/java-config-2.2.1
+		<dev-java/java-config-2.2.1
 	)
 "
 
