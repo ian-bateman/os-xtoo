@@ -3,46 +3,18 @@
 
 EAPI="6"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="autotools git-r3"
-	EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
-else
-	SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P}.tar.gz"
-	KEYWORDS="~amd64"
+if [[ ${PV} == *2017* ]]; then
+	E_SNAP="b13596ac2c3b6685955f50c037f424c295408078"
 fi
 
-inherit eutils ${ECLASS}
+if [[ ${PV} == *2017* ]] || [[ ${PV} == 9999 ]]; then
+	E_TYPE="tools"
+else
+	E_TYPE="apps"
+fi
+
+inherit e
 
 DESCRIPTION="EFL Dynamic EDC editor"
 HOMEPAGE="https://git.enlightenment.org/tools/${PV}.git/about/"
 LICENSE="BSD-2"
-SLOT="0"
-
-IUSE="doc nls static-libs"
-
-RDEPEND="
-	dev-libs/efl
-"
-
-DEPEND="${RDEPEND}"
-
-S="${WORKDIR}/${P}"
-
-src_prepare() {
-	default
-	[[ ${PV} = 9999 ]] && eautoreconf
-}
-
-src_configure() {
-	local config=(
-		$(use_enable nls)
-		$(use_enable static-libs static)
-	)
-
-	econf "${config[@]}"
-}
-
-src_install() {
-	default
-	prune_libtool_files
-}
