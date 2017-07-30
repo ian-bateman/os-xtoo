@@ -98,7 +98,7 @@
 *dev-util/ccache
 *dev-util/edi
 #*dev-util/eflete
-#*dev-util/enventor
+*dev-util/enventor
 *dev-util/netbeans
 *dev-util/rockchip-upgrade-tool-bin
 *dev-util/shellcheck
