@@ -1,4 +1,4 @@
-sys-firmware/nvidia-drivers
+sys-firmware/nvidia-firmware
 x11-drivers/nvidia-drivers
 x11-misc/bumblebee
 x11-misc/virtualgl
