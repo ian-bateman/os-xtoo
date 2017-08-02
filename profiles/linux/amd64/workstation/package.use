@@ -108,7 +108,7 @@ net-misc/openssh -X
 net-misc/spice-gtk gtk3 -pulseaudio python
 net-nds/openldap berkdb -gnutls odbc -minimal
 net-print/hplip snmp
-net-vpn/tinc
+net-vpn/tinc upnp
 net-wireless/bluez pcmcia
 sys-apps/busybox mdev sep-usr static
 sys-apps/pciutils -zlib
