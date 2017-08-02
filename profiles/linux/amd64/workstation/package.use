@@ -57,7 +57,7 @@ dev-scheme/guile deprecated discouraged
 dev-util/android-studio-bin system-jvm
 dev-util/netbeans apisupport cnd experimental harness ide identity j2ee mobility nb profiler ruby soa stableuc testtools uml visualweb
 dev-vcs/cvs -server
-dev-vcs/git gtk python
+dev-vcs/git cvs gtk python subversion
 dev-vcs/subversion -dso -java -kde -kwallet perl
 gnome-extra/nm-applet -modemmanager
 mail-client/claws-mail calendar -libcanberra networkmanager ntp session startup-notification
