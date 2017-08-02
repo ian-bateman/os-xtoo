@@ -39,8 +39,7 @@ dev-java/swing-layout source
 dev-lang/python ncurses tk
 dev-libs/DirectFB -egl nvidia
 dev-libs/boost python
-#dev-libs/efl -egl -gles harfbuzz ibus opengl physics postscript psd -sdl -static-libs vlc -wayland
-dev-libs/efl egl gles harfbuzz ibus -opengl physics postscript psd -sdl -static-libs vlc wayland
+dev-libs/efl egl harfbuzz -opengl physics postscript psd -sdl -static-libs wayland
 dev-libs/gmp cxx
 dev-libs/libcdio cddb
 dev-libs/libdbusmenu gtk gtk3
