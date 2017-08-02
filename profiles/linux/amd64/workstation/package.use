@@ -1,5 +1,4 @@
 app-arch/bzip2 static-libs
-app-cdr/k3b sox
 app-crypt/gcr gtk
 app-crypt/gpgme cxx
 app-crypt/heimdal -ssl -threads
@@ -8,13 +7,7 @@ app-emulation/libvirt -libvirtd python -qemu
 app-emulation/libvirt-glib python
 app-emulation/qemu -fdt -filecaps -pin-upstream-blobs
 app-emulation/virt-manager -spice
-app-mobilephone/obexd -server
-app-mobilephone/obex-data-server gtk
-app-office/calligra word-perfect linguas_en_GB
-app-office/calligra-l10n linguas_en_GB
 app-office/gnucash -doc
-app-office/gnumeric -introspection -libgda
-app-office/openoffice java
 app-office/openoffice-bin java
 app-text/asciidoc python_single_target_python2_7
 app-text/poppler cxx
@@ -26,16 +19,13 @@ dev-java/edtftpj doc
 dev-java/ha-jdbc doc
 dev-java/itext doc
 dev-java/jazzy doc
+dev-java/javamail doc
 dev-java/jdbc-jaybird doc
 dev-java/jdom doc
 dev-java/jexcelapi doc
 dev-java/junit source
-dev-java/recaptcha4j doc
-dev-java/servletapi doc
-dev-java/oracle-javamail doc
 dev-java/oracle-jdk-bin javafx nsplugin
 dev-java/protobuf-java nano
-dev-java/swing-layout source
 dev-lang/python ncurses tk
 dev-libs/DirectFB -egl nvidia
 dev-libs/boost python
@@ -53,7 +43,7 @@ dev-libs/popt static-libs
 dev-libs/protobuf java
 dev-libs/pwlib ldap
 dev-qt/qtcore icu
-dev-scheme/guile deprecated discouraged
+dev-scheme/guile deprecated
 dev-util/android-studio-bin system-jvm
 dev-util/netbeans apisupport cnd experimental harness ide identity j2ee mobility nb profiler ruby soa stableuc testtools uml visualweb
 dev-vcs/cvs -server
@@ -68,7 +58,6 @@ media-gfx/imagemagick autotrace cxx pango
 media-gfx/sane-backends -v4l
 media-libs/flac cxx
 media-libs/freetype static-libs
-media-libs/gst-plugins-bad egl -gles2 -opengl
 media-libs/gst-plugins-base theora
 media-libs/harfbuzz icu
 media-libs/imlib2 X
@@ -80,39 +69,30 @@ media-libs/lcms python static-libs
 media-libs/libmng static-libs
 media-libs/libpng apng static-libs
 media-libs/libsdl joystick
-media-libs/mesa classic g3dvl gbm gles1 gles2 static static-libs opencl vdpau wayland
-media-libs/mlt melt
-media-libs/libsdl2 gles
+media-libs/mesa classic g3dvl gbm gles2 static static-libs opencl vdpau wayland
 media-libs/libvpx postproc svc
-media-libs/xine-lib gtk -vis
+media-libs/xine-lib gtk
 media-sound/gmusicbrowser mplayer
 media-sound/pulseaudio gnome
 media-video/libav theora
 media-video/ffmpeg ebur128 encode opus theora
 media-video/mplayer iconv -pnm
-media-video/ushare dlna
-media-video/vlc -audioqueue
 net-analyzer/mtr gtk
 net-analyzer/wireshark gtk
 net-ftp/gftp gtk
 net-fs/samba -aio client -cups -gpg system-mitkrb5
 net-libs/glib-networking -libproxy
-net-libs/libpcap ipv6
-net-libs/libproxy python -kde
 net-libs/opal sipim
 net-libs/ptlib http dtmf
 net-libs/webkit-gtk gstreamer -opengl
-net-libs/xulrunner -wifi
 net-misc/networkmanager dhclient -dhcpcd -modemmanager -nss -ppp
 net-misc/openssh -X
-net-misc/spice-gtk gtk3 -pulseaudio python
 net-nds/openldap berkdb -gnutls odbc -minimal
 net-print/hplip snmp
 net-vpn/tinc upnp
 net-wireless/bluez pcmcia
 sys-apps/busybox mdev sep-usr static
 sys-apps/pciutils -zlib
-sys-apps/portage python3
 sys-apps/util-linux ncurses static-libs
 sys-auth/polkit -gtk
 sys-devel/gcc cxx -gtk
@@ -127,7 +107,6 @@ sys-libs/tevent python
 sys-libs/zlib minizip static-libs
 virtual/ffmpeg theora
 virtual/jpeg static-libs
-virtual/udev gudev
 www-client/chromium bindist gtk3 pic -system-libvpx -tcmalloc
 www-client/firefox bindist hwaccel startup-notification system-cairo system-jpeg system-harfbuzz system-libevent system-libvpx system-sqlite wifi
 x11-base/xorg-server glamor kdrive xephyr xnest xorg
@@ -135,7 +114,6 @@ x11-drivers/nvidia-drivers compat gtk3
 x11-drivers/xf86-video-intel dri dri3 sna uxa
 x11-libs/wxGTK -webkit
 x11-libs/libdrm libkms
-x11-libs/goffice gnome
 x11-libs/vte python
 x11-misc/lightdm gtk
 x11-wm/enlightenment egl udisks wayland -wifi
