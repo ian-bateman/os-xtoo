@@ -3,6 +3,7 @@
 
 EAPI="6"
 
+[[ ${PV} == *2017* ]] && E_SNAP="b76a54bd3ee93fe9d529e577251a1d5fc6b32d1a"
 E_TYPE="apps"
 
 inherit e
