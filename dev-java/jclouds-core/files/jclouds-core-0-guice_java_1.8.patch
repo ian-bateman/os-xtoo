@@ -1,13 +1,14 @@
 diff --git a/src/main/java/org/jclouds/rest/internal/TransformerForRequest.java b/src/main/java/org/jclouds/rest/internal/TransformerForRequest.java
-index d2bfa82..d02c4a5 100644
+index d2bfa826b4..fee964be74 100644
 --- a/src/main/java/org/jclouds/rest/internal/TransformerForRequest.java
 +++ b/src/main/java/org/jclouds/rest/internal/TransformerForRequest.java
-@@ -82,7 +82,7 @@ public class TransformerForRequest implements Function<HttpRequest, Function<Htt
-    public Function<HttpResponse, ?> apply(HttpRequest in) {
-       GeneratedHttpRequest request = GeneratedHttpRequest.class.cast(in);
-       Function<HttpResponse, ?> transformer;
--      Class<? extends HandlerWithResult<?>> handler = getSaxResponseParserClassOrNull(request.getInvocation()
-+      Class<? extends HandlerWithResult> handler = getSaxResponseParserClassOrNull(request.getInvocation()
+@@ -85,7 +85,8 @@ public class TransformerForRequest implements Function<HttpRequest, Function<Htt
+       Class<? extends HandlerWithResult<?>> handler = getSaxResponseParserClassOrNull(request.getInvocation()
              .getInvokable());
        if (handler != null) {
-          transformer = parserFactory.create(injector.getInstance(handler));
+-         transformer = parserFactory.create(injector.getInstance(handler));
++         HandlerWithResult<?> h = injector.getInstance(handler);
++         transformer = parserFactory.create(h);
+       } else {
+          transformer = getTransformerForMethod(request.getInvocation(), injector);
+       }

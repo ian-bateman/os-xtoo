@@ -51,6 +51,8 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-${SLOT}-guice_java_1.8.patch"
-)
+if [[ ${PV} == 2.0.2 ]]; then
+	PATCHES=(
+		"${FILESDIR}/${PN}-${SLOT}-guice_java_1.8.patch"
+	)
+fi
