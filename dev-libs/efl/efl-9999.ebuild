@@ -6,7 +6,11 @@
 
 EAPI="6"
 
-E_TYPE="libs"
+if [[ ${PV} == *9999* ]]; then
+	E_TYPE="core"
+else
+	E_TYPE="libs"
+fi
 
 inherit e versionator
 
