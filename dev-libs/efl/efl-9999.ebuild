@@ -237,12 +237,12 @@ src_configure() {
 
 		--enable-cserve
 		--enable-libmount
+		--enable-multisense
 		--enable-threads
 		--enable-xinput22
 
 		--disable-gstreamer # using gstreamer1
 		#--disable-lua-old
-		--disable-multisense
 		--disable-tizen
 		--disable-gesture
 		#--disable-xinput2
