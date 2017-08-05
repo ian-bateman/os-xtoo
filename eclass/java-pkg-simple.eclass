@@ -105,6 +105,9 @@ java-pkg-simple_src_compile() {
 	# auto generate classpath
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
 
+	# Remove if exist, for multiple runs
+	[[ -d target ]] && rm -fr target
+
 	# gather sources
 	if [[ -z ${JAVA_SRC_DIR} ]] && [[ -d "${S}/src/main/java" ]]; then
 		JAVA_SRC_DIR="src/main/java"
