@@ -23,7 +23,7 @@ fi
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="A code generator that produces the JNI code"
-HOMEPAGE="http://fusesource.github.io/hawtjni/"
+HOMEPAGE="https://fusesource.github.io/hawtjni/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
