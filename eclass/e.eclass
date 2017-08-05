@@ -87,7 +87,7 @@ else
 	SLOT="0"
 fi
 
-CDEPEND="dev-libs/efl"
+[[ "${PN}" != "efl" ]] && CDEPEND="dev-libs/efl"
 DEPEND="${CDEPEND}
 	${E_CMAKE:+dev-util/cmake}
 	doc? ( app-doc/doxygen )"
