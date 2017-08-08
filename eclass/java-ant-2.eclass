@@ -43,24 +43,15 @@ inherit java-utils-2 multilib
 # Setting this variable non-empty before inheriting java-ant-2 disables adding
 # dev-java/ant-core into DEPEND.
 if [[ -z "${JAVA_ANT_DISABLE_ANT_CORE_DEP}" ]]; then
+
 	JAVA_ANT_E_DEPEND+=" >=dev-java/ant-core-1.8.2"
 	[[ "${EAPI:-0}" != 0 ]] && JAVA_ANT_E_DEPEND+=":0"
-fi
-
-# add ant tasks specified in WANT_ANT_TASKS to DEPEND
-local ANT_TASKS_DEPEND;
-ANT_TASKS_DEPEND="$(java-pkg_ant-tasks-depend)"
-# check that java-pkg_ant-tasks-depend didn't fail
-if [[ $? != 0 ]]; then
-	eerror "${ANT_TASKS_DEPEND}"
-	die "java-pkg_ant-tasks-depend() failed"
 fi
 
 # We need some tools from javatoolkit. We also need portage 2.1 for phase hooks
 # and ant dependencies constructed above. Python is there for
 # java-ant_remove-taskdefs
 JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND}
-	   ${ANT_TASKS_DEPEND}
 	   ${JAVA_PKG_PORTAGE_DEP}
 	   >=dev-java/javatoolkit-0.3.0-r2"
 
