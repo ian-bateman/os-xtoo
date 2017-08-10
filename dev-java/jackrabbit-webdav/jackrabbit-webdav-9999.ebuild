@@ -26,12 +26,19 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Implementation of the Content Repository for Java Technology API - ${PN#*-}"
 HOMEPAGE="https://${MY_PN}.apache.org/"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
+if [[ "${PV}" == 2.10.* ]]; then
+	SLOT="0"
+	CP_DEPEND="dev-java/commons-httpclient:3"
+else
+	SLOT="${PV%%.*}"
+	CP_DEPEND="
+		dev-java/httpcomponents-client:4.5
+		dev-java/httpcomponents-core:4.4
+	"
+fi
 
-CP_DEPEND="
+CP_DEPEND="${CP_DEPEND}
 	dev-java/bnd-annotation:3
-	dev-java/httpcomponents-client:4.5
-	dev-java/httpcomponents-core:4.4
 	dev-java/slf4j-api:0
 	java-virtuals/servlet-api:2.3
 "
