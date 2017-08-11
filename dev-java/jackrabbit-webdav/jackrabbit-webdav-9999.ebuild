@@ -28,10 +28,18 @@ HOMEPAGE="https://${MY_PN}.apache.org/"
 LICENSE="Apache-2.0"
 if [[ "${PV}" == 2.10.* ]]; then
 	SLOT="0"
-	CP_DEPEND="dev-java/commons-httpclient:3"
+elif [[ "${PV}" == 2.14.* ]]; then
+	SLOT="1"
 else
 	SLOT="${PV%%.*}"
-	CP_DEPEND="
+fi
+
+if [[ "${PV}" == 2.10.* ]] || [[ "${PV}" == 2.14.* ]]; then
+	CP_DEPEND="dev-java/commons-httpclient:3"
+fi
+
+if [[ "${PV}" != 2.10.* ]]; then
+	CP_DEPEND="${CP_DEPEND}
 		dev-java/httpcomponents-client:4.5
 		dev-java/httpcomponents-core:4.4
 	"
