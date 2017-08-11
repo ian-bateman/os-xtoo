@@ -20,8 +20,7 @@ CP_DEPEND="
 	dev-java/bcprov:${SLOT}
 	dev-java/bcpkix:${SLOT}
 	dev-java/junit:0
-	java-virtuals/jaf:0
-	dev-java/oracle-javamail:0
+	dev-java/javamail:0
 "
 
 DEPEND="${CP_DEPEND}
