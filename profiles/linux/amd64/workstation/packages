@@ -84,6 +84,7 @@
 *dev-java/jetty-util
 *dev-java/jexcelapi
 *dev-java/json-simple
+*dev-java/jtsys
 *dev-java/openpdf
 *dev-java/oracle-javamail
 *dev-java/oracle-jdk-bin
