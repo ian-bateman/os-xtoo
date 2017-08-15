@@ -63,6 +63,7 @@
 *dev-java/ha-jdbc
 *dev-java/java-apicheck
 *dev-java/java-dep-check
+*dev-java/javamail
 *dev-java/jax-rs
 *dev-java/jdbc-jaybird
 *dev-java/jdom
@@ -86,7 +87,6 @@
 *dev-java/json-simple
 *dev-java/jtsys
 *dev-java/openpdf
-*dev-java/oracle-javamail
 *dev-java/oracle-jdk-bin
 *dev-java/recaptcha4j
 *dev-java/scribejava-apis
