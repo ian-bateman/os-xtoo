@@ -24,7 +24,11 @@ DESCRIPTION="Java Native Access"
 HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( Apache-2.0 LGPL-2.1 )"
 IUSE="+awt +nio-buffers"
-SLOT="${PV%%.*}"
+if [[ ${PV} == 3* ]]; then
+	SLOT="0"
+else
+	SLOT="${PV%%.*}"
+fi
 
 CP_DEPEND="dev-java/ant-core:0"
 
@@ -74,9 +78,9 @@ src_configure() {
 }
 
 src_install() {
-	java-pkg_newjar build/${PN}-min.jar
-	java-pkg_dojar contrib/platform/dist/${PN}-platform.jar
-	java-pkg_doso build/native-*/libjnidispatch.so
+	java-pkg_newjar build*/${PN}-min.jar
+	java-pkg_newjar contrib/platform/dist/*platform.jar ${PN}-platform.jar
+	java-pkg_doso build*/native*/libjnidispatch.so
 
 	use source && java-pkg_dosrc src/*
 	use doc && java-pkg_dojavadoc doc/javadoc
