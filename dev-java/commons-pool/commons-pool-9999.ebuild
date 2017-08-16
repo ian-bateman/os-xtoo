@@ -27,9 +27,13 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Object-pooling API and a number of object pool implementations"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
-
-CP_DEPEND="dev-java/cglib:3"
+if [[ ${PV} == 1.6* ]]; then
+	SLOT="0"
+	JAVA_SRC_DIR="src/java"
+else
+	SLOT="${PV%%.*}"
+	CP_DEPEND="dev-java/cglib:3"
+fi
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
