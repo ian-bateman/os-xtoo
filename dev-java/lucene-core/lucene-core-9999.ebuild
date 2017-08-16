@@ -31,6 +31,10 @@ DEPEND=">=virtual/jdk-1.8"
 
 RDEPEND=">=virtual/jre-1.8"
 
-S="${WORKDIR}/${MY_S}/${PN//-//}"
+if [[ ${SLOT} == 3 ]]; then
+	S="${WORKDIR}/${MY_S}/${PN%-*}"
+else
+	S="${WORKDIR}/${MY_S}/${PN//-//}"
+fi
 
 JAVA_SRC_DIR="src/java"
