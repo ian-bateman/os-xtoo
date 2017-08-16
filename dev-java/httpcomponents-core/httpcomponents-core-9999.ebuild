@@ -5,16 +5,13 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-MY_PN="http${PN:15}"
-MY_P="${MY_PN}-${PV}"
-MY_MOD="${MY_PN}"
-BASE_URI="https://github.com/apache/${MY_PN}"
+BASE_URI="https://github.com/apache/${PN}"
 
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
 else
-	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
@@ -29,6 +26,8 @@ DEPEND=">=virtual/jdk-1.8"
 
 RDEPEND=">=virtual/jre-1.8"
 
-S="${WORKDIR}/${MY_P}/${MY_MOD}"
+S="${WORKDIR}/${P}/http${PN:15}"
 
-JAVA_SRC_DIR="src/main/java"
+if [[ ${SLOT} == 4.4 ]]; then
+	JAVA_SRC_DIR="src/main/java src/main/java-deprecated"
+fi
