@@ -47,10 +47,20 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
+JDK_VERSION="1.8"
+
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	dev-java/javacc:0
+	>=virtual/jdk-${JDK_VERSION}"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-${JDK_VERSION}"
 
 S="${WORKDIR}/${MY_S}"
+
+java_prepare() {
+	javacc -JDK_VERSION="${JDK_VERSION}" \
+		-OUTPUT_DIRECTORY="${S}/src/main/java" \
+		"${S}/src/main/javacc/PropertyListParser.jj" \
+		|| die "javacc PropertyListParser.jj failed"
+}
