@@ -34,8 +34,6 @@ SPRING_SLOT="4.3"
 CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/commons-codec:0
-	dev-java/commons-collections:0
-	dev-java/commons-digester:0
 	dev-java/commons-jexl:2
 	dev-java/commons-jxpath:0
 	dev-java/commons-lang:3
