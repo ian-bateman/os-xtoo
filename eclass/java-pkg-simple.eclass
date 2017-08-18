@@ -111,6 +111,8 @@ java-pkg-simple_src_compile() {
 	# gather sources
 	if [[ -z ${JAVA_SRC_DIR} ]] && [[ -d "${S}/src/main/java" ]]; then
 		JAVA_SRC_DIR="src/main/java"
+	elif [[ -z ${JAVA_SRC_DIR} ]] && [[ -d "${S}/src/java" ]]; then
+		JAVA_SRC_DIR="src/java"
 	fi
 	find ${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
 	[[ ! -s ${sources} ]] && die "*.java files not found in ${JAVA_SRC_DIR}"
