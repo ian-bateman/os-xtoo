@@ -95,6 +95,11 @@ S="${WORKDIR}"
 # The name of the jar file to create and install.
 : ${JAVA_JAR_FILENAME:=${PN}.jar}
 
+# @ECLASS-VARIABLE: JAVA_NEEDS_TOOLS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Add tools.jar to the classpath
+
 # @FUNCTION: java-pkg-simple_src_compile
 # @DESCRIPTION:
 # src_compile for simple bare source java packages. Finds all *.java
@@ -134,6 +139,14 @@ java-pkg-simple_src_compile() {
 	while [[ $classpath = *::* ]]; do classpath="${classpath//::/:}"; done
 	classpath=${classpath%:}
 	classpath=${classpath#:}
+	if [[ -n ${JAVA_NEEDS_TOOLS} ]]; then
+		if [[ -n ${classpath} ]]; then
+			classpath=${JAVA_HOME}/lib/tools.jar:${classpath}
+		else
+			classpath=${JAVA_HOME}/lib/tools.jar
+		fi
+	fi
+	echo "CLASSPATH=${classpath}"
 	debug-print "CLASSPATH=${classpath}"
 	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
