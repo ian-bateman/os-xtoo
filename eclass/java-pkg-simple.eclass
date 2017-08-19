@@ -1,11 +1,14 @@
-# Copyright 2004-2015 Gentoo Foundation
+# Copyright 2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+
+# Based on eclass
+# Copyright 2004-2015 Gentoo Foundation
 
 # @ECLASS: java-pkg-simple.eclass
 # @MAINTAINER:
-# java@gentoo.org
+# wlt@o-sinc.com
 # @AUTHOR:
+# William L. Thomson Jr. <wlt@o-sinc.com>
 # Java maintainers (java@gentoo.org)
 # @BLURB: Eclass for packaging Java software with ease.
 # @DESCRIPTION:
