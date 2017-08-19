@@ -28,9 +28,13 @@ SLOT="$(get_major_version)"
 HOMEPAGE="https://mongodb.github.io/$(get_version_component_range 1-2)/${MY_PN}/"
 LICENSE="Apache-2.0"
 
-RDEPEND=">=virtual/jre-1.8"
+CP_DEPEND="dev-java/slf4j-api:0"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-1.8"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/"
 
