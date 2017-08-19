@@ -25,7 +25,7 @@ SRC_URI="http://www.tinc-vpn.org/packages/${MY_P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+lzo +ncurses gui libressl +readline +ssl systemd uml vde upnp +zlib"
+IUSE="+lzo +ncurses gui libressl +readline +ssl systemd uml upnp +zlib"
 REQUIRED_USE="gui? ( ${PYTHON_REQUIRED_USE} )"
 
 DEPEND="
@@ -44,9 +44,7 @@ DEPEND="
 	upnp? ( net-libs/miniupnpc )
 	zlib? ( sys-libs/zlib )
 "
-RDEPEND="${DEPEND}
-	vde? ( net-misc/vde )
-"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -70,11 +68,11 @@ src_configure() {
 		--disable-silent-rules \
 		--enable-legacy-protocol \
 		--disable-tunemu  \
+		--disable-vde  \
 		$(use_enable lzo) \
 		$(use_enable ncurses curses) \
 		$(use_enable readline) \
 		$(use_enable uml) \
-		$(use_enable vde) \
 		$(use_enable zlib) \
 		$(use_enable upnp miniupnpc) \
 		$(use_with ssl openssl)
