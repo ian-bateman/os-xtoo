@@ -3,18 +3,21 @@
 
 EAPI="6"
 
+MY_PN="jackson-dataformats-text"
+MY_PV="${PV/_pre/.pr}"
+MY_P="${MY_PN}-${MY_PV}"
 JAVA_PKG_IUSE="doc source"
 
-BASE_URI="https://github.com/FasterXML/${PN}"
+BASE_URI="https://github.com/FasterXML/${MY_PN}"
 
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${PN}-${P}"
+	MY_S="${MY_PN}-${MY_P}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
@@ -36,11 +39,11 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
-S="${WORKDIR}/${MY_S}/"
+S="${WORKDIR}/${MY_S}/${PN:19}"
 
 java_prepare() {
 	local my_file
-	my_file="${S}src/main/java/com/fasterxml/${PN//-//}/PackageVersion.java"
+	my_file="${S}/src/main/java/com/fasterxml/${PN//-//}/PackageVersion.java"
 	sed -e "s|@package@|com.fasterxml.${PN//-/.}|g" \
 		-e "s|@projectversion@|${PV}|g" \
 		-e "s|@projectartifactid@|${PN}|g" \
