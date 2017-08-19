@@ -155,6 +155,7 @@ java-pkg-simple_src_compile() {
 		JAVA_RES_DIR="src/main/resources"
 	fi
 	if [[ -n ${JAVA_RES_DIR} ]]; then
+		local r
 		for r in ${JAVA_RES_DIR}; do
 			if [[ -d "${r}" ]]; then
 				cp -r "${r}"/* ${classes} \
