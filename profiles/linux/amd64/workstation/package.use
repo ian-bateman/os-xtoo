@@ -73,6 +73,7 @@ media-libs/libsdl joystick
 media-libs/mesa classic g3dvl gbm gles2 static static-libs opencl vdpau wayland
 media-libs/libvpx postproc svc
 media-libs/xine-lib gtk
+media-sound/lightmediascanner -flac -jpeg id3 mp4 ogg -png
 media-sound/gmusicbrowser mplayer
 media-sound/pulseaudio gnome
 media-video/libav theora
