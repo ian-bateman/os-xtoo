@@ -1,1 +1,0 @@
-terminology-9999.ebuild
