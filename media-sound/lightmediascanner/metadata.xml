@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>wlt@o-sinc.com</email>
+  </maintainer>
+  <use>
+    <flag name="asf">Enables asf audio format support</flag>
+    <flag name="audio-dummy">Enables audio-dummy audio format support</flag>
+    <flag name="dummy">Enables dummy audio format support</flag>
+    <flag name="generic">Enables generic libav audio format support</flag>
+    <flag name="id3">Enables id3 tag support</flag>
+    <flag name="m3u">Enables m3u audio format support</flag>
+    <flag name="pls">Enables pls audio format support</flag>
+    <flag name="rm">Enables real media audio format support</flag>
+    <flag name="video-dummy">Enables video-dummy support</flag>
+    <flag name="wave">Enables wave/wav audio format support</flag>
+  </use>
+</pkgmetadata>
