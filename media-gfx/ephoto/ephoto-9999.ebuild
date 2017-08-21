@@ -3,7 +3,6 @@
 
 EAPI="6"
 
-[[ ${PV} == *2017* ]] && E_SNAP="b76a54bd3ee93fe9d529e577251a1d5fc6b32d1a"
 [[ ${PV} == 1.5* ]] && SRC_URI="http://www.smhouston.us/stuff/${P}.tar.gz"
 E_TYPE="apps"
 
