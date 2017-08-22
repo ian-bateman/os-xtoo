@@ -130,12 +130,15 @@ e_src_configure() {
 		)
 		cmake-utils_src_configure
 	else
-	        has nls ${IUSE} && \
-			E_ECONF+=( $(use_enable nls) )
-	        has static-libs ${IUSE} && \
-			E_ECONF+=( $(use_enable static-libs static) )
-
-		econf ${MY_ECONF} "${E_ECONF[@]}"
+		local u
+		for u in ${IUSE}; do
+			if [[ ${u} == static ]]; then
+				E_ECONF+=( $(use_enable static-libs static) )
+			else
+				E_ECONF+=( $(use_enable ${u/+/}) )
+			fi
+		done
+		econf ${MY_ECONF[@]} ${E_ECONF[@]}
 	fi
 }
 
