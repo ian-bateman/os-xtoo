@@ -33,6 +33,11 @@ E_ECONF=()
 # default url for enlightenment git repos
 E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
 
+# @ECLASS-VARIABLE: E_MESON
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# if defined, use meson to build instead of autotools
+
 # @ECLASS-VARIABLE: E_PN
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -63,6 +68,8 @@ E_P="${E_P:=${E_PN}-${E_PV}}"
 
 if [[ ${E_CMAKE} ]]; then
 	inherit cmake-utils
+elif [[ ${E_MESON} ]]; then
+	inherit meson
 elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	WANT_AUTOCONF=latest
 	WANT_AUTOMAKE=latest
@@ -118,6 +125,7 @@ e_src_prepare() {
 # default src_configure for e ebuilds
 e_src_configure() {
 	debug-print-function ${FUNCNAME} $*
+	local u
 	if [[ ${E_CMAKE} ]]; then
 		local mytype="release"
 	        use debug && mytype="debug"
@@ -129,8 +137,14 @@ e_src_configure() {
 			-DCMAKE_STATIC=$(usex static-libs)
 		)
 		cmake-utils_src_configure
+	elif [[ ${E_MESON} ]]; then
+		local emesonargs
+		for u in ${IUSE}; do
+			u=${u/+/}
+			emesonargs+=( -D{u^^}=$(usex ${u} true false) )
+		done
+		meson_src_configure
 	else
-		local u
 		for u in ${IUSE}; do
 			if [[ ${u} == static ]]; then
 				E_ECONF+=( $(use_enable static-libs static) )
@@ -149,6 +163,8 @@ e_src_compile() {
 	debug-print-function ${FUNCNAME} $*
 	if [[ ${E_CMAKE} ]]; then
 		cmake-utils_src_compile
+	elif [[ ${E_MESON} ]]; then
+		meson_src_compile
 	else
 		default
 	fi
@@ -162,6 +178,8 @@ e_src_install() {
 	debug-print-function ${FUNCNAME} $*
 	if [[ ${E_CMAKE} ]]; then
 		cmake-utils_src_install
+	elif [[ ${E_MESON} ]]; then
+		meson_src_install
 	else
 		default
 	fi
