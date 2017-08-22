@@ -3,10 +3,10 @@
 
 EAPI="6"
 
-E_SNAP="d7f39c6251872cf4a68ef472fe9ecf58456a36f5"
+E_SNAP="b320f860669ea6f74cc44133638393cf503d4559"
 E_TYPE="misc"
 
-inherit autotools e
+inherit e
 
 DESCRIPTION="EFL Display manager for the X Window System"
 HOMEPAGE="https://github.com/Obsidian-StudiosInc/entrance"
@@ -28,17 +28,3 @@ if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${HOMEPAGE}/archive/${E_SNAP}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${MY_P}"
 fi
-
-src_prepare() {
-	default
-	eautoreconf
-
-}
-
-src_configure() {
-	local u MY_CONF=()
-	for u in ${IUSE}; do
-		MY_CONF+=( $(use_enable ${u/+/}) )
-	done
-	econf "${MY_CONF[@]}"
-}
