@@ -3,6 +3,8 @@
 
 EAPI="6"
 
+[[ ${PV} != 0.2.1* ]] && E_MESON=1
+
 E_TYPE="apps"
 
 inherit e
