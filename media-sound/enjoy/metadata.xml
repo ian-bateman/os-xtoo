@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>wlt@o-sinc.com</email>
+  </maintainer>
+  <use>
+    <flag name="albumart-lastfm">Enable album art from Last.fm</flag>
+    <flag name="mpris">Enables MPRIS v1, v2  support</flag>
+  </use>
+</pkgmetadata>
