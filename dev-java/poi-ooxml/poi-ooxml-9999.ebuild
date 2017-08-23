@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/commons-collections:4
 	dev-java/commons-logging:0
 	~dev-java/poi-${PV}:${SLOT}
-	dev-java/xml-xmlbeans:2
+	dev-java/xmlbeans:0
 "
 
 DEPEND="${CP_DEPEND}
