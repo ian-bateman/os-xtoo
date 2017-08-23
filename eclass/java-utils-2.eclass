@@ -308,9 +308,8 @@ java-pkg_rm_files() {
 	debug-print-function ${FUNCNAME} $*
 	local IFS="\n"
 	for filename in "$@"; do
-		[[ ! -f "${filename}" ]] && die "${filename} is not a regular file. Aborting."
 		einfo "Removing unneeded file ${filename}"
-		rm -f "${S}/${filename}" || die "cannot remove ${filename}"
+		rm -fr "${S}/${filename}" || die "cannot remove ${filename}"
 		eend $?
 	done
 }
