@@ -9,6 +9,7 @@ MY_PN="REL"
 MY_PV="${PV//./_}"
 MY_PV="${MY_PV^^}"
 MY_P="${MY_PN}_${MY_PV}"
+[[ ${PV} != *beta* ]] && MY_P+="_FINAL"
 BASE_URI="https://github.com/apache/${PN:0:3}"
 
 if [[ ${PV} == 9999 ]]; then
