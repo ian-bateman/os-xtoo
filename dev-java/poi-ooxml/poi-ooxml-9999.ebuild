@@ -34,6 +34,7 @@ CP_DEPEND="
 	dev-java/commons-collections:4
 	dev-java/commons-logging:0
 	~dev-java/poi-${PV}:${SLOT}
+	~dev-java/poi-ooxml-schemas-${PV}:${SLOT}
 	dev-java/xmlbeans:0
 "
 
@@ -43,6 +44,7 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
-S="${WORKDIR}/${MY_S}"
+S="${WORKDIR}/${MY_S}/src/${PN#*-}"
 
-JAVA_SRC_DIR="src/java"
+JAVA_SRC_DIR="java"
+JAVA_RES_DIR="resources"
