@@ -11,7 +11,9 @@ MY_PV="${MY_PV^^}"
 MY_P="${MY_PN}_${MY_PV}"
 [[ ${PV} != *beta* ]] && MY_P+="_FINAL"
 
-XSDS=( XAdES XAdESv141 ${PN}-xml ${PN}-xmldsig-core-schema ${PN}-visio )
+XSDS=( XAdES XAdESv141 ${PN}-xml ${PN}-xmldsig-core-schema
+	${PN}-encryptionCertificate ${PN}-encryptionInfo
+	${PN}-encryptionPassword ${PN}-signatureInfo ${PN}-visio )
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
@@ -23,6 +25,10 @@ if [[ ${PV} != 9999 ]]; then
 fi
 SLOT="0"
 SRC_URI="
+	https://raw.githubusercontent.com/apache/poi/${MY_P}/src/ooxml/resources/org/apache/poi/poifs/crypt/encryptionCertificate.xsd -> ${PN}-encryptionCertificate.xsd
+	https://raw.githubusercontent.com/apache/poi/${MY_P}/src/ooxml/resources/org/apache/poi/poifs/crypt/encryptionInfo.xsd -> ${PN}-encryptionInfo.xsd
+	https://raw.githubusercontent.com/apache/poi/${MY_P}/src/ooxml/resources/org/apache/poi/poifs/crypt/encryptionPassword.xsd -> ${PN}-encryptionPassword.xsd
+	https://raw.githubusercontent.com/apache/poi/${MY_P}/src/ooxml/resources/org/apache/poi/poifs/crypt/signatureInfo.xsd -> ${PN}-signatureInfo.xsd
 	https://raw.githubusercontent.com/apache/poi/${MY_P}/src/ooxml/resources/org/apache/poi/xdgf/visio.xsd -> ${PN}-visio.xsd
 	http://www.ecma-international.org/publications/files/ECMA-ST/Office%20Open%20XML%201st%20edition%20Part%202%20(PDF).zip
 	http://www.ecma-international.org/publications/files/ECMA-ST/Office%20Open%20XML%201st%20edition%20Part%204%20(PDF).zip
