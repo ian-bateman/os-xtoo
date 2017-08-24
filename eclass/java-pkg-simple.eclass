@@ -146,7 +146,6 @@ java-pkg-simple_src_compile() {
 			classpath=${JAVA_HOME}/lib/tools.jar
 		fi
 	fi
-	echo "CLASSPATH=${classpath}"
 	debug-print "CLASSPATH=${classpath}"
 	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
