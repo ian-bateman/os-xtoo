@@ -86,6 +86,7 @@ java_prepare() {
 	local xsds
 	xsds=(
 		dml-chart
+		dml-chartDrawing
 		dml-picture
 		dml-spreadsheetDrawing
 		dml-table
@@ -95,6 +96,7 @@ java_prepare() {
 		pml-comments
 		pml-slide
 		pml-presentation
+		shared-documentPropertiesExtended
 		shared-documentPropertiesCustom
 		sml-calculationChain
 		sml-comments
@@ -104,6 +106,7 @@ java_prepare() {
 		sml-sheet
 		sml-singleCellTable
 		sml-supplementaryWorkbooks
+		sml-styles
 		sml-table
 		vml-main
 		vml-officeDrawing
