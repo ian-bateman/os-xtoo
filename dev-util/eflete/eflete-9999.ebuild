@@ -17,7 +17,7 @@ DESCRIPTION="EFL Edje Theme Editor"
 HOMEPAGE="https://phab.enlightenment.org/w/projects/${PN}/"
 LICENSE="BSD-2"
 
-if [[ ${PV} != 9999 ]] && [[ ${PV} != *2017* ]]; then
-	DEPEND="=dev-libs/efl-${PV}"
-	RDEPEND="${RDEPEND}"
-fi
+#if [[ ${PV} != 9999 ]] && [[ ${PV} != *2017* ]]; then
+#	DEPEND="=dev-libs/efl-${PV}"
+#	RDEPEND="${RDEPEND}"
+#fi
