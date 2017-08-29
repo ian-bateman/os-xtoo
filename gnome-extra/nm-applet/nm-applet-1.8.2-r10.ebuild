@@ -19,7 +19,7 @@ RDEPEND="
 	app-crypt/libsecret
 	>=dev-libs/glib-2.32:2[dbus]
 	>=dev-libs/dbus-glib-0.88
-	dev-libs/libappindicator
+	dev-libs/libappindicator:3
 	>=dev-libs/libdbusmenu-16.04.0
 	>=sys-apps/dbus-1.4.1
 	>=sys-auth/polkit-0.96-r1
