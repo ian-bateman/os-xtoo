@@ -3,9 +3,6 @@
 
 EAPI="6"
 
-if [[ ${PV} == *2017* ]]; then
-	E_SNAP="13da2313d2abb6a90975ae7153b56b054f8db4cf"
-fi
 E_TYPE="apps"
 
 inherit e
