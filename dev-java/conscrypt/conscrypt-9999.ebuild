@@ -16,11 +16,10 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-# Using pre-generated sources since this project SUCKS!!!
-	SRC_URI="http://repo1.maven.org/maven2/org/${PN}/${PN}-openjdk/${MY_PV}/${PN}-openjdk-${MY_PV}-sources.jar"
-#	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
+		  https://github.com/google/boringssl/archive/master.tar.gz -> boringssl-${P}.tar.gz"
 	KEYWORDS="~amd64"
-#	MY_S="${MY_P}"
+	MY_S="${MY_P}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
@@ -35,3 +34,17 @@ DEPEND=">=virtual/jdk-1.8"
 RDEPEND=">=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/"
+
+JAVA_SRC_DIR="common/src/main/java openjdk/src/main/java"
+
+java_prepare() {
+	# Google insanity....
+	# Compile program to generate NativeConstants.java what?
+	gcc -I"${WORKDIR}/boringssl-master/include" \
+		constants/src/gen/cpp/generate_constants.cc \
+		|| die "Failed to compile generate_constants.cc"
+
+	# Run program to generate NativeConstants.java what?
+	"${S}/a.out" > "${S}/common/src/main/java/org/conscrypt/NativeConstants.java" \
+		|| die "Failed exe generate_constants for NativeConstants.java"
+}
