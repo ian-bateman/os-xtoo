@@ -1,9 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
-inherit apache-module java-pkg-opt-2 readme.gentoo
+inherit apache-module java-pkg-opt-2 readme.gentoo-r1
 
 MY_P="tomcat-connectors-${PV#-*}-src"
 
@@ -31,7 +31,7 @@ need_apache
 
 DOC_CONTENTS="
 	Advanced Directives and Options can be found at:
-	http://tomcat.apache.org/connectors-doc/reference/workers.html
+	https://tomcat.apache.org/connectors-doc/reference/workers.html
 "
 
 pkg_setup() {
