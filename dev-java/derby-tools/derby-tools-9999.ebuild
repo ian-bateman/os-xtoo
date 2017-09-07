@@ -20,7 +20,7 @@ fi
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="Relational database implemented entirely in Java - ${PN:6}"
-HOMEPAGE="http://db.apache.org/${PN}/"
+HOMEPAGE="https://db.apache.org/${PN}/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
