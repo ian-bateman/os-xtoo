@@ -72,7 +72,7 @@ src_install() {
 	local jar JARS
 	JARS=(bootstrap tomcat-juli)
 	for jar in ${JARS[@]}; do
-		dosym "/usr/share/${PN}-server-${SLOT}/lib/${jar}.jar" \
+		dosym "../../${PN}-server-${SLOT}/lib/${jar}.jar" \
 			"${dest}/bin/${jar}.jar"
 	done
 
@@ -87,15 +87,15 @@ src_install() {
 		tomcat-websocket websocket-api
 	)
 	for jar in ${JARS[@]}; do
-		dosym "/usr/share/${PN}-server-${SLOT}/lib/${jar}.jar" \
+		dosym "../../${PN}-server-${SLOT}/lib/${jar}.jar" \
 			"${dest}/lib/${jar}.jar"
 	done
 
-	dosym "/usr/share/eclipse-ecj-${ECJ_SLOT}/lib/eclipse-ecj.jar" \
+	dosym "../../eclipse-ecj-${ECJ_SLOT}/lib/eclipse-ecj.jar" \
 		"${dest}/lib/eclipse-ecj.jar"
 
 	for jar in el-api jsp-api servlet-api; do
-		dosym "/usr/share/tomcat-servlet-api-${SAPI_SLOT}/lib/${jar}.jar" \
+		dosym "../../tomcat-servlet-api-${SAPI_SLOT}/lib/${jar}.jar" \
 			"${dest}/lib/${jar}.jar"
 	done
 
@@ -169,10 +169,10 @@ src_install() {
 	dest="/var/lib/${PN}/${PN}-${SLOT}"
 	install_webapps "${dest}"
 
-	dosym "/etc/${PN}-${SLOT}" "${dest}/conf"
-	dosym "/var/cache/${PN}/${PN}-${SLOT}" "${dest}/work"
-	dosym "/var/tmp/${PN}/${PN}-${SLOT}" "${dest}/temp"
-	dosym "/var/log/${PN}/${PN}-${SLOT}" "${dest}/logs"
+	dosym "../../../../etc/${PN}-${SLOT}" "${dest}/conf"
+	dosym "../../../../var/cache/${PN}/${PN}-${SLOT}" "${dest}/work"
+	dosym "../../../../var/tmp/${PN}/${PN}-${SLOT}" "${dest}/temp"
+	dosym "../../../../var/log/${PN}/${PN}-${SLOT}" "${dest}/logs"
 
 	fowners ${PN}:${PN} -R "/var/"{cache,lib,log,tmp}"/${PN}/${PN}-${SLOT}"
 }
