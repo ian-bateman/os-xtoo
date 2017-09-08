@@ -39,7 +39,7 @@ OSGI_COMP="4"
 #  [nbmerge] Failed to build target: all-api.htmlui
 CDEPEND="dev-java/hamcrest-core:1.3
 	dev-java/javahelp:0
-	>=dev-java/jna-3.4:4
+	dev-java/jna:4
 	dev-java/junit:4[source]
 	dev-java/osgi-core-api:${OSGI_CORE}
 	dev-java/osgi-compendium:${OSGI_COMP}
@@ -85,7 +85,12 @@ src_unpack() {
 	popd >/dev/null || die
 }
 
-src_prepare() {
+java_prepare() {
+	# Fix for jna:4
+	sed -i -e "s|load(Map<?|load(Map<String|" \
+		keyring.impl/src/org/netbeans/modules/keyring/gnome/GnomeKeyringLibrary.java \
+		|| die "Sed fix for jna:4 failed"
+
 	# upstream jna jar contains bundled binary libraries so we disable that feature
 	epatch ${PN:0:8}-${SLOT}-build.xml.patch
 
@@ -105,7 +110,7 @@ src_prepare() {
 	einfo "Symlinking external libraries..."
 	java-pkg_jar-from --into libs.junit4/external hamcrest-core-1.3 hamcrest-core.jar hamcrest-core-1.3.jar
 	java-pkg_jar-from --into libs.jna.platform/external jna-4 jna-platform.jar jna-platform-4.2.2.jar
-	java-pkg_jar-from --into javahelp/external javahelp jhall.jar jhall-2.0_05.jar
+	java-pkg_jar-from --into javahelp/external javahelp javahelp.jar jhall-2.0_05.jar
 	java-pkg_jar-from --into libs.jna/external jna-4 jna.jar jna-4.2.2.jar
 	java-pkg_jar-from --into libs.junit4/external junit-4 junit.jar junit-4.12.jar
 	ln -s /usr/share/junit-4/sources/junit-src.zip junitlib/external/junit-4.12-sources.jar || die
@@ -114,8 +119,6 @@ src_prepare() {
 	java-pkg_jar-from --into o.jdesktop.layout/external swing-layout-1 swing-layout.jar swing-layout-1.0.4.jar
 	ln -s /usr/share/swing-layout-1/sources/swing-layout-src.zip o.jdesktop.layout/external/swing-layout-1.0.4-src.zip || die
 	java-pkg_jar-from --into libs.testng/external testng testng.jar testng-6.8.1-dist.jar
-
-	java-pkg-2_src_prepare
 }
 
 src_compile() {
@@ -132,9 +135,11 @@ src_install() {
 	insinto ${INSTALL_DIR}
 	doins -r *
 	rm "${D}"/${INSTALL_DIR}/docs/junit-4.12-sources.jar || die
-	dosym /usr/share/junit-4/sources/junit-src.zip ${INSTALL_DIR}/docs/junit-4.12-sources.jar
+	dosym ../../junit-4/sources/junit-src.zip \
+		${INSTALL_DIR}/docs/junit-4.12-sources.jar
 	rm "${D}"/${INSTALL_DIR}/docs/swing-layout-1.0.4-src.zip || die
-	dosym /usr/share/swing-layout-1/sources/swing-layout-src.zip ${INSTALL_DIR}/docs/swing-layout-1.0.4-src.zip
+	dosym ../../swing-layout-1/sources/swing-layout-src.zip \
+		${INSTALL_DIR}/docs/swing-layout-1.0.4-src.zip
 	find "${D}"/${INSTALL_DIR} -name "*.exe" -delete
 	find "${D}"/${INSTALL_DIR} -name "*.dll" -delete
 	rm -fr "${D}"/modules/lib || die
@@ -142,20 +147,21 @@ src_install() {
 	popd >/dev/null || die
 
 	fperms 775 ${INSTALL_DIR}/lib/nbexec
-	dosym ${INSTALL_DIR}/lib/nbexec /usr/bin/nbexec-${SLOT}
+	dosym ../../../../${INSTALL_DIR}/lib/nbexec /usr/bin/nbexec-${SLOT}
 
 	local instdir=${INSTALL_DIR}/modules/ext
 	pushd "${D}"/${instdir} >/dev/null || die
-	rm hamcrest-core-1.3.jar && dosym /usr/share/hamcrest-core-1.3/lib/hamcrest-core.jar ${instdir}/hamcrest-core-1.3.jar || die
-	rm jhall-2.0_05.jar && dosym /usr/share/javahelp/lib/jhall.jar ${instdir}/jhall-2.0_05.jar || die
-	rm jna-4.2.2.jar && dosym /usr/share/jna-4/lib/jna.jar ${instdir}/jna-4.2.2.jar || die
-	rm jna-platform-4.2.2.jar && dosym /usr/share/jna-4/lib/jna-platform.jar ${instdir}/jna-platform-4.2.2.jar || die
-	rm junit-4.12.jar && dosym /usr/share/junit-4/lib/junit.jar ${instdir}/junit-4.12.jar || die
-	rm osgi.cmpn-4.2.jar && dosym /usr/share/osgi-compendium-${OSGI_COMP}/lib/osgi-compendium.jar ${instdir}/osgi.cmpn-4.2.jar || die
-	rm osgi.core-5.0.0.jar && dosym /usr/share/osgi-core-api-${OSGI_CORE}/lib/osgi-core-api.jar ${instdir}/osgi.core-5.0.0.jar || die
-	rm swing-layout-1.0.4.jar && dosym /usr/share/swing-layout-1/lib/swing-layout.jar ${instdir}/swing-layout-1.0.4.jar || die
-	rm testng-6.8.1-dist.jar && dosym /usr/share/testng/lib/testng.jar ${instdir}/testng-6.8.1-dist.jar || die
+	rm hamcrest-core-1.3.jar && dosym ../../../../../usr/share/hamcrest-core-1.3/lib/hamcrest-core.jar ${instdir}/hamcrest-core-1.3.jar || die
+	rm jhall-2.0_05.jar && dosym ../../../../../usr/share/javahelp/lib/jhall.jar ${instdir}/jhall-2.0_05.jar || die
+	rm jna-4.2.2.jar && dosym ../../../../../usr/share/jna-4/lib/jna.jar ${instdir}/jna-4.2.2.jar || die
+	rm jna-platform-4.2.2.jar && dosym ../../../../../usr/share/jna-4/lib/jna-platform.jar ${instdir}/jna-platform-4.2.2.jar || die
+	rm junit-4.12.jar && dosym ../../../../../usr/share/junit-4/lib/junit.jar ${instdir}/junit-4.12.jar || die
+	rm osgi.cmpn-4.2.jar && dosym ../../../../../usr/share/osgi-compendium-${OSGI_COMP}/lib/osgi-compendium.jar ${instdir}/osgi.cmpn-4.2.jar || die
+	rm osgi.core-5.0.0.jar && dosym ../../../../../usr/share/osgi-core-api-${OSGI_CORE}/lib/osgi-core-api.jar ${instdir}/osgi.core-5.0.0.jar || die
+	rm swing-layout-1.0.4.jar && dosym ../../../../../usr/share/swing-layout-1/lib/swing-layout.jar ${instdir}/swing-layout-1.0.4.jar || die
+	rm testng-6.8.1-dist.jar && dosym ../../../../../usr/share/testng/lib/testng.jar ${instdir}/testng-6.8.1-dist.jar || die
 	popd >/dev/null || die
 
-	dosym ${INSTALL_DIR} /usr/share/netbeans-nb-${SLOT}/platform
+	dosym ../../../../${INSTALL_DIR} \
+		/usr/share/netbeans-nb-${SLOT}/platform
 }
