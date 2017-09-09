@@ -51,7 +51,7 @@ index b48593356..b98bd19a7 100644
 -            "${compileJava.destinationDir}/org/codehaus/groovy/runtime/ExceptionUtils.class"]
 -    outputs.files classFiles
 +public class ExceptionUtils {
-+	private final static String gentooClassDestination = "target/classes/org/codehaus/groovy/runtime/ExceptionUtils.class";
++	private final static String gentooClassDestination = "src/main/org/codehaus/groovy/runtime/ExceptionUtils.class";
  
 -    doLast {
 +	public static void main(String[] args) {

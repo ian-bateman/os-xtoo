@@ -17,11 +17,11 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-#	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	SRC_URI="mirror://apache/${PN}/${PV}/sources/apache-${PN}-src-${PV}.zip -> ${P}.zip"
+	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+#	SRC_URI="mirror://apache/${PN}/${PV}/sources/apache-${PN}-src-${PV}.zip -> ${P}.zip"
 	KEYWORDS="~amd64"
-#	MY_S="${PN}-${MY_P}"
-	MY_S="${P}"
+	MY_S="${PN}-${MY_P}"
+#	MY_S="${P}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
@@ -50,6 +50,10 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main"
+JAVA_RES_DIR="resources"
+
+# Add to the cp as we're generating an extra class there.
+JAVA_GENTOO_CLASSPATH_EXTRA="${JAVA_RES_DIR}"
 
 # ExceptionUtil filename.
 EU="ExceptionUtils.java"
@@ -63,9 +67,6 @@ ANTLR_GRAMMAR_FILES=(
 PATCHES=(
 	"${FILESDIR}/utils.gradle.patch"
 )
-
-# Add target/classes to the CP as we're generating an extra class there.
-JAVA_GENTOO_CLASSPATH_EXTRA="target/classes"
 
 # This function generates the ANTLR grammar files.
 generate_antlr_grammar() {
@@ -88,15 +89,27 @@ generate_antlr_grammar() {
 # don't use Gradle here.. we've translated it into a plain Java file and have
 # it generate the same data.
 generate_exceptionutils() {
-	ebegin "Copying ${EU}"
-	mv "gradle/utils.gradle" "${EU}" || die
-	eend $?
+	local tmpdir
+	tmpdir="org/codehaus/groovy/runtime"
+	mkdir -p "${JAVA_RES_DIR}/${tmpdir}" || die "Failed to create dir"
 
-	ejavac -classpath "$(java-pkg_getjar --build-only asm-5 asm.jar)" ${EU}
+	# rename to .java
+	mv "gradle/utils.gradle" "${EU}" \
+		|| die "Failed to rename/move utils.gradle -> ${EU}"
 
-	ebegin "Running ${EU%.java}"
-	$(java-config -J) -classpath "$(java-pkg_getjar --build-only asm-5 asm.jar):." ${EU%.java} || die
-	eend $?
+	einfo "Compile ${EU%.java}"
+	ejavac -cp "$(java-pkg_getjars asm-5)" "${EU}"
+
+	einfo "Run ${EU%.java}"
+	java -cp ".:$(java-pkg_getjars asm-5)" "${EU%.java}" \
+		|| die "Failed to run ${EU%.java}"
+
+	mv "${JAVA_SRC_DIR}/${tmpdir}/${EU%.java}.class" \
+		"${JAVA_RES_DIR}/${tmpdir}" \
+		|| die "Failed to move generated ${EU%.java}.class"
+
+	mv "${JAVA_SRC_DIR}/META-INF" "${JAVA_RES_DIR}" \
+		|| die "Failed to move META-INF"
 }
 
 src_compile() {
