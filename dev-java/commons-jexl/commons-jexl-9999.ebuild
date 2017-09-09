@@ -48,4 +48,21 @@ java_prepare() {
 
 	javacc -OUTPUT_DIRECTORY="${MY_D}" "${MY_D}Parser.jj" \
 		|| die "javacc Parser.jj failed"
+
+	if [[ ${SLOT} == 3 ]]; then
+		sed -i -e "s|interface|abstract class |" \
+			-e '/ASTAmbiguous/d' \
+			-e '/ASTJexlLambda/d' \
+			-e "s|public O|protected abstract O|g" \
+			"${MY_D}ParserVisitor.java" \
+			|| die "Sed ParserVisitor.java failed"
+		# inserted at ramdon location, common blank line number
+		local f
+		for f in Debugger Interpreter; do
+			sed -i -e "95iimport org.apache.commons.jexl3.parser.SimpleNode;" \
+				-e "866i\@Override\nprotected Object visit\(SimpleNode node,Object data\) \{ return new Object\(\); \}\n" \
+				"src/main/java/org/apache/commons/jexl3/internal/${f}.java" \
+				|| die "Failed to add missing method"
+		done
+	fi
 }
