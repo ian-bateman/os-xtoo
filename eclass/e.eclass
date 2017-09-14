@@ -96,7 +96,6 @@ fi
 
 [[ "${PN}" != "efl" ]] && CDEPEND="dev-libs/efl"
 DEPEND="${CDEPEND}
-	${E_CMAKE:+dev-util/cmake}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
