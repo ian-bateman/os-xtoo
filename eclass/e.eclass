@@ -110,7 +110,7 @@ EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 e_src_prepare() {
 	debug-print-function ${FUNCNAME} $*
 	default
-	if [[ ! ${E_CMAKE} ]]; then
+	if [[ ! ${E_CMAKE} ]] && [[ ! ${E_MESON} ]]; then
 		if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 			eautoreconf
 		fi
