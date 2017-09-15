@@ -56,9 +56,9 @@ src_compile() {
 
 	# compile groovy
 	local classes my_file
-	classes=target/groovy_classes
+	classes=groovy_target/groovy_classes
 	my_file="${S}/src/main/groovy/org/springframework/beans/factory/groovy/GroovyDynamicElementReader"
-	groovyc -d "${S}/target/groovy_classes" \
+	groovyc -d "${S}/${classes}" \
 		-cp "${S}/${JAVA_SRC_DIR}:$(java-pkg_getjars commons-logging,groovy-xml,spring-beans-${SLOT},spring-core-${SLOT})" \
 		"${my_file}.groovy" || die "groovyc failed"
 
