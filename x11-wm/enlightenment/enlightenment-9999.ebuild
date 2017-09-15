@@ -13,6 +13,7 @@ inherit e
 HOMEPAGE="https://docs.enlightenment.org"
 DESCRIPTION="Enlightenment Window manager"
 LICENSE="BSD-2"
+S="${WORKDIR}/${P/_/-}"
 
 __CONF_MODS=(
 	applications bindings dialogs display
