@@ -1884,8 +1884,6 @@ java-utils-2_src_prepare() {
 		*) default ;;
 	esac
 
-	java-pkg_func-exists java_prepare && java_prepare
-
 	# Remove Java 9 module-info.java if not >= jdk 9
 	if ! java-pkg_is-vm-version-ge "9" ; then
 		debug-print "$FUNCNAME: removing Java 9 module-info.java"
@@ -1908,6 +1906,8 @@ java-utils-2_src_prepare() {
 
 	# Remove *.class and *.jar by default
 	java-pkg_clean
+
+	java-pkg_func-exists java_prepare && java_prepare
 }
 
 # @FUNCTION: java-utils-2_pkg_preinst
