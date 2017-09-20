@@ -3,8 +3,6 @@
 
 EAPI="6"
 
-E_SNAP="76baad782f5651df9650721c471e763eb1233c3c"
-E_TYPE="misc"
 E_MESON=1
 
 inherit e
@@ -25,7 +23,6 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 if [[ ${PV} != 9999 ]]; then
-	MY_P="${PN}-${E_SNAP}"
-	SRC_URI="${HOMEPAGE}/archive/${E_SNAP}.tar.gz -> ${P}.tar.gz"
-	S="${WORKDIR}/${MY_P}"
+	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	S="${WORKDIR}/${P}"
 fi
