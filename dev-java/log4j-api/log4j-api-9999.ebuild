@@ -37,6 +37,6 @@ DEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/"
 
-PATCHES=(
-	"${FILESDIR}/ambiguous.patch"
-)
+if [[ ${PV} == 2.8.2 ]]; then
+	PATCHES=( "${FILESDIR}/ambiguous.patch" )
+fi
