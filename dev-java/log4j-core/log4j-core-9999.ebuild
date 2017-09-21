@@ -60,8 +60,6 @@ DEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/"
 
-JAVA_ADDRES_DIR="src/main/resources"
-
-PATCHES=(
-	"${FILESDIR}/ambiguous.patch"
-)
+if [[ ${PV} == 2.8.2 ]]; then
+	PATCHES=( "${FILESDIR}/ambiguous.patch" )
+fi
