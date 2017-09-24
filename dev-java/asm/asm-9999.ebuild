@@ -22,9 +22,18 @@ HOMEPAGE="http://${BASE_URI}/projects/asm/"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-1.8"
+if [[ "${SLOT}" == "6" ]]; then
+	CP_DEPEND="
+		dev-java/aqute-jpm-clnt:0
+		dev-java/bndlib:3
+	"
+fi
 
-RDEPEND=">=virtual/jre-1.8"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-1.8"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${P}"
 
