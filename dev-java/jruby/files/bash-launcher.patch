@@ -1,5 +1,5 @@
 diff --git a/bin/jruby.bash b/bin/jruby.bash
-index 03e72407ff..0d8216b779 100755
+index 0fc2f03a65..aa9d2d60d6 100755
 --- a/bin/jruby.bash
 +++ b/bin/jruby.bash
 @@ -25,29 +25,7 @@ if [ -z "$JAVA_VM" ]; then
@@ -48,7 +48,7 @@ index 03e72407ff..0d8216b779 100755
 -    fi
 -  fi
 -fi
-+JAVACMD='java'
++JAVACMD="java"
  
  if [ -z "$JAVA_STACK" ] ; then
    JAVA_STACK=-Xss2048k
@@ -75,7 +75,7 @@ index 03e72407ff..0d8216b779 100755
  
  if $cygwin; then
      JRUBY_CP=`cygpath -p -w "$JRUBY_CP"`
-@@ -148,32 +102,7 @@ fi
+@@ -148,29 +102,7 @@ fi
  
  # ----- Set Up The System Classpath -------------------------------------------
  
@@ -86,9 +86,6 @@ index 03e72407ff..0d8216b779 100755
 -    # add other jars in lib to CP for command-line execution
 -    for j in "$JRUBY_HOME"/lib/*.jar; do
 -        if [ "$j" == "$JRUBY_HOME"/lib/jruby.jar ]; then
--          continue
--        fi
--        if [ "$j" == "$JRUBY_HOME"/lib/jruby-truffle.jar ]; then
 -          continue
 -        fi
 -        if [ "$j" == "$JRUBY_HOME"/lib/jruby-complete.jar ]; then
@@ -105,11 +102,11 @@ index 03e72407ff..0d8216b779 100755
 -        CP=`cygpath -p -w "$CP"`
 -    fi
 -fi
-++CP="${JRUBY_PARENT_CLASSPATH}"
++CP="${JRUBY_PARENT_CLASSPATH}"
  
  if $cygwin; then
      # switch delimiter only after building Unix style classpaths
-@@ -273,15 +202,7 @@ do
+@@ -263,15 +195,7 @@ do
          java_args=("${java_args[@]}" "-Djava.awt.headless=true") ;;
       # Run under JDB
       --jdb)
@@ -122,11 +119,11 @@ index 03e72407ff..0d8216b779 100755
 -            JAVACMD="$JAVA_HOME/bin/jdb"
 -          fi
 -        fi 
-+        JAVACMD='jdb'
++        JAVACMD="jdb"
          java_args=("${java_args[@]}" "-sourcepath" "$JRUBY_HOME/lib/ruby/1.9:.")
          JRUBY_OPTS=("${JRUBY_OPTS[@]}" "-X+C") ;;
       --client)
-@@ -339,8 +260,6 @@ set -- "${ruby_args[@]}"
+@@ -323,8 +247,6 @@ set -- "${ruby_args[@]}"
  
  JAVA_OPTS="$JAVA_OPTS $JAVA_MEM $JAVA_MEM_MIN $JAVA_STACK"
  
@@ -135,24 +132,28 @@ index 03e72407ff..0d8216b779 100755
  if $cygwin; then
    JRUBY_HOME=`cygpath --mixed "$JRUBY_HOME"`
    JRUBY_SHELL=`cygpath --mixed "$JRUBY_SHELL"`
-@@ -378,8 +297,8 @@ if [[ "$NO_BOOTCLASSPATH" != "" || ("$VERIFY_JRUBY" != "" && -z "$USING_TRUFFLE"
+@@ -362,8 +284,9 @@ if [[ "$NO_BOOTCLASSPATH" != "" || "$VERIFY_JRUBY" != "" ]]; then
      JRUBY_OPTS=''
    fi
  
 -  "$JAVACMD" $PROFILE_ARGS $JAVA_OPTS "$JFFI_OPTS" "${java_args[@]}" -classpath "$JRUBY_CP$CP_DELIMITER$CP$CP_DELIMITER$CLASSPATH" \
 -    "-Djruby.home=$JRUBY_HOME" \
-+  "$JAVACMD" $PROFILE_ARGS $JAVA_OPTS "${java_args[@]}" -classpath "$JRUBY_CP$CP_DELIMITER$CP$CP_DELIMITER$CLASSPATH" \
++  "$JAVACMD" $PROFILE_ARGS $JAVA_OPTS "${java_args[@]}" \
++    -classpath "$JRUBY_CP$CP_DELIMITER$CP$CP_DELIMITER$CLASSPATH" \
 +    "-Djruby.home=/usr/bin" \
      "-Djruby.lib=$JRUBY_HOME/lib" -Djruby.script=jruby \
      "-Djruby.shell=$JRUBY_SHELL" \
      $java_class $mode "$@"
-@@ -401,8 +320,8 @@ if [[ "$NO_BOOTCLASSPATH" != "" || ("$VERIFY_JRUBY" != "" && -z "$USING_TRUFFLE"
+@@ -384,9 +307,10 @@ if [[ "$NO_BOOTCLASSPATH" != "" || "$VERIFY_JRUBY" != "" ]]; then
+   exit $JRUBY_STATUS
  else
    if $cygwin; then
-     # exec doed not work correctly with cygwin bash
+-    # exec doed not work correctly with cygwin bash
 -    "$JAVACMD" $JAVA_OPTS "$JFFI_OPTS" "${java_args[@]}" -Xbootclasspath/a:"$JRUBY_CP" -classpath "$CP$CP_DELIMITER$CLASSPATH" \
 -      "-Djruby.home=$JRUBY_HOME" \
-+    "$JAVACMD" $JAVA_OPTS "${java_args[@]}" -Xbootclasspath/a:"$JRUBY_CP" -classpath "$CP$CP_DELIMITER$CLASSPATH" \
++    # exec does not work correctly with cygwin bash
++    "$JAVACMD" $JAVA_OPTS "${java_args[@]}" -Xbootclasspath/a:"$JRUBY_CP" \
++      -classpath "$CP$CP_DELIMITER$CLASSPATH" \
 +      "-Djruby.home=/usr/bin" \
        "-Djruby.lib=$JRUBY_HOME/lib" -Djruby.script=jruby \
        "-Djruby.shell=$JRUBY_SHELL" \
