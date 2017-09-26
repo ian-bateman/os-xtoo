@@ -4,7 +4,4 @@
   <maintainer type="person">
     <email>wlt@o-sinc.com</email>
   </maintainer>
-  <use>
-    <flag name="keyczar">Enable accelerated mode for old ssh clients/servers</flag>
-  </use>
 </pkgmetadata>
