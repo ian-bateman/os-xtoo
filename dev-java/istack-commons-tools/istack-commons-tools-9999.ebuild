@@ -27,12 +27,19 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
+CP_DEPEND="dev-java/ant-core:0"
 
-RDEPEND=">=virtual/jre-1.8"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-1.8"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
 
 java_prepare() {
+	mv src14/com/sun/istack/tools/ProtectedTask.java \
+		src/main/java/com/sun/istack/tools \
+		|| die "Failed to move file"
 	rm -r src/main/resources || die "Failed to remove empty res dir"
 }
