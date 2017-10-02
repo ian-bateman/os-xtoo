@@ -4,11 +4,12 @@
 EAPI="6"
 
 E_MESON=1
+HOMEPAGE="https://github.com/Obsidian-StudiosInc/entrance"
+EGIT_REPO_URI="${HOMEPAGE}"
 
 inherit e
 
 DESCRIPTION="EFL Display manager for the X Window System"
-HOMEPAGE="https://github.com/Obsidian-StudiosInc/entrance"
 LICENSE="GPL-3"
 IUSE="grub2 systemd"
 
