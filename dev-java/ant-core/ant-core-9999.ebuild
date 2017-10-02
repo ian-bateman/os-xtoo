@@ -77,6 +77,13 @@ java_prepare() {
 			"Failed to copy resource ${j}/defaults.properties"
 	done
 
+	# Copy xml files for inclusion in jar
+	for j in / /types/conditions/; do
+		cp "${S}src/main/org/apache/tools/ant${j}antlib.xml" \
+			"${S}src/resources/org/apache/tools/ant${f}" \
+			|| die "Failed to copy antlib.xml"
+	done
+
 	# Remove junit tasks
 	rm -r "${S}/src/main/org/apache/tools/ant/taskdefs/optional/junit/" \
 		|| die "Failed to remove taskdefs/optional/junit/*"
@@ -123,6 +130,7 @@ src_install() {
 		dosym ../../../../usr/bin/${b} /usr/share/${PN}/bin/${b}
 	done
 	dosym ../../../../usr/share/${PN}/bin /usr/share/ant/bin
+	dosym ../../../../usr/share/${PN}/lib /usr/share/ant/lib
 
 	insinto /usr/share/${PN}/etc
 	doins "${S}/src/etc/"*.xsl
