@@ -5,23 +5,18 @@ EAPI="6"
 
 inherit eutils java-vm-2 prefix versionator
 
-JDK_URI="https://jdk9.java.net/download/"
+JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
 
 BUILD_NUMBER="$(get_version_component_range 2)"
-MY_PV="$(get_version_component_range 1)+${BUILD_NUMBER#pre}"
 
 # This is a list of archs supported by this update.
 # Currently arm comes and goes.
-#AT_AVAILABLE=( amd64 x86 x64-solaris sparc64-solaris x64-macos )
+#AT_AVAILABLE=( amd64 sparc64-solaris x64-macos )
 AT_AVAILABLE=( amd64 )
 
-AT_amd64="jdk-${MY_PV}_linux-x64_bin.tar.gz"
-#AT_arm="jdk-${MY_PV}_linux-arm32-vfp-hflt.tar.gz"
-#AT_arm64="jdk-${MY_PV}_linux-arm64-vfp-hflt.tar.gz"
-#AT_x86="jdk-${MY_PV}_linux-x86_bin.tar.gz"
-#AT_x64_solaris="jdk-${MY_PV}_solaris-x64_bin.tar.gz"
-#AT_sparc64_solaris="${AT_sparc_solaris} jdk-${MY_PV}_solaris-sparcv9_bin.tar.gz"
-#AT_x64_macos="jdk-${MY_PV}_osx-x64_bin.dmg"
+AT_amd64="jdk-${PV}_linux-x64_bin.tar.gz"
+#AT_sparc64_solaris="${AT_sparc_solaris} jdk-${PV}_solaris-sparcv9_bin.tar.gz"
+#AT_x64_macos="jdk-${PV}_osx-x64_bin.dmg"
 
 DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
@@ -32,7 +27,7 @@ SRC_URI="${AT_amd64}"
 #done
 #unset d
 
-LICENSE="Oracle-EADLA" # will probably change to Oracle-BCLA-JavaSE when released
+LICENSE="Oracle-BCLA-JavaSE"
 SLOT="9"
 KEYWORDS="~amd64"
 IUSE="alsa cups derby doc +fontconfig headless-awt javafx nsplugin pax_kernel selinux source"
