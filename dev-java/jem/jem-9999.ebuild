@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -12,6 +12,8 @@ else
 	KEYWORDS="~amd64"
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
+
+CMAKE_MAKEFILE_GENERATOR="ninja"
 
 inherit cmake-utils ${ECLASS}
 
@@ -55,10 +57,6 @@ src_configure() {
 	cmake-utils_src_configure
 }
 
-src_compile() {
-	cmake-utils_src_compile
-}
-
 src_install() {
 	cmake-utils_src_install
 
@@ -97,8 +95,8 @@ src_install() {
 	done
 
 	if ! use java-config ; then
-		dosym /usr/bin/jem /usr/bin/java-config
-		dosym /usr/bin/jem /usr/bin/java-config-2
+		dosym ../../usr/bin/jem /usr/bin/java-config
+		dosym ../../usr/bin/jem /usr/bin/java-config-2
 	fi
 	if use source ; then
 		mkdir "${ED}"/usr/share/${PN}/sources || die
