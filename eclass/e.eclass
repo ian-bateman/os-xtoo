@@ -67,6 +67,7 @@ E_P="${E_P:=${E_PN}-${E_PV}}"
 # if defined, the type of package, apps, bindings, tools
 
 if [[ ${E_CMAKE} ]]; then
+	CMAKE_MAKEFILE_GENERATOR="ninja"
 	inherit cmake-utils
 elif [[ ${E_MESON} ]]; then
 	inherit meson
