@@ -23,14 +23,6 @@ E_BASE_URI=${E_BASE_URI:="enlightenment.org"}
 # @DESCRIPTION:
 # Set to either "cmake" or "meson" to build instead of autotools
 
-# @ECLASS-VARIABLE: E_CMAKE
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# DEPRECATED
-if [[ ${E_CMAKE} ]]; then
-	E_BUILD="cmake"
-fi
-
 # @ECLASS-VARIABLE: E_ECONF
 # @DESCRIPTION:
 # Array of flags to pass to econf (obsoletes MY_ECONF)
@@ -40,14 +32,6 @@ E_ECONF=()
 # @DESCRIPTION:
 # default url for enlightenment git repos
 E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
-
-# @ECLASS-VARIABLE: E_MESON
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# DEPRECATED
-if [[ ${E_MESON} ]]; then
-	E_BUILD="meson"
-fi
 
 # @ECLASS-VARIABLE: E_PN
 # @DEFAULT_UNSET
