@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-E_CMAKE="yes"
+E_BUILD="cmake"
 E_TYPE="tools"
 
 inherit e
