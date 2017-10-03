@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-E_CMAKE=1
+E_BUILD="cmake"
 E_TYPE="devs/nikawhite"
 if [[ ${PV} != 9999 ]]; then
 	SRC_URI="https://git.enlightenment.org/${E_TYPE}/${PN//-/_}.git/snapshot/v${PV}.tar.gz -> ${P}.tar.gz"
