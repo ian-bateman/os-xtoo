@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-E_MESON=1
+E_BUILD="meson"
 HOMEPAGE="https://github.com/Obsidian-StudiosInc/entrance"
 EGIT_REPO_URI="${HOMEPAGE}"
 
