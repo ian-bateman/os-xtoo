@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-E_CMAKE="yes"
+E_BUILD="cmake"
 E_SNAP="70b4c3858a881c15e7a8f04a09c49f23c6762e28"
 E_TYPE="apps"
 
