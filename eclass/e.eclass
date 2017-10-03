@@ -18,10 +18,18 @@ inherit eutils epunt-cxx libtool
 # default url for enlightenment git repos
 E_BASE_URI=${E_BASE_URI:="enlightenment.org"}
 
+# @ECLASS-VARIABLE: E_BUILD
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to either "cmake" or "meson" to build instead of autotools
+
 # @ECLASS-VARIABLE: E_CMAKE
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# if defined, use cmake to build instead of autotools
+# DEPRECATED
+if [[ ${E_CMAKE} ]]; then
+	E_BUILD="cmake"
+fi
 
 # @ECLASS-VARIABLE: E_ECONF
 # @DESCRIPTION:
@@ -36,7 +44,10 @@ E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
 # @ECLASS-VARIABLE: E_MESON
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# if defined, use meson to build instead of autotools
+# DEPRECATED
+if [[ ${E_MESON} ]]; then
+	E_BUILD="meson"
+fi
 
 # @ECLASS-VARIABLE: E_PN
 # @DEFAULT_UNSET
@@ -66,16 +77,17 @@ E_P="${E_P:=${E_PN}-${E_PV}}"
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
-if [[ ${E_CMAKE} ]]; then
+if [[ "${E_BUILD}" == "cmake" ]]; then
 	CMAKE_MAKEFILE_GENERATOR="ninja"
 	inherit cmake-utils
-elif [[ ${E_MESON} ]]; then
+elif [[ "${E_BUILD}" == "meson" ]]; then
 	inherit meson
 elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	WANT_AUTOCONF=latest
 	WANT_AUTOMAKE=latest
 	inherit autotools
 fi
+
 
 if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	EGIT_REPO_URI=${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
@@ -100,7 +112,7 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
-IUSE="nls ${E_CMAKE:+debug} doc static-libs"
+IUSE="debug doc nls static-libs"
 S="${S:=${WORKDIR}/${E_P}}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
@@ -111,7 +123,7 @@ EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 e_src_prepare() {
 	debug-print-function ${FUNCNAME} $*
 	default
-	if [[ ! ${E_CMAKE} ]] && [[ ! ${E_MESON} ]]; then
+	if [[ ! ${E_BUILD} ]]; then
 		if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 			eautoreconf
 		fi
@@ -126,7 +138,7 @@ e_src_prepare() {
 e_src_configure() {
 	debug-print-function ${FUNCNAME} $*
 	local u
-	if [[ ${E_CMAKE} ]]; then
+	if [[ "${E_BUILD}" == "cmake" ]]; then
 		local mytype="release"
 	        use debug && mytype="debug"
 		local mycmakeargs=(
@@ -137,7 +149,7 @@ e_src_configure() {
 			-DCMAKE_STATIC=$(usex static-libs)
 		)
 		cmake-utils_src_configure
-	elif [[ ${E_MESON} ]]; then
+	elif [[ "${E_BUILD}" == "meson" ]]; then
 		local emesonargs
 		for u in ${IUSE}; do
 			u=${u/+/}
@@ -161,9 +173,9 @@ e_src_configure() {
 # default src_compile for e ebuilds
 e_src_compile() {
 	debug-print-function ${FUNCNAME} $*
-	if [[ ${E_CMAKE} ]]; then
+	if [[ "${E_BUILD}" == "cmake" ]]; then
 		cmake-utils_src_compile
-	elif [[ ${E_MESON} ]]; then
+	elif [[ "${E_BUILD}" == "meson" ]]; then
 		meson_src_compile
 	else
 		default
@@ -176,9 +188,9 @@ e_src_compile() {
 # default src_install for e ebuilds
 e_src_install() {
 	debug-print-function ${FUNCNAME} $*
-	if [[ ${E_CMAKE} ]]; then
+	if [[ "${E_BUILD}" == "cmake" ]]; then
 		cmake-utils_src_install
-	elif [[ ${E_MESON} ]]; then
+	elif [[ "${E_BUILD}" == "meson" ]]; then
 		meson_src_install
 	else
 		default
