@@ -1,34 +1,22 @@
 # Copyright 2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-# Based on ebuild from enlightenment-live overlay
-# Copyright 1999-2016 Gentoo Foundation
-
 EAPI="6"
 
 E_PKG_IUSE="examples"
 E_PYTHON="yes"
-
-PYTHON_COMPAT=( python{3_2,3_4,3_6} pypy2_0 )
-
 E_TYPE="bindings"
 
-inherit e distutils-r1
-
-if [[ "${PV}" == "1.20.0_beta1" ]] ; then
-	SRC_URI="https://download.${E_BASE_URI}/pre-releases/${P/_/-}.tar.gz"
-else
-	SRC_URI="${SRC_URI/${E_TYPE}\/${PN}/${E_TYPE}/python}"
-fi
+inherit e
 
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="https://phab.enlightenment.org/w/projects/python_bindings_for_efl/"
+SRC_URI="${SRC_URI/${E_TYPE}\/${PN}/${E_TYPE}/python}"
 LICENSE="LGPL-2.1"
 SLOT="0"
-
 IUSE="doc"
 
-RDEPEND="
+DEPEND="
 	>=dev-python/cython-0.21
 	>=dev-python/dbus-python-1.2.0-r1
 	${RDEPEND}
@@ -36,6 +24,4 @@ RDEPEND="
 	${PYTHON_DEPS}
 "
 
-DEPEND="${RDEPEND}"
-
-S="${WORKDIR}/${P/_/-}"
+RDEPEND="${DEPEND}"
