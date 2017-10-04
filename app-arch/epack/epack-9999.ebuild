@@ -4,18 +4,13 @@
 EAPI="6"
 
 BASE_URI="https://github.com/wfx/${PN}"
-
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+EGIT_REPO_URI="${BASE_URI}.git"
+E_PYTHON=1
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
-PYTHON_COMPAT=( python{3_4,3_6} pypy2_0 )
-
-inherit eutils distutils-r1 ${ECLASS}
+inherit e
 
 DESCRIPTION="A tiny file extractor"
 HOMEPAGE="${BASE_URI}"
