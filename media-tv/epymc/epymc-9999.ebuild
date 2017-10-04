@@ -4,18 +4,14 @@
 EAPI="6"
 
 BASE_URI="https://github.com/DaveMDS/${PN}"
+EGIT_REPO_URI="${BASE_URI}.git"
+E_PYTHON=1
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
-PYTHON_COMPAT=( python{3_4,3_6} pypy )
-
-inherit eutils distutils-r1 ${ECLASS}
+inherit e
 
 DESCRIPTION="Emotion Media Center"
 HOMEPAGE="${BASE_URI}/${PN}/wiki"
@@ -39,9 +35,9 @@ S="${WORKDIR}/${P}"
 DOCS=( README.md )
 
 src_prepare() {
-	default
 	sed -i -e "s|/usr/s|s|" setup.py || die "Could not sed setup.py"
 	sed -i -e "s|Icon=epymc|Icon=/usr/share/icons/hicolor/64x64/apps/epymc.png|" \
 		data/desktop/epymc_xsession.desktop \
 		|| die "Failed to sed/fix epymc_xsession.desktop Icon"
+	default
 }
