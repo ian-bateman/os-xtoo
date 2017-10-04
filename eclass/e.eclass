@@ -93,8 +93,8 @@ if [[ ${E_PV} == 9999 ]]; then
 	inherit git-r3
 else
 	if [[ ${E_SNAP} ]]; then
-		SRC_URI="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.gz -> ${E_P}.tar.gz"
-		S="${WORKDIR}/${E_SNAP}"
+		SRC_URI=${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.gz -> ${E_P}.tar.gz"}
+		S=${S:="${WORKDIR}/${E_SNAP}"}
 	else
 	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.gz"}
 	fi
