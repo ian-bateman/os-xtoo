@@ -7,7 +7,7 @@
 EAPI="6"
 
 MY_PV="v${PV:0:7}-${PV:8}"
-MY_PV="${MY_PV/_rc/.rc}"
+MY_PV="${MY_PV/_/.}"
 MY_P="${PN}-${MY_PV}"
 BASE_URI="https://github.com/${PN}/${PN}"
 
