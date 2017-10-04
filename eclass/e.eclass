@@ -11,8 +11,6 @@
 if [[ -z ${_E_ECLASS} ]]; then
 _E_ECLASS=1
 
-inherit eutils epunt-cxx libtool
-
 # @ECLASS-VARIABLE: E_BASE_URI
 # @DESCRIPTION:
 # default url for enlightenment git repos
@@ -32,6 +30,11 @@ E_ECONF=()
 # @DESCRIPTION:
 # default url for enlightenment git repos
 E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
+
+# @ECLASS-VARIABLE: E_PYTHON
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to any value to enable support for python
 
 # @ECLASS-VARIABLE: E_PN
 # @DEFAULT_UNSET
@@ -61,11 +64,19 @@ E_P="${E_P:=${E_PN}-${E_PV}}"
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
+inherit eutils
+if [[ ! ${E_PYTHON} ]]; then
+	inherit epunt-cxx libtool
+fi
+
 if [[ "${E_BUILD}" == "cmake" ]]; then
 	CMAKE_MAKEFILE_GENERATOR="ninja"
 	inherit cmake-utils
 elif [[ "${E_BUILD}" == "meson" ]]; then
 	inherit meson
+elif [[ ${E_PYTHON} ]]; then
+	PYTHON_COMPAT=( python{3_4,3_6} )
+	inherit distutils-r1
 elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	WANT_AUTOCONF=latest
 	WANT_AUTOMAKE=latest
@@ -91,12 +102,18 @@ else
 	SLOT="0"
 fi
 
-[[ "${PN}" != "efl" ]] && CDEPEND="dev-libs/efl"
-DEPEND="${CDEPEND}
-	doc? ( app-doc/doxygen )"
-RDEPEND="${CDEPEND}
-	nls? ( sys-devel/gettext )"
-IUSE="debug doc nls static-libs"
+if [[ ${E_PYTHON} ]] && [[ "${PN}" != "python-efl" ]]; then
+	CDEPEND="dev-python/python-efl"
+elif [[ "${PN}" != "efl" ]]; then
+	CDEPEND="dev-libs/efl"
+fi
+DEPEND="${CDEPEND}"
+RDEPEND="${CDEPEND}"
+if [[ ! ${E_PYTHON} ]]; then
+	DEPEND+=" doc? ( app-doc/doxygen )"
+	RDEPEND+=" nls? ( sys-devel/gettext )"
+	IUSE="debug doc nls static-libs"
+fi
 S="${S:=${WORKDIR}/${E_P}}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
@@ -107,7 +124,7 @@ EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 e_src_prepare() {
 	debug-print-function ${FUNCNAME} $*
 	default
-	if [[ ! ${E_BUILD} ]]; then
+	if [[ ! ${E_BUILD} ]] && [[ ! ${E_PYTHON} ]]; then
 		if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 			eautoreconf
 		fi
@@ -140,6 +157,8 @@ e_src_configure() {
 			emesonargs+=( -D{u^^}=$(usex ${u} true false) )
 		done
 		meson_src_configure
+	elif [[ ${E_PYTHON} ]]; then
+		distutils-r1_src_configure
 	else
 		for u in ${IUSE}; do
 			if [[ ${u} == static ]]; then
@@ -161,10 +180,12 @@ e_src_compile() {
 		cmake-utils_src_compile
 	elif [[ "${E_BUILD}" == "meson" ]]; then
 		meson_src_compile
+	elif [[ ${E_PYTHON} ]]; then
+		distutils-r1_src_compile
 	else
 		default
 	fi
-	prune_libtool_files
+	[[ ! ${E_PYTHON} ]] && prune_libtool_files
 }
 
 # @FUNCTION: e_src_install
@@ -176,10 +197,12 @@ e_src_install() {
 		cmake-utils_src_install
 	elif [[ "${E_BUILD}" == "meson" ]]; then
 		meson_src_install
+	elif [[ ${E_PYTHON} ]]; then
+		distutils-r1_src_install
 	else
 		default
 	fi
-	prune_libtool_files
+	[[ ! ${E_PYTHON} ]] && prune_libtool_files
 }
 
 fi
