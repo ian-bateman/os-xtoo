@@ -7,20 +7,15 @@ MY_PN="ePad"
 MY_PV="${PV}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/JeffHoogland/${PN}"
+EGIT_REPO_URI="${BASE_URI}.git"
+E_PYTHON=1
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
-PYTHON_COMPAT=( python{2_7,3_4,3_6} pypy2_0 )
-
-inherit eutils python-r1 ${ECLASS}
+inherit e
 
 DESCRIPTION="A simple text editor written in python and elementary"
 HOMEPAGE="${BASE_URI}"
@@ -28,7 +23,7 @@ LICENSE="GPL-3"
 SLOT="0"
 
 DEPEND="
-	dev-python/python-efl
+	${DEPEND}
 	dev-python/python-elm-extensions
 "
 
@@ -37,6 +32,14 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_S}"
 
 DOCS=( README.md ${PN}.1 )
+
+src_configure() {
+	:
+}
+
+src_compile() {
+	:
+}
 
 src_install() {
 	dobin epad
