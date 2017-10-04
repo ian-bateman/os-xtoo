@@ -22,7 +22,7 @@ else
 	MY_S="${MY_P/v/}"
 fi
 
-PYTHON_COMPAT=( python2_7 python3_4 )
+PYTHON_COMPAT=( python2_7 python{3_5,3_6} )
 
 inherit distutils-r1 eutils ${ECLASS}
 
