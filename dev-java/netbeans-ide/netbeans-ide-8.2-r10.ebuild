@@ -137,8 +137,8 @@ EANT_BUILD_TARGET="rebuild-cluster"
 EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.ide -Dext.binaries.downloaded=true -Djava.awt.headless=true -Dpermit.jdk8.builds=true"
 JAVA_PKG_BSFIX="off"
 
-JAVA_PKG_WANT_SOURCE="1.8"
-JAVA_PKG_WANT_TARGET="1.8"
+JAVA_PKG_WANT_SOURCE="1.7"
+JAVA_PKG_WANT_TARGET="1.7"
 
 src_unpack() {
 	unpack $(basename ${SOURCE_URL})
@@ -343,7 +343,7 @@ src_install() {
 	rm json-simple-1.1.1.jar && java-pkg_jar-from --into "${instdir}" json-simple json-simple.jar json-simple-1.1.1.jar
 	rm jvyamlb-0.2.7.jar && java-pkg_jar-from --into "${instdir}" jvyamlb jvyamlb.jar jvyamlb-0.2.7.jar
 	rm log4j-1.2.15.jar && java-pkg_jar-from --into "${instdir}" log4j log4j.jar log4j-1.2.15.jar
-	rm lucene-core-3.5.0.jar && java-pkg_jar-from --into "${instdir}" lucene-3.5 lucene-core.jar lucene-core-3.5.0.jar
+	rm lucene-core-3.5.0.jar && java-pkg_jar-from --into "${instdir}" lucene-core-3 lucene-core.jar lucene-core-3.5.0.jar
 	rm mysql-connector-java-5.1.23-bin.jar && java-pkg_jar-from --into "${instdir}" jdbc-mysql jdbc-mysql.jar mysql-connector-java-5.1.23-bin.jar
 	rm postgresql-9.4.1209.jar && java-pkg_jar-from --into "${instdir}" jdbc-postgresql jdbc-postgresql.jar postgresql-9.4.1209.jar
 	rm saxon9B.jar && java-pkg_jar-from --into "${instdir}" saxon-9 saxon.jar saxon9B.jar
