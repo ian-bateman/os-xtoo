@@ -152,7 +152,7 @@ src_install() {
 	local instdir=${INSTALL_DIR}/modules/ext
 	pushd "${D}"/${instdir} >/dev/null || die
 	rm hamcrest-core-1.3.jar && dosym ../../../../../usr/share/hamcrest-core-1.3/lib/hamcrest-core.jar ${instdir}/hamcrest-core-1.3.jar || die
-	rm jhall-2.0_05.jar && dosym ../../../../../usr/share/javahelp/lib/jhall.jar ${instdir}/jhall-2.0_05.jar || die
+	rm jhall-2.0_05.jar && dosym ../../../../../usr/share/javahelp/lib/javahelp.jar ${instdir}/jhall-2.0_05.jar || die
 	rm jna-4.2.2.jar && dosym ../../../../../usr/share/jna-4/lib/jna.jar ${instdir}/jna-4.2.2.jar || die
 	rm jna-platform-4.2.2.jar && dosym ../../../../../usr/share/jna-4/lib/jna-platform.jar ${instdir}/jna-platform-4.2.2.jar || die
 	rm junit-4.12.jar && dosym ../../../../../usr/share/junit-4/lib/junit.jar ${instdir}/junit-4.12.jar || die
