@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-E_BUILD="meson"
+[[ ${PV} != 0.2.1* ]] && E_BUILD="meson"
 E_TYPE="apps"
 
 inherit e
