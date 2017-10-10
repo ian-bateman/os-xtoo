@@ -24,7 +24,7 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Reference implementation of the Java API for RESTful Services"
 HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( CDDL GPL-2 )"
-if [[ ${PV} == "2.1_pre05" ]]; then
+if [[ ${PV} == 2.1* ]]; then
 	SLOT="2.1"
 else
 	SLOT="2"
