@@ -15,9 +15,9 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${MY_P#*-}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${MY_P}"
+	MY_S="${MY_PN}-${MY_P#*-}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
