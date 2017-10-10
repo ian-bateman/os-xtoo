@@ -26,8 +26,6 @@ HOMEPAGE="https://${MY_PN}.java.net/"
 LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="${PV%%.*}"
 
-#	dev-java/glassfish-hk2-api:0
-#	dev-java/glassfish-hk2-utils:0
 CP_DEPEND="dev-java/eclipse-javax-persistence:2
 	dev-java/javax-inject:0
 	dev-java/jax-rs:2.1
