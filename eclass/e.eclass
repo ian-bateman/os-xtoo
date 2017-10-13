@@ -90,7 +90,6 @@ if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 fi
 
 if [[ ${E_PV} == 9999 ]]; then
-	SLOT="${E_PV}"
 	inherit git-r3
 else
 	if [[ ${E_SNAP} ]]; then
@@ -100,8 +99,9 @@ else
 	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.gz"}
 	fi
 	KEYWORDS="~amd64"
-	SLOT="0"
 fi
+
+SLOT="${SLOT:=0}"
 
 if [[ ${E_PYTHON} ]] && [[ "${PN}" != "python-efl" ]]; then
 	CDEPEND="dev-python/python-efl"
