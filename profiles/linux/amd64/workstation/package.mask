@@ -11,4 +11,4 @@ dev-lang/ruby:2.3
 virtual/jdk:1.6
 virtual/jdk:1.7
 #>=www-client/firefox-54
->=x11-wm/enlightenment-1
+=x11-wm/enlightenment-1.0*
