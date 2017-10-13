@@ -1,0 +1,35 @@
+From 2eec907b803eb9c1a9a51ae5300def6bb1658a22 Mon Sep 17 00:00:00 2001
+From: "William L. Thomson Jr" <wlt@o-sinc.com>
+Date: Fri, 13 Oct 2017 16:21:11 -0400
+Subject: [PATCH] meson: Make sleep.sh and hibernate.sh not required, fixes
+ T6210
+
+---
+ data/etc/meson.build | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/data/etc/meson.build b/data/etc/meson.build
+index b5a43a5cf..14baf7253 100644
+--- a/data/etc/meson.build
++++ b/data/etc/meson.build
+@@ -21,7 +21,7 @@ else
+     SUSPEND   = '/usr/bin/systemctl suspend'
+     HIBERNATE = '/usr/bin/systemctl hibernate'
+   else
+-    sleep = find_program('sleep.sh', '/etc/acpi/sleep.sh', '/sbin/sleep.sh', '/usr/sbin/sleep.sh')
++    sleep = find_program('sleep.sh', '/etc/acpi/sleep.sh', '/sbin/sleep.sh', '/usr/sbin/sleep.sh', required : false)
+     if sleep.found() == true
+       SUSPEND = sleep.path()
+       if sleep.path() == '/etc/acpi/sleep.sh'
+@@ -34,7 +34,7 @@ else
+       endif
+     endif
+ 
+-    hibernate_sh = find_program('hibernate.sh', '/etc/acpi/hibernate.sh', '/sbin/hibernate.sh', '/usr/sbin/hibernate.sh')
++    hibernate_sh = find_program('hibernate.sh', '/etc/acpi/hibernate.sh', '/sbin/hibernate.sh', '/usr/sbin/hibernate.sh', required : false)
+     if hibernate_sh.found() == true
+       HIBERNATE = hibernate_sh.path()
+       if hibernate_sh.path() == '/etc/acpi/hibernate.sh'
+-- 
+2.13.3
+

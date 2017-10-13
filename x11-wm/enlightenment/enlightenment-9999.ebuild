@@ -6,7 +6,12 @@
 
 EAPI="6"
 
-E_TYPE="apps"
+E_BUILD="meson"
+if [[ ${PV} == *9999* ]]; then
+	E_TYPE="core"
+else
+	E_TYPE="apps"
+fi
 
 inherit e
 
@@ -63,51 +68,28 @@ DEPEND="
 	x11-base/xorg-x11
 	x11-libs/xcb-util-keysyms
 	x11-themes/hicolor-icon-theme
+	virtual/udev
 "
 
 RDEPEND="${DEPEND}"
 
-# Sanity check to make sure module lists are kept up-to-date.
-# Needs to be modified for USE modules, bluetooth, connman, and wifi
-check_modules() {
-	local detected=$(
-		awk -F'[\\[\\](, ]' '$1 == "AC_E_OPTIONAL_MODULE" { print $3 }' \
-		configure.ac | sed 's:_:-:g' | LC_COLLATE=C sort
-	)
-	local sorted=$(
-		printf '%s\n' ${IUSE_E_MODULES[@]/#enlightenment_modules_} | \
-		LC_COLLATE=C sort
-	)
-	if [[ ${detected} != "${sorted}" ]] ; then
-		local out new old
-		eerror "The ebuild needs to be kept in sync."
-		echo "${sorted}" > ebuild-iuse
-		echo "${detected}" > configure-detected
-		out=$(diff -U 0 ebuild-iuse configure-detected | sed -e '1,2d' -e '/^@@/d')
-		new=$(echo "${out}" | sed -n '/^+/{s:^+::;p}')
-		old=$(echo "${out}" | sed -n '/^-/{s:^-::;p}')
-		eerror "Add these modules: $(echo ${new})"
-		eerror "Drop these modules: $(echo ${old})"
-		die "please update the ebuild"
-	fi
-}
+PATCHES=( "${FILESDIR}/meson-sh.patch" )
 
 src_configure() {
-#	check_modules
-
 	E_ECONF=(
-		--disable-install-sysactions
-		$(use_enable bluetooth bluez4)
-		$(use_enable connman )
-		$(use_enable doc)
-		$(use_enable nls)
-		$(use_enable pam)
-		$(use_enable systemd)
-		--enable-device-udev
-		$(use_enable udisks mount-udisks)
-		$(use_enable egl wayland-egl)
-		$(use_enable wayland)
-		$(use_enable wifi wireless)
+		-Dbluez4=$(usex bluetooth true false)
+		-Dconnman=$(usex connman true false)
+		-Ddevice-udev=true
+		-Dwayland-egl=$(usex egl true false)
+		-Dfiles=true
+		-Dinstall-sysactions=false
+		-Dinstall-enlightenment-menu=true
+		-Dmount-eeze=false
+		-Dmount-udisks=$(usex udisks true false)
+		-Dpam=$(usex pam true false)
+		-Dsystemd=$(usex systemd true false)
+		-Dwayland=$(usex wayland true false)
+		-Dwireless=$(usex wifi true false)
 	)
 	local u c
 	for u in ${IUSE_E_MODULES[@]} ; do
@@ -116,12 +98,12 @@ src_configure() {
 		case ${c} in
 		wl-*|xwayland)
 			if ! use wayland ; then
-				E_ECONF+=( --disable-${c} )
+				E_ECONF+=( -D${c}=false )
 				continue
 			fi
 			;;
 		esac
-		E_ECONF+=( $(use_enable ${u} ${c}) )
+		E_ECONF+=( -D${c}=$(usex ${u} true false) )
 	done
 	e_src_configure
 }
