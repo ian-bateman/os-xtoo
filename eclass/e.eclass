@@ -23,7 +23,8 @@ E_BASE_URI=${E_BASE_URI:="enlightenment.org"}
 
 # @ECLASS-VARIABLE: E_ECONF
 # @DESCRIPTION:
-# Array of flags to pass to econf (obsoletes MY_ECONF)
+# Array of flags to pass to econf, ecmake, or emeson
+# using the respective format for each
 E_ECONF=()
 
 # @ECLASS-VARIABLE: E_GIT_URI
@@ -140,22 +141,35 @@ e_src_configure() {
 	debug-print-function ${FUNCNAME} $*
 	local u
 	if [[ "${E_BUILD}" == "cmake" ]]; then
-		local mytype="release"
-	        use debug && mytype="debug"
-		local mycmakeargs=(
+		local mycmakeargs mytype
+		mycmakeargs=(
 			-DCMAKE_INSTALL_PREFIX="${EROOT}"
 			-DCMAKE_BUILD_TYPE=${mytype}
 			-DCMAKE_DOC=$(usex doc)
 			-DCMAKE_NLS=$(usex nls)
 			-DCMAKE_STATIC=$(usex static-libs)
+			${E_ECONF[@]}
 		)
+	        if use debug; then
+			mytype="debug"
+		else
+			mytype="release"
+		fi
 		cmake-utils_src_configure
 	elif [[ "${E_BUILD}" == "meson" ]]; then
 		local emesonargs
-		for u in ${IUSE}; do
-			u=${u/+/}
-			emesonargs+=( -D${u^^}=$(usex ${u} true false) )
-		done
+		emesonargs=(
+			-Ddoc=$(usex doc true false)
+			-Dnls=$(usex nls true false)
+			${E_ECONF[@]}
+		)
+		if [[ ${#E_ECONF[@]} -le 0 ]] && [[ ${IUSE} ]]; then
+			einfo "Shit bitch ${#E_CONF[@]}"
+			for u in ${IUSE}; do
+				u=${u/+/}
+				emesonargs+=( -D${u^^}=$(usex ${u} true false) )
+			done
+		fi
 		meson_src_configure
 	elif [[ ${E_PYTHON} ]]; then
 		distutils-r1_src_configure
