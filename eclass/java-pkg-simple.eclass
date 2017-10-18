@@ -161,13 +161,16 @@ java-pkg-simple_src_compile() {
 	fi
 
 	# package
-	local jar_args="cf ${JAVA_JAR_FILENAME}"
-	if [[ -e ${classes}/META-INF/MANIFEST.MF ]]; then
-		jar_args="cfm ${JAVA_JAR_FILENAME} ${classes}/META-INF/MANIFEST.MF"
-	fi
+#	local jar_args="cf ${JAVA_JAR_FILENAME}"
+	local jar_args="cfmM ${JAVA_JAR_FILENAME} ${classes}/META-INF/"
 	if [[ -z ${JAVA_RES_DIR} ]] && \
 		[[ -d "${S}/src/main/resources" ]]; then
 		JAVA_RES_DIR="src/main/resources"
+		if [[ -d "${JAVA_RES_DIR}/meta-inf" ]]; then
+			mv "${JAVA_RES_DIR}/meta-inf" \
+				"${JAVA_RES_DIR}/META-INF" \
+				|| die "Failed to upper case meta-inf"
+		fi
 	fi
 	if [[ -n ${JAVA_RES_DIR} ]]; then
 		local r
@@ -177,6 +180,18 @@ java-pkg-simple_src_compile() {
 					|| die "Failed to cp resources for jar"
 			fi
 		done
+	fi
+	if [[ -f ${classes}/META-INF/MANIFEST.MF ]]; then
+		jar_args+="MANIFEST.MF"
+	elif [[ ! -f ${classes}/META-INF/manifest.mf ]]; then
+		if [[ ! -d ${classes}/META-INF ]]; then
+			mkdir ${classes}/META-INF \
+				|| die "Failed to mkdir META-INF"
+		fi
+		echo -e "Manifest-Version: 1.0\nCreated-By: $(java-config -f)" \
+			> ${classes}/META-INF/manifest.mf \
+			|| die "Failed to echo manifest.mf"
+		jar_args+="manifest.mf"
 	fi
 	jar ${jar_args} -C ${classes} . || die "jar failed"
 }
