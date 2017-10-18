@@ -41,3 +41,8 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+src_install() {
+	java-pkg-simple_src_install
+	java-pkg_dolauncher ${MY_PN} --main org.codehaus.modello.ModelloCli
+}
