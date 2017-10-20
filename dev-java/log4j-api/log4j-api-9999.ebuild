@@ -5,8 +5,9 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-MY_PN="log4j"
-MY_P="${MY_PN}-${PV}"
+MY_PN="${PN%-*}"
+MY_PV="${PV/_/-}"
+MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/apache/logging-log4j2"
 
 if [[ ${PV} == 9999 ]]; then
@@ -36,7 +37,3 @@ DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
 
 S="${WORKDIR}/${MY_S}/"
-
-if [[ ${PV} == 2.8.2 ]]; then
-	PATCHES=( "${FILESDIR}/ambiguous.patch" )
-fi
