@@ -73,7 +73,9 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/meson-sh.patch" )
+if [[ ${PV} == 0.22.0_beta ]]; then
+	PATCHES=( "${FILESDIR}/meson-sh.patch" )
+fi
 
 src_configure() {
 	E_ECONF=(
