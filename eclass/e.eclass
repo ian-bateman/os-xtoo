@@ -164,10 +164,9 @@ e_src_configure() {
 			${E_ECONF[@]}
 		)
 		if [[ ${#E_ECONF[@]} -le 0 ]] && [[ ${IUSE} ]]; then
-			einfo "Shit bitch ${#E_CONF[@]}"
 			for u in ${IUSE}; do
 				u=${u/+/}
-				emesonargs+=( -D${u^^}=$(usex ${u} true false) )
+				emesonargs+=( -D${u}=$(usex ${u} true false) )
 			done
 		fi
 		meson_src_configure
