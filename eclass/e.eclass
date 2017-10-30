@@ -158,11 +158,7 @@ e_src_configure() {
 		cmake-utils_src_configure
 	elif [[ "${E_BUILD}" == "meson" ]]; then
 		local emesonargs
-		emesonargs=(
-			-Ddoc=$(usex doc true false)
-			-Dnls=$(usex nls true false)
-			${E_ECONF[@]}
-		)
+		emesonargs=( ${E_ECONF[@]} )
 		if [[ ${#E_ECONF[@]} -le 0 ]] && [[ ${IUSE} ]]; then
 			for u in ${IUSE}; do
 				u=${u/+/}
