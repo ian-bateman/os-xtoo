@@ -30,6 +30,8 @@ S="${WORKDIR}/${P}"
 
 java_prepare() {
 	# Drop demos per https://github.com/jfree/jfreesvg/issues/12
-	rm -r src/main/java/org/jfree/graphics2d/demo \
-		|| die "Failed to remove demos"
+	if [[ ${PV} == 3.2 ]]; then
+		rm -r src/main/java/org/jfree/graphics2d/demo \
+			|| die "Failed to remove demos"
+	fi
 }
