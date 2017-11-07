@@ -17,7 +17,7 @@ else
 	KEYWORDS="~amd64"
 fi
 
-inherit eutils java-pkg-2 java-pkg-simple
+inherit eutils java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="Java-based Ruby interpreter implementation"
 HOMEPAGE="https://${PN}.org/"
@@ -47,7 +47,7 @@ CP_DEPEND="
 	dev-java/joda-time:0
 	dev-java/joni:2.1
 	dev-java/jzlib:1.1
-	dev-java/nailgun:0
+	dev-java/nailgun-server:0
 	dev-java/osgi-core-api:4
 	dev-java/slf4j-api:0
 	dev-java/snakeyaml:0
