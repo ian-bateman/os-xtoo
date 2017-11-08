@@ -35,17 +35,13 @@ CP_DEPEND="
 	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
 	~dev-java/eclipse-jdt-core-${PV}:${SLOT}
+	~dev-java/eclipse-jdt-launching-${PV}:${SLOT}
 	~dev-java/eclipse-ltk-core-refactoring-${PV}:${SLOT}
 	~dev-java/eclipse-text-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
 	dev-java/icu4j:59
 	dev-java/osgi-core-api:6
 "
-#	~dev-java/eclipse-core-commands-${PV}:${SLOT}
-#	~dev-java/eclipse-core-filebuffers-${PV}:${SLOT}
-#	~dev-java/eclipse-core-filesystem-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-preferences-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-registry-${PV}:${SLOT}
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
@@ -55,4 +51,14 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/org.${PN//-/.}/"
 
-JAVA_SRC_DIR="common refactoring"
+JAVA_SRC_DIR="common core_extension refactoring"
+
+java_prepare() {
+	# Replace spaces in dir names with underscore
+	local d
+	for d in *; do
+		if [[ -d "${d}" ]] && [[ "${d}" =~ \ |\' ]]; then
+			mv "${d}" "${d// /_}"
+		fi
+	done
+}
