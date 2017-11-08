@@ -45,3 +45,11 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
 JAVA_SRC_DIR="src"
+
+java_prepare() {
+	if [[ ${PV} == 4.7 ]]; then
+		sed -i -e "s|this::|(ImageDataProvider) this::|g" \
+			src/org/eclipse/jface/resource/ImageDescriptor.java \
+			|| die "Could not fix ambiguous reference"
+	fi
+}
