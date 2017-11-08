@@ -18,7 +18,7 @@ KEYWORDS="~amd64 ~amd64-linux"
 IUSE="systemd extra-webapps"
 LICENSE="Apache-2.0"
 
-ECJ_SLOT="4.6"
+ECJ_SLOT="4.7"
 SAPI_SLOT="4.0"
 
 CDEPEND="
