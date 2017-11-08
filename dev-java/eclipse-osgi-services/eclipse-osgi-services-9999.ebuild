@@ -32,6 +32,7 @@ SLOT="$(get_version_component_range 1-2)"
 CP_DEPEND="
 	dev-java/osgi-annotation:0
 	dev-java/osgi-core-api:6
+	dev-java/osgi-util:0
 	java-virtuals/servlet-api:4.0
 "
 
