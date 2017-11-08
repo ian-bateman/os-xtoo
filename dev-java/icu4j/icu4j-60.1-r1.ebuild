@@ -17,7 +17,7 @@ SRC_URI="http://download.icu-project.org/files/${PN}/${PV}/${MY_P}-src.jar
 
 LICENSE="icu"
 KEYWORDS="~amd64"
-SLOT="${PV%%.*}"
+SLOT="0"
 
 DEPEND="app-arch/unzip
 	>=virtual/jdk-1.8"
