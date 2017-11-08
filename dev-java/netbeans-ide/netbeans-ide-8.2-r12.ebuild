@@ -107,7 +107,7 @@ CDEPEND="virtual/jdk:1.8
 	dev-java/rhino:1.6
 	dev-java/saxon:9
 	dev-java/smack:2.2
-	dev-java/tomcat-servlet-api:2.2
+	dev-java/tomcat-servlet-api:4.0
 	dev-java/ws-commons-util:0
 	dev-java/xerces:2"
 #	dev-vcs/subversion>=1.8.4:0[java] missing from the tree
@@ -256,7 +256,7 @@ src_prepare() {
 	java-pkg_jar-from --into o.apache.commons.httpclient/external commons-httpclient-3 commons-httpclient.jar commons-httpclient-3.1.jar
 	java-pkg_jar-from --into o.apache.commons.logging/external commons-logging commons-logging.jar commons-logging-1.1.1.jar
 	java-pkg_jar-from --into o.apache.ws.commons.util/external ws-commons-util ws-commons-util.jar ws-commons-util-1.0.1.jar
-	java-pkg_jar-from --into servletapi/external tomcat-servlet-api-2.2 servlet.jar servlet-2.2.jar
+	java-pkg_jar-from --into servletapi/external tomcat-servlet-api-4.0 servlet-api.jar servlet-2.2.jar
 	java-pkg_jar-from --into xml.jaxb.api/external jsr173 jsr173.jar jsr173_1.0_api.jar
 
 	einfo "Linking in other clusters..."
@@ -347,7 +347,7 @@ src_install() {
 	rm mysql-connector-java-5.1.23-bin.jar && java-pkg_jar-from --into "${instdir}" jdbc-mysql jdbc-mysql.jar mysql-connector-java-5.1.23-bin.jar
 	rm postgresql-9.4.1209.jar && java-pkg_jar-from --into "${instdir}" jdbc-postgresql jdbc-postgresql.jar postgresql-9.4.1209.jar
 	rm saxon9B.jar && java-pkg_jar-from --into "${instdir}" saxon-9 saxon.jar saxon9B.jar
-	rm servlet-2.2.jar && java-pkg_jar-from --into "${instdir}" tomcat-servlet-api-2.2 servlet.jar servlet-2.2.jar
+	rm servlet-2.2.jar && java-pkg_jar-from --into "${instdir}" tomcat-servlet-api-4.0 servlet-api.jar servlet-2.2.jar
 	rm smack.jar && java-pkg_jar-from --into "${instdir}" smack-2.2 smack.jar
 	rm smackx.jar && java-pkg_jar-from --into "${instdir}" smack-2.2 smackx.jar
 	# rm svnjavahl.jar && dosym /usr/share/subversion/lib/svn-javahl.jar ${instdir}/svnjavahl.jar || die
