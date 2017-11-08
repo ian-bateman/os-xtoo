@@ -30,6 +30,7 @@ SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="
 	~dev-java/eclipse-e4-core-di-${PV}:${SLOT}
+	~dev-java/eclipse-osgi-services-${PV}:${SLOT}
 	dev-java/javax-inject:0
 	dev-java/osgi-core-api:6
 "
