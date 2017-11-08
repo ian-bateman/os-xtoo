@@ -1,1 +1,0 @@
-eclipse-e4-core-di-annotations-9999.ebuild
