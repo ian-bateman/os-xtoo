@@ -24,7 +24,7 @@ HOMEPAGE="https://projectlombok.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-ECLIPSE_SLOT="4.6"
+ECLIPSE_SLOT="4.7"
 
 CP_DEPEND="
 	dev-java/ant-core:0
