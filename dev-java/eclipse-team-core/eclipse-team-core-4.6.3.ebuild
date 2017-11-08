@@ -1,1 +1,0 @@
-eclipse-team-core-9999.ebuild
