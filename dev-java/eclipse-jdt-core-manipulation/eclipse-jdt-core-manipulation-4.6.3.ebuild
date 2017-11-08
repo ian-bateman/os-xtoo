@@ -1,1 +1,0 @@
-eclipse-jdt-core-manipulation-9999.ebuild
