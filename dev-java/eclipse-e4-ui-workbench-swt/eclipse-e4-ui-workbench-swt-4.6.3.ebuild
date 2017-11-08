@@ -1,1 +1,0 @@
-eclipse-e4-ui-workbench-swt-9999.ebuild
