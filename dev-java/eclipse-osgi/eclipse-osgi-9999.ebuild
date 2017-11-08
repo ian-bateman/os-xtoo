@@ -49,7 +49,10 @@ S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 JAVA_SRC_DIR="container supplement"
 
 java_prepare() {
-	sed -i -e "1506d" \
-		"${S}container/src/org/eclipse/osgi/container/ModuleResolver.java" \
-		|| "Could not delete @Override"
+	if [[ ${PV} == 4.6.3 ]]; then
+		sed -i -e "1506d" \
+			"${S}container/src/org/eclipse/osgi/container/ModuleResolver.java" \
+			|| "Could not delete @Override"
+	fi
+
 }
