@@ -21,7 +21,7 @@ IUSE="extra-webapps"
 
 RESTRICT="test" # can we run them on a production system?
 
-CP_DEPEND="dev-java/eclipse-ecj:4.6
+CP_DEPEND="dev-java/eclipse-ecj:4.7
 	~dev-java/tomcat-servlet-api-${PV}:4.0"
 
 DEPEND="${CP_DEPEND}
