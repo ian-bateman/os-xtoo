@@ -28,7 +28,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
 SLOT="$(get_major_version)"
 
-ECLIPSE_SLOT="4.6"
+ECLIPSE_SLOT="4.7"
 
 CP_DEPEND="
 	dev-java/eclipse-core-runtime:${ECLIPSE_SLOT}
