@@ -32,7 +32,7 @@ SLOT="$(get_version_component_range 1-2)"
 CP_DEPEND="
 	~dev-java/eclipse-core-commands-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
-	dev-java/icu4j:59
+	dev-java/icu4j:0
 "
 
 DEPEND="${CP_DEPEND}
