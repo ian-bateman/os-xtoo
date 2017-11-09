@@ -43,7 +43,7 @@ CP_DEPEND="
 	~dev-java/eclipse-jdt-core-${PV}:${SLOT}
 	~dev-java/eclipse-jdt-debug-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
-	dev-java/icu4j:59
+	dev-java/icu4j:0
 	dev-java/osgi-compendium:6
 	dev-java/osgi-core-api:6
 "
