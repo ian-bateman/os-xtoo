@@ -39,7 +39,7 @@ CP_DEPEND="
 	~dev-java/eclipse-ltk-core-refactoring-${PV}:${SLOT}
 	~dev-java/eclipse-text-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
-	dev-java/icu4j:59
+	dev-java/icu4j:0
 	dev-java/osgi-core-api:6
 "
 
