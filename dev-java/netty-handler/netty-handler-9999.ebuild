@@ -28,7 +28,7 @@ HOMEPAGE="https://${MY_PN}.io/"
 LICENSE="Apache-2.0"
 SLOT="$(get_version_component_range 1-2)"
 
-BCV="1.56"
+BCV="1.58"
 
 CP_DEPEND="
 	dev-java/bcpkix:${BCV}
