@@ -70,7 +70,7 @@ CP_DEPEND="
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
 	~dev-java/eclipse-swt-${PV}:${SLOT}
 	dev-java/javax-inject:0
-	dev-java/icu4j:59
+	dev-java/icu4j:0
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
 "
