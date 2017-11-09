@@ -30,7 +30,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bcprov:1.56
+	dev-java/bcprov:1.58
 	dev-java/javax-inject:0
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	dev-java/guice:4
