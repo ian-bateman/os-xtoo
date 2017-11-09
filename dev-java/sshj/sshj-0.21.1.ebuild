@@ -14,7 +14,7 @@ SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-BCV="1.56"
+BCV="1.58"
 
 CP_DEPEND="
 	dev-java/bcpkix:${BCV}
