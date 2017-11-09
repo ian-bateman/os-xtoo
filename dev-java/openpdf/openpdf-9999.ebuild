@@ -27,7 +27,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="MPL-2.0"
 SLOT="0"
 
-BCV="1.56"
+BCV="1.58"
 
 CP_DEPEND="
 	dev-java/bcpkix:${BCV}
