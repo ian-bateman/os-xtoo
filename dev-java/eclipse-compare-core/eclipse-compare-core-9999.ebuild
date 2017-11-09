@@ -32,7 +32,7 @@ CP_DEPEND="
 	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
-	dev-java/icu4j:59
+	dev-java/icu4j:0
 	dev-java/osgi-core-api:6
 "
 
