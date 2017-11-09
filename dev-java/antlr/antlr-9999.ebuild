@@ -34,7 +34,7 @@ LICENSE="BSD"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="dev-java/antlr:3.5
-	dev-java/icu4j:59
+	dev-java/icu4j:0
 	dev-java/javax-json-api:0
 	dev-java/stringtemplate:4
 	dev-java/treelayout:0"
