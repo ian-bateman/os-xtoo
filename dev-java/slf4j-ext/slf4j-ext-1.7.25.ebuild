@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 CP_DEPEND="dev-java/cal10n:0
-	dev-java/commons-lang:2.1
+	dev-java/commons-lang:2
 	dev-java/javassist:3
 	~dev-java/slf4j-api-${PV}:0"
 
