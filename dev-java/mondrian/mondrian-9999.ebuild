@@ -30,7 +30,7 @@ SLOT="$(get_major_version)"
 CP_DEPEND="
 	dev-java/commons-collections:0
 	dev-java/commons-dbcp:2
-	dev-java/commons-io:1
+	dev-java/commons-io:0
 	dev-java/commons-logging:0
 	dev-java/commons-math:2
 	dev-java/commons-pool:2
