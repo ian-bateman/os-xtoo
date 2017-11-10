@@ -14,7 +14,7 @@ HOMEPAGE="https://99soft.github.io/rocoto/"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-CP_DEPEND="dev-java/guava:22
+CP_DEPEND="dev-java/guava:23
 	dev-java/guice:4
 	dev-java/javax-inject:0"
 
