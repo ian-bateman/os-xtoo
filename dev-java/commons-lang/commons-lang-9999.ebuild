@@ -29,8 +29,15 @@ HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-1.8"
+if [[ ${SLOT} == 2 ]]; then
+	JV=1.4
+	JAVA_ENCODING="ISO-8859-1"
+else
+	JV=1.8
+fi
 
-RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-${JV}"
+
+RDEPEND=">=virtual/jre-${JV}"
 
 S="${WORKDIR}/${MY_S}"
