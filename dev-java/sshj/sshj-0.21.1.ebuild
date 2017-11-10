@@ -20,7 +20,7 @@ CP_DEPEND="
 	dev-java/bcpkix:${BCV}
 	dev-java/bcprov:${BCV}
 	dev-java/ed25519-java:0
-	dev-java/jzlib:1.1.3
+	dev-java/jzlib:0
 	dev-java/slf4j-api:0
 "
 
