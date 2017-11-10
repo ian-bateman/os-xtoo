@@ -36,7 +36,7 @@ CP_DEPEND="
 	dev-java/jzlib:1.1.3
 	dev-java/commons-lang:2.1
 	dev-java/groovy:0
-	dev-java/guava:22
+	dev-java/guava:23
 	dev-java/jenkins-json-lib:2
 	dev-java/jsr305:0
 	dev-java/localizer:0
