@@ -18,7 +18,7 @@ KEYWORDS="~amd64"
 CP_DEPEND="
 	dev-java/asm:5
 	dev-java/aopalliance:1
-	dev-java/guava:22
+	dev-java/guava:23
 	dev-java/javax-inject:0
 "
 
