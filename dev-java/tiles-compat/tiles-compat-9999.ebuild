@@ -30,7 +30,7 @@ SLOT="0"
 TILESREQ_SLOT="0"
 
 CP_DEPEND="
-	dev-java/commons-digester:2.1
+	dev-java/commons-digester:2
 	~dev-java/tiles-api-${PV}:${SLOT}
 	~dev-java/tiles-core-${PV}:${SLOT}
 	dev-java/tiles-request-api:${TILESREQ_SLOT}
