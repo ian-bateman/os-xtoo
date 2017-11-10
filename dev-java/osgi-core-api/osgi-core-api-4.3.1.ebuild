@@ -13,7 +13,7 @@ SRC_URI="https://www.osgi.org/download/r$(get_major_version)v43/osgi.core-${PV}.
 
 LICENSE="Apache-2.0"
 SLOT="$(get_major_version)"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 DEPEND="app-arch/unzip:0
 	>=virtual/jdk-1.8"
