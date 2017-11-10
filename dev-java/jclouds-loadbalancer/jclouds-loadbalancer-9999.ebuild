@@ -29,7 +29,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/guava:21
+	dev-java/guava:23
 	dev-java/guice:4
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	~dev-java/jclouds-compute-${PV}:${SLOT}
