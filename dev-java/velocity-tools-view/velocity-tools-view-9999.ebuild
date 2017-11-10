@@ -28,7 +28,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/commons-beanutils:1.7
+	dev-java/commons-beanutils:0
 	dev-java/commons-collections:0
 	dev-java/commons-digester:2.1
 	dev-java/commons-lang:2
