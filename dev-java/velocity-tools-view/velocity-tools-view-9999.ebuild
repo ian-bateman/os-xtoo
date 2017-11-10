@@ -30,7 +30,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/commons-collections:0
-	dev-java/commons-digester:2.1
+	dev-java/commons-digester:2
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/commons-validator:0
