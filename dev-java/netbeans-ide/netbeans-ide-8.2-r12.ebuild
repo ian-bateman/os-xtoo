@@ -113,7 +113,7 @@ CDEPEND="virtual/jdk:1.8
 #	dev-vcs/subversion>=1.8.4:0[java] missing from the tree
 #	app-text/jing:0 our version is probably too old
 #	dev-java/commons-io:1 fails with "Missing manifest tag OpenIDE-Module"
-#	dev-java/commons-lang:2.1 fails with "Missing manifest tag OpenIDE-Module"
+#	dev-java/commons-lang:2 fails with "Missing manifest tag OpenIDE-Module"
 #	dev-java/freemarker:2.3
 #	dev-java/guava:15 fails with "Missing manifest tag OpenIDE-Module"
 #	dev-java/ini4j:0 our version is too old
