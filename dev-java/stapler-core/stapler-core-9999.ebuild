@@ -33,7 +33,7 @@ CP_DEPEND="
 	dev-java/commons-discovery:0
 	dev-java/commons-fileupload:0
 	dev-java/commons-io:0
-	dev-java/jzlib:1.1.3
+	dev-java/jzlib:0
 	dev-java/commons-lang:2
 	dev-java/groovy:0
 	dev-java/guava:23
