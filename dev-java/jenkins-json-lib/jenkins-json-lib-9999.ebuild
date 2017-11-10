@@ -29,12 +29,12 @@ DESCRIPTION="Jenkins automation server ${PN:8}"
 LICENSE="Apache-2.0"
 
 # dev-java/commons-beanutils:1.7 <- Very bad slotting pulls in 1.9.2
-# dev-java/commons-lang:2.1 <- Bad slotting should be 2 or 2.6
+# dev-java/commons-lang:2 <- Bad slotting should be 2 or 2.6
 CP_DEPEND="
 	dev-java/xom:0
 	dev-java/commons-beanutils:1.7
 	dev-java/commons-collections:0
-	dev-java/commons-lang:2.1
+	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/ezmorph:0
 	dev-java/jakarta-oro:2.0
