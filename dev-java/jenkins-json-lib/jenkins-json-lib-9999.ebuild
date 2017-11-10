@@ -28,11 +28,11 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Jenkins automation server ${PN:8}"
 LICENSE="Apache-2.0"
 
-# dev-java/commons-beanutils:1.7 <- Very bad slotting pulls in 1.9.2
+# dev-java/commons-beanutils:0 <- Very bad slotting pulls in 1.9.2
 # dev-java/commons-lang:2 <- Bad slotting should be 2 or 2.6
 CP_DEPEND="
 	dev-java/xom:0
-	dev-java/commons-beanutils:1.7
+	dev-java/commons-beanutils:0
 	dev-java/commons-collections:0
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
