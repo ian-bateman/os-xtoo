@@ -8,7 +8,9 @@ JAVA_NO_COMMONS=1
 
 SLOT="${PV%%.*}"
 MY_PN="${PN#*-}"
-if [[ ${SLOT} == 3 ]]; then
+if [[ ${SLOT} == 1 ]]; then
+	SLOT="0"
+elif [[ ${SLOT} == 3 ]]; then
 	MY_PN+="${SLOT}"
 fi
 MY_PV="${PV//./_}"
@@ -33,10 +35,15 @@ HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
 
 CP_DEPEND="
-	dev-java/cglib:3
 	dev-java/commons-beanutils:0
 	dev-java/commons-logging:0
 "
+
+if [[ ${SLOT} == 0 ]]; then
+	CP_DEPEND+=" dev-java/commons-collections:0"
+elif [[ ${SLOT} == 3 ]]; then
+	CP_DEPEND+=" dev-java/cglib:3"
+fi
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
