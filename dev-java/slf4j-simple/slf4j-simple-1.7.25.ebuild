@@ -13,7 +13,7 @@ SRC_URI="https://www.slf4j.org/dist/${P/-simple/}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64"
+KEYWORDS="~amd64"
 IUSE="test"
 
 CP_DEPEND="~dev-java/slf4j-api-${PV}:0"
