@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/apple-java-extensions-bin:0
 	dev-java/asm:6
 	dev-java/commons-bcel:0
-	dev-java/commons-lang:2.1
+	dev-java/commons-lang:2
 	dev-java/dom4j:2
 	dev-java/jcip-annotations:0
 	<dev-java/jformatstring-2.0:0
