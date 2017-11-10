@@ -32,7 +32,7 @@ CP_DEPEND="
 	~dev-java/castor-schema-${PV}:${SLOT}
 	~dev-java/castor-xml-${PV}:${SLOT}
 	dev-java/commons-logging:0
-	dev-java/commons-lang:2.1
+	dev-java/commons-lang:2
 	dev-java/velocity:0
 "
 
