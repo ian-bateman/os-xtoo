@@ -28,7 +28,7 @@ LICENSE="LGPL-2.1"
 SLOT="$(get_major_version)"
 
 CP_DEPEND="
-	dev-java/commons-beanutils:1.7
+	dev-java/commons-beanutils:0
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/dom4j:1
