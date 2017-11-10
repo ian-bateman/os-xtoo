@@ -45,7 +45,7 @@ CP_DEPEND="
 	dev-java/jnr-posix:3
 	dev-java/jnr-unixsocket:0
 	dev-java/joda-time:0
-	dev-java/joni:2.1
+	dev-java/joni:0
 	dev-java/jzlib:0
 	dev-java/nailgun-server:0
 	dev-java/osgi-core-api:4
