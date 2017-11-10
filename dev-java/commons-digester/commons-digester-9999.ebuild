@@ -7,7 +7,10 @@ JAVA_PKG_IUSE="doc source"
 JAVA_NO_COMMONS=1
 
 SLOT="${PV%%.*}"
-MY_PN="${PN#*-}${SLOT}"
+MY_PN="${PN#*-}"
+if [[ ${SLOT} == 3 ]]; then
+	MY_PN+="${SLOT}"
+fi
 MY_PV="${PV//./_}"
 MY_P="${MY_PN^^}_${MY_PV^^}"
 
