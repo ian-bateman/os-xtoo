@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/commons-beanutils:1.7
 	dev-java/commons-discovery:0
 	dev-java/commons-fileupload:0
-	dev-java/commons-io:1
+	dev-java/commons-io:0
 	dev-java/jzlib:1.1.3
 	dev-java/commons-lang:2.1
 	dev-java/groovy:0
