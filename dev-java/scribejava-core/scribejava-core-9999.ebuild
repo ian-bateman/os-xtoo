@@ -16,7 +16,7 @@ if [[ ${PV} == 9999 ]]; then
 	MY_S="${P}/${PN}"
 else
 	SRC_URI="${HOMEPAGE}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-${MY_PN}-${PV}/${PN}"
 fi
 
