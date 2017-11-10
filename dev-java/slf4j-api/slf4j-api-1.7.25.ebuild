@@ -12,7 +12,7 @@ SRC_URI="https://www.slf4j.org/dist/${P/-api/}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64"
+KEYWORDS="~amd64"
 IUSE="test"
 
 RDEPEND=">=virtual/jre-1.8"
