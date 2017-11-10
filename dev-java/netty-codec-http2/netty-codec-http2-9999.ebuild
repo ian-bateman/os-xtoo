@@ -29,7 +29,7 @@ LICENSE="Apache-2.0"
 SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="
-	dev-java/jzlib:1.1.3
+	dev-java/jzlib:0
 	~dev-java/netty-buffer-${PV}:${SLOT}
 	~dev-java/netty-codec-${PV}:${SLOT}
 	~dev-java/netty-codec-http-${PV}:${SLOT}
