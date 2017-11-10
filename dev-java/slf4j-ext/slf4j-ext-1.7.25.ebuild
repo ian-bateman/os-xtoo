@@ -13,7 +13,7 @@ SRC_URI="https://www.slf4j.org/dist/${P/-ext/}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64"
+KEYWORDS="~amd64"
 
 CP_DEPEND="dev-java/cal10n:0
 	dev-java/commons-lang:2.1
