@@ -31,7 +31,7 @@ CP_DEPEND="
 	dev-java/commons-collections:0
 	dev-java/commons-discovery:0
 	dev-java/commons-jexl:1.0
-	dev-java/commons-lang:0
+	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/dom4j:1
 	dev-java/jaxen:1.1
