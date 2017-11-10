@@ -30,7 +30,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/commons-digester:0
+	dev-java/commons-digester:2
 	dev-java/commons-logging:0
 	dev-java/mojarra:2.2
 	dev-java/portletapi:2.0
