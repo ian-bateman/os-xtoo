@@ -26,7 +26,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/commons-compress:0
-	dev-java/commons-lang:3.4
+	dev-java/commons-lang:3
 	dev-java/jackson-core:2
 	dev-java/slf4j-api:0
 "
