@@ -32,7 +32,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/auto-service:0
-	dev-java/guava:22
+	dev-java/guava:23
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	dev-java/guice:4
 	dev-java/slf4j-api:0
