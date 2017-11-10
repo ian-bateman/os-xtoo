@@ -23,7 +23,7 @@ CP_DEPEND="
 	~dev-java/${MY_PN}-common-${PV}:0
 	~dev-java/${MY_PN}-transport-${PV}:0
 	dev-java/jboss-marshalling:0
-	dev-java/jzlib:1.1.3
+	dev-java/jzlib:0
 	dev-java/protobuf-java:0
 "
 
