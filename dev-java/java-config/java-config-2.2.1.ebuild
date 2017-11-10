@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -13,7 +13,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Java"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 # baselayout-java is added as a dep till it can be added to eclass.
 #	>=dev-java/java-config-wrapper-0.15
