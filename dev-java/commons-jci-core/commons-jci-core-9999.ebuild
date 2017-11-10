@@ -30,7 +30,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/commons-logging:0
-	dev-java/commons-io:1
+	dev-java/commons-io:0
 	~dev-java/commons-jci-fam-${PV}:${SLOT}
 "
 
