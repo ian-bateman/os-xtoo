@@ -26,7 +26,7 @@ else
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr.org/"
