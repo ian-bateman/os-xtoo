@@ -11,9 +11,9 @@ MY_P="${MY_PN}_${MY_PV}"
 BASE_URI="https://github.com/profusion/${PN}"
 
 if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
+	inherit git-r3
 else
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
