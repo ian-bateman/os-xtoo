@@ -32,7 +32,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/ant-ivy:2
+	dev-java/ant-ivy:0
 	>=dev-java/antlr-2.7.7-r7:0
 	dev-java/asm:5
 	dev-java/commons-cli:1
