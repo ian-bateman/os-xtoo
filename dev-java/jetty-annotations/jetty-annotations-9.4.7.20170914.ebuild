@@ -20,7 +20,7 @@ HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-CP_DEPEND="dev-java/asm:5
+CP_DEPEND="dev-java/asm:6
 	~dev-java/jetty-http-${PV}:${SLOT}
 	~dev-java/jetty-plus-${PV}:${SLOT}
 	~dev-java/jetty-security-${PV}:${SLOT}
