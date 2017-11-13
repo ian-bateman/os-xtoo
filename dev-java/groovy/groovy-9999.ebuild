@@ -34,7 +34,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/ant-ivy:0
 	>=dev-java/antlr-2.7.7-r7:0
-	dev-java/asm:5
+	dev-java/asm:6
 	dev-java/commons-cli:1
 	dev-java/jansi:0
 	dev-java/xstream:0
