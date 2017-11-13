@@ -29,7 +29,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/asm:5
+	dev-java/asm:6
 	dev-java/antlr:0
 	~dev-java/groovy-${PV}:0
 	~dev-java/groovy-xml-${PV}:0
