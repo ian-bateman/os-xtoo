@@ -29,7 +29,7 @@ LICENSE="Apache-2.0"
 SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="
-	dev-java/asm:5
+	dev-java/asm:6
 	dev-java/aspectj:0
 	dev-java/bsh:0
 	dev-java/bytelist:0
