@@ -28,7 +28,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/annotation-indexer:0
-	dev-java/asm:5
+	dev-java/asm:6
 "
 
 DEPEND="${CP_DEPEND}
