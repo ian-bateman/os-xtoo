@@ -17,7 +17,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/asm:5
+	dev-java/asm:6
 	dev-java/commons-jci-core:0
 	dev-java/commons-logging:0
 "
