@@ -32,6 +32,7 @@ SLOT="${PV%%.*}"
 CP_DEPEND="dev-java/commons-logging:0"
 
 DEPEND="${CP_DEPEND}
+	dev-java/javacc:0
 	>=virtual/jdk-1.8"
 
 RDEPEND="${CP_DEPEND}
