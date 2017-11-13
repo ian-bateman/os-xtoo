@@ -24,7 +24,7 @@ LICENSE="|| ( Apache-2.0 LGPL-3 )"
 SLOT="$(get_major_version)"
 
 CP_DEPEND="
-	dev-java/asm:5
+	dev-java/asm:6
 	dev-java/jffi:1.2
 	dev-java/jnr-x86asm:1.0
 "
