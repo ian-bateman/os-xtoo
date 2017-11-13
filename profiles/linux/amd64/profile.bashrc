@@ -1,3 +1,6 @@
+# Run once, to avoid duplicate additions on each phase
+[[ ${EBUILD_PHASE} != "clean" ]] && return 0
+
 # no repackaging binaries
 case ${PN} in
 	*-bin | *-sources)
