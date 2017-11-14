@@ -22,7 +22,7 @@ USE="X aalib acpi alsa -apache2 bzip2 \
      openexr -gstreamer -avahi -server dts \
      -xscreensaver -cxx -glade equalizer realtime twolame -lvm1 \
      -java -gtk -gtk3 webp caps -bindist ipv6 -libav -qt5 xkb \
-     wayland egl gles2 -nsplugin sqlite \
+     wayland egl gles2 nsplugin sqlite \
      bluetooth -gcj -qt4 x264 readline pcre openmp printsupport"
 
 ALSA_CARDS="hda-intel"
@@ -63,7 +63,7 @@ NETBEANS_MODULES="apisupport groovy gsf harness ide java javafx j2ee nb webcommo
 
 OFFICE_IMPLEMENTATION="openoffice"
 
-PYTHON_TARGETS="python2_7 python3_4 python3_5 pypy3"
+PYTHON_TARGETS="python2_7 -python3_4 python3_5"
 PYTHON_SINGLE_TARGET="-python3_4 python3_5"
 
 RUBY_TARGETS="ruby24"
