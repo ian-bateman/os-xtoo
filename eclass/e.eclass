@@ -76,7 +76,7 @@ if [[ "${E_BUILD}" == "cmake" ]]; then
 elif [[ "${E_BUILD}" == "meson" ]]; then
 	inherit meson
 elif [[ ${E_PYTHON} ]]; then
-	PYTHON_COMPAT=( python{3_4,3_6} )
+	PYTHON_COMPAT=( python{3_5,3_6} )
 	inherit distutils-r1
 elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	WANT_AUTOCONF=latest
@@ -93,10 +93,10 @@ if [[ ${E_PV} == 9999 ]]; then
 	inherit git-r3
 else
 	if [[ ${E_SNAP} ]]; then
-		SRC_URI=${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.gz -> ${E_P}.tar.gz"}
+		SRC_URI=${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.xz -> ${E_P}.tar.xz"}
 		S=${S:="${WORKDIR}/${E_SNAP}"}
 	else
-	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.gz"}
+	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.xz"}
 	fi
 	KEYWORDS="~amd64"
 fi
