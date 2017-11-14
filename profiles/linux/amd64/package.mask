@@ -1,1 +1,2 @@
 >=dev-libs/icu-59
+=dev-java/ant-core-1.9*
