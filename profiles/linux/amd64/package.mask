@@ -1,2 +1,8 @@
->=dev-libs/icu-59
 =dev-java/ant-core-1.9*
+dev-java/icedtea
+dev-java/icedtea-bin
+dev-java/itext
+>=dev-libs/icu-59
+sys-fs/udev
+virtual/jdk:1.6
+virtual/jdk:1.7
