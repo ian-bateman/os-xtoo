@@ -15,10 +15,14 @@ if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
-else
+elif [[ ${PV} == 7.0.2 ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_P}"
+else
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64"
+	MY_S="${P}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
