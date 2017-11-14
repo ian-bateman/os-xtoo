@@ -165,9 +165,9 @@ src_install() {
 	fi
 
 	if ! use nsplugin ; then
-		rm -vf lib/*/libnpjp2.* || die
+		rm -vf lib/libnpjp2.so || die
 	else
-		local nsplugin=$(echo lib/*/libnpjp2.*)
+		local nsplugin=$(echo lib/libnpjp2.so)
 	fi
 
 	# Even though plugins linked against multiple ffmpeg versions are
