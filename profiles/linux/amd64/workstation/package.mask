@@ -1,14 +1,6 @@
-dev-java/icedtea
-dev-java/icedtea-bin
 dev-java/icedtea-web
-dev-java/itext
 =dev-java/java-config-2.2.1
-dev-java/oracle-jdk-bin:1.7
 dev-lang/ruby:2.2
 dev-lang/ruby:2.3
 >=media-libs/speex-1.2.0
->sys-fs/udev-233
-virtual/jdk:1.6
-virtual/jdk:1.7
-#>=www-client/firefox-54
 =x11-wm/enlightenment-1.0*
