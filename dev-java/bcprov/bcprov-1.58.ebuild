@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-JAVA_PKG_IUSE="doc source test"
+JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -26,9 +26,6 @@ S="${WORKDIR}/${MY_P}"
 
 JAVA_ENCODING="ISO-8859-1"
 
-# Package can't be build with test as bcprov and bcpkix can't be built with test.
-RESTRICT="test"
-
 src_unpack() {
 	default
 	cd "${S}" || die
@@ -36,17 +33,19 @@ src_unpack() {
 }
 
 java_prepare() {
-	if ! use test; then
-		# There are too many files to delete so we won't be using JAVA_RM_FILES
-		# (it produces a lot of output).
-		local RM_TEST_FILES=()
-		while read -d $'\0' -r file; do
-			RM_TEST_FILES+=("${file}")
-		done < <(find . -name "*Test*.java" -type f -print0)
-		while read -d $'\0' -r file; do
-			RM_TEST_FILES+=("${file}")
-		done < <(find . -name "*Mock*.java" -type f -print0)
+	# There are too many files to delete so we won't be using JAVA_RM_FILES
+	# (it produces a lot of output).
+	local RM_TEST_FILES=()
+	while read -d $'\0' -r file; do
+		RM_TEST_FILES+=("${file}")
+	done < <(find . -name "*Test*.java" -type f -print0)
+	while read -d $'\0' -r file; do
+		RM_TEST_FILES+=("${file}")
+	done < <(find . -name "*Mock*.java" -type f -print0)
 
-		rm -v "${RM_TEST_FILES[@]}" || die
-	fi
+	rm -v "${RM_TEST_FILES[@]}" || die
+
+	sed -i -e "s|drbg.reseed(null)|drbg.reseed((byte[])null)|" \
+		org/bouncycastle/jcajce/provider/drbg/DRBG.java \
+		|| die "Failed to fix for abiguous java 9"
 }
