@@ -6,13 +6,20 @@
 ## About
 Obsidian-Studios, Inc. funtoo/gentoo overlay (a.k.a wltjr's overlay)
 
-This overlay mostly contains Java related ebuilds. Most of the 
-ebuilds are not in tree, but some are corrections, newer versions 
-and/or slot changes. Initial support for Java 9, JDK only at this time.
+This overlay contains many things that should be in Gentoo but are not. 
+A majority of the ebuilds are not in tree. Some are corrections or 
+modifications to versions in tree. Others are newer versions 
+and/or slot changes.
 
-Effort will be made to keep packages in this overlay up to date. All 
-ebuilds in this overlay should be production quality and many are used 
-in production, though some are not. Contributions are welcome!
+Work for full support for Java 9 is underway. In addition to fully 
+replacing all needed Java packages in Gentoo that have not been 
+updated, and/or ingored. Eventually replacing all packages in dev-java 
+with superior well maintained current versions.
+
+Ebuilds in this overlay are to be current and latest available versions, 
+including working live ebuilds. All ebuilds in this overlay should be 
+production quality and many are used in production, though some are 
+not. Contributions are welcome!
 
 ## Arch
 This repo is primarily amd64, no other archs are supported or tested, 
@@ -34,14 +41,20 @@ source, such as
 ```
 
 ## E
-This repo has initial support for 
+This repo has full and complete support for 
 [Enlightenment](https://www.enlightenment.org/) desktop. This is 
 presently the official desktop being used by Obsidian-Studios, Inc. The 
-ebuilds in this repository are not perfect. They should be some of the
-better quality ones around. Despite being an initial work in progress.
+ebuilds in this repository are not perfect. They should be some of if 
+not the best quality ones around.
+
+We develop and maintain a few E applications:
+* [Ecrire](https://github.com/Obsidian-StudiosInc/ecrire) - General Text Editor
+* [Entrance](https://github.com/Obsidian-StudiosInc/entrance) - Login/Display Manager
+* [clipboard](https://github.com/Obsidian-StudiosInc/clipboard) - Clipboard module
+* [Eminence](https://github.com/Obsidian-StudiosInc/eminence) - dark purple theme for E
 
 If you have any issues with E packages in this repository. Let us know 
-and we will address them ASAP.
+and we will address them ASAP. We take E seriously!
 
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
