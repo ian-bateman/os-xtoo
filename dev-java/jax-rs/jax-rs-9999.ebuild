@@ -24,14 +24,22 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Reference implementation of the Java API for RESTful Services"
 HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( CDDL GPL-2 )"
+
 if [[ ${PV} == 2.1* ]]; then
 	SLOT="2.1"
+	S="${WORKDIR}/${MY_S}/${PN/-/}-api"
 else
 	SLOT="2"
+	S="${WORKDIR}/${MY_S}/src/${PN}-api"
+	JAVAC_ARGS="--add-modules java.xml.bind"
 fi
 
 DEPEND=">=virtual/jdk-1.9"
 
 RDEPEND=">=virtual/jre-1.9"
 
-S="${WORKDIR}/${MY_S}/${PN/-/}-api"
+java_prepare() {
+	if [[ ${SLOT} == 2 ]]; then
+		rm -r src/test || die "Failed to remove tests"
+	fi
+}
