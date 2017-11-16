@@ -46,6 +46,12 @@ DEPEND="${RDEPEND}
 
 PDEPEND="virtual/notification-daemon" #546134
 
+src_prepare() {
+	sed -i -e "s|Exec=nm-applet|Exec=/usr/bin/nm-applet --indicator|g" \
+		nm-applet.desktop.in || die "Failed to update desktop entry"
+	gnome2_src_prepare
+}
+
 src_configure() {
 	local myconf=(
 		--with-appindicator
