@@ -30,14 +30,15 @@ HOMEPAGE="https://javaee.github.io/javamail/"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-1.9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-1.9"
 
-S="${WORKDIR}/${MY_S}"
+S="${WORKDIR}/${MY_S}/mail"
 
-JAVA_RES_DIR="mail/src/main/resources"
+JAVAC_ARGS="--add-modules java.activation"
+JAVADOC_ARGS="${JAVAC_ARGS}"
 JAVA_SRC_DIR="
-	mail/src/main/java
-	mail/src/main/resources
+	src/main/java
+	src/main/resources
 "
