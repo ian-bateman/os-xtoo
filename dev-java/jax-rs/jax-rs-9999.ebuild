@@ -30,8 +30,8 @@ else
 	SLOT="2"
 fi
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-1.9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-1.9"
 
 S="${WORKDIR}/${MY_S}/${PN/-/}-api"
