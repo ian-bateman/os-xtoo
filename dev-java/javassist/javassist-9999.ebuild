@@ -33,9 +33,9 @@ HOMEPAGE="https://jboss-javassist.github.io/javassist/"
 LICENSE="MPL-1.1"
 SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-1.9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-1.9"
 
 S="${WORKDIR}/${MY_S}"
 
