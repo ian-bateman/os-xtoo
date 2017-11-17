@@ -27,7 +27,7 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="A library implements the client side of many basic Internet protocols"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
+SLOT=0
 
 DEPEND=">=virtual/jdk-1.8"
 
