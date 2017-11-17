@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -21,10 +21,27 @@ DESCRIPTION="Conversant ConcurrentQueue and Disruptor BlockingQueue"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-1.9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-1.9"
 
-S="${WORKDIR}/${P#conversant-}"
+S="${WORKDIR}/${P/conversant-/}"
 
-JAVA_SRC_DIR="src/main/java/"
+JAVAC_ARGS="--add-exports java.base/jdk.internal.vm.annotation=ALL-UNNAMED"
+
+java_prepare() {
+	local f files
+	files=(
+		AbstractWaitingCondition
+		ContendedAtomicLong
+		ContendedAtomicInteger
+		MPMCConcurrentQueue
+		MultithreadConcurrentQueue
+		PushPullConcurrentQueue
+	)
+	for f in ${files[@]}; do
+	sed -i -e "s|sun.misc.C|jdk.internal.vm.annotation.C|g" \
+		src/main/java/com/conversantmedia/util/concurrent/${f}.java \
+		|| die "Failed to sed @Contended for Java 9"
+	done
+}
