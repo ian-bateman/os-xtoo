@@ -5,17 +5,27 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+MY_PN="org.apache.${PN/-/.}"
+MY_PV="${PV}"
+MY_P="${MY_PN}-${MY_PV}"
+BASE_URI="https://github.com/apache/felix/"
+
+if [[ ${PV} == 9999 ]]; then
+	ECLASS="git-r3"
+	EGIT_REPO_URI="${BASE_URI}.git"
+	MY_S="${P}"
+else
+	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+	KEYWORDS="~amd64"
+	MY_S="felix-${MY_P}"
+fi
+
+inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="Felix Framework"
 HOMEPAGE="https://felix.apache.org/documentation/subprojects/apache-felix-framework.html"
 LICENSE="Apache-2.0"
-
-MY_PN="org.apache.felix.resolver"
-MY_P="${MY_PN}-${PV}"
-SRC_URI="mirror://apache/felix/${MY_P}-source-release.tar.gz"
 SLOT="0"
-KEYWORDS="~amd64"
 
 CP_DEPEND="dev-java/osgi-core-api:6"
 
@@ -25,6 +35,4 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
-S="${WORKDIR}/${MY_P}"
-
-JAVA_SRC_DIR="src/main"
+S="${WORKDIR}/${MY_S}"
