@@ -2094,10 +2094,11 @@ ejavac() {
 ejavadoc() {
 	debug-print-function ${FUNCNAME} $*
 
-	local javadoc_args=""
+	local javadoc_args
+	javadoc_args="$(java-pkg_javac-args)"
 
 	if java-pkg_is-vm-version-ge "1.8" ; then
-		javadoc_args="-Xdoclint:none"
+		javadoc_args+=" -Xdoclint:none"
 	fi
 
 	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
