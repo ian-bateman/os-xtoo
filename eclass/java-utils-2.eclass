@@ -129,9 +129,9 @@ JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/java-config-2/build/com
 #
 # Useful for local testing.
 #
-# Use jikes and javac, in that order
+# Use ecj and javac, in that order
 # @CODE
-#	JAVA_PKG_FORCE_COMPILER="jikes javac"
+#	JAVA_PKG_FORCE_COMPILER="ecj javac"
 # @CODE
 
 # @ECLASS-VARIABLE: JAVA_PKG_FORCE_ANT_TASKS
@@ -2192,7 +2192,6 @@ java-pkg_init() {
 	# TODO we will probably want to set JAVAC and JAVACFLAGS
 
 	# Do some QA checks
-	java-pkg_check-jikes
 
 	# Can't use unset here because Portage does not save the unset
 	# see https://bugs.gentoo.org/show_bug.cgi?id=189417#c11
@@ -2823,11 +2822,6 @@ java-pkg_check-versioned-jar() {
 	fi
 }
 
-java-pkg_check-jikes() {
-	if has jikes ${IUSE}; then
-		java-pkg_announce-qa-violation "deprecated USE flag 'jikes' in IUSE"
-	fi
-}
 
 java-pkg_announce-qa-violation() {
 	local nodie
