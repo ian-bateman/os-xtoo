@@ -50,9 +50,9 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 #
 # Should only be used for testing and debugging.
 #
-# Example: use sun-jdk-1.5 to emerge foo:
+# Example: use oracle-jdk-bin-9 to emerge foo:
 # @CODE
-#	JAVA_PKG_FORCE_VM=sun-jdk-1.5 emerge foo
+#	JAVA_PKG_FORCE_VM=oracle-jdk-bin-9 emerge foo
 # @CODE
 
 # @ECLASS-VARIABLE: JAVA_PKG_WANT_BUILD_VM
@@ -1343,13 +1343,13 @@ java-pkg_register-environment-variable() {
 	java-pkg_do_write_
 }
 
+# Deprecaed used by ant
 # @FUNCTION: java-pkg_get-bootclasspath
 # @USAGE: <version>
 # @DESCRIPTION:
 # Returns classpath of a given bootclasspath-providing package version.
 #
-# @param $1 - the version of bootclasspath (e.g. 1.5), 'auto' for bootclasspath
-#             of the current JDK
+# @param $1 - 'auto' for bootclasspath of the current JDK
 java-pkg_get-bootclasspath() {
 	local version="${1}"
 
@@ -1357,9 +1357,6 @@ java-pkg_get-bootclasspath() {
 	case "${version}" in
 		auto)
 			bcp="$(java-config -g BOOTCLASSPATH)"
-			;;
-		1.5)
-			bcp="$(java-pkg_getjars --build-only gnu-classpath-0.98)"
 			;;
 		*)
 			eerror "unknown parameter of java-pkg_get-bootclasspath"
@@ -2170,7 +2167,7 @@ java-pkg_init() {
 	local accept="${I_WANT_GLOBAL_JAVA_OPTIONS}"
 	if [[ -n ${_JAVA_OPTIONS} && -z ${accept} && -z ${silence} ]]; then
 		ewarn "_JAVA_OPTIONS changes what java -version outputs at least for"
-		ewarn "sun-jdk vms and and as such break configure scripts that"
+		ewarn "oracle-jdk-bin vms and and as such break configure scripts that"
 		ewarn "use it (for example app-office/openoffice) so we filter it out."
 		ewarn "Use SILENCE_JAVA_OPTIONS_WARNING=true in the environment (use"
 		ewarn "make.conf for example) to silence this warning or"
@@ -2503,20 +2500,9 @@ java-pkg_setup-vm() {
 	debug-print-function ${FUNCNAME} $*
 
 	local vendor="$(java-pkg_get-vm-vendor)"
-	if [[ "${vendor}" == "sun" ]] && java-pkg_is-vm-version-ge "1.5" ; then
-		addpredict "/dev/random"
-	elif [[ "${vendor}" == "ibm" ]]; then
-		addpredict "/proc/self/maps"
-		addpredict "/proc/cpuinfo"
-		addpredict "/proc/self/coredump_filter"
-	elif [[ "${vendor}" == "oracle" ]]; then
+	if [[ "${vendor}" == "oracle" ]] || [[ "${vendor}" == icedtea* ]]; then
 		addpredict "/dev/random"
 		addpredict "/proc/self/coredump_filter"
-	elif [[ "${vendor}" == icedtea* ]] && java-pkg_is-vm-version-ge "1.7" ; then
-		addpredict "/dev/random"
-		addpredict "/proc/self/coredump_filter"
-	elif [[ "${vendor}" == "jrockit" ]]; then
-		addpredict "/proc/cpuinfo"
 	fi
 }
 
