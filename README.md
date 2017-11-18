@@ -11,11 +11,6 @@ A majority of the ebuilds are not in tree. Some are corrections or
 modifications to versions in tree. Others are newer versions 
 and/or slot changes.
 
-Work for full support for Java 9 is underway. In addition to fully 
-replacing all needed Java packages in Gentoo that have not been 
-updated, and/or ingored. Eventually replacing all packages in dev-java 
-with superior well maintained current versions.
-
 Ebuilds in this overlay are to be current and latest available versions, 
 including working live ebuilds. All ebuilds in this overlay should be 
 production quality and many are used in production, though some are 
@@ -69,6 +64,16 @@ IDE from source. This will require additional work. Jars are missing
 various resources, icons, etc. That will be added in a secondary round, 
 as mentioned in a subsequent section. Otherwise this will likely never 
 happen in this repository.
+
+## Java
+This repository requires Java 9 now.
+
+Work for full support for Java 9 is underway. In addition to fully 
+replacing all needed Java packages in Gentoo that have not been 
+updated, and/or ingored. Eventually replacing all packages in dev-java 
+with superior well maintained current versions.
+
+This is the most comprehensive, current repository of Java ebuilds.
 
 ## Issues
 Feel free to open any issues with any package in this repository, 
