@@ -27,10 +27,17 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Extends the JCF classes with new interfaces, implementations and utilities"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-1.8"
+if [[ ${PV} == 3.*  ]]; then
+	SLOT="0"
+	JPV="1.7"
+else
+	SLOT="${PV%%.*}"
+	JPV="9"
+fi
 
-RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-${JPV}"
+
+RDEPEND=">=virtual/jre-${JPV}"
 
 S="${WORKDIR}/${MY_S}"
