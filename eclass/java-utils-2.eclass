@@ -2408,11 +2408,9 @@ java-pkg_do_write_() {
 			&& echo "BUILD_DEPEND=\"$(sort -u "${JAVA_PKG_BUILD_DEPEND_FILE}" | tr '\n' ':')\""
 	) > "${JAVA_PKG_ENV}"
 
-	# register target/source
-	local target="$(java-pkg_get-target)"
-	local source="$(java-pkg_get-source)"
-	[[ -n ${target} ]] && echo "TARGET=\"${target}\"" >> "${JAVA_PKG_ENV}"
-	[[ -n ${source} ]] && echo "SOURCE=\"${source}\"" >> "${JAVA_PKG_ENV}"
+	# register release
+	local release="$(java-pkg_get-target)"
+	[[ -n ${release} ]] && echo "RELEASE=\"${release}\"" >> "${JAVA_PKG_ENV}"
 
 	# register javadoc info
 	[[ -n ${JAVADOC_PATH} ]] && echo "JAVADOC_PATH=\"${JAVADOC_PATH}\"" \
