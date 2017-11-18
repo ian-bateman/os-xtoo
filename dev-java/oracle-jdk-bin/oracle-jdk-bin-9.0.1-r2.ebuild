@@ -10,22 +10,13 @@ JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-
 BUILD_NUMBER="$(get_version_component_range 2)"
 
 # This is a list of archs supported by this update.
-# Currently arm comes and goes.
-#AT_AVAILABLE=( amd64 sparc64-solaris x64-macos )
 AT_AVAILABLE=( amd64 )
 
 AT_amd64="jdk-${PV}_linux-x64_bin.tar.gz"
-#AT_sparc64_solaris="${AT_sparc_solaris} jdk-${PV}_solaris-sparcv9_bin.tar.gz"
-#AT_x64_macos="jdk-${PV}_osx-x64_bin.dmg"
 
 DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
 SRC_URI="${AT_amd64}"
-#for d in "${AT_AVAILABLE[@]}"; do
-#	SRC_URI+=" ${d}? ( $(eval "echo \${$(echo AT_${d/-/_})}")"
-#	SRC_URI+=" )"
-#done
-#unset d
 
 LICENSE="Oracle-BCLA-JavaSE"
 SLOT="9"
@@ -137,6 +128,12 @@ src_prepare() {
 		eqawarn
 		eqawarn "$(./bin/javap -J-Duser.home=${T} -c jdk.internal.vm.PostVMInitHook || die)"
 	fi
+
+	# attempt to remove usage tracker, causes access violations
+	# does not seem to be enough
+	sed -i -e '/jdk\/internal\/vm\/PostVMInitHook/d' \
+		-e '/sun\/usagetracker/d' lib/classlist \
+		|| die "Failed to remove class for usage tracker"
 }
 
 src_install() {
@@ -189,11 +186,7 @@ src_install() {
 	fi
 
 	if use source ; then
-		cp -v src.zip "${ddest}" || die
-
-		if use javafx ; then
-			cp -v javafx-src.zip "${ddest}" || die
-		fi
+		cp -v lib/src.zip "${ddest}" || die
 	fi
 
 	if [[ -d lib/desktop ]] ; then
@@ -229,20 +222,7 @@ src_install() {
 
 	# see bug #207282
 	einfo "Creating the Class Data Sharing archives"
-	case ${ARCH} in
-		arm|ia64)
-			${ddest}/bin/java -client -Xshare:dump || die
-			;;
-		x86)
-			${ddest}/bin/java -client -Xshare:dump || die
-			# limit heap size for large memory on x86 #467518
-			# this is a workaround and shouldn't be needed.
-			${ddest}/bin/java -server -Xms64m -Xmx64m -Xshare:dump || die
-			;;
-		*)
-			${ddest}/bin/java -server -Xshare:dump || die
-			;;
-	esac
+	${ddest}/bin/java -server -Xshare:dump || die
 
 	# Remove empty dirs we might have copied.
 	find "${D}" -type d -empty -exec rmdir -v {} + || die
