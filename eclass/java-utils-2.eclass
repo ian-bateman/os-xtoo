@@ -32,21 +32,6 @@ export WANT_JAVA_CONFIG="2"
 JAVA_PKG_E_DEPEND=">=dev-java/java-config-2.2.0-r3"
 has source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
-# @ECLASS-VARIABLE: JAVA_PKG_WANT_BOOTCLASSPATH
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# The version of bootclasspath the package needs to work. Translates to a proper
-# dependency. The bootclasspath can then be obtained by java-ant_rewrite-bootclasspath
-if [[ -n "${JAVA_PKG_WANT_BOOTCLASSPATH}" ]]; then
-	if [[ "${JAVA_PKG_WANT_BOOTCLASSPATH}" == "1.5" ]]; then
-		JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} >=dev-java/gnu-classpath-0.98-r1:0.98"
-	else
-		eerror "Unknown value of JAVA_PKG_WANT_BOOTCLASSPATH"
-		# since die in global scope doesn't work, this will make repoman fail
-		JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} BAD_JAVA_PKG_WANT_BOOTCLASSPATH"
-	fi
-fi
-
 # @ECLASS-VARIABLE: JAVA_PKG_ALLOW_VM_CHANGE
 # @DESCRIPTION:
 # Allow this eclass to change the active VM?
