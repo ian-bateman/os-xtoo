@@ -1,10 +1,12 @@
-# Copyright 2004-2015 Gentoo Foundation
+# Copyright 2016-2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+
+# Based on eclass from gentoo main tree
+# Copyright 2004-2015 Gentoo Foundation
 
 # @ECLASS: java-utils-2.eclass
 # @MAINTAINER:
-# java@gentoo.org
+# William L. Thomson Jr. <wlt@o-sinc.com>
 # @AUTHOR:
 # Thomas Matthijs <axxo@gentoo.org>, Karl Trygve Kalleberg <karltk@gentoo.org>
 # @BLURB: Base eclass for Java packages
@@ -30,7 +32,8 @@ export WANT_JAVA_CONFIG="2"
 # the version of java-config we want to use. Usually the latest stable version
 # so that ebuilds can use new features without depending on specific versions.
 JAVA_PKG_E_DEPEND=">=dev-java/java-config-2.2.0-r3"
-has source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
+has source ${JAVA_PKG_IUSE} && \
+	JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
 # @ECLASS-VARIABLE: JAVA_PKG_ALLOW_VM_CHANGE
 # @DESCRIPTION:
