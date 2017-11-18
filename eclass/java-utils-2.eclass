@@ -1680,19 +1680,17 @@ java-pkg_get-javac() {
 java-pkg_javac-args() {
 	debug-print-function ${FUNCNAME} $*
 
-	local want_source="$(java-pkg_get-source)"
-	local want_target="$(java-pkg_get-target)"
+	local want_release="$(java-pkg_get-target)"
+	want_release="${want_release/1./}"
 
-	local source_str="-source ${want_source}"
-	local target_str="-target ${want_target}"
+	local release_str="--release ${want_release}"
 
-	debug-print "want source: ${want_source}"
-	debug-print "want target: ${want_target}"
+	debug-print "want release: ${want_release}"
 
-	if [[ -z "${want_source}" || -z "${want_target}" ]]; then
-		die "Could not find valid -source/-target values for javac"
+	if [[ -z "${want_release}" ]]; then
+		die "Could not find valid --release values for javac"
 	else
-		echo "${source_str} ${target_str}"
+		echo "${release_str}"
 	fi
 }
 
