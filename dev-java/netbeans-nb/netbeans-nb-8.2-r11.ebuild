@@ -16,7 +16,7 @@ SLOT="8.2"
 
 S="${WORKDIR}"
 
-CDEPEND="virtual/jdk:1.8
+CDEPEND=">=virtual/jdk-9:*
 	~dev-java/netbeans-platform-${PV}
 	~dev-java/netbeans-harness-${PV}
 	~dev-java/netbeans-ide-${PV}"
@@ -29,8 +29,10 @@ INSTALL_DIR="/usr/share/${PN}-${SLOT}"
 
 EANT_BUILD_XML="nbbuild/build.xml"
 EANT_BUILD_TARGET="rebuild-cluster create-netbeans-import finish-build"
-EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.nb -Dext.binaries.downloaded=true -Dpermit.jdk8.builds=true"
-EANT_FILTER_COMPILER="ecj-3.3 ecj-3.4 ecj-3.5 ecj-3.6 ecj-3.7"
+EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.nb "
+EANT_EXTRA_ARGS+="-Dext.binaries.downloaded=true "
+EANT_EXTRA_ARGS+="-Dpermit.jdk9.builds=true "
+
 JAVA_PKG_BSFIX="off"
 
 src_unpack() {
