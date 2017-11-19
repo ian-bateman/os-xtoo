@@ -20,12 +20,11 @@ LICENSE="|| ( CDDL GPL-2-with-linking-exception )"
 KEYWORDS="~amd64"
 S="${WORKDIR}"
 
-CDEPEND="virtual/jdk:1.8
+CDEPEND=">=virtual/jdk-9:*
 	~dev-java/netbeans-extide-${PV}
 	~dev-java/netbeans-ide-${PV}
 	~dev-java/netbeans-java-${PV}
-	~dev-java/netbeans-platform-${PV}"
-DEPEND="${CDEPEND}
+	~dev-java/netbeans-platform-${PV}
 	app-arch/unzip
 	dev-java/javahelp:0
 	dev-java/junit:4"
@@ -35,8 +34,9 @@ INSTALL_DIR="/usr/share/${PN}-${SLOT}"
 
 EANT_BUILD_XML="nbbuild/build.xml"
 EANT_BUILD_TARGET="rebuild-cluster"
-EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.javafx -Dext.binaries.downloaded=true -Dpermit.jdk8.builds=true"
-EANT_FILTER_COMPILER="ecj-3.3 ecj-3.4 ecj-3.5 ecj-3.6 ecj-3.7"
+EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.javafx "
+EANT_EXTRA_ARGS+="-Dext.binaries.downloaded=true "
+EANT_EXTRA_ARGS+="-Dpermit.jdk9.builds=true "
 JAVA_PKG_BSFIX="off"
 
 src_unpack() {
