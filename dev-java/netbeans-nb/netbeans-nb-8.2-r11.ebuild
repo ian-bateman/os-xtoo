@@ -32,7 +32,7 @@ EANT_BUILD_TARGET="rebuild-cluster create-netbeans-import finish-build"
 EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.nb "
 EANT_EXTRA_ARGS+="-Dext.binaries.downloaded=true "
 EANT_EXTRA_ARGS+="-Dpermit.jdk9.builds=true "
-
+EANT_EXTRA_ARGS+="-Djavac.compilerargs=\"--release 6\""
 JAVA_PKG_BSFIX="off"
 
 src_unpack() {
@@ -49,6 +49,20 @@ src_prepare() {
 	find -name "*.class" -type f | xargs rm -vf
 
 	epatch netbeans-8.2-build.xml.patch
+
+	# java 9 fixes
+	sed -i -e '92,100d' \
+		nbbuild/antsrc/org/netbeans/nbbuild/CustomJavac.java \
+		|| die "Failed to remove -source from CustomJavac.java"
+	sed -i -e 's|source="1.7"||g' -e 's|target="1.7"||g' \
+		-e 's|-Xlint:-serial|-Xlint:-serial ${javac.compilerargs}|g' \
+		nbbuild/build.xml \
+		|| die "Failed to remove source/target from build.xml"
+	sed -i -e '/name="javac.source" value="1.4"/d' \
+		-e '/name="javac.target"/d' \
+		-e 's|source="${javac.source}" target="${javac.target}"||g' \
+		nbbuild/templates/common.xml \
+		|| die "Failed to remove source/target from common.xml"
 
 	einfo "Symlinking external libraries..."
 	java-pkg_jar-from --build-only --into javahelp/external javahelp javahelp.jar jhall-2.0_05.jar
