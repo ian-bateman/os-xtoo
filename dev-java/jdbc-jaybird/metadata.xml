@@ -4,7 +4,4 @@
   <maintainer type="person">
     <email>wlt@o-sinc.com</email>
   </maintainer>
-  <use>
-    <flag name="jni">Build type 2 ODBC driver and JNI library</flag>
-  </use>
 </pkgmetadata>
