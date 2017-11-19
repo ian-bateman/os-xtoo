@@ -80,6 +80,18 @@ Feel free to open any issues with any package in this repository,
 problems, version bumps, etc. They will be address ASAP as this is an 
 actively maintained repository.
 
+## Layman
+You can add this overlay to layman as an external git repo.
+```
+/etc/portage/repos.conf/os-xtoo.conf
+
+[os-xtoo]
+location = /usr/local/overlay/os-xtoo
+sync-type = git
+sync-uri = https://github.com/Obsidian-StudiosInc/os-xtoo.git
+auto-sync = yes
+```
+
 ## Process
 
 Ebuilds in this overlay are a constant work in progress. They are added 
