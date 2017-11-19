@@ -87,7 +87,7 @@ SRC_URI="${SOURCE_URL}
 LICENSE="|| ( CDDL GPL-2-with-linking-exception )"
 KEYWORDS="~amd64"
 
-CDEPEND="virtual/jdk:1.8
+CDEPEND=">=virtual/jdk-9:=
 	~dev-java/netbeans-harness-${PV}
 	~dev-java/netbeans-platform-${PV}
 	>=dev-java/antlr-4.5:4
@@ -134,11 +134,10 @@ INSTALL_DIR="/usr/share/${PN}-${SLOT}"
 
 EANT_BUILD_XML="nbbuild/build.xml"
 EANT_BUILD_TARGET="rebuild-cluster"
-EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.ide -Dext.binaries.downloaded=true -Djava.awt.headless=true -Dpermit.jdk8.builds=true"
+EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.ide "
+EANT_EXTRA_ARGS+="-Dext.binaries.downloaded=true -Djava.awt.headless=true "
+EANT_EXTRA_ARGS+="-Dpermit.jdk9.builds=true "
 JAVA_PKG_BSFIX="off"
-
-JAVA_PKG_WANT_SOURCE="1.7"
-JAVA_PKG_WANT_TARGET="1.7"
 
 src_unpack() {
 	unpack $(basename ${SOURCE_URL})
