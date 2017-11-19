@@ -105,3 +105,20 @@ Most, not all, Java ebuilds within this repository are presently in use
 both in development and production. The rest have been used at some 
 point thus in this repository. Everything should be usable, and as 
 stable as provided by upstream.
+
+## Systemd
+We run [openrc](https://github.com/OpenRC/openrc) not 
+[systemd](https://www.freedesktop.org/wiki/Software/systemd/). 
+Systemd users may experience new issues with packages in this overlay, 
+specifically 
+[efl](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/dev-libs/efl), 
+[englightenment](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/x11-wm/enlightenment) 
+and/or 
+[tomcat](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/www-servers/tomcat). 
+All untested under systemd. Not to likely to have problems with other  
+packages but it is possible.
+ 
+Please report any issues when running under systemd. Also ideally be 
+willing and available to test any fixes, as we cannot without setting 
+up a Gentoo test env running systemd. Thank you for your understanding 
+and cooperation.
