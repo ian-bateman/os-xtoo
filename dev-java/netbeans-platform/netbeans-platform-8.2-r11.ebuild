@@ -45,7 +45,7 @@ CDEPEND="dev-java/hamcrest-core:1.3
 	dev-java/osgi-compendium:${OSGI_COMP}
 	dev-java/swing-layout:1[source]
 	dev-java/testng:0"
-DEPEND="dev-java/oracle-jdk-bin:1.8[javafx]
+DEPEND="dev-java/oracle-jdk-bin:9[javafx]
 	app-arch/unzip
 	${CDEPEND}"
 RDEPEND=">=virtual/jdk-1.7
@@ -55,16 +55,15 @@ INSTALL_DIR="/usr/share/${PN}-${SLOT}"
 
 EANT_BUILD_XML="nbbuild/build.xml"
 EANT_BUILD_TARGET="rebuild-cluster"
-EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.platform -Dext.binaries.downloaded=true -Djava.awt.headless=true -Dpermit.jdk8.builds=true"
-EANT_FILTER_COMPILER="ecj-3.3 ecj-3.4 ecj-3.5 ecj-3.6 ecj-3.7"
+EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.platform "
+EANT_EXTRA_ARGS+="-Dext.binaries.downloaded=true "
+EANT_EXTRA_ARGS+="-Djava.awt.headless=true "
+EANT_EXTRA_ARGS+="-Dpermit.jdk9.builds=true "
 JAVA_PKG_BSFIX="off"
-JAVA_PKG_WANT_BUILD_VM="oracle-jdk-bin-1.8"
-JAVA_PKG_WANT_SOURCE="1.8"
-JAVA_PKG_WANT_TARGET="1.8"
 
 src_unpack() {
 	unpack $(basename ${SOURCE_URL})
-	unpack ${PN:0:8}-${SLOT}-build.xml.patch.bz2
+	unpack ${PN%%-*}-${SLOT}-build.xml.patch.bz2
 
 	pushd "${S}" >/dev/null || die
 	ln -s "${DISTDIR}"/2F7553F50B0D14ED811B849C282DA8C1FFC32AAE-asm-all-5.0.1.jar libs.asm/external/asm-all-5.0.1.jar || die
