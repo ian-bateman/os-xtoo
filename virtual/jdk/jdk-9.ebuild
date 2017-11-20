@@ -5,8 +5,9 @@ EAPI="6"
 
 DESCRIPTION="Virtual for Java Development Kit (JDK)"
 KEYWORDS="~amd64"
-SLOT="9"
+SLOT="${PV%%.*}"
 
 RDEPEND="|| (
+		dev-java/openjdk-bin:${SLOT}
 		dev-java/oracle-jdk-bin:${SLOT}
 	)"
