@@ -124,6 +124,8 @@ java-pkg-simple_src_compile() {
 			JAVA_SRC_DIR="src/java"
 		elif [[ -d "${S}/src/main" ]]; then
 			JAVA_SRC_DIR="src/main"
+		elif [[ -d "${S}/src" ]]; then
+			JAVA_SRC_DIR="src"
 		fi
 	fi
 	find ${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
