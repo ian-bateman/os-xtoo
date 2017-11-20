@@ -1,0 +1,236 @@
+diff --git a/src/main/java/freemarker/ext/jdom/NodeListModel.java b/src/main/java/freemarker/ext/jdom/NodeListModel.java
+index bc39befe..25384c12 100644
+--- a/src/main/java/freemarker/ext/jdom/NodeListModel.java
++++ b/src/main/java/freemarker/ext/jdom/NodeListModel.java
+@@ -37,17 +37,17 @@ import org.jaxen.Context;
+ import org.jaxen.JaxenException;
+ import org.jaxen.NamespaceContext;
+ import org.jaxen.jdom.JDOMXPath;
+-import org.jdom.Attribute;
+-import org.jdom.CDATA;
+-import org.jdom.Comment;
+-import org.jdom.DocType;
+-import org.jdom.Document;
+-import org.jdom.Element;
+-import org.jdom.EntityRef;
+-import org.jdom.Namespace;
+-import org.jdom.ProcessingInstruction;
+-import org.jdom.Text;
+-import org.jdom.output.XMLOutputter;
++import org.jdom2.Attribute;
++import org.jdom2.CDATA;
++import org.jdom2.Comment;
++import org.jdom2.DocType;
++import org.jdom2.Document;
++import org.jdom2.Element;
++import org.jdom2.EntityRef;
++import org.jdom2.Namespace;
++import org.jdom2.ProcessingInstruction;
++import org.jdom2.Text;
++import org.jdom2.output.XMLOutputter;
+ 
+ import freemarker.template.SimpleHash;
+ import freemarker.template.SimpleScalar;
+@@ -201,26 +201,27 @@ implements
+         try {
+             for (Iterator i = nodes.iterator(); i.hasNext(); ) {
+                 Object node = i.next();
++                XMLOutputter xmlout = new XMLOutputter();
+                 if (node instanceof Element)
+-                    OUTPUT.output((Element) node, sw);
++                    xmlout.output((Element) node, sw);
+                 else if (node instanceof Attribute)
+                     OUTPUT.output((Attribute) node, sw);
+                 else if (node instanceof String)
+-                    sw.write(OUTPUT.escapeElementEntities(node.toString()));
++                    sw.write(xmlout.escapeElementEntities(node.toString()));
+                 else if (node instanceof Text)
+-                    OUTPUT.output((Text) node, sw);
++                    xmlout.output((Text) node, sw);
+                 else if (node instanceof Document)
+-                    OUTPUT.output((Document) node, sw);
++                    xmlout.output((Document) node, sw);
+                 else if (node instanceof ProcessingInstruction)
+-                    OUTPUT.output((ProcessingInstruction) node, sw);
++                    xmlout.output((ProcessingInstruction) node, sw);
+                 else if (node instanceof Comment)
+-                    OUTPUT.output((Comment) node, sw);
++                    xmlout.output((Comment) node, sw);
+                 else if (node instanceof CDATA)
+-                    OUTPUT.output((CDATA) node, sw);
++                    xmlout.output((CDATA) node, sw);
+                 else if (node instanceof DocType)
+-                    OUTPUT.output((DocType) node, sw);
++                    xmlout.output((DocType) node, sw);
+                 else if (node instanceof EntityRef)
+-                    OUTPUT.output((EntityRef) node, sw);
++                    xmlout.output((EntityRef) node, sw);
+                 else
+                     throw new TemplateModelException(node.getClass().getName() + " is not a core JDOM class");
+             }
+@@ -661,7 +662,7 @@ implements
+                 else if ("data".equals(localName))
+                     attr = new Attribute("data", pi.getData());
+                 else
+-                    attr = new Attribute(localName, pi.getValue(localName));
++                    attr = new Attribute(localName, pi.getValue());
+             } else if (node instanceof DocType) {
+                 DocType doctype = (DocType) node;
+                 if ("publicId".equals(localName))
+@@ -762,15 +763,15 @@ implements
+ 
+     private static final Element getParent(Object node) {
+         if (node instanceof Element)
+-            return((Element) node).getParent();
++            return((Element) node).getParentElement();
+         else if (node instanceof Attribute)
+             return((Attribute) node).getParent();
+         else if (node instanceof Text)
+-            return((Text) node).getParent();
++            return((Text) node).getParentElement();
+         else if (node instanceof ProcessingInstruction)
+-            return((ProcessingInstruction) node).getParent();
++            return((ProcessingInstruction) node).getParentElement();
+         else if (node instanceof Comment)
+-            return((Comment) node).getParent();
++            return((Comment) node).getParentElement();
+         else if (node instanceof EntityRef)
+             return((EntityRef) node).getParent();
+         else
+@@ -794,7 +795,7 @@ implements
+             LinkedList list = new LinkedList();
+             do {
+                 list.addFirst(parent);
+-                parent = parent.getParent();
++                parent = parent.getParentElement();
+             } while (parent != null);
+             return list;
+         }
+@@ -808,7 +809,7 @@ implements
+             list.addFirst(node);
+             do {
+                 list.addFirst(parent);
+-                parent = parent.getParent();
++                parent = parent.getParentElement();
+             } while (parent != null);
+             return list;
+         }
+@@ -861,7 +862,7 @@ implements
+                 Element parent = ((Attribute) node).getParent();
+                 doc = parent == null ? null : parent.getDocument();
+             } else if (node instanceof Text) {
+-                Element parent = ((Text) node).getParent();
++                Element parent = ((Text) node).getParentElement();
+                 doc = parent == null ? null : parent.getDocument();
+             } else if (node instanceof Document)
+                 doc = (Document) node;
+@@ -1136,7 +1137,7 @@ implements
+     @Deprecated
+     public static void main(String[] args)
+     throws Exception {
+-        org.jdom.input.SAXBuilder builder = new org.jdom.input.SAXBuilder();
++        org.jdom2.input.SAXBuilder builder = new org.jdom2.input.SAXBuilder();
+         Document document = builder.build(System.in);
+         SimpleHash model = new SimpleHash();
+         model.put("document", new NodeListModel(document));
+@@ -1148,16 +1149,17 @@ implements
+         w.close();
+     }
+ 
+-    private static final class AttributeXMLOutputter extends XMLOutputter {
++    private static final class AttributeXMLOutputter {
+         public void output(Attribute attribute, Writer out)
+         throws IOException {
+-            out.write(" ");
+-            out.write(attribute.getQualifiedName());
+-            out.write("=");
+-
+-            out.write("\"");
+-            out.write(escapeAttributeEntities(attribute.getValue()));
+-            out.write("\"");
++            XMLOutputter o = new XMLOutputter();
++            o.output(new Text(" "),out);
++            o.output(new Text(attribute.getQualifiedName()),out);
++            o.output(new Text("="),out);
++
++            o.output(new Text("\""),out);
++            o.output(new Text(o.escapeAttributeEntities(attribute.getValue())),out);
++            o.output(new Text("\""),out);
+         }
+     }
+ 
+diff --git a/src/main/java/freemarker/ext/xml/_JdomNavigator.java b/src/main/java/freemarker/ext/xml/_JdomNavigator.java
+index 6ff4440b..95862ee2 100644
+--- a/src/main/java/freemarker/ext/xml/_JdomNavigator.java
++++ b/src/main/java/freemarker/ext/xml/_JdomNavigator.java
+@@ -27,17 +27,17 @@ import java.util.List;
+ import org.jaxen.Context;
+ import org.jaxen.NamespaceContext;
+ import org.jaxen.jdom.JDOMXPath;
+-import org.jdom.Attribute;
+-import org.jdom.CDATA;
+-import org.jdom.Comment;
+-import org.jdom.DocType;
+-import org.jdom.Document;
+-import org.jdom.Element;
+-import org.jdom.EntityRef;
+-import org.jdom.Namespace;
+-import org.jdom.ProcessingInstruction;
+-import org.jdom.Text;
+-import org.jdom.output.XMLOutputter;
++import org.jdom2.Attribute;
++import org.jdom2.CDATA;
++import org.jdom2.Comment;
++import org.jdom2.DocType;
++import org.jdom2.Document;
++import org.jdom2.Element;
++import org.jdom2.EntityRef;
++import org.jdom2.Namespace;
++import org.jdom2.ProcessingInstruction;
++import org.jdom2.Text;
++import org.jdom2.output.XMLOutputter;
+ 
+ import freemarker.template.TemplateModelException;
+ 
+@@ -122,7 +122,7 @@ public class _JdomNavigator extends Navigator {
+             } else if ("data".equals(localName)) {
+                 result.add(new Attribute("data", pi.getData()));
+             } else {
+-                result.add(new Attribute(localName, pi.getValue(localName)));
++                result.add(new Attribute(localName, pi.getValue()));
+             }
+         } else if (node instanceof DocType) {
+             DocType doctype = (DocType) node;
+@@ -158,19 +158,19 @@ public class _JdomNavigator extends Navigator {
+     @Override
+     Object getParent(Object node) {
+         if (node instanceof Element) {
+-            return((Element) node).getParent();
++            return((Element) node).getParentElement();
+         }
+         if (node instanceof Attribute) {
+             return((Attribute) node).getParent();
+         }
+         if (node instanceof Text) {
+-            return((Text) node).getParent();
++            return((Text) node).getParentElement();
+         }
+         if (node instanceof ProcessingInstruction) {
+-            return((ProcessingInstruction) node).getParent();
++            return((ProcessingInstruction) node).getParentElement();
+         }
+         if (node instanceof Comment) {
+-            return((Comment) node).getParent();
++            return((Comment) node).getParentElement();
+         }
+         if (node instanceof EntityRef) {
+             return((EntityRef) node).getParent();
+@@ -186,7 +186,7 @@ public class _JdomNavigator extends Navigator {
+             Element parent = ((Attribute) node).getParent();
+             return parent == null ? null : parent.getDocument();
+         } else if (node instanceof Text) {
+-            Element parent = ((Text) node).getParent();
++            Element parent = ((Text) node).getParentElement();
+             return parent == null ? null : parent.getDocument();
+         } else if (node instanceof Document)
+             return node;
