@@ -51,6 +51,19 @@ We develop and maintain a few E applications:
 If you have any issues with E packages in this repository. Let us know 
 and we will address them ASAP. We take E seriously!
 
+Enlightenment and EFL is likely one of the most buggy window 
+managers, desktops and toolkits ever! Upstream is not responsive to 
+feedback or any critique. There are numerous bugs, and new versions 
+seem to get worse vs better. Things they do not care about; X, multiple 
+displays, copy and paste. Those tend to have major issues compared to  
+other window managers, desktops, and toolkits.
+
+You have been forewarned! Make sure to file [bugs 
+upstream](https://phab.enlightenment.org/). We are unable to due to a 
+[permanent ban](https://phab.enlightenment.org/T6222). Horrendously 
+rude community! There are a few who are professional and polite. Look at 
+the [bugs for ecrire being ignored...](https://github.com/Obsidian-StudiosInc/ecrire/issues)
+
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
 [Netbeaners](https://netbeans.org). That will be added someday but for 
