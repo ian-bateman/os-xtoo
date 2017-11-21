@@ -28,8 +28,8 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bcel:0
 	dev-java/bsf:2.3
+	dev-java/commons-bcel:0
 	dev-java/commons-logging:0
 	dev-java/commons-net:0
 	dev-java/jakarta-oro:2.0
