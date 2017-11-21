@@ -58,16 +58,8 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 	dev-java/osgi-compendium:${OSGI_SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
+	dev-java/xml-commons-external:1.4
 "
-#	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
-#	~dev-java/eclipse-e4-core-di-${PV}:${SLOT}
-#	~dev-java/eclipse-e4-core-di-extensions-${PV}:${SLOT}
-#	dev-java/eclipse-emf-common:${EEMF_SLOT}
-#	dev-java/eclipse-emf-ecore:${EEMF_SLOT}
-#	dev-java/eclipse-emf-ecore-xmi:${EEMF_SLOT}
-#	~dev-java/eclipse-equinox-registry-${PV}:${SLOT}
-#	dev-java/osgi-core-api:${OSGI_SLOT}
-#"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
