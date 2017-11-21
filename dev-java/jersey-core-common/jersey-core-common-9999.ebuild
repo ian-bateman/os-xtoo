@@ -37,12 +37,16 @@ CP_DEPEND="
 
 DEPEND="${CP_DEPEND}
 	dev-java/istack-commons-buildtools:0
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/${PN#*-*}"
+
+JAVAC_ARGS="--add-modules java.activation "
+JAVAC_ARGS+="--add-exports java.base/jdk.internal.vm.annotation=ALL-UNNAMED "
+JAVAC_ARGS+="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
 
 java_prepare() {
 	sed -i -e "s|\${project.version}|${PV}|" \
@@ -59,4 +63,9 @@ java_prepare() {
 	sed -i -e '409d' \
 		"src/main/java/org/glassfish/jersey/message/internal/OutboundJaxrsResponse.java" \
 		|| die "Could not remove @Override"
+
+	#java 9
+	sed -i -e "s|sun.misc.C|jdk.internal.vm.annotation.C|g" \
+		src/main/java/org/glassfish/jersey/internal/jsr166/SubmissionPublisher.java \
+		|| die "Failed to sed @Contended for Java 9"
 }
