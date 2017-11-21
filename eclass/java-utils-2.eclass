@@ -2880,10 +2880,9 @@ java-pkg_gen-cp() {
 
 	local atom
 	for atom in ${CP_DEPEND}; do
-		if [[ ${atom} =~ /(([[:alnum:]+_-]+)-[0-9]+(\.[0-9]+)*[a-z]?(_[[:alnum:]]+?(_[[:alnum:]]+))?(-r[0-9]*)?|[[:alnum:]+_-]+):([[:alnum:]+_.-]+) ]]; then
+		if [[ ${atom} =~ /(([[:alnum:]+_-]+)-[0-9]+(\.[0-9]+)*[a-z]?(_[[:alnum:]]+)?(_[[:alnum:]]+)?(-r[0-9]*)?|[[:alnum:]+_-]+):([[:alnum:]+_.-]+) ]]; then
 			atom=${BASH_REMATCH[2]:-${BASH_REMATCH[1]}}
-			[[ ${BASH_REMATCH[6]} != 0 ]] && atom+=-${BASH_REMATCH[6]}
-			[[ ${BASH_REMATCH[7]} != 0 ]] && atom+=${BASH_REMATCH[7]}
+			[[ ${BASH_REMATCH[7]} != 0 ]] && atom+=-${BASH_REMATCH[7]}
 			local regex="(^|\s|,)${atom}($|\s|,)"
 			[[ ${!1} =~ ${regex} ]] || declare -g ${1}+=${!1:+,}${atom}
 		else
