@@ -73,6 +73,7 @@ CP_DEPEND="
 	dev-java/icu4j:0
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
+	dev-java/xml-commons-external:1.4
 "
 
 DEPEND="${CP_DEPEND}
