@@ -42,6 +42,14 @@ S="${WORKDIR}/${MY_S}/${PN##*-}"
 
 PATCHES=( "${FILESDIR}/cli.patch" )
 
+java_prepare() {
+	sed -i -e "s|String dirName|    dirName|" \
+		-e "171i\ \ \ \ \ \ \ \ \ \ \ \ String dirName = new String();" \
+		-e "171iif(bundleName.indexOf('.')>0)" \
+		src/com/sun/istack/build/ResourceGenTask.java \
+		|| die "Failed to add conditional to fix java.lang.StringIndexOutOfBoundsException"
+}
+
 src_install() {
 	java-pkg-simple_src_install
 	java-pkg_dolauncher istack-cli --main com.sun.istack.build.ResourceGenCLI
