@@ -31,11 +31,14 @@ HOMEPAGE="https://www.groovy-lang.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
+ASM_SLOT="6"
+CLI_SLOT="1"
+
 CP_DEPEND="
 	dev-java/ant-ivy:0
 	>=dev-java/antlr-2.7.7-r7:0
-	dev-java/asm:6
-	dev-java/commons-cli:1
+	dev-java/asm:${ASM_SLOT}
+	dev-java/commons-cli:${CLI_SLOT}
 	dev-java/jansi:0
 	dev-java/xstream:0
 "
@@ -98,10 +101,10 @@ generate_exceptionutils() {
 		|| die "Failed to rename/move utils.gradle -> ${EU}"
 
 	einfo "Compile ${EU%.java}"
-	ejavac -cp "$(java-pkg_getjars asm-5)" "${EU}"
+	ejavac -cp "$(java-pkg_getjars asm-${ASM_SLOT})" "${EU}"
 
 	einfo "Run ${EU%.java}"
-	java -cp ".:$(java-pkg_getjars asm-5)" "${EU%.java}" \
+	java -cp ".:$(java-pkg_getjars asm-${ASM_SLOT})" "${EU%.java}" \
 		|| die "Failed to run ${EU%.java}"
 
 	mv "${JAVA_SRC_DIR}/${tmpdir}/${EU%.java}.class" \
@@ -122,13 +125,13 @@ src_compile() {
 	sources=groovy_sources.lst
 	classes=target/groovy_classes
 	find "${S}/src/main" -name \*.groovy > ${sources}
-	sed -i -e "s|\$GROOVY_HOME/lib/@GROOVYJAR@|${S}/${PN}.jar:$(java-pkg_getjars antlr,asm-5,commons-cli-1)|" \
+	sed -i -e "s|\$GROOVY_HOME/lib/@GROOVYJAR@|${S}/${PN}.jar:$(java-pkg_getjars antlr,asm-${ASM_SLOT},commons-cli-${CLI_SLOT})|" \
 		"src/bin/startGroovy" \
 		|| die "Could not modify startGroovy"
 	chmod 775 "src/bin/groovyc" "src/bin/startGroovy"\
 		|| die "Failed to make groovyc,startGroovy executable"
 	"src/bin/groovyc" -d ${classes} \
-		-cp "${PN}.jar:$(java-pkg_getjars ant-ivy-2,commons-cli-1)" \
+		-cp "${PN}.jar:$(java-pkg_getjars ant-ivy,commons-cli-${CLI_SLOT})" \
 		@${sources} \
 		|| die "Failed to compile groovy files"
 	# ugly should be included with existing
