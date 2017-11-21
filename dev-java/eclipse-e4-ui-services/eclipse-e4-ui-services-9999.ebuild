@@ -44,8 +44,8 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
+	dev-java/xml-commons-external:1.4
 "
-#	~dev-java/eclipse-equinox-registry-${PV}:${SLOT}
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
@@ -54,5 +54,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
-
-JAVA_SRC_DIR="src"
