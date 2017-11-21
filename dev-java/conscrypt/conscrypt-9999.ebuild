@@ -29,13 +29,15 @@ HOMEPAGE="https://conscrypt.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/"
 
 JAVA_SRC_DIR="common/src/main/java openjdk/src/main/java"
+JAVAC_ARGS+="--add-exports=java.base/sun.security.x509=ALL-UNNAMED "
+#JAVAC_ARGS="--add-modules java.base"
 
 java_prepare() {
 	# Google insanity....
