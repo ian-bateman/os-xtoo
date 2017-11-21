@@ -41,14 +41,15 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
-JAVA_SRC_DIR="src/java"
+JAVAC_ARGS="--add-modules java.activation "
+JAVAC_ARGS+="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
 
 # From tree, only part copied
 # Two drivers for two very old implementations of StAX.
