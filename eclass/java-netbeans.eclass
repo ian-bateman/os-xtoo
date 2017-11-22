@@ -6,8 +6,8 @@
 # @AUTHOR: William L. Thomson Jr. <wlt@o-sinc.com>
 # @BLURB: Netbeans IDE common code
 
-if [[ -z ${_E_ECLASS} ]]; then
-_E_ECLASS=1
+if [[ -z ${_JAVA_NETBEANS_ECLASS} ]]; then
+_JAVA_NETBEANS_ECLASS=1
 
 MY_PN="incubator-${PN%%-*}"
 MY_PV="${PV//_/-}"
@@ -35,5 +35,11 @@ HOMEPAGE="https://netbeans.org"
 LICENSE="|| ( CDDL GPL-2-with-linking-exception )"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
+
+# Generate Bundle.*
+if [[ -n ${NB_BUNDLE} ]]; then
+	JAVAC_ARGS="--add-modules java.xml.ws.annotation "
+	JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor "
+fi
 
 fi
