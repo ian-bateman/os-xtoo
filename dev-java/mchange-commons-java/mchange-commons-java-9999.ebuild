@@ -41,7 +41,6 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 src_install() {
-        java-pkg-simple_src_install
-        java-pkg_dolauncher debuggen --main com.mchange.v2.debug.DebugGen
+	java-pkg-simple_src_install
+	java-pkg_dolauncher debuggen --main com.mchange.v2.debug.DebugGen
 }
-
