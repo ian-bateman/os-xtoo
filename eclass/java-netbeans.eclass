@@ -17,9 +17,9 @@ MY_MOD="${MY_MOD//-/.}"
 BASE_URI="https://github.com/apache/${MY_PN}"
 
 if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
+	inherit git-r3
 else
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz"
 	KEYWORDS="~amd64"
@@ -28,7 +28,7 @@ fi
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Netbeans IDE"
 HOMEPAGE="https://netbeans.org"
@@ -36,10 +36,19 @@ LICENSE="|| ( CDDL GPL-2-with-linking-exception )"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-# Generate Bundle.*
-if [[ -n ${NB_BUNDLE} ]]; then
-	JAVAC_ARGS="--add-modules java.xml.ws.annotation "
-	JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor "
-fi
+EXPORT_FUNCTIONS src_compile
+
+# @FUNCTION: java-netbeans_src_compile
+# @DESCRIPTION:
+# Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
+java-netbeans_src_compile() {
+	# Generate Bundle.*
+	if [[ -n ${NB_BUNDLE} ]]; then
+		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
+		JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor "
+	fi
+	java-pkg-simple_src_compile
+}
 
 fi
+
