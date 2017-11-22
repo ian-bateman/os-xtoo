@@ -5,6 +5,8 @@ EAPI="6"
 
 inherit java-netbeans
 
+NB_BUNDLE=0
+
 CP_DEPEND="
 	~dev-java/netbeans-editor-mimelookup-${PV}:${SLOT}
 	~dev-java/netbeans-openide-awt-${PV}:${SLOT}
@@ -22,6 +24,3 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
-
-JAVAC_ARGS="--add-modules java.xml.ws.annotation "
-JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor"
