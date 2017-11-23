@@ -32,7 +32,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Netbeans IDE"
 HOMEPAGE="https://netbeans.org"
-LICENSE="|| ( CDDL GPL-2-with-linking-exception )"
+LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
