@@ -35,6 +35,16 @@ source, such as
 # <link to ebuild in this repo>
 ```
 
+## Java
+This repository requires Java 9 now.
+
+Work for full support for Java 9 is underway. In addition to fully 
+replacing all needed Java packages in Gentoo that have not been 
+updated, and/or ingored. Eventually replacing all packages in dev-java 
+with superior well maintained current versions.
+
+This is the most comprehensive, current repository of Java ebuilds.
+
 ## E
 This repo has full and complete support for 
 [Enlightenment](https://www.enlightenment.org/) desktop. This is 
@@ -64,6 +74,12 @@ upstream](https://phab.enlightenment.org/). We are unable to due to a
 rude community! There are a few who are professional and polite. Look at 
 the [bugs for ecrire being ignored...](https://github.com/Obsidian-StudiosInc/ecrire/issues)
 
+## Netbeans IDE
+Work is underway to package 
+[Netbeans](https://github.com/apache/incubator-netbeans) 9 from source. 
+THere is no ETA at this time when this will be done, or initial work in 
+a usable state. We do use Netbeans as our primary IDE for C and Java.
+
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
 [Netbeaners](https://netbeans.org). That will be added someday but for 
@@ -77,16 +93,6 @@ IDE from source. This will require additional work. Jars are missing
 various resources, icons, etc. That will be added in a secondary round, 
 as mentioned in a subsequent section. Otherwise this will likely never 
 happen in this repository.
-
-## Java
-This repository requires Java 9 now.
-
-Work for full support for Java 9 is underway. In addition to fully 
-replacing all needed Java packages in Gentoo that have not been 
-updated, and/or ingored. Eventually replacing all packages in dev-java 
-with superior well maintained current versions.
-
-This is the most comprehensive, current repository of Java ebuilds.
 
 ## Issues
 Feel free to open any issues with any package in this repository, 
