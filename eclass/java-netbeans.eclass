@@ -36,7 +36,7 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-EXPORT_FUNCTIONS src_compile
+EXPORT_FUNCTIONS src_compile src_install
 
 # @FUNCTION: java-netbeans_src_compile
 # @DESCRIPTION:
@@ -66,5 +66,20 @@ java-netbeans_src_compile() {
 	java-pkg-simple_src_compile
 }
 
-fi
+# @FUNCTION: java-netbeans_src_install
+# @DESCRIPTION:
+# Wrapper for java-pkg-simple_src_install to install common stuff 
+# outside of the main jar
+java-netbeans_src_install() {
+	java-pkg-simple_src_install
+	if [[ -f module-auto-deps.xml ]]; then
+		local dir
+		dir="/usr/share/${PN%%-*}-${SLOT}/config/Modules/"
+#		dodir "${dir}"
+		insinto "${dir}"
+		newins module-auto-deps.xml org-${PN}.xml
+	fi
+}
 
+# fi _JAVA_NETBEANS_ECLASS
+fi
