@@ -47,7 +47,7 @@ java-netbeans_src_unpack() {
 		tgz="${MY_P}.tar.gz"
 		echo ">>> Unpacking ${tgz} to ${PWD}"
 		tar -xzf "${DISTDIR}/${tgz}" \
-			"${MY_P}/${MY_MOD}" -C "${WORKDIR}" \
+			"${MY_P}/${MY_MOD}/" -C "${WORKDIR}" \
 			|| die "Failed to unpack ${DISTDIR}/${tgz}"
 	else
 		default
