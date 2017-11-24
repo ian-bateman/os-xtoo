@@ -40,6 +40,7 @@ OSGI_COMP="4"
 CDEPEND="dev-java/hamcrest-core:1.3
 	dev-java/javahelp:0
 	dev-java/jna:4
+	dev-java/jsr305:0
 	dev-java/junit:4[source]
 	dev-java/osgi-core-api:${OSGI_CORE}
 	dev-java/osgi-compendium:${OSGI_COMP}
@@ -48,7 +49,7 @@ CDEPEND="dev-java/hamcrest-core:1.3
 DEPEND="dev-java/oracle-jdk-bin:9[javafx]
 	app-arch/unzip
 	${CDEPEND}"
-RDEPEND=">=virtual/jdk-1.7
+RDEPEND=">=virtual/jdk-9
 	${CDEPEND}"
 
 INSTALL_DIR="/usr/share/${PN}-${SLOT}"
@@ -57,8 +58,11 @@ EANT_BUILD_XML="nbbuild/build.xml"
 EANT_BUILD_TARGET="rebuild-cluster"
 EANT_EXTRA_ARGS="-Drebuild.cluster.name=nb.cluster.platform "
 EANT_EXTRA_ARGS+="-Dext.binaries.downloaded=true "
-EANT_EXTRA_ARGS+="-Djava.awt.headless=true "
+#EANT_EXTRA_ARGS+="-Djava.awt.headless=true "
 EANT_EXTRA_ARGS+="-Dpermit.jdk9.builds=true "
+EANT_EXTRA_ARGS+="-Djavac.compilerargs=\"
+	--add-modules java.activation,java.xml.ws.annotation
+\""
 JAVA_PKG_BSFIX="off"
 
 src_unpack() {
@@ -105,6 +109,32 @@ java_prepare() {
 			done
 		fi
 	fi
+
+	# java 9 fixes
+	sed -i -e '92,100d' \
+		nbbuild/antsrc/org/netbeans/nbbuild/CustomJavac.java \
+		|| die "Failed to remove -source from CustomJavac.java"
+	sed -i -e 's|source="1.7"||g' -e 's|target="1.7"||g' \
+		nbbuild/build.xml \
+		|| die "Failed to remove source/target from build.xml"
+	sed -i -e '/"javac.source" value/d' -e '/"javac.target" value/d' \
+		-e 's|-Xlint:-serial|-Xlint:-serial ${javac.compilerargs}|g' \
+		-e 's|source=".*" target=".*"||g' \
+		-e '/-Xbootclasspath/d' \
+		nbbuild/templates/common.xml \
+		|| die "Failed to remove source/target from common.xml"
+	sed -i -e '/javac.source=.*/d' -e '/javac.target=.*/d' \
+		*/nbproject/project.properties \
+		|| die "Failed to sed nbproject/project.properties"
+	sed -i -e 's|source=".*" target=".*"||g' \
+		*/build.xml \
+		|| die "Failed to sed build.xml"
+
+	# package specific
+	sed -i -e '209i\ \ \ \@Override\n\ \ \ \ public boolean isModifiableModule(java.lang.Module m) { return false; }' \
+		-e '209i\ \ \ \ @Override\n \ \ \ \public void redefineModule​(java.lang.Module module, java.util.Set<java.lang.Module> extraReads, java.util.Map<String, java.util.Set<java.lang.Module>> extraExports, java.util.Map<String, java.util.Set<java.lang.Module>> extraOpens, java.util.Set<Class<?>> extraUses, java.util.Map<Class<?>,List<Class<?>>> extraProvides) { int i; }' \
+		o.n.bootstrap/src/org/netbeans/NbInstrumentation.java \
+		|| die "Failed to add missing abstract method"
 
 	einfo "Symlinking external libraries..."
 	java-pkg_jar-from --into libs.junit4/external hamcrest-core-1.3 hamcrest-core.jar hamcrest-core-1.3.jar
