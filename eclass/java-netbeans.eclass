@@ -42,6 +42,22 @@ EXPORT_FUNCTIONS src_compile
 # @DESCRIPTION:
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
+	JAVA_RES_DIR="src/resources"
+	mkdir -p ${JAVA_RES_DIR}/META-INF || die "Failed to make resorces dir"
+
+	# manifest
+	if [[ -f manifest.mf ]]; then
+		mv manifest.mf ${JAVA_RES_DIR}/META-INF \
+			|| die "Failed to move manifest"
+		sed -i -e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
+			"${JAVA_RES_DIR}/META-INF/manifest.mf" \
+			|| die "Failed to append to manifest"
+	fi
+
+	# copy resources need to preserve paths? maybe delete sources?
+	find src/ -type f ! \( -name '*.java' -o -name '*.html'  \) \
+		-exec cp {} ${JAVA_RES_DIR} \;
+
 	# Generate Bundle.*
 	if [[ -n ${NB_BUNDLE} ]]; then
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
