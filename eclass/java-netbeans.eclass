@@ -36,7 +36,23 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-EXPORT_FUNCTIONS src_compile src_install
+EXPORT_FUNCTIONS src_unpack src_compile src_install
+
+# @FUNCTION: java-netbeans_src_unpack
+# @DESCRIPTION:
+# Only unpack whats needed
+java-netbeans_src_unpack() {
+	if [[ "${PN}" != "${PN%%-*}" ]]; then
+		local tgz
+		tgz="${MY_P}.tar.gz"
+		echo ">>> Unpacking ${tgz} to ${PWD}"
+		tar -xzf "${DISTDIR}/${tgz}" \
+			"${MY_P}/${MY_MOD}" -C "${WORKDIR}" \
+			|| die "Failed to unpack ${DISTDIR}/${tgz}"
+	else
+		default
+	fi
+}
 
 # @FUNCTION: java-netbeans_src_compile
 # @DESCRIPTION:
