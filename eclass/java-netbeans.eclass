@@ -90,7 +90,7 @@ java-netbeans_src_install() {
 	java-pkg-simple_src_install
 	if [[ -f module-auto-deps.xml ]]; then
 		local dir
-		dir="/usr/share/${PN%%-*}-${SLOT}/config/ModulesAutoDeps/"
+		dir="/usr/share/${PN%%-*}-${SLOT}/config/ModuleAutoDeps/"
 		insinto "${dir}"
 		newins module-auto-deps.xml org-${PN}.xml
 	fi
