@@ -21,7 +21,7 @@ if [[ ${PV} == 9999 ]]; then
 	MY_S="${P}"
 	inherit git-r3
 else
-	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
