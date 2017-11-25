@@ -58,21 +58,23 @@ java-netbeans_src_unpack() {
 # @DESCRIPTION:
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
-	JAVA_RES_DIR="src/resources"
+	JAVA_RES_DIR="resources"
 	mkdir -p ${JAVA_RES_DIR}/META-INF || die "Failed to make resorces dir"
 
 	# manifest
 	if [[ -f manifest.mf ]]; then
-		mv manifest.mf ${JAVA_RES_DIR}/META-INF \
+		mv manifest.mf ${JAVA_RES_DIR}/META-INF/MANIFEST.MF \
 			|| die "Failed to move manifest"
 		sed -i -e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
-			"${JAVA_RES_DIR}/META-INF/manifest.mf" \
+			-e '2iOpenIDE-Module-Implementation-Version: '${PV}'-os-xtoo' \
+			"${JAVA_RES_DIR}/META-INF/MANIFEST.MF" \
 			|| die "Failed to append to manifest"
 	fi
 
 	# copy resources need to preserve paths? maybe delete sources?
-	find src/ -type f ! \( -name '*.java' -o -name '*.html'  \) \
-		-exec cp {} ${JAVA_RES_DIR} \;
+	cp -r src/* ${JAVA_RES_DIR} || die "Failed to copy resources"
+	find ${JAVA_RES_DIR} -name '*.java' -delete \
+		|| die "Failed to delete sources from resources"
 
 	# Generate Bundle.*
 	if [[ -n ${NB_BUNDLE} ]]; then
@@ -84,7 +86,7 @@ java-netbeans_src_compile() {
 
 # @FUNCTION: java-netbeans_src_install
 # @DESCRIPTION:
-# Wrapper for java-pkg-simple_src_install to install common stuff 
+# Wrapper for java-pkg-simple_src_install to install common stuff
 # outside of the main jar
 java-netbeans_src_install() {
 	java-pkg-simple_src_install
