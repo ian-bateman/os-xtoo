@@ -8,5 +8,5 @@ inherit java-netbeans
 DEPEND=">=virtual/jre-9"
 RDEPEND=">=virtual/jre-9"
 
-JAVA_SRC_DIR="projectopener/src"
+S+="/projectopener"
 JAVAC_ARGS="--add-modules java.jnlp"
