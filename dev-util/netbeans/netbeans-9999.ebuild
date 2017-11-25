@@ -83,13 +83,12 @@ src_install() {
 		/usr/share/${my_pn}/docs/swing-layout-sources.jar
 
 	# symlink jars in core
-	jars=( openide-filesystems )
-	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
+	jars=( core-startup core-startup-base o-n-core openide-filesystems )
+	symlink_jars "/usr/share/${my_pn}/core" ${jars[@]}
 
 	# symlink jars in lib
-	jars=( core-startup o-n-core o-n-bootstrap o-n-upgrader
-		openide-modules openide-util openide-util-lookup
-		openide-util-ui
+	jars=( o-n-bootstrap o-n-upgrader openide-modules openide-util
+		openide-util-lookup openide-util-ui
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
