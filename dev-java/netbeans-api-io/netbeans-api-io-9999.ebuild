@@ -5,6 +5,8 @@ EAPI="6"
 
 inherit java-netbeans
 
+NB_BUNDLE=0
+
 CP_DEPEND="
 	~dev-java/netbeans-api-intent-${PV}:${SLOT}
 	~dev-java/netbeans-api-annotations-common-${PV}:${SLOT}
