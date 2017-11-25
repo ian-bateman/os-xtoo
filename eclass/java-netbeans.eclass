@@ -36,7 +36,7 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-EXPORT_FUNCTIONS src_unpack src_compile src_install
+EXPORT_FUNCTIONS src_unpack src_prepare src_compile src_install
 
 # @FUNCTION: java-netbeans_src_unpack
 # @DESCRIPTION:
@@ -54,10 +54,10 @@ java-netbeans_src_unpack() {
 	fi
 }
 
-# @FUNCTION: java-netbeans_src_compile
+# @FUNCTION: java-netbeans_src_prepare
 # @DESCRIPTION:
-# Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
-java-netbeans_src_compile() {
+# Prepare sources
+java-netbeans_src_prepare() {
 	JAVA_RES_DIR="resources"
 	mkdir -p ${JAVA_RES_DIR} ||  die "Failed to make resorces dir"
 	if [[ -d src/META-INF ]]; then
@@ -82,6 +82,13 @@ java-netbeans_src_compile() {
 	find ${JAVA_RES_DIR} -name '*.java' -delete \
 		|| die "Failed to delete sources from resources"
 
+	java-utils-2_src_prepare
+}
+
+# @FUNCTION: java-netbeans_src_compile
+# @DESCRIPTION:
+# Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
+java-netbeans_src_compile() {
 	# Generate Bundle.*
 	if [[ -n ${NB_BUNDLE} ]]; then
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
