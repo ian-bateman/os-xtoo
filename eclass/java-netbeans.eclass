@@ -59,7 +59,13 @@ java-netbeans_src_unpack() {
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
 	JAVA_RES_DIR="resources"
-	mkdir -p ${JAVA_RES_DIR}/META-INF || die "Failed to make resorces dir"
+	mkdir -p ${JAVA_RES_DIR} ||  die "Failed to make resorces dir"
+	if [[ -d src/META-INF ]]; then
+		mv src/META-INF ${JAVA_RES_DIR} || die "Failed to move META-INF"
+	else
+		mkdir -p ${JAVA_RES_DIR}/META-INF \
+			|| die "Failed to make META-INF dir"
+	fi
 
 	# manifest
 	if [[ -f manifest.mf ]]; then
