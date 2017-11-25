@@ -12,7 +12,13 @@ SWING_SLOT="1"
 
 RDEPEND="
 	dev-java/junit:4
+	~dev-java/netbeans-api-java-${PV}:${SLOT}
+	~dev-java/netbeans-core-ide-${PV}:${SLOT}
 	~dev-java/netbeans-core-multitabs-${PV}:${SLOT}
+	~dev-java/netbeans-o-n-upgrader-${PV}:${SLOT}
+	~dev-java/netbeans-openide-execution-${PV}:${SLOT}
+	~dev-java/netbeans-openide-compat-${PV}:${SLOT}
+	~dev-java/netbeans-openide-options-${PV}:${SLOT}
 	dev-java/swing-layout:1
 	>=virtual/jdk-9
 "
@@ -24,7 +30,10 @@ NB_LAUNCHER="ide/launcher/unix/netbeans"
 
 src_prepare() {
 	default
-	sed -i -e 's|"${userdir}"/etc|/etc/'${PN}'-'${SLOT}'|' ${NB_LAUNCHER} \
+	sed -i -e 's|"${userdir}"/etc|/etc/'${PN}'-'${SLOT}'|' \
+		-e 's|$X/||g' \
+		-e 's|'''"$netbeans_jdkhome"'''|$(java-config -O)|g' \
+		${NB_LAUNCHER} \
 		|| die "Failed to sed/update launcher script"
 }
 
@@ -78,8 +87,8 @@ src_install() {
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
 	# symlink jars in lib
-	jars=( core-startup o-n-bootstrap openide-modules openide-util
-		openide-util-lookup openide-util-ui )
+	jars=( core-startup o-n-bootstrap o-n-upgrader openide-modules
+		openide-util openide-util-lookup openide-util-ui )
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
 	# symlink jars in modules
