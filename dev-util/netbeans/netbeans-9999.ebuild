@@ -15,6 +15,7 @@ RDEPEND="
 	~dev-java/netbeans-api-java-${PV}:${SLOT}
 	~dev-java/netbeans-core-ide-${PV}:${SLOT}
 	~dev-java/netbeans-core-multitabs-${PV}:${SLOT}
+	~dev-java/netbeans-masterfs-linux-${PV}:${SLOT}
 	~dev-java/netbeans-o-n-upgrader-${PV}:${SLOT}
 	~dev-java/netbeans-openide-execution-${PV}:${SLOT}
 	~dev-java/netbeans-openide-compat-${PV}:${SLOT}
@@ -108,6 +109,7 @@ src_install() {
 	jars+=( ${jars_short[@]/#/openide-} )
 	jars_short=( outline plaf tabcontrol )
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
+	jars+=( masterfs masterfs-linux )
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
 	# install icon
