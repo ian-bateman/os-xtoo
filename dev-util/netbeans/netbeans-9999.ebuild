@@ -87,8 +87,10 @@ src_install() {
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
 	# symlink jars in lib
-	jars=( core-startup o-n-bootstrap o-n-upgrader openide-modules
-		openide-util openide-util-lookup openide-util-ui )
+	jars=( core-startup o-n-core o-n-bootstrap o-n-upgrader
+		openide-modules openide-util openide-util-lookup
+		openide-util-ui
+	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
 	# symlink jars in modules
@@ -105,6 +107,8 @@ src_install() {
 		io loaders nodes options text windows
 	)
 	jars+=( ${jars_short[@]/#/openide-} )
+	jars_short=( outline plaf tabcontrol )
+	jars+=( ${jars_short[@]/#/o-n-swing-} )
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
 	# install icon
