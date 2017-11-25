@@ -71,7 +71,8 @@ java-netbeans_src_prepare() {
 	if [[ -f manifest.mf ]]; then
 		mv manifest.mf ${JAVA_RES_DIR}/META-INF/MANIFEST.MF \
 			|| die "Failed to move manifest"
-		sed -i -e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
+		sed -i -e '/OpenIDE-Module-Implementation-Version/d' \
+			-e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
 			-e '2iOpenIDE-Module-Implementation-Version: '${PV}'-os-xtoo' \
 			"${JAVA_RES_DIR}/META-INF/MANIFEST.MF" \
 			|| die "Failed to append to manifest"
