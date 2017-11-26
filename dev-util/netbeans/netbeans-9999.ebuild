@@ -150,7 +150,6 @@ src_install() {
 <!DOCTYPE module PUBLIC "-//NetBeans//DTD Module Status 1.0//EN"
 			"http://www.netbeans.org/dtds/module-status-1_0.dtd">
 <module name="'${f//-/.}'">
-	<param name="autoload">true</param>
 	<param name="eager">false</param>
 	<param name="enabled">true</param>
 	<param name="jar">modules/'${PN}-${j}'.jar</param>
