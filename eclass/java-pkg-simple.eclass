@@ -49,6 +49,11 @@ S="${WORKDIR}"
 # Extra list of colon separated path elements to be put on the
 # classpath when compiling sources.
 
+# @ECLASS-VARIABLE: JAVA_NO_SRC
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to any value to skip compile of sources, for jars without classes
+
 # @ECLASS-VARIABLE: JAVA_RES_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -129,7 +134,9 @@ java-pkg-simple_src_compile() {
 		fi
 	fi
 	find ${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
-	[[ ! -s ${sources} ]] && die "*.java files not found in ${JAVA_SRC_DIR}"
+	if [[ -z ${JAVA_NO_SRC} ]] && [[ ! -s ${sources} ]]; then
+		die "*.java files not found in ${JAVA_SRC_DIR}"
+	fi
 	mkdir -p ${classes} || die "Could not create target directory"
 
 	# compile
@@ -149,9 +156,10 @@ java-pkg-simple_src_compile() {
 		fi
 	fi
 	debug-print "CLASSPATH=${classpath}"
-	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
-		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
-		@${sources}
+	[[ -z ${JAVA_NO_SRC} ]] && \
+		ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
+			${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
+			@${sources}
 
 	# javadoc
 	if has doc ${JAVA_PKG_IUSE} && use doc; then
