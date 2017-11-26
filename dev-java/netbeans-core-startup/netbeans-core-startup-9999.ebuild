@@ -23,3 +23,51 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	local p r s
+	r="resources/META-INF/"
+	mkdir -p ${r}services ${r}namedservices/URLStreamHandler/nbres{,loc} \
+		|| die "Failed to make services directories"
+
+	# services
+	r="${r}services/"
+	p="org.netbeans.core.startup"
+	echo "${p}.CLITestModuleReload
+${p}.CLICoreBridge
+${p}.CLIOptions
+" > "${r}org.netbeans.CLIHandler" \
+		|| die "Failed to generate org.netbeans.CLIHandler"
+
+	echo "${p}.impl.BinaryLayerFactoryProvider" > \
+		"${r}${p}.base.LayerFactory\$Provider" \
+		|| die "Failed to generate ${p}.base.LayerFactory\$Provider"
+
+	echo "${p}.NbRepository" > "${r}org.openide.filesystems.Repository" \
+		|| die "Failed to generate org.openide.filesystems.Repository"
+
+	echo "${p}.ModuleLifecycleManager" > "${r}org.openide.LifecycleManager" \
+		|| die "Failed to generate org.openide.LifecycleManager"
+
+	echo "${p}.InstalledFileLocatorImpl" > \
+		"${r}org.openide.modules.InstalledFileLocator" \
+		|| die "Failed to generate org.openide.modules.InstalledFileLocator"
+
+	echo "${p}.NbPlaces" > "${r}org.openide.modules.Places" \
+		|| die "Failed to generate org.openide.modules.Places"
+
+	echo "${p}.MainLookup" > "${r}org.openide.util.Lookup" \
+		|| die "Failed to generate org.openide.util.Lookup"
+
+	echo "${p}.preferences.PreferencesProviderImp" > \
+		"${r}org.openide.util.NbPreferences\$Provider" \
+		|| die "Failed to generate org.openide.util.NbPreferences\$Provider"
+
+	# namedservices
+	r="${r/services\//}namedservices/URLStreamHandler/"
+	for s in nbres nbresloc; do
+		echo "${p}.NbResourceStreamHandler" > \
+			"${r}${s}/java.net.URLStreamHandler" \
+			|| die "Failed to generate ${s}/java.net.URLStreamHandler"
+	done
+}
