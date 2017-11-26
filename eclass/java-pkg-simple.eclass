@@ -31,7 +31,7 @@ EXPORT_FUNCTIONS src_compile src_install
 # We are only interested in finding all java source files, wherever they may be.
 S="${WORKDIR}"
 
-# @ECLASS-VARIABLE: JAVA_GENTOO_CLASSPATH
+# @ECLASS-VARIABLE: JAVA_CLASSPATH
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Comma or space separated list of java packages to include in the
@@ -40,8 +40,9 @@ S="${WORKDIR}"
 # transitively. See "java-config -l" for appropriate package names.
 #
 # @CODE
-#	JAVA_GENTOO_CLASSPATH="foo,bar-2"
+#	JAVA_CLASSPATH="foo,bar-2"
 # @CODE
+JAVA_CLASSPATH=${JAVA_GENTOO_CLASSPATH}
 
 # @ECLASS-VARIABLE: JAVA_CLASSPATH_EXTRA
 # @DEFAULT_UNSET
@@ -110,14 +111,14 @@ JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 # @DESCRIPTION:
 # src_compile for simple bare source java packages. Finds all *.java
 # sources in ${JAVA_SRC_DIR}, compiles them with the classpath
-# calculated from ${JAVA_GENTOO_CLASSPATH}, and packages the resulting
+# calculated from ${JAVA_CLASSPATH}, and packages the resulting
 # classes to ${JAVA_JAR_FILENAME}. Use ${JAVA_ADDRES_ARGS} to pass
 # arguments to java-pkg_addres automatically called now.
 java-pkg-simple_src_compile() {
 	local sources=sources.lst classes=target/classes apidoc=target/api
 
 	# auto generate classpath
-	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
+	java-pkg_gen-cp JAVA_CLASSPATH
 
 	# Remove if exist, for multiple runs
 	[[ -d target ]] && rm -fr target
@@ -142,7 +143,7 @@ java-pkg-simple_src_compile() {
 
 	# compile
 	local classpath="${JAVA_CLASSPATH_EXTRA}" dependency
-	for dependency in ${JAVA_GENTOO_CLASSPATH}; do
+	for dependency in ${JAVA_CLASSPATH}; do
 		classpath="${classpath}:$(java-pkg_getjars ${dependency})" \
 			|| die "getjars failed for ${dependency}"
 	done
