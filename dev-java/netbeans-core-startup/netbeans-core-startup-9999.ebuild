@@ -24,9 +24,6 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
-NB_PROC=",org.netbeans.modules.openide.util.NamedServiceProcessor"
-NB_PROC+=",org.netbeans.modules.openide.util.ServiceProviderProcessor"
-
 java_prepare() {
 	local p r s
 	r="resources/META-INF/namedservices/URLStreamHandler/"
