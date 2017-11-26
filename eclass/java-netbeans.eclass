@@ -90,13 +90,42 @@ java-netbeans_src_prepare() {
 # @DESCRIPTION:
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
+	local pkg procs
+	pkg="org.netbeans.modules.openide"
+	procs="${NB_PROC}"
 	# Generate Bundle.*
-	if [[ -n ${NB_BUNDLE} ]]; then
-		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
-		JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor${NB_PROC} "
-	elif [[ -n ${NB_PROC} ]]; then
-		JAVAC_ARGS+="-processor ${NB_PROC/%/,} "
+	[[ -n ${NB_BUNDLE} ]] &&
+		procs+=",${pkg}.util.NbBundleProcessor"
+
+	[[ "${CP_DEPEND}" == *openide-awt* ]] &&
+		procs+=",${pkg}.awt.ActionProcessor"
+
+	[[ "${CP_DEPEND}" == *openide-filesystems* ]] &&
+		procs+=",${pkg}.filesystems.declmime.MIMEResolverProcessor"
+
+	[[ "${CP_DEPEND}" == *openide-loader* ]] &&
+		procs+=",${pkg}.loaders.DataObjectFactoryProcessor"
+
+	[[ "${CP_DEPEND}" == *openide-nodes* ]] &&
+		procs+=",${pkg}.nodes.NodesAnnotationProcessor"
+
+	if [[ "${CP_DEPEND}" == *"openide-util-${PV}"* ]]; then
+		procs+=",${pkg}.util.NamedServiceProcessor"
+		procs+=",${pkg}.util.ServiceProviderProcessor"
 	fi
+
+	[[ "${CP_DEPEND}" == *openide-nodes* ]] &&
+		procs+=",${pkg}.nodes.NodesAnnotationProcessor"
+
+	if [[ -n ${procs} ]]; then
+		procs=${procs#,}
+		procs=${procs%,}
+		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
+		JAVAC_ARGS+="-processor ${procs}"
+	fi
+	einfo "JAVA_HOME ${JAVA_HOME}"
+#	einfo "-processor ${procs}"
+
 	java-pkg-simple_src_compile
 }
 
