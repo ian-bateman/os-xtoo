@@ -122,6 +122,8 @@ java-netbeans_src_compile() {
 		procs=${procs%,}
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
 		JAVAC_ARGS+="-processor ${procs}"
+		# for resources
+		JAVA_GENTOO_CLASSPATH_EXTRA="src"
 	fi
 	einfo "JAVA_HOME ${JAVA_HOME}"
 #	einfo "-processor ${procs}"
