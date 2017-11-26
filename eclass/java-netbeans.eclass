@@ -93,7 +93,9 @@ java-netbeans_src_compile() {
 	# Generate Bundle.*
 	if [[ -n ${NB_BUNDLE} ]]; then
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
-		JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor "
+		JAVAC_ARGS+="-processor org.netbeans.modules.openide.util.NbBundleProcessor${NB_PROC} "
+	elif [[ -n ${NB_PROC} ]]; then
+		JAVAC_ARGS+="-processor ${NB_PROC/%/,} "
 	fi
 	java-pkg-simple_src_compile
 }
