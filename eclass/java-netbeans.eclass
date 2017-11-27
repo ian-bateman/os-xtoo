@@ -106,6 +106,9 @@ java-netbeans_src_compile() {
 		die "Missing netbeans-openide-filesystems from CP_DEPEND"
 	fi
 
+	[[ "${CP_DEPEND}" == *api-annotations* ]] &&
+		procs+=",org.netbeans.api.annotations.common.proc.StaticResourceProcessor"
+
 	[[ "${CP_DEPEND}" == *api-intent* ]] &&
 		procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
 
