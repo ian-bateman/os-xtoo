@@ -13,6 +13,7 @@ SWING_SLOT="1"
 
 RDEPEND="
 	dev-java/asm:${ASM_SLOT}
+	dev-java/jsr305:0
 	dev-java/junit:${JUNIT_SLOT}
 	~dev-java/${PN}-api-java-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
@@ -133,7 +134,7 @@ src_install() {
 	jars_short=( linux nio2 ui  )
 	jars+=( ${jars_short[@]/#/masterfs-} )
 	jars+=(
-		editor-mimelookup keyring masterfs options-keymap
+		editor-mimelookup jsr305 keyring masterfs options-keymap
 		options-api queries sampler sendopts settings
 		spi-quicksearch templates
 	)
