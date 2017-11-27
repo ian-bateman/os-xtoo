@@ -101,6 +101,7 @@ java-netbeans_src_compile() {
 		procs+=",${pkg}.util.NbBundleProcessor"
 
 	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
+		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
 		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
 		[[ "${CP_DEPEND}" != *openide-filesystems* ]]; then
 		die "Missing netbeans-openide-filesystems from CP_DEPEND"
