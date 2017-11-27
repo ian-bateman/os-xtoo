@@ -37,6 +37,7 @@ RDEPEND="
 	~dev-java/${PN}-openide-options-${PV}:${SLOT}
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
+	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templates-${PV}:${SLOT}
 	dev-java/swing-layout:${SWING_SLOT}
 	>=virtual/jdk-9
@@ -106,6 +107,8 @@ src_install() {
 	symlink_jars "/usr/share/${my_pn}/core" ${jars[@]}
 	dosym ../../asm-${ASM_SLOT}/lib/asm.jar \
 		/usr/share/${my_pn}/lib/asm.jar
+	dosym ../../jsr305/lib/jsr305.jar \
+		/usr/share/${my_pn}/lib/jsr305.jar
 
 	# symlink jars in lib
 	jars=(
@@ -134,9 +137,9 @@ src_install() {
 	jars_short=( linux nio2 ui  )
 	jars+=( ${jars_short[@]/#/masterfs-} )
 	jars+=(
-		editor-mimelookup jsr305 keyring masterfs options-keymap
+		editor-mimelookup keyring masterfs options-keymap
 		options-api queries sampler sendopts settings
-		spi-quicksearch templates
+		spi-palette spi-quicksearch templates
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
@@ -148,8 +151,7 @@ src_install() {
 		[[ "${f}" != openide* ]] && f="${PN}.${f}"
 		f="org.${f}"
 		echo '<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module PUBLIC "-//NetBeans//DTD Module Status 1.0//EN"
-			"http://www.netbeans.org/dtds/module-status-1_0.dtd">
+<!DOCTYPE module PUBLIC "-//NetBeans//DTD Module Status 1.0//EN" "http://www.netbeans.org/dtds/module-status-1_0.dtd">
 <module name="'${f//-/.}'">
 	<param name="eager">false</param>
 	<param name="enabled">true</param>
