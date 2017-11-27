@@ -10,6 +10,7 @@ NB_BUNDLE=0
 CP_DEPEND="
 	~dev-java/netbeans-api-intent-${PV}:${SLOT}
 	~dev-java/netbeans-api-annotations-common-${PV}:${SLOT}
+	~dev-java/netbeans-openide-filesystems-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-lookup-${PV}:${SLOT}
 "
