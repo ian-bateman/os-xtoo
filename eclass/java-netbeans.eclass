@@ -86,15 +86,14 @@ java-netbeans_src_prepare() {
 	java-utils-2_src_prepare
 }
 
-# @FUNCTION: java-netbeans_src_compile
+# @FUNCTION: java-netbeans_get_processors
 # @DESCRIPTION:
-# Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
-java-netbeans_src_compile() {
+# Returns a list of processors for annotation processing
+java-netbeans_get-processors() {
 	local pkg procs
 
 	pkg="org.netbeans.modules.openide"
 	procs="${NB_PROC}"
-	JAVAC_ARGS+=" -parameters"
 
 	# Generate Bundle.*
 	[[ -n ${NB_BUNDLE} ]] &&
@@ -107,36 +106,80 @@ java-netbeans_src_compile() {
 		die "Missing netbeans-openide-filesystems from CP_DEPEND"
 	fi
 
-	[[ "${CP_DEPEND}" == *api-annotations* ]] &&
-		procs+=",org.netbeans.api.annotations.common.proc.StaticResourceProcessor"
-
-	[[ "${CP_DEPEND}" == *api-intent* ]] &&
-		procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
-
-	[[ "${CP_DEPEND}" == *openide-awt* ]] &&
-		procs+=",${pkg}.awt.ActionProcessor"
-
-	[[ "${CP_DEPEND}" == *openide-filesystems* ]] &&
-		procs+=",${pkg}.filesystems.declmime.MIMEResolverProcessor"
-
-	[[ "${CP_DEPEND}" == *openide-loader* ]] &&
-		procs+=",${pkg}.loaders.DataObjectFactoryProcessor"
-
-	[[ "${CP_DEPEND}" == *openide-nodes* ]] &&
-		procs+=",${pkg}.nodes.NodesAnnotationProcessor"
-
-	if [[ "${CP_DEPEND}" == *"openide-util-${PV}"* ]]; then
-		procs+=",${pkg}.util.NamedServiceProcessor"
-		procs+=",${pkg}.util.ServiceProviderProcessor"
+	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
+		[[ "${CP_DEPEND}" != *openide-nodes* ]]; then
+		die "Missing netbeans-openide-nodes from CP_DEPEND"
 	fi
 
+	case "${CP_DEPEND}" in
+		*api-annotations*)
+			procs+=",org.netbeans.api.annotations.common.proc.StaticResourceProcessor"
+			;;&
+		*api-intent*)
+			procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
+			;;&
+		*api-templates*)
+			procs+=",${pkg/openide/}templates.TemplateProcessor"
+			;;&
+		*core-ide*)
+			procs+=",org.netbeans.core.ide.ServiceTabProcessor"
+			;;&
+		*core-multiview*)
+			procs+=",org.netbeans.core.multiview.MultiViewProcessor"
+			;;&
+		*editor-mimelookup*)
+			procs+=",${pkg/openide/}editor.mimelookup.CreateRegistrationProcessor"
+			;;&
+		*extexecution*)
+			procs+=",${pkg/openide/}extexecution.startup.StartupExtenderRegistrationProcessor"
+			;;&
+		*openide-awt*)
+			procs+=",${pkg}.awt.ActionProcessor"
+			;;&
+		*openide-filesystems*)
+			procs+=",${pkg}.filesystems.declmime.MIMEResolverProcessor"
+			;;&
+		*openide-loader*)
+			procs+=",${pkg}.loaders.DataObjectFactoryProcessor"
+			;;&
+		*openide-nodes*)
+			procs+=",${pkg}.nodes.NodesAnnotationProcessor"
+			;;&
+		*"openide-util-${PV}"*)
+			procs+=",${pkg}.util.NamedServiceProcessor"
+			procs+=",${pkg}.util.ServiceProviderProcessor"
+			;;&
+		*openide-windows*)
+			procs+=",${pkg}.windows.TopComponentProcessor"
+			;;&
+		*options-api*)
+			procs+=",${pkg/openide/}options.OptionsPanelControllerProcessor"
+			;;&
+		*openide-windows*)
+			procs+=",${pkg}.windows.TopComponentProcessor"
+			;;&
+		*) ;;
+	esac
+
+	procs=${procs#,}
+	procs=${procs%,}
+
+	echo "${procs}"
+}
+
+# @FUNCTION: java-netbeans_src_compile
+# @DESCRIPTION:
+# Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
+java-netbeans_src_compile() {
+	local pkg procs
+
+	procs="$(java-netbeans_get-processors)"
 	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]] &&
 		java-pkg_is-vm-version-ge "9"; then
 
-		procs=${procs#,}
-		procs=${procs%,}
-		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
-		JAVAC_ARGS+="-processor ${procs} --source-path src"
+		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation"
+		JAVAC_ARGS+=" -parameters"
+		JAVAC_ARGS+=" -processor ${procs} --source-path src"
 		# for resources
 		JAVA_CLASSPATH_EXTRA="src/"
 	fi
