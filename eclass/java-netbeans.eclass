@@ -100,6 +100,12 @@ java-netbeans_src_compile() {
 	[[ -n ${NB_BUNDLE} ]] &&
 		procs+=",${pkg}.util.NbBundleProcessor"
 
+	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
+		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
+		[[ "${CP_DEPEND}" != *openide-filesystems* ]]; then
+		die "Missing netbeans-openide-filesystems from CP_DEPEND"
+	fi
+
 	[[ "${CP_DEPEND}" == *api-intent* ]] &&
 		procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
 
@@ -119,9 +125,6 @@ java-netbeans_src_compile() {
 		procs+=",${pkg}.util.NamedServiceProcessor"
 		procs+=",${pkg}.util.ServiceProviderProcessor"
 	fi
-
-	[[ "${CP_DEPEND}" == *openide-nodes* ]] &&
-		procs+=",${pkg}.nodes.NodesAnnotationProcessor"
 
 	if [[ -n ${procs} ]]; then
 		procs=${procs#,}
