@@ -2,13 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
+
 inherit java-netbeans
 
-CP_DEPEND="
-	dev-java/jsr305:0
-	~dev-java/netbeans-openide-util-${PV}:${SLOT}
-	~dev-java/netbeans-openide-util-lookup-${PV}:${SLOT}
-"
+NB_NO_PROC=0
+
+CP_DEPEND="dev-java/jsr305:0"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
