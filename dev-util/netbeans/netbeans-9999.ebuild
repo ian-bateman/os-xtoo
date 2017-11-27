@@ -26,6 +26,7 @@ RDEPEND="
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-mimelookup-${PV}:${SLOT}
+	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-linux-${PV}:${SLOT}
@@ -128,6 +129,8 @@ src_install() {
 		output2 windows ui
 	)
 	jars+=( ${jars_short[@]/#/core-} )
+	jars_short=( browser execution execution-base )
+	jars+=( ${jars_short[@]/#/ext} )
 	jars_short=(
 		actions awt compat dialogs execution explorer filesystems-nb
 		io loaders nodes options text windows
