@@ -11,6 +11,7 @@ CP_DEPEND="
 	~dev-java/netbeans-openide-awt-${PV}:${SLOT}
 	~dev-java/netbeans-openide-dialogs-${PV}:${SLOT}
 	~dev-java/netbeans-openide-explorer-${PV}:${SLOT}
+	~dev-java/netbeans-openide-filesystems-${PV}:${SLOT}
 	~dev-java/netbeans-openide-nodes-${PV}:${SLOT}
 	~dev-java/netbeans-openide-text-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-${PV}:${SLOT}
