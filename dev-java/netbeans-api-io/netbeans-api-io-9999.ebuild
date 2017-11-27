@@ -8,6 +8,7 @@ inherit java-netbeans
 NB_BUNDLE=0
 
 CP_DEPEND="
+	dev-java/jsr305:0
 	~dev-java/netbeans-api-intent-${PV}:${SLOT}
 	~dev-java/netbeans-api-annotations-common-${PV}:${SLOT}
 	~dev-java/netbeans-openide-filesystems-${PV}:${SLOT}
