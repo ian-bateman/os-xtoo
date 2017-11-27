@@ -36,6 +36,7 @@ RDEPEND="
 	~dev-java/${PN}-openide-compat-${PV}:${SLOT}
 	~dev-java/${PN}-openide-options-${PV}:${SLOT}
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
+	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templates-${PV}:${SLOT}
@@ -136,6 +137,8 @@ src_install() {
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
 	jars_short=( linux nio2 ui  )
 	jars+=( ${jars_short[@]/#/masterfs-} )
+	jars_short=( "-indexingbridge" api uiapi uiapi-base )
+	jars+=( ${jars_short[@]/#/project} )
 	jars+=(
 		editor-mimelookup keyring masterfs options-keymap
 		options-api queries sampler sendopts settings
