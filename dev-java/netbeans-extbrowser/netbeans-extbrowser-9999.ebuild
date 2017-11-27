@@ -19,6 +19,7 @@ CP_DEPEND="
 	~dev-java/netbeans-openide-execution-${PV}:${SLOT}
 	~dev-java/netbeans-openide-filesystems-${PV}:${SLOT}
 	~dev-java/netbeans-openide-io-${PV}:${SLOT}
+	~dev-java/netbeans-openide-nodes-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-ui-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-lookup-${PV}:${SLOT}
