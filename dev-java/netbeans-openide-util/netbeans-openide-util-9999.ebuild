@@ -5,8 +5,6 @@ EAPI="6"
 
 inherit java-netbeans
 
-NB_BUNDLE=0
-
 CP_DEPEND="~dev-java/netbeans-openide-util-lookup-${PV}:${SLOT}"
 
 DEPEND="${CP_DEPEND}
@@ -16,7 +14,10 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 src_compile() {
+	NB_NO_PROC=0
 	java-pkg-simple_src_compile
-	JAVA_GENTOO_CLASSPATH_EXTRA="${PN}".jar
+	NB_BUNDLE=0
+	NB_NO_PROC=
+	JAVAC_ARGS+="--processor-path ${PN}.jar"
 	java-netbeans_src_compile
 }
