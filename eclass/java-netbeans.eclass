@@ -112,8 +112,8 @@ java-netbeans_src_compile() {
 	[[ "${CP_DEPEND}" == *api-intent* ]] &&
 		procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
 
-#	[[ "${CP_DEPEND}" == *openide-awt* ]] &&
-#		procs+=",${pkg}.awt.ActionProcessor"
+	[[ "${CP_DEPEND}" == *openide-awt* ]] &&
+		procs+=",${pkg}.awt.ActionProcessor"
 
 	[[ "${CP_DEPEND}" == *openide-filesystems* ]] &&
 		procs+=",${pkg}.filesystems.declmime.MIMEResolverProcessor"
@@ -133,7 +133,7 @@ java-netbeans_src_compile() {
 		procs=${procs#,}
 		procs=${procs%,}
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
-		JAVAC_ARGS+="-processor ${procs}"
+		JAVAC_ARGS+="-processor ${procs} --source-path src"
 		# for resources
 		JAVA_CLASSPATH_EXTRA="src/"
 	fi
