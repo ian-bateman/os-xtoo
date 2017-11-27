@@ -129,7 +129,9 @@ java-netbeans_src_compile() {
 		procs+=",${pkg}.util.ServiceProviderProcessor"
 	fi
 
-	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]]; then
+	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]] &&
+		java-pkg_is-vm-version-ge "9"; then
+
 		procs=${procs#,}
 		procs=${procs%,}
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
