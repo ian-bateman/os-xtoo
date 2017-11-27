@@ -129,7 +129,7 @@ java-netbeans_src_compile() {
 		procs+=",${pkg}.util.ServiceProviderProcessor"
 	fi
 
-	if [[ -n ${procs} ]]; then
+	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]]; then
 		procs=${procs#,}
 		procs=${procs%,}
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
