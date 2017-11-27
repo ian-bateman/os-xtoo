@@ -91,14 +91,20 @@ java-netbeans_src_prepare() {
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
 	local pkg procs
+
 	pkg="org.netbeans.modules.openide"
 	procs="${NB_PROC}"
+	JAVAC_ARGS+=" -parameters"
+
 	# Generate Bundle.*
 	[[ -n ${NB_BUNDLE} ]] &&
 		procs+=",${pkg}.util.NbBundleProcessor"
 
-	[[ "${CP_DEPEND}" == *openide-awt* ]] &&
-		procs+=",${pkg}.awt.ActionProcessor"
+	[[ "${CP_DEPEND}" == *api-intent* ]] &&
+		procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
+
+#	[[ "${CP_DEPEND}" == *openide-awt* ]] &&
+#		procs+=",${pkg}.awt.ActionProcessor"
 
 	[[ "${CP_DEPEND}" == *openide-filesystems* ]] &&
 		procs+=",${pkg}.filesystems.declmime.MIMEResolverProcessor"
@@ -123,10 +129,8 @@ java-netbeans_src_compile() {
 		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
 		JAVAC_ARGS+="-processor ${procs}"
 		# for resources
-		JAVA_GENTOO_CLASSPATH_EXTRA="src"
+		JAVA_CLASSPATH_EXTRA="src/"
 	fi
-	einfo "JAVA_HOME ${JAVA_HOME}"
-#	einfo "-processor ${procs}"
 
 	java-pkg-simple_src_compile
 }
