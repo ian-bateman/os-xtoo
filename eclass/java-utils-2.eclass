@@ -1532,6 +1532,34 @@ java-pkg_ensure-vm-version-ge() {
 	fi
 }
 
+# @FUNCTION: java-pkg_is-release-ge
+# @INTERNAL
+# @DESCRIPTION:
+# @CODE
+# Parameters:
+# $@ - release to compare current release
+# @CODE
+# @RETURN: zero - current release is greater than checked release;
+#          non-zero - current release is not greater than checked release
+java-pkg_is-release-ge() {
+	debug-print-function ${FUNCNAME} $*
+
+	local needed=$@
+	local release=$(java-pkg_get-release)
+	if [[ -z "${release}" ]]; then
+		debug-print "Could not get release from DEPEND"
+		return 1
+	else
+		if version_is_at_least "${needed}" "${release}"; then
+			debug-print "Detected release >= ${needed}"
+			return 0
+		else
+			debug-print "Detected release < ${needed}"
+			return 1
+		fi
+	fi
+}
+
 # @FUNCTION: java-pkg_is-vm-version-ge
 # @INTERNAL
 # @DESCRIPTION:
