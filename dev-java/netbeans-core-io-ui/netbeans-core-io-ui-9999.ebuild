@@ -9,6 +9,7 @@ NB_BUNDLE=0
 
 CP_DEPEND="
 	~dev-java/netbeans-openide-awt-${PV}:${SLOT}
+	~dev-java/netbeans-openide-filesystems-${PV}:${SLOT}
 	~dev-java/netbeans-openide-io-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-${PV}:${SLOT}
 	~dev-java/netbeans-openide-util-ui-${PV}:${SLOT}
