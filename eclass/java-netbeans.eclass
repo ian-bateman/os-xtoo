@@ -174,10 +174,10 @@ java-netbeans_src_compile() {
 	local pkg procs
 
 	procs="$(java-netbeans_get-processors)"
-	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]] &&
-		java-pkg_is-vm-version-ge "9"; then
-
-		JAVAC_ARGS+=" --add-modules java.xml.ws.annotation"
+	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]]; then
+		if java-pkg_is-release-ge "9"; then
+			JAVAC_ARGS+=" --add-modules java.xml.ws.annotation"
+		fi
 		JAVAC_ARGS+=" -parameters"
 		JAVAC_ARGS+=" -processor ${procs} --source-path src"
 		# for resources
