@@ -97,6 +97,11 @@ java-netbeans_get-processors() {
 	oim="${nbm}.openide"
 	procs="${NB_PROC}"
 
+	if [[ "${CP_DEPEND}" == *editor-settings* ]] &&
+		[[ "${CP_DEPEND}" != *netbeans-settings* ]]; then
+		die "Missing netbeans-settings from CP_DEPEND"
+	fi
+
 	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
 		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
 		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
