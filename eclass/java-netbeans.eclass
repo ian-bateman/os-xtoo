@@ -182,12 +182,12 @@ java-netbeans_get-processors() {
 		*projectapi*)
 			procs+=",${nbm}.projectapi.LookupProviderAnnotationProcessor"
 			;;&
-		*"projectapiui-${PV}"*)
+		*"projectuiapi-${PV}"*)
 			procs+=",${nbm}.project.uiapi.NodeFactoryAnnotationProcessor"
 			procs+=",${nbm}.project.uiapi.CompositeCategoryProviderAnnotationProcessor"
 			;;&
-		*projectapiui-base*)
-			procs+=",${nbm}.project.ui.ProjectConvertorProcessor"
+		*projectuiapi-base*)
+			procs+=",${nbm}.project.ui.convertor.ProjectConvertorProcessor"
 			;;&
 #		*sendopts*)
 #			procs+=",${nbm}.sendopts.OptionAnnotationProcessorImpl"
