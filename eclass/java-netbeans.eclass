@@ -97,10 +97,6 @@ java-netbeans_get-processors() {
 	oim="${nbm}.openide"
 	procs="${NB_PROC}"
 
-	# Generate Bundle.*
-	[[ -n ${NB_BUNDLE} ]] &&
-		procs+=",${oim}.util.NbBundleProcessor"
-
 	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
 		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
 		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
@@ -152,6 +148,7 @@ java-netbeans_get-processors() {
 			;;&
 		*"openide-util-${PV}"*)
 			procs+=",${oim}.util.NamedServiceProcessor"
+			procs+=",${oim}.util.NbBundleProcessor"
 			procs+=",${oim}.util.ServiceProviderProcessor"
 			;;&
 		*openide-windows*)
