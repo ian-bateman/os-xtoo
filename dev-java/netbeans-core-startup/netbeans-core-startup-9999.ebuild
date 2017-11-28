@@ -25,10 +25,28 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 java_prepare() {
-	local p r s
+	local r p s
+	p="org.netbeans.core.startup"
+	s="resources/META-INF/services/"
 	r="resources/META-INF/namedservices/URLStreamHandler/"
-	mkdir -p ${r}nbres{,loc} \
-		|| die "Failed to make namedservices directories"
+	mkdir -p "${s}" "${r}"nbres{,loc} \
+		|| die "Failed to make services namedservices directories"
+
+	echo "org.openide.util.URLStreamHandlerRegistration" > \
+		resources/META-INF/namedservices.index \
+		|| die "Failed to generate META-INF/namedservices.index"
+
+	echo "org.netbeans.modules.openide.util.ProxyURLStreamHandlerFactory" > \
+		${s}java.net.URLStreamHandlerFactory \
+		|| die "Failed to generate java.net.URLStreamHandlerFactory"
+
+	echo "org.netbeans.modules.openide.util.NbBundleProcessor" > \
+		${s}javax.annotation.processing.Processor \
+		|| die "Failed to generate javax.annotation.processing.Processor"
+
+	echo "org.netbeans.modules.openide.util.Compact2MutexEventProvider" > \
+		${s}org.openide.util.spi.MutexEventProvider \
+		|| die "Failed to generate org.openide.util.spi.MutexEventProvider"
 
 	# namedservices
 	for s in nbres{,loc}; do
