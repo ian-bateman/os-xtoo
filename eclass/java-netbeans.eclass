@@ -173,9 +173,9 @@ java-netbeans_get-processors() {
 		*projectapiui-base*)
 			procs+=",${nbm}.project.ui.ProjectConvertorProcessor"
 			;;&
-		*sendopts*)
-			procs+=",${nbm}.sendopts.OptionAnnotationProcessorImpl"
-			;;&
+#		*sendopts*)
+#			procs+=",${nbm}.sendopts.OptionAnnotationProcessorImpl"
+#			;;&
 		*settings*)
 			procs+=",${nbm}.settings.convertors.ConvertorProcessor"
 			;;&
