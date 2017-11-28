@@ -103,6 +103,7 @@ java-netbeans_get-processors() {
 	fi
 
 	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
+		[[ "${CP_DEPEND}" == *editor-mimelookup* ]] ||
 		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
 		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
 		[[ "${CP_DEPEND}" != *openide-filesystems* ]]; then
