@@ -25,7 +25,9 @@ RDEPEND="
 	~dev-java/${PN}-core-osgi-${PV}:${SLOT}
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
-	~dev-java/${PN}-editor-mimelookup-${PV}:${SLOT}
+	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
+	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
+	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
@@ -129,6 +131,11 @@ src_install() {
 		output2 windows ui
 	)
 	jars+=( ${jars_short[@]/#/core-} )
+	jars_short=(
+		actions document fold guards indent lib lib2 mimelookup
+		plain plain-lib settings settings-lib settings-storage util
+	)
+	jars+=( ${jars_short[@]/#/editor-} )
 	jars_short=( browser execution execution-base )
 	jars+=( ${jars_short[@]/#/ext} )
 	jars_short=(
@@ -143,9 +150,8 @@ src_install() {
 	jars_short=( "-indexingbridge" api uiapi uiapi-base )
 	jars+=( ${jars_short[@]/#/project} )
 	jars+=(
-		editor-mimelookup keyring masterfs options-keymap
-		options-api queries sampler sendopts settings
-		spi-palette spi-quicksearch templates
+		editorkeyring lexer masterfs options-keymap options-api queries
+		sampler sendopts settings spi-palette spi-quicksearch templates
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
