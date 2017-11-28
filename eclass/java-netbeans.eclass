@@ -145,7 +145,7 @@ java-netbeans_get-processors() {
 			procs+=",${oim}.loaders.DataObjectFactoryProcessor"
 			;;&
 		*openide-modules*)
-			procs+=",${oim}.PatchedPublicProcessor"
+			procs+=",${nbm}.openide.modules.PatchedPublicProcessor"
 			;;&
 		*openide-nodes*)
 			procs+=",${oim}.nodes.NodesAnnotationProcessor"
