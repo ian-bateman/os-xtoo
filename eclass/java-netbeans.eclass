@@ -131,6 +131,9 @@ java-netbeans_get-processors() {
 		*core-multiview*)
 			procs+=",${nb}.core.multiview.MultiViewProcessor"
 			;;&
+		*editor-lib2*)
+			procs+=",${nbm}.editor.lib2.EditorActionRegistrationProcessor"
+			;;&
 		*editor-mimelookup*)
 			procs+=",${nbm}.editor.mimelookup.CreateRegistrationProcessor"
 			;;&
