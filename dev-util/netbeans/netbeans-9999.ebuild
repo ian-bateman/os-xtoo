@@ -26,6 +26,7 @@ RDEPEND="
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
+	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
@@ -44,6 +45,7 @@ RDEPEND="
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templates-${PV}:${SLOT}
+	~dev-java/${PN}-versioning-${PV}:${SLOT}
 	dev-java/swing-layout:${SWING_SLOT}
 	>=virtual/jdk-9
 "
@@ -133,8 +135,9 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/core-} )
 	jars_short=(
-		actions document fold guards indent lib lib2 mimelookup
-		plain plain-lib settings settings-lib settings-storage util
+		actions document errorstripe errorstripe-api fold fold-nbui
+		guards indent lib lib2 mimelookup plain plain-lib settings
+		settings-lib settings-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 	jars_short=( browser execution execution-base )
@@ -148,11 +151,14 @@ src_install() {
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
 	jars_short=( linux nio2 ui  )
 	jars+=( ${jars_short[@]/#/masterfs-} )
+	jars_short=( api editor keymap  )
+	jars+=( ${jars_short[@]/#/options-} )
 	jars_short=( "-indexingbridge" api api-nb uiapi uiapi-base )
 	jars+=( ${jars_short[@]/#/project} )
 	jars+=(
-		editorkeyring lexer masterfs options-keymap options-api queries
-		sampler sendopts settings spi-palette spi-quicksearch templates
+		diff editorkeyring lexer masterfs queries sampler sendopts
+		settings spi-palette spi-quicksearch templates versioning
+		versioning-core
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
