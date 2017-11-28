@@ -85,13 +85,6 @@ java-netbeans_src_prepare() {
 	find ${JAVA_RES_DIR} -name '*.java' -delete \
 		|| die "Failed to delete sources from resources"
 
-	# sed @Messages -> @NbBundle.Messages
-#	files=( $( grep "@Messages" -l -r src/* ) )
-#	for f in "${files[@]}"; do
-#		sed -i -e "s|@Messages|@NbBundle.Messages|g" "${f}" \
-#			|| die "Failed to sed @Messages -> @NbBundle.Messages ${f}"
-#	done
-
 	java-utils-2_src_prepare
 }
 
