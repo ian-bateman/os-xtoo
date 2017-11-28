@@ -132,7 +132,7 @@ java-netbeans_get-processors() {
 		*editor-mimelookup*)
 			procs+=",${nbm}.editor.mimelookup.CreateRegistrationProcessor"
 			;;&
-		*extexecution*)
+		*"extexecution-${PV}"*)
 			procs+=",${nbm}.extexecution.startup.StartupExtenderRegistrationProcessor"
 			;;&
 		*openide-awt*)
