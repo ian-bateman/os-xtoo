@@ -90,14 +90,16 @@ java-netbeans_src_prepare() {
 # @DESCRIPTION:
 # Returns a list of processors for annotation processing
 java-netbeans_get-processors() {
-	local pkg procs
+	local oim nb nbm procs
 
-	pkg="org.netbeans.modules.openide"
+	nb="org.netbeans"
+	nbm="${nb}.modules"
+	oim="${nbm}.openide"
 	procs="${NB_PROC}"
 
 	# Generate Bundle.*
 	[[ -n ${NB_BUNDLE} ]] &&
-		procs+=",${pkg}.util.NbBundleProcessor"
+		procs+=",${oim}.util.NbBundleProcessor"
 
 	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
 		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
@@ -113,56 +115,78 @@ java-netbeans_get-processors() {
 
 	case "${CP_DEPEND}" in
 		*api-annotations*)
-			procs+=",org.netbeans.api.annotations.common.proc.StaticResourceProcessor"
+			procs+=",${nb}.api.annotations.common.proc.StaticResourceProcessor"
 			;;&
 		*api-intent*)
-			procs+=",${pkg/openide/}intent.OpenUriHandlerProcessor"
+			procs+=",${nbm}.intent.OpenUriHandlerProcessor"
 			;;&
 		*api-templates*)
-			procs+=",${pkg/openide/}templates.TemplateProcessor"
+			procs+=",${nbm}.templates.TemplateProcessor"
 			;;&
 		*core-ide*)
-			procs+=",org.netbeans.core.ide.ServiceTabProcessor"
+			procs+=",${nb}.core.ide.ServiceTabProcessor"
 			;;&
 		*core-multiview*)
-			procs+=",org.netbeans.core.multiview.MultiViewProcessor"
+			procs+=",${nb}.core.multiview.MultiViewProcessor"
 			;;&
 		*editor-mimelookup*)
-			procs+=",${pkg/openide/}editor.mimelookup.CreateRegistrationProcessor"
+			procs+=",${nbm}.editor.mimelookup.CreateRegistrationProcessor"
 			;;&
 		*extexecution*)
-			procs+=",${pkg/openide/}extexecution.startup.StartupExtenderRegistrationProcessor"
+			procs+=",${nbm}.extexecution.startup.StartupExtenderRegistrationProcessor"
 			;;&
 		*openide-awt*)
-			procs+=",${pkg}.awt.ActionProcessor"
+			procs+=",${oim}.awt.ActionProcessor"
 			;;&
 		*openide-filesystems*)
-			procs+=",${pkg}.filesystems.declmime.MIMEResolverProcessor"
+			procs+=",${oim}.filesystems.declmime.MIMEResolverProcessor"
 			;;&
 		*openide-loader*)
-			procs+=",${pkg}.loaders.DataObjectFactoryProcessor"
+			procs+=",${oim}.loaders.DataObjectFactoryProcessor"
+			;;&
+		*openide-modules*)
+			procs+=",${oim}.PatchedPublicProcessor"
 			;;&
 		*openide-nodes*)
-			procs+=",${pkg}.nodes.NodesAnnotationProcessor"
+			procs+=",${oim}.nodes.NodesAnnotationProcessor"
 			;;&
 		*"openide-util-${PV}"*)
-			procs+=",${pkg}.util.NamedServiceProcessor"
-			procs+=",${pkg}.util.ServiceProviderProcessor"
+			procs+=",${oim}.util.NamedServiceProcessor"
+			procs+=",${oim}.util.ServiceProviderProcessor"
 			;;&
 		*openide-windows*)
-			procs+=",${pkg}.windows.TopComponentProcessor"
+			procs+=",${oim}.windows.TopComponentProcessor"
 			;;&
 		*options-api*)
-			procs+=",${pkg/openide/}options.OptionsPanelControllerProcessor"
+			procs+=",${nbm}.options.OptionsPanelControllerProcessor"
 			;;&
 		*openide-windows*)
-			procs+=",${pkg}.windows.TopComponentProcessor"
+			procs+=",${oim}.windows.TopComponentProcessor"
+			;;&
+		*projectapi*)
+			procs+=",${nbm}.projectapi.LookupProviderAnnotationProcessor"
+			;;&
+		*"projectapiui-${PV}"*)
+			procs+=",${nbm}.project.uiapi.NodeFactoryAnnotationProcessor"
+			procs+=",${nbm}.project.uiapi.CompositeCategoryProviderAnnotationProcessor"
+			;;&
+		*projectapiui-base*)
+			procs+=",${nbm}.project.ui.ProjectConvertorProcessor"
+			;;&
+		*sendopts*)
+			procs+=",${nbm}.sendopts.OptionAnnotationProcessorImpl"
+			;;&
+		*settings*)
+			procs+=",${nbm}.settings.convertors.ConvertorProcessor"
+			;;&
+		*spi-palette*)
+			procs+=",${nbm}.palette.PaletteItemRegistrationProcessor"
 			;;&
 		*) ;;
 	esac
 
-	procs=${procs#,}
-	procs=${procs%,}
+	procs="${procs#,}"
+	procs="${procs%,}"
 
 	echo "${procs}"
 }
@@ -171,10 +195,11 @@ java-netbeans_get-processors() {
 # @DESCRIPTION:
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
-	local pkg procs
+	local procs
 
-	procs="$(java-netbeans_get-processors)"
-	if [[ -n ${procs} ]] && [[ -z ${NB_NO_PROC} ]]; then
+	[[ -z ${NB_NO_PROC} ]] &&
+		procs="$(java-netbeans_get-processors)"
+	if [[ -n ${procs} ]]; then
 		if java-pkg_is-release-ge "9"; then
 			JAVAC_ARGS+=" --add-modules java.xml.ws.annotation"
 		fi
