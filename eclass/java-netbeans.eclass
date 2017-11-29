@@ -194,6 +194,9 @@ java-netbeans_get-processors() {
 		*settings*)
 			procs+=",${nbm}.settings.convertors.ConvertorProcessor"
 			;;&
+		*spi-navigator*)
+			procs+=",${nbm}.navigator.NavigatorPanelRegistrationProcessor"
+			;;&
 		*spi-palette*)
 			procs+=",${nbm}.palette.PaletteItemRegistrationProcessor"
 			;;&
