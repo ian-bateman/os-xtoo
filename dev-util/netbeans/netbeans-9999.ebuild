@@ -18,6 +18,7 @@ RDEPEND="
 	dev-java/junit:${JUNIT_SLOT}
 	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-api-java-${PV}:${SLOT}
+	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-ide-${PV}:${SLOT}
 	~dev-java/${PN}-core-io-ui-${PV}:${SLOT}
@@ -136,9 +137,12 @@ src_install() {
 
 	# symlink jars in modules
 	jars_short=(
-		annotations-common intent io progress progress-nb java templates
+		annotations-common intent io progress progress-nb java
+		java-classpath templates
 	)
 	jars=( ${jars_short[@]/#/api-} )
+	jars_short=( pluginimporter services ui )
+	jars+=( ${jars_short[@]/#/autoupdate-} )
 	jars_short=(
 		execution ide io-ui multitabs multiview network osgi
 		output2 windows ui
