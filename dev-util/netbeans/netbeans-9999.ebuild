@@ -43,6 +43,8 @@ RDEPEND="
 	~dev-java/${PN}-openide-compat-${PV}:${SLOT}
 	~dev-java/${PN}-openide-options-${PV}:${SLOT}
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
+	~dev-java/${PN}-parsing-nb-${PV}:${SLOT}
+	~dev-java/${PN}-parsing-ui-${PV}:${SLOT}
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
@@ -141,9 +143,9 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/core-} )
 	jars_short=(
-		actions document errorstripe errorstripe-api fold fold-nbui
-		global-format guards indent lib lib2 mimelookup plain plain-lib
-		settings settings-lib settings-storage util
+		actions completion document errorstripe errorstripe-api fold
+		fold-nbui global-format guards indent lib lib2 mimelookup plain
+		plain-lib settings settings-lib settings-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 	jars_short=( browser execution execution-base )
@@ -159,7 +161,7 @@ src_install() {
 	jars+=( ${jars_short[@]/#/masterfs-} )
 	jars_short=( api editor keymap )
 	jars+=( ${jars_short[@]/#/options-} )
-	jars_short=( api indexing lucene )
+	jars_short=( api indexing lucene nb ui )
 	jars+=( ${jars_short[@]/#/parsing-} )
 	jars_short=( "-indexingbridge" api api-nb uiapi uiapi-base )
 	jars+=( ${jars_short[@]/#/project} )
