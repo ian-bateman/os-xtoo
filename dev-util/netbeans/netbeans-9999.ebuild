@@ -28,9 +28,11 @@ RDEPEND="
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
+	~dev-java/${PN}-editor-bracesmatching-${PV}:${SLOT}
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
+	~dev-java/${PN}-editor-search-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
@@ -143,9 +145,10 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/core-} )
 	jars_short=(
-		actions completion document errorstripe errorstripe-api fold
-		fold-nbui global-format guards indent lib lib2 mimelookup plain
-		plain-lib settings settings-lib settings-storage util
+		actions bracesmatching completion document errorstripe
+		errorstripe-api fold fold-nbui global-format guards indent lib
+		lib2 mimelookup plain plain-lib search settings settings-lib
+		settings-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 	jars_short=( browser execution execution-base )
