@@ -188,9 +188,9 @@ java-netbeans_get-processors() {
 		*refactoring-api*)
 			procs+=",${nbm}.refactoring.spi.impl.ScopeAnnotationProcessor"
 			;;&
-#		*sendopts*)
-#			procs+=",${nbm}.sendopts.OptionAnnotationProcessorImpl"
-#			;;&
+		*sendopts*)
+			procs+=",${nbm}.sendopts.OptionAnnotationProcessor"
+			;;&
 		*settings*)
 			procs+=",${nbm}.settings.convertors.ConvertorProcessor"
 			;;&
