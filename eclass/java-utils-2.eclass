@@ -2079,6 +2079,7 @@ ejavac() {
 
 	local javac_args
 	javac_args="$(java-pkg_javac-args)"
+	javac_args+=" -J-Djava.io.tmpdir=\"${T}\" "
 
 	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
