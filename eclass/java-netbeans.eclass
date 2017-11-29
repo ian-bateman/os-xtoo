@@ -101,7 +101,8 @@ java-netbeans_get-processors() {
 
 	if [[ "${CP_DEPEND}" == *editor-settings* ]] &&
 		[[ "${CP_DEPEND}" != *netbeans-settings* ]]; then
-		die "Missing netbeans-settings from CP_DEPEND"
+		eerror "Missing netbeans-settings from CP_DEPEND"
+		die
 	fi
 
 	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
@@ -110,12 +111,20 @@ java-netbeans_get-processors() {
 		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
 		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
 		[[ "${CP_DEPEND}" != *openide-filesystems* ]]; then
-		die "Missing netbeans-openide-filesystems from CP_DEPEND"
+		eerror "Missing netbeans-openide-filesystems from CP_DEPEND"
+		die
 	fi
 
 	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
 		[[ "${CP_DEPEND}" != *openide-nodes* ]]; then
-		die "Missing netbeans-openide-nodes from CP_DEPEND"
+		eerror "Missing netbeans-openide-nodes from CP_DEPEND"
+		die
+	fi
+
+	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
+		[[ "${CP_DEPEND}" != *openide-util-ui* ]]; then
+		eerror "Missing netbeans-openide-util-ui from CP_DEPEND"
+		die
 	fi
 
 	case "${CP_DEPEND}" in
