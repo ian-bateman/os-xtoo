@@ -172,6 +172,9 @@ java-netbeans_get-processors() {
 		*openide-windows*)
 			procs+=",${oim}.windows.TopComponentProcessor"
 			;;&
+		*parsing-api*)
+			procs+=",${nbm}.parsing.impl.EmbeddingProviderRegistrationProcessor"
+			;;&
 		*projectapi*)
 			procs+=",${nbm}.projectapi.LookupProviderAnnotationProcessor"
 			;;&
@@ -182,6 +185,9 @@ java-netbeans_get-processors() {
 		*projectuiapi-base*)
 			procs+=",${nbm}.project.ui.convertor.ProjectConvertorProcessor"
 			;;&
+		*refactoring-api*)
+			procs+=",${nbm}.refactoring.spi.impl.ScopeAnnotationProcessor"
+			;;&
 #		*sendopts*)
 #			procs+=",${nbm}.sendopts.OptionAnnotationProcessorImpl"
 #			;;&
@@ -190,6 +196,12 @@ java-netbeans_get-processors() {
 			;;&
 		*spi-palette*)
 			procs+=",${nbm}.palette.PaletteItemRegistrationProcessor"
+			;;&
+		*"versioning-${PV}"*)
+			procs+=",${nbm}.versioning.VCSRegistrationProcessor"
+			;;&
+		*versioning-core*)
+			procs+=",${nbm}.versioning.core.VCSRegistrationProcessor"
 			;;&
 		*) ;;
 	esac
@@ -206,13 +218,13 @@ java-netbeans_get-processors() {
 java-netbeans_src_compile() {
 	local procs
 
+	JAVAC_ARGS+="-parameters"
 	[[ -z ${NB_NO_PROC} ]] &&
 		procs="$(java-netbeans_get-processors)"
 	if [[ -n ${procs} ]]; then
 		if java-pkg_is-release-ge "9"; then
 			JAVAC_ARGS+=" --add-modules java.xml.ws.annotation"
 		fi
-		JAVAC_ARGS+=" -parameters"
 		JAVAC_ARGS+=" -processor ${procs} --source-path src"
 		# for resources
 		JAVA_CLASSPATH_EXTRA="src/"
