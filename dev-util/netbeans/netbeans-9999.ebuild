@@ -9,12 +9,14 @@ DEPEND=">=virtual/jdk-9"
 
 ASM_SLOT="6"
 JUNIT_SLOT="4"
+LUCENE_SLOT="3"
 SWING_SLOT="1"
 
 RDEPEND="
 	dev-java/asm:${ASM_SLOT}
 	dev-java/jsr305:0
 	dev-java/junit:${JUNIT_SLOT}
+	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-api-java-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-ide-${PV}:${SLOT}
@@ -26,6 +28,7 @@ RDEPEND="
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
+	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
@@ -43,6 +46,7 @@ RDEPEND="
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
+	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templates-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-${PV}:${SLOT}
@@ -123,6 +127,8 @@ src_install() {
 		openide-util openide-util-lookup openide-util-ui
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
+	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
+		/usr/share/${my_pn}/lib/lucene-core.jar
 
 	# symlink jars in modules
 	jars_short=(
@@ -136,8 +142,8 @@ src_install() {
 	jars+=( ${jars_short[@]/#/core-} )
 	jars_short=(
 		actions document errorstripe errorstripe-api fold fold-nbui
-		guards indent lib lib2 mimelookup plain plain-lib settings
-		settings-lib settings-storage util
+		global-format guards indent lib lib2 mimelookup plain plain-lib
+		settings settings-lib settings-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 	jars_short=( browser execution execution-base )
@@ -149,16 +155,21 @@ src_install() {
 	jars+=( ${jars_short[@]/#/openide-} )
 	jars_short=( outline plaf tabcontrol )
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
-	jars_short=( linux nio2 ui  )
+	jars_short=( linux nio2 ui )
 	jars+=( ${jars_short[@]/#/masterfs-} )
-	jars_short=( api editor keymap  )
+	jars_short=( api editor keymap )
 	jars+=( ${jars_short[@]/#/options-} )
+	jars_short=( api indexing lucene )
+	jars+=( ${jars_short[@]/#/parsing-} )
 	jars_short=( "-indexingbridge" api api-nb uiapi uiapi-base )
 	jars+=( ${jars_short[@]/#/project} )
+	jars_short=( api )
+	jars+=( ${jars_short[@]/#/refactoring-} )
+	jars_short=( navigator palette quicksearch tasklist )
+	jars+=( ${jars_short[@]/#/spi-} )
 	jars+=(
-		diff editorkeyring lexer masterfs queries sampler sendopts
-		settings spi-palette spi-quicksearch templates versioning
-		versioning-core
+		diff editor keyring lexer masterfs queries sampler sendopts
+		settings templates versioning versioning-core
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
