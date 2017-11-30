@@ -51,6 +51,12 @@ JAVA_CLASSPATH=${JAVA_GENTOO_CLASSPATH}
 # classpath when compiling sources.
 JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 
+# @ECLASS-VARIABLE: JAVA_NO_JAR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to any value to skip jar creation, to manipulate sources after
+# compile before creating jar.
+
 # @ECLASS-VARIABLE: JAVA_NO_SRC
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -106,6 +112,49 @@ JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Add tools.jar to the classpath
+
+# @FUNCTION: java-pkg-simple_create-jar
+# @DESCRIPTION:
+# Create jar from compiled sources or other
+java-pkg-simple_create-jar(){
+	local classes jar_args
+
+	[[ -z ${1} ]] && die "No directory specified to jar (arg 1)"
+
+	classes="${1}"
+	jar_args="cfmM ${JAVA_JAR_FILENAME} ${classes}/META-INF/"
+	if [[ -z ${JAVA_RES_DIR} ]] && \
+		[[ -d "${S}/src/main/resources" ]]; then
+		JAVA_RES_DIR="src/main/resources"
+		if [[ -d "${JAVA_RES_DIR}/meta-inf" ]]; then
+			mv "${JAVA_RES_DIR}/meta-inf" \
+				"${JAVA_RES_DIR}/META-INF" \
+				|| die "Failed to upper case meta-inf"
+		fi
+	fi
+	if [[ -n ${JAVA_RES_DIR} ]]; then
+		local r
+		for r in ${JAVA_RES_DIR}; do
+			if [[ -d "${r}" ]]; then
+				cp -r "${r}"/* ${classes} \
+					|| die "Failed to cp resources for jar"
+			fi
+		done
+	fi
+	if [[ -f ${classes}/META-INF/MANIFEST.MF ]]; then
+		jar_args+="MANIFEST.MF"
+	elif [[ ! -f ${classes}/META-INF/manifest.mf ]]; then
+		if [[ ! -d ${classes}/META-INF ]]; then
+			mkdir ${classes}/META-INF \
+				|| die "Failed to mkdir META-INF"
+		fi
+		echo -e "Manifest-Version: 1.0\nCreated-By: $(java-config -f)" \
+			> ${classes}/META-INF/manifest.mf \
+			|| die "Failed to echo manifest.mf"
+		jar_args+="manifest.mf"
+	fi
+	jar ${jar_args} -C ${classes} . || die "jar failed"
+}
 
 # @FUNCTION: java-pkg-simple_src_compile
 # @DESCRIPTION:
@@ -173,39 +222,7 @@ java-pkg-simple_src_compile() {
 	fi
 
 	# package
-#	local jar_args="cf ${JAVA_JAR_FILENAME}"
-	local jar_args="cfmM ${JAVA_JAR_FILENAME} ${classes}/META-INF/"
-	if [[ -z ${JAVA_RES_DIR} ]] && \
-		[[ -d "${S}/src/main/resources" ]]; then
-		JAVA_RES_DIR="src/main/resources"
-		if [[ -d "${JAVA_RES_DIR}/meta-inf" ]]; then
-			mv "${JAVA_RES_DIR}/meta-inf" \
-				"${JAVA_RES_DIR}/META-INF" \
-				|| die "Failed to upper case meta-inf"
-		fi
-	fi
-	if [[ -n ${JAVA_RES_DIR} ]]; then
-		local r
-		for r in ${JAVA_RES_DIR}; do
-			if [[ -d "${r}" ]]; then
-				cp -r "${r}"/* ${classes} \
-					|| die "Failed to cp resources for jar"
-			fi
-		done
-	fi
-	if [[ -f ${classes}/META-INF/MANIFEST.MF ]]; then
-		jar_args+="MANIFEST.MF"
-	elif [[ ! -f ${classes}/META-INF/manifest.mf ]]; then
-		if [[ ! -d ${classes}/META-INF ]]; then
-			mkdir ${classes}/META-INF \
-				|| die "Failed to mkdir META-INF"
-		fi
-		echo -e "Manifest-Version: 1.0\nCreated-By: $(java-config -f)" \
-			> ${classes}/META-INF/manifest.mf \
-			|| die "Failed to echo manifest.mf"
-		jar_args+="manifest.mf"
-	fi
-	jar ${jar_args} -C ${classes} . || die "jar failed"
+	[[ -z ${JAVA_NO_JAR} ]] && java-pkg-simple_create-jar ${classes}
 }
 
 # @FUNCTION: java-pkg-simple_src_install
