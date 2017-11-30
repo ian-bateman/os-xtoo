@@ -239,7 +239,7 @@ java-netbeans_get-processors() {
 java-netbeans_src_compile() {
 	local procs
 
-	JAVAC_ARGS+="-parameters"
+	JAVAC_ARGS+=" -parameters "
 	[[ -z ${NB_NO_PROC} ]] &&
 		procs="$(java-netbeans_get-processors)"
 	if [[ -n ${procs} ]]; then
