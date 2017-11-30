@@ -17,6 +17,7 @@ RDEPEND="
 	dev-java/jsr305:0
 	dev-java/junit:${JUNIT_SLOT}
 	dev-java/lucene-core:${LUCENE_SLOT}
+	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~dev-java/${PN}-core-browser-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
@@ -44,6 +45,7 @@ RDEPEND="
 	~dev-java/${PN}-masterfs-linux-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-nio2-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-ui-${PV}:${SLOT}
+	~dev-java/${PN}-o-n-swing-dirchooser-${PV}:${SLOT}
 	~dev-java/${PN}-o-n-upgrader-${PV}:${SLOT}
 	~dev-java/${PN}-openide-execution-${PV}:${SLOT}
 	~dev-java/${PN}-openide-compat-${PV}:${SLOT}
@@ -59,7 +61,8 @@ RDEPEND="
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
-	~dev-java/${PN}-templates-${PV}:${SLOT}
+	~dev-java/${PN}-templatesui-${PV}:${SLOT}
+	~dev-java/${PN}-utilities-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-${PV}:${SLOT}
 	dev-java/swing-layout:${SWING_SLOT}
 	>=virtual/jdk-9
@@ -92,7 +95,7 @@ symlink_jars() {
 }
 
 src_install() {
-	local icon icon_dir jars jars_short my_pn
+	local icon icon_dir j jars jars_short my_pn
 	my_pn="netbeans-${SLOT}"
 
 	dodir /etc/${my_pn}
@@ -143,6 +146,13 @@ src_install() {
 	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
 		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
 
+	jars_short=( "" "-boot" "-boot-fx" "-json" )
+	jars=( ${jars_short[@]/#/net-java-html} )
+	for j in "${jars[@]}"; do
+		dosym ../../${j}/lib/${j}.jar \
+			/usr/share/${my_pn}/lib/${j}.jar
+	done
+
 	# symlink jars in modules
 	jars_short=(
 		annotations-common intent io progress progress-nb java
@@ -150,7 +160,7 @@ src_install() {
 	)
 	jars=( ${jars_short[@]/#/api-} )
 
-	jars_short=( pluginimporter services ui )
+	jars_short=( cli pluginimporter services ui )
 	jars+=( ${jars_short[@]/#/autoupdate-} )
 
 	jars_short=(
@@ -179,7 +189,7 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/openide-} )
 
-	jars_short=( outline plaf tabcontrol )
+	jars_short=( dirchooser outline plaf tabcontrol )
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
 
 	jars_short=( linux nio2 ui )
@@ -206,8 +216,8 @@ src_install() {
 
 	jars+=(
 		classfile diff editor keyring lexer masterfs queries sampler
-		sendopts settings templates versioning versioning-core
-		xml-catalog
+		sendopts settings templates templatesui utilities versioning
+		versioning-core xml-catalog
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
