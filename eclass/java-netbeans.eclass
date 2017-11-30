@@ -131,6 +131,9 @@ java-netbeans_get-processors() {
 		*api-annotations*)
 			procs+=",${nb}.api.annotations.common.proc.StaticResourceProcessor"
 			;;&
+		*api-java*)
+			procs+=",${nb}.api.java.queries.AnnotationProcessingQuery"
+			;;&
 		*api-intent*)
 			procs+=",${nbm}.intent.OpenUriHandlerProcessor"
 			;;&
@@ -183,6 +186,9 @@ java-netbeans_get-processors() {
 			;;&
 		*parsing-api*)
 			procs+=",${nbm}.parsing.impl.EmbeddingProviderRegistrationProcessor"
+			;;&
+		*project-ant*)
+			procs+=",${nbm}.project.ant.AntBasedProcessor"
 			;;&
 		*projectapi*)
 			procs+=",${nbm}.projectapi.LookupProviderAnnotationProcessor"
