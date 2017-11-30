@@ -155,6 +155,9 @@ java-netbeans_get-processors() {
 		*"extexecution-${PV}"*)
 			procs+=",${nbm}.extexecution.startup.StartupExtenderRegistrationProcessor"
 			;;&
+		*net-java-html-json*)
+			procs+=",${nb}.html.json.impl.ModelProcessor"
+			;;&
 		*openide-awt*)
 			procs+=",${oim}.awt.ActionProcessor"
 			;;&
