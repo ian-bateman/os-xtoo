@@ -17,13 +17,15 @@ RDEPEND="
 	dev-java/jsr305:0
 	dev-java/junit:${JUNIT_SLOT}
 	dev-java/lucene-core:${LUCENE_SLOT}
-	~dev-java/${PN}-api-java-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
+	~dev-java/${PN}-core-browser-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-ide-${PV}:${SLOT}
 	~dev-java/${PN}-core-io-ui-${PV}:${SLOT}
 	~dev-java/${PN}-core-multitabs-${PV}:${SLOT}
+	~dev-java/${PN}-core-multitabs-project-${PV}:${SLOT}
 	~dev-java/${PN}-core-multiview-${PV}:${SLOT}
+	~dev-java/${PN}-core-netigso-${PV}:${SLOT}
 	~dev-java/${PN}-core-network-${PV}:${SLOT}
 	~dev-java/${PN}-core-osgi-${PV}:${SLOT}
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
@@ -36,6 +38,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-search-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
+	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-linux-${PV}:${SLOT}
@@ -48,6 +51,9 @@ RDEPEND="
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-nb-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-ui-${PV}:${SLOT}
+	~dev-java/${PN}-project-ant-ui-${PV}:${SLOT}
+	~dev-java/${PN}-project-libraries-ui-${PV}:${SLOT}
+	~dev-java/${PN}-project-spi-intern-impl-${PV}:${SLOT}
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-sendopts-${PV}:${SLOT}
@@ -134,20 +140,25 @@ src_install() {
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
 		/usr/share/${my_pn}/lib/lucene-core.jar
+	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
+		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
 
 	# symlink jars in modules
 	jars_short=(
 		annotations-common intent io progress progress-nb java
-		java-classpath templates
+		java-classpath templates xml
 	)
 	jars=( ${jars_short[@]/#/api-} )
+
 	jars_short=( pluginimporter services ui )
 	jars+=( ${jars_short[@]/#/autoupdate-} )
+
 	jars_short=(
-		execution ide io-ui multitabs multiview network osgi
-		output2 windows ui
+		browser execution ide io-ui multitabs multitabs-project
+		multiview netigso network osgi output2 windows ui
 	)
 	jars+=( ${jars_short[@]/#/core-} )
+
 	jars_short=(
 		actions bracesmatching completion document errorstripe
 		errorstripe-api fold fold-nbui global-format guards indent lib
@@ -155,30 +166,48 @@ src_install() {
 		settings-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
+
 	jars_short=( browser execution execution-base )
 	jars+=( ${jars_short[@]/#/ext} )
+
+	jars_short=( platform project )
+	jars+=( ${jars_short[@]/#/java-} )
+
 	jars_short=(
 		actions awt compat dialogs execution explorer filesystems-nb
 		io loaders nodes options text windows
 	)
 	jars+=( ${jars_short[@]/#/openide-} )
+
 	jars_short=( outline plaf tabcontrol )
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
+
 	jars_short=( linux nio2 ui )
 	jars+=( ${jars_short[@]/#/masterfs-} )
+
 	jars_short=( api editor keymap )
 	jars+=( ${jars_short[@]/#/options-} )
+
 	jars_short=( api indexing lucene nb ui )
 	jars+=( ${jars_short[@]/#/parsing-} )
-	jars_short=( "-indexingbridge" api api-nb uiapi uiapi-base )
+
+	jars_short=(
+		"-ant" "-ant-ui" "-indexingbridge" api api-nb "-libraries"
+		"-libraries-ui" "-spi-intern-impl" "-spi-intern-impl"
+		uiapi uiapi-base
+	)
 	jars+=( ${jars_short[@]/#/project} )
+
 	jars_short=( api )
 	jars+=( ${jars_short[@]/#/refactoring-} )
+
 	jars_short=( navigator palette quicksearch tasklist )
 	jars+=( ${jars_short[@]/#/spi-} )
+
 	jars+=(
-		diff editor keyring lexer masterfs queries sampler sendopts
-		settings templates versioning versioning-core
+		classfile diff editor keyring lexer masterfs queries sampler
+		sendopts settings templates versioning versioning-core
+		xml-catalog
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
