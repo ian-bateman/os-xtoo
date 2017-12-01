@@ -59,12 +59,13 @@ RDEPEND="
 	~dev-java/${PN}-project-spi-intern-impl-${PV}:${SLOT}
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
-	~dev-java/${PN}-sendopts-${PV}:${SLOT}
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
 	~dev-java/${PN}-updatecenters-${PV}:${SLOT}
 	~dev-java/${PN}-utilities-project-${PV}:${SLOT}
+	~dev-java/${PN}-versioning-masterfs-${PV}:${SLOT}
+	~dev-java/${PN}-versioning-system-cvss-installer-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9
@@ -228,7 +229,9 @@ src_install() {
 	jars_short=( "" "-project" )
 	jars+=( ${jars_short[@]/#/utilities} )
 
-	jars_short=( "" "-core" "-util" "-ui" )
+	jars_short=(
+		"" "-core" "-masterfs" "-system-cvss-installer" "-util" "-ui"
+	)
 	jars+=( ${jars_short[@]/#/versioning} )
 
 	jars+=(
