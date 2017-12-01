@@ -54,13 +54,13 @@ src_compile() {
 	JAVA_SRC_DIR="java/javax/el/"
 	java-pkg-simple_src_compile
 
-	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/el-api.jar"
+	JAVA_CLASSPATH_EXTRA="${S}/el-api.jar"
 	JAVA_JAR_FILENAME="servlet-api.jar"
 	JAVA_SRC_DIR="java/javax/servlet/"
 	JAVA_RES_DIR="resources"
 	java-pkg-simple_src_compile
 
-	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/el-api.jar:${S}/servlet-api.jar"
+	JAVA_CLASSPATH_EXTRA="${S}/el-api.jar:${S}/servlet-api.jar"
 	JAVA_SRC_DIR="java/javax/jsp"
 	JAVA_JAR_FILENAME="jsp-api.jar"
 	java-pkg-simple_src_compile
