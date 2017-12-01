@@ -92,6 +92,42 @@ java-netbeans_src_prepare() {
 	java-utils-2_src_prepare
 }
 
+# @FUNCTION: java-netbeans_create-module-xml
+# @DESCRIPTION:
+# Create module xml file in config/Modules
+#
+# @CODE
+# Parameters:
+# $1: A jar name without .jar suffix
+# $2: Set to any value to skip netbeans/org prefix
+java-netbeans_create-module-xml() {
+	local orig mod xml
+
+	# set original, module, and xml file names
+	orig="${1}"
+	if [[ -z ${2} ]]; then
+		orig="netbeans-${1}"
+		mod="${1/o-n-/}"
+		mod="${mod/.options-/module.options}"
+		[[ "${mod}" != openide* ]] && mod="netbeans.${mod}"
+		mod="org.${mod}"
+	fi
+	xml="${mod//./-}.xml"
+
+	echo '<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//NetBeans//DTD Module Status 1.0//EN" "http://www.netbeans.org/dtds/module-status-1_0.dtd">
+<module name="'${mod//-/.}'">
+        <param name="eager">false</param>
+        <param name="enabled">true</param>
+        <param name="jar">modules/'${orig}'.jar</param>
+        <param name="reloadable">false</param>
+</module>
+' > "${T}/${xml}" || die "Failed to generate ${xml}"
+
+	insinto /usr/share/netbeans-${SLOT}/config/Modules
+	doins "${T}/${xml}"
+}
+
 # @FUNCTION: java-netbeans_get_processors
 # @DESCRIPTION:
 # Returns a list of processors for annotation processing
