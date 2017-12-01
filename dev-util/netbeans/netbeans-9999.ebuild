@@ -221,23 +221,9 @@ src_install() {
 	)
 	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
 
-	insinto /usr/share/${my_pn}/config/Modules
-	local f j
+	local j
 	for j in "${jars[@]}"; do
-		f="${j/o-n-/}"
-		f="${f/.options-/module.options}"
-		[[ "${f}" != openide* ]] && f="${PN}.${f}"
-		f="org.${f}"
-		echo '<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module PUBLIC "-//NetBeans//DTD Module Status 1.0//EN" "http://www.netbeans.org/dtds/module-status-1_0.dtd">
-<module name="'${f//-/.}'">
-	<param name="eager">false</param>
-	<param name="enabled">true</param>
-	<param name="jar">modules/'${PN}-${j}'.jar</param>
-	<param name="reloadable">false</param>
-</module>
-' > "${T}/${f//./-}.xml" || die "Failed to generate ${PN}-${j}.xml"
-		doins "${T}/${f//./-}.xml"
+		java-netbeans_create-module-xml "${j}"
 	done
 
 	# install icon
