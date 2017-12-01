@@ -65,7 +65,7 @@ RDEPEND="
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
 	~dev-java/${PN}-updatecenters-${PV}:${SLOT}
 	~dev-java/${PN}-utilities-project-${PV}:${SLOT}
-	~dev-java/${PN}-versioning-${PV}:${SLOT}
+	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9
 "
@@ -197,8 +197,8 @@ src_install() {
 	jars_short=( dirchooser outline plaf tabcontrol )
 	jars+=( ${jars_short[@]/#/o-n-swing-} )
 
-	jars_short=( linux nio2 ui )
-	jars+=( ${jars_short[@]/#/masterfs-} )
+	jars_short=( "" "-linux" -"nio2" "-ui" )
+	jars+=( ${jars_short[@]/#/masterfs} )
 
 	jars_short=( api editor keymap )
 	jars+=( ${jars_short[@]/#/options-} )
@@ -208,7 +208,7 @@ src_install() {
 
 	jars_short=(
 		"-ant" "-ant-ui" "-indexingbridge" api api-nb "-libraries"
-		"-libraries-ui" "-spi-intern-impl" "-spi-intern-impl"
+		"-libraries-ui" "-spi-intern" "-spi-intern-impl"
 		uiapi uiapi-base
 	)
 	jars+=( ${jars_short[@]/#/project} )
@@ -216,14 +216,25 @@ src_install() {
 	jars_short=( api )
 	jars+=( ${jars_short[@]/#/refactoring-} )
 
-	jars_short=( navigator palette quicksearch tasklist )
+	jars_short=( "" "-apimodule" )
+	jars+=( ${jars_short[@]/#/spellchecker} )
+
+	jars_short=( editor-hints navigator palette quicksearch tasklist )
 	jars+=( ${jars_short[@]/#/spi-} )
 
+	jars_short=( "" ui )
+	jars+=( ${jars_short[@]/#/templates} )
+
+	jars_short=( "" "-project" )
+	jars+=( ${jars_short[@]/#/utilities} )
+
+	jars_short=( "" "-core" "-util" "-ui" )
+	jars+=( ${jars_short[@]/#/versioning} )
+
 	jars+=(
-		classfile diff editor keyring lexer libs-freemarker masterfs
-		queries sampler sendopts settings templates templatesui
-		updatecenters utilities utilities-project versioning
-		versioning-core xml-catalog
+		classfile diff editor favorites keyring lexer libs-freemarker
+		queries sampler sendopts settings team-commons updatecenters
+		xml-catalog
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
