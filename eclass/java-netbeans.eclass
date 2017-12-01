@@ -135,9 +135,9 @@ java-netbeans_get-processors() {
 		*api-annotations*)
 			procs+=",${nb}.api.annotations.common.proc.StaticResourceProcessor"
 			;;&
-		*"api-java-${PV}"*)
-			procs+=",${nb}.api.java.queries.AnnotationProcessingQuery"
-			;;&
+#		*"api-java-${PV}"*)
+#			procs+=",${nb}.api.java.queries.AnnotationProcessingQuery"
+#			;;&
 		*api-intent*)
 			procs+=",${nbm}.intent.OpenUriHandlerProcessor"
 			;;&
