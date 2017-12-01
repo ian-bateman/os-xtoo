@@ -9,6 +9,7 @@ DEPEND=">=virtual/jdk-9"
 
 ASM_SLOT="6"
 LUCENE_SLOT="3"
+OSGI_SLOT="6"
 
 RDEPEND="
 	dev-java/asm:${ASM_SLOT}
@@ -59,8 +60,10 @@ RDEPEND="
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
-	~dev-java/${PN}-utilities-${PV}:${SLOT}
+	~dev-java/${PN}-updatecenters-${PV}:${SLOT}
+	~dev-java/${PN}-utilities-project-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-${PV}:${SLOT}
+	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9
 "
 #	~dev-java/${PN}-openide-filesystem-compat8-${PV}:${SLOT}
@@ -91,7 +94,7 @@ symlink_jars() {
 }
 
 src_install() {
-	local icon icon_dir j jars jars_short my_pn
+	local icon icon_dir j jdir jars jars_short my_pn
 	my_pn="netbeans-${SLOT}"
 
 	dodir /etc/${my_pn}
@@ -118,12 +121,13 @@ src_install() {
 	dosym ../share/${my_pn}/lib/nbexec /usr/bin/nbexec-${SLOT}
 
 	# symlink jars in core
+	jdir=lib # use lib vs core for now
 	jars=( core-startup core-startup-base libs-asm o-n-core )
-	symlink_jars "/usr/share/${my_pn}/core" ${jars[@]}
+	symlink_jars "/usr/share/${my_pn}/${jdir}" ${jars[@]}
 	dosym ../../asm-${ASM_SLOT}/lib/asm.jar \
-		/usr/share/${my_pn}/lib/asm.jar
+		/usr/share/${my_pn}/${jdir}/asm.jar
 	dosym ../../jsr305/lib/jsr305.jar \
-		/usr/share/${my_pn}/lib/jsr305.jar
+		/usr/share/${my_pn}/${jdir}/jsr305.jar
 
 	# symlink jars in lib
 	jars=(
@@ -133,6 +137,8 @@ src_install() {
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
 		/usr/share/${my_pn}/lib/lucene-core.jar
+	dosym ../../osgi-core-api-${OSGI_SLOT}/lib/osgi-core-api.jar \
+		/usr/share/${my_pn}/lib/osgi-core-api.jar
 	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
 		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
 
@@ -206,10 +212,10 @@ src_install() {
 
 	jars+=(
 		classfile diff editor keyring lexer masterfs queries sampler
-		sendopts settings templates templatesui utilities versioning
-		versioning-core xml-catalog
+		sendopts settings templates templatesui updatecenters utilities
+		utilities-project versioning versioning-core xml-catalog
 	)
-	symlink_jars "/usr/share/${my_pn}/modules" ${jars[@]}
+	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
 	local j
 	for j in "${jars[@]}"; do
