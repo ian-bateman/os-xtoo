@@ -13,6 +13,7 @@ OSGI_SLOT="6"
 
 RDEPEND="
 	dev-java/asm:${ASM_SLOT}
+	dev-java/freemarker:0
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
@@ -34,12 +35,14 @@ RDEPEND="
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
+	~dev-java/${PN}-editor-mimelookup-impl-${PV}:${SLOT}
 	~dev-java/${PN}-editor-search-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
+	~dev-java/${PN}-libs-freemarker-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-linux-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-nio2-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-ui-${PV}:${SLOT}
@@ -135,10 +138,16 @@ src_install() {
 		openide-util openide-util-lookup openide-util-ui
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
+	dosym ../../freemarker/lib/freemarker.jar \
+		/usr/share/${my_pn}/lib/freemarker.jar
+
 	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
 		/usr/share/${my_pn}/lib/lucene-core.jar
+
 	dosym ../../osgi-core-api-${OSGI_SLOT}/lib/osgi-core-api.jar \
 		/usr/share/${my_pn}/lib/osgi-core-api.jar
+	java-netbeans_create-module-xml "osgi-core-api" 0
+
 	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
 		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
 
@@ -168,8 +177,8 @@ src_install() {
 	jars_short=(
 		actions bracesmatching completion document errorstripe
 		errorstripe-api fold fold-nbui global-format guards indent lib
-		lib2 mimelookup plain plain-lib search settings settings-lib
-		settings-storage util
+		lib2 mimelookup mimelookup-impl plain plain-lib search
+		settings settings-lib settings-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 
@@ -211,9 +220,10 @@ src_install() {
 	jars+=( ${jars_short[@]/#/spi-} )
 
 	jars+=(
-		classfile diff editor keyring lexer masterfs queries sampler
-		sendopts settings templates templatesui updatecenters utilities
-		utilities-project versioning versioning-core xml-catalog
+		classfile diff editor keyring lexer libs-freemarker masterfs
+		queries sampler sendopts settings templates templatesui
+		updatecenters utilities utilities-project versioning
+		versioning-core xml-catalog
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
