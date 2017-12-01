@@ -8,14 +8,11 @@ inherit java-netbeans
 DEPEND=">=virtual/jdk-9"
 
 ASM_SLOT="6"
-JUNIT_SLOT="4"
 LUCENE_SLOT="3"
-SWING_SLOT="1"
 
 RDEPEND="
 	dev-java/asm:${ASM_SLOT}
 	dev-java/jsr305:0
-	dev-java/junit:${JUNIT_SLOT}
 	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
@@ -64,7 +61,6 @@ RDEPEND="
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
 	~dev-java/${PN}-utilities-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-${PV}:${SLOT}
-	dev-java/swing-layout:${SWING_SLOT}
 	>=virtual/jdk-9
 "
 #	~dev-java/${PN}-openide-filesystem-compat8-${PV}:${SLOT}
@@ -120,12 +116,6 @@ src_install() {
 	dosym ../../../etc/${my_pn} /usr/share/${my_pn}/etc
 	dosym ../share/${my_pn}/bin/${PN} /usr/bin/${my_pn}
 	dosym ../share/${my_pn}/lib/nbexec /usr/bin/nbexec-${SLOT}
-
-	# symlinks in docs
-	dosym ../../junit-${JUNIT_SLOT}/sources/junit-src.zip \
-		/usr/share/${my_pn}/docs/junit-sources.jar
-	dosym ../../swing-layout-${SWING_SLOT}/sources/swing-layout-src.zip \
-		/usr/share/${my_pn}/docs/swing-layout-sources.jar
 
 	# symlink jars in core
 	jars=( core-startup core-startup-base libs-asm o-n-core )
