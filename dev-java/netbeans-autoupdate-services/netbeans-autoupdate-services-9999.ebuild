@@ -24,6 +24,7 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
-java_prepare() {
+src_prepare() {
 	cp -r libsrc/* src/ || die "Failed to copy extra sources"
+	java-netbeans_src_prepare
 }
