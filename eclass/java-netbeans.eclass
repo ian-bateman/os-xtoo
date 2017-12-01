@@ -105,6 +105,7 @@ java-netbeans_create-module-xml() {
 
 	# set original, module, and xml file names
 	orig="${1}"
+	mod="${1}"
 	if [[ -z ${2} ]]; then
 		orig="netbeans-${1}"
 		mod="${1/o-n-/}"
