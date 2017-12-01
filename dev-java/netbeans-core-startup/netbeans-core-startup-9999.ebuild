@@ -47,11 +47,4 @@ java_prepare() {
 	echo "org.netbeans.modules.openide.util.Compact2MutexEventProvider" > \
 		${s}org.openide.util.spi.MutexEventProvider \
 		|| die "Failed to generate org.openide.util.spi.MutexEventProvider"
-
-	# namedservices
-	for s in nbres{,loc}; do
-		echo "${p}.NbResourceStreamHandler" > \
-			"${r}${s}/java.net.URLStreamHandler" \
-			|| die "Failed to generate ${s}/java.net.URLStreamHandler"
-	done
 }
