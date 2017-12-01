@@ -85,6 +85,10 @@ java-netbeans_src_prepare() {
 	find ${JAVA_RES_DIR} -name '*.java' -delete \
 		|| die "Failed to delete sources from resources"
 
+	# delete for re-generation of non static additions
+	find src/ -name Bundle.properties -delete \
+		|| die "Failed to remove Bundle.properties"
+
 	java-utils-2_src_prepare
 }
 
@@ -237,21 +241,37 @@ java-netbeans_get-processors() {
 # @DESCRIPTION:
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
-	local procs
+	local p procs props
 
-	JAVAC_ARGS+=" -parameters "
+	JAVAC_ARGS+=" -parameters --source-path src "
 	[[ -z ${NB_NO_PROC} ]] &&
 		procs="$(java-netbeans_get-processors)"
 	if [[ -n ${procs} ]]; then
 		if java-pkg_is-release-ge "9"; then
 			JAVAC_ARGS+=" --add-modules java.xml.ws.annotation"
 		fi
-		JAVAC_ARGS+=" -processor ${procs} --source-path src"
+
+		JAVAC_ARGS+=" -processor ${procs} "
+
 		# for resources
 		JAVA_CLASSPATH_EXTRA="src/"
-	fi
 
-	java-pkg-simple_src_compile
+		# skip jar creation
+		JAVA_NO_JAR=0
+		java-pkg-simple_src_compile
+
+		# combine generated properties with static
+		props=( $(find target -name '*.properties') )
+		for p in "${props[@]}"; do
+			cat "${p}" >> resources/${p/target\/classes/} \
+				|| die "Failed to append to Bundle.properties"
+			rm "${p}" || die "Failed to remove ${p}"
+		done
+
+		java-pkg-simple_create-jar "target/classes"
+	else
+		java-pkg-simple_src_compile
+	fi
 }
 
 # @FUNCTION: java-netbeans_src_install
