@@ -243,7 +243,7 @@ java-netbeans_get-processors() {
 java-netbeans_src_compile() {
 	local p procs props
 
-	JAVAC_ARGS+=" -parameters --source-path src "
+	JAVAC_ARGS+=" -parameters --source-path resources:src "
 	[[ -z ${NB_NO_PROC} ]] &&
 		procs="$(java-netbeans_get-processors)"
 	if [[ -n ${procs} ]]; then
@@ -254,7 +254,7 @@ java-netbeans_src_compile() {
 		JAVAC_ARGS+=" -processor ${procs} "
 
 		# for resources
-		JAVA_CLASSPATH_EXTRA="src/"
+		JAVA_CLASSPATH_EXTRA="resources:src"
 
 		# skip jar creation
 		JAVA_NO_JAR=0
