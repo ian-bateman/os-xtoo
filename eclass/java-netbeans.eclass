@@ -99,14 +99,15 @@ java-netbeans_src_prepare() {
 # @CODE
 # Parameters:
 # $1: A jar name without .jar suffix
-# $2: Set to any value to skip netbeans/org prefix
+# $2: Module directory, core, lib, or modules
+# $3: Set to any value to skip netbeans/org prefix
 java-netbeans_create-module-xml() {
 	local orig mod xml
 
 	# set original, module, and xml file names
 	orig="${1}"
 	mod="${1}"
-	if [[ -z ${2} ]]; then
+	if [[ -z ${3} ]]; then
 		orig="netbeans-${1}"
 		mod="${1/o-n-/}"
 		mod="${mod/.options-/module.options}"
@@ -120,7 +121,7 @@ java-netbeans_create-module-xml() {
 <module name="'${mod//-/.}'">
         <param name="eager">false</param>
         <param name="enabled">true</param>
-        <param name="jar">modules/'${orig}'.jar</param>
+        <param name="jar">'${2}'/'${orig}'.jar</param>
         <param name="reloadable">false</param>
 </module>
 ' > "${T}/${xml}" || die "Failed to generate ${xml}"
