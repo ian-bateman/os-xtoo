@@ -10,6 +10,7 @@ DEPEND=">=virtual/jdk-9"
 ASM_SLOT="6"
 LUCENE_SLOT="3"
 OSGI_SLOT="6"
+XERCES_SLOT="2"
 
 RDEPEND="
 	dev-java/asm:${ASM_SLOT}
@@ -31,6 +32,7 @@ RDEPEND="
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
+	~dev-java/${PN}-editor-bookmarks-${PV}:${SLOT}
 	~dev-java/${PN}-editor-bracesmatching-${PV}:${SLOT}
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
@@ -67,6 +69,7 @@ RDEPEND="
 	~dev-java/${PN}-versioning-masterfs-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-system-cvss-installer-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
+	~dev-java/${PN}-xml-tax-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9
 "
@@ -147,10 +150,13 @@ src_install() {
 
 	dosym ../../osgi-core-api-${OSGI_SLOT}/lib/osgi-core-api.jar \
 		/usr/share/${my_pn}/lib/osgi-core-api.jar
-	java-netbeans_create-module-xml "osgi-core-api" 0
+	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
 	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
 		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
+
+	dosym ../../xerces-${XERCES_SLOT}/lib/xercesImpl.jar \
+		/usr/share/${my_pn}/lib/xerces.jar
 
 	jars_short=( "" "-boot" "-boot-fx" "-json" )
 	jars=( ${jars_short[@]/#/net-java-html} )
@@ -162,7 +168,7 @@ src_install() {
 	# symlink jars in modules
 	jars_short=(
 		annotations-common intent io progress progress-nb java
-		java-classpath templates xml
+		java-classpath templates xml xml-ui
 	)
 	jars=( ${jars_short[@]/#/api-} )
 
@@ -175,11 +181,15 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/core-} )
 
+	jars_short=( api types )
+	jars+=( ${jars_short[@]/#/csl-} )
+
 	jars_short=(
-		actions bracesmatching completion document errorstripe
+		actions bookmarks bracesmatching breadcrumbs codetemplates
+		completion deprecated-pre65formatting document errorstripe
 		errorstripe-api fold fold-nbui global-format guards indent lib
-		lib2 mimelookup mimelookup-impl plain plain-lib search
-		settings settings-lib settings-storage util
+		lib2 mimelookup mimelookup-impl plain plain-lib search settings
+		settings-lib settings-storage structure util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 
@@ -234,16 +244,22 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/versioning} )
 
+	jars_short=(
+		"" "-axi" "-catalog" "-core" "-lexer" "-retriever"
+		"-schema-model" "-tax" "-text" "-xam"
+	)
+	jars+=( ${jars_short[@]/#/xml} )
+
 	jars+=(
-		classfile diff editor favorites keyring lexer libs-freemarker
-		queries sampler sendopts settings team-commons updatecenters
-		xml-catalog
+		classfile diff editor favorites jumpto keyring lexer
+		libs-freemarker queries sampler sendopts settings team-commons
+		updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
 	local j
 	for j in "${jars[@]}"; do
-		java-netbeans_create-module-xml "${j}"
+		java-netbeans_create-module-xml "${j}" lib
 	done
 
 	# install icon
