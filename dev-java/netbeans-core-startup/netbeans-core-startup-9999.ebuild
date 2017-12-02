@@ -47,4 +47,8 @@ java_prepare() {
 	echo "org.netbeans.modules.openide.util.Compact2MutexEventProvider" > \
 		${s}org.openide.util.spi.MutexEventProvider \
 		|| die "Failed to generate org.openide.util.spi.MutexEventProvider"
+
+	# java 9 fix
+	sed -i -e '375,377d' src/org/netbeans/core/startup/Splash.java \
+		|| die "Failed to remove code that causes exceptions"
 }
