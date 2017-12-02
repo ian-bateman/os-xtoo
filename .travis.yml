@@ -30,4 +30,5 @@ before_script:
     - patch -p1 < /tmp/travis-overlay/.travis_repoman-copyright.patch
     - cd /tmp/travis-overlay
 script:
-    - travis_wait 30 python ../portage-master/repoman/bin/repoman full -d
+    - [[ -x travis_wait ]] && tw="travis_wait 30";
+    - ${tw} python ../portage-master/repoman/bin/repoman full -d
