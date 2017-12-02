@@ -76,6 +76,7 @@ java-netbeans_src_prepare() {
 		sed -i -e '/OpenIDE-Module-Implementation-Version/d' \
 			-e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
 			-e '2iOpenIDE-Module-Implementation-Version: '${PV}'-os-xtoo' \
+			-e '/OpenIDE-Module-Needs/d' \
 			"${JAVA_RES_DIR}/META-INF/MANIFEST.MF" \
 			|| die "Failed to append to manifest"
 	fi
