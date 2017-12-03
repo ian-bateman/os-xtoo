@@ -183,6 +183,12 @@ java-netbeans_get-processors() {
 		*api-templates*)
 			procs+=",${nbm}.templates.TemplateProcessor"
 			;;&
+		*autoupdate-cli*)
+			procs+=",${nbm}.autoupdate.cli.ModuleOptions"
+			;;&
+		*csl-api*)
+			procs+=",${nbm}.csl.core.LanguageRegistrationProcessor"
+			;;&
 		*core-ide*)
 			procs+=",${nb}.core.ide.ServiceTabProcessor"
 			;;&
@@ -232,6 +238,10 @@ java-netbeans_get-processors() {
 			;;&
 		*parsing-api*)
 			procs+=",${nbm}.parsing.impl.EmbeddingProviderRegistrationProcessor"
+			;;&
+		*parsing-indexing*)
+			procs+=",${nbm}.parsing.impl.indexing.PathRecognizerRegistrationProcessor"
+			procs+=",${nbm}.parsing.impl.indexing.IndexerRegistrationProcessor"
 			;;&
 		*project-ant*)
 			procs+=",${nbm}.project.ant.AntBasedProcessor"
