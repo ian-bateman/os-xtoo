@@ -37,6 +37,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
+	~dev-java/${PN}-editor-macros-${PV}:${SLOT}
 	~dev-java/${PN}-editor-mimelookup-impl-${PV}:${SLOT}
 	~dev-java/${PN}-editor-search-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
@@ -45,6 +46,7 @@ RDEPEND="
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-libs-freemarker-${PV}:${SLOT}
+	~dev-java/${PN}-localhistory-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-linux-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-nio2-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-ui-${PV}:${SLOT}
@@ -61,6 +63,7 @@ RDEPEND="
 	~dev-java/${PN}-project-spi-intern-impl-${PV}:${SLOT}
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
+	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
@@ -188,8 +191,8 @@ src_install() {
 		actions bookmarks bracesmatching breadcrumbs codetemplates
 		completion deprecated-pre65formatting document errorstripe
 		errorstripe-api fold fold-nbui global-format guards indent lib
-		lib2 mimelookup mimelookup-impl plain plain-lib search settings
-		settings-lib settings-storage structure util
+		lib2 macros mimelookup mimelookup-impl plain plain-lib search
+		settings settings-lib settings-storage structure util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 
@@ -252,8 +255,8 @@ src_install() {
 
 	jars+=(
 		classfile diff editor favorites jumpto keyring lexer
-		libs-freemarker queries sampler sendopts settings team-commons
-		updatecenters
+		libs-freemarker localhistory properties properties-syntax
+		queries sampler sendopts settings team-commons updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
