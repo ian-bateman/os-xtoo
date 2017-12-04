@@ -77,8 +77,14 @@ the [bugs for ecrire being ignored...](https://github.com/Obsidian-StudiosInc/ec
 ## Netbeans IDE
 Work is underway to package 
 [Netbeans](https://github.com/apache/incubator-netbeans) 9 from source. 
-THere is no ETA at this time when this will be done, or initial work in 
-a usable state. We do use Netbeans as our primary IDE for C and Java.
+Netbeans is presently in a initial usable state. Though additional 
+modules have caused some Bundle errors presently being worked on. The 
+platform has no issues. The Editor package is the one presently having 
+bundle issues. Which we are working on resolving, along with Java 9 
+specific isssues.
+
+There is no ETA at this time when this work will be completed. We do 
+use Netbeans as our primary IDE for C and Java.
 
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
