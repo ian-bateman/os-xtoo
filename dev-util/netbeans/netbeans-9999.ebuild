@@ -153,7 +153,7 @@ src_install() {
 
 	dosym ../../osgi-core-api-${OSGI_SLOT}/lib/osgi-core-api.jar \
 		/usr/share/${my_pn}/lib/osgi-core-api.jar
-	java-netbeans_create-module-xml "osgi-core-api" lib 0
+#	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
 	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
 		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
@@ -260,10 +260,10 @@ src_install() {
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
-	local j
-	for j in "${jars[@]}"; do
-		java-netbeans_create-module-xml "${j}" lib
-	done
+#	local j
+#	for j in "${jars[@]}"; do
+#		java-netbeans_create-module-xml "${j}" lib
+#	done
 
 	# install icon
 	icon="${my_pn}.png"
