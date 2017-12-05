@@ -27,3 +27,9 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+src_prepare() {
+	rm src/org/netbeans/modules/editor/Bundle.properties \
+		|| die "Failed to remove bundle causing cannot find exceptions"
+	java-netbeans_src_prepare
+}
