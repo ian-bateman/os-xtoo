@@ -48,7 +48,7 @@ CP_DEPEND="
 	dev-java/jeromq:0
 	dev-java/kafka-clients:0
 	~dev-java/log4j-api-${PV}:${SLOT}
-	dev-java/oracle-javamail:0
+	dev-java/javamail:0
 	dev-java/osgi-core-api:6
 	dev-java/stax2-api:0
 "
