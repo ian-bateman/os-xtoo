@@ -31,7 +31,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/avalon-framework:4.2
-	dev-java/avalon-logkit:2.0
+	dev-java/avalon-logkit:0
 	~dev-java/commons-logging-${PV}:${SLOT}
 	dev-java/log4j:0
 	java-virtuals/servlet-api:4.0
