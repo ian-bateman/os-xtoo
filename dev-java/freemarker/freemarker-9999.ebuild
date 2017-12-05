@@ -29,7 +29,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/avalon-logkit:2.0
+	dev-java/avalon-logkit:0
 	dev-java/commons-logging:0
 	dev-java/dom4j:2
 	dev-java/jaxen:1.1
