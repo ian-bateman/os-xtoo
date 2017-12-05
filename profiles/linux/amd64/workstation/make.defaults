@@ -22,7 +22,7 @@ USE="X aalib acpi alsa -apache2 bzip2 \
      openexr -gstreamer -avahi -server dts \
      -xscreensaver -cxx -glade equalizer realtime twolame -lvm1 \
      -java -gtk -gtk3 webp caps -bindist ipv6 -libav -qt5 xkb \
-     wayland egl gles2 nsplugin sqlite \
+     wayland egl gles2 nsplugin sqlite netbeans \
      bluetooth -gcj -qt4 x264 readline pcre openmp printsupport"
 
 ALSA_CARDS="hda-intel"
@@ -69,7 +69,5 @@ PYTHON_SINGLE_TARGET="-python3_4 python3_5"
 RUBY_TARGETS="ruby24"
 
 SANE_BACKENDS="hp"
-
-VIDEO_CARDS="intel i965 nvidia radeon"
 
 MAKEOPTS="-j3"
