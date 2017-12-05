@@ -24,15 +24,17 @@ fi
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="A programmer-oriented testing framework for Java"
-HOMEPAGE="https://junit.org/junit4/"
+HOMEPAGE="https://junit.org/junit${SLOT}/"
 LICENSE="EPL-1.0"
 
-CP_DEPEND="dev-java/hamcrest-core:1.3"
+if [[ ${SLOT} == 4 ]]; then
+	CP_DEPEND="dev-java/hamcrest-core:1.3"
+fi
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
