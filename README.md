@@ -14,7 +14,15 @@ and/or slot changes.
 Ebuilds in this overlay are to be current and latest available versions, 
 including working live ebuilds. All ebuilds in this overlay should be 
 production quality and many are used in production, though some are 
-not. Contributions are welcome!
+not. Contributions are welcome, but for the present time will only be 
+accepted on a limited basis. We are one a mission no documented, and not 
+much time to document to bring others on board. Though that will happen 
+soon as things settle. To much is in flux at the moment.
+
+## Warning
+Please read subsequent sections before usage. You may need to force pull 
+from this overlay at times. That will be kept to a minimum and at some 
+point stop entirely. But does happen from time to time.
 
 ## Arch
 This repo is primarily amd64, no other archs are supported or tested, 
@@ -36,7 +44,14 @@ source, such as
 ```
 
 ## Java
-This repository requires Java 9 now.
+This repository requires Java 9 as your system vm now. We are no 
+longer supporting any JDK < 9. Not everthing has been fixed or 
+dialed in for Java 9 yet, work is underway. Rather move forward than 
+backward or sideways.
+
+Java packages in this respository are all or nothing. You MUST run 
+"@world" update when first adding this overlay. Failure to do such will 
+result in various preventable build issues. Please keep that in mind.
 
 Work for full support for Java 9 is underway. In addition to fully 
 replacing all needed Java packages in Gentoo that have not been 
@@ -74,17 +89,29 @@ upstream](https://phab.enlightenment.org/). We are unable to due to a
 rude community! There are a few who are professional and polite. Look at 
 the [bugs for ecrire being ignored...](https://github.com/Obsidian-StudiosInc/ecrire/issues)
 
+It is recommended to not mix EFL/Enlightenment packages in tree with 
+this overlay. Those types of issues will likley not be addressed. Any 
+issue with an ebuild relating to EFL or Enlightenment within this 
+repository will be addressed ASAP.
+
 ## Netbeans IDE
 Work is underway to package 
 [Netbeans](https://github.com/apache/incubator-netbeans) 9 from source. 
 Netbeans is presently in a initial usable state. Though additional 
-modules have caused some Bundle errors presently being worked on. The 
-platform has no issues. The Editor package is the one presently having 
-bundle issues. Which we are working on resolving, along with Java 9 
-specific isssues.
+modules have caused some [Bundle 
+errors](https://github.com/Obsidian-StudiosInc/os-xtoo/issues/17) 
+presently being worked on. The platform has no issues. The Editor 
+package is the one presently having bundle issues. Which we are working  
+on resolving, along with Java 9 specific isssues. Which Java 9 fixes may 
+come from upstream and/or go to upstream. Those are welcome and are 
+general issues not related to ebuilds or how Netbeans is packaged in 
+this overlay.
 
 There is no ETA at this time when this work will be completed. We do 
-use Netbeans as our primary IDE for C and Java.
+use Netbeans as our primary IDE for C and Java. We are eager to stop 
+using 8.2 and switch to 9 from source. Removing any packages brought in 
+by 8.2. Moving this overlay one step closer to being independent of Java 
+packages in tree, entirely!
 
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
