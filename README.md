@@ -111,11 +111,9 @@ packages in tree, entirely!
 
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
-[Netbeaners](https://netbeans.org). That will be added someday but for 
-now is maintained fairly well in Gentoo's main repository. Due to being 
-dependencies of other applications. Many pieces of Eclipse IDE are 
-packaged from source and more are being added. Only as needed as part of 
-a dependency chain for other packages.
+[Netbeaners](https://netbeans.org). Due to being dependencies of other 
+applications. Many pieces of Eclipse IDE are packaged from source. Only 
+as needed as part of a dependency chain for other packages.
 
 Contributions are welcome to complete the pieces into a usable Eclipse 
 IDE from source. This will require additional work. Jars are missing 
