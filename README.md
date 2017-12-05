@@ -97,15 +97,11 @@ repository will be addressed ASAP.
 ## Netbeans IDE
 Work is underway to package 
 [Netbeans](https://github.com/apache/incubator-netbeans) 9 from source. 
-Netbeans is presently in a initial usable state. Though additional 
-modules have caused some [Bundle 
-errors](https://github.com/Obsidian-StudiosInc/os-xtoo/issues/17) 
-presently being worked on. The platform has no issues. The Editor 
-package is the one presently having bundle issues. Which we are working  
-on resolving, along with Java 9 specific isssues. Which Java 9 fixes may 
-come from upstream and/or go to upstream. Those are welcome and are 
+Netbeans is presently in a initial usable state. Working on addressing 
+Java 9 specific isssues. Which Java 9 fixes may come from upstream 
+and/or go to upstream, or maybe come from YOU! Those are welcome and are 
 general issues not related to ebuilds or how Netbeans is packaged in 
-this overlay.
+this overlay. Just general Netbeans 9 porting issues.
 
 There is no ETA at this time when this work will be completed. We do 
 use Netbeans as our primary IDE for C and Java. We are eager to stop 
