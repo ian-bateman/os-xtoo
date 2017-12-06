@@ -42,6 +42,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-search-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
+	~dev-java/${PN}-git-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
@@ -67,6 +68,7 @@ RDEPEND="
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
+	~dev-java/${PN}-uihandler-${PV}:${SLOT}
 	~dev-java/${PN}-updatecenters-${PV}:${SLOT}
 	~dev-java/${PN}-utilities-project-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-masterfs-${PV}:${SLOT}
@@ -100,6 +102,14 @@ symlink_jars() {
 	for j in "${@:2}"; do
 		dosym "../../${PN}-${j}-${SLOT}/lib/${PN}-${j}.jar" \
 			"${1}/${PN}-${j}.jar"
+	done
+}
+
+symlink_libs() {
+	local j
+	for j in "${@}"; do
+		dosym "../../${j}/lib/${j}.jar" \
+			"/usr/share/${PN}-${SLOT}/lib/${j}.jar"
 	done
 }
 
@@ -145,8 +155,18 @@ src_install() {
 		openide-util openide-util-lookup openide-util-ui
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
-	dosym ../../freemarker/lib/freemarker.jar \
-		/usr/share/${my_pn}/lib/freemarker.jar
+
+	jars_short=( core jsch sshagent usocket-jna )
+	jars=( ${jars_short[@]/#/jsch-agent-proxy-} )
+
+	jars_short=( "" "-boot" "-boot-fx" "-json" )
+	jars+=( ${jars_short[@]/#/net-java-html} )
+
+	jars+=(
+		eclipse-jgit freemarker javaewah jsch xml-commons-resolver
+		slf4j-api
+	)
+	symlink_libs ${jars[@]}
 
 	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
 		/usr/share/${my_pn}/lib/lucene-core.jar
@@ -155,14 +175,9 @@ src_install() {
 		/usr/share/${my_pn}/lib/osgi-core-api.jar
 #	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
-	dosym ../../xml-commons-resolver/lib/xml-commons-resolver.jar \
-		/usr/share/${my_pn}/lib/xml-commons-resolver.jar
-
 	dosym ../../xerces-${XERCES_SLOT}/lib/xercesImpl.jar \
 		/usr/share/${my_pn}/lib/xerces.jar
 
-	jars_short=( "" "-boot" "-boot-fx" "-json" )
-	jars=( ${jars_short[@]/#/net-java-html} )
 	for j in "${jars[@]}"; do
 		dosym ../../${j}/lib/${j}.jar \
 			/usr/share/${my_pn}/lib/${j}.jar
@@ -201,6 +216,9 @@ src_install() {
 
 	jars_short=( platform project )
 	jars+=( ${jars_short[@]/#/java-} )
+
+	jars_short=( freemarker jsch-agentproxy git )
+	jars+=( ${jars_short[@]/#/libs-} )
 
 	jars_short=(
 		actions awt compat dialogs execution explorer filesystems-nb
@@ -255,8 +273,8 @@ src_install() {
 
 	jars+=(
 		classfile diff editor favorites jumpto keyring lexer
-		libs-freemarker localhistory properties properties-syntax
-		queries sampler sendopts settings team-commons updatecenters
+		lib-uihandler localhistory properties properties-syntax queries
+		sampler sendopts settings team-commons uihandler updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
