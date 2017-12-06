@@ -58,7 +58,7 @@ java-netbeans_src_unpack() {
 # @DESCRIPTION:
 # Prepare sources
 java-netbeans_src_prepare() {
-	local f files
+	local f files sv
 
 	JAVA_RES_DIR="resources"
 	mkdir -p ${JAVA_RES_DIR} ||  die "Failed to make resorces dir"
@@ -71,14 +71,22 @@ java-netbeans_src_prepare() {
 
 	# manifest
 	if [[ -f manifest.mf ]]; then
-		mv manifest.mf ${JAVA_RES_DIR}/META-INF/MANIFEST.MF \
-			|| die "Failed to move manifest"
+		sv="$(grep Specification-Version manifest.mf)"
+		if [[ -z ${sv} ]]; then
+			sv=$(sed -n 's/^spec.version.base=\([^ ]*\).*$/\1/p' \
+				nbproject/project.properties)
+			sed -i -e '3iOpenIDE-Module-Specification-Version: '${sv} \
+				manifest.mf \
+				|| die "Failed set manifest spec version"
+		fi
 		sed -i -e '/OpenIDE-Module-Implementation-Version/d' \
 			-e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
 			-e '2iOpenIDE-Module-Implementation-Version: '${PV}'-os-xtoo' \
 			-e '/OpenIDE-Module-Needs/d' \
-			"${JAVA_RES_DIR}/META-INF/MANIFEST.MF" \
+			manifest.mf \
 			|| die "Failed to append to manifest"
+		mv manifest.mf ${JAVA_RES_DIR}/META-INF/MANIFEST.MF \
+			|| die "Failed to move manifest"
 	fi
 
 	# copy resources need to preserve paths? maybe delete sources?
