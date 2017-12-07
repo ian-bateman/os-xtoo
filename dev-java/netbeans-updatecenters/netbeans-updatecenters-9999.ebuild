@@ -18,3 +18,9 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+src_install() {
+	java-netbeans_src_install
+	insinto /usr/share/${PN}-${SLOT}/ks
+	doins release/core/ide.ks
+}
