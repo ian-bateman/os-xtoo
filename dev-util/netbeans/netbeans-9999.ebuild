@@ -59,6 +59,7 @@ RDEPEND="
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-nb-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-ui-${PV}:${SLOT}
+	~dev-java/${PN}-progress-ui-${PV}:${SLOT}
 	~dev-java/${PN}-project-ant-ui-${PV}:${SLOT}
 	~dev-java/${PN}-project-libraries-ui-${PV}:${SLOT}
 	~dev-java/${PN}-project-spi-intern-impl-${PV}:${SLOT}
@@ -139,6 +140,10 @@ src_install() {
 	dosym ../../../etc/${my_pn} /usr/share/${my_pn}/etc
 	dosym ../share/${my_pn}/bin/${PN} /usr/bin/${my_pn}
 	dosym ../share/${my_pn}/lib/nbexec /usr/bin/nbexec-${SLOT}
+
+	# symlink keystore
+	dosym ../../${PN}-updatecenters-${SLOT}/ks/ide.ks \
+		/usr/share/${my_pn}/core/ide.ks
 
 	# symlink jars in core
 	jdir=lib # use lib vs core for now
@@ -273,8 +278,9 @@ src_install() {
 
 	jars+=(
 		classfile diff editor favorites jumpto keyring lexer
-		lib-uihandler localhistory properties properties-syntax queries
-		sampler sendopts settings team-commons uihandler updatecenters
+		lib-uihandler localhistory progress-ui properties
+		properties-syntax queries sampler sendopts settings
+		team-commons uihandler updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
