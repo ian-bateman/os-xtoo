@@ -1,0 +1,16 @@
+# William L. Thomson Jr. <wlt@o-sinc.com> ( 07 Dec 2017 )
+# Does not build with Java 9, no longer working to fix or support
+# Modified 8.2 packages in os-xtoo repo will be removed soon
+=dev-java/netbeans-apisupport-8.2*
+=dev-java/netbeans-extide-8.2*
+=dev-java/netbeans-groovy-8.2*
+=dev-java/netbeans-harness-8.2*
+=dev-java/netbeans-ide-8.2*
+=dev-java/netbeans-java-8.2*
+=dev-java/netbeans-javafx-8.2*
+=dev-java/netbeans-nb-8.2*
+=dev-java/netbeans-platform-8.2*
+=dev-java/netbeans-profiler-8.2*
+=dev-java/netbeans-webcommon-8.2*
+=dev-java/netbeans-websvccommon-8.2*
+=dev-util/netbeans-8.2*
