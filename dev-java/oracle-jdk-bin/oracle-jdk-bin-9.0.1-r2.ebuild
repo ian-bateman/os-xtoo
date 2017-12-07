@@ -3,41 +3,27 @@
 
 EAPI="6"
 
-inherit eutils java-vm-2 prefix versionator
+inherit eutils java-vm-2 prefix
 
 JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
 
-BUILD_NUMBER="$(get_version_component_range 2)"
-
 # This is a list of archs supported by this update.
 AT_AVAILABLE=( amd64 )
-
 AT_amd64="jdk-${PV}_linux-x64_bin.tar.gz"
 
 DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
 SRC_URI="${AT_amd64}"
-
 LICENSE="Oracle-BCLA-JavaSE"
-SLOT="9"
 KEYWORDS="~amd64"
+SLOT="9"
+
 IUSE="alsa cups derby doc +fontconfig headless-awt javafx nsplugin pax_kernel selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig )"
 
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
-# NOTES:
-#
-# * cups is dlopened.
-#
-# * libpng is also dlopened but only by libsplashscreen, which isn't
-#   important, so we can exclude that.
-#
-# * We still need to work out the exact AWT and JavaFX dependencies
-#   under MacOS. It doesn't appear to use many, if any, of the
-#   dependencies below.
-#
 RDEPEND="
 		!headless-awt? (
 			x11-libs/libX11
@@ -64,7 +50,6 @@ RDEPEND="
 	fontconfig? ( media-libs/fontconfig:1.0 )
 	!prefix? ( sys-libs/glibc:* )
 	selinux? ( sec-policy/selinux-java )"
-#	doc? ( dev-java/java-sdk-docs:${SLOT} )
 
 # A PaX header isn't created by scanelf so depend on paxctl to avoid
 # fallback marking. See bug #427642.
@@ -74,8 +59,9 @@ DEPEND="app-arch/zip
 S="${WORKDIR}/jdk"
 
 check_tarballs_available() {
-	local uri=$1; shift
-	local dl= unavailable=
+	local dl unavailable uri
+
+	uri=$1; shift
 	for dl in "${@}" ; do
 		[[ ! -f "${DISTDIR}/${dl}" ]] && unavailable+=" ${dl}"
 	done
@@ -98,7 +84,7 @@ check_tarballs_available() {
 		einfo "If the above mentioned urls do not point to the correct version anymore,"
 		einfo "please download the files from Oracle's java download archive:"
 		einfo
-		einfo "   https://jdk9.java.net/download/"
+		einfo "http://www.oracle.com/technetwork/java/javase/archive-139210.html"
 		einfo
 	fi
 }
@@ -106,16 +92,11 @@ check_tarballs_available() {
 pkg_nofetch() {
 	local distfiles=( $(eval "echo \${$(echo AT_${ARCH/-/_})}") )
 	check_tarballs_available "${JDK_URI}" "${distfiles[@]}"
-
 }
 
 src_unpack() {
 	default
-
-	# Upstream is changing their versioning scheme every release around 1.8.0.*;
-	# to stop having to change it over and over again, just wildcard match and
-	# live a happy life instead of trying to get this new jdk1.8.0_05 to work.
-	mv "${WORKDIR}"/jdk* "${S}" || die
+	mv "${WORKDIR}"/jdk* "${S}" || die "Failed to move/rename source directory"
 }
 
 src_prepare() {
@@ -134,59 +115,57 @@ src_prepare() {
 	sed -i -e '/jdk\/internal\/vm\/PostVMInitHook/d' \
 		-e '/sun\/usagetracker/d' lib/classlist \
 		|| die "Failed to remove class for usage tracker"
+
+	rm lib/libavplugin* || die "Failed to remove libavplugin*.so"
+	rm lib/fontconfig.* || die "Failed to remove fontconfig.*"
+
+	if ! use alsa ; then
+		rm lib/libjsoundalsa.* \
+			|| die "Failed to remove unwanted alsa support"
+	fi
+
+	if use headless-awt ; then
+		rm lib/lib*{[jx]awt,splashscreen}* \
+			bin/{javaws,policytool} \
+			bin/appletviewer \
+			|| die "Failed to remove unwanted UI support"
+	fi
+
+	if ! use javafx ; then
+		rm jmods/javafx*  \
+			lib/lib*{decora,ext,fx,glass,gstreamer,prism}* \
+			|| die "Failed to remove unwanted JavaFX support"
+	fi
+
+	if ! use nsplugin ; then
+		rm lib/libnpjp2.so || die "Failed to remove unwanted nsplugin"
+	fi
+
+	if ! use source ; then
+		rm lib/src.zip || die "Failed to remove unwanted src.zip"
+	fi
 }
 
 src_install() {
-	local dest="/opt/${P}"
-	local ddest="${ED}${dest#/}"
+	local dest ddest nsplugin nsplugin_link
 
+	dest="/opt/${P}"
+	ddest="${ED}${dest#/}"
 	# Create files used as storage for system preferences.
 	mkdir .systemPrefs || die
 	touch .systemPrefs/.system.lock || die
 	touch .systemPrefs/.systemRootModFile || die
 
-	if ! use alsa ; then
-		rm -vf lib/*/libjsoundalsa.* || die
-	fi
-
-	if use headless-awt ; then
-		rm -vf lib/*/lib*{[jx]awt,splashscreen}* \
-		   bin/{javaws,policytool} \
-		   bin/appletviewer || die
-	fi
-
-	if ! use javafx ; then
-		rm -vf lib/*/lib*{decora,fx,glass,prism}* \
-		   lib/*/libgstreamer-lite.* lib/{,ext/}*fx* \
-		   bin/*javafx* bin/javapackager || die
-	fi
-
-	if ! use nsplugin ; then
-		rm -vf lib/libnpjp2.so || die
-	else
-		local nsplugin=$(echo lib/libnpjp2.so)
-	fi
-
-	# Even though plugins linked against multiple ffmpeg versions are
-	# provided, they generally lag behind what Gentoo has available.
-	rm -vf lib/*/libavplugin* || die
-
 	dodoc -r legal
 	dodir "${dest}"
+
 	cp -pPR bin include lib "${ddest}" || die
 
-	if use derby ; then
-		cp -pPR	db "${ddest}" || die
-	fi
-
 	if use nsplugin ; then
-		local nsplugin_link=${nsplugin##*/}
+		nsplugin=$(echo lib/libnpjp2.so)
+		nsplugin_link=${nsplugin##*/}
 		nsplugin_link=${nsplugin_link/./-${PN}-${SLOT}.}
 		dosym "${dest}/${nsplugin}" "/usr/$(get_libdir)/nsbrowser/plugins/${nsplugin_link}"
-	fi
-
-	if use source ; then
-		cp -v lib/src.zip "${ddest}" || die
 	fi
 
 	if [[ -d lib/desktop ]] ; then
@@ -211,7 +190,9 @@ src_install() {
 	# http://docs.oracle.com/javase/8/docs/technotes/guides/intl/fontconfig.html
 	rm "${ddest}"/lib/fontconfig.*
 	if ! use fontconfig ; then
-		cp "${FILESDIR}"/fontconfig.Gentoo.properties "${T}"/fontconfig.properties || die
+		cp "${FILESDIR}"/fontconfig.Gentoo.properties \
+			"${T}"/fontconfig.properties \
+			|| die "Failed to copy fontconfig.properties to tmp dir"
 		eprefixify "${T}"/fontconfig.properties
 		insinto "${dest}"/lib/
 		doins "${T}"/fontconfig.properties
