@@ -24,6 +24,12 @@ Please read subsequent sections before usage. You may need to force pull
 from this overlay at times. That will be kept to a minimum and at some 
 point stop entirely. But does happen from time to time.
 
+The respository is in flux as we juggle fixing packages for Java 9, 
+packaging Netbeans 9, and replacing all needed Java packages in tree 
+with ones in this overlay. Due to such there maybe various issues that 
+did not exist before but do now. Please file issues for any problems 
+encounterd. They will be addressed ASAP!
+
 ## Arch
 This repo is primarily amd64, no other archs are supported or tested, 
 but can be added upon request.
