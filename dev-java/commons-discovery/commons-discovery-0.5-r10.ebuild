@@ -20,8 +20,6 @@ DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-S="${WORKDIR}/${P}"
-
-JAVA_SRC_DIR="src/java"
+S="${WORKDIR}/${P}-src"
