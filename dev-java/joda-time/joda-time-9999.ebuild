@@ -24,8 +24,10 @@ SLOT="0"
 
 CP_DEPEND="dev-java/joda-convert:0"
 
-DEPEND=">=virtual/jdk-9"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
