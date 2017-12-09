@@ -27,12 +27,15 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-1.1"
 SLOT="${PV%%.*}"
 
-CP_DEPEND="dev-java/jaxen:0"
+DEPEND=">=virtual/jdk-9"
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/core"
+
+java_prepare() {
+	rm -r src/java/org/jdom2/xpath \
+		|| "Failed to remove jaxen sources"
+	sed -i -e "62d" src/java/org/jdom2/JDOMConstants.java \
+		|| "Failed to remove jaxen import"
+}
