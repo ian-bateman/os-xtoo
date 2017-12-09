@@ -28,8 +28,10 @@ CP_DEPEND="
 	dev-java/httpcomponents-core:4.4
 "
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}/http${PN:15}"
