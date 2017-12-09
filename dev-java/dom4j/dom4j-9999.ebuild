@@ -25,7 +25,7 @@ LICENSE="${PN}"
 SLOT="$(get_major_version)"
 
 CP_DEPEND="
-	dev-java/jaxen:1.1
+	dev-java/jaxen:0
 	dev-java/relaxng-datatype:0
 	dev-java/xpp2:0
 	dev-java/xpp3:0
