@@ -15,7 +15,7 @@ Ebuilds in this overlay are to be current and latest available versions,
 including working live ebuilds. All ebuilds in this overlay should be 
 production quality and many are used in production, though some are 
 not. Contributions are welcome, but for the present time will only be 
-accepted on a limited basis. We are one a mission no documented, and not 
+accepted on a limited basis. We are one a mission not documented, and not 
 much time to document to bring others on board. Though that will happen 
 soon as things settle. To much is in flux at the moment.
 
