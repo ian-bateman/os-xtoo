@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/dom4j:1
-	dev-java/jaxen:1.1
+	dev-java/jaxen:0
 	dev-java/tomcat-jstl-spec:0
 	java-virtuals/servlet-api:4.0
 "
