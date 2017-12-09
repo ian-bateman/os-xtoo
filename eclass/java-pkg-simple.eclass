@@ -135,7 +135,7 @@ java-pkg-simple_create-jar(){
 	if [[ -n ${JAVA_RES_DIR} ]]; then
 		local r
 		for r in ${JAVA_RES_DIR}; do
-			if [[ -d "${r}" ]]; then
+			if [[ -d "${r}" ]] && [[ -z $(ls -A ${r}) ]]; then
 				cp -r "${r}"/* ${classes} \
 					|| die "Failed to cp resources for jar"
 			fi
