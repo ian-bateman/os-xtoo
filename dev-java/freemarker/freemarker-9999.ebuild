@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/avalon-logkit:0
 	dev-java/commons-logging:0
 	dev-java/dom4j:2
-	dev-java/jaxen:1.1
+	dev-java/jaxen:0
 	dev-java/jdom:2
 	dev-java/jython:2.7
 	dev-java/log4j:0
