@@ -34,7 +34,7 @@ CP_DEPEND="
 	~dev-java/jersey-core-common-${PV}:${SLOT}
 	dev-java/jsr250:0
 	dev-java/osgi-core-api:6
-	dev-java/validation-api:1.0
+	dev-java/beanvalidation-api:2.0
 "
 
 DEPEND="${CP_DEPEND}
