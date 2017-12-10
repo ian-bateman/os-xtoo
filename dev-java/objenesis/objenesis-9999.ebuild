@@ -21,10 +21,10 @@ DESCRIPTION="Library to bypass the constructor when creating an object"
 LICENSE="Apache-2.0"
 SLOT="$(get_major_version)"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${P}/main"
 
-JAVA_SRC_DIR="src/main/java"
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
