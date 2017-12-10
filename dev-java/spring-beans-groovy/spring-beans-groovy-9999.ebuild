@@ -63,7 +63,7 @@ src_compile() {
 		"${my_file}.groovy" || die "groovyc failed"
 
 	# compile java update jar
-	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/${classes}"
+	JAVA_CLASSPATH_EXTRA="${S}/${classes}"
 	java-pkg-simple_src_compile
 	jar uf ${PN}.jar -C "${classes}" . || die "update jar failed"
 }
