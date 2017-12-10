@@ -30,14 +30,18 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 if [[ ${SLOT} == 2 ]]; then
-	JV=1.4
 	JAVA_ENCODING="ISO-8859-1"
-else
-	JV=1.8
 fi
 
-DEPEND=">=virtual/jdk-${JV}"
+DEPEND=">=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-${JV}"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
+
+java_prepare() {
+	if [[ ${SLOT} == 2 ]]; then
+		rm -r src/main/java/org/apache/commons/lang/enum \
+			|| die "Failed to remove enum dir"
+	fi
+}
