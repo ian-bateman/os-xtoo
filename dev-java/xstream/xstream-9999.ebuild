@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/jdom:2
 	dev-java/jettison:0
 	dev-java/joda-time:0
-	dev-java/kxml:2
+	dev-java/kxml:0
 	dev-java/xmlpull:0
 	dev-java/xom:0
 	dev-java/xpp3:0
