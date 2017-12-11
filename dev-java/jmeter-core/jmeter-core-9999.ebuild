@@ -29,7 +29,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bsf:2.3
+	dev-java/commons-bsf:0
 	dev-java/commons-codec:0
 	dev-java/commons-collections:0
 	dev-java/commons-io:0
