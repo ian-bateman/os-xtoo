@@ -48,7 +48,7 @@ CP_DEPEND="
 	dev-java/tika-core:0
 	dev-java/xalan:0
 	dev-java/xstream:0
-	dev-java/xmlgraphics-commons:2
+	dev-java/xml-graphics-commons:0
 "
 
 DEPEND="${CP_DEPEND}
