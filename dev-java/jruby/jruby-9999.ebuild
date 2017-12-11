@@ -47,6 +47,7 @@ CP_DEPEND="
 	dev-java/joda-time:0
 	dev-java/joni:0
 	dev-java/jzlib:0
+	dev-java/modulator:0
 	dev-java/nailgun-server:0
 	dev-java/osgi-core-api:4
 	dev-java/slf4j-api:0
@@ -56,12 +57,12 @@ CP_DEPEND="
 
 DEPEND="${CP_DEPEND}
 	dev-lang/ruby:${RUBY_VERSION}
-	>=virtual/jdk-1.8
+	>=virtual/jdk-9
 "
 
 RDEPEND="${CP_DEPEND}
 	dev-lang/ruby:${RUBY_VERSION}
-	>=virtual/jre-1.8
+	>=virtual/jre-9
 "
 
 S="${WORKDIR}/${P}"
@@ -71,6 +72,9 @@ PATCHES=(
 )
 
 JAVA_SRC_DIR="core/src/main/resources core/src/main/java"
+JAVAC_ARGS+=" --add-exports java.base/sun.nio.cs=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
 
 RUBY_HOME=/usr/share/${PN}/lib/ruby
 SITE_RUBY=${RUBY_HOME}/site_ruby
