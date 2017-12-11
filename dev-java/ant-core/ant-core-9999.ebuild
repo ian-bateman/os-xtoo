@@ -28,7 +28,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bsf:2.3
+	dev-java/commons-bsf:0
 	dev-java/commons-bcel:0
 	dev-java/commons-logging:0
 	dev-java/commons-net:0
@@ -105,13 +105,13 @@ src_compile() {
 	rm -r "${S}/src/main/org/apache/tools/ant/launch/" \
 		|| "Failed to remove ant launcher classes"
 
-	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/ant-launcher.jar"
+	JAVA_CLASSPATH_EXTRA="${S}/ant-launcher.jar"
 	JAVA_JAR_FILENAME="ant.jar"
 	JAVA_SRC_DIR="src/main"
 	JAVA_RES_DIR="src/resources"
 	java-pkg-simple_src_compile
 
-	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/ant.jar:${S}/ant-launcher.jar"
+	JAVA_CLASSPATH_EXTRA+=":${S}/ant.jar"
 	JAVA_JAR_FILENAME="ant-bootstrap.jar"
 	JAVA_SRC_DIR="${S}/bootstrap/"
 	java-pkg-simple_src_compile
