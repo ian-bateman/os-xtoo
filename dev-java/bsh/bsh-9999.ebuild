@@ -28,7 +28,7 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bsf:2.3
+	dev-java/commons-bsf:0
 	java-virtuals/servlet-api:4.0
 "
 
