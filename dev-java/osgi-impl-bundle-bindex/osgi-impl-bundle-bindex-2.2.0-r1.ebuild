@@ -24,7 +24,7 @@ BND_SLOT="3"
 CP_DEPEND="dev-java/ant-core:0
 	dev-java/bnd-annotation:${BND_SLOT}
 	dev-java/bndlib:${BND_SLOT}
-	dev-java/kxml:2
+	dev-java/kxml:0
 	dev-java/osgi-core-api:5
 	dev-java/osgi-service-obr:0
 	dev-java/xmlpull:0"
