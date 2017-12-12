@@ -28,7 +28,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="MIT"
 SLOT="0"
 
-CP_DEPEND="dev-java/relaxng-datatype:0"
+CP_DEPEND="dev-java/relaxng-datatype-java:0"
 
 JV="1.8"
 
