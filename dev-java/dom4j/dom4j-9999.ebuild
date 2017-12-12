@@ -26,7 +26,7 @@ SLOT="$(get_major_version)"
 
 CP_DEPEND="
 	dev-java/jaxen:0
-	dev-java/relaxng-datatype:0
+	dev-java/relaxng-datatype-java:0
 	dev-java/xpp:2
 	dev-java/xpp:3
 	dev-java/xsdlib:0
