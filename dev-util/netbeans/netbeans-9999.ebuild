@@ -180,7 +180,7 @@ src_install() {
 		/usr/share/${my_pn}/lib/osgi-core-api.jar
 #	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
-	dosym ../../xerces-${XERCES_SLOT}/lib/xercesImpl.jar \
+	dosym ../../xerces-${XERCES_SLOT}/lib/xerces.jar \
 		/usr/share/${my_pn}/lib/xerces.jar
 
 	for j in "${jars[@]}"; do
