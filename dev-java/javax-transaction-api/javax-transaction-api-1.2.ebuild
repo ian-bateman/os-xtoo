@@ -20,7 +20,7 @@ SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="
 	dev-java/cdi-api:0
-	dev-java/glassfish-interceptor-api:0
+	dev-java/javax-interceptor-api:0
 "
 
 DEPEND="app-arch/unzip
