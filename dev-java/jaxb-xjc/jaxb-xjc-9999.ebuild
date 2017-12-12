@@ -34,7 +34,7 @@ CP_DEPEND="
 	~dev-java/jaxb-core-${PV}:${SLOT}
 	dev-java/istack-commons-runtime:0
 	dev-java/istack-commons-tools:0
-	dev-java/relaxng-datatype:0
+	dev-java/relaxng-datatype-java:0
 	dev-java/rngom:0
 	dev-java/txw2:0
 	dev-java/xml-commons-resolver:0
