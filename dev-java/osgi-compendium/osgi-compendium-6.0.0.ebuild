@@ -15,7 +15,7 @@ LICENSE="Apache-2.0 OSGi-Specification-2.0"
 SLOT="6"
 KEYWORDS="~amd64"
 
-CP_DEPEND="dev-java/glassfish-persistence:0
+CP_DEPEND="dev-java/eclipse-javax-persistence:2
 	dev-java/osgi-annotation:0
 	dev-java/osgi-core-api:${SLOT}
 	dev-java/osgi-foundation:0
