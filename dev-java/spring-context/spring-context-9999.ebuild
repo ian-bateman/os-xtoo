@@ -35,7 +35,7 @@ CP_DEPEND="
 	dev-java/bytelist:0
 	dev-java/cglib:3
 	dev-java/commons-logging:0
-	dev-java/glassfish-interceptor-api:0
+	dev-java/javax-interceptor-api:0
 	dev-java/groovy:0
 	dev-java/hibernate-validator-engine:4
 	dev-java/javax-enterprise-concurrent-api:0
