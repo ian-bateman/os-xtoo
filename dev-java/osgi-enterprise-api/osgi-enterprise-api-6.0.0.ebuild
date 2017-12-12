@@ -15,7 +15,7 @@ LICENSE="Apache-2.0"
 SLOT="$(get_major_version)"
 KEYWORDS="~amd64"
 
-CP_DEPEND="dev-java/glassfish-persistence:0
+CP_DEPEND="dev-java/eclipse-javax-persistence:2
 	dev-java/osgi-annotation:0
 	dev-java/osgi-core-api:${SLOT}
 	java-virtuals/servlet-api:4.0"
