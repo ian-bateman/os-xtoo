@@ -31,7 +31,7 @@ OSGI_SLOT="5"
 
 CP_DEPEND="
 	dev-java/kxml:0
-	dev-java/xpp3:0
+	dev-java/xpp:3
 	dev-java/felix-gogo-runtime:0
 	dev-java/felix-shell:0
 	dev-java/felix-utils:0
