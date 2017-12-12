@@ -15,7 +15,7 @@ KEYWORDS="~amd64"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/glassfish-jms-api:0
+	dev-java/javax-jms-api:2
 	dev-java/javamail:0
 "
 
