@@ -32,7 +32,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/antlr:4
 	dev-java/jna:4
-	dev-java/glassfish-connector-api:0
+	dev-java/javax-resource:0
 "
 
 DEPEND="${CP_DEPEND}
