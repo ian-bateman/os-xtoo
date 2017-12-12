@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -15,7 +15,7 @@ LICENSE="Apache-2.0 OSGi-Specification-2.0"
 SLOT="$(get_major_version)"
 KEYWORDS="~amd64"
 
-CP_DEPEND="dev-java/glassfish-persistence:0
+CP_DEPEND="dev-java/eclipse-javax-persistence:2
 	dev-java/osgi-core-api:${SLOT}
 	dev-java/osgi-foundation:0
 	java-virtuals/servlet-api:4.0"
