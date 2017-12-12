@@ -28,7 +28,7 @@ CP_DEPEND="
 	dev-java/jaxen:0
 	dev-java/relaxng-datatype:0
 	dev-java/xpp2:0
-	dev-java/xpp3:0
+	dev-java/xpp:3
 	dev-java/xsdlib:0
 "
 
