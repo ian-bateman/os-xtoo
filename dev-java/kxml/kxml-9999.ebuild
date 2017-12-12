@@ -27,7 +27,7 @@ HOMEPAGE="${BASE_URI}" # no https kxml.org, repoman complains...
 LICENSE="MIT"
 SLOT="0"
 
-CP_DEPEND="dev-java/xpp3:0"
+CP_DEPEND="dev-java/xpp:3"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
