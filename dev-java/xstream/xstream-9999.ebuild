@@ -37,7 +37,7 @@ CP_DEPEND="
 	dev-java/kxml:0
 	dev-java/xmlpull:0
 	dev-java/xom:0
-	dev-java/xpp3:0
+	dev-java/xpp:3
 "
 
 DEPEND="${CP_DEPEND}
