@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-lang:2
 	dev-java/jakarta-oro:0
-	dev-java/jakarta-regexp:1.5
+	dev-java/jakarta-regexp:0
 	dev-java/javax-inject:0
 	dev-java/ldapsdk:4.1
 	dev-java/spring-context:4.3
