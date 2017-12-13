@@ -35,7 +35,7 @@ CP_DEPEND="
 	dev-java/bcprov:${BC_SLOT}
 	dev-java/commons-httpclient:3
 	dev-java/commons-vfs:2
-	dev-java/jakarta-oro:2.0
+	dev-java/jakarta-oro:0
 	dev-java/jsch:0
 	dev-java/jsch-agent-proxy-core:0
 	dev-java/jsch-agent-proxy-connector-factory:0
