@@ -41,15 +41,15 @@ CP_DEPEND="
 	~dev-java/eclipse-ui-workbench-${PV}:${SLOT}
 	dev-java/icu4j:0
 	dev-java/osgi-core-api:6
-	dev-java/xml-commons-external:1.4
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
 JAVA_SRC_DIR="src"
+JAVAC_ARGS+=" --add-modules=java.xml "
