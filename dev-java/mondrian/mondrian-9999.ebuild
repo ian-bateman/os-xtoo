@@ -44,11 +44,10 @@ CP_DEPEND="
 	dev-java/olap4j-xmlaserver:0
 	dev-java/xalan:0
 	dev-java/xerces:2
-	dev-java/xml-commons-external:1.4
 	java-virtuals/servlet-api:2.4
 "
 
-JDK_VERSION="1.8"
+JDK_VERSION="9"
 
 DEPEND="${CP_DEPEND}
 	dev-java/ant-core:0
@@ -58,6 +57,8 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-${JDK_VERSION}"
 
 S="${WORKDIR}/${MY_S}/"
+
+JAVAC_ARGS+=" --add-modules=java.xml "
 
 PATCHES=( "${FILESDIR}/commons-pool2.patch" )
 
