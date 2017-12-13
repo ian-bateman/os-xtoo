@@ -59,7 +59,7 @@ CP_DEPEND="
 	dev-java/okhttp:3
 	dev-java/okio:0
 	dev-java/javamail:0
-	dev-java/portletapi:2.0
+	dev-java/portlet-api:2
 	dev-java/protobuf-java:0
 	dev-java/protobuf-java-format:0
 	dev-java/rome:0
