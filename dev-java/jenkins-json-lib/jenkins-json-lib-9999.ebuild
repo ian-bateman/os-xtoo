@@ -36,7 +36,7 @@ CP_DEPEND="
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/ezmorph:0
-	dev-java/jakarta-oro:2.0
+	dev-java/jakarta-oro:0
 "
 
 DEPEND="${CP_DEPEND}
