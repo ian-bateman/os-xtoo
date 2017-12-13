@@ -31,7 +31,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/commons-io:0
-	dev-java/portletapi:1
+	dev-java/portlet-api:1
 	java-virtuals/servlet-api:4.0
 "
 
