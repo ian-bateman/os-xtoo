@@ -33,7 +33,7 @@ CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-net:0
 	dev-java/jakarta-oro:0
-	dev-java/jakarta-regexp:1.5
+	dev-java/jakarta-regexp:0
 	dev-java/javamail:0
 	dev-java/jdepend:0
 	dev-java/jsch:0
