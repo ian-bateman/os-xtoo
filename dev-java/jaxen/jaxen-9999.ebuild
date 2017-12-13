@@ -27,10 +27,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="JDOM"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/dom4j:2
-	dev-java/xom:0
-"
+CP_DEPEND="dev-java/dom4j:2"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -43,7 +40,7 @@ S="${WORKDIR}/${MY_S}/${PN}"
 JAVA_SRC_DIR="src/java/main/"
 
 java_prepare() {
-	rm -r src/java/main/org/jaxen/jdom \
+	rm -r src/java/main/org/jaxen/{jdom,xom} \
 		src/java/main/org/w3c/dom/UserDataHandler.java \
-		|| "Failed to remove jdom and org.w3c.dom.UserDataHandler"
+		|| "Failed to remove jdom, xom, and org.w3c.dom.UserDataHandler"
 }
