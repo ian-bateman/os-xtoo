@@ -44,13 +44,15 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
-	dev-java/xml-commons-external:1.4
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
+
+JAVAC_ARGS+=" --add-modules=java.xml "
+JAVAC_ARGS+=" --add-modules=java.xml.ws.annotation "
