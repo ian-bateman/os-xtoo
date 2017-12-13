@@ -29,7 +29,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/commons-beanutils:0
-	dev-java/commons-lang:0
+	dev-java/commons-lang:2
 	dev-java/slf4j-api:0
 "
 
