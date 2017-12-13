@@ -33,7 +33,7 @@ CP_DEPEND="
 	dev-java/commons-digester:2
 	dev-java/commons-logging:0
 	dev-java/mojarra:2.2
-	dev-java/portletapi:2.0
+	dev-java/portlet-api:2
 	java-virtuals/servlet-api:4.0
 "
 
