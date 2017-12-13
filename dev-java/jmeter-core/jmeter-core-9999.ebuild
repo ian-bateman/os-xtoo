@@ -36,7 +36,7 @@ CP_DEPEND="
 	dev-java/commons-lang:3
 	dev-java/commons-math:3
 	dev-java/freemarker:2.3
-	dev-java/jakarta-oro:2.0
+	dev-java/jakarta-oro:0
 	~dev-java/jmeter-jorphan-${PV}:${SLOT}
 	dev-java/jodd-props:0
 	dev-java/jtidy:0
