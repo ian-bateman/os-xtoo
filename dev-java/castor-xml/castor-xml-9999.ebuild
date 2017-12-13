@@ -31,7 +31,7 @@ CP_DEPEND="
 	~dev-java/castor-core-${PV}:${SLOT}
 	dev-java/commons-logging:0
 	dev-java/commons-lang:2
-	dev-java/jakarta-oro:2.0
+	dev-java/jakarta-oro:0
 	dev-java/jakarta-regexp:1.5
 	dev-java/javax-inject:0
 	dev-java/ldapsdk:4.1
