@@ -1,10 +1,10 @@
+#dev-java/*::gentoo
 =dev-java/ant-core-1.9*
 dev-java/icedtea
 dev-java/icedtea-bin
-dev-java/itext
-dev-java/oracle-jdk-bin:1.8
+dev-java/javacup
+=dev-java/jflex-1.6.1
+>=dev-java/xsdlib-20090415
 >=dev-libs/icu-59
 sys-fs/udev
-virtual/jdk:1.7
 virtual/jdk:1.8
-
