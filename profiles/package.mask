@@ -1,3 +1,8 @@
+# William L. Thomson Jr. <wlt@o-sinc.com> ( 14 Dec 2017 )
+# Mask version in tree, need older version 1.4.3 till 1.6.1 can be
+# properly built from source without bootstrap binary
+=dev-java/jflex-1.6.1
+
 # William L. Thomson Jr. <wlt@o-sinc.com> ( 12 Dec 2017 )
 # Mask version in tree, long version is greater number than actual
 >=dev-java/xsdlib-20090415
