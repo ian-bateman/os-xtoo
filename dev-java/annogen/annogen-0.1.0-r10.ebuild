@@ -16,17 +16,17 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/qdox:1.6
+	dev-java/qdox:0
 "
 
 DEPEND="app-arch/unzip
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-JAVA_NEEDS_TOOLS=1
+JAVAC_ARGS=" --add-modules jdk.javadoc "
 JAVA_RM_FILES=(
 	examples
 	org/codehaus/annogen/view/MirrorAnnoViewer.java
