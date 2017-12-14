@@ -5,8 +5,7 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-# patch version is slot
-SLOT="${PV##*.}"
+SLOT="${PV%%.*}"
 
 MY_PN="${PN#*-}"
 MY_PV="${PV:0:3}"
