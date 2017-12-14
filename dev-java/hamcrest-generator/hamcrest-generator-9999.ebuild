@@ -27,7 +27,10 @@ HOMEPAGE="https://hamcrest.org/JavaHamcrest/"
 LICENSE="BSD-3-clause"
 SLOT="0"
 
-CP_DEPEND="dev-java/qdox:2"
+CP_DEPEND="
+	dev-java/qdox:0
+	dev-java/qdox:2
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
