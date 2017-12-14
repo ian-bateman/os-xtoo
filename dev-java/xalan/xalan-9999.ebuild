@@ -29,7 +29,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/commons-bcel:0
-	dev-java/javacup:0
+	dev-java/java-cup:0
 	dev-java/xerces:2
 "
 
