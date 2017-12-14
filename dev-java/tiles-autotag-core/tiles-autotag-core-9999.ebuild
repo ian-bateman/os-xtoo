@@ -28,7 +28,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/qdox:1.12
+	dev-java/qdox:0
 	~dev-java/tiles-autotag-core-runtime-${PV}:${SLOT}
 	dev-java/velocity:0
 "
