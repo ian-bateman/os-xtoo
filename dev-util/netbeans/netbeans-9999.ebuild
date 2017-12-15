@@ -19,6 +19,7 @@ RDEPEND="
 	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
+	~dev-java/${PN}-css-model-${PV}:${SLOT}
 	~dev-java/${PN}-core-browser-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-ide-${PV}:${SLOT}
@@ -36,6 +37,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-bracesmatching-${PV}:${SLOT}
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
+	~dev-java/${PN}-editor-indent-support-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
 	~dev-java/${PN}-editor-macros-${PV}:${SLOT}
 	~dev-java/${PN}-editor-mimelookup-impl-${PV}:${SLOT}
@@ -209,12 +211,16 @@ src_install() {
 	jars_short=( api types )
 	jars+=( ${jars_short[@]/#/csl-} )
 
+	jars_short=( lib model )
+	jars+=( ${jars_short[@]/#/css-} )
+
 	jars_short=(
 		actions bookmarks bracesmatching breadcrumbs codetemplates
 		completion deprecated-pre65formatting document errorstripe
-		errorstripe-api fold fold-nbui global-format guards indent lib
-		lib2 macros mimelookup mimelookup-impl plain plain-lib search
-		settings settings-lib settings-storage structure util
+		errorstripe-api fold fold-nbui global-format guards indent
+		indent-support lib lib2 macros mimelookup mimelookup-impl
+		plain plain-lib search settings settings-lib settings-storage
+		structure util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 
@@ -282,7 +288,7 @@ src_install() {
 		classfile diff editor favorites git ide javahelp jumpto
 		keyring lexer lib-uihandler localhistory progress-ui properties
 		properties-syntax queries sampler sendopts settings
-		team-commons uihandler updatecenters
+		team-commons uihandler updatecenters web-common
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
