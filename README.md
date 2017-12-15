@@ -53,7 +53,7 @@ source, such as
 This repository requires Java 9 as your system vm now. We are no 
 longer supporting any JDK < 9. Not everthing has been fixed or 
 dialed in for Java 9 yet, work is underway. Rather move forward than 
-backward or sideways.
+backward or sideways. There is initial support for Java 10.
 
 Java packages in this respository are all or nothing. You MUST run 
 "@world" update when first adding this overlay. Failure to do such will 
@@ -62,7 +62,8 @@ result in various preventable build issues. Please keep that in mind.
 Work for full support for Java 9 is underway. In addition to fully 
 replacing all needed Java packages in Gentoo that have not been 
 updated, and/or ingored. Eventually replacing all packages in dev-java 
-with superior well maintained current versions.
+with superior well maintained current versions. Once completed we will 
+begin on testing and fixing any issues for Java 10.
 
 This is the most comprehensive, current repository of Java ebuilds.
 
