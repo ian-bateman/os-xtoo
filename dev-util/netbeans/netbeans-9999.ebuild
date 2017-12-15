@@ -43,7 +43,9 @@ RDEPEND="
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
+	~dev-java/${PN}-ide-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
+	~dev-java/${PN}-javahelp-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-libs-freemarker-${PV}:${SLOT}
@@ -277,8 +279,8 @@ src_install() {
 	jars+=( ${jars_short[@]/#/xml} )
 
 	jars+=(
-		classfile diff editor favorites jumpto keyring lexer
-		lib-uihandler localhistory progress-ui properties
+		classfile diff editor favorites git ide javahelp jumpto
+		keyring lexer lib-uihandler localhistory progress-ui properties
 		properties-syntax queries sampler sendopts settings
 		team-commons uihandler updatecenters
 	)
