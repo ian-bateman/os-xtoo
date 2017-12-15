@@ -85,11 +85,11 @@ java-netbeans_src_prepare() {
 			fi
 		fi
 		[[ -z ${iv} ]] && iv="${SLOT}"
-		sed -i -e '/OpenIDE-Module-Implementation-Version/d' \
-			-e '/OpenIDE-Module-Specification-Version/d' \
-			-e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
+		sed -i  -e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
 			-e '2iOpenIDE-Module-Implementation-Version: '${iv}'' \
 			-e '2iOpenIDE-Module-Specification-Version: '${sv}'' \
+			-e '/OpenIDE-Module-Implementation-Version/d' \
+			-e '/OpenIDE-Module-Specification-Version/d' \
 			-e '/OpenIDE-Module-Needs/d' \
 			manifest.mf \
 			|| die "Failed to append to manifest"
