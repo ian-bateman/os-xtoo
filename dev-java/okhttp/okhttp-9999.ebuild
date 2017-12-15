@@ -53,7 +53,7 @@ java_prepare() {
 	if [[ ${PV} == 3* ]]; then
 		rm src/main/java/okhttp3/internal/platform/AndroidPlatform.java \
 			|| die "Failed to remove Android support"
-		sed -i -e "173,177d" \
+		sed -i -e "184,189d" \
 			src/main/java/okhttp3/internal/platform/Platform.java \
 			|| die "Failed to sed remove Android support"
 	fi
