@@ -28,7 +28,7 @@ RDEPEND="
 	>=dev-libs/popt-1.5
 	>=dev-libs/libxml2-2.5.10:2
 	dev-libs/libxslt
-	>=dev-scheme/guile-2.0.0:12=[deprecated,regex]
+	=dev-scheme/guile-2.0*:12=[deprecated,regex]
 	dev-scheme/guile-www
 	gnome-base/libgnomecanvas
 	>=net-libs/webkit-gtk-1.2:2
@@ -66,6 +66,13 @@ pkg_setup() {
 src_prepare() {
 	# Skip test that needs some locales to be present
 	sed -i -e '/test_suite_gnc_date/d' src/libqof/qof/test/test-qof.c || die
+
+	# guile 2.2 build fails :(
+#	sed -i -e "s|\"2.0\"|\"2.2\"|g" \
+#		-e "s|guile-2.0 >= 2.0.0|guile-2.2 >= 2.2.0|g" \
+#		-e "s|EFFECTIVE_VERSION=2.0|EFFECTIVE_VERSION=2.2|g" \
+#		configure.ac \
+#		|| die "Failed to sed/fix configure.ac for guile 2.2"
 
 	# We need to run eautoreconf to prevent linking against system libs,
 	# this can be noticed, for example, when updating an old version
