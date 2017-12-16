@@ -38,8 +38,8 @@ CP_DEPEND="
 	dev-java/log4j:0
 	dev-java/rhino:1.6
 	dev-java/slf4j-api:0
+	dev-java/spotbugs-annotations:0
 	dev-java/xalan:0
-	dev-util/findbugs:0
 	java-virtuals/servlet-api:4.0
 "
 
