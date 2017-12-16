@@ -26,7 +26,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/jsr305:0
-	dev-util/findbugs:0
+	dev-java/spotbugs-annotations:0
 "
 
 DEPEND="${CP_DEPEND}
