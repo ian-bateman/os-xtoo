@@ -80,6 +80,7 @@ RDEPEND="
 	~dev-java/${PN}-uihandler-${PV}:${SLOT}
 	~dev-java/${PN}-updatecenters-${PV}:${SLOT}
 	~dev-java/${PN}-utilities-project-${PV}:${SLOT}
+	~dev-java/${PN}-versioning-indexingbridge-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-masterfs-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-system-cvss-installer-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
