@@ -40,7 +40,6 @@ CP_DEPEND="
 	dev-java/log4j:0
 	dev-java/sun-jai-bin:0
 	dev-java/xalan:0
-	dev-java/xalan-serializer:0
 	dev-java/xml-commons-resolver:0
 	dev-java/xz-java:0
 "
