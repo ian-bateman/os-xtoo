@@ -27,12 +27,12 @@ CDEPEND="
 "
 DEPEND="${CDEPEND}
 	app-admin/pwgen
-	>=virtual/jdk-1.8
+	>=virtual/jdk-1.8:*
 "
 RDEPEND="${CDEPEND}
 	dev-java/eclipse-ecj:${ECJ_SLOT}
 	!<dev-java/tomcat-native-1.1.24
-	>=virtual/jdk-1.8
+	>=virtual/jdk-1.8:*
 	systemd? ( sys-apps/systemd )
 "
 
