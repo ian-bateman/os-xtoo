@@ -5,46 +5,56 @@ EAPI="6"
 
 inherit eutils java-vm-2 prefix
 
-JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
+SLOT="${PV%%.*}"
+[[ ${SLOT} == *_pre* ]] && SLOT="${PV%%_*}"
 
-# This is a list of archs supported by this update.
-AT_AVAILABLE=( amd64 )
-AT_amd64="jdk-${PV%%_*}-ea+${PV##*_pre}_linux-x64_bin.tar.gz"
+BASE_URI="http://download"
+
+if [[ ${PV} == *_pre* ]]; then
+	JDK_URI="http://jdk.java.net/${SLOT}/"
+	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_pre}/binaries"
+	MY_PV="${PV%%_*}-ea+${PV##*_pre}"
+else
+	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
+	BASE_URI="http://download.oracle.com/otn-pub/java/jdk/${PV}+11/"
+	MY_PV="${PV}"
+fi
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/jdk-${MY_PV}_linux-x64_bin.tar.gz"
+	KEYWORDS="~amd64"
+fi
 
 DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
-SRC_URI="${AT_amd64}"
 LICENSE="Oracle-BCLA-JavaSE"
-KEYWORDS="~amd64"
-SLOT="10"
 
-IUSE="alsa cups derby doc +fontconfig headless-awt javafx nsplugin selinux source"
+IUSE="alsa cups doc +fontconfig headless-awt javafx nsplugin selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig )"
 
-RESTRICT="fetch preserve-libs strip"
+RESTRICT="preserve-libs strip"
 QA_PREBUILT="*"
 
 RDEPEND="
-		!headless-awt? (
-			x11-libs/libX11
-			x11-libs/libXext
-			x11-libs/libXi
-			x11-libs/libXrender
-			x11-libs/libXtst
-		)
-		javafx? (
-			dev-libs/glib:2
-			dev-libs/libxml2:2
-			dev-libs/libxslt
-			media-libs/freetype:2
-			x11-libs/cairo
-			x11-libs/gtk+:2
-			x11-libs/libX11
-			x11-libs/libXtst
-			x11-libs/libXxf86vm
-			x11-libs/pango
-			virtual/opengl
-		)
+	!headless-awt? (
+		x11-libs/libX11
+		x11-libs/libXext
+		x11-libs/libXi
+		x11-libs/libXrender
+		x11-libs/libXtst
+	)
+	javafx? (
+		dev-libs/glib:2
+		dev-libs/libxml2:2
+		dev-libs/libxslt
+		media-libs/freetype:2
+		x11-libs/cairo
+		x11-libs/gtk+:2
+		x11-libs/libX11
+		x11-libs/libXtst
+		x11-libs/libXxf86vm
+		x11-libs/pango
+		virtual/opengl
+	)
 	alsa? ( media-libs/alsa-lib )
 	cups? ( net-print/cups )
 	fontconfig? ( media-libs/fontconfig:1.0 )
@@ -93,19 +103,19 @@ pkg_nofetch() {
 
 src_unpack() {
 	default
-	mv "${WORKDIR}"/jdk* "${S}" || die "Failed to move/rename source directory"
+	mv "${WORKDIR}"/jdk* "${S}" || die "Failed to move/rename source dir"
 }
 
 src_prepare() {
 	default
-
 	# attempt to remove usage tracker, causes access violations
-	# does not seem to be enough
+	# does not seem to be enough need to rebuild modules image
 	sed -i -e '/jdk\/internal\/vm\/PostVMInitHook/d' \
 		-e '/sun\/usagetracker/d' lib/classlist \
 		|| die "Failed to remove class for usage tracker"
 
 	rm lib/libavplugin* || die "Failed to remove libavplugin*.so"
+	rm lib/fontconfig.* || die "Failed to remove fontconfig.*"
 
 	if ! use alsa ; then
 		rm lib/libjsoundalsa.* \
@@ -147,7 +157,7 @@ src_install() {
 	dodoc -r legal
 	dodir "${dest}"
 
-	cp -pPR bin include lib "${ddest}" || die
+	cp -pPR bin conf include jmods lib "${ddest}" || die
 
 	if use nsplugin ; then
 		nsplugin=$(echo lib/libnpjp2.so)
@@ -176,7 +186,6 @@ src_install() {
 	# Prune all fontconfig files so libfontconfig will be used and only install
 	# a Gentoo specific one if fontconfig is disabled.
 	# http://docs.oracle.com/javase/8/docs/technotes/guides/intl/fontconfig.html
-	rm "${ddest}"/lib/fontconfig.*
 	if ! use fontconfig ; then
 		cp "${FILESDIR}"/fontconfig.Gentoo.properties \
 			"${T}"/fontconfig.properties \
