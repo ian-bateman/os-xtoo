@@ -28,7 +28,7 @@ HOMEPAGE="https://junit.org/junit${SLOT}/"
 LICENSE="EPL-1.0"
 
 if [[ ${SLOT} == 4 ]]; then
-	CP_DEPEND="dev-java/hamcrest-core:1.3"
+	CP_DEPEND="dev-java/hamcrest-core:1"
 fi
 
 DEPEND="${CP_DEPEND}
