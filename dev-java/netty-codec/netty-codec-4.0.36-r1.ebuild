@@ -33,7 +33,7 @@ RDEPEND="${CP_DEPEND}
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8
 	test? (
-		dev-java/hamcrest-core:1.3
+		dev-java/hamcrest-core:1
 		dev-java/hamcrest-library:1.3
 		dev-java/jboss-marshalling-river:0
 		dev-java/jboss-marshalling-serial:0
