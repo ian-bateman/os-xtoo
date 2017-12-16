@@ -26,7 +26,7 @@ SLOT="$(get_major_version)"
 CP_DEPEND="
 	dev-java/asm:6
 	dev-java/jffi:1.2
-	dev-java/jnr-x86asm:1.0
+	dev-java/jnr-x86asm:0
 "
 
 DEPEND="${CP_DEPEND}
