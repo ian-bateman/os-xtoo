@@ -27,13 +27,13 @@ HOMEPAGE="https://freemarker.apache.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
+#	dev-java/jdom:2
 CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/avalon-logkit:0
 	dev-java/commons-logging:0
 	dev-java/dom4j:2
 	dev-java/jaxen:0
-	dev-java/jdom:2
 	dev-java/jython:2.7
 	dev-java/log4j:0
 	dev-java/rhino:1.6
@@ -52,7 +52,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/"
 
-PATCHES=( "${FILESDIR}/jdom2.patch" )
+#PATCHES=( "${FILESDIR}/jdom2.patch" )
 
 JAVAC_ARGS="--add-modules java.xml "
 JAVAC_ARGS+="--add-exports=java.xml/com.sun.org.apache.xml.internal.utils=ALL-UNNAMED "
@@ -83,6 +83,10 @@ java_prepare() {
 			|| die "Failed to correct left over tokens"
 	done
 
+# Remove for now due to removal from jaxen, need to use pure jdom
+	rm -r src/main/java/freemarker/ext/jdom/ \
+		src/main/java/freemarker/ext/xml/_JdomNavigator.java \
+		|| die "Failed to remove jdom support"
 # Switched to patch remove after first commit
 	# upgrade jdom -> jdom2
 #	for f in jdom/NodeListModel xml/_JdomNavigator; do
