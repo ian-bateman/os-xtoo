@@ -5,7 +5,7 @@ EAPI="6"
 
 inherit java-netbeans
 
-DEPEND=">=virtual/jdk-9"
+DEPEND=">=virtual/jdk-9:*"
 
 ASM_SLOT="6"
 LUCENE_SLOT="3"
@@ -88,7 +88,7 @@ RDEPEND="
 	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tax-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
-	>=virtual/jdk-9
+	>=virtual/jdk-9:*
 "
 #	~dev-java/${PN}-openide-filesystem-compat8-${PV}:${SLOT}
 
