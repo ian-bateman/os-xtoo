@@ -24,6 +24,7 @@ RDEPEND="
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-ide-${PV}:${SLOT}
 	~dev-java/${PN}-core-io-ui-${PV}:${SLOT}
+	~dev-java/${PN}-core-kit-${PV}:${SLOT}
 	~dev-java/${PN}-core-multitabs-${PV}:${SLOT}
 	~dev-java/${PN}-core-multitabs-project-${PV}:${SLOT}
 	~dev-java/${PN}-core-multiview-${PV}:${SLOT}
@@ -37,6 +38,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-bracesmatching-${PV}:${SLOT}
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
+	~dev-java/${PN}-editor-indent-project-${PV}:${SLOT}
 	~dev-java/${PN}-editor-indent-support-${PV}:${SLOT}
 	~dev-java/${PN}-editor-plain-${PV}:${SLOT}
 	~dev-java/${PN}-editor-macros-${PV}:${SLOT}
@@ -46,6 +48,7 @@ RDEPEND="
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
+	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
 	~dev-java/${PN}-keyring-${PV}:${SLOT}
@@ -70,6 +73,7 @@ RDEPEND="
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
+	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
@@ -79,6 +83,8 @@ RDEPEND="
 	~dev-java/${PN}-versioning-masterfs-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-system-cvss-installer-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
+	~dev-java/${PN}-xml-catalog-ui-${PV}:${SLOT}
+	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tax-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9
@@ -203,7 +209,7 @@ src_install() {
 	jars+=( ${jars_short[@]/#/autoupdate-} )
 
 	jars_short=(
-		browser execution ide io-ui multitabs multitabs-project
+		browser execution ide io-ui kit multitabs multitabs-project
 		multiview netigso network osgi output2 windows ui
 	)
 	jars+=( ${jars_short[@]/#/core-} )
@@ -227,7 +233,7 @@ src_install() {
 	jars_short=( browser execution execution-base )
 	jars+=( ${jars_short[@]/#/ext} )
 
-	jars_short=( platform project )
+	jars_short=( platform platform-ui project )
 	jars+=( ${jars_short[@]/#/java-} )
 
 	jars_short=( freemarker jsch-agentproxy git )
@@ -252,9 +258,9 @@ src_install() {
 	jars+=( ${jars_short[@]/#/parsing-} )
 
 	jars_short=(
-		"-ant" "-ant-ui" "-indexingbridge" api api-nb "-libraries"
-		"-libraries-ui" "-spi-intern" "-spi-intern-impl"
-		uiapi uiapi-base
+		"-ant" "-ant-ui" api api-nb "-indexingbridge" "-libraries"
+		"-libraries-ui" "-spi-intern" "-spi-intern-impl" uiapi
+		uiapi-base
 	)
 	jars+=( ${jars_short[@]/#/project} )
 
@@ -264,7 +270,9 @@ src_install() {
 	jars_short=( "" "-apimodule" )
 	jars+=( ${jars_short[@]/#/spellchecker} )
 
-	jars_short=( editor-hints navigator palette quicksearch tasklist )
+	jars_short=(
+		actions editor-hints navigator palette quicksearch tasklist
+	)
 	jars+=( ${jars_short[@]/#/spi-} )
 
 	jars_short=( "" ui )
@@ -279,8 +287,8 @@ src_install() {
 	jars+=( ${jars_short[@]/#/versioning} )
 
 	jars_short=(
-		"" "-axi" "-catalog" "-core" "-lexer" "-retriever"
-		"-schema-model" "-tax" "-text" "-xam"
+		"" "-axi" "-catalog" "-catalog-ui" "-core" "-lexer" "-multiview"
+		"-retriever" "-schema-model" "-tax" "-text" "-xam"
 	)
 	jars+=( ${jars_short[@]/#/xml} )
 
