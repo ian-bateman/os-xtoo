@@ -1327,43 +1327,6 @@ java-pkg_get-bootclasspath() {
 	echo "${bcp}"
 }
 
-
-# This function reads stdin, and based on that input, figures out how to
-# populate jars from the filesystem.
-# Need to figure out a good way of making use of this, ie be able to use a
-# string that was built instead of stdin
-# NOTE: this isn't quite ready for primetime.
-#java-pkg_populate-jars() {
-#	local line
-#
-#	read line
-#	while [[ -n "${line}" ]]; do
-#		# Ignore comments
-#		[[ ${line%%#*} == "" ]] && continue
-#
-#		# get rid of any spaces
-#		line="${line// /}"
-#
-#		# format: path=jarinfo
-#		local path=${line%%=*}
-#		local jarinfo=${line##*=}
-#
-#		# format: jar@package
-#		local jar=${jarinfo%%@*}.jar
-#		local package=${jarinfo##*@}
-#		if [[ -n ${replace_only} ]]; then
-#			[[ ! -f $path ]] && die "No jar exists at ${path}"
-#		fi
-#		if [[ -n ${create_parent} ]]; then
-#			local parent=$(dirname ${path})
-#			mkdir -p "${parent}"
-#		fi
-#		java-pkg_jar-from "${package}" "${jar}" "${path}"
-#
-#		read line
-#	done
-#}
-
 # @FUNCTION: java-pkg_find-normal-jars
 # @USAGE: [<path/to/directory>]
 # @DESCRIPTION:
