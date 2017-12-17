@@ -203,22 +203,8 @@ java-pkg_doexamples() {
 # @FUNCTION: java-pkg_rm_files
 # @USAGE: java-pkg_rm_files File1.java File2.java ...
 # @DESCRIPTION:
-# Remove unneeded files in ${S}.
-#
-# Every now and then, you'll run into situations whereby a file needs removing,
-# be it a unit test or a regular java class.
-#
-# You can use this function by either:
-# - calling it yourself in java_prepare() and feeding java-pkg_rm_files with
-# the list of files you wish to remove.
-# - defining an array in the ebuild named JAVA_RM_FILES with the list of files
-# you wish to remove.
-#
-# Both way work and it is left to the developer's preferences. If the
-# JAVA_RM_FILES array is defined, it will be automatically handed over to
-# java-pkg_rm_files during the src_prepare phase.
-#
-# See java-utils-2_src_prepare.
+# Remove unneeded files in ${S}. Should not be called directly! Instead
+# set and use JAVA_RM_FILES variable to any files that need to be removed.
 #
 # @CODE
 #	java-pkg_rm_files File1.java File2.java
