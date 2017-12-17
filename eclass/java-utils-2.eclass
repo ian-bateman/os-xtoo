@@ -2599,20 +2599,6 @@ java-pkg_die() {
 	echo "and of course, the output of emerge --info =${P}" >&2
 }
 
-
-# TODO document
-# List jars in the source directory, ${S}
-java-pkg_jar-list() {
-	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
-		einfo "Linked Jars"
-		find "${S}" -type l -name '*.jar' -print0 | xargs -0 -r -n 500 ls -ald | sed -e "s,${WORKDIR},\${WORKDIR},"
-		einfo "Jars"
-		find "${S}" -type f -name '*.jar' -print0 | xargs -0 -r -n 500 ls -ald | sed -e "s,${WORKDIR},\${WORKDIR},"
-		einfo "Classes"
-		find "${S}" -type f -name '*.class' -print0 | xargs -0 -r -n 500 ls -ald | sed -e "s,${WORKDIR},\${WORKDIR},"
-	fi
-}
-
 # @FUNCTION: java-pkg_verify-classes
 # @INTERNAL
 # @DESCRIPTION:
