@@ -200,50 +200,6 @@ java-pkg_doexamples() {
 	dosym "${dest}" "${JAVA_PKG_SHAREPATH}/examples" || die
 }
 
-# @FUNCTION: java-pkg_addres
-# @USAGE: <jar> <dir> [<find arguments> ...]
-# @DESCRIPTION:
-# Adds resource files to an existing jar.
-# It is important that the directory given is actually the root of the
-# corresponding resource tree. The target directory as well as
-# sources.lst, MANIFEST.MF, *.class, *.jar, and *.java files are
-# automatically excluded. Symlinks are always followed. Additional
-# arguments are passed through to find. JAVA_ADDRES_DIRS can be used
-# to pass more than one directory for inclusion.
-#
-# @CODE
-#	java-pkg_addres ${PN}.jar resources ! -name "*.html"
-#
-#	JAVA_ADDRES_DIRS="src/main/java src/main/resources"
-#	java-pkg_addres ${PN}.jar
-#
-#	JAVA_ADDRES_DIRS="src/main/java"
-#	java-pkg_addres ${PN}.jar resources ! -name "*.html"
-#
-# @CODE
-#
-# @param $1 - jar file
-# @param $2 - resource tree directory
-# @param $* - arguments to pass to find
-java-pkg_addres() {
-	debug-print-function ${FUNCNAME} $*
-
-	if [[ ${#} -lt 2 ]] && [[ ! ${JAVA_ADDRES_DIRS} ]]; then
-		die "at least two arguments needed or JAVA_ADDRES_DIRS"
-	fi
-
-	local jar=$(realpath "$1" || die "realpath $1 failed")
-	[[ $2 ]] && JAVA_ADDRES_DIRS="$2 ${JAVA_ADDRES_DIRS}"
-	shift 2
-
-	local dir=""
-	for dir in ${JAVA_ADDRES_DIRS}; do
-		pushd "${dir}" > /dev/null || die "pushd ${dir} failed"
-		find -L -type f ! -path "./target/*" ! -path "./sources.lst" ! -name "MANIFEST.MF" ! -regex ".*\.\(class\|jar\|java\)" "${@}" -print0 | xargs -r0 jar uf "${jar}" || die "jar failed"
-		popd > /dev/null || die "popd failed"
-	done
-}
-
 # @FUNCTION: java-pkg_rm_files
 # @USAGE: java-pkg_rm_files File1.java File2.java ...
 # @DESCRIPTION:
