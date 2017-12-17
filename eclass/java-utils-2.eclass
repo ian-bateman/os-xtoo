@@ -1900,14 +1900,6 @@ java-utils-2_src_prepare() {
 		java-pkg_rm_files "${JAVA_RM_FILES[@]}"
 	fi
 
-	if is-java-strict; then
-		echo "Searching for bundled jars:"
-		java-pkg_find-normal-jars || echo "None found."
-		echo "Searching for bundled classes (no output if none found):"
-		find "${WORKDIR}" -name "*.class"
-		echo "Search done."
-	fi
-
 	# Remove *.class and *.jar by default
 	java-pkg_clean
 
