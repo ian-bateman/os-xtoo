@@ -3,8 +3,6 @@
 
 EAPI=6
 
-GRADLE="3.2"
-
 inherit eutils java-pkg-2 versionator
 
 RESTRICT="strip"
@@ -30,14 +28,12 @@ KEYWORDS="~amd64"
 IUSE="kvm selinux system-jvm"
 SLOT="0"
 
+JAVA_SLOT="1.8"
+
 DEPEND="app-arch/unzip"
 
-RDEPEND=">=virtual/jdk-1.8
-	selinux? ( sec-policy/selinux-android )
+RDEPEND="
 	app-arch/bzip2
-	dev-java/commons-logging:0
-	dev-java/guava:18
-	dev-java/log4j:0
 	dev-libs/expat
 	>=dev-libs/libffi-3.0.13-r1
 	media-libs/fontconfig
@@ -57,43 +53,44 @@ RDEPEND=">=virtual/jdk-1.8
 	>=x11-libs/libXxf86vm-1.1.3
 	x11-libs/libdrm
 	x11-libs/libxcb
-	>=x11-libs/libxshmfence-1.1"
+	>=x11-libs/libxshmfence-1.1
+	selinux? ( sec-policy/selinux-android )
+	system-jvm? ( dev-java/oracle-jdk-bin:${JAVA_SLOT} )
+"
 
 S=${WORKDIR}/${MY_PN}
 
 JAVA_PKG_NO_CLEAN=1
+JAVA_PKG_FORCE_VM="dev-java/oracle-jdk-bin-${JAVA_SLOT}"
 
 java_prepare() {
 	# This is really a bundled jdk not a jre
-	echo "S=${S}"
-	echo "rm -R ${S}/jre"
 	if use system-jvm; then
 		 rm -R "${S}/jre" || die \
 			"Could not remove bundled jdk posing as jre"
 	fi
+}
 
-	# Replace bundled jars with system
-	# has problems with newer jdom:0 not updated to jdom:2
-	cd "${S}/lib"
-	local JARS="commons-logging guava:18 log4j"
-	local j
-	for j in ${JARS}; do
-		rm -v ${j/:*/}*.jar
-		java-pkg_jar-from ${j}
-	done
+src_compile() {
+:
 }
 
 src_install() {
-	local dir="/opt/${PN}"
+	local dir jvm
+
+	dir="/opt/${PN}"
 
 	insinto "${dir}"
+
 	# Replaced bundled jre with system vm/jdk
-	# This is really a bundled jdk not a jre
-	use system-jvm &&
-		dosym "/etc/java-config-2/current-system-vm" "${dir}/jre"
+	if use system-jvm; then
+		jvm="$(java-config --select-vm=oracle-jdk-bin-${JAVA_SLOT} -O)"
+		dosym "..${jvm/#\/opt/}" "${dir}/jre"
+	fi
+
 	doins -r *
-	fperms 755 "${dir}/bin/studio.sh" "${dir}/bin/fsnotifier" \
-		"${dir}/bin/fsnotifier64" "${dir}/gradle/gradle-${GRADLE}/bin/gradle"
+	fperms 755 "${dir}/bin/studio.sh" "${dir}"/bin/fsnotifier{,64}
+	chmod 755 "${D}${dir}"/gradle/gradle-*/bin/gradle || die
 
 	newicon "bin/studio.png" "${PN}.png"
 	make_wrapper ${PN} ${dir}/bin/studio.sh
