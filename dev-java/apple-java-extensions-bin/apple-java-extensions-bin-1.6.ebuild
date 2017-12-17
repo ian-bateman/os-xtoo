@@ -31,4 +31,3 @@ JAVA_PKG_NO_CLEAN=0
 src_install() {
 	java-pkg_dojar ${MY_PN}.jar
 }
-
