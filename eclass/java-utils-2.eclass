@@ -270,12 +270,13 @@ java-pkg_addres() {
 #
 # @param $* - list of files to remove.
 java-pkg_rm_files() {
+	local IFS f
+
 	debug-print-function ${FUNCNAME} $*
-	local IFS="\n"
-	for filename in "$@"; do
-		einfo "Removing unneeded file ${filename}"
-		rm -fr "${S}/${filename}" || die "cannot remove ${filename}"
-		eend $?
+
+	IFS="\n"
+	for f in "$@"; do
+		rm -r "${S}/${f}" || die "cannot remove ${f}"
 	done
 }
 
