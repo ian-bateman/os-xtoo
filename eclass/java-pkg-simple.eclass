@@ -161,8 +161,8 @@ java-pkg-simple_create-jar(){
 # src_compile for simple bare source java packages. Finds all *.java
 # sources in ${JAVA_SRC_DIR}, compiles them with the classpath
 # calculated from ${JAVA_CLASSPATH}, and packages the resulting
-# classes to ${JAVA_JAR_FILENAME}. Use ${JAVA_ADDRES_ARGS} to pass
-# arguments to java-pkg_addres automatically called now.
+# classes to ${JAVA_JAR_FILENAME}. Use ${JAVA_RES_DIR} to pass
+# resource directories to be included in jar.
 java-pkg-simple_src_compile() {
 	local sources=sources.lst classes=target/classes apidoc=target/api
 
