@@ -1343,25 +1343,6 @@ java-pkg_find-normal-jars() {
 	return $?
 }
 
-# @FUNCTION: java-pkg_ensure-no-bundled-jars
-# @DESCRIPTION:
-# Try to locate bundled jar files in ${WORKDIR} and die if found.
-# This function should be called after WORKDIR has been populated with symlink
-# to system jar files or bundled jars removed.
-java-pkg_ensure-no-bundled-jars() {
-	debug-print-function ${FUNCNAME} $*
-
-	local bundled_jars=$(java-pkg_find-normal-jars)
-	if [[ -n ${bundled_jars} ]]; then
-		echo "Bundled jars found:"
-		local jar
-		for jar in ${bundled_jars}; do
-			echo $(pwd)${jar/./}
-		done
-		die "Bundled jars found!"
-	fi
-}
-
 # @FUNCTION: java-pkg_ensure-vm-version-sufficient
 # @INTERNAL
 # @DESCRIPTION:
