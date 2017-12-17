@@ -99,7 +99,7 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # An array containing a list of files to remove. If defined, this array will be
-# automatically handed over to java-pkg_rm_files for processing during the
+# automatically handed over to _java-pkg_rm_files for processing during the
 # src_prepare phase.
 #
 # @CODE
@@ -200,18 +200,18 @@ java-pkg_doexamples() {
 	dosym "${dest}" "${JAVA_PKG_SHAREPATH}/examples" || die
 }
 
-# @FUNCTION: java-pkg_rm_files
-# @USAGE: java-pkg_rm_files File1.java File2.java ...
+# @FUNCTION: _java-pkg_rm_files
+# @USAGE: _java-pkg_rm_files File1.java File2.java ...
 # @DESCRIPTION:
 # Remove unneeded files in ${S}. Should not be called directly! Instead
 # set and use JAVA_RM_FILES variable to any files that need to be removed.
 #
 # @CODE
-#	java-pkg_rm_files File1.java File2.java
+#	_java-pkg_rm_files File1.java File2.java
 # @CODE
 #
 # @param $* - list of files to remove.
-java-pkg_rm_files() {
+_java-pkg_rm_files() {
 	local IFS f
 
 	debug-print-function ${FUNCNAME} $*
@@ -1784,7 +1784,7 @@ java-utils-2_src_prepare() {
 	# Check for files in JAVA_RM_FILES array.
 	if [[ ${JAVA_RM_FILES[@]} ]]; then
 		debug-print "$FUNCNAME: removing unneeded files"
-		java-pkg_rm_files "${JAVA_RM_FILES[@]}"
+		_java-pkg_rm_files "${JAVA_RM_FILES[@]}"
 	fi
 
 	# Remove *.class and *.jar by default
