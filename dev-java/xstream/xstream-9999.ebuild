@@ -29,7 +29,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/cglib:3
-	dev-java/dom4j:1
+	dev-java/dom4j:2
 	dev-java/jdom:0
 	dev-java/jdom:2
 	dev-java/jettison:0
