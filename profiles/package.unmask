@@ -1,5 +1,9 @@
+dev-java/openjdk-bin
+dev-java/oracle-jdk-bin
 dev-java/spring-aop
 dev-java/spring-beans
 dev-java/spring-core
 dev-java/spring-expression
 dev-java/spring-instrument
+virtual/jdk
+virtual/jre
