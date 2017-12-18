@@ -28,7 +28,7 @@ LICENSE="MPL-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/dom4j:1
+	dev-java/dom4j:2
 	~dev-java/openpdf-${PV}:${SLOT}
 	dev-java/pdf-renderer:0
 "
