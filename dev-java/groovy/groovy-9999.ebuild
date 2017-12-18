@@ -54,9 +54,7 @@ S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main"
 JAVA_RES_DIR="resources"
-
-# Add to the cp as we're generating an extra class there.
-JAVA_GENTOO_CLASSPATH_EXTRA="${JAVA_RES_DIR}"
+JAVA_CLASSPATH_EXTRA="${JAVA_RES_DIR}"
 
 # ExceptionUtil filename.
 EU="ExceptionUtils.java"
@@ -116,6 +114,7 @@ generate_exceptionutils() {
 }
 
 src_compile() {
+	JAVA_NO_JAR=1
 	generate_antlr_grammar "${ANTLR_GRAMMAR_FILES[@]}"
 	generate_exceptionutils
 	java-pkg-simple_src_compile
@@ -123,19 +122,21 @@ src_compile() {
 	# Temp needs to be moved to groovy eclass
 	local sources classes
 	sources=groovy_sources.lst
-	classes=target/groovy_classes
+	classes=target/classes
 	find "${S}/src/main" -name \*.groovy > ${sources}
-	sed -i -e "s|\$GROOVY_HOME/lib/@GROOVYJAR@|${S}/${PN}.jar:$(java-pkg_getjars antlr,asm-${ASM_SLOT},commons-cli-${CLI_SLOT})|" \
+	sed -i -e "s|\$GROOVY_HOME/lib/@GROOVYJAR@|${S}/${classes}:$(java-pkg_getjars antlr,asm-${ASM_SLOT},commons-cli-${CLI_SLOT})|" \
 		"src/bin/startGroovy" \
 		|| die "Could not modify startGroovy"
+#	java -cp ${classes} org.codehaus.groovy.tools.GroovyStarter \
+#		-d ${classes} \
 	chmod 775 "src/bin/groovyc" "src/bin/startGroovy"\
 		|| die "Failed to make groovyc,startGroovy executable"
 	"src/bin/groovyc" -d ${classes} \
-		-cp "${PN}.jar:$(java-pkg_getjars ant-ivy,commons-cli-${CLI_SLOT})" \
+		-cp "${classes}:$(java-pkg_getjars ant-ivy,commons-cli-${CLI_SLOT})" \
 		@${sources} \
 		|| die "Failed to compile groovy files"
-	# ugly should be included with existing
-	jar uf ${PN}.jar -C ${classes} . || die "update jar failed"
+
+	java-pkg-simple_create-jar ${classes}
 
 	# revert modifications
 	sed -i -e "s|${S}/${PN}.jar.*|\$GROOVY_HOME/lib/@GROOVYJAR@|" \
