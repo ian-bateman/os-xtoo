@@ -27,7 +27,7 @@ HOMEPAGE="https://ant.apache.org/ivy/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-BC_SLOT="1.50"
+BC_SLOT="1.58"
 
 CP_DEPEND="
 	dev-java/ant-core:0
@@ -43,19 +43,36 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
 java_prepare() {
 	# update to commons-vfs:2
-	local f
+	local f p
+
+	p="src/java/org/apache/ivy/plugins"
 	for f in Resource Repository; do
 		sed -i -e "s|commons.vfs|commons.vfs2|g" \
-			src/java/org/apache/ivy/plugins/repository/vfs/Vfs${f}.java \
+			${p}/repository/vfs/Vfs${f}.java \
 			|| die "Failed to sed vfs -> vfs2"
 	done
+
+	# update bcpg
+	sed -i -e "s|initSign|init|" -e "105d;107d" \
+		-e "44iimport org.bouncycastle.openpgp.operator.bc.BcKeyFingerprintCalculator;" \
+		-e "44iimport org.bouncycastle.openpgp.operator.bc.BcPBESecretKeyDecryptorBuilder;" \
+		-e "44iimport org.bouncycastle.openpgp.operator.bc.BcPGPContentSignerBuilder;" \
+		-e "44iimport org.bouncycastle.openpgp.operator.bc.BcPGPDigestCalculatorProvider;" \
+		-e "s|RingCollection(in)|RingCollection(PGPUtil.getDecoderStream(in),new BcKeyFingerprintCalculator())|" \
+		-e "s|extractPrivateKey(.*|extractPrivateKey(new BcPBESecretKeyDecryptorBuilder(new BcPGPDigestCalculatorProvider()).build(password.toCharArray()));|" \
+		-e "s|pgpSec.getPublicKey()|new BcPGPContentSignerBuilder(pgpSec.getPublicKey().getAlgorithm(), PGPUtil.SHA1));|" \
+		-e "/SignatureException e/,+3d" \
+		-e "/NoSuchAlgorithmException e/,+3d" \
+		-e "/NoSuchProviderException e/,+3d" \
+		${p}/signer/bouncycastle/OpenPGPSignatureGenerator.java \
+		|| die "Failed to sed/update bc"
 }
