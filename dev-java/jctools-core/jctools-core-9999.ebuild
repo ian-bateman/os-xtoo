@@ -32,10 +32,9 @@ else
 	SLOT="2"
 fi
 
-RDEPEND=">=virtual/jre-1.8"
-
-DEPEND=">=virtual/jdk-1.8"
+RDEPEND=">=virtual/jre-9"
+DEPEND=">=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}/"
 
-JAVA_SRC_DIR="src/main/java"
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
