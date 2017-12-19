@@ -24,7 +24,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/bytelist:0
-	dev-java/jcodings:0
+	dev-java/jcodings:1
 	dev-java/joda-time:0
 "
 
