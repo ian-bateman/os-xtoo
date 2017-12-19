@@ -36,6 +36,12 @@ JAVA_SRC_DIR="OSGI-OPT/src"
 # Per http://stackoverflow.com/questions/23785807/
 # Compiles with patch, rename may have effect on dependencies using MultiMap
 
-PATCHES=(
-	"${FILESDIR}"/${P}-fix-imports.patch
-)
+PATCHES=( "${FILESDIR}"/${P}-fix-imports.patch)
+
+java_prepare() {
+	sed -i -e "s|_)|v)|g" \
+		OSGI-OPT/src/aQute/lib/collections/ExtList.java \
+		|| die "Failed to sed/fix keyword _ -> v"
+	sed -i -e "92d" OSGI-OPT/src/aQute/lib/collections/MultiMap.java \
+		|| die "Failed to sed/remove extra @Override"
+}
