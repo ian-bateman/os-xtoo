@@ -42,7 +42,7 @@ CP_DEPEND="
 	dev-java/jtidy:0
 	dev-java/log4j-api:0
 	dev-java/log4j-core:0
-	dev-java/rhino:1.6
+	dev-java/rhino:0
 	dev-java/rsyntaxtextarea:0
 	dev-java/slf4j-api:0
 	dev-java/tika-core:0
