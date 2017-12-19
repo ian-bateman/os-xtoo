@@ -28,7 +28,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/freemarker:2.3
+	dev-java/freemarker:0
 	dev-java/tiles-autotag-core-runtime:0
 	~dev-java/tiles-request-api-${PV}:${SLOT}
 	~dev-java/tiles-request-servlet-${PV}:${SLOT}
