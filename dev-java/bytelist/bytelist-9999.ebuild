@@ -23,7 +23,7 @@ DESCRIPTION="org.jruby.util.ByteList byte container"
 LICENSE="|| ( CPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="0"
 
-CP_DEPEND="dev-java/jcodings:0"
+CP_DEPEND="dev-java/jcodings:1"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
