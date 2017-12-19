@@ -36,7 +36,7 @@ CP_DEPEND="
 	dev-java/jaxen:0
 	dev-java/jython:2.7
 	dev-java/log4j:0
-	dev-java/rhino:1.6
+	dev-java/rhino:0
 	dev-java/slf4j-api:0
 	dev-java/spotbugs-annotations:0
 	dev-java/xalan:0
