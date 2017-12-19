@@ -28,6 +28,9 @@ HOMEPAGE="https://${MY_PN}.io/"
 LICENSE="Apache-2.0"
 SLOT="$(get_version_component_range 1-2)"
 
+ASM_SLOT="6"
+CLI_SLOT="1"
+
 CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/javassist:3
@@ -41,7 +44,8 @@ if [[ "${SLOT}" != "4.0" ]] ; then
 	GROOVY_DEPS="
 		dev-java/ant-core:0
 		dev-java/antlr:0
-		dev-java/commons-cli:1
+		dev-java/asm:${ASM_SLOT}
+		dev-java/commons-cli:${CLI_SLOT}
 		dev-java/groovy:0
 		dev-java/groovy-ant:0
 	"
@@ -60,15 +64,13 @@ JAVAC_ARGS="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED"
 
 if [[ "${SLOT}" != "4.0" ]] ; then
 
-	PATCHES=(
-		"${FILESDIR}/codegen_groovy.patch"
-	)
+	PATCHES=( "${FILESDIR}/codegen_groovy.patch" )
 
 	java_prepare() {
 		# Unable to use groovy due to classpath issues
 		# the following does not work, but should
 		# groovy -cp "$(java-pkg_getjars --build-only groovy-ant)"
-		java -cp "$(java-pkg_getjars --build-only ant-core,antlr,asm-4,commons-cli-1,groovy,groovy-ant)" \
+		java -cp "$(java-pkg_getjars --build-only ant-core,antlr,asm-${ASM_SLOT},commons-cli-${CLI_SLOT},groovy,groovy-ant)" \
 			groovy.ui.GroovyMain src/main/script/codegen.groovy \
 			|| die "groovy codegen failed"
 	}
