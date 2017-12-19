@@ -36,7 +36,7 @@ CP_DEPEND="
 	dev-java/asm:6
 	dev-java/commons-compress:0
 	dev-java/guava:23
-	dev-java/jffi:1.2
+	dev-java/jffi:0
 	dev-java/jline:2
 	dev-java/jnr-constants:0
 	dev-java/jnr-posix:3
