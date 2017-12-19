@@ -37,7 +37,7 @@ CP_DEPEND="
 	dev-java/invokebinder:0
 	dev-java/jcodings:1
 	dev-java/jitescript:0
-	dev-java/jffi:1.2
+	dev-java/jffi:0
 	dev-java/jnr-constants:0
 	dev-java/jnr-enxio:0
 	dev-java/jnr-ffi:2
