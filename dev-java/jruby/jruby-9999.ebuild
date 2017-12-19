@@ -41,7 +41,7 @@ CP_DEPEND="
 	dev-java/jnr-constants:0
 	dev-java/jnr-enxio:0
 	dev-java/jnr-ffi:2
-	dev-java/jnr-netdb:1.0
+	dev-java/jnr-netdb:0
 	dev-java/jnr-posix:3
 	dev-java/jnr-unixsocket:0
 	dev-java/joda-time:0
