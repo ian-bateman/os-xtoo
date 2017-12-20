@@ -33,12 +33,14 @@ CP_DEPEND="dev-java/commons-logging:0"
 
 DEPEND="${CP_DEPEND}
 	dev-java/javacc:0
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
+
+[[ ${SLOT} == 2 ]] && JAVA_SRC_DIR="src/main/java jexl2-compat/src/main/java"
 
 java_prepare() {
 	local MY_D
@@ -49,6 +51,15 @@ java_prepare() {
 
 	javacc -OUTPUT_DIRECTORY="${MY_D}" "${MY_D}Parser.jj" \
 		|| die "javacc Parser.jj failed"
+
+	sed -i -e "140i \ \ \ \ @Override" \
+		-e "140i \ \ \ \ public int getId() { return id; }" \
+		"${MY_D}SimpleNode.java" \
+		|| die "Failed to sed/add missing abstract method"
+
+	sed -i -e "s|curChar, Token|(char) curChar, Token|" \
+		"${MY_D}ParserTokenManager.java" \
+		|| die "Failed to sed/fix cast int to char"
 
 	if [[ ${SLOT} == 3 ]]; then
 		sed -i -e "s|interface|abstract class |" \
