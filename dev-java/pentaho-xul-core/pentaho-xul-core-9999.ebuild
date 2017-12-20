@@ -31,15 +31,26 @@ CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
-	dev-java/dom4j:1
+	dev-java/dom4j:2
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
-JAVA_SRC_DIR="src"
+java_prepare() {
+	sed -i -e '363,366d' \
+		src/org/pentaho/ui/xul/impl/AbstractXulLoader.java \
+		|| die "Failed to sed/fix cast incompatible types"
+
+	sed -i -e '27iimport org.dom4j.Node;' \
+		-e '363i \ \ \ \ List<Node> nodes = xpath.selectNodes( srcDoc );' \
+		-e '363i \ \ \ \ for (Node n : nodes) {' \
+		-e '363i \ \ \ \ \ \ \ \ Element ele = n.getParent();' \
+		src/org/pentaho/ui/xul/impl/AbstractXulLoader.java \
+		|| die "Failed to sed/fix cast incompatible types"
+}
