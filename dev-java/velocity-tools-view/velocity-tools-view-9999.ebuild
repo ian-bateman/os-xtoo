@@ -35,7 +35,7 @@ CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-validator:0
 	dev-java/dom4j:1
-	dev-java/velocity:0
+	dev-java/velocity-engine-core:0
 	java-virtuals/servlet-api:2.5
 "
 
