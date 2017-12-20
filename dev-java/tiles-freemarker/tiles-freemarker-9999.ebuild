@@ -31,7 +31,7 @@ SLOT="0"
 TILESREQ_SLOT="0"
 
 CP_DEPEND="
-	dev-java/freemarker:2.3
+	dev-java/freemarker:0
 	~dev-java/tiles-api-${PV}:${SLOT}
 	~dev-java/tiles-template-${PV}:${SLOT}
 	dev-java/tiles-autotag-core-runtime:0
