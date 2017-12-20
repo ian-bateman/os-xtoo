@@ -34,16 +34,16 @@ CP_DEPEND="
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
 	dev-java/commons-validator:0
-	dev-java/dom4j:1
+	dev-java/dom4j:2
 	dev-java/velocity-engine-core:0
 	java-virtuals/servlet-api:2.5
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
@@ -53,4 +53,8 @@ java_prepare() {
 	# Removing struts, because its struts...
 	rm -rv "${S}/${JAVA_SRC_DIR}/org/apache/velocity/tools/struts" || \
 		die "Failed to remove struts classes"
+
+	sed -i -e "s|kids.addAll((List<Node>)|kids.addAll(|" \
+		src/main/java/org/apache/velocity/tools/generic/XmlTool.java \
+		|| die "Failed to sed/fix for dom4j:2"
 }
