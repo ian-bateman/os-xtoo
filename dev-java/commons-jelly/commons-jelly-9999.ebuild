@@ -30,12 +30,12 @@ CP_DEPEND="
 	dev-java/commons-cli:1
 	dev-java/commons-collections:0
 	dev-java/commons-discovery:0
-	dev-java/commons-jexl:1.0
+	dev-java/commons-jexl:2
 	dev-java/commons-lang:2
 	dev-java/commons-logging:0
-	dev-java/dom4j:1
+	dev-java/dom4j:2
 	dev-java/jaxen:0
-	dev-java/tomcat-jstl-spec:0
+	dev-java/taglibs-standard-spec:0
 	java-virtuals/servlet-api:4.0
 "
 
@@ -50,6 +50,8 @@ S="${WORKDIR}/${MY_S}"
 JAVA_SRC_DIR="src/java"
 
 java_prepare() {
+	local f
+
 	rm -r "${S}/src/java/org/apache/commons/jelly/test/" \
 		|| die "Failed to remove BaseJellyTest.java"
 }
