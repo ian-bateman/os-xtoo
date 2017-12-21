@@ -28,7 +28,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/intellij-annotations:0
+	dev-java/intellij-platform-annotations:0
 	dev-java/jna:4
 	dev-java/jsr305:0
 	dev-java/slf4j-api:0
