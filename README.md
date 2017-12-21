@@ -50,20 +50,30 @@ source, such as
 ```
 
 ## Java
-This repository requires Java 9 as your system vm now. We are no 
-longer supporting any JDK < 9. Not everthing has been fixed or 
-dialed in for Java 9 yet, work is underway. Rather move forward than 
-backward or sideways. There is initial support for Java 10.
-
 Java packages in this respository are all or nothing. You MUST run 
 "@world" update when first adding this overlay. Failure to do such will 
 result in various preventable build issues. Please keep that in mind.
 
-Work for full support for Java 9 is underway. In addition to fully 
-replacing all needed Java packages in Gentoo that have not been 
-updated, and/or ingored. Eventually replacing all packages in dev-java 
-with superior well maintained current versions. Once completed we will 
-begin on testing and fixing any issues for Java 10.
+This repository replaces most all needed dev-java/* packages in Gentoo's 
+main repository. Work is underway to replace any packages still used as 
+dependencys residing in the main tree. Including the core; java-config 
+and related, which will be replaced with 
+[jem](https://github.com/Obsidian-StudiosInc/jem) sometime in 2018. We 
+will be adding a package to mask dev-java/*::gentoo soon! Since
+[masking via overlay](https://bugs.gentoo.org/show_bug.cgi?id=641020) 
+is not possible at this time.
+
+Please try not to mix Java packages from  Gentoo's main repository with 
+this repository. You will experience a varity of issues that will not be 
+addressed!
+
+This repository requires Java 9 as your system vm now. We are no 
+longer supporting any JDK < 9. Most things have been fixed for Java 9.
+Please report issues for any package that does not build with Java 9.
+There are few packages remaining that need to be fixed or dialed in for 
+Java 9. There is initial support for Java 10. Testing for Java 10 has 
+not begun yet. Most any package that builds under 9 should under 10, 
+less any new issues from Java 10.
 
 This is the most comprehensive, current repository of Java ebuilds.
 
