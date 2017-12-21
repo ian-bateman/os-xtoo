@@ -27,11 +27,13 @@ HOMEPAGE="https://javaee.github.io/${MY_PN}/"
 LICENSE="CDDL GPL-2"
 SLOT="0"
 
-CP_DEPEND="dev-java/stax-ex:1"
+CP_DEPEND="dev-java/stax-ex:0"
 
-DEPEND=">=virtual/jdk-9"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
