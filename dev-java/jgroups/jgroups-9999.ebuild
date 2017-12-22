@@ -25,7 +25,7 @@ inherit java-pkg-2 java-pkg-simple java-osgi ${ECLASS}
 DESCRIPTION="JGroups is a toolkit for reliable multicast communication"
 HOMEPAGE="https://www.jgroups.org/"
 LICENSE="LGPL-2.1"
-SLOT="${PV%%-*}"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/log4j:0
