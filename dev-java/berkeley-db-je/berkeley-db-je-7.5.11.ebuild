@@ -18,11 +18,21 @@ LICENSE="AGPL-3"
 RESTRICT="fetch"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/javax-resource:0
+"
 
-RDEPEND=">=virtual/jre-9"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-9"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}"
+
+JAVAC_ARGS+=" --add-exports=jdk.jconsole/sun.tools.jconsole=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
 
 pkg_nofetch() {
 	einfo "Oracle Berkeley DB Java Edition requires an Oracle account."
