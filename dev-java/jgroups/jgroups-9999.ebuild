@@ -25,7 +25,7 @@ inherit java-pkg-2 java-pkg-simple java-osgi ${ECLASS}
 DESCRIPTION="JGroups is a toolkit for reliable multicast communication"
 HOMEPAGE="https://www.jgroups.org/"
 LICENSE="LGPL-2.1"
-SLOT="$(get_major_version)"
+SLOT="${PV%%-*}"
 
 CP_DEPEND="
 	dev-java/log4j:0
@@ -36,14 +36,15 @@ CP_DEPEND="
 
 DEPEND="dev-java/bnd:3
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src"
+JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	sed -i -e "/Bundle-Required*/d" "${S}/conf/jgroups.bnd" \
@@ -51,10 +52,10 @@ java_prepare() {
 }
 
 src_install() {
-	java-osgi_dojar "${PN}.jar" "org.jgroups" "${MY_PN}" \
-		"Export-Package: org.jgroups"
-	mv "${PN}.jar" "bnd-${PN}.jar"
-	bnd wrap -o "${PN}.jar" "bnd-${PN}.jar" \
-		|| die "Could not wrap jar via bnd"
+#	java-osgi_dojar "${PN}.jar" "org.jgroups" "${MY_PN}" \
+#		"Export-Package: org.jgroups"
+#	mv "${PN}.jar" "bnd-${PN}.jar"
+#	bnd wrap -o "${PN}.jar" "bnd-${PN}.jar" \
+#		|| die "Could not wrap jar via bnd"
 	java-pkg-simple_src_install
 }
