@@ -28,8 +28,8 @@ DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
 LICENSE="Oracle-BCLA-JavaSE"
 
-IUSE="alsa cups doc +fontconfig headless-awt javafx nsplugin selinux source"
-REQUIRED_USE="javafx? ( alsa fontconfig )"
+IUSE="alsa cups +fontconfig gtk2 gtk3 headless-awt javafx nsplugin selinux source"
+REQUIRED_USE="javafx? ( alsa fontconfig ^^ ( gtk2 gtk3 ) )"
 
 RESTRICT="preserve-libs strip"
 QA_PREBUILT="*"
@@ -43,17 +43,25 @@ RDEPEND="
 		x11-libs/libXtst
 	)
 	javafx? (
+		dev-libs/atk
 		dev-libs/glib:2
 		dev-libs/libxml2:2
 		dev-libs/libxslt
 		media-libs/freetype:2
-		x11-libs/cairo
-		x11-libs/gtk+:2
+		x11-libs/gdk-pixbuf
 		x11-libs/libX11
 		x11-libs/libXtst
 		x11-libs/libXxf86vm
 		x11-libs/pango
 		virtual/opengl
+		gtk2? (
+			x11-libs/cairo
+			x11-libs/gtk+:2
+		)
+		gtk3? (
+			x11-libs/cairo[glib]
+			x11-libs/gtk+:3
+		)
 	)
 	alsa? ( media-libs/alsa-lib )
 	cups? ( net-print/cups )
@@ -133,6 +141,12 @@ src_prepare() {
 		rm jmods/javafx*  \
 			lib/lib*{decora,ext,fx,glass,gstreamer,prism}* \
 			|| die "Failed to remove unwanted JavaFX support"
+	else
+		if ! use gtk2 ; then
+			rm lib/libglassgtk2.* || die
+		elif ! use gtk3 ; then
+			rm lib/libglassgtk3.* || die
+		fi
 	fi
 
 	if ! use nsplugin ; then
