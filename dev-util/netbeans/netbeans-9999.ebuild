@@ -7,19 +7,21 @@ inherit java-netbeans
 
 DEPEND=">=virtual/jdk-9:*"
 
+ANTLR_SLOT="3"
 ASM_SLOT="6"
 LUCENE_SLOT="3"
 OSGI_SLOT="6"
 XERCES_SLOT="2"
 
 RDEPEND="
+	dev-java/antlr:${ANTLR_SLOT}
 	dev-java/asm:${ASM_SLOT}
 	dev-java/freemarker:0
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
-	~dev-java/${PN}-css-model-${PV}:${SLOT}
+	~dev-java/${PN}-css-editor-${PV}:${SLOT}
 	~dev-java/${PN}-core-browser-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-ide-${PV}:${SLOT}
@@ -33,6 +35,8 @@ RDEPEND="
 	~dev-java/${PN}-core-osgi-${PV}:${SLOT}
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
+	~dev-java/${PN}-dlight-nativeexecution-nb-${PV}:${SLOT}
+	~dev-java/${PN}-dlight-terminal-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
 	~dev-java/${PN}-editor-bookmarks-${PV}:${SLOT}
 	~dev-java/${PN}-editor-bracesmatching-${PV}:${SLOT}
@@ -45,6 +49,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-mimelookup-impl-${PV}:${SLOT}
 	~dev-java/${PN}-editor-search-${PV}:${SLOT}
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
+	~dev-java/${PN}-editor-tools-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
@@ -86,7 +91,9 @@ RDEPEND="
 	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
 	~dev-java/${PN}-xml-catalog-ui-${PV}:${SLOT}
 	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
+	~dev-java/${PN}-xml-schema-completion-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tax-${PV}:${SLOT}
+	~dev-java/${PN}-xml-tools-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9:*
 "
@@ -184,6 +191,9 @@ src_install() {
 	)
 	symlink_libs ${jars[@]}
 
+	dosym ../../antlr-${ANTLR_SLOT}/lib/antlr-runtime.jar \
+		/usr/share/${my_pn}/lib/antlr-runtime.jar
+
 	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
 		/usr/share/${my_pn}/lib/lucene-core.jar
 
@@ -218,8 +228,11 @@ src_install() {
 	jars_short=( api types )
 	jars+=( ${jars_short[@]/#/csl-} )
 
-	jars_short=( lib model )
+	jars_short=( editor lib model )
 	jars+=( ${jars_short[@]/#/css-} )
+
+	jars_short=( nativeexecution nativeexecution-nb terminal )
+	jars+=( ${jars_short[@]/#/dlight-} )
 
 	jars_short=(
 		actions bookmarks bracesmatching breadcrumbs codetemplates
@@ -227,7 +240,7 @@ src_install() {
 		errorstripe-api fold fold-nbui global-format guards indent
 		indent-support lib lib2 macros mimelookup mimelookup-impl
 		plain plain-lib search settings settings-lib settings-storage
-		structure util
+		structure tools-storage util
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 
@@ -237,20 +250,23 @@ src_install() {
 	jars_short=( platform platform-ui project )
 	jars+=( ${jars_short[@]/#/java-} )
 
+	jars_short=( terminalemulator uihandler )
+	jars+=( ${jars_short[@]/#/lib-} )
+
 	jars_short=( freemarker jsch-agentproxy git )
 	jars+=( ${jars_short[@]/#/libs-} )
+
+	jars_short=( "" "-linux" -"nio2" "-ui" )
+	jars+=( ${jars_short[@]/#/masterfs} )
+
+	jars_short=( dirchooser outline plaf tabcontrol )
+	jars+=( ${jars_short[@]/#/o-n-swing-} )
 
 	jars_short=(
 		actions awt compat dialogs execution explorer filesystems-nb
 		io loaders nodes options text windows
 	)
 	jars+=( ${jars_short[@]/#/openide-} )
-
-	jars_short=( dirchooser outline plaf tabcontrol )
-	jars+=( ${jars_short[@]/#/o-n-swing-} )
-
-	jars_short=( "" "-linux" -"nio2" "-ui" )
-	jars+=( ${jars_short[@]/#/masterfs} )
 
 	jars_short=( api editor keymap )
 	jars+=( ${jars_short[@]/#/options-} )
@@ -287,17 +303,21 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/versioning} )
 
+	jars_short=( common common-ui indent )
+	jars+=( ${jars_short[@]/#/web-} )
+
 	jars_short=(
 		"" "-axi" "-catalog" "-catalog-ui" "-core" "-lexer" "-multiview"
-		"-retriever" "-schema-model" "-tax" "-text" "-xam"
+		"-retriever" "-schema-model" "-schema-completion" "-tax"
+		"-text" "-tools" "-xam"
 	)
 	jars+=( ${jars_short[@]/#/xml} )
 
 	jars+=(
 		classfile diff editor favorites git ide javahelp jumpto
-		keyring lexer lib-uihandler localhistory progress-ui properties
-		properties-syntax queries sampler sendopts settings
-		team-commons uihandler updatecenters web-common
+		keyring lexer localhistory progress-ui properties
+		properties-syntax queries sampler sendopts settings team-commons
+		terminal terminal-nb uihandler updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
