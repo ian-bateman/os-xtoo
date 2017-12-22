@@ -205,7 +205,7 @@ java-pkg-simple_src_compile() {
 		mkdir -p ${apidoc}
 		ejavadoc -d ${apidoc} \
 			-encoding ${JAVA_ENCODING} -docencoding UTF-8 -charset UTF-8 \
-			${classpath:+-classpath ${classpath}} ${JAVADOC_ARGS:- -quiet} \
+			${classpath:+-classpath ${classpath}} ${JAVADOC_ARGS:- -quiet ${JAVAC_ARGS}} \
 			@${sources} || die "javadoc failed"
 	fi
 
