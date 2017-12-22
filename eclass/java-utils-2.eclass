@@ -1952,12 +1952,12 @@ eant() {
 # /etc/java-config/compilers.conf
 ejavac() {
 	debug-print-function ${FUNCNAME} $*
+	local compiler_executable javac_args
 
-	local compiler_executable
 	compiler_executable=$(java-pkg_get-javac)
 
-	local javac_args
 	javac_args="$(java-pkg_javac-args)"
+	[[ -z ${JAVA_PKG_DEBUG} ]] && javac_args+=" -nowarn "
 	javac_args+=" -J-Djava.io.tmpdir=\"${T}\" "
 
 	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
