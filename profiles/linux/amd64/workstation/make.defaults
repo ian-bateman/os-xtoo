@@ -59,8 +59,6 @@ LIBREOFFICE_EXTENSIONS=""
 
 LLVM_TARGETS="AMDGPU NVPTX X86"
 
-NETBEANS_MODULES="apisupport groovy gsf harness ide java javafx j2ee nb webcommon websvccommon visualweb"
-
 OFFICE_IMPLEMENTATION="openoffice"
 
 PYTHON_TARGETS="python2_7 -python3_4 python3_5"
