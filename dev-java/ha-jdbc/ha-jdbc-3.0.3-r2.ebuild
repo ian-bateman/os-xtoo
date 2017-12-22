@@ -8,24 +8,22 @@ JAVA_PKG_IUSE="doc source"
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="High-Availability JDBC"
-
-MY_MM="$(get_version_component_range 1-2)"
-
-SLOT="$(get_version_component_range 1)"
-SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${PN}-${PV}.tar.gz
-	http://repository.jboss.org/nexus/content/groups/public/net/sf/${PN}/${PN}/${PV}/${P}.jar"
 HOMEPAGE="https://${PN}.github.io/"
-KEYWORDS="~amd64"
+SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${PN}-${PV}.tar.gz"
 LICENSE="Apache-2.0"
+KEYWORDS="~amd64"
+SLOT="0"
 
-CP_DEPEND="dev-java/berkeley-db-je:0
+CP_DEPEND="
+	dev-java/berkeley-db-je:0
 	dev-java/commons-codec:0
 	dev-java/commons-logging:0
 	dev-java/commons-pool:0
 	dev-java/jboss-logging:0
 	dev-java/jgroups:3
 	dev-java/slf4j-api:0
-	dev-java/sqljet:0"
+	dev-java/sqljet:0
+"
 
 # Project uses Berkeley DB Java Edition from Oracle
 # pure java version of Berkeley DB
@@ -33,27 +31,26 @@ CP_DEPEND="dev-java/berkeley-db-je:0
 # java one for a reason
 #	sys-libs/db:6.0[java]
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
-
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}/"
 
-JAVA_SRC_DIR="src/main/java"
+JAVAC_ARGS+=" --add-modules java.xml.bind "
+JAVAC_ARGS+=" --add-exports=java.xml.bind/javax.xml.bind.annotation=ALL-UNNAMED "
 
 java_prepare() {
-
 	sed -i -e "s|\${project.version}|${PV}|" \
-		${JAVA_SRC_DIR}/net/sf/hajdbc/Version.properties \
+		src/main/java/net/sf/hajdbc/Version.properties \
 		|| die "Could not set version"
 
 	cp src/site/resources/xsd/ha-jdbc-2.0.xsd src/main/resources/ \
 		|| die "Could not copy ${PN}-*.xsd to resources"
 
-	# Change from Java Edition to Regular
-	# does not build/compile
-#	sed -i -e "s|cat.je.|cat.db.|g" \
-#		${S}/src/main/java/net/sf/hajdbc/state/bdb/*.java || die
+	sed -i -e "s|checkHandleIsValid|isValid|" \
+		src/main/java/net/sf/hajdbc/state/bdb/BerkeleyDBStateManager.java \
+		|| die "Failed to sed/update Berkeley DB api call"
 }
