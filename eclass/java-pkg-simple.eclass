@@ -108,11 +108,6 @@ JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 # The name of the jar file to create and install.
 : ${JAVA_JAR_FILENAME:=${PN}.jar}
 
-# @ECLASS-VARIABLE: JAVA_NEEDS_TOOLS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# Add tools.jar to the classpath
-
 # @FUNCTION: java-pkg-simple_create-jar
 # @DESCRIPTION:
 # Create jar from compiled sources or other
@@ -199,13 +194,6 @@ java-pkg-simple_src_compile() {
 	while [[ $classpath = *::* ]]; do classpath="${classpath//::/:}"; done
 	classpath=${classpath%:}
 	classpath=${classpath#:}
-	if [[ -n ${JAVA_NEEDS_TOOLS} ]]; then
-		if [[ -n ${classpath} ]]; then
-			classpath=${JAVA_HOME}/lib/tools.jar:${classpath}
-		else
-			classpath=${JAVA_HOME}/lib/tools.jar
-		fi
-	fi
 	debug-print "CLASSPATH=${classpath}"
 	[[ -z ${JAVA_NO_SRC} ]] && \
 		ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
