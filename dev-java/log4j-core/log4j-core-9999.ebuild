@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/commons-compress:0
 	dev-java/commons-csv:0
 	dev-java/conversant-disruptor:0
-	dev-java/disruptor:3.3
+	dev-java/disruptor:0
 	dev-java/eclipse-javax-persistence:2
 	dev-java/jackson-core:${JACKSON_SLOT}
 	dev-java/jackson-annotations:${JACKSON_SLOT}
