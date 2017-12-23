@@ -38,7 +38,7 @@ CP_DEPEND="
 	dev-java/jdepend:0
 	dev-java/jsch:0
 	dev-java/log4j:0
-	dev-java/sun-jai-bin:0
+	dev-java/jai-core-bin:0
 	dev-java/xalan:0
 	dev-java/xml-commons-resolver:0
 	dev-java/xz-java:0
