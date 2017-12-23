@@ -21,10 +21,10 @@ RDEPEND="
 	dev-java/lucene-core:${LUCENE_SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
+	~dev-java/${PN}-bugtracking-bridge-${PV}:${SLOT}
 	~dev-java/${PN}-css-editor-${PV}:${SLOT}
 	~dev-java/${PN}-core-browser-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
-	~dev-java/${PN}-core-ide-${PV}:${SLOT}
 	~dev-java/${PN}-core-io-ui-${PV}:${SLOT}
 	~dev-java/${PN}-core-kit-${PV}:${SLOT}
 	~dev-java/${PN}-core-multitabs-${PV}:${SLOT}
@@ -39,7 +39,6 @@ RDEPEND="
 	~dev-java/${PN}-dlight-terminal-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
 	~dev-java/${PN}-editor-bookmarks-${PV}:${SLOT}
-	~dev-java/${PN}-editor-bracesmatching-${PV}:${SLOT}
 	~dev-java/${PN}-editor-global-format-${PV}:${SLOT}
 	~dev-java/${PN}-editor-fold-nbui-${PV}:${SLOT}
 	~dev-java/${PN}-editor-indent-project-${PV}:${SLOT}
@@ -56,7 +55,6 @@ RDEPEND="
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
-	~dev-java/${PN}-keyring-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-libs-freemarker-${PV}:${SLOT}
 	~dev-java/${PN}-localhistory-${PV}:${SLOT}
@@ -81,6 +79,7 @@ RDEPEND="
 	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
 	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
 	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
+	~dev-java/${PN}-team-ide-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
 	~dev-java/${PN}-uihandler-${PV}:${SLOT}
 	~dev-java/${PN}-updatecenters-${PV}:${SLOT}
@@ -92,7 +91,6 @@ RDEPEND="
 	~dev-java/${PN}-xml-catalog-ui-${PV}:${SLOT}
 	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-xml-schema-completion-${PV}:${SLOT}
-	~dev-java/${PN}-xml-tax-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tools-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9:*
@@ -219,6 +217,9 @@ src_install() {
 	jars_short=( cli pluginimporter services ui )
 	jars+=( ${jars_short[@]/#/autoupdate-} )
 
+	jars_short=( "" "-bugtracking-bridge" "-commons" )
+	jars+=( ${jars_short[@]/#/bugtracking} )
+
 	jars_short=(
 		browser execution ide io-ui kit multitabs multitabs-project
 		multiview netigso network osgi output2 windows ui
@@ -317,7 +318,7 @@ src_install() {
 		classfile diff editor favorites git ide javahelp jumpto
 		keyring lexer localhistory progress-ui properties
 		properties-syntax queries sampler sendopts settings team-commons
-		terminal terminal-nb uihandler updatecenters
+		team-ide terminal terminal-nb uihandler updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
