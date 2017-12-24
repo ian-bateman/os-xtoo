@@ -22,6 +22,7 @@ RDEPEND="
 	dev-java/freemarker:0
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
+	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~dev-java/${PN}-bugtracking-bridge-${PV}:${SLOT}
@@ -53,6 +54,7 @@ RDEPEND="
 	~dev-java/${PN}-editor-tools-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
+	~dev-java/${PN}-html-custom-${PV}:${SLOT}
 	~dev-java/${PN}-html-editor-${PV}:${SLOT}
 	~dev-java/${PN}-html-parser-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
@@ -68,8 +70,9 @@ RDEPEND="
 	~dev-java/${PN}-masterfs-ui-${PV}:${SLOT}
 	~dev-java/${PN}-o-n-swing-dirchooser-${PV}:${SLOT}
 	~dev-java/${PN}-o-n-upgrader-${PV}:${SLOT}
-	~dev-java/${PN}-openide-execution-${PV}:${SLOT}
 	~dev-java/${PN}-openide-compat-${PV}:${SLOT}
+	~dev-java/${PN}-openide-execution-${PV}:${SLOT}
+	~dev-java/${PN}-openide-filesystems-compat8-${PV}:${SLOT}
 	~dev-java/${PN}-openide-options-${PV}:${SLOT}
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-nb-${PV}:${SLOT}
@@ -97,10 +100,10 @@ RDEPEND="
 	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-xml-schema-completion-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tools-${PV}:${SLOT}
+	~dev-java/${PN}-xml-xdm-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9:*
 "
-#	~dev-java/${PN}-openide-filesystem-compat8-${PV}:${SLOT}
 
 S="${S%*${PN}}"
 
@@ -178,10 +181,8 @@ src_install() {
 		/usr/share/${my_pn}/${jdir}/jsr305.jar
 
 	# symlink jars in lib
-	jars=(
-		o-n-bootstrap o-n-upgrader openide-filesystems openide-modules
-		openide-util openide-util-lookup openide-util-ui
-	)
+	jars=( filesystems filesystems-compat8 modules util util-lookup util-ui )
+	jars=( ${jars[@]/#/openide-} o-n-bootstrap o-n-upgrader )
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
 	# symlink 3rd party
@@ -200,7 +201,7 @@ src_install() {
 	jars_short=( core jsch sshagent usocket-jna )
 	jars+=( ${jars_short[@]/#/jsch-agent-proxy-} )
 
-	jars_short=( "" "-boot" "-boot-fx" "-json" )
+	jars_short=( "" "-boot" "-boot-fx" "-geo" "-json" )
 	jars+=( ${jars_short[@]/#/net-java-html} )
 
 	jars+=(
@@ -217,7 +218,7 @@ src_install() {
 
 	# symlink jars in modules
 	jars_short=(
-		annotations-common intent io progress progress-nb java
+		annotations-common htmlui intent io progress progress-nb java
 		java-classpath templates xml xml-ui
 	)
 	jars=( ${jars_short[@]/#/api-} )
@@ -256,7 +257,7 @@ src_install() {
 	jars_short=( browser execution execution-base )
 	jars+=( ${jars_short[@]/#/ext} )
 
-	jars_short=( "" "-editor" "-editor-lib" "-lexer" "-parser" )
+	jars_short=( "" "-custom" "-editor" "-editor-lib" "-lexer" "-parser" )
 	jars+=( ${jars_short[@]/#/html} )
 
 	jars_short=( platform platform-ui project )
@@ -321,7 +322,7 @@ src_install() {
 	jars_short=(
 		"" "-axi" "-catalog" "-catalog-ui" "-core" "-lexer" "-multiview"
 		"-retriever" "-schema-model" "-schema-completion" "-tax"
-		"-text" "-tools" "-xam"
+		"-text" "-tools" "-xam" "-xdm"
 	)
 	jars+=( ${jars_short[@]/#/xml} )
 
