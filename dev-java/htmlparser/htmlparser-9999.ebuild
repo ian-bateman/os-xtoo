@@ -34,11 +34,16 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
-JAVA_SRC_DIR="src"
+java_prepare() {
+	sed -i -e "s|final void startTag|void startTag|" \
+		-e "s|final void endTag|void endTag|" \
+		src/nu/validator/htmlparser/impl/TreeBuilder.java \
+		|| die "Failed to remove final from methods"
+}
