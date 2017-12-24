@@ -25,7 +25,6 @@ RDEPEND="
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~dev-java/${PN}-bugtracking-bridge-${PV}:${SLOT}
-	~dev-java/${PN}-css-editor-${PV}:${SLOT}
 	~dev-java/${PN}-core-browser-${PV}:${SLOT}
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-io-ui-${PV}:${SLOT}
@@ -54,6 +53,8 @@ RDEPEND="
 	~dev-java/${PN}-editor-tools-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
+	~dev-java/${PN}-html-editor-${PV}:${SLOT}
+	~dev-java/${PN}-html-parser-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
@@ -203,7 +204,7 @@ src_install() {
 	jars+=( ${jars_short[@]/#/net-java-html} )
 
 	jars+=(
-		eclipse-jgit freemarker javaewah jsch
+		eclipse-jgit freemarker htmlparser javaewah jsch
 		lucene-core-${LUCENE_SLOT} osgi-core-api-${OSGI_SLOT}
 		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
 	)
@@ -254,6 +255,9 @@ src_install() {
 
 	jars_short=( browser execution execution-base )
 	jars+=( ${jars_short[@]/#/ext} )
+
+	jars_short=( "" "-editor" "-editor-lib" "-lexer" "-parser" )
+	jars+=( ${jars_short[@]/#/html} )
 
 	jars_short=( platform platform-ui project )
 	jars+=( ${jars_short[@]/#/java-} )
