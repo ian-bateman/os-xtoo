@@ -9,8 +9,11 @@ DEPEND=">=virtual/jdk-9:*"
 
 ANTLR_SLOT="3"
 ASM_SLOT="6"
+ECLIPSE_SLOT="4.7"
 LUCENE_SLOT="3"
+MYLYN_SLOT="3"
 OSGI_SLOT="6"
+WIKI_SLOT="3"
 XERCES_SLOT="2"
 
 RDEPEND="
@@ -58,6 +61,7 @@ RDEPEND="
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-libs-freemarker-${PV}:${SLOT}
 	~dev-java/${PN}-localhistory-${PV}:${SLOT}
+	~dev-java/${PN}-localtasks-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-linux-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-nio2-${PV}:${SLOT}
 	~dev-java/${PN}-masterfs-ui-${PV}:${SLOT}
@@ -123,10 +127,12 @@ symlink_jars() {
 }
 
 symlink_libs() {
-	local j
-	for j in "${@}"; do
-		dosym "../../${j}/lib/${j}.jar" \
-			"/usr/share/${PN}-${SLOT}/lib/${j}.jar"
+	local l p
+	for p in "${@}"; do
+		l="$(java-config -p ${p})"
+		[[ -z ${l} ]] && die "Jar not found for ${p}"
+		dosym "${l/\/usr\/share\//../../}" \
+			"/usr/share/${PN}-${SLOT}/lib/${l##*/}"
 	done
 }
 
@@ -177,35 +183,36 @@ src_install() {
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]}
 
+	# symlink 3rd party
+	jars_short=( contenttype jobs net runtime )
+	jars=( ${jars_short[@]/#/core-} )
+
+	jars_short=( app common preferences registry security )
+	jars+=( ${jars_short[@]/#/equinox-} jdt-annotation osgi osgi-services )
+	jars=( ${jars[@]/%/-${ECLIPSE_SLOT}} )
+
+	jars_short=( core net repositories-core )
+	jars_short=( ${jars_short[@]/#/mylyn-commons-} mylyn-tasks-core )
+	jars+=( ${jars_short[@]/%/-${MYLYN_SLOT}} mylyn-wikitext-${WIKI_SLOT} )
+	jars=( ${jars[@]/#/eclipse-} ) # eclipse jars needed by localtasks
+
 	jars_short=( core jsch sshagent usocket-jna )
-	jars=( ${jars_short[@]/#/jsch-agent-proxy-} )
+	jars+=( ${jars_short[@]/#/jsch-agent-proxy-} )
 
 	jars_short=( "" "-boot" "-boot-fx" "-json" )
 	jars+=( ${jars_short[@]/#/net-java-html} )
 
 	jars+=(
-		eclipse-jgit freemarker javaewah jsch xml-commons-resolver
-		slf4j-api
+		eclipse-jgit freemarker javaewah jsch
+		lucene-core-${LUCENE_SLOT} osgi-core-api-${OSGI_SLOT}
+		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
 	)
 	symlink_libs ${jars[@]}
 
 	dosym ../../antlr-${ANTLR_SLOT}/lib/antlr-runtime.jar \
 		/usr/share/${my_pn}/lib/antlr-runtime.jar
 
-	dosym ../../lucene-core-${LUCENE_SLOT}/lib/lucene-core.jar \
-		/usr/share/${my_pn}/lib/lucene-core.jar
-
-	dosym ../../osgi-core-api-${OSGI_SLOT}/lib/osgi-core-api.jar \
-		/usr/share/${my_pn}/lib/osgi-core-api.jar
 #	java-netbeans_create-module-xml "osgi-core-api" lib 0
-
-	dosym ../../xerces-${XERCES_SLOT}/lib/xerces.jar \
-		/usr/share/${my_pn}/lib/xerces.jar
-
-	for j in "${jars[@]}"; do
-		dosym ../../${j}/lib/${j}.jar \
-			/usr/share/${my_pn}/lib/${j}.jar
-	done
 
 	# symlink jars in modules
 	jars_short=(
@@ -217,7 +224,7 @@ src_install() {
 	jars_short=( cli pluginimporter services ui )
 	jars+=( ${jars_short[@]/#/autoupdate-} )
 
-	jars_short=( "" "-bugtracking-bridge" "-commons" )
+	jars_short=( "" "-bridge" "-commons" )
 	jars+=( ${jars_short[@]/#/bugtracking} )
 
 	jars_short=(
@@ -316,9 +323,10 @@ src_install() {
 
 	jars+=(
 		classfile diff editor favorites git ide javahelp jumpto
-		keyring lexer localhistory progress-ui properties
-		properties-syntax queries sampler sendopts settings team-commons
-		team-ide terminal terminal-nb uihandler updatecenters
+		keyring lexer localhistory localtasks mylyn-util progress-ui
+		properties properties-syntax queries sampler sendopts settings
+		team-commons team-ide terminal terminal-nb uihandler
+		updatecenters
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
