@@ -35,7 +35,7 @@ else
 fi
 
 if [[ "${PV}" == 2.10.* ]] || [[ "${PV}" == 2.14.* ]]; then
-	CP_DEPEND="dev-java/commons-httpclient:3"
+	CP_DEPEND="dev-java/commons-httpclient:0"
 fi
 
 if [[ "${PV}" != 2.10.* ]]; then
