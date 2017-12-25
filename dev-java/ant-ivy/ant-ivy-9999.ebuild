@@ -33,7 +33,7 @@ CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/bcpg:${BC_SLOT}
 	dev-java/bcprov:${BC_SLOT}
-	dev-java/commons-httpclient:3
+	dev-java/commons-httpclient:0
 	dev-java/commons-vfs:2
 	dev-java/jakarta-oro:0
 	dev-java/jsch:0
