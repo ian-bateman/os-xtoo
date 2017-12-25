@@ -32,7 +32,7 @@ SLOT="${PV%%.*}"
 ECLIPSE_SLOT="4.7"
 
 CP_DEPEND="
-	dev-java/commons-httpclient:3
+	dev-java/commons-httpclient:0
 	dev-java/commons-lang:2
 	dev-java/eclipse-core-net:${ECLIPSE_SLOT}
 	dev-java/eclipse-core-runtime:${ECLIPSE_SLOT}
