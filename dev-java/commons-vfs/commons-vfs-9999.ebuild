@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/commons-collections:4
 	dev-java/commons-compress:0
-	dev-java/commons-httpclient:3
+	dev-java/commons-httpclient:0
 	dev-java/commons-logging:0
 	dev-java/commons-net:0
 	dev-java/jackrabbit-webdav:0
