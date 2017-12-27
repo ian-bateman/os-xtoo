@@ -1,16 +1,13 @@
 # Copyright 2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-# Based on ebuild from gentoo main tree
-# Copyright 1999-2017 Gentoo Foundation
-
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
 MY_PN="${PN}${PV%%.*}"
 MY_P="${MY_PN}-${PV}"
-BASE_URI="https://github.com/${PN}/${PN}4"
+BASE_URI="https://github.com/${PN}/${MY_PN}"
 
 # Sources from maven for pre-generated UnicodeData.java
 # Temporary, need to generate via stringtemplate
@@ -20,7 +17,7 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz
 		http://repo1.maven.org/maven2/org/${PN}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
@@ -33,17 +30,17 @@ HOMEPAGE="http://www.antlr.org/"
 LICENSE="BSD"
 SLOT="${PV%%.*}"
 
-CP_DEPEND="dev-java/antlr:3.5
+CP_DEPEND="dev-java/antlr:3
 	dev-java/icu4j:0
 	dev-java/javax-json-api:0
 	dev-java/stringtemplate:4
 	dev-java/treelayout:0"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}"
 
@@ -54,6 +51,25 @@ java_prepare() {
 	cp "${WORKDIR}/src/org/antlr/v4/unicode/UnicodeData.java" \
 		"${S}/tool/src/org/antlr/v4/unicode/" \
 		|| die "Failed to copy pre-generated UnicodeData.java"
+
+	antlr3 -fo tool/src/ tool/src/org/antlr/v4/codegen/*.g \
+		tool/src/org/antlr/v4/parse/*.g \
+		|| die "Failed to compile antlr grammar files"
+
+	sed -i -e "s|return children|return (GrammarAST[])children|" \
+		tool/src/org/antlr/v4/tool/ast/GrammarAST.java \
+		|| die "Failed to sed/fix cast"
+
+	sed -i -e 's|\.insertChild(.*, |\.addChild(|g' \
+		-e "s|elements = combined|elements = (GrammarAST[])combined|" \
+		-e "s|options = options|options = (GrammarAST[])options|" \
+		-e "s|rules = combined|rules = (GrammarASTWithOptions[])combined|" \
+		tool/src/org/antlr/v4/tool/GrammarTransformPipeline.java \
+		|| die "Failed to sed/fix cast and method renames"
+
+	sed -i -e "s|input.range()|input.index()|g" \
+		tool/src/ANTLRParser.java \
+		|| die "Failed to sed/fix method rename"
 }
 
 src_compile() {
@@ -62,18 +78,15 @@ src_compile() {
 	JAVA_PKG_IUSE="doc"
 	java-pkg-simple_src_compile
 
-# Needs to bootstrap itself and NOT use antlr3.5 or any
 	cd "${S}/tool/src"
-	antlr3.5 $(find -name "*.g" -print) \
-		|| die "Failed to compile antlr grammar files"
-	JAVA_GENTOO_CLASSPATH_EXTRA="${S}/${PN}-runtime.jar"
+	JAVA_CLASSPATH_EXTRA="${S}/${PN}-runtime.jar"
 	JAVA_JAR_FILENAME="${S}/${PN}-tool.jar"
 	JAVA_RES_DIR="${S}/tool/resources"
 	java-pkg-simple_src_compile
 }
 
 src_install() {
-	java-pkg_dojar ${PN}-{runtime,tool}.jar
+	java-pkg_dojar *.jar
 	java-pkg_dolauncher ${PN}${SLOT} --main org.antlr.v4.Tool
 	use doc && java-pkg_dojavadoc runtime/Java/src/target/api
 	use source && java-pkg_dosrc runtime/Java/src/org tool/src/org
