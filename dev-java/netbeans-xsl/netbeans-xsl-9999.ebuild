@@ -34,3 +34,8 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	sed -i -e '/OpenIDE-Module-Requires/d' resources/META-INF/MANIFEST.MF \
+		|| die "Failed to delete OpenIDE-Module-Requires"
+}
