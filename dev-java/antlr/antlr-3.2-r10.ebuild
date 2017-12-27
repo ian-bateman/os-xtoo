@@ -9,7 +9,8 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr.org/"
-SRC_URI="http://www.antlr3.org/download/${P}.tar.gz"
+SRC_URI="http://www.antlr3.org/download/${P}.tar.gz
+	http://www.antlr3.org/download/${P}.jar"
 KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="3"
@@ -23,10 +24,15 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 DEPEND="${CP_DEPEND}
-	dev-java/antlr:3.5
 	>=virtual/jdk-9"
 
 S="${WORKDIR}/${P}"
+
+PATCHES=( "${FILESDIR}/${SLOT}-inContext.patch" )
+
+src_unpack() {
+	unpack ${P}.tar.gz
+}
 
 java_prepare() {
 	local f
@@ -35,14 +41,19 @@ java_prepare() {
 
 	cd tool/src/main || die "Failed to change dir to tool/src/main"
 
-	for f in antlr codegen antlr.print assign.types buildnfa define; do
+#	antlr -o java/org/antlr/tool/{,serialize.g} \
+#		|| die "Failed to compile antlr grammar file"
+
+	for f in antlr antlr.print assign.types buildnfa codegen define; do
 		antlr -o antlr2/org/antlr/grammar/v2/{,${f}.g} \
 			|| die "Failed to compile antlr v2 grammar files"
 	done
 
 	for f in Action{Analysis,Translator} ANTLRv3{,Tree}; do
-		antlr3.5 -fo antlr3/org/antlr/grammar/v3/{,${f}.g} \
-		|| die "Failed to compile antlr v3 grammar files"
+		java -cp "${DISTDIR}/${P}.jar" org.antlr.Tool \
+		-o antlr3/org/antlr/grammar/v3/{,${f}.g}
+# Throws error and fails but still generats java files...
+#		|| die "Failed to compile antlr v3 grammar files"
 	done
 
 	sed -i -e 's|v3.*|v3.ActionAnalysis;|' \
