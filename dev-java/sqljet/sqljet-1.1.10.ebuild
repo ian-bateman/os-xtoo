@@ -14,7 +14,7 @@ HOMEPAGE="https://${PN}.com/"
 KEYWORDS="~amd64"
 LICENSE="GPL-2"
 
-CP_DEPEND="dev-java/antlr:3.5"
+CP_DEPEND="dev-java/antlr:3"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8"
