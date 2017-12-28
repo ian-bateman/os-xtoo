@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-inherit eutils java-vm-2 prefix
+inherit eutils java-vm prefix
 
 SLOT="${PV%%.*}"
 [[ ${SLOT} == *_pre* ]] && SLOT="${PV%%_*}"
@@ -212,7 +212,7 @@ src_install() {
 	# Remove empty dirs we might have copied.
 	find "${D}" -type d -empty -exec rmdir -v {} + || die
 
-	set_java_env
+	java-vm_install-env "${FILESDIR}/oracle-jdk-bin.env"
 	java-vm_revdep-mask
 	java-vm_sandbox-predict /dev/random /proc/self/coredump_filter
 }
