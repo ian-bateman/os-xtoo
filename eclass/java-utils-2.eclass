@@ -22,9 +22,6 @@ inherit eutils versionator multilib
 
 IUSE="elibc_FreeBSD"
 
-# Make sure we use java-config-2
-export WANT_JAVA_CONFIG="2"
-
 # @VARIABLE: JAVA_PKG_E_DEPEND
 # @INTERNAL
 # @DESCRIPTION:
