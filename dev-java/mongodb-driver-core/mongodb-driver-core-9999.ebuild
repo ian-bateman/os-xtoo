@@ -38,6 +38,7 @@ CP_DEPEND="
 	dev-java/netty-handler:${NETTY_SLOT}
 	dev-java/netty-transport:${NETTY_SLOT}
 	dev-java/slf4j-api:0
+	dev-java/snappy-java:0
 "
 
 RDEPEND="${CP_DEPEND}
