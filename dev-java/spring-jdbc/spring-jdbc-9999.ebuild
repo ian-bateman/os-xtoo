@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/c3p0:0
 	dev-java/commons-logging:0
 	dev-java/derby-engine:0
-	dev-java/jta:0
+	dev-java/javax-transaction-api:1.2
 	~dev-java/spring-beans-${PV}:${SLOT}
 	~dev-java/spring-context-${PV}:${SLOT}
 	~dev-java/spring-core-${PV}:${SLOT}
