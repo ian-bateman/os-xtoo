@@ -26,9 +26,9 @@ IUSE="elibc_FreeBSD"
 # @INTERNAL
 # @DESCRIPTION:
 # This is a convience variable to be used from the other java eclasses. This is
-# the version of java-config we want to use. Usually the latest stable version
+# the version of jem we want to use. Usually the latest stable version
 # so that ebuilds can use new features without depending on specific versions.
-JAVA_PKG_E_DEPEND=">=dev-java/java-config-2.2.0-r3"
+JAVA_PKG_E_DEPEND="dev-java/jem"
 has source ${JAVA_PKG_IUSE} && \
 	JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
@@ -46,7 +46,7 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Explicitly set a particular VM to use. If its not valid, it'll fall back to
-# whatever /etc/java-config-2/build/jdk.conf would elect to use.
+# whatever /etc/jem/build/jdk.conf would elect to use.
 #
 # Should only be used for testing and debugging.
 #
@@ -111,14 +111,14 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # @DESCRIPTION:
 # Directory where compiler settings are saved, without trailing slash.
 # You probably shouldn't touch this variable except local testing.
-JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="/usr/share/java-config-2/compiler"}
+JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="/etc/jem/compiler"}
 
 # @VARIABLE: JAVA_PKG_COMPILERS_CONF
 # @INTERNAL
 # @DESCRIPTION:
 # Path to file containing information about which compiler to use.
 # Can be overloaded, but it should be overloaded only for local testing.
-JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/java-config-2/build/compilers.conf"}
+JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/jem/build/compilers.conf"}
 
 # @ECLASS-VARIABLE: JAVA_PKG_FORCE_COMPILER
 # @INTERNAL
@@ -902,7 +902,7 @@ java-pkg_jar-from() {
 
 	local error_msg="There was a problem getting the classpath for ${target_pkg}."
 	local classpath
-	classpath="$(java-config ${deep} --classpath=${target_pkg})"
+	classpath="$(jem ${deep} --classpath=${target_pkg})"
 	[[ $? != 0 ]] && die ${error_msg}
 
 	# When we have commas this functions is called to bring jars from multiple
@@ -1006,7 +1006,7 @@ java-pkg_jarfrom() {
 #	--with-dependencies - get jars also from requested package's dependencies
 #	  transitively.
 # $1 - list of packages to get jars from
-#   (passed to java-config --classpath)
+#   (passed to jem --classpath)
 # @CODE
 java-pkg_getjars() {
 	debug-print-function ${FUNCNAME} $*
@@ -1036,8 +1036,8 @@ java-pkg_getjars() {
 		pkgs="${pkgs//:/-}"
 	fi
 
-	jars="$(java-config ${deep} --classpath=${pkgs})"
-	[[ $? != 0 ]] && die "java-config --classpath=${pkgs} failed"
+	jars="$(jem ${deep} --classpath=${pkgs})"
+	[[ $? != 0 ]] && die "jem --classpath=${pkgs} failed"
 	debug-print "${pkgs}:${jars}"
 
 	for pkg in ${pkgs//,/ }; do
@@ -1110,7 +1110,7 @@ java-pkg_getjar() {
 
 	local error_msg="Could not find classpath for ${pkg}. Are you sure its installed?"
 	local classpath
-	classpath=$(java-config --classpath=${pkg})
+	classpath=$(jem --classpath=${pkg})
 	[[ $? != 0 ]] && die ${error_msg}
 
 	java-pkg_ensure-dep "${build_only}" "${pkg}"
@@ -1299,7 +1299,7 @@ java-pkg_get-bootclasspath() {
 	local bcp
 	case "${version}" in
 		auto)
-			bcp="$(java-config -g BOOTCLASSPATH)"
+			bcp="$(jem -g BOOTCLASSPATH)"
 			;;
 		*)
 			eerror "unknown parameter of java-pkg_get-bootclasspath"
@@ -1336,7 +1336,7 @@ java-pkg_ensure-vm-version-sufficient() {
 	if ! java-pkg_is-vm-version-sufficient; then
 		debug-print "VM is not suffient"
 		eerror "Current Java VM cannot build this package"
-		einfo "Please use java-config -S to set the correct one"
+		einfo "Please use jem -S to set the correct one"
 		die "Active Java VM cannot build this package"
 	fi
 }
@@ -1364,7 +1364,7 @@ java-pkg_ensure-vm-version-eq() {
 	if ! java-pkg_is-vm-version-eq $@ ; then
 		debug-print "VM is not suffient"
 		eerror "This package requires a Java VM version = $@"
-		einfo "Please use java-config -S to set the correct one"
+		einfo "Please use jem -S to set the correct one"
 		die "Active Java VM too old"
 	fi
 }
@@ -1411,7 +1411,7 @@ java-pkg_ensure-vm-version-ge() {
 	if ! java-pkg_is-vm-version-ge "$@" ; then
 		debug-print "vm is not suffient"
 		eerror "This package requires a Java VM version >= $@"
-		einfo "Please use java-config -S to set the correct one"
+		einfo "Please use jem -S to set the correct one"
 		die "Active Java VM too old"
 	fi
 }
@@ -1537,7 +1537,7 @@ java-pkg_get-javac() {
 	else
 		# for everything else, try to determine from an env file
 
-		local compiler_env="/usr/share/java-config-2/compiler/${compiler}"
+		local compiler_env="/etc/jem/compiler/${compiler}"
 		if [[ -f ${compiler_env} ]]; then
 			local old_javac=${JAVAC}
 			unset JAVAC
@@ -1853,10 +1853,10 @@ eant() {
 		# Figure out any extra stuff to put on the classpath for compilers aside
 		# from javac
 		# ANT_BUILD_COMPILER_DEPS should be something that could be passed to
-		# java-config -p
+		# jem -p
 		local build_compiler_deps="$(source ${JAVA_PKG_COMPILER_DIR}/${compiler} 1>/dev/null 2>&1; echo ${ANT_BUILD_COMPILER_DEPS})"
 		if [[ -n ${build_compiler_deps} ]]; then
-			antflags="${antflags} -lib $(java-config -p ${build_compiler_deps})"
+			antflags="${antflags} -lib $(jem -p ${build_compiler_deps})"
 		fi
 	fi
 
@@ -1929,7 +1929,7 @@ eant() {
 		cp+=":$(java-pkg_getjars ${getjarsarg} ${atom})"
 	done
 
-	[[ ${EANT_NEEDS_TOOLS} ]] && cp+=":$(java-config --tools)"
+	[[ ${EANT_NEEDS_TOOLS} ]] && cp+=":$(jem --tools)"
 	[[ ${EANT_GENTOO_CLASSPATH_EXTRA} ]] && cp+=":${EANT_GENTOO_CLASSPATH_EXTRA}"
 
 	if [[ ${cp#:} ]]; then
@@ -1946,7 +1946,7 @@ eant() {
 # @USAGE: <javac_arguments>
 # @DESCRIPTION:
 # Javac wrapper function. Will use the appropriate compiler, based on
-# /etc/java-config/compilers.conf
+# /etc/jem/compilers.conf
 ejavac() {
 	debug-print-function ${FUNCNAME} $*
 	local compiler_executable javac_args
@@ -2061,12 +2061,12 @@ java-pkg_init() {
 	unset JAVAC
 	unset JAVA_HOME
 
-	java-config --help >/dev/null || {
+	jem --help >/dev/null || {
 		eerror ""
-		eerror "Can't run java-config --help"
+		eerror "Can't run jem --help"
 		eerror "Have you upgraded python recently but haven't"
 		eerror "run python-updater yet?"
-		die "Can't run java-config --help"
+		die "Can't run jem --help"
 	}
 
 	# People do all kinds of weird things.
@@ -2206,8 +2206,8 @@ java-pkg_init-compiler_() {
 			# probably don't need to notify users about the default.
 			:;#einfo "Defaulting to javac for compilation" >&2
 		fi
-		if java-config -g GENTOO_COMPILER 2> /dev/null; then
-			export GENTOO_COMPILER=$(java-config -g GENTOO_COMPILER)
+		if jem -g GENTOO_COMPILER 2> /dev/null; then
+			export GENTOO_COMPILER=$(jem -g GENTOO_COMPILER)
 		else
 			export GENTOO_COMPILER=javac
 		fi
@@ -2436,7 +2436,7 @@ java-pkg_needs-vm() {
 # @INTERNAL
 # @RETURN - The current VM being used
 java-pkg_get-current-vm() {
-	java-config -f
+	jem -f
 }
 
 # @FUNCTION: java-pkg_get-vm-vendor
@@ -2456,7 +2456,7 @@ java-pkg_get-vm-vendor() {
 java-pkg_get-vm-version() {
 	debug-print-function ${FUNCNAME} $*
 
-	java-config -g PROVIDES_VERSION
+	jem -g PROVIDES_VERSION
 }
 
 # @FUNCTION: java-pkg_build-vm-from-handle
@@ -2480,7 +2480,7 @@ java-pkg_build-vm-from-handle() {
 	fi
 
 	for vm in ${JAVA_PKG_WANT_BUILD_VM}; do
-		if java-config-2 --select-vm=${vm} 2>/dev/null; then
+		if jem --select-vm=${vm} 2>/dev/null; then
 			echo ${vm}
 			return 0
 		fi
@@ -2536,27 +2536,27 @@ java-pkg_switch-vm() {
 		else
 			java-pkg_ensure-vm-version-sufficient
 		fi
-		debug-print "Using: $(java-config -f)"
+		debug-print "Using: $(jem -f)"
 
 		java-pkg_setup-vm
 
-		export JAVA=$(java-config --java)
-		export JAVAC=$(java-config --javac)
+		export JAVA=$(jem --java)
+		export JAVAC=$(jem --javac)
 		JAVACFLAGS="$(java-pkg_javac-args)"
 		[[ -n ${JAVACFLAGS_EXTRA} ]] && JAVACFLAGS="${JAVACFLAGS_EXTRA} ${JAVACFLAGS}"
 		export JAVACFLAGS
 
-		export JAVA_HOME="$(java-config -g JAVA_HOME)"
+		export JAVA_HOME="$(jem -g JAVA_HOME)"
 		export JDK_HOME=${JAVA_HOME}
 
 		#TODO If you know a better solution let us know.
-		java-pkg_append_ LD_LIBRARY_PATH "$(java-config -g LDPATH)"
+		java-pkg_append_ LD_LIBRARY_PATH "$(jem -g LDPATH)"
 
 		local tann="${T}/announced-vm"
 		# With the hooks we should only get here once from pkg_setup but better safe than sorry
 		# if people have for example modified eclasses some where
 		if [[ -n "${JAVA_PKG_DEBUG}" ]] || [[ ! -f "${tann}" ]] ; then
-			einfo "Using: $(java-config -f)"
+			einfo "Using: $(jem -f)"
 			[[ ! -f "${tann}" ]] && touch "${tann}"
 		fi
 
