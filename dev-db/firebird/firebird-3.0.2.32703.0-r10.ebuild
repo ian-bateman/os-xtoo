@@ -5,26 +5,18 @@ EAPI="6"
 
 inherit autotools eutils flag-o-matic multilib readme.gentoo-r1 user versionator
 
-MY_PN=${PN/f/F}
+MY_PN=${PN^}
 MY_P=${MY_PN}-$(replace_version_separator 4 -)
 MY_P=${MY_P/rc/ReleaseCandidate}
-MY_MM="$(get_version_component_range 1-2)"
-
-DOC_URI=" http://www.${PN}sql.org/file/documentation/"
+MY_MM="${PV:0:3}"
 
 DESCRIPTION="A relational database offering many ANSI SQL:2003 and some SQL:2008 features"
 HOMEPAGE="https://www.firebirdsql.org/"
-SRC_URI="
-	mirror://sourceforge/${PN}/${PN}/${MY_MM}-Release/${MY_P}.tar.bz2
-	doc? (
-		ftp://ftpc.inprise.com/pub/interbase/techpubs/ib_b60_doc.zip
-		${DOC_URI}release_notes/${MY_PN}-$(get_version_component_range 1-3)-ReleaseNotes.pdf
-		${DOC_URI}reference_manuals/user_manuals/${MY_PN}-$(get_major_version)-QuickStart.pdf
-)"
+SRC_URI="mirror://sourceforge/${PN}/${PN}/${MY_MM}-Release/${MY_P}.tar.bz2"
 
 LICENSE="IDPL Interbase-1.0"
-SLOT="0"
 KEYWORDS="~amd64"
+SLOT="0"
 
 IUSE="doc client debug examples xinetd"
 REQUIRED_USE="client? ( !xinetd )"
@@ -36,7 +28,6 @@ CDEPEND="
 "
 DEPEND="${CDEPEND}
 	>=dev-util/btyacc-3.0-r2
-	doc? ( app-arch/unzip )
 "
 RDEPEND="${CDEPEND}
 	xinetd? ( virtual/inetd )
@@ -47,10 +38,9 @@ RESTRICT="userpriv"
 
 S="${WORKDIR}/${MY_P}"
 
-# This patch might be portable, and not need to be duplicated per version
-# also might no longer be necessary to patch deps or libs, just flags
 PATCHES=(
-	"${FILESDIR}"/${PN}-${MY_MM}-deps-flags.patch
+	"${FILESDIR}/${PN}-${MY_MM}-deps-flags.patch"
+	"${FILESDIR}/${PN}-${MY_MM}-gcc6.patch"
 )
 
 pkg_setup() {
@@ -62,16 +52,6 @@ check_sed() {
 	MSG="sed of $3, required $2 lines modified $1"
 	einfo "${MSG}"
 	[[ $1 -ge $2 ]] || die "${MSG}"
-}
-
-src_unpack() {
-	unpack "${MY_P}.tar.bz2"
-	if use doc; then
-		# Unpack docs
-		mkdir "manuals" || die
-		cd "manuals" || die
-		unpack ib_b60_doc.zip
-	fi
 }
 
 src_prepare() {
@@ -94,13 +74,15 @@ src_prepare() {
 		builds/posix/prefix.linux* || die
 
 	sed -i -e "s|\$(this)|/usr/$(get_libdir)/firebird/intl|g" \
-		builds/install/misc/fbintl.conf
+		builds/install/misc/fbintl.conf || die
 
 	sed -i -e "s|\$(this)|/usr/$(get_libdir)/firebird/plugins|g" \
-		src/plugins/udr_engine/udr_engine.conf
+		src/plugins/udr_engine/udr_engine.conf || die
 
-	find "${S}" -name \*.sh -print0 | xargs -0 chmod +x || die
-	rm -rf "${S}"/extern/
+	find . -name \*.sh -print0 | xargs -0 chmod +x \
+		|| die "Failed to change permissions on scripts"
+
+	rm -r extern/ || die "Failed to remove bundled projects"
 
 	eautoreconf
 }
@@ -111,10 +93,12 @@ src_configure() {
 # https://github.com/Obsidian-StudiosInc/os-xtoo/issues/1#issuecomment-188736865
 
 	filter-flags -fomit-frame-pointer -fprefetch-loop-arrays
-	append-flags -fno-omit-frame-pointer
-
 # Might be legacy
 #	filter-mfpmath sse
+
+	append-flags -fno-omit-frame-pointer
+	append-cflags -fno-sized-deallocation -fno-delete-null-pointer-checks
+	append-cxxflags -fno-sized-deallocation -fno-delete-null-pointer-checks
 
 	econf \
 		--prefix=/usr/$(get_libdir)/firebird \
@@ -142,11 +126,14 @@ src_configure() {
 }
 
 src_install() {
+	local b bins p
+
 	cd "${S}"/gen/Release/${PN} || die
 
 	if use doc; then
 		dodoc "${S}"/doc/*.pdf
-		find "${WORKDIR}"/manuals -type f -iname "*.pdf" -exec dodoc '{}' + || die
+	#	find "${WORKDIR}"/manuals -type f -iname "*.pdf" \
+	#		-exec dodoc '{}' + || die
 	fi
 
 	doheader include/*
@@ -167,14 +154,15 @@ src_install() {
 	einfo "Renaming isql -> fbsql"
 	mv bin/isql bin/fbsql || die
 
-	local bins="fbsql fbsvcmgr fbtracemgr gbak gfix gpre gsec gsplit gstat nbackup qli"
-	for bin in ${bins}; do
-		dobin bin/${bin}
+	bins=( fbsql fbsvcmgr fbtracemgr gbak gfix gpre gsec gsplit
+		gstat nbackup qli
+	)
+	for b in ${bins[@]}; do
+		dobin bin/${b}
 	done
 
-	local sbins="fbguard fb_lock_print firebird"
-	for sbin in ${sbins}; do
-		dosbin bin/${sbin}
+	for b in fbguard fb_lock_print firebird; do
+		dosbin bin/${b}
 	done
 
 	exeinto /usr/bin/${PN}
@@ -186,18 +174,20 @@ src_install() {
 
 	exeinto /usr/$(get_libdir)/firebird/intl
 	dolib.so intl/libfbintl.so
-	dosym /usr/$(get_libdir)/libfbintl.so /usr/$(get_libdir)/${PN}/intl/fbintl
-	dosym /etc/${PN}/fbintl.conf /usr/$(get_libdir)/${PN}/intl/fbintl.conf
+	dosym ../../libfbintl.so /usr/$(get_libdir)/${PN}/intl/libfbintl.so
+	dosym ../../../../etc/${PN}/fbintl.conf \
+		/usr/$(get_libdir)/${PN}/intl/fbintl.conf
 
 	exeinto /usr/$(get_libdir)/${PN}/plugins
-	local plugins="libEngine12.so libLegacy_Auth.so libLegacy_UserManager.so libSrp.so libudr_engine.so"
-	for plugin in ${plugins}; do
-		dolib.so plugins/${plugin}
-		dosym "${D}"/usr/$(get_libdir)/${plugin} \
-			/usr/$(get_libdir)/${PN}/plugins/${plugin}
+	for p in Engine12 Legacy_Auth Legacy_UserManager Srp udr_engine; do
+		p="lib${p}.so"
+		dolib.so plugins/${p}
+		dosym "${D}"/usr/$(get_libdir)/${p} \
+			/usr/$(get_libdir)/${PN}/plugins/${p}
 	done
 	dodir /usr/$(get_libdir)/${PN}/udr
-	dosym "${D}"/etc/${PN}/udr_engine.conf /usr/$(get_libdir)/${PN}/plugins/udr_engine.conf
+	dosym "${D}"/etc/${PN}/udr_engine.conf \
+		/usr/$(get_libdir)/${PN}/plugins/udr_engine.conf
 
 	exeinto /usr/$(get_libdir)/${PN}/UDF
 	doexe UDF/*.so
