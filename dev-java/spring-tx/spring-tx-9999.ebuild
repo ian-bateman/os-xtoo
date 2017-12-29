@@ -31,7 +31,7 @@ SLOT="$(get_version_component_range 1-2)"
 CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/glassfish-connector-api:0
-	dev-java/javax-transaction-api:1.2
+	dev-java/javax-transaction-api:0
 	~dev-java/spring-aop-${PV}:${SLOT}
 	~dev-java/spring-beans-${PV}:${SLOT}
 	~dev-java/spring-context-${PV}:${SLOT}
