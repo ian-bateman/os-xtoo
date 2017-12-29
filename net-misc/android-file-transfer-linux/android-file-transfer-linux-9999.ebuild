@@ -16,15 +16,14 @@ fi
 inherit cmake-utils ${ECLASS}
 
 DESCRIPTION="Reliable MTP client with minimalistic UI"
-HOMEPAGE="https://whoozle.github.io/android-file-transfer-linux/"
-
+HOMEPAGE="https://whoozle.github.io/${PN}/"
 LICENSE="GPL-2"
 SLOT="0"
 
 IUSE="fuse qt5"
 
 RDEPEND="
-	fuse? ( sys-fs/fuse )
+	fuse? ( sys-fs/fuse:* )
 	qt5? (
 		|| (
 			dev-qt/qtwidgets:5
