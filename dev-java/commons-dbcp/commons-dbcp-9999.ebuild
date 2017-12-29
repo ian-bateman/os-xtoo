@@ -32,7 +32,7 @@ SLOT="${PV%%.*}"
 CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-pool:2
-	dev-java/javax-transaction-api:1.2
+	dev-java/javax-transaction-api:0
 "
 
 DEPEND="${CP_DEPEND}
