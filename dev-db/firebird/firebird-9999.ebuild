@@ -51,8 +51,8 @@ RESTRICT="userpriv"
 S="${WORKDIR}/${MY_S}"
 
 pkg_setup() {
-	enewgroup firebird 450
-	enewuser firebird 450 /bin/sh /usr/$(get_libdir)/firebird firebird
+	enewgroup ${PN} 450
+	enewuser ${PN} 450 /bin/sh /usr/$(get_libdir)/${PN} ${PN}
 }
 
 check_sed() {
@@ -91,31 +91,31 @@ src_prepare() {
 		builds/posix/prefix.linux* || die
 
 	sed -i -e "s|\$(this)|/usr/$(get_libdir)/firebird/intl|g" \
-		builds/install/misc/fbintl.conf
+		builds/install/misc/fbintl.conf || die
 
 	sed -i -e "s|\$(this)|/usr/$(get_libdir)/firebird/plugins|g" \
-		src/plugins/udr_engine/udr_engine.conf
+		src/plugins/udr_engine/udr_engine.conf || die
 
-	find "${S}" -name \*.sh -print0 | xargs -0 chmod +x || die
+	find . -name \*.sh -print0 | xargs -0 chmod +x \
+		|| die "Failed to change permissions on scripts"
+
 	# Need btyacc, cloop, and decNumber
-	rm -r "${S}"/extern/{SfIO,editline,icu,libtommath,zlib}
+	rm -r extern/{SfIO,editline,icu,libtommath,zlib} \
+		|| die "Failed to remove bundled projects"
 
 	eautoreconf
 }
 
 src_configure() {
+	local d
 
-# Necessary to remove/replace -fomit-frame-pointer with -fno-omit-frame-pointer
-# https://github.com/Obsidian-StudiosInc/os-xtoo/issues/1#issuecomment-188736865
+	filter-flags -fprefetch-loop-arrays
+	replace-flags -fomit-frame-pointer -fno-omit-frame-pointer
+	append-flags -fpermissive
 
-	filter-flags -fomit-frame-pointer -fprefetch-loop-arrays
-	append-flags -fno-omit-frame-pointer
-
-# Might be legacy
-#	filter-mfpmath sse
-
+	d="/usr/$(get_libdir)/${PN}"
 	econf \
-		--prefix=/usr/$(get_libdir)/firebird \
+		--prefix=${d} \
 		--with-editline \
 		--with-system-editline \
 		--with-fbbin=/usr/bin \
@@ -124,78 +124,82 @@ src_configure() {
 		--with-fblib=/usr/$(get_libdir) \
 		--with-fbinclude=/usr/include \
 		--with-fbdoc=/usr/share/doc/${P} \
-		--with-fbudf=/usr/$(get_libdir)/${PN}/UDF \
+		--with-fbudf=${d}/UDF \
 		--with-fbsample=/usr/share/doc/${P}/examples \
 		--with-fbsample-db=/usr/share/doc/${P}/examples/db \
-		--with-fbhelp=/usr/$(get_libdir)/${PN}/help \
-		--with-fbintl=/usr/$(get_libdir)/${PN}/intl \
+		--with-fbhelp=${d}/help \
+		--with-fbintl=${d}/intl \
 		--with-fbmisc=/usr/share/${PN} \
 		--with-fbsecure-db=/etc/${PN} \
-		--with-fbmsg=/usr/$(get_libdir)/${PN} \
+		--with-fbmsg=${d} \
 		--with-fblog=/var/log/${PN}/ \
 		--with-fbglock=/var/run/${PN} \
-		--with-fbplugins=/usr/$(get_libdir)/${PN}/plugins \
+		--with-fbplugins=${d}/plugins \
 		--with-gnu-ld \
 		${myconf}
 }
 
 src_install() {
+	local b bins d lib p plugins
+
+	lib="/usr/$(get_libdir)"
+	d="${lib}/${PN}"
 	cd "${S}"/gen/Release/${PN} || die
 
 	doheader include/*
 
-	insinto /usr/$(get_libdir)
+	insinto ${lib}
 	dolib.so lib/*.so*
 
 	# links for backwards compatibility
-	dosym libfbclient.so /usr/$(get_libdir)/libgds.so
-	dosym libfbclient.so /usr/$(get_libdir)/libgds.so.0
-	dosym libfbclient.so /usr/$(get_libdir)/libfbclient.so.1
+	dosym libfbclient.so ${lib}/libgds.so
+	dosym libfbclient.so ${lib}/libgds.so.0
+	dosym libfbclient.so ${lib}/libfbclient.so.1
 
-	insinto /usr/$(get_libdir)/${PN}
+	insinto ${d}
 	doins *.msg
 
 	use client && return
 
-	einfo "Renaming isql -> fbsql"
-	mv bin/isql bin/fbsql || die
+	mv bin/{i,fb}sql || die
 
-	local bins="fbsql fbsvcmgr fbtracemgr gbak gfix gpre gsec gsplit gstat nbackup qli"
-	for bin in ${bins}; do
-		dobin bin/${bin}
+	bins=( fbsql fbsvcmgr fbtracemgr gbak gfix gpre gsec gsplit gstat
+		nbackup qli
+	)
+	for b in ${bins[@]}; do
+		dobin bin/${b}
 	done
 
-	local sbins="fbguard fb_lock_print firebird"
-	for sbin in ${sbins}; do
-		dosbin bin/${sbin}
+	for b in fbguard fb_lock_print firebird; do
+		dosbin bin/${b}
 	done
 
 	exeinto /usr/bin/${PN}
 	exeopts -m0755
 	doexe bin/{changeServerMode,registerDatabase}.sh
 
-	insinto /usr/$(get_libdir)/${PN}/help
+	insinto ${d}/help
 	doins help/help.fdb
 
-	exeinto /usr/$(get_libdir)/firebird/intl
+	exeinto ${d}/intl
 	dolib.so intl/libfbintl.so
-	dosym /usr/$(get_libdir)/libfbintl.so /usr/$(get_libdir)/${PN}/intl/fbintl
-	dosym /etc/${PN}/fbintl.conf /usr/$(get_libdir)/${PN}/intl/fbintl.conf
+	dosym ../../libfbintl.so ${d}/intl/libfbintl.so
+	dosym ../../../../etc/${PN}/fbintl.conf \
+		${d}/intl/fbintl.conf
 
-	exeinto /usr/$(get_libdir)/${PN}/plugins
-	local plugins=(
-		libEngine13.so libfbtrace.so libLegacy_Auth.so
-		libLegacy_UserManager.so libSrp.so libudr_engine.so
+	exeinto ${d}/plugins
+	plugins=(
+		Engine13 fbtrace Legacy_Auth Legacy_UserManager Srp udr_engine
 	)
-	for plugin in ${plugins[@]}; do
-		dolib.so plugins/${plugin}
-		dosym "${D}"/usr/$(get_libdir)/${plugin} \
-			/usr/$(get_libdir)/${PN}/plugins/${plugin}
+	for p in ${plugins[@]}; do
+		p="lib${p}.so"
+		dolib.so plugins/${p}
+		dosym "${D}"/usr/$(get_libdir)/${p} ${d}/plugins/${p}
 	done
-	dodir /usr/$(get_libdir)/${PN}/udr
-	dosym "${D}"/etc/${PN}/udr_engine.conf /usr/$(get_libdir)/${PN}/plugins/udr_engine.conf
+	dodir ${d}/udr
+	dosym "${D}"/etc/${PN}/udr_engine.conf ${d}/plugins/udr_engine.conf
 
-	exeinto /usr/$(get_libdir)/${PN}/UDF
+	exeinto ${d}/UDF
 	doexe UDF/*.so
 
 	insinto /usr/share/${PN}/upgrade
@@ -234,45 +238,39 @@ src_install() {
 	fi
 }
 
-pkg_postinst() {
-	use client && return
-
-	# Hack to fix ownership/perms
-	chown -fR firebird:firebird "${ROOT}/etc/${PN}" "${ROOT}/usr/$(get_libdir)/${PN}"
-	chmod 750 "${ROOT}/etc/${PN}"
-}
-
 pkg_config() {
 	use client && return
+	local d
 
-	# if found /etc/security2.gdb from previous install, backup, and restore as
-	# /etc/security3.fdb
-	if [[ -f "${ROOT}/etc/firebird/security2.gdb" ]] ; then
+	d="${ROOT}/etc/${PN}"
+	# if found /etc/security4.gdb from previous install, backup, and restore as
+	# /etc/security4.fdb
+	if [[ -f "${d}/security3.gdb" ]] ; then
 		# if we have scurity2.fdb already, back it 1st
-		if [[ -f "${ROOT}/etc/firebird/security3.fdb" ]] ; then
-			cp "${ROOT}/etc/firebird/security3.fdb" "${ROOT}/etc/firebird/security3.fdb.old"
+		if [[ -f "${d}/security4.fdb" ]] ; then
+			cp "${d}/security4.fdb" "${d}/security4.fdb.old" || die
 		fi
-		gbak -B "${ROOT}/etc/firebird/security2.gdb" "${ROOT}/etc/firebird/security2.gbk"
-		gbak -R "${ROOT}/etc/firebird/security2.gbk" "${ROOT}/etc/firebird/security3.fdb"
-		mv "${ROOT}/etc/firebird/security2.gdb" "${ROOT}/etc/firebird/security2.gdb.old"
-		rm "${ROOT}/etc/firebird/security2.gbk"
+		gbak -B "${d}/security3.gdb" "${d}/security3.gbk" || die
+		gbak -R "${d}/security3.gbk" "${d}/security4.fdb" || die
+		mv "${d}/security3.gdb" "${d}/security3.gdb.old" || die
+		rm "${d}/security3.gbk" || die
 
 		# make sure they are readable only to firebird
-		chown firebird:firebird "${ROOT}/etc/firebird/{security2.*,security3.*}"
-		chmod 660 "${ROOT}/etc/firebird/{security2.*,security3.*}"
+		chown ${PN}:${PN} "${d}/{security3.*,security4.*}" || die
+		chmod 660 "${d}/{security3.*,security4.*}" || die
 
 		echo
-		einfo "Converted old security2.gdb to security3.fdb, security2.gdb has been "
-		einfo "renamed to security2.gdb.old. if you had previous security3.fdb, "
-		einfo "it's backed to security3.fdb.old (all under ${ROOT}/etc/firebird)."
+		einfo "Converted old security3.gdb to security4.fdb, security3.gdb has been "
+		einfo "renamed to security3.gdb.old. if you had previous security4.fdb, "
+		einfo "it's backed to security4.fdb.old (all under ${d})."
 		echo
 	fi
 
 	# we need to enable local access to the server
 	if [[ ! -f "${ROOT}/etc/hosts.equiv" ]] ; then
-		touch "${ROOT}/etc/hosts.equiv"
-		chown root:0 "${ROOT}/etc/hosts.equiv"
-		chmod u=rw,go=r "${ROOT}/etc/hosts.equiv"
+		touch "${ROOT}/etc/hosts.equiv" || die
+		chown root:0 "${ROOT}/etc/hosts.equiv" || die
+		chmod u=rw,go=r "${ROOT}/etc/hosts.equiv" || die
 	fi
 
 	# add 'localhost.localdomain' to the hosts.equiv file...
