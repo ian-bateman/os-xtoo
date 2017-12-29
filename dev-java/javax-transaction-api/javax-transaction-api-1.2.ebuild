@@ -16,7 +16,7 @@ SRC_URI="https://repo1.maven.org/maven2/${PN:0:5}/${PN:6:11}/${MY_PN}/${PV}/${MY
 
 LICENSE="CDDL GPL-2-with-classpath-exception"
 KEYWORDS="~amd64"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="0"
 
 CP_DEPEND="
 	dev-java/cdi-api:0
@@ -25,7 +25,9 @@ CP_DEPEND="
 
 DEPEND="app-arch/unzip
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
+
+JAVA_RM_FILES=( javax/transaction/xa )
