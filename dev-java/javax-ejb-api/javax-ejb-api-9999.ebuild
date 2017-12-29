@@ -29,7 +29,7 @@ LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/javax-transaction-api:1.2
+	dev-java/javax-transaction-api:0
 	dev-java/javax-xml-rpc-api:0
 "
 
