@@ -36,7 +36,7 @@ CP_DEPEND="
 	~dev-java/spring-beans-${PV}:${SLOT}
 	~dev-java/spring-context-${PV}:${SLOT}
 	~dev-java/spring-core-${PV}:${SLOT}
-	java-virtuals/ejb-api:0
+	dev-java/javax-ejb-api:0
 "
 
 DEPEND="${CP_DEPEND}
