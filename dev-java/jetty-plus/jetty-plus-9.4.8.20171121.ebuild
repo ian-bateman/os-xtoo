@@ -27,7 +27,7 @@ CP_DEPEND="~dev-java/jetty-jndi-${PV}:${SLOT}
 	~dev-java/jetty-util-${PV}:${SLOT}
 	~dev-java/jetty-webapp-${PV}:${SLOT}
 	~dev-java/jetty-xml-${PV}:${SLOT}
-	dev-java/javax-transaction-api:1.2
+	dev-java/javax-transaction-api:0
 	java-virtuals/servlet-api:4.0"
 
 RDEPEND="${CP_DEPEND}
