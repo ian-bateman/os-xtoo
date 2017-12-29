@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-pool:0
 	dev-java/commons-pool:2
-	dev-java/jamon:2
+	dev-java/jamon:0
 	dev-java/javax-inject:0
 	dev-java/objenesis:2
 	dev-java/snakeyaml:0
