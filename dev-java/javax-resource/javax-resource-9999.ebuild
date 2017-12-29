@@ -27,7 +27,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 
-CP_DEPEND="dev-java/javax-transaction-api:1.2"
+CP_DEPEND="dev-java/javax-transaction-api:0"
 
 DEPEND=">=virtual/jdk-9"
 
