@@ -50,7 +50,7 @@ CP_DEPEND="
 	~dev-java/spring-expression-${PV}:${SLOT}
 	~dev-java/spring-instrument-${PV}:${SLOT}
 	dev-java/beanvalidation-api:1.0
-	java-virtuals/ejb-api:0
+	dev-java/javax-ejb-api:0
 "
 
 DEPEND="${CP_DEPEND}
