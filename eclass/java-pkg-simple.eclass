@@ -37,7 +37,7 @@ S="${WORKDIR}"
 # Comma or space separated list of java packages to include in the
 # class path. The packages will also be registered as runtime
 # dependencies of this new package. Dependencies will be calculated
-# transitively. See "java-config -l" for appropriate package names.
+# transitively. See "jem -l" for appropriate package names.
 #
 # @CODE
 #	JAVA_CLASSPATH="foo,bar-2"
@@ -143,7 +143,7 @@ java-pkg-simple_create-jar(){
 			mkdir ${classes}/META-INF \
 				|| die "Failed to mkdir META-INF"
 		fi
-		echo -e "Manifest-Version: 1.0\nCreated-By: $(java-config -f)" \
+		echo -e "Manifest-Version: 1.0\nCreated-By: $(jem -f)" \
 			> ${classes}/META-INF/manifest.mf \
 			|| die "Failed to echo manifest.mf"
 		jar_args+="manifest.mf"
