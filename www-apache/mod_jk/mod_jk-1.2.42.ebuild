@@ -3,18 +3,17 @@
 
 EAPI="6"
 
-inherit apache-module java-pkg-opt-2 readme.gentoo-r1
+inherit apache-module java-pkg-opt-2
 
 MY_P="tomcat-connectors-${PV#-*}-src"
-
-KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="Module for connecting Tomcat and Apache using the ajp13 protocol"
 HOMEPAGE="https://tomcat.apache.org/connectors-doc/"
 SRC_URI="mirror://apache/tomcat/tomcat-connectors/jk/${MY_P}.tar.gz"
 LICENSE="Apache-2.0"
-SLOT="0"
+KEYWORDS="~amd64"
 IUSE="java"
+SLOT="0"
 
 S="${WORKDIR}/${MY_P}/native"
 
@@ -24,25 +23,17 @@ APACHE2_MOD_DEFINE="JK"
 
 CONF_DIR="${WORKDIR}/${MY_P}/conf"
 
-DEPEND="java? ( >=virtual/jdk-1.8 )"
+DEPEND="java? ( >=virtual/jdk-9 )"
 RDEPEND=""
 
 need_apache
 
-DOC_CONTENTS="
-	Advanced Directives and Options can be found at:
-	https://tomcat.apache.org/connectors-doc/reference/workers.html
-"
-
 pkg_setup() {
-	if use java ; then
-		java-pkg-2_pkg_setup
-	fi
+	use java && java-pkg-2_pkg_setup
 }
 
 src_configure() {
-	econf \
-		--with-apxs=${APXS} \
+	econf --with-apxs=${APXS} \
 		--with-apr-config=/usr/bin/apr-config
 }
 
@@ -51,14 +42,9 @@ src_compile() {
 }
 
 src_install() {
-	# install the workers.properties file
 	insinto "${APACHE_CONFDIR}"
-	newins "${CONF_DIR}/workers.properties" \
-		jk-workers.properties
+	newins "${CONF_DIR}/workers.properties" jk-workers.properties
 	doins "${CONF_DIR}/uriworkermap.properties"
 
-	# call the nifty default src_install
 	apache-module_src_install
-
-	readme.gentoo_create_doc
 }
