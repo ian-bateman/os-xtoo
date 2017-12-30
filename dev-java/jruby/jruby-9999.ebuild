@@ -33,7 +33,7 @@ CP_DEPEND="
 	dev-java/commons-bsf:0
 	dev-java/bytelist:0
 	dev-java/dirgra:0
-	dev-java/headius-options:0
+	dev-java/options:0
 	dev-java/invokebinder:0
 	dev-java/jcodings:1
 	dev-java/jitescript:0
