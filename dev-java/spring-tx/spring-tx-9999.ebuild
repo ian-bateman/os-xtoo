@@ -30,7 +30,7 @@ SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="
 	dev-java/commons-logging:0
-	dev-java/glassfish-connector-api:0
+	dev-java/javax-resource:0
 	dev-java/javax-transaction-api:0
 	~dev-java/spring-aop-${PV}:${SLOT}
 	~dev-java/spring-beans-${PV}:${SLOT}
@@ -48,9 +48,22 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main/java"
+JAVA_RM_FILES=(
+	src/main/java/org/springframework/transaction/jta/WebSphereUowTransactionManager.java
+)
 
 java_prepare() {
-	# Webspehere on a Gentoo based system?
-	rm "${S}/src/main/java/org/springframework/transaction/jta/WebSphereUowTransactionManager.java" \
-		|| die "Could not remove IBM websphere uow transaction manager"
+	sed -i -e '159i@\tOverride' \
+		-e '159i\\tpublic Class<?> getEndpointClass() { throw new java.lang.UnsupportedOperationException("Not supported yet."); } ' \
+		src/main/java/org/springframework/jca/endpoint/GenericMessageEndpointFactory.java \
+		|| die "Failed to add missing abstract method"
+
+	sed -i -e '23iimport javax.resource.spi.work.WorkContext;' \
+		-e '24iimport javax.transaction.TransactionSynchronizationRegistry;' \
+		-e '81i\\t@Override' \
+		-e '81i\\tpublic  boolean isContextSupported(Class<? extends WorkContext> workContextClass) { throw new java.lang.UnsupportedOperationException("Not supported yet."); }' \
+		-e '81i\\t@Override' \
+		-e '81i\\tpublic TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() { throw new java.lang.UnsupportedOperationException("Not supported yet."); }' \
+		src/main/java/org/springframework/jca/support/SimpleBootstrapContext.java \
+		|| die "Failed to add missing abstract method"
 }
