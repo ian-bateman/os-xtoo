@@ -21,7 +21,7 @@ else
 fi
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/jdk-${MY_PV}_linux-x64_bin.tar.gz"
-	KEYWORDS="~amd64"
+	KEYWORDS="-* ~amd64"
 fi
 
 DESCRIPTION="Oracle's Java SE Development Kit"
