@@ -18,7 +18,7 @@ DEPEND="
 	systemd? ( sys-apps/systemd )
 	sys-auth/consolekit
 	grub2? ( sys-boot/grub:2 )
-	sys-libs/pam
+	virtual/pam
 "
 
 RDEPEND="${DEPEND}"
