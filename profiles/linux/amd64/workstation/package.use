@@ -24,7 +24,7 @@ dev-java/jdbc-jaybird doc
 dev-java/jdom doc
 dev-java/jexcelapi doc
 dev-java/junit source
-dev-java/oracle-jdk-bin javafx nsplugin
+dev-java/oracle-jdk-bin gtk3 javafx nsplugin
 dev-java/protobuf-java nano
 dev-java/swing-layout source
 dev-lang/python ncurses tk
@@ -111,12 +111,13 @@ sys-libs/zlib minizip static-libs
 virtual/ffmpeg theora
 virtual/jpeg static-libs
 www-client/chromium bindist gtk3 pic -system-icu -system-libvpx -tcmalloc
-www-client/firefox bindist hwaccel startup-notification system-cairo system-jpeg system-harfbuzz system-libevent system-libvpx system-sqlite wifi
+www-client/firefox bindist hwaccel -nsplugin startup-notification system-cairo system-jpeg system-harfbuzz system-libevent system-libvpx system-sqlite wifi
 x11-base/xorg-server glamor kdrive xephyr xnest xorg
 x11-drivers/nvidia-drivers compat gtk3
 x11-drivers/xf86-video-intel dri dri3 sna uxa
 x11-libs/wxGTK -webkit
 x11-libs/libdrm libkms video_cards_intel video_cards_radeon
 x11-libs/vte python
+x11-misc/bumblebee video_cards_nvidia
 x11-misc/lightdm gtk
 x11-wm/enlightenment egl udisks wayland -wifi
