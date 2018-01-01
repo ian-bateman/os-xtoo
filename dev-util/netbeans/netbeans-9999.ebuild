@@ -38,6 +38,8 @@ RDEPEND="
 	~dev-java/${PN}-core-osgi-${PV}:${SLOT}
 	~dev-java/${PN}-core-output2-${PV}:${SLOT}
 	~dev-java/${PN}-core-ui-${PV}:${SLOT}
+	~dev-java/${PN}-css-prep-${PV}:${SLOT}
+	~dev-java/${PN}-css-visual-${PV}:${SLOT}
 	~dev-java/${PN}-dlight-nativeexecution-nb-${PV}:${SLOT}
 	~dev-java/${PN}-dlight-terminal-${PV}:${SLOT}
 	~dev-java/${PN}-editor-actions-${PV}:${SLOT}
@@ -101,6 +103,7 @@ RDEPEND="
 	~dev-java/${PN}-xml-schema-completion-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tools-${PV}:${SLOT}
 	~dev-java/${PN}-xml-xdm-${PV}:${SLOT}
+	~dev-java/${PN}-xsl-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
 	>=virtual/jdk-9:*
 "
@@ -205,7 +208,7 @@ src_install() {
 	jars+=( ${jars_short[@]/#/net-java-html} )
 
 	jars+=(
-		eclipse-jgit freemarker htmlparser javaewah jsch
+		eclipse-jgit freemarker htmlparser javaewah jsch json-simple
 		lucene-core-${LUCENE_SLOT} osgi-core-api-${OSGI_SLOT}
 		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
 	)
@@ -238,7 +241,7 @@ src_install() {
 	jars_short=( api types )
 	jars+=( ${jars_short[@]/#/csl-} )
 
-	jars_short=( editor lib model )
+	jars_short=( editor lib model prep visual )
 	jars+=( ${jars_short[@]/#/css-} )
 
 	jars_short=( nativeexecution nativeexecution-nb terminal )
@@ -316,7 +319,7 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/versioning} )
 
-	jars_short=( common common-ui indent )
+	jars_short=( browser-api common common-ui indent )
 	jars+=( ${jars_short[@]/#/web-} )
 
 	jars_short=(
@@ -331,7 +334,7 @@ src_install() {
 		keyring lexer localhistory localtasks mylyn-util progress-ui
 		properties properties-syntax queries sampler sendopts settings
 		team-commons team-ide terminal terminal-nb uihandler
-		updatecenters
+		updatecenters xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
