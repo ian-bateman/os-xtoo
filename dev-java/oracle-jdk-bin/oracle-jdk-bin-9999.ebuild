@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -66,7 +66,7 @@ RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	cups? ( net-print/cups )
 	fontconfig? ( media-libs/fontconfig:1.0 )
-	!prefix? ( sys-libs/glibc:* )
+	!prefix? ( elibc_glibc? ( sys-libs/glibc:* ) )
 	selinux? ( sec-policy/selinux-java )"
 
 DEPEND="app-arch/zip"
