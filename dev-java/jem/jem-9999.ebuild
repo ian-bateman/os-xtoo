@@ -25,8 +25,10 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE="debug doc +java-config source test"
 
-DEPEND="debug? ( dev-util/valgrind
-		sys-libs/glibc[debug] )
+DEPEND="debug? (
+		dev-util/valgrind
+		!prefix? ( elibc_glibc? ( sys-libs/glibc[debug] ) )
+	)
 	doc? ( app-doc/doxygen )
 "
 RDEPEND="
