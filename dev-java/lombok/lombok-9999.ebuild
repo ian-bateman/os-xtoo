@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -28,7 +28,7 @@ ECLIPSE_SLOT="4.7"
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/asm:5
+	dev-java/asm:6
 	dev-java/cmdreader:0
 	dev-java/eclipse-jdt-core:${ECLIPSE_SLOT}
 	dev-java/eclipse-jdt-ui:${ECLIPSE_SLOT}
