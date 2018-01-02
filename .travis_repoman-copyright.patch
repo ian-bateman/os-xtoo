@@ -1,5 +1,29 @@
+diff --git a/pym/repoman/copyrights.py b/pym/repoman/copyrights.py
+index 94257c942..ff74ac12b 100644
+--- a/pym/repoman/copyrights.py
++++ b/pym/repoman/copyrights.py
+@@ -18,6 +18,10 @@ _copyright_re1 = \
+ 	re.compile(br'^(# Copyright \d\d\d\d)-\d\d\d\d( Gentoo Foundation)\b')
+ _copyright_re2 = \
+ 	re.compile(br'^(# Copyright )(\d\d\d\d)( Gentoo Foundation)\b')
++_copyright_re3 = \
++	re.compile(br'^(# Copyright \d\d\d\d)-\d\d\d\d( Obsidian-Studios, Inc.)\b')
++_copyright_re4 = \
++	re.compile(br'^(# Copyright )(\d\d\d\d)( Obsidian-Studios, Inc.)\b')
+ 
+ 
+ class _copyright_repl(object):
+@@ -53,6 +57,8 @@ def update_copyright_year(year, line):
+ 
+ 	line = _copyright_re1.sub(br'\1-' + year + br'\2', line)
+ 	line = _copyright_re2.sub(_copyright_repl(year), line)
++	line = _copyright_re3.sub(br'\1-' + year + br'\2', line)
++	line = _copyright_re4.sub(_copyright_repl(year), line)
+ 	if not is_bytes:
+ 		line = _unicode_decode(line)
+ 	return line
 diff --git a/pym/repoman/modules/scan/ebuild/checks.py b/pym/repoman/modules/scan/ebuild/checks.py
-index 15e225156..c0dd8fcb4 100644
+index de03bedd2..20919d430 100644
 --- a/pym/repoman/modules/scan/ebuild/checks.py
 +++ b/pym/repoman/modules/scan/ebuild/checks.py
 @@ -86,6 +86,7 @@ class EbuildHeader(LineCheck):
@@ -10,7 +34,7 @@ index 15e225156..c0dd8fcb4 100644
  	gentoo_license = (
  		'# Distributed under the terms'
  		' of the GNU General Public License v2')
-@@ -99,12 +100,15 @@ class EbuildHeader(LineCheck):
+@@ -100,12 +101,15 @@ class EbuildHeader(LineCheck):
  			self.modification_year = str(time.gmtime(pkg.mtime)[0])
  		self.gentoo_copyright_re = re.compile(
  			self.gentoo_copyright % self.modification_year)
