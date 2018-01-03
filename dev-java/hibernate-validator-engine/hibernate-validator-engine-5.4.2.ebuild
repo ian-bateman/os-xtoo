@@ -24,7 +24,7 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Hibernate Validator ${PN:20}"
 HOMEPAGE="https://hibernate.org/validator"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 IUSE="javafx"
 
 CP_DEPEND="
@@ -41,13 +41,15 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	javafx? ( >=dev-java/oracle-jdk-bin-8[javafx] )
-	!javafx? ( >=virtual/jdk-8 )"
+	javafx? ( >=dev-java/oracle-jdk-bin-9[javafx] )
+	!javafx? ( >=virtual/jdk-9 )"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/${PN:20}"
+
+JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	xjc -enableIntrospection \
