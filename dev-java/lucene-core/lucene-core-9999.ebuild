@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -25,16 +25,9 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Java-based indexing and search technology"
 HOMEPAGE="https://lucene.apache.org/"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-1.8"
+DEPEND=">=virtual/jdk-9"
+RDEPEND=">=virtual/jre-9"
 
-RDEPEND=">=virtual/jre-1.8"
-
-if [[ ${SLOT} == 3 ]]; then
-	S="${WORKDIR}/${MY_S}/${PN%-*}"
-else
-	S="${WORKDIR}/${MY_S}/${PN//-//}"
-fi
-
-JAVA_SRC_DIR="src/java"
+S="${WORKDIR}/${MY_S}/${PN//-//}"
