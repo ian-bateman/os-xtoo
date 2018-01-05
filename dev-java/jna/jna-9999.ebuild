@@ -1,8 +1,5 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
-
-# Based on ebuild from gentoo main tree
-# Copyright 1999-2016 Gentoo Foundation
 
 EAPI="6"
 
@@ -18,7 +15,7 @@ else
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-ant-2 ${ECLASS}
+inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
 DESCRIPTION="Java Native Access"
 HOMEPAGE="${BASE_URI}"
@@ -30,35 +27,22 @@ else
 	SLOT="${PV%%.*}"
 fi
 
-CP_DEPEND="dev-java/ant-core:0"
+CDEPEND="dev-libs/libffi"
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8
+DEPEND="${CDEPEND}
+	>=virtual/jdk-9
 	virtual/pkgconfig"
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+RDEPEND="${CDEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
-
-JAVA_PKG_NO_CLEAN=0
-JAVA_ANT_REWRITE_CLASSPATH="true"
-EANT_BUILD_TARGET="native jar contrib-jars"
-EANT_EXTRA_ARGS="-Ddynlink.native=true"
 
 src_prepare() {
 	default
 
-	# delete bundled jars and copy of libffi
-	# except native jars because build.xml needs them all
-	find ! -path "./lib/native/*" -name "*.jar" -delete \
-		|| die "Failed to remove jars"
-	rm -r native/libffi || die "Failed to remove libffi"
-
-	sed -i -e '\|<pathelement path="lib/clover.jar"/>|d' \
-		-e '\|<copy todir="${build}/jws" file="lib/junit.jar"/>|d' \
-		-e '\|<copy todir="${build}/jws" file="lib/clover.jar"/>|d' \
-		build.xml || die "Failed to sed build.xml"
+	sed -i -e 's|all: $(LIBRARY) .*|all: $(LIBRARY)|' native/Makefile \
+		|| die "Failed to sed/remove troublesome build of testlib"
 
 	if ! use awt ; then
 		sed -i -E "s/^(CDEFINES=.*)/\1 -DNO_JAWT/g" native/Makefile \
@@ -73,15 +57,18 @@ src_prepare() {
 	java-pkg-2_src_prepare
 }
 
-src_configure() {
-	tc-export CC
+src_compile() {
+	java-pkg-simple_src_compile
+
+# Fails no header output needed for 9+ no more javah
+#	javac -h native -cp ${PN}.jar src/com/sun/jna/{Function,Native}.java \
+	javah -d native -cp ${PN}.jar com.sun.jna.{Function,Native} \
+		|| die "Failed to generate jni headers"
+	cd native || die "Failed to change directory for native compile"
+	emake DYNAMIC_LIBFFI=true || die "Failed to compile native code"
 }
 
 src_install() {
-	java-pkg_newjar build*/${PN}-min.jar
-	java-pkg_newjar contrib/platform/dist/*platform.jar ${PN}-platform.jar
+	java-pkg-simple_src_install
 	java-pkg_doso build*/native*/libjnidispatch.so
-
-	use source && java-pkg_dosrc src/*
-	use doc && java-pkg_dojavadoc doc/javadoc
 }
