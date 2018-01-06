@@ -21,11 +21,7 @@ DESCRIPTION="Java Native Access"
 HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( Apache-2.0 LGPL-2.1 )"
 IUSE="+awt +nio-buffers"
-if [[ ${PV} == 3* ]]; then
-	SLOT="0"
-else
-	SLOT="${PV%%.*}"
-fi
+SLOT="${PV%%.*}"
 
 CDEPEND="dev-libs/libffi"
 
