@@ -38,7 +38,10 @@ src_prepare() {
 	default
 
 	sed -i -e 's|all: $(LIBRARY) .*|all: $(LIBRARY)|' native/Makefile \
-		|| die "Failed to sed/remove troublesome build of testlib"
+		-e 's|-W ||' \
+		-e 's|CFLAGS=|CFLAGS+= |' \
+		-e 's|LDFLAGS=|LDFLAGS+= |' \
+		|| die "Failed to sed/modify native/Makefile"
 
 	if ! use awt ; then
 		sed -i -E "s/^(CDEFINES=.*)/\1 -DNO_JAWT/g" native/Makefile \
