@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -27,7 +27,7 @@ HOMEPAGE="https://tomcat.apache.org/"
 LICENSE="Apache-2.0"
 
 case ${PV%%.*} in
-	9) SLOT="4.0" ;;
+	9 | *9999*) SLOT="4.0" ;;
 	8) SLOT="3.1" ;;
 	7) SLOT="3.0" ;;
 	6) SLOT="2.5" ;;
