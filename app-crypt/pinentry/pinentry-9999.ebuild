@@ -15,17 +15,10 @@ else
 		MY_P="${PN}-${MY_PV}"
 		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 		KEYWORDS="~amd64"
-	elif [[ ${PV} =~ 1.0.1.20170308* ]]; then
-		MY_PV="4101806bf73caf25c8ce4e455b154901da1fe788"
-		MY_P="${PN}-${MY_PV}"
-		MY_PATCH="69e67861cd1026da063e4d86ccdd071fba804fad"
-		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
-			https://github.com/Obsidian-StudiosInc/pinentry/commit/${MY_PATCH}.patch -> ${P}-efl.patch"
-		KEYWORDS="~amd64"
 	else
 		MY_P="${P}"
 		SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-		KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+		KEYWORDS="~amd64"
 	fi
 	MY_S="${MY_P}"
 fi
@@ -85,12 +78,6 @@ DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO )
 
 src_prepare() {
 	default
-	if use efl && [[ ${PV} == 1.0.1.20170308* ]]; then
-		eapply "${DISTDIR}/${P}-efl.patch"
-		# delete hack that negates value from pinentry_inq_quality
-		sed -i -e '128,131d' efl/pinentry-efl.c \
-			|| die "Failed to remove quality hack"
-	fi
 		echo "
 @set UPDATED $(date +"%d %B %Y")
 @set UPDATED-MONTH $(date +"%d %B")
@@ -103,7 +90,7 @@ src_prepare() {
 src_configure() {
 	local myconf=()
 	use static && append-ldflags -static
-	[[ "$(gcc-major-version)" -ge 5 ]] && append-cxxflags -std=gnu++11
+	append-cxxflags -std=gnu++11
 
 	if use qt4; then
 		myconf+=(
