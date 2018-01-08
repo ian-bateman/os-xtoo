@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -45,4 +45,25 @@ S="${WORKDIR}/${MY_S}/org.${MY_PN}/"
 # Upstream jar has antadapter we should as well, but lots of deps
 #JAVA_SRC_DIR="antadapter batch compiler ../eclipse.jdt.core/src"
 JAVA_SRC_DIR="batch compiler ../eclipse.jdt.core/src"
-JAVA_RES_DIR="${JAVA_SRC_DIR}"
+JAVA_RES_DIR="resources"
+
+java_prepare() {
+	local f p
+
+	p="org/eclipse/jdt/internal/compiler"
+	mkdir -p resources/${p}/{batch,parser,parser/unicode,parser/unicode6,parser/unicode6_2,problem} \
+		|| die "Failed to make resources directories"
+
+	cp {batch,resources}/${p}/batch/messages.properties \
+		|| die "Failed to copy ${f}messages.properties"
+
+	for f in "" "problem/"; do
+		cp {compiler,resources}/${p}/${f}messages.properties \
+			|| die "Failed to copy ${f}messages.properties"
+	done
+
+	for f in parser{,/unicode,/unicode6,/unicode6_2}; do
+		cp -r compiler/${p}/${f}/* resources/${p}/${f} \
+			|| die "Failed to copy ${f}/*"
+	done
+}
