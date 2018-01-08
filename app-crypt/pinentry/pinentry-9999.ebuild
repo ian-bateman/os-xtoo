@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -10,7 +10,12 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
 else
-	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
+	if [[ ${PV} =~ 1.1.0.20180107* ]]; then
+		MY_PV="bb1c942d375f3c6667288fd08f27450023f9bc50"
+		MY_P="${PN}-${MY_PV}"
+		SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
+		KEYWORDS="~amd64"
+	elif [[ ${PV} =~ 1.0.1.20170308* ]]; then
 		MY_PV="4101806bf73caf25c8ce4e455b154901da1fe788"
 		MY_P="${PN}-${MY_PV}"
 		MY_PATCH="69e67861cd1026da063e4d86ccdd071fba804fad"
@@ -80,20 +85,18 @@ DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO )
 
 src_prepare() {
 	default
-	if use efl ;then
+	if use efl && [[ ${PV} == 1.0.1.20170308* ]]; then
 		eapply "${DISTDIR}/${P}-efl.patch"
 		# delete hack that negates value from pinentry_inq_quality
 		sed -i -e '128,131d' efl/pinentry-efl.c \
 			|| die "Failed to remove quality hack"
 	fi
-	if [[ ${PV} =~ 1.0.1.20170308* ]]; then
 		echo "
-@set UPDATED 12 May 2017
-@set UPDATED-MONTH May 2017
+@set UPDATED $(date +"%d %B %Y")
+@set UPDATED-MONTH $(date +"%d %B")
 @set EDITION ${PV}
 @set VERSION ${PV}
 " > "${S}"/doc/version.texi
-	fi
 	eautoreconf
 }
 
