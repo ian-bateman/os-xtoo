@@ -47,7 +47,7 @@ java_prepare() {
 
 	p="org/apache/tomcat/util"
 	mkdir -p resources/${p}/{buf,compat,file,threads/res} \
-		|| die "Failed to make resources direcotries"
+		|| die "Failed to make resources directories"
 
 	for d in "" buf/ compat/ file/ threads/res/; do
 		cp java/${p}/${d}LocalStrings.properties resources/${p}/${d} \
