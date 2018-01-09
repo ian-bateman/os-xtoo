@@ -38,19 +38,6 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="java/org/apache/tomcat/util/"
-JAVA_RES_DIR="resources"
+JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
 JAVA_RM_FILES=( bcel descriptor digester http log modeler net scan )
 JAVA_RM_FILES=( ${JAVA_RM_FILES[@]/#/java/org/apache/tomcat/util/} )
-
-java_prepare() {
-	local d p
-
-	p="org/apache/tomcat/util"
-	mkdir -p resources/${p}/{buf,compat,file,threads/res} \
-		|| die "Failed to make resources directories"
-
-	for d in "" buf/ compat/ file/ threads/res/; do
-		cp java/${p}/${d}LocalStrings.properties resources/${p}/${d} \
-			|| die "Failed to copy ${d}/LocalStrings.properties"
-	done
-}
