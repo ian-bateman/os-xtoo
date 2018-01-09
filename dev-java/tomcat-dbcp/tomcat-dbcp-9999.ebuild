@@ -38,15 +38,4 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="java/org/apache/tomcat/dbcp"
-JAVA_RES_DIR="java/resources"
-
-java_prepare() {
-	local d p
-
-	p="org/apache/tomcat/dbcp/dbcp2"
-	mkdir -p ${JAVA_RES_DIR}/${p} \
-		|| die "Failed to make resources directory"
-
-	cp java{,/resources}/${p}/LocalStrings.properties \
-		|| die "Failed to copy LocalStrings.properties"
-}
+JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
