@@ -44,21 +44,4 @@ S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR=( descriptor digester scan )
 JAVA_SRC_DIR="${JAVA_SRC_DIR[@]/#/java/org/apache/tomcat/util/}"
-JAVA_RES_DIR="resources"
-
-java_prepare() {
-	local d p
-
-	p="org/apache/tomcat/util"
-	mkdir -p resources/${p}/{descriptor/tld,descriptor/web,digester,scan} \
-		|| die "Failed to make resources direcotries"
-
-	for d in descriptor descriptor/tld descriptor/web digester scan ; do
-		cp java/${p}/${d}/LocalStrings.properties resources/${p}/${d} \
-			|| die "Failed to copy ${d}/LocalStrings.properties"
-	done
-
-	cp java/${p}/descriptor/web/mbeans-descriptors.xml \
-		resources/${p}/descriptor/web \
-		|| die "Failed to copy mbeans-descriptors.xml"
-}
+JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
