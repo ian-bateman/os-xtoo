@@ -75,6 +75,15 @@ JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 #	JAVA_RES_DIR="src/main/resources"
 # @CODE
 
+# @ECLASS-VARIABLE: JAVA_RES_FIND
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Pattern to pass to find to include/exclude files from resources
+#
+# @CODE
+#	JAVA_RES_DIR="-not '*.java'"
+# @CODE
+
 # @ECLASS-VARIABLE: JAVA_SRC_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -110,6 +119,41 @@ JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 
 # @FUNCTION: java-pkg-simple_create-jar
 # @DESCRIPTION:
+# Finds resources in sources and copies them to resources directory.
+# If a resource directory is not set and exists, a default one will be created.
+java-pkg-simple_res_in_src() {
+	local f files r src
+
+	if [[ -d "${JAVA_RES_DIR}" ]] ||
+		[[ -d "${S}/src/main/resources" ]] ; then
+		return 0;
+	fi
+	eshopts_push -s extglob
+	JAVA_RES_DIR="${S}/src/main/resources"
+	mkdir -p "${JAVA_RES_DIR}" || die "Failed to make resources dir"
+	for src in ${JAVA_SRC_DIR}; do
+		files=(
+			$(find "${src}" -not -name '*.java' \
+				-not -name '*.javacc' -not -name '*.groovy' \
+				-not -name '*.html' ${JAVA_RES_FIND} -type f
+			)
+		)
+		for f in "${files[@]}"; do
+			r="${f%/*}"
+			r="${r/+(java|src|src\/java|src\/main\/java)\//}"
+			r="${JAVA_RES_DIR}/${r}"
+			if [[ ! -d "${r}" ]]; then
+				mkdir -p "${r}" || die "Failed to make dir ${r}"
+			fi
+			cp "${f}" "${r}" \
+				|| die "Failed to copy ${f} to resources"
+		done
+	done
+
+}
+
+# @FUNCTION: java-pkg-simple_create-jar
+# @DESCRIPTION:
 # Create jar from compiled sources or other
 java-pkg-simple_create-jar(){
 	local classes jar_args
@@ -127,6 +171,9 @@ java-pkg-simple_create-jar(){
 				|| die "Failed to upper case meta-inf"
 		fi
 	fi
+
+	java-pkg-simple_res_in_src
+
 	if [[ -n ${JAVA_RES_DIR} ]]; then
 		local r
 		for r in ${JAVA_RES_DIR}; do
