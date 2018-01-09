@@ -52,32 +52,4 @@ JAVA_SRC_DIR="
 	java/org/apache/tomcat/util/modeler
 	java/org/apache/tomcat/util/net
 "
-JAVA_RES_DIR="java/resources"
-
-java_prepare() {
-	local d p
-
-	p="org/apache/coyote"
-	mkdir -p ${JAVA_RES_DIR}/${p}/{ajp,http11/filters,http11/upgrade,http2} \
-		|| die "Failed to make resources directories"
-
-	cp java{,/resources}/${p}/mbeans-descriptors.xml \
-		|| die "Failed to copy mbeans-descriptors.xml"
-
-	for d in "" ajp/ http11/{,filters/,upgrade/} http2/; do
-		cp java{,/resources}/${p}/${d}LocalStrings.properties \
-			|| die "Failed to copy ${d}/LocalStrings.properties"
-	done
-
-	p="org/apache/tomcat/util"
-	mkdir -p ${JAVA_RES_DIR}/${p}/{http/parser,modeler,net/jsse,net/openssl/ciphers} \
-		|| die "Failed to make resources directories"
-
-	cp java{,/resources}/${p}/modeler/mbeans-descriptors.dtd \
-		|| die "Failed to copy mbeans-descriptors.xml"
-
-	for d in http http/parser net{,/jsse,/openssl,/openssl/ciphers}; do
-		cp java{,/resources}/${p}/${d}/LocalStrings.properties \
-			|| die "Failed to copy ${d}/LocalStrings.properties"
-	done
-}
+JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
