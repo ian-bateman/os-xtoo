@@ -130,7 +130,6 @@ java-pkg-simple_res_in_src() {
 	fi
 	eshopts_push -s extglob
 	JAVA_RES_DIR="${S}/src/main/resources"
-	mkdir -p "${JAVA_RES_DIR}" || die "Failed to make resources dir"
 	for src in ${JAVA_SRC_DIR}; do
 		files=(
 			$(find "${src}" -not -name '*.java' \
