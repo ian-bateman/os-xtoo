@@ -141,7 +141,7 @@ src_prepare() {
 
 	if ! use javafx ; then
 		rm jmods/javafx*  \
-			lib/lib*{decora,ext,fx,glass,gstreamer,prism}* \
+			lib/lib*{decora,fx,glass,gstreamer,prism}* \
 			|| die "Failed to remove unwanted JavaFX support"
 	else
 		if ! use gtk2 ; then
