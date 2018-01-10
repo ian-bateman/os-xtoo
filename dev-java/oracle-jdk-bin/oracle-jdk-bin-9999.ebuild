@@ -131,10 +131,12 @@ src_prepare() {
 	fi
 
 	if use headless-awt ; then
-		rm lib/lib*{[jx]awt,splashscreen}* \
-			bin/{javaws,policytool} \
-			bin/appletviewer \
+		rm lib/lib*{awt,splashscreen}* bin/{appletviewer,javaws} \
 			|| die "Failed to remove unwanted UI support"
+		if [[ ${SLOT} == 9 ]]; then
+			rm bin/policytool \
+				|| die "Failed to remove unwanted UI support"
+		fi
 	fi
 
 	if ! use javafx ; then
