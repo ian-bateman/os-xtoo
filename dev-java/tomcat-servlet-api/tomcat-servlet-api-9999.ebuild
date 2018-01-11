@@ -35,30 +35,28 @@ case ${PV%%.*} in
 esac
 
 DEPEND=">=virtual/jdk-9"
-
 RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
+JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
+
 java_prepare() {
 	mv java/javax/servlet/jsp java/javax/jsp \
 		|| die "Failed to move jsp-api classes"
-
-	mkdir -p resources/javax/serlvet || die "Failed to make directory"
-	mv java/javax/servlet/resources resources/javax/serlvet \
-		|| die "Failed to move servlet-api resources"
 }
 
 src_compile() {
 	JAVA_JAR_FILENAME="el-api.jar"
 	JAVA_SRC_DIR="java/javax/el/"
 	java-pkg-simple_src_compile
+	rm -r src/main/resources || die "Failed to remove auto resources"
 
 	JAVA_CLASSPATH_EXTRA="${S}/el-api.jar"
 	JAVA_JAR_FILENAME="servlet-api.jar"
 	JAVA_SRC_DIR="java/javax/servlet/"
-	JAVA_RES_DIR="resources"
 	java-pkg-simple_src_compile
+	rm -r src/main/resources || die "Failed to remove auto resources"
 
 	JAVA_CLASSPATH_EXTRA="${S}/el-api.jar:${S}/servlet-api.jar"
 	JAVA_SRC_DIR="java/javax/jsp"
