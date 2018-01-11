@@ -19,7 +19,7 @@ else
 	MY_S="${MY_P}"
 fi
 
-inherit eutils java-pkg-2 prefix systemd user
+inherit eutils java-pkg-2 prefix systemd user ${ECLASS}
 
 DESCRIPTION="Tomcat Servlet-4.0/JSP-2.3 Container"
 HOMEPAGE="https://${PN}.apache.org/"
@@ -79,11 +79,8 @@ java_prepare() {
 		bin/catalina.sh || die
 }
 
-# Needed to create classpath in package.env
-EANT_GENTOO_CLASSPATH="tomcat-server-${SLOT}"
-
 src_compile() {
-	local donothing;
+::
 }
 
 install_webapps() {
@@ -93,14 +90,14 @@ install_webapps() {
 }
 
 src_install() {
-	local dest="/usr/share/${PN}-${SLOT}"
+	local dest jar JARS
 
+	dest="/usr/share/${PN}-${SLOT}"
 	exeinto "${dest}/bin"
 	doexe bin/*.sh
 
 	# link to jars installed by tomcat-* packages
 	# bin
-	local jar JARS
 	JARS=( tomcat-bootstrap tomcat-juli )
 	for jar in ${JARS[@]}; do
 		dosym "../../${jar}-${SLOT}/lib/${jar}.jar" \
@@ -153,8 +150,8 @@ src_install() {
 		|| die "Failed to replace default pw with random"
 
 	# prepend gentoo.classpath to common.loader, see #453212
-	sed -i -e 's/^common\.loader=/\0${gentoo.classpath},/' \
-		conf/catalina.properties || die "Failed to sed classpath"
+#	sed -i -e 's/^common\.loader=/\0${gentoo.classpath},/' \
+#		conf/catalina.properties || die "Failed to sed classpath"
 
 	insinto "${dest}"
 	doins -r conf
