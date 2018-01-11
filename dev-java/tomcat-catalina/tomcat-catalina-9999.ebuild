@@ -59,3 +59,11 @@ JAVA_RM_FILES=(
 	java/org/apache/naming/factory/webservices
 )
 JAVAC_ARGS+=" --add-modules=java.xml.ws "
+
+java_prepare() {
+	sed -i -e "s|@VERSION@|${PV}-os-xtoo|" \
+		-e "s|@VERSION_NUMBER@|${PV}|" \
+		-e "s|@VERSION_BUILT@|$(date)|" \
+		java/org/apache/catalina/util/ServerInfo.properties \
+		|| die "Failed to sed version"
+}
