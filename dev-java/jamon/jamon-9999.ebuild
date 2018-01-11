@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -35,7 +35,7 @@ CP_DEPEND="
 	dev-java/jetty-server:${JETTY_SLOT}
 	dev-java/jetty-util:${JETTY_SLOT}
 	dev-java/log4j:0
-	dev-java/tomcat-server:9
+	dev-java/tomcat-catalina:9
 	dev-java/tomcat-servlet-api:4.0
 "
 
