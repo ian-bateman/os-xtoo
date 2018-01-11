@@ -91,7 +91,7 @@
 *dev-java/recaptcha4j
 *dev-java/scribejava-apis
 *dev-java/scribejava-core
-*dev-java/tomcat-server
+*dev-java/tomcat-catalina
 *dev-libs/efl
 *dev-perl/Gtk2-AppIndicator
 *dev-util/android-studio-bin
