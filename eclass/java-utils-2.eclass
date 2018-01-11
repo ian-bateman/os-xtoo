@@ -12,12 +12,12 @@
 # @BLURB: Base eclass for Java packages
 # @DESCRIPTION:
 # This eclass provides functionality which is used by java-pkg-2.eclass,
-# java-pkg-opt-2.eclass and java-ant-2 eclass, as well as from ebuilds.
+# java-pkg-opt-2.eclass and java-pkg-simple eclass, as well as from ebuilds.
 #
 # This eclass should not be inherited this directly from an ebuild. Instead,
 # you should inherit java-pkg-2 for Java packages or java-pkg-opt-2 for packages
-# that have optional Java support. In addition you can inherit java-ant-2 for
-# Ant-based packages.
+# that have optional Java support. In addition you can inherit
+# java-pkg-simple for all other packages.
 inherit eutils versionator multilib
 
 IUSE="elibc_FreeBSD"
@@ -132,19 +132,6 @@ JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/jem/build/compilers.con
 # Use ecj and javac, in that order
 # @CODE
 #	JAVA_PKG_FORCE_COMPILER="ecj javac"
-# @CODE
-
-# @ECLASS-VARIABLE: JAVA_PKG_FORCE_ANT_TASKS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An $IFS separated list of ant tasks. Can be set in environment before calling
-# emerge/ebuild to override variables set in ebuild, mainly for testing before
-# putting the resulting (WANT_)ANT_TASKS into ebuild. Affects only ANT_TASKS in
-# eant() call, not the dependencies specified in WANT_ANT_TASKS.
-#
-# @CODE
-# JAVA_PKG_FORCE_ANT_TASKS="ant-junit ant-trax" \
-# 	ebuild foo.ebuild compile
 # @CODE
 
 # TODO document me
@@ -1286,30 +1273,6 @@ java-pkg_register-environment-variable() {
 	java-pkg_do_write_
 }
 
-# Deprecaed used by ant
-# @FUNCTION: java-pkg_get-bootclasspath
-# @USAGE: <version>
-# @DESCRIPTION:
-# Returns classpath of a given bootclasspath-providing package version.
-#
-# @param $1 - 'auto' for bootclasspath of the current JDK
-java-pkg_get-bootclasspath() {
-	local version="${1}"
-
-	local bcp
-	case "${version}" in
-		auto)
-			bcp="$(jem -g BOOTCLASSPATH)"
-			;;
-		*)
-			eerror "unknown parameter of java-pkg_get-bootclasspath"
-			die "unknown parameter of java-pkg_get-bootclasspath"
-			;;
-	esac
-
-	echo "${bcp}"
-}
-
 # @FUNCTION: java-pkg_find-normal-jars
 # @USAGE: [<path/to/directory>]
 # @DESCRIPTION:
@@ -1569,9 +1532,11 @@ java-pkg_get-javac() {
 java-pkg_javac-args() {
 	debug-print-function ${FUNCNAME} $*
 
-	local want_release release_str
+	local want_release release_str version
+	version="$(java-pkg_get-vm-version)"
 	want_release="$(java-pkg_get-release)"
-	if [[ "$(java-pkg_get-vm-version)" != "${want_release}" ]]; then
+	if [[ ${version} -le 9 ]] &&
+		[[ "${version}" != "${want_release}" ]]; then
 		release_str="--release ${want_release}"
 	fi
 
@@ -1647,34 +1612,6 @@ java-pkg_register-ant-task() {
 	dodir /usr/share/ant/${TASKS_DIR}
 	touch "${D}/usr/share/ant/${TASKS_DIR}/${TASK_NAME}"
 }
-
-# @FUNCTION: java-pkg_ant-tasks-depend
-# @INTERNAL
-# @DESCRIPTION:
-# Translates the WANT_ANT_TASKS variable into valid dependencies.
-java-pkg_ant-tasks-depend() {
-	debug-print-function ${FUNCNAME} ${WANT_ANT_TASKS}
-
-	if [[ -n "${WANT_ANT_TASKS}" ]]; then
-		local DEP=""
-		for i in ${WANT_ANT_TASKS}
-		do
-			if [[ ${i} = ant-* ]]; then
-				DEP="${DEP}dev-java/${i} "
-			elif [[ ${i} = */*:* ]]; then
-				DEP="${DEP}${i} "
-			else
-				echo "Invalid atom in WANT_ANT_TASKS: ${i}"
-				return 1
-			fi
-		done
-		echo ${DEP}
-		return 0
-	else
-		return 0
-	fi
-}
-
 
 # @FUNCTION: ejunit_
 # @INTERNAL
@@ -1796,7 +1733,7 @@ java-utils-2_src_prepare() {
 # Don't call directly, but via java-pkg-2_pkg_preinst!
 java-utils-2_pkg_preinst() {
 	if is-java-strict; then
-		if [[ ! -e "${JAVA_PKG_ENV}" ]] || has ant-tasks ${INHERITED}; then
+		if [[ ! -e "${JAVA_PKG_ENV}" ]]; then
 			return
 		fi
 
@@ -1807,139 +1744,6 @@ java-utils-2_pkg_preinst() {
 			eerror "Install dev-java/java-dep-check for dependency checking"
 		fi
 	fi
-}
-
-# @FUNCTION: eant
-# @USAGE: <ant_build_target(s)>
-# @DESCRIPTION:
-# Ant wrapper function. Will use the appropriate compiler, based on user-defined
-# compiler. Will also set proper ANT_TASKS from the variable ANT_TASKS,
-# variables:
-#
-# @CODE
-# Variables:
-# EANT_GENTOO_CLASSPATH - calls java-pkg_getjars for the value and adds to the
-# 		gentoo.classpath property. Be sure to call java-ant_rewrite-classpath in src_unpack.
-# EANT_NEEDS_TOOLS - add tools.jar to the gentoo.classpath. Should only be used
-# 		for build-time purposes, the dependency is not recorded to
-# 		package.env!
-# ANT_TASKS - used to determine ANT_TASKS before calling Ant.
-# @CODE
-eant() {
-	debug-print-function ${FUNCNAME} $*
-
-	if [[ ${EBUILD_PHASE} = compile ]]; then
-		java-ant-2_src_configure
-	fi
-
-	if ! has java-ant-2 ${INHERITED}; then
-		local msg="You should inherit java-ant-2 when using eant"
-		java-pkg_announce-qa-violation "${msg}"
-	fi
-
-	local antflags="-Dnoget=true -Dmaven.mode.offline=true -Dbuild.sysclasspath=ignore"
-
-	java-pkg_init-compiler_
-	local compiler="${GENTOO_COMPILER}"
-
-	local compiler_env="${JAVA_PKG_COMPILER_DIR}/${compiler}"
-	local build_compiler="$(source ${compiler_env} 1>/dev/null 2>&1; echo ${ANT_BUILD_COMPILER})"
-	if [[ "${compiler}" != "javac" && -z "${build_compiler}" ]]; then
-		die "ANT_BUILD_COMPILER undefined in ${compiler_env}"
-	fi
-
-	if [[ ${compiler} != "javac" ]]; then
-		antflags="${antflags} -Dbuild.compiler=${build_compiler}"
-		# Figure out any extra stuff to put on the classpath for compilers aside
-		# from javac
-		# ANT_BUILD_COMPILER_DEPS should be something that could be passed to
-		# jem -p
-		local build_compiler_deps="$(source ${JAVA_PKG_COMPILER_DIR}/${compiler} 1>/dev/null 2>&1; echo ${ANT_BUILD_COMPILER_DEPS})"
-		if [[ -n ${build_compiler_deps} ]]; then
-			antflags="${antflags} -lib $(jem -p ${build_compiler_deps})"
-		fi
-	fi
-
-	for arg in "${@}"; do
-		if [[ ${arg} = -lib ]]; then
-			if is-java-strict; then
-				eerror "You should not use the -lib argument to eant because it will fail"
-				eerror "with JAVA_PKG_STRICT. Please use for example java-pkg_jar-from"
-				eerror "or ant properties to make dependencies available."
-				eerror "For ant tasks use WANT_ANT_TASKS or ANT_TASKS from."
-				eerror "split ant (>=dev-java/ant-core-1.7)."
-				die "eant -lib is deprecated/forbidden"
-			else
-				echo "eant -lib is deprecated. Turn JAVA_PKG_STRICT on for"
-				echo "more info."
-			fi
-		fi
-	done
-
-	# parse WANT_ANT_TASKS for atoms
-	local want_ant_tasks
-	for i in ${WANT_ANT_TASKS}; do
-		if [[ ${i} = */*:* ]]; then
-			i=${i#*/}
-			i=${i%:0}
-			want_ant_tasks+="${i/:/-} "
-		else
-			want_ant_tasks+="${i} "
-		fi
-	done
-	# default ANT_TASKS to WANT_ANT_TASKS, if ANT_TASKS is not set explicitly
-	ANT_TASKS="${ANT_TASKS:-${want_ant_tasks% }}"
-
-	# override ANT_TASKS with JAVA_PKG_FORCE_ANT_TASKS if it's set
-	ANT_TASKS="${JAVA_PKG_FORCE_ANT_TASKS:-${ANT_TASKS}}"
-
-	# if ant-tasks is not set by ebuild or forced, use none
-	ANT_TASKS="${ANT_TASKS:-none}"
-
-	# at this point, ANT_TASKS should be "all", "none" or explicit list
-	if [[ "${ANT_TASKS}" == "all" ]]; then
-		einfo "Using all available ANT_TASKS"
-	elif [[ "${ANT_TASKS}" == "none" ]]; then
-		einfo "Disabling all optional ANT_TASKS"
-	else
-		einfo "Using following ANT_TASKS: ${ANT_TASKS}"
-	fi
-
-	export ANT_TASKS
-
-	[[ -n ${JAVA_PKG_DEBUG} ]] && antflags="${antflags} --execdebug -debug"
-	[[ -n ${PORTAGE_QUIET} ]] && antflags="${antflags} -q"
-
-	local gcp="${EANT_GENTOO_CLASSPATH}"
-	local getjarsarg=""
-
-	if [[ ${EBUILD_PHASE} = "test" ]]; then
-		antflags="${antflags} -DJunit.present=true"
-		getjarsarg="--with-dependencies"
-
-		local re="\bant-junit4?([-:]\S+)?\b"
-		[[ ${ANT_TASKS} =~ ${re} ]] && gcp+=" ${BASH_REMATCH[0]}"
-	else
-		antflags="${antflags} -Dmaven.test.skip=true"
-	fi
-
-	local cp
-
-	for atom in ${gcp}; do
-		cp+=":$(java-pkg_getjars ${getjarsarg} ${atom})"
-	done
-
-	[[ ${EANT_NEEDS_TOOLS} ]] && cp+=":$(jem --tools)"
-	[[ ${EANT_GENTOO_CLASSPATH_EXTRA} ]] && cp+=":${EANT_GENTOO_CLASSPATH_EXTRA}"
-
-	if [[ ${cp#:} ]]; then
-		# It seems ant does not like single quotes around ${cp}
-		antflags="${antflags} -Dgentoo.classpath=\"${cp#:}\""
-	fi
-
-	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"
-	debug-print "Calling ant (GENTOO_VM: ${GENTOO_VM}): ${antflags} ${@}"
-	ant ${antflags} "${@}" || die "eant failed"
 }
 
 # @FUNCTION: ejavac
@@ -2015,30 +1819,6 @@ java-pkg_force-compiler() {
 	JAVA_PKG_FORCE_COMPILER="$@"
 }
 
-# @FUNCTION: use_doc
-# @DESCRIPTION:
-#
-# Helper function for getting ant to build javadocs. If the user has USE=doc,
-# then 'javadoc' or the argument are returned. Otherwise, there is no return.
-#
-# The output of this should be passed to ant.
-# @CODE
-# Parameters:
-# $@ - Option value to return. Defaults to 'javadoc'
-#
-# Examples:
-# build javadocs by calling 'javadoc' target
-#	eant $(use_doc)
-#
-# build javadocs by calling 'apidoc' target
-#	eant $(use_doc apidoc)
-# @CODE
-# @RETURN string - Name of the target to create javadocs
-use_doc() {
-	use doc && echo ${@:-javadoc}
-}
-
-
 # @FUNCTION: java-pkg_init
 # @INTERNAL
 # @DESCRIPTION:
@@ -2090,10 +1870,6 @@ java-pkg_init() {
 		I_WANT_GLOBAL_JAVA_OPTIONS="true"
 	fi
 
-	if java-pkg_func-exists ant_src_unpack; then
-		java-pkg_announce-qa-violation "Using old ant_src_unpack. Should be src_unpack"
-	fi
-
 	java-pkg_switch-vm
 	PATH=${JAVA_HOME}/bin:${PATH}
 
@@ -2109,11 +1885,6 @@ java-pkg_init() {
 	# This also helps prevent unexpected dependencies on random things
 	# from the CLASSPATH.
 	export CLASSPATH=
-
-	# Unset external ANT_ stuff
-	export ANT_TASKS=
-	export ANT_OPTS=
-	export ANT_RESPECT_JAVA_HOME=
 }
 
 # @FUNCTION: java-pkg-init-compiler_
@@ -2764,7 +2535,7 @@ java-pkg_clean() {
 #
 # @CODE
 # Parameters:
-# $1 - classpath variable either EANT_GENTOO_CLASSPATH or JAVA_GENTOO_CLASSPATH
+# $1 - classpath variable either JAVA_GENTOO_CLASSPATH or other
 # @CODE
 java-pkg_gen-cp() {
 	debug-print-function ${FUNCNAME} "${@}"
