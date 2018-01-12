@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -10,6 +10,7 @@ CP_DEPEND="
 	dev-java/net-java-html-boot:0
 	dev-java/net-java-html-boot-fx:0
 	dev-java/net-java-html-json:0
+	~dev-java/netbeans-api-htmlui-${PV}:${SLOT}
 	~dev-java/netbeans-api-templates-${PV}:${SLOT}
 	~dev-java/netbeans-openide-dialogs-${PV}:${SLOT}
 	~dev-java/netbeans-openide-filesystems-${PV}:${SLOT}
