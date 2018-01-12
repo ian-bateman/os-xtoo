@@ -1,0 +1,150 @@
+diff --git a/src/org/checkerframework/javacutil/TypeAnnotationUtils.java b/javacutil/src/org/checkerframework/javacutil/TypeAnnotationUtils.java
+index 7849803ec..d0f88c963 100644
+--- a/src/org/checkerframework/javacutil/TypeAnnotationUtils.java
++++ b/src/org/checkerframework/javacutil/TypeAnnotationUtils.java
+@@ -86,7 +86,7 @@ public class TypeAnnotationUtils {
+             TypeAnnotationPosition p1, TypeAnnotationPosition p2) {
+         return p1.isValidOffset == p2.isValidOffset
+                 && p1.bound_index == p2.bound_index
+-                && p1.exception_index == p2.exception_index
++                && p1.getExceptionIndex() == p2.getExceptionIndex()
+                 && p1.location.equals(p2.location)
+                 && Arrays.equals(p1.lvarIndex, p2.lvarIndex)
+                 && Arrays.equals(p1.lvarLength, p2.lvarLength)
+@@ -281,97 +281,62 @@ public class TypeAnnotationUtils {
+     }
+ 
+     public static TypeAnnotationPosition unknownTAPosition() {
+-        return new TypeAnnotationPosition();
++        return TypeAnnotationPosition.unknown;
+     }
+ 
+     public static TypeAnnotationPosition methodReturnTAPosition(final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.METHOD_RETURN;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.methodReturn(pos);
+     }
+ 
+     public static TypeAnnotationPosition methodReceiverTAPosition(final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.METHOD_RECEIVER;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.methodReceiver(pos);
+     }
+ 
+     public static TypeAnnotationPosition methodParameterTAPosition(final int pidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.METHOD_FORMAL_PARAMETER;
+-        tapos.parameter_index = pidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.methodParameter(pidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition methodThrowsTAPosition(final int tidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.THROWS;
+-        tapos.type_index = tidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.methodThrows(TypeAnnotationPosition.emptyPath,null,tidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition fieldTAPosition(final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.FIELD;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.field(pos);
+     }
+ 
+     public static TypeAnnotationPosition classExtendsTAPosition(final int implidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.CLASS_EXTENDS;
+-        tapos.type_index = implidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.classExtends(implidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition typeParameterTAPosition(final int tpidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.CLASS_TYPE_PARAMETER;
+-        tapos.parameter_index = tpidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.typeParameter(TypeAnnotationPosition.emptyPath,null,tpidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition methodTypeParameterTAPosition(
+             final int tpidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.METHOD_TYPE_PARAMETER;
+-        tapos.parameter_index = tpidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.methodTypeParameter(TypeAnnotationPosition.emptyPath,null,tpidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition typeParameterBoundTAPosition(
+             final int tpidx, final int bndidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.CLASS_TYPE_PARAMETER_BOUND;
+-        tapos.parameter_index = tpidx;
+-        tapos.bound_index = bndidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.typeParameterBound(TypeAnnotationPosition.emptyPath,null,tpidx,bndidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition methodTypeParameterBoundTAPosition(
+             final int tpidx, final int bndidx, final int pos) {
+-        TypeAnnotationPosition tapos = new TypeAnnotationPosition();
+-        tapos.type = TargetType.METHOD_TYPE_PARAMETER_BOUND;
+-        tapos.parameter_index = tpidx;
+-        tapos.bound_index = bndidx;
+-        tapos.pos = pos;
+-        return tapos;
++	return TypeAnnotationPosition.methodTypeParameterBound(TypeAnnotationPosition.emptyPath,null,tpidx,bndidx,pos);
+     }
+ 
+     public static TypeAnnotationPosition copyTAPosition(final TypeAnnotationPosition tapos) {
+-        TypeAnnotationPosition res = new TypeAnnotationPosition();
++        TypeAnnotationPosition res =
++            TypeAnnotationPosition.typeParameterBound(
++                List.from(tapos.location),
++                tapos.onLambda,
++                tapos.parameter_index,
++                tapos.bound_index,
++                tapos.pos);
+         res.isValidOffset = tapos.isValidOffset;
+-        res.bound_index = tapos.bound_index;
+-        res.exception_index = tapos.exception_index;
+-        res.location = List.from(tapos.location);
++        res.setExceptionIndex(tapos.getExceptionIndex());
+         if (tapos.lvarIndex != null) {
+             res.lvarIndex = Arrays.copyOf(tapos.lvarIndex, tapos.lvarIndex.length);
+         }
+@@ -382,16 +347,13 @@ public class TypeAnnotationUtils {
+             res.lvarOffset = Arrays.copyOf(tapos.lvarOffset, tapos.lvarOffset.length);
+         }
+         res.offset = tapos.offset;
+-        res.onLambda = tapos.onLambda;
+-        res.parameter_index = tapos.parameter_index;
+-        res.pos = tapos.pos;
+-        res.type = tapos.type;
+-        res.type_index = tapos.type_index;
++//        res.type = tapos.type;
++ //       res.type_index = tapos.type_index;
+         return res;
+     }
+ 
+     public static Type unannotatedType(final TypeMirror in) {
+         final Type impl = (Type) in;
+-        return impl.unannotatedType();
++        return TypeAnnotationUtils.unannotatedType(impl);
+     }
+ }
