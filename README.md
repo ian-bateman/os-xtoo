@@ -7,9 +7,10 @@
 Obsidian-Studios, Inc. funtoo/gentoo overlay (a.k.a wltjr's overlay)
 
 This overlay contains many things that should be in Gentoo but are not. 
-A majority of the ebuilds are not in tree. Some are corrections or 
-modifications to versions in tree. Others are newer versions 
-and/or slot changes.
+A majority of the ebuilds are not in Gentoo's respository. Some are 
+corrections or modifications to versions in tree. Others are newer versions 
+and/or slot changes. This overlay replaces some entire categories like 
+dev-java/*. In addition to all Enlightment/EFL applications.
 
 Ebuilds in this overlay are to be current and latest available versions, 
 including working live ebuilds. All ebuilds in this overlay should be 
@@ -19,14 +20,16 @@ accepted on a limited basis. We are one a mission not documented, and not
 much time to document to bring others on board. Though that will happen 
 soon as things settle. To much is in flux at the moment.
 
+This is the most comprehensive Java and Enlightenment repository!
+
 ## Warning
 Please read subsequent sections before usage. You may need to force pull 
 from this overlay at times. That will be kept to a minimum and at some 
 point stop entirely. But does happen from time to time.
 
-The respository is in flux as we juggle fixing packages for Java 9, 
-packaging Netbeans 9, and replacing all needed Java packages in tree 
-with ones in this overlay. Due to such there maybe various issues that 
+The respository is in flux as we juggle finalizing packages for Java 9, 
+packaging Netbeans 9, and replacing remaining bits of Gentoo's Java 
+system, eclasses, etc. Due to such there maybe various issues that 
 did not exist before but do now. Please file issues for any problems 
 encounterd. They will be addressed ASAP!
 
@@ -41,41 +44,49 @@ preserved. It can be relocated, and/or credit mentioned to original
 source, such as
 
 ```shell
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Some Other Entity
 # Distributed under the terms of the GNU General Public License v2
 #
-# Original work Copyright 2017 Obsidian-Studios, Inc.
+# Original work Copyright 2018 Obsidian-Studios, Inc.
 # Ebuild written by "William L. Thomson Jr." <wlt@o-sinc.com>
 # <link to ebuild in this repo>
 ```
 
 ## Java
+This is the most comprehensive Java ebuild repository!
+
 Java packages in this respository are all or nothing. You MUST run 
 "@world" update when first adding this overlay. Failure to do such will 
 result in various preventable build issues. Please keep that in mind.
 
-This repository replaces most all needed dev-java/* packages in Gentoo's 
-main repository. Work is underway to replace any packages still used as 
-dependencys residing in the main tree. Including the core; java-config 
-and related, which will be replaced with 
-[jem](https://github.com/Obsidian-StudiosInc/jem) sometime in 2018. We 
-will be adding a package to mask dev-java/*::gentoo soon! Since
+This repository replaces entirely dev-java/*::gentoo, packages in 
+Gentoo's main repository. Work is mostly complete to replace any 
+packages still used as dependencys residing in the main tree. Initial 
+work has been done to replace the core java-config with 
+[jem](https://github.com/Obsidian-StudiosInc/jem). Along with 
+updating eclasses in preparation for new eclasses, entire re-writes.
+
+We have added a [package to mask 
+dev-java/*::gentoo](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/app-portage/mask-gentoo-dev-java) 
+. Since
 [masking via overlay](https://bugs.gentoo.org/show_bug.cgi?id=641020) 
-is not possible at this time.
+is not possible at this time. It is recommended to merge that package 
+and unmask any remainig pieces as needed/required.
 
 Please try not to mix Java packages from  Gentoo's main repository with 
 this repository. You will experience a varity of issues that will not be 
-addressed!
+addressed! This repository replaces entirely Java on Gentoo!!!
 
-This repository requires Java 9 as your system vm now. We are no 
-longer supporting any JDK < 9. Most things have been fixed for Java 9.
+### Java 9+
+This repository requires Java 9 as your system vm now, and soon will 
+require Java 10! We are no longer supporting any JDK < 9. Most things 
+have been fixed for Java 9!
+
 Please report issues for any package that does not build with Java 9.
 There are few packages remaining that need to be fixed or dialed in for 
-Java 9. There is initial support for Java 10. Testing for Java 10 has 
-not begun yet. Most any package that builds under 9 should under 10, 
+Java 9. There is initial support for Java 10. Initial testing for Java 
+10 has begun. Most any package that builds under 9 should under 10, 
 less any new issues from Java 10.
-
-This is the most comprehensive, current repository of Java ebuilds.
 
 ## E
 This repo has full and complete support for 
