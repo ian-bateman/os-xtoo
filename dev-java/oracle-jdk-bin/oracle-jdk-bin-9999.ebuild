@@ -29,7 +29,7 @@ HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
 LICENSE="Oracle-BCLA-JavaSE"
 
 IUSE="alsa cups +fontconfig gtk2 gtk3 headless-awt javafx nsplugin selinux source"
-REQUIRED_USE="javafx? ( alsa fontconfig ^^ ( gtk2 gtk3 ) )"
+REQUIRED_USE="javafx? ( alsa fontconfig || ( gtk2 gtk3 ) )"
 
 RESTRICT="preserve-libs strip"
 QA_PREBUILT="*"
