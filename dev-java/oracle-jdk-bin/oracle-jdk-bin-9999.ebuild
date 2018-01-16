@@ -12,7 +12,7 @@ BASE_URI="http://download"
 
 if [[ ${PV} == *_pre* ]]; then
 	JDK_URI="http://jdk.java.net/${SLOT}/"
-	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_pre}/binaries"
+	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_pre}/BCL"
 	MY_PV="${PV%%_*}-ea+${PV##*_pre}"
 else
 	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
