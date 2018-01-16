@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -34,4 +34,4 @@ RDEPEND=">=virtual/jre-9"
 S="${WORKDIR}/${MY_S}/${PN}"
 
 JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
+JAVAC_ARGS+=" --add-modules java.activation,java.xml.ws.annotation "
