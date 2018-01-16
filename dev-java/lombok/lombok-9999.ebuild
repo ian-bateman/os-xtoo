@@ -10,11 +10,9 @@ BASE_URI="https://github.com/rzwitserloot/${PN}"
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
 	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
 else
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${P}"
 fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
@@ -37,7 +35,7 @@ CP_DEPEND="
 	dev-java/eclipse-core-resources:${ECLIPSE_SLOT}
 	dev-java/eclipse-core-runtime:${ECLIPSE_SLOT}
 	dev-java/eclipse-equinox-common:${ECLIPSE_SLOT}
-	dev-java/freemarker:2.3
+	dev-java/freemarker:0
 	dev-java/java2html:0
 	dev-java/lombok-patcher:0
 	dev-java/markdownj:0
@@ -46,25 +44,58 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
 
-# Hack patch, allows build doubt it is usable/working runtime?
 PATCHES=( "${FILESDIR}/javac-type.patch" )
 
-JAVA_SRC_DIR="src"
-JAVA_GENTOO_CLASSPATH_EXTRA="${JAVA_HOME}/lib/tools.jar"
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.file.PathFileObject=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util.swing=ALL-UNNAMED "
 
 java_prepare() {
-	rm -r src/{javac-only-stubs,stubsstubs,testAP,useTestAP} \
+	mv src/stubs/org src || die "Failed to move needed stub"
+	rm -r src/{javac-only-stubs,stubs,stubsstubs,testAP,useTestAP} \
+		src/core/lombok/javac/apt/Javac{6,7}BaseFileObjectWrapper.java \
+		src/core/lombok/javac/Javac{6,8}BasedLombokOptions.java \
+		src/utils/lombok/javac/java{6,7} \
 		|| die "Failed to remove sources not to be included"
-}
 
-src_compile() {
-	export JAVA_GENTOO_CLASSPATH_EXTRA="${JAVA_HOME}/lib/tools.jar"
-	java-pkg-simple_src_compile
+	cp "${FILESDIR}/PackageName.java" src/utils/lombok/javac/ \
+		|| die "Failed to replaced utils/lombok/javac/PackageName.java"
+
+	sed -i -e '113i\\t@Override' \
+		-e '113i\\t\tcom.sun.tools.javac.file.PathFileObject getSibling(String basename) { throw new Exception("Not implemented"); }' \
+		src/core/lombok/javac/apt/Javac9BaseFileObjectWrapper.java \
+		|| die "Failed to sed/fix java 9 missing override"
+
+	sed -i -e '50,83d;114,119d;121,148d' \
+		src/core/lombok/javac/apt/LombokFileObjects.java \
+		|| die "Failed to sed/remove < java 9 support"
+
+	sed -i -e '512d;536,550d;' src/core/lombok/javac/JavacAST.java \
+		|| die "Failed to sed/remove < java 9 support"
+
+	sed -i -e '540,542d;544d;547d;568d;570d;574,576d;580d' \
+		src/delombok/lombok/delombok/Delombok.java \
+		|| die "Failed to sed/remove < java 9 support"
+
+	sed -i -e '25,26d;35,46d;61,65d;67d' \
+		src/delombok/lombok/delombok/LombokOptionsFactory.java \
+		|| die "Failed to sed/remove < java 9 support"
+
 }
