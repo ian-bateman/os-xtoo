@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -24,6 +24,7 @@ SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/animal-sniffer-annotations:0
+	dev-java/checker-compatqual:0
 	dev-java/error-prone-annotations:0
 	>=dev-java/j2objc-annotations-1.2:0
 	dev-java/javax-inject:0
@@ -38,4 +39,4 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
-JAVAC_ARGS="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED"
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
