@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -32,13 +32,13 @@ CP_DEPEND="
 	~dev-java/jodd-bean-${PV}:${SLOT}
 	~dev-java/jodd-core-${PV}:${SLOT}
 	~dev-java/jodd-upload-${PV}:${SLOT}
-	java-virtuals/servlet-api:3.0
+	dev-java/tomcat-servlet-api:4.0
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
