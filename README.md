@@ -88,6 +88,21 @@ Java 9. There is initial support for Java 10. Initial testing for Java
 10 has begun. Most any package that builds under 9 should under 10, 
 less any new issues from Java 10.
 
+### Setting system/user VM
+This overlay is in the process of switching to 
+[jem](https://github.com/Obsidian-StudiosInc/jem) from 
+[java-config](https://github.com/gentoo/java-config). At this time you 
+need to use both to set system and/or user VM. Changing one you need to 
+do the same with the other. There is no wrapper for both. java-config 
+will be removed as soon as depend-java-query and gjl (replacement to be 
+named jjl) are replaced. Those commands are still provided by 
+java-config.
+
+Otherwise jem is a drop in replacement for java-config, and has the same 
+syntax and features. jem is used in eclasses in this overlay. 
+java-config itself is really not used. Just need to set java-config 
+system/user vm for depend-java-query and gjl. Thus it remaining for now.
+
 ## E
 This repo has full and complete support for 
 [Enlightenment](https://www.enlightenment.org/) desktop. This is 
