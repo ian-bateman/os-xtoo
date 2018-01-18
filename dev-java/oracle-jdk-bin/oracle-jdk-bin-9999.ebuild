@@ -9,6 +9,7 @@ SLOT="${PV%%.*}"
 [[ ${SLOT} == *_pre* ]] && SLOT="${PV%%_*}"
 
 BASE_URI="http://download"
+RESTRICT="preserve-libs strip"
 
 if [[ ${PV} == *_pre* ]]; then
 	JDK_URI="http://jdk.java.net/${SLOT}/"
@@ -18,6 +19,7 @@ else
 	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
 	BASE_URI="http://download.oracle.com/otn-pub/java/jdk/${PV}+11/"
 	MY_PV="${PV}"
+	RESTRICT+=" fetch"
 fi
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/jdk-${MY_PV}_linux-x64_bin.tar.gz"
@@ -30,8 +32,6 @@ LICENSE="Oracle-BCLA-JavaSE"
 
 IUSE="alsa cups +fontconfig gtk2 gtk3 headless-awt javafx nsplugin selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig || ( gtk2 gtk3 ) )"
-
-RESTRICT="preserve-libs strip"
 QA_PREBUILT="*"
 
 RDEPEND="
