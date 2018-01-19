@@ -22,6 +22,7 @@ RDEPEND="
 	dev-java/freemarker:0
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
+	dev-java/nb-cmake-completion:0
 	dev-java/nb-darcula:0
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
@@ -207,8 +208,9 @@ src_install() {
 	jars+=(
 		darcula eclipse-jgit freemarker htmlparser iconloader
 		intellij-platform-annotations javaewah jsch json-simple
-		lucene-core-${LUCENE_SLOT} nb-darcula osgi-core-api-${OSGI_SLOT}
-		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
+		lucene-core-${LUCENE_SLOT} nb-cmake-completion nb-darcula
+		osgi-core-api-${OSGI_SLOT} xerces-${XERCES_SLOT}
+		xml-commons-resolver slf4j-api
 	)
 	symlink_libs ${jars[@]}
 
