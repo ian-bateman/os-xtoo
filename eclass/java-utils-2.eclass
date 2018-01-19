@@ -1721,9 +1721,6 @@ java-utils-2_src_prepare() {
 		_java-pkg_rm_files "${JAVA_RM_FILES[@]}"
 	fi
 
-	# Remove *.class and *.jar by default
-	java-pkg_clean
-
 	java-pkg_func-exists java_prepare && java_prepare
 }
 
