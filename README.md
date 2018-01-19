@@ -152,6 +152,15 @@ using 8.2 and switch to 9 from source. Removing any packages brought in
 by 8.2. Moving this overlay one step closer to being independent of Java 
 packages in tree, entirely!
 
+Presently we are working on a single master Netbeans ebuild. Which will 
+later have function moved to eclass. Along with USE flags added to reduce 
+dependencies based on wanted features. Eclass function will allow 
+packages to install and register themselves. Presently done via symlinks 
+in main 
+[dev-util/netbeans](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/dev-util/netbeans) 
+ebuild. Which will becoming mostly a meta ebuild with just depenencies 
+and USE flags.
+
 ## Eclipse IDE
 There are no plans to package Eclipse IDE from source. We are 
 [Netbeaners](https://netbeans.org). Due to being dependencies of other 
