@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -44,4 +44,5 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/org.${PN//-/.}/"
 
+JAVA_RES_DIR="resources"
 JAVAC_ARGS+=" --add-modules java.xml.bind "
