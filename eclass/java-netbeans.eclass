@@ -88,6 +88,7 @@ java-netbeans_src_prepare() {
 		sed -i  -e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
 			-e '2iOpenIDE-Module-Implementation-Version: '${iv}'' \
 			-e '2iOpenIDE-Module-Specification-Version: '${sv}'' \
+			-e '2iOpenIDE-Module-Public-Packages: -' \
 			-e '/OpenIDE-Module-Implementation-Version/d' \
 			-e '/OpenIDE-Module-Specification-Version/d' \
 			-e '/OpenIDE-Module-Needs/d' \
