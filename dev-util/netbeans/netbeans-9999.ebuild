@@ -134,7 +134,7 @@ symlink_jars() {
 symlink_libs() {
 	local l p
 	for p in "${@}"; do
-		l="$(java-config -p ${p})"
+		l="$(jem -p ${p})"
 		[[ -z ${l} ]] && die "Jar not found for ${p}"
 		dosym "${l/\/usr\/share\//../../}" \
 			"/usr/share/${PN}-${SLOT}/lib/${l##*/}"
@@ -264,8 +264,8 @@ src_install() {
 	jars+=( ${jars_short[@]/#/html} )
 
 	jars_short=(
-		api-common platform platform-ui project project-ui source
-		source-base sourceui
+		api-common platform platform-ui preprocessorbridge project
+		project-ui source source-base sourceui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
