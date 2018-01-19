@@ -2438,32 +2438,14 @@ java-pkg_ensure-dep() {
 
 	debug-print "Matching against: ${stripped_pkg}"
 
-	# Uncomment the lines below once we've dealt with more of these
-	# otherwise we'll be tempted to turn JAVA_PKG_STRICT off while
-	# getting hit with a wave of bug reports. :(
-
 	if [[ ${limit_to} != runtime && ! ( "${DEPEND}" =~ $stripped_pkg ) ]]; then
 		dev_error="The ebuild is attempting to use ${target_pkg}, which is not "
 		dev_error+="declared with a SLOT in DEPEND."
-#		if is-java-strict; then
-#			die "${dev_error}"
-#		else
-			eqawarn "java-pkg_ensure-dep: ${dev_error}"
-#			eerror "Because you have ${target_pkg} installed,"
-#			eerror "the package will build without problems, but please"
-#			eerror "report this to https://bugs.gentoo.org."
-#		fi
+		eqawarn "java-pkg_ensure-dep: ${dev_error}"
 	elif [[ ${limit_to} != build && ! ( "${RDEPEND}${PDEPEND}" =~ ${stripped_pkg} ) ]]; then
 		dev_error="The ebuild is attempting to use ${target_pkg}, which is not "
 		dev_error+="declared with a SLOT in [RP]DEPEND and --build-only wasn't given."
-#		if is-java-strict; then
-#			die "${dev_error}"
-#		else
-			eqawarn "java-pkg_ensure-dep: ${dev_error}"
-#			eerror "The package will build without problems, but may fail to run"
-#			eerror "if you don't have ${target_pkg} installed,"
-#			eerror "so please report this to https://bugs.gentoo.org."
-#		fi
+		eqawarn "java-pkg_ensure-dep: ${dev_error}"
 	fi
 }
 
