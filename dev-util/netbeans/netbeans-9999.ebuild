@@ -7,7 +7,8 @@ inherit java-netbeans
 
 DEPEND=">=virtual/jdk-9:*"
 
-ANTLR_SLOT="3"
+ANTLR3_SLOT="3"
+ANTLR4_SLOT="4"
 ASM_SLOT="6"
 ECLIPSE_SLOT="4.7"
 LUCENE_SLOT="3"
@@ -17,7 +18,8 @@ WIKI_SLOT="3"
 XERCES_SLOT="2"
 
 RDEPEND="
-	dev-java/antlr:${ANTLR_SLOT}
+	dev-java/antlr:${ANTLR3_SLOT}
+	dev-java/antlr:${ANTLR4_SLOT}
 	dev-java/asm:${ASM_SLOT}
 	dev-java/freemarker:0
 	dev-java/jsr305:0
@@ -61,10 +63,14 @@ RDEPEND="
 	~dev-java/${PN}-html-editor-${PV}:${SLOT}
 	~dev-java/${PN}-html-parser-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
+	~dev-java/${PN}-ide-kit-${PV}:${SLOT}
 	~dev-java/${PN}-java-api-common-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
+	~dev-java/${PN}-lexer-nbbridge-${PV}:${SLOT}
+	~dev-java/${PN}-libs-antlr3-runtime-${PV}:${SLOT}
+	~dev-java/${PN}-libs-antlr4-runtime-${PV}:${SLOT}
 	~dev-java/${PN}-libs-asm-${PV}:${SLOT}
 	~dev-java/${PN}-libs-freemarker-${PV}:${SLOT}
 	~dev-java/${PN}-localhistory-${PV}:${SLOT}
@@ -214,8 +220,11 @@ src_install() {
 	)
 	symlink_libs ${jars[@]}
 
-	dosym ../../antlr-${ANTLR_SLOT}/lib/antlr-runtime.jar \
-		/usr/share/${my_pn}/lib/antlr-runtime.jar
+	dosym ../../antlr-${ANTLR3_SLOT}/lib/antlr-runtime.jar \
+		/usr/share/${my_pn}/lib/antlr3-runtime.jar
+
+	dosym ../../antlr-${ANTLR4_SLOT}/lib/antlr-runtime.jar \
+		/usr/share/${my_pn}/lib/antlr4-runtime.jar
 
 #	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
@@ -272,7 +281,9 @@ src_install() {
 	jars_short=( nbjavac terminalemulator uihandler )
 	jars+=( ${jars_short[@]/#/lib-} )
 
-	jars_short=( freemarker jsch-agentproxy git )
+	jars_short=(
+		antlr3-runtime antlr4-runtime freemarker jsch-agentproxy git
+	)
 	jars+=( ${jars_short[@]/#/libs-} )
 
 	jars_short=( "" "-linux" -"nio2" "-ui" )
@@ -334,10 +345,11 @@ src_install() {
 
 	jars+=(
 		apisupport-project classfile diff editor favorites git ide
-		javahelp jumpto keyring lexer localhistory localtasks
-		mylyn-util progress-ui properties properties-syntax queries
-		sampler sendopts settings team-commons team-ide terminal
-		terminal-nb uihandler updatecenters xsl
+		ide-kit javahelp jumpto keyring lexer lexer-nbbridge
+		localhistory localtasks mylyn-util progress-ui properties
+		properties-syntax queries sampler sendopts settings
+		team-commons team-ide terminal terminal-nb uihandler
+		updatecenters xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
