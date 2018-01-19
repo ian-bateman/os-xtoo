@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Implementation-Version: PV
+OpenIDE-Module-Specification-Version: PV
+OpenIDE-Module-Build-Version: DATE
+OpenIDE-Module-Short-Description: Provides (code-)completion for CMake files.
+OpenIDE-Module-Localizing-Bundle: bv/offa/netbeans/cmake/completion/Bundle.properties
+OpenIDE-Module-Name: CMake Completion
+OpenIDE-Module-Public-Packages: -
+OpenIDE-Module-Display-Category: bv.offa
+OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
+OpenIDE-Module: bv.offa.CMakeCompletion
