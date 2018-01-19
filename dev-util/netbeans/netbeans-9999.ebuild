@@ -24,6 +24,7 @@ RDEPEND="
 	dev-java/lucene-core:${LUCENE_SLOT}
 	dev-java/nb-darcula:0
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
+	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~dev-java/${PN}-bugtracking-bridge-${PV}:${SLOT}
@@ -31,9 +32,7 @@ RDEPEND="
 	~dev-java/${PN}-core-execution-${PV}:${SLOT}
 	~dev-java/${PN}-core-io-ui-${PV}:${SLOT}
 	~dev-java/${PN}-core-kit-${PV}:${SLOT}
-	~dev-java/${PN}-core-multitabs-${PV}:${SLOT}
 	~dev-java/${PN}-core-multitabs-project-${PV}:${SLOT}
-	~dev-java/${PN}-core-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-core-netigso-${PV}:${SLOT}
 	~dev-java/${PN}-core-network-${PV}:${SLOT}
 	~dev-java/${PN}-core-osgi-${PV}:${SLOT}
@@ -61,6 +60,7 @@ RDEPEND="
 	~dev-java/${PN}-html-editor-${PV}:${SLOT}
 	~dev-java/${PN}-html-parser-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
+	~dev-java/${PN}-java-api-common-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
@@ -74,7 +74,6 @@ RDEPEND="
 	~dev-java/${PN}-o-n-swing-dirchooser-${PV}:${SLOT}
 	~dev-java/${PN}-o-n-upgrader-${PV}:${SLOT}
 	~dev-java/${PN}-openide-compat-${PV}:${SLOT}
-	~dev-java/${PN}-openide-execution-${PV}:${SLOT}
 	~dev-java/${PN}-openide-filesystems-compat8-${PV}:${SLOT}
 	~dev-java/${PN}-openide-options-${PV}:${SLOT}
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
@@ -88,8 +87,6 @@ RDEPEND="
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
 	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
-	~dev-java/${PN}-spi-navigator-${PV}:${SLOT}
-	~dev-java/${PN}-spi-palette-${PV}:${SLOT}
 	~dev-java/${PN}-team-ide-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
 	~dev-java/${PN}-uihandler-${PV}:${SLOT}
@@ -98,11 +95,10 @@ RDEPEND="
 	~dev-java/${PN}-versioning-indexingbridge-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-masterfs-${PV}:${SLOT}
 	~dev-java/${PN}-versioning-system-cvss-installer-${PV}:${SLOT}
-	~dev-java/${PN}-versioning-ui-${PV}:${SLOT}
 	~dev-java/${PN}-xml-catalog-ui-${PV}:${SLOT}
 	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-xml-schema-completion-${PV}:${SLOT}
-	~dev-java/${PN}-xml-tools-${PV}:${SLOT}
+	~dev-java/${PN}-xml-tools-java-${PV}:${SLOT}
 	~dev-java/${PN}-xml-xdm-${PV}:${SLOT}
 	~dev-java/${PN}-xsl-${PV}:${SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
@@ -265,10 +261,13 @@ src_install() {
 	jars_short=( "" "-custom" "-editor" "-editor-lib" "-lexer" "-parser" )
 	jars+=( ${jars_short[@]/#/html} )
 
-	jars_short=( platform platform-ui project )
+	jars_short=(
+		api-common platform platform-ui project project-ui source
+		source-base sourceui
+	)
 	jars+=( ${jars_short[@]/#/java-} )
 
-	jars_short=( terminalemulator uihandler )
+	jars_short=( nbjavac terminalemulator uihandler )
 	jars+=( ${jars_short[@]/#/lib-} )
 
 	jars_short=( freemarker jsch-agentproxy git )
@@ -327,16 +326,16 @@ src_install() {
 	jars_short=(
 		"" "-axi" "-catalog" "-catalog-ui" "-core" "-lexer" "-multiview"
 		"-retriever" "-schema-model" "-schema-completion" "-tax"
-		"-text" "-tools" "-xam" "-xdm"
+		"-text" "-tools" "-tools-java" "-xam" "-xdm"
 	)
 	jars+=( ${jars_short[@]/#/xml} )
 
 	jars+=(
-		classfile diff editor favorites git ide javahelp jumpto
-		keyring lexer localhistory localtasks mylyn-util progress-ui
-		properties properties-syntax queries sampler sendopts settings
-		team-commons team-ide terminal terminal-nb uihandler
-		updatecenters xsl
+		apisupport-project classfile diff editor favorites git ide
+		javahelp jumpto keyring lexer localhistory localtasks
+		mylyn-util progress-ui properties properties-syntax queries
+		sampler sendopts settings team-commons team-ide terminal
+		terminal-nb uihandler updatecenters xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
