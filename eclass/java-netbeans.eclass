@@ -194,6 +194,9 @@ java-netbeans_get-processors() {
 #		*"api-java-${PV}"*)
 #			procs+=",${nb}.api.java.queries.AnnotationProcessingQuery"
 #			;;&
+		*api-htmlui*)
+			procs+=",${nbm}.htmlui.HTMLViewProcessor"
+			;;&
 		*api-intent*)
 			procs+=",${nbm}.intent.OpenUriHandlerProcessor"
 			;;&
@@ -220,6 +223,9 @@ java-netbeans_get-processors() {
 			;;&
 		*"extexecution-${PV}"*)
 			procs+=",${nbm}.extexecution.startup.StartupExtenderRegistrationProcessor"
+			;;&
+		*javahelp*)
+			procs+=",${nbm}.javahelp.HelpSetRegistrationProcessor"
 			;;&
 		*net-java-html-json*)
 			procs+=",${nb}.html.json.impl.ModelProcessor"
