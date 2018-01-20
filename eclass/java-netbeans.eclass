@@ -201,6 +201,7 @@ java-netbeans_get-processors() {
 #			procs+=",${nb}.api.java.queries.AnnotationProcessingQuery"
 #			;;&
 		*api-htmlui*)
+			procs+=",${nbm}.htmlui.HTMLDialogProcessor"
 			procs+=",${nbm}.htmlui.HTMLViewProcessor"
 			;;&
 		*api-intent*)
