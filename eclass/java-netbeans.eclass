@@ -191,6 +191,9 @@ java-netbeans_get-processors() {
 		*api-annotations*)
 			procs+=",${nb}.api.annotations.common.proc.StaticResourceProcessor"
 			;;&
+		*api-debugger*)
+			procs+=",${nb}.debugger.registry.DebuggerProcessor"
+			;;&
 #		*"api-java-${PV}"*)
 #			procs+=",${nb}.api.java.queries.AnnotationProcessingQuery"
 #			;;&
