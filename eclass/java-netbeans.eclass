@@ -206,6 +206,9 @@ java-netbeans_get-processors() {
 		*autoupdate-cli*)
 			procs+=",${nbm}.autoupdate.cli.ModuleOptions"
 			;;&
+		*"bugtracking-${PV}"*)
+			procs+=",${nbm}.bugtracking.BugtrackingRegistrationProcessor"
+			;;&
 		*csl-api*)
 			procs+=",${nbm}.csl.core.LanguageRegistrationProcessor"
 			;;&
