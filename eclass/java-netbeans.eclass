@@ -256,8 +256,10 @@ java-netbeans_get-processors() {
 			procs+=",${oim}.nodes.NodesAnnotationProcessor"
 			;;&
 		*"openide-util-${PV}"*)
-			procs+=",${oim}.util.NamedServiceProcessor"
 			procs+=",${oim}.util.NbBundleProcessor"
+			;;&
+		*openide-util-lookup*)
+			procs+=",${oim}.util.NamedServiceProcessor"
 			procs+=",${oim}.util.ServiceProviderProcessor"
 			;;&
 		*openide-windows*)
