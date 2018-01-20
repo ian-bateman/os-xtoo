@@ -165,7 +165,8 @@ java-netbeans_get-processors() {
 		die
 	fi
 
-	if ( [[ "${CP_DEPEND}" == *api-intent* ]] ||
+	if ( [[ "${CP_DEPEND}" == *api-debugger-jpda* ]] ||
+		[[ "${CP_DEPEND}" == *api-intent* ]] ||
 		[[ "${CP_DEPEND}" == *editor-lib2* ]] ||
 		[[ "${CP_DEPEND}" == *editor-mimelookup* ]] ||
 		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
