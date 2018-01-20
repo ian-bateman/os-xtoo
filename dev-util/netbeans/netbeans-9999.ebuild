@@ -28,6 +28,7 @@ RDEPEND="
 	dev-java/nb-darcula:0
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
+	~dev-java/${PN}-apisupport-wizards-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~dev-java/${PN}-bugtracking-bridge-${PV}:${SLOT}
@@ -105,6 +106,7 @@ RDEPEND="
 	~dev-java/${PN}-xml-catalog-ui-${PV}:${SLOT}
 	~dev-java/${PN}-xml-multiview-${PV}:${SLOT}
 	~dev-java/${PN}-xml-schema-completion-${PV}:${SLOT}
+	~dev-java/${PN}-xml-text-obsolete90-${PV}:${SLOT}
 	~dev-java/${PN}-xml-tools-java-${PV}:${SLOT}
 	~dev-java/${PN}-xml-xdm-${PV}:${SLOT}
 	~dev-java/${PN}-xsl-${PV}:${SLOT}
@@ -235,6 +237,9 @@ src_install() {
 	)
 	jars=( ${jars_short[@]/#/api-} )
 
+	jars_short=( project wizards )
+	jars+=( ${jars_short[@]/#/apisupport-} )
+
 	jars_short=( cli pluginimporter services ui )
 	jars+=( ${jars_short[@]/#/autoupdate-} )
 
@@ -344,12 +349,11 @@ src_install() {
 	jars+=( ${jars_short[@]/#/xml} )
 
 	jars+=(
-		apisupport-project classfile diff editor favorites git ide
-		ide-kit javahelp jumpto keyring lexer lexer-nbbridge
-		localhistory localtasks mylyn-util progress-ui properties
-		properties-syntax queries sampler sendopts settings
-		team-commons team-ide terminal terminal-nb uihandler
-		updatecenters xsl
+		classfile diff editor favorites git ide ide-kit javahelp
+		jumpto keyring lexer lexer-nbbridge localhistory localtasks
+		mylyn-util progress-ui properties properties-syntax queries
+		sampler sendopts settings team-commons team-ide terminal
+		terminal-nb uihandler updatecenters xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
