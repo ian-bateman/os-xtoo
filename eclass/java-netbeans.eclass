@@ -300,6 +300,9 @@ java-netbeans_get-processors() {
 		*settings*)
 			procs+=",${nbm}.settings.convertors.ConvertorProcessor"
 			;;&
+		*spi-debugger-ui*)
+			procs+=",${nbm}.debugger.ui.registry.DebuggerProcessor"
+			;;&
 		*spi-navigator*)
 			procs+=",${nbm}.navigator.NavigatorPanelRegistrationProcessor"
 			;;&
