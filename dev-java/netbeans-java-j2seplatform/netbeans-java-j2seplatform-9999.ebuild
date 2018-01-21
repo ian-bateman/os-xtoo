@@ -41,3 +41,8 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	mv {probe,}src/org/netbeans/modules/java/j2seplatform/wizard/SDKProbe.java \
+		|| die "Failed to move additional sources"
+}
