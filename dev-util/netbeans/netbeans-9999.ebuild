@@ -319,7 +319,7 @@ src_install() {
 
 	jars_short=(
 		"-ant" "-ant-ui" api api-nb "-indexingbridge" "-libraries"
-		"-libraries-ui" "-spi-intern" "-spi-intern-impl" uiapi
+		"-libraries-ui" "-spi-intern" "-spi-intern-impl" ui uiapi
 		uiapi-base
 	)
 	jars+=( ${jars_short[@]/#/project} )
