@@ -26,6 +26,9 @@ RDEPEND="
 	dev-java/lucene-core:${LUCENE_SLOT}
 	dev-java/nb-cmake-completion:0
 	dev-java/nb-darcula:0
+	~dev-java/${PN}-ant-browsetask-${PV}:${SLOT}
+	~dev-java/${PN}-ant-grammar-${PV}:${SLOT}
+	~dev-java/${PN}-ant-kit-${PV}:${SLOT}
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-harness-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
@@ -70,6 +73,7 @@ RDEPEND="
 	~dev-java/${PN}-java-completion-${PV}:${SLOT}
 	~dev-java/${PN}-java-editor-base-${PV}:${SLOT}
 	~dev-java/${PN}-java-editor-lib-${PV}:${SLOT}
+	~dev-java/${PN}-java-freeform-${PV}:${SLOT}
 	~dev-java/${PN}-java-guards-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
@@ -100,6 +104,7 @@ RDEPEND="
 	~dev-java/${PN}-project-spi-intern-impl-${PV}:${SLOT}
 	~dev-java/${PN}-projectapi-nb-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
+	~dev-java/${PN}-projectui-buildmenu-${PV}:${SLOT}
 	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
 	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
 	~dev-java/${PN}-team-ide-${PV}:${SLOT}
@@ -238,11 +243,14 @@ src_install() {
 #	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
 	# symlink jars in modules
+	jars_short=( browsetask freeform grammar kit )
+	jars=( ${jars_short[@]/#/ant-} )
+
 	jars_short=(
 		annotations-common htmlui intent io progress progress-nb java
 		java-classpath templates xml xml-ui
 	)
-	jars=( ${jars_short[@]/#/api-} )
+	jars+=( ${jars_short[@]/#/api-} )
 
 	jars_short=( harness project wizards )
 	jars+=( ${jars_short[@]/#/apisupport-} )
@@ -285,8 +293,8 @@ src_install() {
 	jars+=( ${jars_short[@]/#/html} )
 
 	jars_short=(
-		api-common completion editor-base editor-lib guards lexer
-		platform platform-ui preprocessorbridge project project-ui
+		api-common completion editor-base editor-lib freeform guards
+		lexer platform platform-ui preprocessorbridge project project-ui
 		source source-ant source-base source-compat8 sourceui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
@@ -320,7 +328,7 @@ src_install() {
 	jars_short=(
 		"-ant" "-ant-ui" api api-nb "-indexingbridge" "-libraries"
 		"-libraries-ui" "-spi-intern" "-spi-intern-impl" ui uiapi
-		uiapi-base
+		uiapi-base ui-buildmenu
 	)
 	jars+=( ${jars_short[@]/#/project} )
 
