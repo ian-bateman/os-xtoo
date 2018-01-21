@@ -11,7 +11,6 @@ CP_DEPEND="
 	~dev-java/netbeans-api-java-${PV}:${SLOT}
 	~dev-java/netbeans-api-java-classpath-${PV}:${SLOT}
 	~dev-java/netbeans-api-progress-${PV}:${SLOT}
-	~dev-java/netbeans-api-progress-nb-${PV}:${SLOT}
 	~dev-java/netbeans-java-platform-${PV}:${SLOT}
 	~dev-java/netbeans-java-platform-ui-${PV}:${SLOT}
 	~dev-java/netbeans-java-project-${PV}:${SLOT}
