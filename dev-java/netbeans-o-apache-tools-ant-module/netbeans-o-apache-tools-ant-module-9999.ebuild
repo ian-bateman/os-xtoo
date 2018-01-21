@@ -6,6 +6,7 @@ EAPI="6"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/ant-core:0
 	~dev-java/netbeans-api-progress-${PV}:${SLOT}
 	~dev-java/netbeans-api-progress-nb-${PV}:${SLOT}
 	~dev-java/netbeans-api-annotations-common-${PV}:${SLOT}
@@ -30,6 +31,7 @@ CP_DEPEND="
 	~dev-java/netbeans-openide-windows-${PV}:${SLOT}
 	~dev-java/netbeans-options-api-${PV}:${SLOT}
 	~dev-java/netbeans-options-java-${PV}:${SLOT}
+	~dev-java/netbeans-project-indexingbridge-${PV}:${SLOT}
 	~dev-java/netbeans-projectapi-${PV}:${SLOT}
 	~dev-java/netbeans-projectuiapi-${PV}:${SLOT}
 	~dev-java/netbeans-projectuiapi-base-${PV}:${SLOT}
@@ -42,3 +44,9 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	mv src-bridge/org/apache/tools/ant/module/bridge/impl \
+		src/org/apache/tools/ant/module/bridge \
+		|| die "Failed to move additional sources"
+}
