@@ -76,16 +76,19 @@ RDEPEND="
 	~dev-java/${PN}-java-editor-base-${PV}:${SLOT}
 	~dev-java/${PN}-java-editor-lib-${PV}:${SLOT}
 	~dev-java/${PN}-java-freeform-${PV}:${SLOT}
+	~dev-java/${PN}-java-guards-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2sedeploy-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seplatform-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seprofiles-${PV}:${SLOT}
-	~dev-java/${PN}-java-guards-${PV}:${SLOT}
+	~dev-java/${PN}-java-kit-${PV}:${SLOT}
 	~dev-java/${PN}-java-navigation-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-java-source-ant-${PV}:${SLOT}
 	~dev-java/${PN}-java-source-compat8-${PV}:${SLOT}
+	~dev-java/${PN}-java-testrunner-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
+	~dev-java/${PN}-junit-${PV}:${SLOT}
 	~dev-java/${PN}-lexer-nbbridge-${PV}:${SLOT}
 	~dev-java/${PN}-libs-antlr3-runtime-${PV}:${SLOT}
 	~dev-java/${PN}-libs-antlr4-runtime-${PV}:${SLOT}
@@ -305,14 +308,17 @@ src_install() {
 	jars_short=( "" "-custom" "-editor" "-editor-lib" "-lexer" "-parser" )
 	jars+=( ${jars_short[@]/#/html} )
 
+	jars_short=( testrunner testrunner-ui )
+	jars+=( ${jars_short[@]/#/gsf-} )
+
 	jars_short=( metadata metadata-model-support persistenceapi )
 	jars+=( ${jars_short[@]/#/j2ee-} )
 
 	jars_short=(
 		api-common completion debug editor-base editor-lib freeform
-		guards lexer navigation platform platform-ui preprocessorbridge
-		project project-ui source source-ant source-base
-		source-compat8 sourceui
+		guards kit lexer navigation platform platform-ui
+		preprocessorbridge project project-ui source source-ant
+		source-base source-compat8 sourceui testrunner
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
@@ -385,10 +391,10 @@ src_install() {
 	jars+=( ${jars_short[@]/#/xml} )
 
 	jars+=(
-		classfile diff editor favorites git ide ide-kit javahelp
-		jumpto keyring lexer lexer-nbbridge localhistory localtasks
-		mylyn-util o-apache-tools-ant-module progress-ui properties
-		properties-syntax queries sampler sendopts settings
+		classfile diff editor favorites git ide ide-kit gototest
+		javahelp jumpto junit keyring lexer lexer-nbbridge localhistory
+		localtasks mylyn-util o-apache-tools-ant-module progress-ui
+		properties properties-syntax queries sampler sendopts settings
 		team-commons team-ide terminal terminal-nb uihandler
 		updatecenters whitelist xsl
 	)
