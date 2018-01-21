@@ -45,8 +45,10 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
-java_prepare() {
+src_prepare() {
 	mv src-bridge/org/apache/tools/ant/module/bridge/impl \
 		src/org/apache/tools/ant/module/bridge \
 		|| die "Failed to move additional sources"
+
+	java-netbeans_src_prepare
 }
