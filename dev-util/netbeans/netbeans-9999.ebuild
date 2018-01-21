@@ -27,6 +27,7 @@ RDEPEND="
 	dev-java/nb-cmake-completion:0
 	dev-java/nb-darcula:0
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
+	~dev-java/${PN}-apisupport-harness-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-wizards-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
@@ -66,8 +67,14 @@ RDEPEND="
 	~dev-java/${PN}-ide-${PV}:${SLOT}
 	~dev-java/${PN}-ide-kit-${PV}:${SLOT}
 	~dev-java/${PN}-java-api-common-${PV}:${SLOT}
+	~dev-java/${PN}-java-completion-${PV}:${SLOT}
+	~dev-java/${PN}-java-editor-base-${PV}:${SLOT}
+	~dev-java/${PN}-java-editor-lib-${PV}:${SLOT}
+	~dev-java/${PN}-java-guards-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
+	~dev-java/${PN}-java-source-ant-${PV}:${SLOT}
+	~dev-java/${PN}-java-source-compat8-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
 	~dev-java/${PN}-lexer-nbbridge-${PV}:${SLOT}
 	~dev-java/${PN}-libs-antlr3-runtime-${PV}:${SLOT}
@@ -237,7 +244,7 @@ src_install() {
 	)
 	jars=( ${jars_short[@]/#/api-} )
 
-	jars_short=( project wizards )
+	jars_short=( harness project wizards )
 	jars+=( ${jars_short[@]/#/apisupport-} )
 
 	jars_short=( cli pluginimporter services ui )
@@ -278,8 +285,9 @@ src_install() {
 	jars+=( ${jars_short[@]/#/html} )
 
 	jars_short=(
-		api-common platform platform-ui preprocessorbridge project
-		project-ui source source-base sourceui
+		api-common completion editor-base editor-lib guards lexer
+		platform platform-ui preprocessorbridge project project-ui
+		source source-ant source-base source-compat8 sourceui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
