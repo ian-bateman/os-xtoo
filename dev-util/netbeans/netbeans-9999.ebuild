@@ -18,6 +18,7 @@ WIKI_SLOT="3"
 XERCES_SLOT="2"
 
 RDEPEND="
+	dev-java/ant-core:0
 	dev-java/antlr:${ANTLR3_SLOT}
 	dev-java/antlr:${ANTLR4_SLOT}
 	dev-java/asm:${ASM_SLOT}
@@ -77,6 +78,7 @@ RDEPEND="
 	~dev-java/${PN}-java-j2seplatform-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seproject-${PV}:${SLOT}
 	~dev-java/${PN}-java-guards-${PV}:${SLOT}
+	~dev-java/${PN}-java-navigation-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-java-source-ant-${PV}:${SLOT}
@@ -236,6 +238,9 @@ src_install() {
 	)
 	symlink_libs ${jars[@]}
 
+	dosym ../../ant-core/lib/ant.jar \
+		/usr/share/${my_pn}/lib/ant.jar
+
 	dosym ../../antlr-${ANTLR3_SLOT}/lib/antlr-runtime.jar \
 		/usr/share/${my_pn}/lib/antlr3-runtime.jar
 
@@ -250,7 +255,7 @@ src_install() {
 
 	jars_short=(
 		annotations-common htmlui intent io progress progress-nb java
-		java-classpath templates xml xml-ui
+		java-classpath search templates xml xml-ui
 	)
 	jars+=( ${jars_short[@]/#/api-} )
 
@@ -299,9 +304,9 @@ src_install() {
 
 	jars_short=(
 		api-common completion editor-base editor-lib freeform
-		j2seplatform j2seproject guards lexer platform platform-ui
-		preprocessorbridge project project-ui source source-ant
-		source-base source-compat8 sourceui
+		j2seplatform j2seproject guards lexer navigation platform
+		platform-ui preprocessorbridge project project-ui source
+		source-ant source-base source-compat8 sourceui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
@@ -373,9 +378,10 @@ src_install() {
 	jars+=(
 		classfile diff editor favorites git ide ide-kit javahelp
 		jumpto keyring lexer lexer-nbbridge localhistory localtasks
-		mylyn-util progress-ui properties properties-syntax queries
-		sampler sendopts settings team-commons team-ide terminal
-		terminal-nb uihandler updatecenters whitelist xsl
+		mylyn-util o-apache-tools-ant-module progress-ui properties
+		properties-syntax queries sampler sendopts settings
+		team-commons team-ide terminal terminal-nb uihandler
+		updatecenters whitelist xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
