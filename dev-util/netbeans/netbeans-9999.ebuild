@@ -72,11 +72,13 @@ RDEPEND="
 	~dev-java/${PN}-ide-kit-${PV}:${SLOT}
 	~dev-java/${PN}-java-api-common-${PV}:${SLOT}
 	~dev-java/${PN}-java-completion-${PV}:${SLOT}
+	~dev-java/${PN}-java-debug-${PV}:${SLOT}
 	~dev-java/${PN}-java-editor-base-${PV}:${SLOT}
 	~dev-java/${PN}-java-editor-lib-${PV}:${SLOT}
 	~dev-java/${PN}-java-freeform-${PV}:${SLOT}
+	~dev-java/${PN}-java-j2sedeploy-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seplatform-${PV}:${SLOT}
-	~dev-java/${PN}-java-j2seproject-${PV}:${SLOT}
+	~dev-java/${PN}-java-j2seprofiles-${PV}:${SLOT}
 	~dev-java/${PN}-java-guards-${PV}:${SLOT}
 	~dev-java/${PN}-java-navigation-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
@@ -240,6 +242,10 @@ src_install() {
 
 	dosym ../../ant-core/lib/ant.jar \
 		/usr/share/${my_pn}/lib/ant.jar
+	dosym ../../ant-core/lib/ant-bootstrap.jar \
+		/usr/share/${my_pn}/lib/ant-bootstrap.jar
+	dosym ../../ant-core/lib/ant-launcher.jar \
+		/usr/share/${my_pn}/lib/ant-launcher.jar
 
 	dosym ../../antlr-${ANTLR3_SLOT}/lib/antlr-runtime.jar \
 		/usr/share/${my_pn}/lib/antlr3-runtime.jar
@@ -303,12 +309,15 @@ src_install() {
 	jars+=( ${jars_short[@]/#/j2ee-} )
 
 	jars_short=(
-		api-common completion editor-base editor-lib freeform
-		j2seplatform j2seproject guards lexer navigation platform
-		platform-ui preprocessorbridge project project-ui source
-		source-ant source-base source-compat8 sourceui
+		api-common completion debug editor-base editor-lib freeform
+		guards lexer navigation platform platform-ui preprocessorbridge
+		project project-ui source source-ant source-base
+		source-compat8 sourceui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
+
+	jars_short=( deploy platform profiles project )
+	jars+=( ${jars_short[@]/#/java-j2se} )
 
 	jars_short=( nbjavac terminalemulator uihandler )
 	jars+=( ${jars_short[@]/#/lib-} )
