@@ -115,6 +115,7 @@ RDEPEND="
 	~dev-java/${PN}-projectui-${PV}:${SLOT}
 	~dev-java/${PN}-projectui-buildmenu-${PV}:${SLOT}
 	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
+	~dev-java/${PN}-server-${PV}:${SLOT}
 	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
 	~dev-java/${PN}-team-ide-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
@@ -394,8 +395,8 @@ src_install() {
 		classfile diff editor favorites git ide ide-kit gototest
 		javahelp jumpto junit keyring lexer lexer-nbbridge localhistory
 		localtasks mylyn-util o-apache-tools-ant-module progress-ui
-		properties properties-syntax queries sampler sendopts settings
-		team-commons team-ide terminal terminal-nb uihandler
+		properties properties-syntax queries sampler sendopts server
+		settings team-commons team-ide terminal terminal-nb uihandler
 		updatecenters whitelist xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
