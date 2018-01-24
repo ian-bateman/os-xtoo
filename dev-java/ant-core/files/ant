@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Modifications
-# Copyright 2017 Obisidian-Studios, Inc.
+# Copyright 2017-2018 Obisidian-Studios, Inc.
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -95,9 +95,9 @@ fi
 ANT_TASKS=( ${ANT_TASKS:-all} )
 
 if [[ "${ANT_TASKS[0]}" == "all" ]] && \
-[[ -d "${EPREFIX}"/usr/share/ant/tasks ]]; then
+	[[ -d "${EPREFIX}"/usr/share/ant/tasks ]]; then
 	ANT_TASKS=( "${EPREFIX}"/usr/share/ant/tasks/* )
-elif [[ "${ANT_TASKS[0]}" == "none" ]]; then
+elif [[ "${ANT_TASKS[0]}" == "all" ]] || [[ "${ANT_TASKS[0]}" == "none" ]]; then
 	ANT_TASKS=()
 fi
 
