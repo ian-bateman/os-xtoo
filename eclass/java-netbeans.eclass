@@ -92,6 +92,7 @@ java-netbeans_src_prepare() {
 			-e '/OpenIDE-Module-Implementation-Version/d' \
 			-e '/OpenIDE-Module-Specification-Version/d' \
 			-e '/OpenIDE-Module-Needs/d' \
+			-e '/OpenIDE-Module-Requires/d' \
 			manifest.mf \
 			|| die "Failed to append to manifest"
 		mv manifest.mf ${JAVA_RES_DIR}/META-INF/MANIFEST.MF \
