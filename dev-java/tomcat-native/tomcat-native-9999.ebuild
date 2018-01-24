@@ -67,9 +67,7 @@ ${p}_la_SOURCES = address.c file.c misc.c os.c shm.c sslinfo.c thread.c bb.c inf
 }
 
 src_configure() {
-	econf --with-apr=/usr/bin/apr-1-config \
-		--with-ssl=/usr \
-		|| die "Failed to configure native sources"
+	econf --with-apr=/usr/bin/apr-1-config --with-ssl=/usr
 }
 
 src_compile() {
