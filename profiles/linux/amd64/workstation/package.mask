@@ -1,3 +1,4 @@
+>=app-office/gnucash-2.7
 dev-java/icedtea-web
 =dev-java/java-config-2.2.1
 dev-lang/ruby:2.2
@@ -5,4 +6,3 @@ dev-lang/ruby:2.3
 >=media-libs/speex-1.2.0
 =x11-wm/enlightenment-1.0*
 =x11-wm/enlightenment-0.22.1
-
