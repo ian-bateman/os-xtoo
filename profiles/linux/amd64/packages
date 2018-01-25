@@ -3,6 +3,7 @@
 *app-arch/tar
 *app-arch/xz-utils
 *app-shells/bash:0
+*app-portage/mask-gentoo-dev-java
 *net-misc/iputils
 *net-misc/rsync
 *net-misc/wget
