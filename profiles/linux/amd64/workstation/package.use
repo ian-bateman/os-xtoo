@@ -29,7 +29,7 @@ dev-java/protobuf-java nano
 dev-java/swing-layout source
 dev-lang/python ncurses tk
 dev-libs/DirectFB -egl nvidia video_cards_i965 video_cards_intel video_cards_nvidia video_cards_radeon
-dev-libs/boost python
+dev-libs/boost icu python
 dev-libs/efl egl harfbuzz -opengl physics postscript psd -sdl -static-libs wayland
 dev-libs/gmp cxx
 dev-libs/libcdio cddb
@@ -61,6 +61,7 @@ media-gfx/sane-backends -v4l
 media-libs/flac cxx
 media-libs/freetype static-libs
 media-libs/gst-plugins-base theora
+media-libs/gst-plugins-bad -gles2
 media-libs/harfbuzz icu
 media-libs/imlib2 X
 media-libs/jpeg static-libs
