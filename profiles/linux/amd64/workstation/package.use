@@ -47,7 +47,6 @@ dev-libs/pwlib ldap
 dev-qt/qtcore icu
 dev-scheme/guile deprecated
 dev-util/android-studio-bin system-jvm
-dev-util/netbeans apisupport cnd experimental harness ide identity j2ee mobility nb profiler ruby soa stableuc testtools uml visualweb
 dev-vcs/cvs -server
 dev-vcs/git cvs gtk python subversion
 dev-vcs/subversion -dso -java -kde -kwallet perl
