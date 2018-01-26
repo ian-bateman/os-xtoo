@@ -33,8 +33,10 @@ RDEPEND="
 	~dev-java/${PN}-ant-kit-${PV}:${SLOT}
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
 	~dev-java/${PN}-api-visual-${PV}:${SLOT}
+	~dev-java/${PN}-apisupport-ant-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-harness-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
+	~dev-java/${PN}-apisupport-refactoring-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-wizards-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~dev-java/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
@@ -75,16 +77,17 @@ RDEPEND="
 	~dev-java/${PN}-ide-${PV}:${SLOT}
 	~dev-java/${PN}-ide-kit-${PV}:${SLOT}
 	~dev-java/${PN}-java-api-common-${PV}:${SLOT}
-	~dev-java/${PN}-java-completion-${PV}:${SLOT}
 	~dev-java/${PN}-java-debug-${PV}:${SLOT}
-	~dev-java/${PN}-java-editor-base-${PV}:${SLOT}
-	~dev-java/${PN}-java-editor-lib-${PV}:${SLOT}
+	~dev-java/${PN}-java-editor-${PV}:${SLOT}
 	~dev-java/${PN}-java-freeform-${PV}:${SLOT}
 	~dev-java/${PN}-java-guards-${PV}:${SLOT}
+	~dev-java/${PN}-java-hints-${PV}:${SLOT}
+	~dev-java/${PN}-java-hints-legacy-spi-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2sedeploy-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seplatform-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seprofiles-${PV}:${SLOT}
 	~dev-java/${PN}-java-kit-${PV}:${SLOT}
+	~dev-java/${PN}-java-metrics-${PV}:${SLOT}
 	~dev-java/${PN}-java-module-graph-${PV}:${SLOT}
 	~dev-java/${PN}-java-navigation-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
@@ -94,8 +97,9 @@ RDEPEND="
 	~dev-java/${PN}-java-source-queriesimpl-${PV}:${SLOT}
 	~dev-java/${PN}-java-testrunner-${PV}:${SLOT}
 	~dev-java/${PN}-java-testrunner-ant-${PV}:${SLOT}
+	~dev-java/${PN}-javadoc-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
-	~dev-java/${PN}-junit-${PV}:${SLOT}
+	~dev-java/${PN}-junit-ui-${PV}:${SLOT}
 	~dev-java/${PN}-junitlib-${PV}:${SLOT}
 	~dev-java/${PN}-lexer-nbbridge-${PV}:${SLOT}
 	~dev-java/${PN}-libs-antlr3-runtime-${PV}:${SLOT}
@@ -126,6 +130,7 @@ RDEPEND="
 	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
 	~dev-java/${PN}-server-${PV}:${SLOT}
 	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
+	~dev-java/${PN}-spi-editor-hints-projects-${PV}:${SLOT}
 	~dev-java/${PN}-spi-viewmodel-${PV}:${SLOT}
 	~dev-java/${PN}-team-ide-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
@@ -246,9 +251,9 @@ src_install() {
 	jars+=( ${jars_short[@]/#/net-java-html} )
 
 	jars+=(
-		darcula eclipse-jgit freemarker htmlparser iconloader
-		intellij-platform-annotations javaewah jsch json-simple
-		junit-${JUNIT_SLOT} lucene-core-${LUCENE_SLOT}
+		byte-buddy-dep darcula eclipse-jgit freemarker htmlparser
+		iconloader intellij-platform-annotations javaewah jsch
+		json-simple junit-${JUNIT_SLOT} lucene-core-${LUCENE_SLOT}
 		nb-cmake-completion nb-darcula osgi-core-api-${OSGI_SLOT}
 		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
 	)
@@ -279,7 +284,7 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/api-} )
 
-	jars_short=( harness project wizards )
+	jars_short=( ant harness project refactoring wizards )
 	jars+=( ${jars_short[@]/#/apisupport-} )
 
 	jars_short=( cli pluginimporter services ui )
@@ -326,11 +331,12 @@ src_install() {
 	jars+=( ${jars_short[@]/#/j2ee-} )
 
 	jars_short=(
-		api-common completion debug editor-base editor-lib freeform
-		graph guards kit lexer module-graph navigation platform
-		platform-ui preprocessorbridge project project-ui source
-		source-ant source-base source-compat8 source-queriesimpl
-		sourceui testrunner testrunner-ant
+		api-common completion debug editor editor-base editor-lib
+		freeform graph guards hints hints-legacy kit lexer
+		metrics module-graph navigation platform platform-ui
+		preprocessorbridge project project-ui source source-ant
+		source-base source-compat8 source-queriesimpl sourceui
+		testrunner testrunner-ant testrunner-ui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
@@ -370,15 +376,15 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/project} )
 
-	jars_short=( api )
+	jars_short=( api java )
 	jars+=( ${jars_short[@]/#/refactoring-} )
 
 	jars_short=( "" "-apimodule" )
 	jars+=( ${jars_short[@]/#/spellchecker} )
 
 	jars_short=(
-		actions editor-hints navigator palette quicksearch tasklist
-		viewmodel
+		actions editor-hints editor-hints-projects java-hints
+		navigator palette quicksearch tasklist viewmodel
 	)
 	jars+=( ${jars_short[@]/#/spi-} )
 
@@ -405,11 +411,11 @@ src_install() {
 
 	jars+=(
 		classfile diff editor favorites git ide ide-kit gototest
-		javahelp jumpto junit keyring lexer lexer-nbbridge localhistory
-		localtasks mylyn-util o-apache-tools-ant-module progress-ui
-		properties properties-syntax queries sampler sendopts server
-		settings team-commons team-ide terminal terminal-nb uihandler
-		updatecenters whitelist xsl
+		javahelp jumpto junit junit-ui keyring lexer lexer-nbbridge
+		localhistory localtasks mylyn-util o-apache-tools-ant-module
+		progress-ui properties properties-syntax queries sampler
+		sendopts server settings team-commons team-ide terminal
+		terminal-nb uihandler updatecenters whitelist xsl
 	)
 	symlink_jars "/usr/share/${my_pn}/lib" ${jars[@]} # use lib vs modules for now
 
