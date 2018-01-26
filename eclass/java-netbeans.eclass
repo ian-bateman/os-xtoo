@@ -236,7 +236,7 @@ java-netbeans_get-processors() {
 		*"extexecution-${PV}"*)
 			procs+=",${nbm}.extexecution.startup.StartupExtenderRegistrationProcessor"
 			;;&
-		*javahelp*)
+		*"javahelp-${PV}"*)
 			procs+=",${nbm}.javahelp.HelpSetRegistrationProcessor"
 			;;&
 		*net-java-html-json*)
