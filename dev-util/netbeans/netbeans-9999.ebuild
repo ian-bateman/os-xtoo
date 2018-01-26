@@ -11,6 +11,7 @@ ANTLR3_SLOT="3"
 ANTLR4_SLOT="4"
 ASM_SLOT="6"
 ECLIPSE_SLOT="4.7"
+JUNIT_SLOT="5"
 LUCENE_SLOT="3"
 MYLYN_SLOT="3"
 OSGI_SLOT="6"
@@ -31,6 +32,7 @@ RDEPEND="
 	~dev-java/${PN}-ant-grammar-${PV}:${SLOT}
 	~dev-java/${PN}-ant-kit-${PV}:${SLOT}
 	~dev-java/${PN}-api-htmlui-${PV}:${SLOT}
+	~dev-java/${PN}-api-visual-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-harness-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-project-${PV}:${SLOT}
 	~dev-java/${PN}-apisupport-wizards-${PV}:${SLOT}
@@ -64,7 +66,9 @@ RDEPEND="
 	~dev-java/${PN}-editor-settings-storage-${PV}:${SLOT}
 	~dev-java/${PN}-editor-tools-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
+	~dev-java/${PN}-extexecution-impl-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
+	~dev-java/${PN}-gsf-codecoverage-${PV}:${SLOT}
 	~dev-java/${PN}-html-custom-${PV}:${SLOT}
 	~dev-java/${PN}-html-editor-${PV}:${SLOT}
 	~dev-java/${PN}-html-parser-${PV}:${SLOT}
@@ -81,14 +85,18 @@ RDEPEND="
 	~dev-java/${PN}-java-j2seplatform-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seprofiles-${PV}:${SLOT}
 	~dev-java/${PN}-java-kit-${PV}:${SLOT}
+	~dev-java/${PN}-java-module-graph-${PV}:${SLOT}
 	~dev-java/${PN}-java-navigation-${PV}:${SLOT}
 	~dev-java/${PN}-java-platform-ui-${PV}:${SLOT}
 	~dev-java/${PN}-java-project-${PV}:${SLOT}
 	~dev-java/${PN}-java-source-ant-${PV}:${SLOT}
 	~dev-java/${PN}-java-source-compat8-${PV}:${SLOT}
+	~dev-java/${PN}-java-source-queriesimpl-${PV}:${SLOT}
 	~dev-java/${PN}-java-testrunner-${PV}:${SLOT}
+	~dev-java/${PN}-java-testrunner-ant-${PV}:${SLOT}
 	~dev-java/${PN}-javahelp-${PV}:${SLOT}
 	~dev-java/${PN}-junit-${PV}:${SLOT}
+	~dev-java/${PN}-junitlib-${PV}:${SLOT}
 	~dev-java/${PN}-lexer-nbbridge-${PV}:${SLOT}
 	~dev-java/${PN}-libs-antlr3-runtime-${PV}:${SLOT}
 	~dev-java/${PN}-libs-antlr4-runtime-${PV}:${SLOT}
@@ -105,6 +113,7 @@ RDEPEND="
 	~dev-java/${PN}-openide-filesystems-compat8-${PV}:${SLOT}
 	~dev-java/${PN}-openide-options-${PV}:${SLOT}
 	~dev-java/${PN}-options-keymap-${PV}:${SLOT}
+	~dev-java/${PN}-options-java-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-nb-${PV}:${SLOT}
 	~dev-java/${PN}-parsing-ui-${PV}:${SLOT}
 	~dev-java/${PN}-progress-ui-${PV}:${SLOT}
@@ -117,6 +126,7 @@ RDEPEND="
 	~dev-java/${PN}-properties-syntax-${PV}:${SLOT}
 	~dev-java/${PN}-server-${PV}:${SLOT}
 	~dev-java/${PN}-spi-actions-${PV}:${SLOT}
+	~dev-java/${PN}-spi-viewmodel-${PV}:${SLOT}
 	~dev-java/${PN}-team-ide-${PV}:${SLOT}
 	~dev-java/${PN}-templatesui-${PV}:${SLOT}
 	~dev-java/${PN}-uihandler-${PV}:${SLOT}
@@ -238,9 +248,9 @@ src_install() {
 	jars+=(
 		darcula eclipse-jgit freemarker htmlparser iconloader
 		intellij-platform-annotations javaewah jsch json-simple
-		lucene-core-${LUCENE_SLOT} nb-cmake-completion nb-darcula
-		osgi-core-api-${OSGI_SLOT} xerces-${XERCES_SLOT}
-		xml-commons-resolver slf4j-api
+		junit-${JUNIT_SLOT} lucene-core-${LUCENE_SLOT}
+		nb-cmake-completion nb-darcula osgi-core-api-${OSGI_SLOT}
+		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
 	)
 	symlink_libs ${jars[@]}
 
@@ -264,8 +274,8 @@ src_install() {
 	jars=( ${jars_short[@]/#/ant-} )
 
 	jars_short=(
-		annotations-common htmlui intent io progress progress-nb java
-		java-classpath search templates xml xml-ui
+		annotations-common htmlui intent io progress progress-nb
+		java java-classpath search templates visual xml xml-ui
 	)
 	jars+=( ${jars_short[@]/#/api-} )
 
@@ -303,13 +313,13 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/editor-} )
 
-	jars_short=( browser execution execution-base )
+	jars_short=( browser execution execution-base execution-impl )
 	jars+=( ${jars_short[@]/#/ext} )
 
 	jars_short=( "" "-custom" "-editor" "-editor-lib" "-lexer" "-parser" )
 	jars+=( ${jars_short[@]/#/html} )
 
-	jars_short=( testrunner testrunner-ui )
+	jars_short=( codecoverage testrunner testrunner-ui )
 	jars+=( ${jars_short[@]/#/gsf-} )
 
 	jars_short=( metadata metadata-model-support persistenceapi )
@@ -317,9 +327,10 @@ src_install() {
 
 	jars_short=(
 		api-common completion debug editor-base editor-lib freeform
-		guards kit lexer navigation platform platform-ui
-		preprocessorbridge project project-ui source source-ant
-		source-base source-compat8 sourceui testrunner
+		graph guards kit lexer module-graph navigation platform
+		platform-ui preprocessorbridge project project-ui source
+		source-ant source-base source-compat8 source-queriesimpl
+		sourceui testrunner testrunner-ant
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
@@ -346,7 +357,7 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/openide-} )
 
-	jars_short=( api editor keymap )
+	jars_short=( api editor java keymap )
 	jars+=( ${jars_short[@]/#/options-} )
 
 	jars_short=( api indexing lucene nb ui )
@@ -367,6 +378,7 @@ src_install() {
 
 	jars_short=(
 		actions editor-hints navigator palette quicksearch tasklist
+		viewmodel
 	)
 	jars+=( ${jars_short[@]/#/spi-} )
 
