@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -29,7 +29,9 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/asm:6
-	dev-java/lombok:0
+	dev-java/auto-common:0
+	dev-java/auto-value:0
+	dev-java/guava:23
 	dev-java/spotbugs-annotations:0
 "
 
@@ -40,3 +42,15 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+JAVAC_ARGS+=" -processor com.google.auto.value.processor.AutoAnnotationProcessor "
+
+java_prepare() {
+	local f
+
+	for f in $(grep -l -m1 lombok\\.EqualsAndHashCode -r *); do
+		sed -i -e "s|lombok.EqualsAndHashCode|com.google.auto.value.AutoValue|" \
+			-e "s|@EqualsAndHashCode.*|@AutoValue|g" \
+			"${f}" || die "Failed to swap lombok for autovalve"
+	done
+}
