@@ -74,6 +74,7 @@ RDEPEND="
 	~dev-java/${PN}-html-custom-${PV}:${SLOT}
 	~dev-java/${PN}-html-editor-${PV}:${SLOT}
 	~dev-java/${PN}-html-parser-${PV}:${SLOT}
+	~dev-java/${PN}-i18n-${PV}:${SLOT}
 	~dev-java/${PN}-ide-${PV}:${SLOT}
 	~dev-java/${PN}-ide-kit-${PV}:${SLOT}
 	~dev-java/${PN}-java-api-common-${PV}:${SLOT}
@@ -81,7 +82,7 @@ RDEPEND="
 	~dev-java/${PN}-java-editor-${PV}:${SLOT}
 	~dev-java/${PN}-java-freeform-${PV}:${SLOT}
 	~dev-java/${PN}-java-guards-${PV}:${SLOT}
-	~dev-java/${PN}-java-hints-${PV}:${SLOT}
+	~dev-java/${PN}-java-hints-declarative-${PV}:${SLOT}
 	~dev-java/${PN}-java-hints-legacy-spi-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2sedeploy-${PV}:${SLOT}
 	~dev-java/${PN}-java-j2seplatform-${PV}:${SLOT}
@@ -332,11 +333,11 @@ src_install() {
 
 	jars_short=(
 		api-common completion debug editor editor-base editor-lib
-		freeform graph guards hints hints-legacy kit lexer
-		metrics module-graph navigation platform platform-ui
-		preprocessorbridge project project-ui source source-ant
-		source-base source-compat8 source-queriesimpl sourceui
-		testrunner testrunner-ant testrunner-ui
+		freeform graph guards hints hints-declarative hints-legacy
+		hints-ui kit lexer metrics module-graph navigation platform
+		platform-ui preprocessorbridge project project-ui source
+		source-ant source-base source-compat8 source-queriesimpl
+		sourceui testrunner testrunner-ant testrunner-ui
 	)
 	jars+=( ${jars_short[@]/#/java-} )
 
@@ -410,7 +411,7 @@ src_install() {
 	jars+=( ${jars_short[@]/#/xml} )
 
 	jars+=(
-		classfile diff editor favorites git ide ide-kit gototest
+		classfile diff editor favorites git i18n ide ide-kit gototest
 		javahelp jumpto junit junit-ui keyring lexer lexer-nbbridge
 		localhistory localtasks mylyn-util o-apache-tools-ant-module
 		progress-ui properties properties-syntax queries sampler
