@@ -69,6 +69,8 @@ RDEPEND="
 	~dev-java/${PN}-editor-tools-storage-${PV}:${SLOT}
 	~dev-java/${PN}-extbrowser-${PV}:${SLOT}
 	~dev-java/${PN}-extexecution-impl-${PV}:${SLOT}
+	~dev-java/${PN}-form-binding-${PV}:${SLOT}
+	~dev-java/${PN}-form-refactoring-${PV}:${SLOT}
 	~dev-java/${PN}-git-${PV}:${SLOT}
 	~dev-java/${PN}-gsf-codecoverage-${PV}:${SLOT}
 	~dev-java/${PN}-html-custom-${PV}:${SLOT}
@@ -322,11 +324,14 @@ src_install() {
 	jars_short=( browser execution execution-base execution-impl )
 	jars+=( ${jars_short[@]/#/ext} )
 
-	jars_short=( "" "-custom" "-editor" "-editor-lib" "-lexer" "-parser" )
-	jars+=( ${jars_short[@]/#/html} )
+	jars_short=( "" "-binding" "-nb" "-refactoring" )
+	jars+=( ${jars_short[@]/#/form} )
 
 	jars_short=( codecoverage testrunner testrunner-ui )
 	jars+=( ${jars_short[@]/#/gsf-} )
+
+	jars_short=( "" "-custom" "-editor" "-editor-lib" "-lexer" "-parser" )
+	jars+=( ${jars_short[@]/#/html} )
 
 	jars_short=( metadata metadata-model-support persistenceapi )
 	jars+=( ${jars_short[@]/#/j2ee-} )
