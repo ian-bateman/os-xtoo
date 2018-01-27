@@ -45,4 +45,8 @@ PATCHES=( "${FILESDIR}/java9.patch" )
 java_prepare() {
 	mv {release/sources,src}/org/netbeans/lib \
 		|| die "Failed to move additional sources"
+
+	sed -i -e '/guards.Java/d' -e '/InstalledFileLocator/d' \
+		resources/META-INF/MANIFEST.MF \
+		|| die "Failed to remove unwanted lines from manifest.mf"
 }
