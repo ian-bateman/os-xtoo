@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -25,10 +25,9 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Java library to convert JSON to Java objects and vice-versa"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-9"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
