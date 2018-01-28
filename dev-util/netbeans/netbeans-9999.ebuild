@@ -338,7 +338,7 @@ src_install() {
 
 	jars_short=(
 		api-common completion debug editor editor-base editor-lib
-		freeform graph guards hints hints-declarative hints-legacy
+		freeform graph guards hints hints-declarative hints-legacy-spi
 		hints-ui kit lexer metrics module-graph navigation platform
 		platform-ui preprocessorbridge project project-ui source
 		source-ant source-base source-compat8 source-queriesimpl
