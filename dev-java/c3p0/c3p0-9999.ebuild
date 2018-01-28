@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -30,12 +30,14 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
+
+JAVAC_ARGS+=" --add-modules java.sql "
 
 java_prepare() {
 	rm -r src/java/com/mchange/v2/c3p0/test \
@@ -52,7 +54,7 @@ java_prepare() {
 }
 
 src_compile() {
-	JAVA_GENTOO_CLASSPATH_EXTRA="src/java"
+	JAVA_CLASSPATH_EXTRA="src/java"
 	JAVA_JAR_FILENAME="codegen.jar"
 	JAVA_SRC_DIR="src/java/com/mchange/v2/c3p0/codegen"
 	java-pkg-simple_src_compile
