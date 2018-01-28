@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/jakarta-oro:0
 	dev-java/jakarta-regexp:0
 	dev-java/javax-inject:0
-	dev-java/ldapsdk:4.1
+	dev-java/ldapsdk:0
 	dev-java/spring-context:4.3
 "
 
