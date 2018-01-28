@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -32,10 +32,10 @@ CP_DEPEND="
 	dev-java/castor-core:0
 	dev-java/castor-xml:0
 	dev-java/commons-logging:0
-	dev-java/jibx:0
+	dev-java/core-reactor:0
 	~dev-java/spring-beans-${PV}:${SLOT}
 	~dev-java/spring-core-${PV}:${SLOT}
-	dev-java/xml-xmlbeans:2
+	dev-java/xmlbeans:0
 	dev-java/xstream:0
 "
 
@@ -46,5 +46,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVA_SRC_DIR="src/main/java"
