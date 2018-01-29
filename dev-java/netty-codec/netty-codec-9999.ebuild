@@ -28,6 +28,8 @@ HOMEPAGE="https://${MY_PN}.io/"
 LICENSE="Apache-2.0"
 SLOT="$(get_version_component_range 1-2)"
 
+PROTOBUF_SLOT="0"
+
 CP_DEPEND="
 	dev-java/compress-lzf:0
 	dev-java/jboss-marshalling:0
@@ -37,15 +39,14 @@ CP_DEPEND="
 	~dev-java/netty-buffer-${PV}:${SLOT}
 	~dev-java/netty-common-${PV}:${SLOT}
 	~dev-java/netty-transport-${PV}:${SLOT}
-	dev-java/protobuf-java:0[nano(+)]
+	dev-java/protobuf-java-core:${PROTOBUF_SLOT}
+	dev-java/protobuf-java-nano:${PROTOBUF_SLOT}
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
-
-JAVA_SRC_DIR="src/main/java"
