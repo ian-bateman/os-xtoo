@@ -1,1 +1,0 @@
-jackson-module-jaxb-annotations-9999.ebuild
