@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -23,10 +23,10 @@ fi
 
 inherit java-pkg-2 java-pkg-simple ${ECLASS}
 
-DESCRIPTION="Spring Framework ${PN:7}"
+DESCRIPTION="Spring Framework ${PN##*-}"
 HOMEPAGE="https://spring.io/"
 LICENSE="Apache-2.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV%*.*}"
 
 HTTPCORE_SLOT="4.4"
 JACKSON_SLOT="2"
@@ -36,8 +36,8 @@ CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-fileupload:0
 	dev-java/groovy:0
-	dev-java/gson:2.7
-	dev-java/hessian:4.0
+	dev-java/gson:0
+	dev-java/hessian:0
 	dev-java/httpcomponents-client:4.5
 	dev-java/httpcomponents-core:${HTTPCORE_SLOT}
 	dev-java/httpcomponents-core-nio:${HTTPCORE_SLOT}
@@ -60,7 +60,7 @@ CP_DEPEND="
 	dev-java/okio:0
 	dev-java/javamail:0
 	dev-java/portlet-api:2
-	dev-java/protobuf-java:0
+	dev-java/protobuf-java-core:0
 	dev-java/protobuf-java-format:0
 	dev-java/rome:0
 	~dev-java/spring-aop-${PV}:${SLOT}
@@ -74,11 +74,11 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
-JAVA_SRC_DIR="src/main/java"
+JAVAC_ARGS+=" --add-modules java.activation,java.xml.bind,java.xml.ws "
