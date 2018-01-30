@@ -20,14 +20,19 @@ inherit java-pkg-2 java-pkg-simple ${ECLASS}
 DESCRIPTION="Statistics framework used inside Ehcache and Terracotta products"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
-SLOT="0"
+if [[ ${PV} == 1.* ]]; then
+	SLOT="0"
+	CP_DEPEND="dev-java/spotbugs-annotations:0 "
+else
+	SLOT="${PV%%.*}"
+fi
 
-CP_DEPEND="dev-java/slf4j-api:0"
+CP_DEPEND+="dev-java/slf4j-api:0"
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
