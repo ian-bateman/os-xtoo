@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -37,10 +37,10 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
@@ -52,10 +52,19 @@ JAVA_SRC_DIR="
 	xml/src/main/java
 "
 
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-modules java.xml.bind "
+
 java_prepare() {
+	local f
+
 	# Alternative to xjc is scomp from beanutils
 	xjc -d xml/src/main/java -p org.ehcache.xml.model \
 		xml/src/main/resources/ehcache-core.xsd \
 		|| die "Failed to generate java source files via xjc"
 
+	for f in $(grep -l -m1 jsr166e\\.LongAdder -r * ); do
+		sed -i -e "s|org.terracotta.statistics.jsr166e|java.util.concurrent.atomic|" \
+			${f} || die "Failed to change import"
+	done
 }
