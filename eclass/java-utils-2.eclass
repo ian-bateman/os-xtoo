@@ -134,9 +134,6 @@ JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/jem/build/compilers.con
 #	JAVA_PKG_FORCE_COMPILER="ecj javac"
 # @CODE
 
-# TODO document me
-JAVA_PKG_QA_VIOLATIONS=0
-
 # @FUNCTION: java-pkg_doexamples
 # @USAGE: [--subdir <subdir>] <file1/dir1> [<file2> ...]
 # @DESCRIPTION:
@@ -2469,13 +2466,7 @@ java-pkg_announce-qa-violation() {
 		shift
 	fi
 	echo "Java QA Notice: $@" >&2
-	increment-qa-violations
 	[[ -z "${nodie}" ]] && is-java-strict && die "${@}"
-}
-
-increment-qa-violations() {
-	let "JAVA_PKG_QA_VIOLATIONS+=1"
-	export JAVA_PKG_QA_VIOLATIONS
 }
 
 is-java-strict() {
