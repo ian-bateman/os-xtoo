@@ -1458,29 +1458,6 @@ java-pkg_get-release() {
 	echo ${r/1./}
 }
 
-# DEPRECATED
-# @FUNCTION: java-pkg_get-source
-# @DESCRIPTION:
-# Determines what source version should be used, for passing to -source.
-# Unless you want to break things you probably shouldn't set _WANT_RELEASE
-#
-# @RETURN: string - Either the lowest possible source, or JAVA_PKG_WANT_RELEASE
-java-pkg_get-source() {
-	echo ${JAVA_PKG_WANT_RELEASE:-$(depend-java-query --get-lowest "${DEPEND} ${RDEPEND}")}
-}
-
-# DEPRECATED
-# @FUNCTION: java-pkg_get-target
-# @DESCRIPTION:
-# Determines what target version should be used, for passing to -target.
-# If you don't care about lower versions, you can set _WANT_TARGET to the
-# version of your JDK.
-#
-# @RETURN: string - Either the lowest possible target, or JAVA_PKG_WANT_RELEASE
-java-pkg_get-target() {
-	echo ${JAVA_PKG_WANT_RELEASE:-$(depend-java-query --get-lowest "${DEPEND} ${RDEPEND}")}
-}
-
 # @FUNCTION: java-pkg_get-javac
 # @DESCRIPTION:
 # Returns the compiler executable
@@ -2366,15 +2343,15 @@ java-pkg_verify-classes() {
 		return
 	fi
 
-	local target=$(java-pkg_get-target)
+	local release=$(java-pkg_get-release)
 	local result
 	local log="${T}/class-version-verify.log"
 	if [[ -n "${1}" ]]; then
-		${version_verify} -v -t ${target} "${1}" > "${log}"
+		${version_verify} -v -t ${release} "${1}" > "${log}"
 		result=$?
 	else
 		ebegin "Verifying java class versions (target: ${target})"
-		${version_verify} -v -t ${target} -r "${D}" > "${log}"
+		${version_verify} -v -t ${release} -r "${D}" > "${log}"
 		result=$?
 		eend ${result}
 	fi
