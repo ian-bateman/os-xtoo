@@ -1835,12 +1835,10 @@ java-pkg_init() {
 	unset JAVAC
 	unset JAVA_HOME
 
-	jem --help >/dev/null || {
+	jem --version >/dev/null || {
 		eerror ""
-		eerror "Can't run jem --help"
-		eerror "Have you upgraded python recently but haven't"
-		eerror "run python-updater yet?"
-		die "Can't run jem --help"
+		eerror "Unable to run jem --version"
+		die "Unable run jem --version"
 	}
 
 	# People do all kinds of weird things.
