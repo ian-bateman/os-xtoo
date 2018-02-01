@@ -1831,9 +1831,6 @@ java-pkg_init() {
 
 	# Don't set up build environment if installing from binary. #206024 #258423
 	[[ "${MERGE_TYPE}" == "binary" ]] && return
-	# Also try Portage's nonstandard EMERGE_FROM for old EAPIs, if it doesn't
-	# work nothing is lost.
-	has ${EAPI:-0} 0 1 2 3 && [[ "${EMERGE_FROM}" == "binary" ]] && return
 
 	unset JAVAC
 	unset JAVA_HOME
