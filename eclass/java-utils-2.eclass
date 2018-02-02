@@ -2170,11 +2170,10 @@ java-pkg_setup-vm() {
 java-pkg_needs-vm() {
 	debug-print-function ${FUNCNAME} $*
 
-	if [[ -n "$(echo ${JAVA_PKG_NV_DEPEND:-${DEPEND}} | sed -e '\:virtual/jdk:!d')" ]]; then
+	if [[ "${JAVA_PKG_NV_DEPEND:-${DEPEND}}" == *"virtual/jdk"* ]] || \
+		[[ -n "${JAVA_PKG_WANT_BUILD_VM}" ]]; then
 		return 0
 	fi
-
-	[[ -n "${JAVA_PKG_WANT_BUILD_VM}" ]] && return 0
 
 	return 1
 }
