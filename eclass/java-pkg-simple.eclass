@@ -85,13 +85,15 @@ JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 # @CODE
 
 # @ECLASS-VARIABLE: JAVA_SRC_DIR
-# @DEFAULT_UNSET
+# @DEFAULT_AUTOSET
 # @DESCRIPTION:
 # Directories relative to ${S} which contain the sources of the
 # application. The default of "" will be treated mostly as ${S}
 # itself. For the generated source package (if source is listed in
 # ${JAVA_PKG_IUSE}), it is important that these directories are
 # actually the roots of the corresponding source trees.
+#
+# This is auto set in java-utils-2_src_prepare in java-utils-2.eclass
 #
 # @CODE
 #	JAVA_SRC_DIR="src/java/org/gentoo"
@@ -214,17 +216,6 @@ java-pkg-simple_src_compile() {
 	[[ -d target ]] && rm -fr target
 
 	# gather sources
-	if [[ -z ${JAVA_SRC_DIR} ]]; then
-		if [[ -d "${S}/src/main/java" ]]; then
-			JAVA_SRC_DIR="src/main/java"
-		elif [[ -d "${S}/src/java" ]]; then
-			JAVA_SRC_DIR="src/java"
-		elif [[ -d "${S}/src/main" ]]; then
-			JAVA_SRC_DIR="src/main"
-		elif [[ -d "${S}/src" ]]; then
-			JAVA_SRC_DIR="src"
-		fi
-	fi
 	find ${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
 	if [[ -z ${JAVA_NO_SRC} ]] && [[ ! -s ${sources} ]]; then
 		die "*.java files not found in ${JAVA_SRC_DIR}"
