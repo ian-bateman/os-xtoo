@@ -1250,22 +1250,6 @@ java-pkg_register-environment-variable() {
 	java-pkg_do_write_
 }
 
-# @FUNCTION: java-pkg_find-normal-jars
-# @USAGE: [<path/to/directory>]
-# @DESCRIPTION:
-# Find the files with suffix .jar file in the given directory (default: $WORKDIR)
-java-pkg_find-normal-jars() {
-	local dir=$1
-	[[ "${dir}" ]] || dir="${WORKDIR}"
-	local found
-	for jar in $(find "${dir}" -name "*.jar" -type f); do
-		echo "${jar}"
-		found="true"
-	done
-	[[ "${found}" ]]
-	return $?
-}
-
 # @FUNCTION: java-pkg_ensure-vm-version-sufficient
 # @INTERNAL
 # @DESCRIPTION:
