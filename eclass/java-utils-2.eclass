@@ -1444,11 +1444,11 @@ java-pkg_is-vm-version-ge() {
 }
 
 java-pkg_set-current-vm() {
-	export GENTOO_VM=${1}
+	export JEM_VM=${1}
 }
 
 java-pkg_get-current-vm() {
-	echo ${GENTOO_VM}
+	echo ${JEM_VM}
 }
 
 java-pkg_current-vm-matches() {
@@ -1719,7 +1719,7 @@ java-utils-2_pkg_preinst() {
 		fi
 
 		if has_version dev-java/java-dep-check; then
-			local output=$(GENTOO_VM= java-dep-check --image "${D}" "${JAVA_PKG_ENV}")
+			local output=$(JEM_VM= java-dep-check --image "${D}" "${JAVA_PKG_ENV}")
 			[[ ${output} ]] && ewarn "${output}"
 		else
 			eerror "Install dev-java/java-dep-check for dependency checking"
@@ -2039,7 +2039,7 @@ java-pkg_do_write_() {
 	[[ -n ${JAVA_SOURCES} ]] && echo "JAVA_SOURCES=\"${JAVA_SOURCES}\"" \
 		>> ${JAVA_PKG_ENV}
 
-	echo "MERGE_VM=\"${GENTOO_VM}\"" >> "${JAVA_PKG_ENV}"
+	echo "MERGE_VM=\"${JEM_VM}\"" >> "${JAVA_PKG_ENV}"
 	[[ -n ${GENTOO_COMPILER} ]] && echo "MERGE_COMPILER=\"${GENTOO_COMPILER}\"" >> "${JAVA_PKG_ENV}"
 
 	# extra env variables
@@ -2251,13 +2251,13 @@ java-pkg_switch-vm() {
 		if [[ -n "${JAVA_PKG_FORCE_VM}" ]]; then
 			# If you're forcing the VM, I hope you know what your doing...
 			debug-print "JAVA_PKG_FORCE_VM used: ${JAVA_PKG_FORCE_VM}"
-			export GENTOO_VM="${JAVA_PKG_FORCE_VM}"
+			export JEM_VM="${JAVA_PKG_FORCE_VM}"
 		# if we're allowed to switch the vm...
 		elif [[ "${JAVA_PKG_ALLOW_VM_CHANGE}" == "yes" ]]; then
 			# if there is an explicit list of handles to choose from
 			if [[ -n "${JAVA_PKG_WANT_BUILD_VM}" ]]; then
 				debug-print "JAVA_PKG_WANT_BUILD_VM used: ${JAVA_PKG_WANT_BUILD_VM}"
-				GENTOO_VM=$(java-pkg_build-vm-from-handle)
+				JEM_VM=$(java-pkg_build-vm-from-handle)
 				if [[ $? != 0 ]]; then
 					eerror "${FUNCNAME}: No VM found for handles: ${JAVA_PKG_WANT_BUILD_VM}"
 					die "${FUNCNAME}: Failed to determine VM for building"
@@ -2271,14 +2271,14 @@ java-pkg_switch-vm() {
 			# otherwise determine a vm from dep string
 			else
 				debug-print "depend-java-query:  NV_DEPEND:	${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
-				GENTOO_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
-				if [[ -z "${GENTOO_VM}" || "${GENTOO_VM}" == "None" ]]; then
+				JEM_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
+				if [[ -z "${JEM_VM}" || "${JEM_VM}" == "None" ]]; then
 					eerror "Unable to determine VM for building from dependencies:"
 					echo "NV_DEPEND: ${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
 					die "Failed to determine VM for building."
 				fi
 			fi
-			export GENTOO_VM
+			export JEM_VM
 		# otherwise just make sure the current VM is sufficient
 		else
 			java-pkg_ensure-vm-version-sufficient
@@ -2324,7 +2324,7 @@ fi
 
 java-pkg_die() {
 	echo "!!! When you file a bug report, please include the following information:" >&2
-	echo "GENTOO_VM=${GENTOO_VM}  CLASSPATH=\"${CLASSPATH}\" JAVA_HOME=\"${JAVA_HOME}\"" >&2
+	echo "JEM_VM=${JEM_VM}  CLASSPATH=\"${CLASSPATH}\" JAVA_HOME=\"${JAVA_HOME}\"" >&2
 	echo "JAVACFLAGS=\"${JAVACFLAGS}\" COMPILER=\"${GENTOO_COMPILER}\"" >&2
 	echo "and of course, the output of emerge --info =${P}" >&2
 }
