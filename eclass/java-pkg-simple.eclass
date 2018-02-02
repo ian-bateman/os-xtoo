@@ -22,9 +22,9 @@
 
 inherit java-utils-2
 
-if ! has java-pkg-2 ${INHERITED}; then
-	eerror "java-pkg-simple eclass can only be inherited AFTER java-pkg-2"
-fi
+#if ! has java-pkg-2 ${INHERITED}; then
+#	eerror "java-pkg-simple eclass can only be inherited AFTER java-pkg-2"
+#fi
 
 EXPORT_FUNCTIONS src_compile src_install
 
