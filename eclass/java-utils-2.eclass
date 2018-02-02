@@ -2228,6 +2228,8 @@ java-pkg_switch-vm() {
 					die "Specify JAVA_RELEASE"
 				fi
 				export JEM_VM
+			else
+				export JEM_VM=$(java-pkg_get-current-vm)
 			fi
 		# otherwise just make sure the current VM is sufficient
 		else
