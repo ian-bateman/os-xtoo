@@ -2277,9 +2277,9 @@ java-pkg_die() {
 	echo "" >&2
 	echo "JEM_VM=${JEM_VM}" >&2
 	echo "JAVA_HOME=\"${JAVA_HOME}\"" >&2
-	echo "COMPILER=\"${GENTOO_COMPILER}\"" >&2
-	echo "JAVAC_FLAGS=\"${JAVACFLAGS}\"" >&2
-	echo "CLASSPATH=\"${CLASSPATH}\"" >&2
+	echo "COMPILER=\"${JEM_COMPILER}\"" >&2
+	echo "JAVAC_FLAGS=\"${JAVAC_FLAGS}\"" >&2
+	echo "CLASSPATH=\"${JAVA_CLASSPATH}\"" >&2
 	echo "emerge --info =${P}" >&2
 	echo "" >&2
 	echo "Please report bugs to" >&2
