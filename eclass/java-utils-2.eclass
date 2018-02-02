@@ -1459,13 +1459,12 @@ java-pkg_current-vm-matches() {
 # @FUNCTION: java-pkg_get-release
 # @DESCRIPTION:
 # Determines what release version should be used, for passing to --release.
-# If you don't care about lower versions, you can set _WANT_RELEASE to the
 # version of your JDK.
 #
-# @RETURN: string - Either the lowest possible target, or JAVA_PKG_WANT_RELEASE
+# @RETURN: string - Either the current target, or JAVA_PKG_WANT_RELEASE
 java-pkg_get-release() {
 	local r
-	r=${JAVA_PKG_WANT_RELEASE:-$(depend-java-query --get-lowest "${DEPEND} ${RDEPEND}")}
+	r=${JAVA_PKG_WANT_RELEASE:-$(java-pkg_get-vm-version)}
 	echo ${r/1./}
 }
 
