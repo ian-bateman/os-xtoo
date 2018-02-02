@@ -1308,8 +1308,19 @@ java-pkg_ensure-vm-version-sufficient() {
 java-pkg_is-vm-version-sufficient() {
 	debug-print-function ${FUNCNAME} $*
 
-	depend-java-query --is-sufficient "${DEPEND}" > /dev/null
-	return $?
+	local t supported
+
+	# use current jdk version unless package overridden
+	[[ -z ${JAVA_PKG_WANT_RELEASE} ]] && return 0
+
+	supported=( $(javac --help | \
+			sed -n 's/^.*Supported targets\: \([^ ].*\).*$/\1/p' ) )
+	IFS=', '
+	for t in "${supported[@]}"; do
+		[[ "${JAVA_PKG_WANT_RELEASE}" == "${t}" ]] && return 0
+	done
+
+	return 1
 }
 
 # @FUNCTION: java-pkg_ensure-vm-version-eq
