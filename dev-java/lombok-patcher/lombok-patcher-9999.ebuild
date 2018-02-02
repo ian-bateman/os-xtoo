@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -52,4 +52,4 @@ S="${WORKDIR}/${MY_S}/src"
 
 JAVA_SRC_DIR="injector patcher"
 # Remove when circular deps resolved...
-JAVA_GENTOO_CLASSPATH_EXTRA="${DISTDIR}/${LOM_P}.jar"
+JAVA_CLASSPATH_EXTRA="${DISTDIR}/${LOM_P}.jar"
