@@ -65,9 +65,9 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # This allows to use an explicit list of JDKs in DEPEND instead of a virtual.
 # Users of this variable must make sure at least one of the listed handles is
 # covered by DEPEND.
-# Requires JAVA_PKG_WANT_RELEASE to be set as well.
+# Requires JAVA_RELEASE to be set as well.
 
-# @ECLASS-VARIABLE: JAVA_PKG_WANT_RELEASE
+# @ECLASS-VARIABLE: JAVA_RELEASE
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Specify a non-standard Java release version for compilation
@@ -79,7 +79,7 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 #
 # Use release 7 to emerge baz
 # @CODE
-#	JAVA_PKG_WANT_RELEASE=7 emerge baz
+#	JAVA_RELEASE=7 emerge baz
 # @CODE
 
 # @ECLASS-VARIABLE: JAVA_PKG_DEBUG
@@ -1275,13 +1275,13 @@ java-pkg_is-vm-version-sufficient() {
 	local IFS t supported
 
 	# use current jdk version unless package overridden
-	[[ -z ${JAVA_PKG_WANT_RELEASE} ]] && return 0
+	[[ -z ${JAVA_RELEASE} ]] && return 0
 
 	supported=( $(javac --help | \
 			sed -n 's/^.*Supported targets\: \([^ ].*\).*$/\1/p' ) )
 	IFS=', '
 	for t in "${supported[@]}"; do
-		[[ "${JAVA_PKG_WANT_RELEASE}" == "${t}" ]] && return 0
+		[[ "${JAVA_RELEASE}" == "${t}" ]] && return 0
 	done
 
 	return 1
@@ -1425,10 +1425,10 @@ java-pkg_current-vm-matches() {
 # Determines what release version should be used, for passing to --release.
 # version of your JDK.
 #
-# @RETURN: string - Either the current target, or JAVA_PKG_WANT_RELEASE
+# @RETURN: string - Either the current target, or JAVA_RELEASE
 java-pkg_get-release() {
 	local r
-	r=${JAVA_PKG_WANT_RELEASE:-$(java-pkg_get-vm-version)}
+	r=${JAVA_RELEASE:-$(java-pkg_get-vm-version)}
 	echo ${r/1./}
 }
 
@@ -2209,11 +2209,11 @@ java-pkg_switch-vm() {
 					eerror "${FUNCNAME}: No VM found for handles: ${JAVA_PKG_WANT_BUILD_VM}"
 					die "${FUNCNAME}: Failed to determine VM for building"
 				fi
-				# JAVA_PKG_WANT_RELEASE is required as
+				# JAVA_RELEASE is required as
 				# it cannot be deduced from handles.
-				if [[ -z "${JAVA_PKG_WANT_RELEASE}" ]]; then
-					eerror "JAVA_PKG_WANT_BUILD_VM specified without JAVA_PKG_WANT_RELEASE"
-					die "Specify JAVA_PKG_WANT_RELEASE"
+				if [[ -z "${JAVA_RELEASE}" ]]; then
+					eerror "JAVA_PKG_WANT_BUILD_VM specified without JAVA_RELEASE"
+					die "Specify JAVA_RELEASE"
 				fi
 				export JEM_VM
 			fi
