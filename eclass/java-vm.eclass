@@ -10,7 +10,7 @@
 # @BLURB: Java Virtual Machine eclass
 # @DESCRIPTION:
 # This eclass provides functionality which assists with installing
-# virtual machines, and ensures that they are recognized by java-config.
+# virtual machines, and ensures that they are recognized by jem.
 
 case ${EAPI:-0} in
 	6) ;;
@@ -85,10 +85,11 @@ java-vm_pkg_postinst() {
 #
 # Warn user if removing system-vm.
 java-vm_pkg_prerm() {
-	if [[ "$(GENTOO_VM="" java-config -f 2>/dev/null)" == "${VMHANDLE}" && -z "${REPLACED_BY_VERSION}" ]]; then
+	if [[ "$(JEM_VM="" jem -f 2>/dev/null)" == "${VMHANDLE}" ]] && \
+		[[ -z "${REPLACED_BY_VERSION}" ]]; then
 		ewarn "It appears you are removing your system-vm!"
-		ewarn "Please run java-config -L to list available VMs,"
-		ewarn "then use java-config -S to set a new system-vm!"
+		ewarn "Please run jem -L to list available VMs,"
+		ewarn "then use jem -S to set a new system-vm!"
 	fi
 }
 
