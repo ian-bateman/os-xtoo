@@ -2446,7 +2446,7 @@ java-pkg_clean() {
 #
 # @CODE
 # Parameters:
-# $1 - classpath variable either JAVA_GENTOO_CLASSPATH or other
+# $1 - classpath variable either JAVA_CLASSPATH or other
 # @CODE
 java-pkg_gen-cp() {
 	debug-print-function ${FUNCNAME} "${@}"
