@@ -2257,14 +2257,21 @@ java-pkg_switch-vm() {
 # useful for debugging bugs on bugzilla.
 #register_die_hook java-pkg_die
 if ! has java-pkg_die ${EBUILD_DEATH_HOOKS}; then
-	EBUILD_DEATH_HOOKS="${EBUILD_DEATH_HOOKS} java-pkg_die"
+	EBUILD_DEATH_HOOKS+=" java-pkg_die"
 fi
 
 java-pkg_die() {
-	echo "!!! When you file a bug report, please include the following information:" >&2
-	echo "JEM_VM=${JEM_VM}  CLASSPATH=\"${CLASSPATH}\" JAVA_HOME=\"${JAVA_HOME}\"" >&2
-	echo "JAVACFLAGS=\"${JAVACFLAGS}\" COMPILER=\"${GENTOO_COMPILER}\"" >&2
-	echo "and of course, the output of emerge --info =${P}" >&2
+	echo "Please include the following information in bug reports:" >&2
+	echo "" >&2
+	echo "JEM_VM=${JEM_VM}" >&2
+	echo "JAVA_HOME=\"${JAVA_HOME}\"" >&2
+	echo "COMPILER=\"${GENTOO_COMPILER}\"" >&2
+	echo "JAVAC_FLAGS=\"${JAVACFLAGS}\"" >&2
+	echo "CLASSPATH=\"${CLASSPATH}\"" >&2
+	echo "emerge --info =${P}" >&2
+	echo "" >&2
+	echo "Please report bugs to" >&2
+	echo "https://github.com/Obsidian-StudiosInc/os-xtoo/issues" >&2
 }
 
 # @FUNCTION: java-pkg_verify-classes
