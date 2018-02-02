@@ -1528,16 +1528,6 @@ java-pkg_get-jni-cflags() {
 	echo ${flags}
 }
 
-java-pkg_ensure-gcj() {
-	# was enforcing sys-devel/gcc[gcj]
-	die "${FUNCNAME} was removed. Use use-deps available as of EAPI 2 instead. #261562"
-}
-
-java-pkg_ensure-test() {
-	# was enforcing USE=test if FEATURES=test
-	die "${FUNCNAME} was removed. Package mangers handle this already. #278965"
-}
-
 # @FUNCTION: java-pkg_register-ant-task
 # @USAGE: [--version x.y] [<name>]
 # @DESCRIPTION:
