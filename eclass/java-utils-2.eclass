@@ -1288,7 +1288,7 @@ java-pkg_ensure-vm-version-sufficient() {
 java-pkg_is-vm-version-sufficient() {
 	debug-print-function ${FUNCNAME} $*
 
-	local t supported
+	local IFS t supported
 
 	# use current jdk version unless package overridden
 	[[ -z ${JAVA_PKG_WANT_RELEASE} ]] && return 0
