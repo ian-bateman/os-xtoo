@@ -42,14 +42,12 @@ S="${WORKDIR}"
 # @CODE
 #	JAVA_CLASSPATH="foo,bar-2"
 # @CODE
-JAVA_CLASSPATH=${JAVA_GENTOO_CLASSPATH}
 
 # @ECLASS-VARIABLE: JAVA_CLASSPATH_EXTRA
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Extra list of colon separated path elements to be put on the
 # classpath when compiling sources.
-JAVA_CLASSPATH_EXTRA=${JAVA_GENTOO_CLASSPATH_EXTRA}
 
 # @ECLASS-VARIABLE: JAVA_NO_JAR
 # @DEFAULT_UNSET
