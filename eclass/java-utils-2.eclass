@@ -2267,17 +2267,8 @@ java-pkg_switch-vm() {
 					eerror "JAVA_PKG_WANT_BUILD_VM specified without JAVA_PKG_WANT_RELEASE"
 					die "Specify JAVA_PKG_WANT_RELEASE"
 				fi
-			# otherwise determine a vm from dep string
-			else
-				debug-print "depend-java-query:  NV_DEPEND:	${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
-				JEM_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
-				if [[ -z "${JEM_VM}" || "${JEM_VM}" == "None" ]]; then
-					eerror "Unable to determine VM for building from dependencies:"
-					echo "NV_DEPEND: ${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
-					die "Failed to determine VM for building."
-				fi
+				export JEM_VM
 			fi
-			export JEM_VM
 		# otherwise just make sure the current VM is sufficient
 		else
 			java-pkg_ensure-vm-version-sufficient
