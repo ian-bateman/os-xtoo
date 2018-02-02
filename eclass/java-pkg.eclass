@@ -32,7 +32,7 @@ DEPEND="${JAVA_PKG_E_DEPEND}"
 # Nothing special for RDEPEND... just the same as DEPEND.
 RDEPEND="${DEPEND}"
 
-if [[ ${PV} == *9999* ]] && [[ -z ${BASE_URI} ]]; then
+if [[ ${PV} == *9999* ]] && [[ ${BASE_URI} ]]; then
         EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}"
         inherit git-r3
