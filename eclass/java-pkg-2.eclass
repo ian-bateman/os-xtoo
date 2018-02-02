@@ -33,10 +33,7 @@ DEPEND="${JAVA_PKG_E_DEPEND}"
 # Nothing special for RDEPEND... just the same as DEPEND.
 RDEPEND="${DEPEND}"
 
-case "${EAPI:-0}" in
-	0|1) EXPORT_FUNCTIONS pkg_setup pkg_preinst ;;
-	*) EXPORT_FUNCTIONS pkg_setup src_prepare pkg_preinst ;;
-esac
+EXPORT_FUNCTIONS pkg_setup src_prepare pkg_preinst
 
 # @FUNCTION: java-pkg-2_pkg_setup
 # @DESCRIPTION:
