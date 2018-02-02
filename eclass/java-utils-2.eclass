@@ -1647,6 +1647,18 @@ java-utils-2_src_prepare() {
 		*) default ;;
 	esac
 
+	if [[ -z ${JAVA_SRC_DIR} ]]; then
+		if [[ -d "${S}/src/main/java" ]]; then
+			JAVA_SRC_DIR="src/main/java"
+		elif [[ -d "${S}/src/java" ]]; then
+			JAVA_SRC_DIR="src/java"
+		elif [[ -d "${S}/src/main" ]]; then
+			JAVA_SRC_DIR="src/main"
+		elif [[ -d "${S}/src" ]]; then
+			JAVA_SRC_DIR="src"
+		fi
+	fi
+
 	# Check for files in JAVA_RM_FILES array.
 	if [[ ${JAVA_RM_FILES[@]} ]]; then
 		debug-print "$FUNCNAME: removing unneeded files"
