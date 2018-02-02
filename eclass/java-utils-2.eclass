@@ -247,7 +247,7 @@ java-pkg_dojar() {
 			# install it into JARDEST if it's a non-symlink
 			if [[ ! -L "${jar}" ]] ; then
 				#but first check class version when in strict mode.
-				is-java-strict && java-pkg_verify-classes "${jar}"
+#				is-java-strict && java-pkg_verify-classes "${jar}"
 
 				(
 					insinto "${JAVA_PKG_JARDEST}"
@@ -313,7 +313,7 @@ java-pkg_regjar() {
 				&& die "Called ${FUNCNAME} on a	directory $*"
 
 			#check that class version correct when in strict mode
-			is-java-strict && java-pkg_verify-classes "${jar}"
+#			is-java-strict && java-pkg_verify-classes "${jar}"
 
 			# nelchael: we should strip ${D} in this case too, here's why:
 			# imagine such call:
