@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -40,7 +40,7 @@ S="${WORKDIR}/${MY_P}/java/${PN:6}"
 
 # Needed to build, but do not include or compile
 # Not ideal, but do not want to include in this package
-JAVA_GENTOO_CLASSPATH_EXTRA="${S}/../drda/"
+JAVA_CLASSPATH_EXTRA="${S}/../drda/"
 
 java_prepare() {
 	cd "${S}/org/apache/derby/impl/tools/ij/" || die
