@@ -1,4 +1,4 @@
-# Copyright 2017 Obisidian-Studios, Inc.
+# Copyright 2017-2018 Obisidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 # Tidbits from enlightenment.eclass
