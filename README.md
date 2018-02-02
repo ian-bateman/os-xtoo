@@ -88,20 +88,41 @@ Java 9. There is initial support for Java 10. Initial testing for Java
 10 has begun. Most any package that builds under 9 should under 10, 
 less any new issues from Java 10.
 
+### Java Versioning
+This overlay implements a brand new feature of no longer requiring Java 
+versions in ebuilds. Java verions will be based on the version of Java 
+used during build time of any given package. This elimites the need to 
+update versions for newer versions of Java.
+
+If needed this can be overriden globally for all packages in 
+[java-util-2.eclass](https://github.com/Obsidian-StudiosInc/os-xtoo/blob/master/eclass/java-utils-2.eclass#L70), 
+by setting ```JAVA_RELEASE``` to some value. Or adding that to any 
+ebuild individually as needed. Which is the main intended use. The 
+global usage is a backup for issues encountered with the new system.
+
+This does make building a forward operation. Keep your system/build vm 
+set to an older version like 9, if running newer like 10+. If you build 
+under 10, and try to run under 9 without the above you will have issues.
+Otherwise moving forward should not require rebuild unless package has 
+runtime issues. Once you do, you will need to rebuild again if you 
+revert back to 9 from 10.
+
+Rebuild all installed from dev-java/*
+```emerge -qv1O $(qlist -IC 'dev-java/*')```
+
 ### Setting system/user VM
 This overlay is in the process of switching to 
 [jem](https://github.com/Obsidian-StudiosInc/jem) from 
 [java-config](https://github.com/gentoo/java-config). At this time you 
 need to use both to set system and/or user VM. Changing one you need to 
 do the same with the other. There is no wrapper for both. java-config 
-will be removed as soon as depend-java-query and gjl (replacement to be 
-named jjl) are replaced. Those commands are still provided by 
-java-config.
+will be removed as soon as gjl (replacement to be named jjl) is 
+replaced. That command is still provided by java-config.
 
 Otherwise jem is a drop in replacement for java-config, and has the same 
 syntax and features. jem is used in eclasses in this overlay. 
 java-config itself is really not used. Just need to set java-config 
-system/user vm for depend-java-query and gjl. Thus it remaining for now.
+system/user vm for gjl. Thus it remaining for now.
 
 ## E
 This repo has full and complete support for 
