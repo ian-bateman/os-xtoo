@@ -6,11 +6,11 @@ EAPI="6"
 inherit java-netbeans
 
 CP_DEPEND="
-	dev-java/net-java-html:0
-	dev-java/net-java-html-boot:0
-	dev-java/net-java-html-boot-fx:0
-	dev-java/net-java-html-geo:0
-	dev-java/net-java-html-json:0
+	nb-plugins/net-java-html:0
+	nb-plugins/net-java-html-boot:0
+	nb-plugins/net-java-html-boot-fx:0
+	nb-plugins/net-java-html-geo:0
+	nb-plugins/net-java-html-json:0
 	~nb-ide/netbeans-openide-awt-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-dialogs-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-filesystems-${PV}:${SLOT}
