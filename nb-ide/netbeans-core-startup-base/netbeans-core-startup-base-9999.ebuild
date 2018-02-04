@@ -17,14 +17,3 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
-
-java_prepare() {
-	local r s
-	r="resources/META-INF/namedservices/URLStreamHandler/nbinst"
-	mkdir -p "${r}" \
-		|| die "Failed to make services namedservices directories"
-
-	echo "org.netbeans.core.startup.layers.NbinstURLStreamHandler" > \
-		"${r}/java.net.URLStreamHandler" \
-		|| die "Failed to generate URLStreamHandler"
-}
