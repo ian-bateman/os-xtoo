@@ -27,7 +27,7 @@ SLOT="0"
 
 CP_DEPEND="
 	~dev-java/net-java-html-${PV}:${SLOT}
-	dev-java/netbeans-openide-util-lookup:9
+	nb-ide/netbeans-openide-util-lookup:9
 "
 
 DEPEND="${CP_DEPEND}

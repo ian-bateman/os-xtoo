@@ -28,17 +28,17 @@ NB_SLOT="9"
 CP_DEPEND="
 	dev-java/darcula:0
 	dev-java/iconloader:0
-	dev-java/netbeans-o-n-swing-plaf:${NB_SLOT}
-	dev-java/netbeans-openide-awt:${NB_SLOT}
-	dev-java/netbeans-openide-dialogs:${NB_SLOT}
-	dev-java/netbeans-openide-filesystems:${NB_SLOT}
-	dev-java/netbeans-openide-modules:${NB_SLOT}
-	dev-java/netbeans-openide-nodes:${NB_SLOT}
-	dev-java/netbeans-openide-util:${NB_SLOT}
-	dev-java/netbeans-openide-util-lookup:${NB_SLOT}
-	dev-java/netbeans-openide-util-ui:${NB_SLOT}
-	dev-java/netbeans-openide-windows:${NB_SLOT}
-	dev-java/netbeans-options-api:${NB_SLOT}
+	nb-ide/netbeans-o-n-swing-plaf:${NB_SLOT}
+	nb-ide/netbeans-openide-awt:${NB_SLOT}
+	nb-ide/netbeans-openide-dialogs:${NB_SLOT}
+	nb-ide/netbeans-openide-filesystems:${NB_SLOT}
+	nb-ide/netbeans-openide-modules:${NB_SLOT}
+	nb-ide/netbeans-openide-nodes:${NB_SLOT}
+	nb-ide/netbeans-openide-util:${NB_SLOT}
+	nb-ide/netbeans-openide-util-lookup:${NB_SLOT}
+	nb-ide/netbeans-openide-util-ui:${NB_SLOT}
+	nb-ide/netbeans-openide-windows:${NB_SLOT}
+	nb-ide/netbeans-options-api:${NB_SLOT}
 "
 
 DEPEND="${CP_DEPEND}

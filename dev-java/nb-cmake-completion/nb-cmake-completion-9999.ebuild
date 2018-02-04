@@ -29,11 +29,11 @@ SLOT="0"
 NB_SLOT="9"
 
 CP_DEPEND="
-	dev-java/netbeans-editor-completion:${NB_SLOT}
-	dev-java/netbeans-editor-mimelookup:${NB_SLOT}
-	dev-java/netbeans-openide-filesystems:${NB_SLOT}
-	dev-java/netbeans-openide-util:${NB_SLOT}
-	dev-java/netbeans-openide-util-lookup:${NB_SLOT}
+	nb-ide/netbeans-editor-completion:${NB_SLOT}
+	nb-ide/netbeans-editor-mimelookup:${NB_SLOT}
+	nb-ide/netbeans-openide-filesystems:${NB_SLOT}
+	nb-ide/netbeans-openide-util:${NB_SLOT}
+	nb-ide/netbeans-openide-util-lookup:${NB_SLOT}
 "
 
 DEPEND="${CP_DEPEND}
