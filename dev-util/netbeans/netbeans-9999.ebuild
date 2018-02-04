@@ -26,8 +26,7 @@ RDEPEND="
 	dev-java/freemarker:0
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
-	dev-java/nb-cmake-completion:0
-	dev-java/nb-darcula:0
+	dev-java/osgi-core-api:${OSGI_SLOT}
 	~nb-ide/${PN}-ant-browsetask-${PV}:${SLOT}
 	~nb-ide/${PN}-ant-grammar-${PV}:${SLOT}
 	~nb-ide/${PN}-ant-kit-${PV}:${SLOT}
@@ -150,7 +149,8 @@ RDEPEND="
 	~nb-ide/${PN}-xml-tools-java-${PV}:${SLOT}
 	~nb-ide/${PN}-xml-xdm-${PV}:${SLOT}
 	~nb-ide/${PN}-xsl-${PV}:${SLOT}
-	dev-java/osgi-core-api:${OSGI_SLOT}
+	nb-plugins/nb-cmake-completion:0
+	nb-plugins/nb-darcula:0
 	>=virtual/jdk-9:*
 "
 
