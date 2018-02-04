@@ -6,10 +6,10 @@ EAPI="6"
 inherit java-netbeans
 
 CP_DEPEND="
-	dev-java/net-java-html:0
-	dev-java/net-java-html-boot:0
-	dev-java/net-java-html-boot-fx:0
-	dev-java/net-java-html-json:0
+	nb-plugins/net-java-html:0
+	nb-plugins/net-java-html-boot:0
+	nb-plugins/net-java-html-boot-fx:0
+	nb-plugins/net-java-html-json:0
 	~nb-ide/netbeans-api-htmlui-${PV}:${SLOT}
 	~nb-ide/netbeans-api-templates-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-dialogs-${PV}:${SLOT}
