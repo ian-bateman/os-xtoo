@@ -18,7 +18,13 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
+
+java_prepare() {
+	sed -i -e "s|Collection<Bundle> _|Collection<Bundle> var|" \
+		src/org/netbeans/core/osgi/OSGiClassLoader.java \
+		|| die "Failed to sed java 9 _ -> var"
+}
