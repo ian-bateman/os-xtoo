@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -30,14 +30,13 @@ LICENSE="Apache-2.0"
 
 if [[ ${PV} == 3.*  ]]; then
 	SLOT="0"
-	JPV="1.7"
+	JAVA_RELEASE="7"
 else
 	SLOT="${PV%%.*}"
-	JPV="9"
 fi
 
-DEPEND=">=virtual/jdk-${JPV}"
+DEPEND=">=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-${JPV}"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
