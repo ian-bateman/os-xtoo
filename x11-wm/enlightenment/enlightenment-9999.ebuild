@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 # Based on ebuild from gentoo main tree
@@ -42,7 +42,7 @@ IUSE_E_MODULES=(
 	${__NORM_MODS[@]/#/enlightenment_modules_}
 )
 
-IUSE="bluetooth connman doc egl nls pam spell static-libs systemd udisks
+IUSE="acpi bluetooth connman doc egl nls pam spell static-libs systemd udisks
 	wayland wifi ${IUSE_E_MODULES[@]/#/+}"
 
 REQUIRED_USE="
@@ -52,6 +52,7 @@ REQUIRED_USE="
 "
 
 DEPEND="
+	acpi? ( sys-power/acpid )
 	bluetooth? ( net-wireless/bluez )
 	connman? ( net-misc/econnman )
 	pam? ( sys-libs/pam )
