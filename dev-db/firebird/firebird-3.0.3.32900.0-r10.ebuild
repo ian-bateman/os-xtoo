@@ -42,7 +42,6 @@ S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-${MY_MM}-deps-flags.patch"
-	"${FILESDIR}/${PN}-${MY_MM}-gcc6.patch"
 )
 
 pkg_setup() {
