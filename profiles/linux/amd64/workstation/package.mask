@@ -5,5 +5,5 @@ dev-lang/ruby:2.2
 dev-lang/ruby:2.3
 >=media-libs/speex-1.2.0
 =x11-wm/enlightenment-1.0*
-=x11-wm/enlightenment-0.22.1
+=x11-wm/enlightenment-0.22.1*
 >=sys-kernel/gentoo-sources-4.14.16
