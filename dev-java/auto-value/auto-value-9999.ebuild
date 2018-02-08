@@ -9,17 +9,13 @@ MY_P="${P/_/-}"
 
 BASE_URI="https://github.com/google/auto/"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="auto-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Generated immutable value classes for Java 1.6+"
 HOMEPAGE="${BASE_URI}"
