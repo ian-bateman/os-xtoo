@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -11,18 +11,14 @@ MY_PV="${MY_PV/_/.}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/google/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
 		  https://github.com/google/boringssl/archive/master.tar.gz -> boringssl-${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Java Security Providere"
 HOMEPAGE="https://conscrypt.org/"
