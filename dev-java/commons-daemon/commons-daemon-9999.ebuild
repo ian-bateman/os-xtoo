@@ -12,17 +12,13 @@ MY_P="${MY_PN^^}_${MY_PV^^}"
 
 BASE_URI="https://github.com/apache/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit autotools java-pkg-2 java-pkg-simple ${ECLASS}
+inherit autotools java-pkg
 
 DESCRIPTION="Tools to allow Java programs to run as UNIX daemons"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
