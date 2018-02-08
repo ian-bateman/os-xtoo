@@ -7,17 +7,13 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/swaldman/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="A mature, highly concurrent JDBC Connection pooling library"
 HOMEPAGE="https://www.mchange.com/projects/c3p0"
