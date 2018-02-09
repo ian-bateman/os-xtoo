@@ -9,17 +9,13 @@ MY_PV="${PV}.Final"
 MY_P="${PN}-parent-${MY_PV}"
 BASE_URI="https://github.com/${PN%%-*}/${PN}/"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit autotools java-pkg-2 java-pkg-simple ${ECLASS}
+inherit autotools java-pkg
 
 DESCRIPTION="Fork of Tomcat Native that incorporates various patches"
 HOMEPAGE="https://netty.io/wiki/forked-${PN}.html"
