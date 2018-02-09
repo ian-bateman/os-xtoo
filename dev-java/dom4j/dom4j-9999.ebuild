@@ -13,7 +13,7 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${P/-/-version-}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Open source framework for processing XML"
 HOMEPAGE="https://${PN}.github.io"
