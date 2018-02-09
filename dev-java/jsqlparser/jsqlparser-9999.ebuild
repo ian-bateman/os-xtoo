@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -8,11 +8,7 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="JSqlParser"
 BASE_URI="https://github.com/JSQLParser/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 #	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	SRC_URI="https://repo1.maven.org/maven2/com/github/${PN}/${PN}/${PV}/${P}-sources.jar"
 	KEYWORDS="~amd64"
@@ -20,7 +16,7 @@ else
 	MY_S=""
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Library to perform type arithemtic over the type system"
 HOMEPAGE="${BASE_URI}/wiki"
