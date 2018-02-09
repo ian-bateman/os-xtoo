@@ -5,18 +5,14 @@ EAPI="6"
 
 BASE_URI="https://github.com/bulenkov/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	MY_SNAP="d993b829d8b37c23fdbc492afc784ac3d4e41410"
 	SRC_URI="${BASE_URI}/archive/${MY_SNAP}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_SNAP}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Smart Java Icon Loader with support of HiDPI (Retina) images"
 HOMEPAGE="${BASE_URI}"
