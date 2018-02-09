@@ -10,17 +10,13 @@ MY_PV="${PV/_pre/.pr}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/FasterXML/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Module adds JAXB annotations alternative to Jackson annotations"
 HOMEPAGE="https://wiki.fasterxml.com/JacksonJAXBAnnotations"
@@ -34,12 +30,14 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-8"
 
 S="${WORKDIR}/${MY_S}/jaxb"
+
+JAVAC_ARGS+=" --add-modules java.activation,java.xml.bind "
 
 java_prepare() {
 	local my_file
