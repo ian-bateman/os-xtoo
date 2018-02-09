@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -9,17 +9,15 @@ MY_PN="${PN%%-*}"
 MY_PV="${PV/_beta/-b}"
 MY_P="${MY_PN}-${MY_PV}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
-	SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
+
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Jersey RESTful Web Services in Java Entity Filtering"
 HOMEPAGE="https://jersey.github.io/"
@@ -35,13 +33,15 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
 	dev-java/istack-commons-buildtools:0
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/ext/${PN#*-}"
+
+JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	# Generate org.glassfish.jersey.internal.LocalizationMessages
