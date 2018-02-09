@@ -8,11 +8,7 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="${PN%%-*}"
 BASE_URI="https://github.com/apache/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	MY_PV="${PV/_beta/}"
 	MY_P="apache-${MY_PN}-${MY_PV}-src"
 	SRC_URI="mirror://apache/${MY_PN}/${MY_PN}-${PV%%.*}/v${MY_PV}/src/${MY_P}.tar.gz"
@@ -20,7 +16,7 @@ else
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Tomcat's ${PN#-*} (JSR 250+ implementation )"
 HOMEPAGE="https://tomcat.apache.org/"
