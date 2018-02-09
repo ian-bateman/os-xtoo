@@ -11,17 +11,13 @@ MY_P="${MY_PN}-${MY_PV}"
 MY_MOD="${PN#*-}"
 BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Netty ${MY_MOD}"
 HOMEPAGE="https://${MY_PN}.io/"
