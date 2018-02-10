@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -25,7 +25,7 @@ LICENSE="Apache-2.0"
 SLOT="$(get_major_version)"
 
 CP_DEPEND="
-	dev-java/args4j:2
+	dev-java/args4j:0
 	dev-java/osgi-compendium:4
 	dev-java/osgi-core-api:4
 	~dev-java/osgi-impl-bundle-repoindex-api-${PV}:${SLOT}
