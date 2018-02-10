@@ -15,11 +15,7 @@ MY_P="${MY_PN}-${MY_PV}"
 
 BASE_URI="https://github.com/rzwitserloot/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	# Nasty binary jar needed :(
 	# https://github.com/rzwitserloot/lombok/issues/1391
 	# https://github.com/rzwitserloot/lombok.patcher/issues/2
@@ -30,7 +26,7 @@ else
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Framework for easily patching JVM programs"
 HOMEPAGE="https://projectlombok.org/"
@@ -43,13 +39,14 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/src"
 
 JAVA_SRC_DIR="injector patcher"
+JAVAC_ARGS+="--add-modules java.xml.ws.annotation  "
 # Remove when circular deps resolved...
 JAVA_CLASSPATH_EXTRA="${DISTDIR}/${LOM_P}.jar"
