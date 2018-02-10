@@ -22,17 +22,26 @@ DESCRIPTION="Adapter between RxJava and ReactiveStreams"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 
-if [[ "${PV:0:1}" == "1" ]]; then
+if [[ ${PV} == 1* ]]; then
 	SLOT="0"
+	JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
 else
 	SLOT="${PV%%.*}"
 	CP_DEPEND="dev-java/reactive-streams:0"
 fi
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/"
+
+java_prepare() {
+	if [[ ${PV} == 1* ]]; then
+		sed -i -e "569s|return from|return (Single<T>)from|" \
+			src/main/java/rx/Single.java \
+			|| die "Failed to sed/fix java9 type"
+	fi
+}
