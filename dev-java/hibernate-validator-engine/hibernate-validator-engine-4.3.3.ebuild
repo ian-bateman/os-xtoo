@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -27,14 +27,14 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/${PN:20}"
 
-JAVA_SRC_DIR="src/main/java"
+JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	xjc -enableIntrospection \
