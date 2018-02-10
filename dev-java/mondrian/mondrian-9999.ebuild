@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -10,17 +10,13 @@ MY_PV="${PV}-R"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/pentaho/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="OLAP server to analyze large quantities of data in real-time"
 HOMEPAGE="http://${PN}.pentaho.com/"
@@ -34,7 +30,6 @@ CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-math:2
 	dev-java/commons-pool:2
-	dev-java/commons-vfs:0
 	dev-java/commons-vfs:2
 	dev-java/eigenbase-xom:0
 	dev-java/eigenbase-properties:0
@@ -132,6 +127,11 @@ java_prepare() {
 			"${S}src/main/java/mondrian/rolap/${f}.java" \
 		|| die "Failed to sed dbcp/pool -> dbcp2/pool2"
 	done
+
+	# upgrade to vfs2
+	sed -i -e "s|.vfs.|.vfs2.|g" \
+		src/main/java/mondrian/spi/impl/ApacheVfsVirtualFileHandler.java \
+		|| die "Failed to sed vfs -> vfs2"
 
 	# remove problem files
 	rm src/main/java/mondrian/olap4j/FactoryJdbc{3,4}Impl.java \
