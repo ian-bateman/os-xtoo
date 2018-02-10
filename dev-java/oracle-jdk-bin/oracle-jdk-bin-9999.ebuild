@@ -66,8 +66,13 @@ RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	cups? ( net-print/cups )
 	fontconfig? ( media-libs/fontconfig:1.0 )
-	!prefix? ( elibc_glibc? ( sys-libs/glibc:* ) )
-	selinux? ( sec-policy/selinux-java )"
+	!prefix? (
+		dev-libs/elfutils
+		elibc_glibc? ( sys-libs/glibc:* )
+	)
+	selinux? ( sec-policy/selinux-java )
+	virtual/libelf
+"
 
 DEPEND="app-arch/zip"
 
