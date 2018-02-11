@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -33,7 +33,7 @@ CP_DEPEND="
 	~dev-java/castor-xml-${PV}:${SLOT}
 	dev-java/commons-logging:0
 	dev-java/commons-lang:2
-	dev-java/velocity:0
+	dev-java/velocity-engine-core:0
 "
 
 DEPEND="${CP_DEPEND}
