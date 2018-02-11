@@ -5,21 +5,18 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-HOMEPAGE="https://github.com/square/${PN}"
+BASE_URI="https://github.com/square/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-	MY_S="${P}"
-else
-	SRC_URI="${HOMEPAGE}/archive/${P}.tar.gz"
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Java API for generating .java source files"
+HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
 
