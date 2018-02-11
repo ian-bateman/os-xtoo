@@ -5,19 +5,17 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-HOMEPAGE="https://github.com/bivas/${PN}"
+BASE_URI="https://github.com/bivas/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-else
-	SRC_URI="${HOMEPAGE}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Provide serialization and de-serialization of different formats"
+HOMEPAGE="${BASE_URI}"
 LICENSE="BSD-3-clause"
 SLOT="0"
 
