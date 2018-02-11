@@ -24,6 +24,7 @@ inherit java-pkg
 
 DESCRIPTION="A simple Java toolkit for JSON"
 HOMEPAGE="${BASE_URI}"
+BASE_URI="${BASE_URI}"
 LICENSE="MIT"
 if [[ ${PV} == 2* ]]; then
 	SLOT="0"
