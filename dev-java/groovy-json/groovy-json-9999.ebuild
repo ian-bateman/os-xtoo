@@ -10,21 +10,18 @@ MY_PN="${MY_PNL^^}"
 MY_PV="${PV//./_}"
 MY_P="${MY_PN}_${MY_PV}"
 
-HOMEPAGE="https://github.com/apache/${MY_PNL}"
+BASE_URI="https://github.com/apache/${MY_PNL}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-	MY_S="${P}"
-else
-	SRC_URI="${HOMEPAGE}/archive/${MY_P}.tar.gz"
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_PNL}-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Groovy ${PN:8}"
+HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
 
