@@ -5,24 +5,25 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-HOMEPAGE="https://github.com/cliftonlabs/${PN}"
+BASE_URI="https://github.com/cliftonlabs/${PN}"
 
 if [[ ${PV} == 9999 ]]; then
 	ECLASS="git-r3"
-#	EGIT_REPO_URI="${HOMEPAGE}.git"
+#	EGIT_REPO_URI="${BASE_URI}.git"
 	EGIT_REPO_URI="https://github.com/Obsidian-StudiosInc/json-simple.git"
 	EGIT_BRANCH="JsonSimpleMessageBodyHandler"
 	CP_DEPEND="dev-java/jax-rs:2"
 	MY_S="${P}"
 else
 	KEYWORDS="~amd64"
-	SRC_URI="${HOMEPAGE}/archive/${P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="A simple Java toolkit for JSON"
+HOMEPAGE="${BASE_URI}"
 LICENSE="MIT"
 if [[ ${PV} == 2* ]]; then
 	SLOT="0"
