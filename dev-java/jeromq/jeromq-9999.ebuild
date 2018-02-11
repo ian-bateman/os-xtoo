@@ -1,23 +1,21 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-HOMEPAGE="https://github.com/${PN/j/z}/${PN}"
+BASE_URI="https://github.com/${PN/j/z}/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-else
-	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Pure Java implementation of libzmq"
+HOMEPAGE="${BASE_URI}"
 LICENSE="MPL-2.0"
 SLOT="0"
 
@@ -26,9 +24,9 @@ if [[ "${PV}" != 0.3.6 ]]; then
 fi
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
