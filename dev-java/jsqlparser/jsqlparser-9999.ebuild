@@ -25,7 +25,7 @@ SLOT="0"
 
 #CP_DEPEND="
 #	dev-java/javacc:0
-#	dev-java/velocity:0
+#	dev-java/velocity-engine-core:0
 #"
 
 JDK_VERSION="1.8"
