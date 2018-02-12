@@ -5,10 +5,7 @@ EAPI="6"
 
 BASE_URI="https://github.com/Obsidian-StudiosInc/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
