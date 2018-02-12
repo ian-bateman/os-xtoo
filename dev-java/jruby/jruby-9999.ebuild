@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 # Copyright 1999-2014 Gentoo Foundation
@@ -9,15 +9,12 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/${PN}/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit eutils java-pkg-2 java-pkg-simple ${ECLASS}
+inherit eutils java-pkg
 
 DESCRIPTION="Java-based Ruby interpreter implementation"
 HOMEPAGE="https://${PN}.org/"
@@ -82,7 +79,7 @@ GEMS=${RUBY_HOME}/gems
 
 pkg_setup() {
 	export RUBYOPT=""
-	java-pkg-2_pkg_setup
+	java-pkg
 
 	local fail
 	for directory in "${GEMS}" "${SITE_RUBY}"; do
