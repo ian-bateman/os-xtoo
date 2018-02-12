@@ -1,7 +1,10 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 # Original work Copyright 1999-2016 Gentoo Foundation
+
+# TODO: REDO entire ebuild...
+# does not work with ebuild groovy-x.ebuild compile, and should
 
 EAPI="6"
 
@@ -12,11 +15,7 @@ MY_PV="${PV//./_}"
 MY_P="${MY_PN}_${MY_PV}"
 BASE_URI="https://github.com/apache/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 #	SRC_URI="mirror://apache/${PN}/${PV}/sources/apache-${PN}-src-${PV}.zip -> ${P}.zip"
 	KEYWORDS="~amd64"
@@ -24,7 +23,7 @@ else
 #	MY_S="${P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="A multi-faceted language for the Java platform"
 HOMEPAGE="https://www.groovy-lang.org/"
@@ -36,7 +35,7 @@ CLI_SLOT="1"
 
 CP_DEPEND="
 	dev-java/ant-ivy:0
-	>=dev-java/antlr-2.7.7-r7:0
+	dev-java/antlr:0
 	dev-java/asm:${ASM_SLOT}
 	dev-java/commons-cli:${CLI_SLOT}
 	dev-java/jansi:0
@@ -45,14 +44,17 @@ CP_DEPEND="
 
 DEPEND="app-arch/unzip
 	${CP_DEPEND}
-	>=virtual/jdk-1.7"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.7"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main"
+# Needed for DefaultGroovyMethods.java
+# TODO: merge upstream changes for > 1.7, cannot use full file
+JAVA_RELEASE="7"
 JAVA_RES_DIR="resources"
 JAVA_CLASSPATH_EXTRA="${JAVA_RES_DIR}"
 
