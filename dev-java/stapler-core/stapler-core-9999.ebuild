@@ -1,28 +1,25 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-MY_PN="${PN:0:7}-parent"
+MY_PN="${PN%%-*}"
 MY_P="${MY_PN}-${PV}"
 
-HOMEPAGE="https://github.com/${PN:0:7}/${PN:0:7}"
+BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-	MY_S="${P}/${PN:8}"
-else
-	SRC_URI="${HOMEPAGE}/archive/${MY_P}.tar.gz"
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${MY_PN}-parent-${PV}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${PN:0:7}-${MY_P}/${PN:8}"
+	MY_S="${MY_PN}-${MY_PN}-parent-${PV}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Stapler web framework ${PN:8}"
+HOMEPAGE="${BASE_URI}"
 LICENSE="BSD-2-clause"
 SLOT="0"
 
@@ -38,26 +35,33 @@ CP_DEPEND="
 	dev-java/groovy:0
 	dev-java/guava:23
 	dev-java/jenkins-json-lib:2
+	dev-java/jsr250:0
 	dev-java/jsr305:0
 	dev-java/localizer:0
 	dev-java/metainf-services:0
 	dev-java/tiger-types:0
-	dev-java/txw2-runtime:0
+	dev-java/txw2:0
 	java-virtuals/servlet-api:4.0
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-S="${WORKDIR}/${MY_S}"
-
-JAVA_SRC_DIR="src/main/java"
+S="${WORKDIR}/${MY_S}/${PN##*-}"
 
 java_prepare() {
+	local f
+
 	sed -i -e "s|org.kohsuke.asm5|org.objectweb.asm|g" \
 		"${S}/src/main/java/org/kohsuke/stapler/ClassDescriptor.java" \
 		|| die "Could not sed asm"
+
+	for f in export/TypeUtil Function RequestImpl; do
+		sed -i -e "s| _)| vvar)|g" \
+			src/main/java/org/kohsuke/stapler/${f}.java \
+			|| die "Failed to sed/fix Java 9 keyword _ -> vvar"
+	done
 }
