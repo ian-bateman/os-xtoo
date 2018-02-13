@@ -7,15 +7,12 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/Obsidian-StudiosInc/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Super-small, super-fast Java compiler"
 HOMEPAGE="https://janino-compiler.github.io/janino/"
@@ -24,8 +21,8 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/ant-core:0
+	dev-java/commons-nullanalysis:0
 	~dev-java/janino-commons-compiler-${PV}:${SLOT}
-	dev-java/unkrig-nullanalysis:0
 "
 
 DEPEND="${CP_DEPEND}
