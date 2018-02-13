@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -7,17 +7,13 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/${PN}/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Mocking easier"
 HOMEPAGE="http://easymock.org"
@@ -40,10 +36,10 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/core"
 
+# need to package org.droidparts.dexmaker.stock.ProxyBuilder
+JAVA_RM_FILES=( src/main/java/org/easymock/internal/AndroidClassProxyFactory.java )
+
 java_prepare(){
-	# need to package org.droidparts.dexmaker.stock.ProxyBuilder
-	rm src/main/java/org/easymock/internal/AndroidClassProxyFactory.java \
-		|| die "Failed to remove AndroidClassProxyFactory.java"
 	sed -i -e '150,154d' \
 		src/main/java/org/easymock/internal/MocksControl.java \
 		|| die "Failed to sed remove AndroidClassProxyFactory usage"
