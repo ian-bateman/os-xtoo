@@ -8,25 +8,20 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="mongo-java-driver"
 MY_P="${MY_PN}-r${PV}"
 
-BASE_URI="https://github.com/${PN:0:7}/${MY_PN}"
+BASE_URI="https://github.com/${PN##*-}/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}/${PN:8}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/r${PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${MY_P}/${PN:8}/"
+	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="MongoDB Java Driver"
-
-SLOT="$(get_major_version)"
 HOMEPAGE="https://mongodb.github.io/${MY_PN}/"
 LICENSE="Apache-2.0"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	~dev-java/bson-${PV}:${SLOT}
@@ -34,11 +29,9 @@ CP_DEPEND="
 "
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
-S="${WORKDIR}/${MY_S}/"
-
-JAVA_SRC_DIR="src/main/"
+S="${WORKDIR}/${MY_S}/${PN#*-}"
