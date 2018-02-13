@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -7,10 +7,7 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/${PN}-de/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
+if [[ ${PV} == *9999* ]]; then
 	SLOT="${PV}"
 else
 	if [[ ${PV} == 1.[4,5]* ]] ; then
@@ -29,7 +26,7 @@ else
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Lexical analyzer generator (also known as scanner generator)"
 HOMEPAGE="${BASE_URI}"
