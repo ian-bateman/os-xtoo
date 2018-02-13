@@ -23,9 +23,7 @@ DESCRIPTION="A programmer-oriented testing framework for Java"
 HOMEPAGE="https://junit.org/junit${SLOT}/"
 LICENSE="EPL-1.0"
 
-if [[ ${SLOT} == 4 ]]; then
-	CP_DEPEND="dev-java/hamcrest-core:1"
-fi
+CP_DEPEND="dev-java/hamcrest-core:2"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -34,3 +32,9 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
+
+java_prepare() {
+	sed -i -e "s|<T> Matcher<Iterable<T>> everyItem(final Matcher<T>|<U> Matcher<Iterable<? extends U>> everyItem(final Matcher<U>|" \
+		src/main/java/org/junit/matchers/JUnitMatchers.java \
+		|| die "Failed to sed/fix type variable"
+}
