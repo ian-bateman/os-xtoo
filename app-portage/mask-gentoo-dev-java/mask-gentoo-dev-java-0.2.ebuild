@@ -15,10 +15,15 @@ src_prepare() {
 	default
 
 	echo 'dev-java/*::gentoo' > "${PN}" || die "Failed to create ${PV}"
+	echo 'dev-java/java-config::gentoo' > "unmask-java-config" \
+			|| die "Failed to create unmask-java-config"
 }
 src_install() {
-	dodir /etc/portage/package.mask
+	dodir /etc/portage/package.{,un}mask
 
 	insinto /etc/portage/package.mask
 	doins "${PN}"
+
+	insinto /etc/portage/package.unmask
+	doins "unmask-java-config"
 }
