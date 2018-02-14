@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -8,7 +8,6 @@ JAVA_PKG_IUSE="doc source"
 BASE_URI="http://www2.cs.tum.edu/projects/cup"
 
 if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
 	EGIT_REPO_URI="git@versioncontrolseidl.in.tum.de:parsergenerators/cup.git"
 	SLOT="${PV}"
 else
@@ -28,7 +27,7 @@ else
 	SLOT="${PV:3:1}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="CUP Parser Generator"
 HOMEPAGE="${BASE_URI}"
@@ -42,10 +41,10 @@ if [[ ${SLOT} != 0 ]]; then
 fi
 DEPEND+="
 	!dev-java/javacup:*
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 java_prepare() {
 	if [[ ${SLOT} != 0 ]]; then
