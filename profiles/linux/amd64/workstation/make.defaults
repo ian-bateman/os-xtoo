@@ -61,10 +61,8 @@ LLVM_TARGETS="AMDGPU NVPTX X86"
 
 OFFICE_IMPLEMENTATION="openoffice"
 
-PYTHON_TARGETS="python2_7 -python3_4 python3_5"
-PYTHON_SINGLE_TARGET="-python3_4 python3_5"
-
-RUBY_TARGETS="ruby24"
+PYTHON_TARGETS="python2_7 -python3_4 python3_5 -python3_6"
+PYTHON_SINGLE_TARGET="-python3_4 python3_5 -python3_6"
 
 SANE_BACKENDS="hp"
 
