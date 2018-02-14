@@ -60,6 +60,7 @@
 *dev-java/commons-pool
 *dev-java/edtftpj
 *dev-java/facebook4j
+*dev-java/gradle-wrapper
 *dev-java/ha-jdbc
 *dev-java/java-dep-check
 *dev-java/javamail
@@ -93,7 +94,7 @@
 *dev-java/tomcat-catalina
 *dev-libs/efl
 *dev-perl/Gtk2-AppIndicator
-*dev-util/android-studio-bin
+#*dev-util/android-studio-bin
 *dev-util/android-tools
 *dev-util/ccache
 *dev-util/edi
