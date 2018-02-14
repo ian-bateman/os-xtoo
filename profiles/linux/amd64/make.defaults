@@ -63,7 +63,9 @@ PROFILE_ONLY_VARIABLES="${PROFILE_ONLY_VARIABLES} ELIBC IUSE_IMPLICIT KERNEL USE
 #
 # General config
 #
-USE="cracklib e2fsprogs kmod multilib pam prefix seccomp tcpd unicode xattr"
+USE="bzip2 caps cracklib -cxx crypt e2fsprogs -fortran gnutls http2 kmod ipv6
+multilib nfs pam pcre pic prefix readline seccomp ssh ssl tcpd threads unicode
+urandom xattr zlib"
 
 ACCEPT_LICENSE="*"
 
@@ -99,8 +101,8 @@ PORTAGE_TMPDIR="/tmp"
 PORTDIR=/usr/portage
 PKGDIR=${PORTDIR}/packages/amd64
 
-PYTHON_TARGETS="-python2_7 -python3_4 python3_5"
-PYTHON_SINGLE_TARGET="-python3_4 python3_5"
+PYTHON_TARGETS="-python2_7 -python3_4 -python3_5 python3_6"
+PYTHON_SINGLE_TARGET="-python3_4 python3_5 -python3_6"
 
 QEMU_SOFTMMU_TARGETS="i386 x86_64"
 QEMU_USER_TARGETS="i386 x86_64"
