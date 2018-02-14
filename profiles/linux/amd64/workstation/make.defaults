@@ -4,7 +4,7 @@
 USE="X aalib acpi alsa -apache2 bzip2 \
      cairo crypt cups dbus directfb drm dvd encode ffmpeg \
      flash firebird flac -fortran gsm -gpm javamail jpeg2k \
-     mad -nas nptl offensive ogg openntpd -oss \
+     libdrm mad -nas nptl offensive ogg openntpd -oss \
      samba scanner sdk ssl svg symlink \
      tiff truetype usb vorbis wmf zlib a52 expat \
      nfs nls branding gnutls gdbm aac rtc udev lm_sensors -sensord \
