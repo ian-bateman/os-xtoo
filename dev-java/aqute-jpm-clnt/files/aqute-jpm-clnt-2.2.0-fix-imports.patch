@@ -1,6 +1,6 @@
-diff -Naur a/OSGI-OPT/src/aQute/lib/collections/MultiMap.java b/OSGI-OPT/src/aQute/lib/collections/MultiMap.java
---- a/OSGI-OPT/src/aQute/lib/collections/MultiMap.java	2016-02-18 14:01:51.136924973 -0500
-+++ b/OSGI-OPT/src/aQute/lib/collections/MultiMap.java	2016-02-18 14:55:00.213730730 -0500
+diff -Naur a/src/aQute/lib/collections/MultiMap.java b/src/aQute/lib/collections/MultiMap.java
+--- a/src/aQute/lib/collections/MultiMap.java	2016-02-18 14:01:51.136924973 -0500
++++ b/src/aQute/lib/collections/MultiMap.java	2016-02-18 14:55:00.213730730 -0500
 @@ -1,6 +1,15 @@
  package aQute.lib.collections;
  
@@ -29,9 +29,9 @@ diff -Naur a/OSGI-OPT/src/aQute/lib/collections/MultiMap.java b/OSGI-OPT/src/aQu
  		assert keyClass.isInstance(key);
  		assert valueClass.isInstance(value);
  
-diff -Naur a/OSGI-OPT/src/aQute/lib/converter/Converter.java b/OSGI-OPT/src/aQute/lib/converter/Converter.java
---- a/OSGI-OPT/src/aQute/lib/converter/Converter.java	2016-02-18 14:01:51.136924973 -0500
-+++ b/OSGI-OPT/src/aQute/lib/converter/Converter.java	2016-02-18 14:09:23.429606553 -0500
+diff -Naur a/src/aQute/lib/converter/Converter.java b/src/aQute/lib/converter/Converter.java
+--- a/src/aQute/lib/converter/Converter.java	2016-02-18 14:01:51.136924973 -0500
++++ b/src/aQute/lib/converter/Converter.java	2016-02-18 14:09:23.429606553 -0500
 @@ -2,7 +2,20 @@
  
  import java.lang.reflect.*;
@@ -54,9 +54,9 @@ diff -Naur a/OSGI-OPT/src/aQute/lib/converter/Converter.java b/OSGI-OPT/src/aQut
  import java.util.concurrent.*;
  import java.util.regex.*;
  
-diff -Naur a/OSGI-OPT/src/aQute/lib/json/ByteArrayHandler.java b/OSGI-OPT/src/aQute/lib/json/ByteArrayHandler.java
---- a/OSGI-OPT/src/aQute/lib/json/ByteArrayHandler.java	2016-02-18 14:01:51.140924978 -0500
-+++ b/OSGI-OPT/src/aQute/lib/json/ByteArrayHandler.java	2016-02-18 14:13:59.702022879 -0500
+diff -Naur a/src/aQute/lib/json/ByteArrayHandler.java b/src/aQute/lib/json/ByteArrayHandler.java
+--- a/src/aQute/lib/json/ByteArrayHandler.java	2016-02-18 14:01:51.140924978 -0500
++++ b/src/aQute/lib/json/ByteArrayHandler.java	2016-02-18 14:13:59.702022879 -0500
 @@ -2,7 +2,8 @@
  
  import java.io.*;
@@ -67,9 +67,9 @@ diff -Naur a/OSGI-OPT/src/aQute/lib/json/ByteArrayHandler.java b/OSGI-OPT/src/aQ
  import java.util.regex.*;
  
  import aQute.lib.base64.*;
-diff -Naur a/OSGI-OPT/src/aQute/lib/json/FileHandler.java b/OSGI-OPT/src/aQute/lib/json/FileHandler.java
---- a/OSGI-OPT/src/aQute/lib/json/FileHandler.java	2016-02-18 14:01:51.140924978 -0500
-+++ b/OSGI-OPT/src/aQute/lib/json/FileHandler.java	2016-02-18 14:13:57.650019786 -0500
+diff -Naur a/src/aQute/lib/json/FileHandler.java b/src/aQute/lib/json/FileHandler.java
+--- a/src/aQute/lib/json/FileHandler.java	2016-02-18 14:01:51.140924978 -0500
++++ b/src/aQute/lib/json/FileHandler.java	2016-02-18 14:13:57.650019786 -0500
 @@ -2,7 +2,7 @@
  
  import java.io.*;
@@ -79,9 +79,9 @@ diff -Naur a/OSGI-OPT/src/aQute/lib/json/FileHandler.java b/OSGI-OPT/src/aQute/l
  
  import aQute.lib.base64.*;
  
-diff -Naur a/OSGI-OPT/src/aQute/rest/urlclient/URLClient.java b/OSGI-OPT/src/aQute/rest/urlclient/URLClient.java
---- a/OSGI-OPT/src/aQute/rest/urlclient/URLClient.java	2016-02-18 14:01:51.140924978 -0500
-+++ b/OSGI-OPT/src/aQute/rest/urlclient/URLClient.java	2016-02-18 14:16:29.082247987 -0500
+diff -Naur a/src/aQute/rest/urlclient/URLClient.java b/src/aQute/rest/urlclient/URLClient.java
+--- a/src/aQute/rest/urlclient/URLClient.java	2016-02-18 14:01:51.140924978 -0500
++++ b/src/aQute/rest/urlclient/URLClient.java	2016-02-18 14:16:29.082247987 -0500
 @@ -6,7 +6,11 @@
  import java.security.*;
  import java.security.spec.*;
