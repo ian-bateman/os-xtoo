@@ -111,7 +111,7 @@ sys-libs/zlib minizip static-libs
 virtual/ffmpeg theora
 virtual/jpeg static-libs
 www-client/chromium bindist gtk3 pic -system-icu -system-libvpx -tcmalloc
-www-client/firefox bindist hwaccel -nsplugin startup-notification system-cairo system-jpeg system-harfbuzz system-libevent system-libvpx system-sqlite wifi
+www-client/firefox bindist hwaccel -nsplugin -screenshot startup-notification system-cairo system-jpeg system-harfbuzz system-libevent system-libvpx system-sqlite wifi
 x11-base/xorg-server glamor kdrive xephyr xnest xorg
 x11-drivers/nvidia-drivers compat gtk3
 x11-drivers/xf86-video-intel dri dri3 sna uxa
