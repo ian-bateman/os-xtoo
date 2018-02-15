@@ -34,7 +34,7 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_P}"
 
 JAVA_RM_FILES=(
-	org/bouncycastle/mail/smime/test/*
+	org/bouncycastle/mail/smime/test
 	org/bouncycastle/mail/smime/examples/CreateSignedMail.java
 )
 JAVAC_ARGS+=" --add-modules java.activation "
