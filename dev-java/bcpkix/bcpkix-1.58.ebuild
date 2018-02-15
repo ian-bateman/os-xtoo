@@ -1,30 +1,42 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+MY_P="${PN}-jdk15on-${PV/./}"
+BASE_URI="https://www.bouncycastle.org/"
 
-MY_PN="${PN}-jdk15on"
-MY_P="${MY_PN}-${PV}"
+inherit java-pkg
 
 DESCRIPTION="Java cryptography APIs"
-HOMEPAGE="https://www.bouncycastle.org/java.html"
-SRC_URI="https://repo1.maven.org/maven2/org/bouncycastle/${MY_PN}/${PV}/${MY_P}-sources.jar"
+HOMEPAGE="${BASE_URI}java.html"
+SRC_URI="${BASE_URI}download/${MY_P}.tar.gz"
 KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="dev-java/bcprov:${SLOT}"
 
-DEPEND="${CP_DEPEND}
-	app-arch/unzip
-	>=virtual/jdk-1.8"
+DEPEND="app-arch/unzip
+	${CP_DEPEND}
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-JAVA_ENCODING="ISO-8859-1"
-JAVA_SRC_DIR="org"
+S="${WORKDIR}/${MY_P}"
+
+JAVA_RM_FILES=(
+	tsp pkcs operator openssl mozilla est eac dvcs cms cert cert/path
+	cert/ocsp cert/crmf cert/cmp
+)
+JAVA_RM_FILES=(${JAVA_RM_FILES[@]/#/org/bouncycastle/})
+JAVA_RM_FILES=(${JAVA_RM_FILES[@]/%//test})
+
+src_unpack() {
+	default
+	cd "${S}"
+	unpack ./src.zip
+}
