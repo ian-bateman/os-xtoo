@@ -1,0 +1,14 @@
+
+USE="gif gdbm jpeg jpeg2k -iconv -iptables lvm odbc -perl png tiff 
+truetype udev webp"
+
+APACHE2_MODULES="actions alias auth_basic authn_anon authn_core authn_dbd 
+authn_dbm authn_default authn_file authz_core authz_dbm authz_default  
+authz_groupfile authz_host authz_owner authz_user autoindex dav dbd deflate
+dir env expires ext_filter filter headers http2 ident imagemap include info
+log_config logio mime mime_magic modules_dav negotiation proxy proxy_http
+rewrite setenvif so socache_shmcb speling status unixd unique_id userdir
+usertrack vhost_alias"
+
+PYTHON_TARGETS="python2_7 -python3_4 python3_5 -python3_6"
+PYTHON_SINGLE_TARGET="-python3_4 python3_5 -python3_6"

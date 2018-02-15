@@ -1,0 +1,38 @@
+app-arch/bzip2 static-libs
+app-crypt/heimdal -ssl -threads
+app-emulation/libvirt libvirtd python qemu -udev
+app-emulation/qemu -fdt -filecaps -pin-upstream-blobs
+dev-db/firebird superserver
+dev-java/antlr cxx java
+dev-java/oracle-jdk-bin headless-awt
+dev-lang/python ncurses
+dev-libs/libpcre2 cxx pcre16
+media-gfx/imagemagick xml
+media-libs/freetype static-libs
+media-libs/jpeg static-libs
+media-libs/libjpeg-turbo static-libs
+net-dns/bind geoip -odbc
+net-dns/bind-tools xml
+net-fs/cifs-utils -acl -ads
+net-fs/samba client
+net-irc/irssi perl
+net-misc/asterisk -snmp span
+net-misc/curl ares
+net-nds/openldap berkdb -gnutls
+sys-apps/busybox mdev sep-usr static
+sys-apps/hwids udev
+sys-apps/pciutils -zlib
+sys-apps/portage python3
+sys-apps/util-linux ncurses static-libs udev
+sys-devel/gcc cxx
+sys-devel/gdb python
+sys-libs/db java
+sys-libs/gdbm berkdb
+sys-libs/glibc debug
+sys-libs/ldb -ldap python
+sys-libs/ntdb python
+sys-libs/talloc python
+sys-libs/tdb python
+sys-libs/tevent python
+sys-libs/zlib minizip static-libs
+virtual/jpeg static-libs
