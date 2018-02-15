@@ -1,30 +1,38 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
-
 MY_P="${PN}-jdk15on-${PV/./}"
+BASE_URI="https://www.bouncycastle.org/"
+
+inherit java-pkg
 
 DESCRIPTION="Java cryptography APIs"
-HOMEPAGE="https://www.bouncycastle.org/java.html"
-SRC_URI="https://www.bouncycastle.org/download/${MY_P}.tar.gz"
-
-LICENSE="BSD"
+HOMEPAGE="${BASE_URI}java.html"
+SRC_URI="${BASE_URI}download/${MY_P}.tar.gz"
 KEYWORDS="~amd64"
+LICENSE="BSD"
 SLOT="$(get_version_component_range 1-2)"
 
-DEPEND=">=virtual/jdk-1.8
-	app-arch/unzip"
+DEPEND="app-arch/unzip
+	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}"
 
-JAVA_ENCODING="ISO-8859-1"
+JAVA_SRC_DIR="org"
+
+JAVA_RM_FILES=(
+	asn1 crypto/tls crypto crypto/prng crypto/ec crypto/agreement
+	jce/provider pqc/math/ntru/euclid pqc/jcajce/provider pqc/crypto
+	pqc/math/ntru/util pqc/math/ntru/polynomial util
+)
+JAVA_RM_FILES=(${JAVA_RM_FILES[@]/#/org/bouncycastle/})
+JAVA_RM_FILES=(${JAVA_RM_FILES[@]/%//test})
 
 src_unpack() {
 	default
@@ -33,18 +41,6 @@ src_unpack() {
 }
 
 java_prepare() {
-	# There are too many files to delete so we won't be using JAVA_RM_FILES
-	# (it produces a lot of output).
-	local RM_TEST_FILES=()
-	while read -d $'\0' -r file; do
-		RM_TEST_FILES+=("${file}")
-	done < <(find . -name "*Test*.java" -type f -print0)
-	while read -d $'\0' -r file; do
-		RM_TEST_FILES+=("${file}")
-	done < <(find . -name "*Mock*.java" -type f -print0)
-
-	rm -v "${RM_TEST_FILES[@]}" || die
-
 	sed -i -e "s|drbg.reseed(null)|drbg.reseed((byte[])null)|" \
 		org/bouncycastle/jcajce/provider/drbg/DRBG.java \
 		|| die "Failed to fix for abiguous java 9"
