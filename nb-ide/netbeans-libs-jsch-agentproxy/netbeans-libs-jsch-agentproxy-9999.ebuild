@@ -9,7 +9,6 @@ JAP_SLOT="0"
 
 CP_DEPEND="
 	dev-java/jsch-agent-proxy-core:${JAP_SLOT}
-	dev-java/jsch-agent-proxy-pageant:${JAP_SLOT}
 	dev-java/jsch-agent-proxy-sshagent:${JAP_SLOT}
 	dev-java/jsch-agent-proxy-usocket-jna:${JAP_SLOT}
 	~nb-ide/netbeans-openide-util-${PV}:${SLOT}
@@ -21,3 +20,9 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	sed -i -e "23d;66,73d;" \
+		src/org/netbeans/libs/jsch/agentproxy/ConnectorFactory.java \
+		|| die "Failed to sed/remove Windows Pageant support"
+}
