@@ -8,9 +8,9 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="bnd"
 MY_PV="${PV}"
 case ${PV} in
-        *_pre) MY_PV="${MY_PV/_pre/.DEV}" ;;
-        *_rc) MY_PV="${MY_PV/_rc/.RC}" ;;
-        *) MY_PV+=".REL";;
+	*_pre) MY_PV="${MY_PV/_pre/.DEV}" ;;
+	*_rc) MY_PV="${MY_PV/_rc/.RC}" ;;
+	*) MY_PV+=".REL";;
 esac
 MY_P="${MY_PN}-${MY_PV}"
 MY_MOD="biz.aQute.${PN}"
