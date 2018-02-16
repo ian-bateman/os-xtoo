@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -30,7 +30,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bcprov:1.58
+	dev-java/bcprov:1.59
 	dev-java/javax-inject:0
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	dev-java/guice:4
