@@ -41,7 +41,6 @@ CP_DEPEND="
 	dev-java/osgi-compendium:5
 	dev-java/osgi-core-api:6
 	dev-java/slf4j-api:0
-	dev-java/slf4j-simple:0
 	dev-java/snakeyaml:0
 "
 
