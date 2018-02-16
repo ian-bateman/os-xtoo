@@ -8,7 +8,7 @@ inherit java-netbeans
 DEPEND=">=virtual/jdk-9"
 
 RDEPEND="
-	dev-java/junit:5
+	dev-java/junit:4
 	>=virtual/jre-9
 "
 
