@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -14,7 +14,7 @@ HOMEPAGE="https://99soft.github.io/rocoto/"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-CP_DEPEND="dev-java/guava:23
+CP_DEPEND="dev-java/guava:24
 	dev-java/guice:4
 	dev-java/javax-inject:0"
 
