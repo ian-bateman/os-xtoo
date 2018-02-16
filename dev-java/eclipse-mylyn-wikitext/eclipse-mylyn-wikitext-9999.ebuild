@@ -26,7 +26,7 @@ LICENSE="EPL-1.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
-	dev-java/guava:23
+	dev-java/guava:24
 	dev-java/jsoup:0
 "
 
