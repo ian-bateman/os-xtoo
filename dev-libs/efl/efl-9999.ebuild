@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 # Based on ebuild from enlightenment-live overlay
@@ -134,8 +134,6 @@ DEPEND="${COMMON_DEP}
 	!!media-libs/evas
 	doc? ( app-doc/doxygen )
 	test? ( dev-libs/check )"
-
-S="${WORKDIR}/${P/_/-}"
 
 src_configure() {
 	local config=()
