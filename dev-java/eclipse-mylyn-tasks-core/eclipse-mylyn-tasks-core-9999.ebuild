@@ -41,7 +41,7 @@ CP_DEPEND="
 	~dev-java/eclipse-mylyn-commons-net-${PV}:${SLOT}
 	~dev-java/eclipse-mylyn-commons-repositories-core-${PV}:${SLOT}
 	dev-java/eclipse-osgi:${ECLIPSE_SLOT}
-	dev-java/guava:23
+	dev-java/guava:24
 	dev-java/xerces:2
 "
 #	dev-java/icu4j:0
