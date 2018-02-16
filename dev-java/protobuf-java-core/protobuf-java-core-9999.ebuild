@@ -26,7 +26,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/gson:0
-	dev-java/guava:23
+	dev-java/guava:24
 "
 
 DEPEND="${CP_DEPEND}
