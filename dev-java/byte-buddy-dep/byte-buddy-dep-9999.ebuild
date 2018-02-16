@@ -27,7 +27,7 @@ CP_DEPEND="
 	dev-java/asm:6
 	dev-java/auto-common:0
 	dev-java/auto-value:0
-	dev-java/guava:23
+	dev-java/guava:24
 	dev-java/spotbugs-annotations:0
 "
 
