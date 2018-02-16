@@ -19,7 +19,7 @@ HOMEPAGE="https://www.joda.org/${PN}/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="dev-java/guava:23"
+CP_DEPEND="dev-java/guava:24"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
