@@ -20,8 +20,8 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bcpkix:1.58
-	dev-java/bcprov:1.58
+	dev-java/bcpkix:1.59
+	dev-java/bcprov:1.59
 	dev-java/commons-logging:0
 	~dev-java/fontbox-${PV}:${SLOT}
 "
