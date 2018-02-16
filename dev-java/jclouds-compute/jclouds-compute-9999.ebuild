@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -11,17 +11,13 @@ MY_P="${MY_PN}-${MY_PV}"
 
 BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}/${PN:8}"
-else
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/rel/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${MY_PN}-rel-${MY_P}/${PN:8}"
+	MY_S="${MY_PN}-rel-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="JClouds Compute"
 HOMEPAGE="https://jclouds.apache.org/"
@@ -33,7 +29,7 @@ GUICE_SLOT="4"
 CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/auto-service:0
-	dev-java/guava:20
+	dev-java/guava:24
 	dev-java/guice:${GUICE_SLOT}
 	dev-java/guice-extensions-assistedinject:${GUICE_SLOT}
 	~dev-java/jclouds-core-${PV}:${SLOT}
@@ -42,9 +38,27 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-S="${WORKDIR}/${MY_S}"
+S="${WORKDIR}/${MY_S}/${PN##*-}"
+
+JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
+
+java_prepare() {
+	sed -i -e "s|getHostText|getHost|g" \
+		src/main/java/org/jclouds/compute/stub/config/StubComputeServiceDependenciesModule.java \
+		|| die "Failed to sed/fix guava method renamed"
+
+	sed -i -e "s|import static com.google.common.base.Predicates.and|import com.google.common.base.Predicates|" \
+		-e "s|and(osPredicates|Predicates.and(osPredicates|g" \
+		src/main/java/org/jclouds/compute/domain/internal/TemplateBuilderImpl.java \
+		|| die "Failed to sed/fix java 8+ guava static import"
+
+	sed -i -e "s|import static com.google.common.base.Predicates.or|import com.google.common.base.Predicates|" \
+		-e "s|or(predi|Predicates.or(predi|" \
+		src/main/java/org/jclouds/compute/domain/internal/NullEqualToIsParentOrIsGrandparentOfCurrentLocation.java \
+		|| die "Failed to sed/fix java 8+ guava static import"
+}
