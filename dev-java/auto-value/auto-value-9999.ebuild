@@ -25,7 +25,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/auto-service:0
-	dev-java/guava:23
+	dev-java/guava:24
 	dev-java/javapoet:0
 "
 
