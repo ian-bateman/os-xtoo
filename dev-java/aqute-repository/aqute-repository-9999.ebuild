@@ -57,4 +57,6 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-JAVA_RM_FILES=( src/test )
+if [[ ${PV} == 3.3.0* ]]; then
+	JAVA_RM_FILES=( src/test )
+fi
