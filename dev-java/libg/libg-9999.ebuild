@@ -41,8 +41,10 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/aQute.${PN}"
 
-# Remove method that conflicts with super correct fix?
-PATCHES=( "${FILESDIR}/${PN}-${SLOT}-rm_remove.patch" )
+if [[ ${PV} == 3.3.0* ]]; then
+	# Remove method that conflicts with super correct fix?
+	PATCHES=( "${FILESDIR}/${PN}-${SLOT}-rm_remove.patch" )
+fi
 
 java_prepare() {
 	sed -i -e "s|, List<T>||" src/aQute/lib/collections/SortedList.java \
