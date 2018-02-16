@@ -23,7 +23,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/guava:23
+	dev-java/guava:24
 	~dev-java/google-http-client-${PV}:${SLOT}
 	~dev-java/google-http-client-jackson2-${PV}:${SLOT}
 	~dev-java/google-oauth-client-${PV}:${SLOT}
