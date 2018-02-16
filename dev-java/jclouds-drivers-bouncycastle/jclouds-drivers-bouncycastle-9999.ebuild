@@ -8,21 +8,18 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="${PN:0:7}"
 MY_PV="${PV/_/-}"
 MY_P="${MY_PN}-${MY_PV}"
+MY_MOD="${PN#*-}"
+MY_MOD="${MY_MOD/-//}"
 
 BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
-DRIVER="${PN:16}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/rel/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-rel-${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="JClouds Driver for ${DRIVER}"
 HOMEPAGE="https://jclouds.apache.org/"
@@ -37,9 +34,9 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-S="${WORKDIR}/${MY_S}/${PN:8:7}/${DRIVER}"
+S="${WORKDIR}/${MY_S}/${MY_MOD}"
