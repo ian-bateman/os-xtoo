@@ -23,7 +23,7 @@ HOMEPAGE="https://ant.apache.org/ivy/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-BC_SLOT="1.58"
+BC_SLOT="1.59"
 
 CP_DEPEND="
 	dev-java/ant-core:0
