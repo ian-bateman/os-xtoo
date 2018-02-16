@@ -95,6 +95,11 @@ else
 	if [[ ${E_SNAP} ]]; then
 		SRC_URI=${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.xz -> ${E_P}.tar.xz"}
 		S=${S:="${WORKDIR}/${E_SNAP}"}
+	elif [[ ${PV} == *_* ]]; then
+	        SRC_URI=${SRC_URI:-"https://download.${E_BASE_URI}/pre-releases/${E_P}.tar.xz"}
+# s is set by something...
+#		S=${S:="${WORKDIR}/${P%%_*}"}
+		S="${WORKDIR}/${P%%_*}"
 	else
 	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.xz"}
 	fi
@@ -115,6 +120,7 @@ if [[ ! ${E_PYTHON} ]]; then
 	RDEPEND+=" nls? ( sys-devel/gettext )"
 	IUSE="debug doc nls static-libs"
 fi
+
 S="${S:=${WORKDIR}/${E_P}}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
