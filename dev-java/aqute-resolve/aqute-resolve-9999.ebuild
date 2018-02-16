@@ -37,7 +37,9 @@ CP_DEPEND="~dev-java/aqute-repository-${PV}:${SLOT}
 	dev-java/felix-resolver:0
 	~dev-java/libg-${PV}:${SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
-	dev-java/osgi-core-api:${OSGI_SLOT}"
+	dev-java/osgi-core-api:${OSGI_SLOT}
+	dev-java/slf4j-api:0
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
