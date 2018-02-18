@@ -25,7 +25,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bnd-annotation:3
+	dev-java/bnd-annotation:4
 	dev-java/osgi-core-api:6
 "
 
