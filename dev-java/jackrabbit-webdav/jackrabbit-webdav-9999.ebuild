@@ -42,7 +42,7 @@ if [[ "${PV}" != 2.10.* ]]; then
 fi
 
 CP_DEPEND="${CP_DEPEND}
-	dev-java/bnd-annotation:3
+	dev-java/bnd-annotation:4
 	dev-java/slf4j-api:0
 	java-virtuals/servlet-api:2.3
 "
