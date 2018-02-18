@@ -1,4 +1,4 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -18,7 +18,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
-BND_SLOT="3"
+BND_SLOT="4"
 
 CP_DEPEND="dev-java/aqute-services-struct:0
 	dev-java/bnd-annotation:${BND_SLOT}
