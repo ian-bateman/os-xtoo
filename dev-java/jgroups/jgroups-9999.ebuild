@@ -30,7 +30,7 @@ CP_DEPEND="
 	dev-java/slf4j-api:0
 "
 
-DEPEND="dev-java/bnd:3
+DEPEND="dev-java/bnd:4
 	${CP_DEPEND}
 	>=virtual/jdk-9"
 
