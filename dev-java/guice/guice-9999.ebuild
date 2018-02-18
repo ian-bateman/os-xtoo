@@ -31,7 +31,7 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 DEPEND="${CP_DEPEND}
-	dev-java/bnd:3
+	dev-java/bnd:4
 	>=virtual/jdk-9"
 
 S="${WORKDIR}/${P}/core"
