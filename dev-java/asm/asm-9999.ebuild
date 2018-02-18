@@ -22,7 +22,7 @@ SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/aqute-jpm-clnt:0
-	dev-java/bndlib:3
+	dev-java/bndlib:4
 "
 
 DEPEND="${CP_DEPEND}
