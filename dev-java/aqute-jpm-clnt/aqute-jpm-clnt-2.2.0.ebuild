@@ -17,7 +17,7 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-CP_DEPEND="dev-java/bndlib:3"
+CP_DEPEND="dev-java/bndlib:4"
 
 DEPEND="app-arch/unzip:0
 	${CP_DEPEND}
