@@ -5,19 +5,17 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-HOMEPAGE="https://github.com/lz4/${PN}"
+BASE_URI="https://github.com/lz4/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-else
-	SRC_URI="${HOMEPAGE}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit autotools java-pkg-2 java-pkg-simple ${ECLASS}
+inherit autotools java-pkg
 
 DESCRIPTION="LZ4 compression for Java"
+HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 IUSE="jni"
 SLOT="0"
@@ -27,8 +25,9 @@ RDEPEND=">=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
 
-src_prepare() {
-	default
+JAVA_RM_FILES=( src/test )
+
+java_prepare() {
 	if use jni; then
 		sed -i -e "s|_state_t|_stateSpace_t|g" \
 			-e "s|(XXH32_state_t*)|XXH64_state_t*|g" \
