@@ -16,13 +16,18 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	EGIT_BRANCH="devel"
 	MY_S="${P}"
+elif [[ ${PV} == *36355 ]]; then
+	MY_SNAP="649cd61a174f9411a054ef30c07a63b20dae133d"
+	SRC_URI="https://github.com/Obsidian-StudiosInc/ansible//archive/${MY_SNAP}.tar.gz -> ${MY_P}.tar.gz"
+	KEYWORDS="~amd64"
+	MY_S="${PN}-${MY_SNAP}"
 else
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P/v/}"
 fi
 
-PYTHON_COMPAT=( python2_7 python{3_5,3_6} )
+PYTHON_COMPAT=( python{3_5,3_6} )
 
 inherit distutils-r1 eutils ${ECLASS}
 
