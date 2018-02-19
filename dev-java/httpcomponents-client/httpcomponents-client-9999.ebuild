@@ -14,16 +14,21 @@ fi
 
 inherit java-pkg
 
-SLOT="$(get_version_component_range 1-2)"
 DESCRIPTION="HTTP client library"
 HOMEPAGE="https://hc.apache.org/${PN}-${SLOT}.x/"
 LICENSE="Apache-2.0"
+SLOT="$(get_version_component_range 1-2)"
 
 CP_DEPEND="
 	dev-java/commons-codec:0
 	dev-java/commons-logging:0
 	dev-java/httpcomponents-core:4.4
 "
+
+if [[ ${PV} == 4.4* ]]; then
+	CP_DEPEND+=" dev-java/httpcomponents-core:4.2"
+	JAVA_SRC_DIR="src/main/java src/main/java-deprecated"
+fi
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
