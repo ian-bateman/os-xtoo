@@ -40,6 +40,18 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_P}/${PN}"
 
-PATCHES=(
-	"${FILESDIR}/jetty-9.patch"
-)
+java_prepare() {
+	sed -i -e '118,119d;' \
+		src/main/java/com/google/api/client/extensions/jetty/auth/oauth2/LocalServerReceiver.java \
+		|| "Failed to upgrade Jetty"
+	sed -i -e 's|mortbay.jetty|eclipse.jetty.server|g' \
+		-e '28iimport org.eclipse.jetty.server.ServerConnector;' \
+		-e '118i\ \ \ \ server = new Server();' \
+		-e '118i\ \ \ \ ServerConnector connector = new ServerConnector(server);' \
+		-e '118i\ \ \ \ connector.setPort(port != -1 ? port : 0);' \
+		-e '118i\ \ \ \ server.setConnectors(new Connector[] { connector });' \
+		-e 's|addHandler|setHandler|' \
+		-e 's|HttpServletRequest request.*|Request r,HttpServletRequest request, HttpServletResponse response)|' \
+		src/main/java/com/google/api/client/extensions/jetty/auth/oauth2/LocalServerReceiver.java \
+		|| "Failed to upgrade Jetty"
+}
