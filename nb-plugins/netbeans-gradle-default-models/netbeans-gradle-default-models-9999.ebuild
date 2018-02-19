@@ -7,17 +7,13 @@ MY_PN="netbeans-gradle-project"
 MY_P="${MY_PN}-${PV}"
 BASE_URI="https://github.com/kelemen/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="NetBeans plugin able to open Gradle based Java projects"
 HOMEPAGE="${BASE_URI}"
