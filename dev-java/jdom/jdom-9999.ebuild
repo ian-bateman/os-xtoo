@@ -11,9 +11,14 @@ MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/hunterhacker/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+	MY_S="${PN}"
+	if [[ ${PV} == 1* ]]; then
+		SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
+	else
+		SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+		MY_S+="-${MY_P}"
+	fi
 	KEYWORDS="~amd64"
-	MY_S="${PN}-${MY_P}"
 fi
 
 inherit java-pkg
@@ -21,17 +26,26 @@ inherit java-pkg
 DESCRIPTION="Manipulation of XML made easy"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-1.1"
-SLOT="${PV%%.*}"
+
+S="${WORKDIR}/${MY_S}/"
+
+if [[ ${PV} == 1* ]]; then
+	SLOT="0"
+else
+	SLOT="${PV%%.*}"
+	MY_SLOT="${SLOT}"
+	S+="core"
+fi
 
 DEPEND=">=virtual/jdk-9"
-
 RDEPEND=">=virtual/jre-9"
 
-S="${WORKDIR}/${MY_S}/core"
+JAVA_RM_FILES="src/java/org/jdom${MY_SLOT}/xpath"
 
 java_prepare() {
-	rm -r src/java/org/jdom2/xpath \
-		|| "Failed to remove jaxen sources"
-	sed -i -e "62d" src/java/org/jdom2/JDOMConstants.java \
-		|| "Failed to remove jaxen import"
+	if [[ ${PV} == 2* ]]; then
+		sed -i -e "/XPathFactory;/d" \
+			src/java/org/jdom2/JDOMConstants.java \
+			|| "Failed to remove jaxen import"
+	fi
 }
