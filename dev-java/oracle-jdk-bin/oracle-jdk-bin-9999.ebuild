@@ -6,15 +6,19 @@ EAPI="6"
 inherit eutils java-vm prefix
 
 SLOT="${PV%%.*}"
-[[ ${SLOT} == *_pre* ]] && SLOT="${PV%%_*}"
+[[ ${SLOT} == *_* ]] && SLOT="${PV%%_*}"
 
-BASE_URI="http://download"
+BASE_URI="https://download"
 RESTRICT="preserve-libs strip"
 
 if [[ ${PV} == *_pre* ]]; then
 	JDK_URI="http://jdk.java.net/${SLOT}/"
 	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_pre}/BCL"
 	MY_PV="${PV%%_*}-ea+${PV##*_pre}"
+elif [[ ${PV} == *_rc* ]]; then
+	JDK_URI="http://jdk.java.net/${SLOT}/"
+	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_rc}/BCL"
+	MY_PV="${PV%%_*}+${PV##*_rc}"
 else
 	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
 	BASE_URI="http://download.oracle.com/otn-pub/java/jdk/${PV}+11/"
