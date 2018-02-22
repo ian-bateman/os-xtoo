@@ -1411,10 +1411,6 @@ java-pkg_set-current-vm() {
 	export JEM_VM=${1}
 }
 
-java-pkg_get-current-vm() {
-	echo ${JEM_VM}
-}
-
 java-pkg_current-vm-matches() {
 	has $(java-pkg_get-current-vm) ${@}
 	return $?
