@@ -5,7 +5,10 @@ EAPI="6"
 
 BASE_URI="https://github.com/Obsidian-StudiosInc/${PN}"
 
-if [[ ${PV} != *9999* ]]; then
+if [[ ${PV} == 9999 ]]; then
+	ECLASS="git-r3"
+	EGIT_REPO_URI="${BASE_URI}.git"
+else
 	KEYWORDS="~amd64"
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
@@ -63,6 +66,10 @@ src_install() {
 	fperms 755 /usr/bin/run-java-tool.bash
 
 	dodir /etc/jem/{build,virtuals.d,vms.d}
+
+	echo 'CONFIG_PROTECT_MASK="/etc/jem/vms.d /etc/jem/virtuals.d"' \
+		> 20jem || die "Failed to create env.d file"
+	doenvd 20jem
 
 	insinto /usr/share/eselect/modules/
 	doins "${S}"/java-vm.eselect
