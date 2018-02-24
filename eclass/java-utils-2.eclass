@@ -1257,11 +1257,19 @@ java-pkg_register-environment-variable() {
 java-pkg_ensure-vm-version-sufficient() {
 	debug-print-function ${FUNCNAME} $*
 
+	local msg
+
+	msg="Active Java VM (${JEM_VM}) cannot build this package"
 	if ! java-pkg_is-vm-version-sufficient; then
 		debug-print "VM is not suffient"
-		eerror "Current Java VM cannot build this package"
+		eerror
+		eerror "${msg}"
+		eerror
+		einfo
 		einfo "Please use jem -S to set the correct one"
-		die "Active Java VM cannot build this package"
+		einfo "Only Java 9+ is supported!"
+		einfo
+		die "${msg}"
 	fi
 }
 
@@ -1274,11 +1282,15 @@ java-pkg_is-vm-version-sufficient() {
 
 	local IFS t supported
 
+	# less than 9 unsupported
+	[[ $(java-pkg_get-release) -lt 9 ]] && return 1
+
 	# use current jdk version unless package overridden
 	[[ -z ${JAVA_RELEASE} ]] && return 0
 
 	supported=( $(javac --help | \
 			sed -n 's/^.*Supported targets\: \([^ ].*\).*$/\1/p' ) )
+
 	IFS=', '
 	for t in "${supported[@]}"; do
 		[[ "${JAVA_RELEASE}" == "${t}" ]] && return 0
@@ -2223,14 +2235,14 @@ java-pkg_switch-vm() {
 					eerror "JAVA_PKG_WANT_BUILD_VM specified without JAVA_RELEASE"
 					die "Specify JAVA_RELEASE"
 				fi
-				export JEM_VM
 			else
-				export JEM_VM=$(java-pkg_get-current-vm)
+				JEM_VM=$(java-pkg_get-current-vm)
 			fi
-		# otherwise just make sure the current VM is sufficient
-		else
-			java-pkg_ensure-vm-version-sufficient
+			export JEM_VM
 		fi
+
+		java-pkg_ensure-vm-version-sufficient
+
 		debug-print "Using: $(jem -f)"
 
 		java-pkg_setup-vm
