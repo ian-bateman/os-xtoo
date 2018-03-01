@@ -83,6 +83,7 @@ RDEPEND="
 	~nb-ide/${PN}-java-editor-${PV}:${SLOT}
 	~nb-ide/${PN}-java-freeform-${PV}:${SLOT}
 	~nb-ide/${PN}-java-guards-${PV}:${SLOT}
+	~nb-ide/${PN}-java-hints-${PV}:${SLOT}
 	~nb-ide/${PN}-java-hints-declarative-${PV}:${SLOT}
 	~nb-ide/${PN}-java-hints-legacy-spi-${PV}:${SLOT}
 	~nb-ide/${PN}-java-j2sedeploy-${PV}:${SLOT}
