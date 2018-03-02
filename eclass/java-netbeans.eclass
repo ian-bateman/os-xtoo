@@ -36,7 +36,44 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-EXPORT_FUNCTIONS src_unpack src_prepare src_compile src_install
+EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_compile src_install
+
+# @FUNCTION: java-pkg_pkg_setup
+# @DESCRIPTION:
+# pkg_setup Perform processor dep checks before java env init
+java-netbeans_pkg_setup() {
+
+	if [[ "${CP_DEPEND}" == *editor-settings* ]] &&
+		[[ "${CP_DEPEND}" != *netbeans-settings* ]]; then
+		eerror "Missing netbeans-settings from CP_DEPEND"
+		die
+	fi
+
+	if ( [[ "${CP_DEPEND}" == *api-debugger-jpda* ]] ||
+		[[ "${CP_DEPEND}" == *api-intent* ]] ||
+		[[ "${CP_DEPEND}" == *editor-lib2* ]] ||
+		[[ "${CP_DEPEND}" == *editor-mimelookup* ]] ||
+		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
+		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
+		[[ "${CP_DEPEND}" != *openide-filesystems* ]]; then
+		eerror "Missing netbeans-openide-filesystems from CP_DEPEND"
+		die
+	fi
+
+	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
+		[[ "${CP_DEPEND}" != *openide-nodes* ]]; then
+		eerror "Missing netbeans-openide-nodes from CP_DEPEND"
+		die
+	fi
+
+	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
+		[[ "${CP_DEPEND}" != *openide-util-ui* ]]; then
+		eerror "Missing netbeans-openide-util-ui from CP_DEPEND"
+		die
+	fi
+
+	java-pkg_pkg_setup
+}
 
 # @FUNCTION: java-netbeans_src_unpack
 # @DESCRIPTION:
@@ -160,35 +197,6 @@ java-netbeans_get-processors() {
 	nbm="${nb}.modules"
 	oim="${nbm}.openide"
 	procs="${NB_PROC}"
-
-	if [[ "${CP_DEPEND}" == *editor-settings* ]] &&
-		[[ "${CP_DEPEND}" != *netbeans-settings* ]]; then
-		eerror "Missing netbeans-settings from CP_DEPEND"
-		die
-	fi
-
-	if ( [[ "${CP_DEPEND}" == *api-debugger-jpda* ]] ||
-		[[ "${CP_DEPEND}" == *api-intent* ]] ||
-		[[ "${CP_DEPEND}" == *editor-lib2* ]] ||
-		[[ "${CP_DEPEND}" == *editor-mimelookup* ]] ||
-		[[ "${CP_DEPEND}" == *openide-awt* ]] ||
-		[[ "${CP_DEPEND}" == *openide-nodes* ]] ) &&
-		[[ "${CP_DEPEND}" != *openide-filesystems* ]]; then
-		eerror "Missing netbeans-openide-filesystems from CP_DEPEND"
-		die
-	fi
-
-	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
-		[[ "${CP_DEPEND}" != *openide-nodes* ]]; then
-		eerror "Missing netbeans-openide-nodes from CP_DEPEND"
-		die
-	fi
-
-	if [[ "${CP_DEPEND}" == *openide-windows* ]] &&
-		[[ "${CP_DEPEND}" != *openide-util-ui* ]]; then
-		eerror "Missing netbeans-openide-util-ui from CP_DEPEND"
-		die
-	fi
 
 	case "${CP_DEPEND}" in
 		*api-annotations*)
