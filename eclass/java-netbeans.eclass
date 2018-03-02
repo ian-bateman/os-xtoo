@@ -83,6 +83,7 @@ java-netbeans_src_prepare() {
 			elif [[ -n ${iv} ]]; then
 				sv+=".${iv}"
 			fi
+			[[ -n ${NB_SVS} ]] && sv+=".${NB_SVS}"
 		fi
 		[[ -z ${iv} ]] && iv="${SLOT}"
 		sed -i  -e '2iOpenIDE-Module-Build-Version: '${PV}'-os-xtoo' \
@@ -257,7 +258,7 @@ java-netbeans_get-processors() {
 		*openide-nodes*)
 			procs+=",${oim}.nodes.NodesAnnotationProcessor"
 			;;&
-		*"openide-util-${PV}"*)
+		*"openide-util-${PV}"* | *"openide-util:"*)
 			procs+=",${oim}.util.NbBundleProcessor"
 			;;&
 		*openide-util-lookup*)
