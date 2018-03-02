@@ -150,6 +150,7 @@ RDEPEND="
 	~nb-ide/${PN}-xml-tools-java-${PV}:${SLOT}
 	~nb-ide/${PN}-xml-xdm-${PV}:${SLOT}
 	~nb-ide/${PN}-xsl-${PV}:${SLOT}
+	nb-plugins/flow-netbeans-markdown:0
 	nb-plugins/nb-cmake-completion:0
 	nb-plugins/nb-darcula:0
 	>=virtual/jdk-9:*
@@ -255,10 +256,11 @@ src_install() {
 	jars+=( ${jars_short[@]/#/net-java-html} )
 
 	jars+=(
-		byte-buddy-dep darcula eclipse-jgit freemarker htmlparser
-		iconloader intellij-platform-annotations javaewah jsch
-		json-simple junit-${JUNIT_SLOT} lucene-core-${LUCENE_SLOT}
-		nb-cmake-completion nb-darcula osgi-core-api-${OSGI_SLOT}
+		byte-buddy-dep darcula eclipse-jgit flow-netbeans-markdown
+		freemarker htmlparser iconloader intellij-platform-annotations
+		javaewah jsch json-simple junit-${JUNIT_SLOT}
+		lucene-core-${LUCENE_SLOT} nb-cmake-completion nb-darcula
+		osgi-core-api-${OSGI_SLOT} parboiled-core parboiled-java pegdown
 		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
 	)
 	symlink_libs ${jars[@]}
