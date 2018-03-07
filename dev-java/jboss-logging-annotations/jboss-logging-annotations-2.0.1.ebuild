@@ -1,11 +1,11 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="JBoss Logging Annotation"
 
@@ -22,11 +22,11 @@ LICENSE="Apache-2.0"
 CP_DEPEND="dev-java/jboss-logging:0"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 DEPEND="
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_PN}-${MY_PV}/${PN:14}"
 
