@@ -12,7 +12,7 @@ MY_P="${PN}-${MY_PV}"
 SRC_URI="https://repo1.maven.org/maven2/com/google/apis/${PN}/${MY_PV}/${MY_P}-sources.jar"
 KEYWORDS="~amd64"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="YouTube Data API Client Library for Java"
 HOMEPAGE="https://developers.google.com/api-client-library/java/apis/youtube/v3"
@@ -25,7 +25,7 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
