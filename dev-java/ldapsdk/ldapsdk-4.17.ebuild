@@ -5,7 +5,7 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="Netscape Directory SDK for Java"
 HOMEPAGE="https://www-archive.mozilla.org/directory/javasdk.html"
