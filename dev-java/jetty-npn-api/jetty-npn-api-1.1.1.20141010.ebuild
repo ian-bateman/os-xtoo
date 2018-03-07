@@ -1,11 +1,11 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="Jetty's NPN API"
 
@@ -19,9 +19,9 @@ HOMEPAGE="https://wiki.eclipse.org/Jetty/Feature/NPN"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-9"
 
 DEPEND="
 	app-arch/unzip
-	>=virtual/jdk-1.8
+	>=virtual/jdk-9
 "
