@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -7,7 +7,7 @@ JAVA_PKG_IUSE="doc source"
 
 MY_P="${PN%-*}-${PV}"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="An implementation of the JSP Standard Tag Library (JSTL) ${PN##*-}"
 HOMEPAGE="https://tomcat.apache.org/taglibs/standard/"
