@@ -5,7 +5,7 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 MY_PN="guice"
 
@@ -23,10 +23,10 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 "
 
-RDEPEND=">=virtual/jre-1.8
+RDEPEND=">=virtual/jre-9
 	${CP_DEPEND}"
 
-DEPEND=">=virtual/jdk-1.8
+DEPEND=">=virtual/jdk-9
 	${CP_DEPEND}"
 
 S="${WORKDIR}/${MY_PN}-${PV}/extensions/assistedinject"
