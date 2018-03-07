@@ -1,9 +1,9 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 MY_PN="${PN/-/.}"
 MY_PV="${PV/.2m/-M2}"
@@ -17,9 +17,9 @@ KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND="app-arch/unzip
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-9"
 
 java_prepare() {
 	# maybe rename vs remove?
