@@ -5,7 +5,7 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Open-source JavaServer Faces implementation - Builder Annotations"
 HOMEPAGE="https://myfaces.apache.org/build-tools/plugins/"
