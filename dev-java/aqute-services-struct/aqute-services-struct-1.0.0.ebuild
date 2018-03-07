@@ -1,11 +1,11 @@
-# Copyright 2016 Obsidian-Studios, Inc.
+# Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 MY_PN=${PN/aqute/aQute}
 MY_PN=${MY_PN//-/.}
