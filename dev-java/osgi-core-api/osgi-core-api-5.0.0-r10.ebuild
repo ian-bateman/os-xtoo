@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="OSGi Service Platform Core API (Companion Code)"
 HOMEPAGE="https://www.osgi.org/Specifications/HomePage"
@@ -16,9 +16,9 @@ SLOT="5"
 KEYWORDS="~amd64"
 
 DEPEND="app-arch/unzip:0
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-1.8"
+RDEPEND=">=virtual/jre-9"
 
 JAVA_SRC_DIR="OSGI-OPT/src"
 
