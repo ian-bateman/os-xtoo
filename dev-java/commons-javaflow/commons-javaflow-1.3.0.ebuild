@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -6,7 +6,7 @@ EAPI="6"
 JAVA_PKG_IUSE="doc source"
 JAVA_NO_COMMONS=1
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="Java continuation object creator"
 HOMEPAGE="https://commons.apache.org/sandbox/${PN}/"
@@ -24,7 +24,7 @@ CP_DEPEND="
 
 DEPEND="app-arch/unzip
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
