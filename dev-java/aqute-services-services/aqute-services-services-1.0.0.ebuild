@@ -5,7 +5,7 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 MY_PN=${PN/aqute/aQute}
 MY_PN=${MY_PN//-/.}
@@ -28,10 +28,10 @@ CP_DEPEND="dev-java/aqute-services-struct:0
 
 DEPEND="app-arch/unzip:0
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/"
 
