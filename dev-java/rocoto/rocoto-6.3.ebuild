@@ -5,7 +5,7 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="Rocoto is a small collection of reusable Modules for Google Guice"
 SLOT="$(get_version_component_range 1)"
@@ -19,10 +19,10 @@ CP_DEPEND="dev-java/guava:24
 	dev-java/javax-inject:0"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 S="${WORKDIR}/${PN}-${P}"
 
