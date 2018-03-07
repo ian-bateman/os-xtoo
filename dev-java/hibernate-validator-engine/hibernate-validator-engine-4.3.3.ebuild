@@ -9,7 +9,7 @@ MY_PN="${PN:0:19}"
 MY_PV="${PV}.Final"
 MY_P="${MY_PN}-${MY_PV}"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="Hibernate Validator ${PN:20}"
 HOMEPAGE="https://hibernate.org/validator"
