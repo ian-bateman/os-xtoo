@@ -7,7 +7,7 @@ JAVA_PKG_IUSE="doc source examples"
 
 MY_P="${PN}${PV//./-}"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="The XSLT and XQuery Processor"
 HOMEPAGE="https://sourceforge.net/projects/saxon"
