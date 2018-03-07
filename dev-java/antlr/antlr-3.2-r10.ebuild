@@ -1,11 +1,11 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr.org/"
