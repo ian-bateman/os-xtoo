@@ -26,8 +26,12 @@ HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
 LICENSE="Apache-2.0"
 SLOT="${PV%*.*.*}"
 
-RDEPEND=">=virtual/jre-9"
+CP_DEPEND="~dev-java/jetty-util-${PV}:${SLOT}"
 
-DEPEND=">=virtual/jdk-9"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-9"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
