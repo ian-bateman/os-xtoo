@@ -41,3 +41,12 @@ DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+java_prepare() {
+	sed -i -e "/TimeUnit;/i import java.util.concurrent.LinkedBlockingQueue;" \
+		-e "/TimeUnit;/i import java.util.concurrent.ThreadPoolExecutor;" \
+		-e "s|ExecutorThreadPool(|ExecutorThreadPool(new ThreadPoolExecutor(|" \
+		-e "s|);;|,new LinkedBlockingQueue<>()));|" \
+		src/main/java/org/eclipse/jetty/monitor/jmx/MonitorTask.java \
+		|| die "Failed to sed/fix changed constructor"
+}
