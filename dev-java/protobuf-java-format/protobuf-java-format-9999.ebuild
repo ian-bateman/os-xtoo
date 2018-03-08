@@ -34,3 +34,5 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
+
+JAVAC_ARGS+=" --add-modules java.xml.bind "
