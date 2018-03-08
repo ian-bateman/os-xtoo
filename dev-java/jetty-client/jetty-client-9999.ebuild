@@ -29,6 +29,7 @@ SLOT="${PV%*.*.*}"
 
 CP_DEPEND="
 	~dev-java/jetty-io-${PV}:${SLOT}
+	~dev-java/jetty-jmx-${PV}:${SLOT}
 	~dev-java/jetty-http-${PV}:${SLOT}
 	~dev-java/jetty-util-${PV}:${SLOT}
 "
