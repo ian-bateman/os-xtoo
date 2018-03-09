@@ -5,7 +5,7 @@ EAPI="6"
 
 inherit java-netbeans
 
-DEPEND=">=virtual/jre-9"
+DEPEND=">=virtual/jdk-9"
 RDEPEND=">=virtual/jre-9"
 
 S+="/projectopener"
