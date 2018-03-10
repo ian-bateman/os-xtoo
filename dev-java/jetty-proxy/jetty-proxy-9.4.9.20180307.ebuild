@@ -1,1 +1,0 @@
-jetty-proxy-9999.ebuild
