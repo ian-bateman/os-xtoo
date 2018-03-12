@@ -8,7 +8,6 @@
 *app-misc/screen
 *app-shells/bash:0
 *app-shells/bash-completion
-*app-portage/mask-gentoo-dev-java
 *mail-mta/ssmtp
 *net-analyzer/iftop
 *net-analyzer/iptraf-ng
