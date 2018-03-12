@@ -6,6 +6,7 @@
 *app-arch/xz-utils
 *app-editors/nano
 *app-misc/screen
+*app-portage/gentoolkit
 *app-shells/bash:0
 *app-shells/bash-completion
 *mail-mta/ssmtp
