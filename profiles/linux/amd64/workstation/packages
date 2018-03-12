@@ -38,7 +38,6 @@
 *app-office/glabels
 *app-office/gnucash
 *app-office/openoffice-bin
-*app-portage/gentoolkit
 *app-portage/mask-gentoo-dev-java
 *app-portage/package-env-no-bin
 *app-portage/portage-utils
