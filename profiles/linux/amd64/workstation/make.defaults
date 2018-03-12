@@ -1,6 +1,8 @@
 # Copyright 2017 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
+ACCEPT_KEYWORDS="~amd64"
+
 USE="X aalib acpi alsa -apache2 bzip2 \
      cairo crypt cups dbus directfb drm dvd encode ffmpeg \
      flash firebird flac -fortran gsm -gpm javamail jpeg2k \
