@@ -2,6 +2,8 @@
 USE="gif gdbm jpeg jpeg2k -iconv -iptables lvm odbc -perl png tiff 
 truetype udev webp"
 
+ACCEPT_KEYWORDS="~amd64"
+
 APACHE2_MODULES="actions alias auth_basic authn_anon authn_core authn_dbd 
 authn_dbm authn_default authn_file authz_core authz_dbm authz_default  
 authz_groupfile authz_host authz_owner authz_user autoindex dav dbd deflate
