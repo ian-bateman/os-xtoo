@@ -27,6 +27,7 @@ CP_DEPEND="
 	~dev-java/jackson-annotations-${PV}:${SLOT}
 	~dev-java/jackson-core-${PV}:${SLOT}
 	~dev-java/jackson-databind-${PV}:${SLOT}
+	dev-java/javax-activation:0
 "
 
 DEPEND="${CP_DEPEND}
@@ -37,7 +38,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/jaxb"
 
-JAVAC_ARGS+=" --add-modules java.activation,java.xml.bind "
+JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	local my_file
