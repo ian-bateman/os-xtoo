@@ -29,7 +29,7 @@ sys-devel/gdb python
 sys-libs/db java
 sys-libs/gdbm berkdb
 sys-libs/glibc debug
-sys-libs/ldb -ldap python
+sys-libs/ldb -ldap -python
 sys-libs/ntdb python
 sys-libs/talloc python
 sys-libs/tdb python
