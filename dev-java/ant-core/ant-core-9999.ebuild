@@ -31,6 +31,7 @@ CP_DEPEND="
 	dev-java/jakarta-oro:0
 	dev-java/jakarta-regexp:0
 	dev-java/javamail:0
+	dev-java/javax-activation:0
 	dev-java/jdepend:0
 	dev-java/jsch:0
 	dev-java/log4j:0
@@ -49,7 +50,6 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}/"
 
 JAVA_RES_DIR="src/resources"
-JAVAC_ARGS+=" --add-modules java.activation "
 
 java_prepare() {
 	# Copy defaultManifest.mf for inclusion in jar
