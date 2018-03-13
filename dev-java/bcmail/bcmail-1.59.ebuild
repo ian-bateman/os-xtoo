@@ -20,8 +20,9 @@ SLOT="$(get_version_component_range 1-2)"
 CP_DEPEND="
 	dev-java/bcprov:${SLOT}
 	dev-java/bcpkix:${SLOT}
-	dev-java/junit:4
 	dev-java/javamail:0
+	dev-java/javax-activation:0
+	dev-java/junit:4
 "
 
 DEPEND="app-arch/unzip
@@ -37,7 +38,6 @@ JAVA_RM_FILES=(
 	org/bouncycastle/mail/smime/test
 	org/bouncycastle/mail/smime/examples/CreateSignedMail.java
 )
-JAVAC_ARGS+=" --add-modules java.activation "
 
 src_unpack() {
 	default
