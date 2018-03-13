@@ -1,0 +1,4 @@
+dev-db/firebird
+dev-libs/libtomcrypt
+dev-libs/libtommath
+dev-util/btyacc
