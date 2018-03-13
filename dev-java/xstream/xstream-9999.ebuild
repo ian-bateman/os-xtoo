@@ -26,6 +26,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/cglib:3
 	dev-java/dom4j:2
+	dev-java/javax-activation:0
 	dev-java/jdom:0
 	dev-java/jdom:2
 	dev-java/jettison:0
@@ -44,8 +45,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
-JAVAC_ARGS="--add-modules java.activation "
-JAVAC_ARGS+="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
 
 # From tree, only part copied
 # Two drivers for two very old implementations of StAX.
