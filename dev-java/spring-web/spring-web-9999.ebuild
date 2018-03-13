@@ -42,6 +42,7 @@ CP_DEPEND="
 	dev-java/jackson-annotations:${JACKSON_SLOT}
 	dev-java/jackson-databind:${JACKSON_SLOT}
 	dev-java/jackson-dataformat-xml:${JACKSON_SLOT}
+	dev-java/javax-activation:0
 	dev-java/jdom:2
 	dev-java/log4j:0
 	dev-java/myfaces-api:0
@@ -77,4 +78,4 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}"
 
-JAVAC_ARGS+=" --add-modules java.activation,java.xml.bind,java.xml.ws "
+JAVAC_ARGS+=" --add-modules java.xml.bind,java.xml.ws "
