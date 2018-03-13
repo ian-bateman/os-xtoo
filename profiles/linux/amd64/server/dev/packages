@@ -41,6 +41,7 @@
 *dev-perl/mime-construct
 *dev-util/strace
 *dev-vcs/git
+*mail-mta/ssmtp
 *media-gfx/imagemagick
 *net-analyzer/nmap
 *net-dialup/minicom
