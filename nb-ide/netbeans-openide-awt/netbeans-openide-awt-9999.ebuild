@@ -6,6 +6,7 @@ EAPI="6"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-activation:0
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-filesystems-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-util-${PV}:${SLOT}
@@ -18,5 +19,3 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
-
-JAVAC_ARGS="--add-modules java.activation"
