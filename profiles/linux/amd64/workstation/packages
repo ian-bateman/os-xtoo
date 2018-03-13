@@ -113,6 +113,7 @@
 *gnome-base/libgnome-keyring
 *gnome-extra/nm-applet
 *kde-frameworks/oxygen-icons
+*mail-mta/ssmtp
 *media-fonts/corefonts
 *media-fonts/dejavu
 #*media-fonts/font-adobe-100dpi
