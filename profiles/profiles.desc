@@ -3,3 +3,4 @@ amd64		linux/amd64/workstation			stable
 amd64		linux/amd64/server			stable
 amd64		linux/amd64/server/dev			stable
 amd64		linux/amd64/server/prod			stable
+amd64		linux/amd64/server/prod/firebird	stable
