@@ -23,7 +23,10 @@ HOMEPAGE="https://javaee.github.io/${MY_PN}/"
 LICENSE="CDDL GPL-2"
 SLOT="0"
 
-CP_DEPEND="dev-java/stax-ex:0"
+CP_DEPEND="
+	dev-java/javax-activation:0
+	dev-java/stax-ex:0
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -34,7 +37,6 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src"
-JAVAC_ARGS="--add-modules java.activation"
 
 if [[ ${PN} = 9999 ]]; then
 	S+="/${PN}"
