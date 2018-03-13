@@ -26,6 +26,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/apache-mime4j-core:0
 	dev-java/commons-logging:0
+	dev-java/javax-activation:0
 	dev-java/jaxen:0
 	dev-java/osgi-core-api:6
 	dev-java/stax2-api:0
@@ -38,8 +39,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
-
-JAVAC_ARGS+=" --add-modules java.activation "
 
 java_prepare() {
 	sed -i -e '124i \ \ \ \ \ \ \ \ MimeConfig.Builder b = new MimeConfig.Builder();' \
