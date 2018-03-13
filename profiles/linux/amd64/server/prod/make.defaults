@@ -1,0 +1,12 @@
+# Copyright 2018 Obsidian-Studios, Inc.
+# Distributed under the terms of the GNU General Public License v2
+
+CFLAGS="-march=x86-64 -mcx16 -msahf -mpopcnt -O2 -pipe"
+
+MAKEOPTS="-j2"
+
+PYTHON_TARGETS="-python2_7 -python3_4 python3_5 -python3_6"
+PYTHON_SINGLE_TARGET="-python3_4 python3_5 -python3_6"
+
+USE="-fam -gnutls hardened -jit -ncurses nls -openmp -pch -pcre -python
+-sanitize -spell syslog"

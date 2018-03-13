@@ -1,0 +1,12 @@
+net-misc/ntp
+net-vpn/tinc
+app-admin/perl-cleaner
+dev-lang/perl
+dev-perl/libintl-perl
+dev-perl/Text-Unidecode
+virtual/perl-Data-Dumper
+virtual/perl-ExtUtils-MakeMaker
+#virtual/perl-File-Path
+virtual/perl-File-Spec
+virtual/perl-Test-Harness
+sys-boot/syslinux
