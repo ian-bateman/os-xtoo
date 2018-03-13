@@ -24,6 +24,7 @@ LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="0"
 
 CP_DEPEND="
+	dev-java/javax-activation:0
 	dev-java/istack-commons-runtime:0
 	~dev-java/txw2-${PV}:${SLOT}
 "
@@ -36,4 +37,4 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN#*-}"
 
-JAVAC_ARGS=" --add-modules java.activation,java.xml.bind "
+JAVAC_ARGS=" --add-modules java.xml.bind "
