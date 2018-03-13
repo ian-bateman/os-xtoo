@@ -9,7 +9,6 @@
 *app-portage/gentoolkit
 *app-shells/bash:0
 *app-shells/bash-completion
-*mail-mta/ssmtp
 *net-analyzer/iftop
 *net-analyzer/iptraf-ng
 *net-analyzer/mtr
