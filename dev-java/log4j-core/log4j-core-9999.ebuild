@@ -38,6 +38,7 @@ CP_DEPEND="
 	dev-java/jackson-dataformat-xml:${JACKSON_SLOT}
 	dev-java/jackson-dataformat-yaml:${JACKSON_SLOT}
 	dev-java/jansi:0
+	dev-java/javax-activation:0
 	dev-java/javax-jms-api:2
 	dev-java/jcommander:0
 	dev-java/jctools-core:2
@@ -56,5 +57,3 @@ DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
-
-JAVAC_ARGS+=" --add-modules java.activation "
