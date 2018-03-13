@@ -26,6 +26,7 @@ SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/glassfish-hk2-osgi-resource-locator:0
+	dev-java/javax-activation:0
 	dev-java/javax-inject:0
 	dev-java/jax-rs:2
 	dev-java/jax-rs:2.1
@@ -42,7 +43,6 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_P}/${PN#*-*}"
 
-JAVAC_ARGS="--add-modules java.activation "
 JAVAC_ARGS+="--add-exports java.base/jdk.internal.vm.annotation=ALL-UNNAMED "
 JAVAC_ARGS+="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
 
