@@ -6,7 +6,7 @@ EAPI="6"
 JAVA_PKG_IUSE="doc source"
 
 MY_PN="jaxb-v2"
-MY_PV="${PV/.170/-b170}"
+MY_PV="${PV/.17/-b17}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/javaee/${MY_PN}"
 
