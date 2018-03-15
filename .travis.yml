@@ -4,7 +4,7 @@
 #
 language: python
 python:
-    - pypy
+    - python3.6
 before_install:
     - pip install lxml
 before_script:
