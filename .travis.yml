@@ -4,10 +4,8 @@
 #
 language: python
 python:
-    - 3.6
+    - pypy
 before_install:
-    - sudo apt-get -qq update
-    - pip install --upgrade pip
     - pip install lxml
 before_script:
     - mkdir travis-overlay
