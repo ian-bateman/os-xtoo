@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="5"
 
 inherit apache-module java-pkg-opt-2
 
@@ -29,7 +29,7 @@ RDEPEND=""
 need_apache
 
 pkg_setup() {
-	use java && java-pkg-2_pkg_setup
+	use java && java-pkg_pkg_setup
 }
 
 src_configure() {
