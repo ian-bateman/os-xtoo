@@ -32,3 +32,5 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN##*-}"
+
+JAVA_RM_FILES=( src/main/java/module-info.java )
