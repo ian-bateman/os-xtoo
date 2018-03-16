@@ -27,7 +27,6 @@ CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/codemodel:0
 	dev-java/dtd-parser:0
-	~dev-java/jaxb-core-${PV}:${SLOT}
 	~dev-java/jaxb-xsom-${PV}:${SLOT}
 	dev-java/istack-commons-runtime:0
 	dev-java/istack-commons-tools:0
@@ -37,6 +36,12 @@ CP_DEPEND="
 	dev-java/xml-commons-resolver:0
 "
 
+if [[ ${PV} == *0655 ]]; then
+	CP_DEPEND+=" ~dev-java/jaxb-core-${PV}:${SLOT}"
+else
+	CP_DEPEND+=" ~dev-java/jaxb-runtime-${PV}:${SLOT}"
+fi
+
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
 
@@ -45,6 +50,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN##*-}"
 
+JAVA_RM_FILES=( src/main/java/module-info.java )
 JAVAC_ARGS="--add-modules java.xml.bind"
 
 java_prepare() {
