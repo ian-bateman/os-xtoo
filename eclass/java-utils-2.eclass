@@ -1280,10 +1280,11 @@ java-pkg_ensure-vm-version-sufficient() {
 java-pkg_is-vm-version-sufficient() {
 	debug-print-function ${FUNCNAME} $*
 
-	local IFS t supported
+	local IFS t supported v
 
 	# less than 9 unsupported
-	[[ $(java-pkg_get-release) -lt 9 ]] && return 1
+	v="$(java-pkg_get-vm-version)"
+	[[ ${v/1./} -lt 9 ]] && return 1
 
 	# use current jdk version unless package overridden
 	[[ -z ${JAVA_RELEASE} ]] && return 0
@@ -1292,7 +1293,7 @@ java-pkg_is-vm-version-sufficient() {
 			sed -n 's/^.*Supported targets\: \([^ ].*\).*$/\1/p' ) )
 
 	IFS=', '
-	for t in "${supported[@]}"; do
+	for t in ${supported[@]}; do
 		[[ "${JAVA_RELEASE}" == "${t}" ]] && return 0
 	done
 
