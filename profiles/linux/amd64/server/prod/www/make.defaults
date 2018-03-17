@@ -1,0 +1,9 @@
+
+APACHE2_MODULES="actions alias auth_basic authn_anon authn_core authn_dbd
+authn_dbm authn_default authn_file authz_core authz_dbm authz_default
+authz_groupfile authz_host authz_owner authz_user autoindex dav dbd deflate
+dir env expires ext_filter filter headers http2 ident imagemap include info
+log_config logio mime mime_magic modules_dav negotiation proxy proxy_http
+rewrite setenvif so socache_shmcb speling status unixd unique_id userdir
+usertrack vhost_alias"
+

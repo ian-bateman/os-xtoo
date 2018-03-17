@@ -1,0 +1,2 @@
+dev-java/oracle-jdk-bin -fontconfig headless-awt
+media-gfx/imagemagick jpeg jpeg2k png tiff
