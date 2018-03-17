@@ -148,6 +148,13 @@ e_src_configure() {
 	local u
 	if [[ "${E_BUILD}" == "cmake" ]]; then
 		local mycmakeargs mytype
+
+	        if use debug; then
+			mytype="debug"
+		else
+			mytype="release"
+		fi
+
 		mycmakeargs=(
 			-DCMAKE_INSTALL_PREFIX="${EROOT}"
 			-DCMAKE_BUILD_TYPE=${mytype}
@@ -156,11 +163,6 @@ e_src_configure() {
 			-DCMAKE_STATIC=$(usex static-libs)
 			${E_ECONF[@]}
 		)
-	        if use debug; then
-			mytype="debug"
-		else
-			mytype="release"
-		fi
 		cmake-utils_src_configure
 	elif [[ "${E_BUILD}" == "meson" ]]; then
 		local emesonargs
