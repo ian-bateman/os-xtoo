@@ -7,3 +7,4 @@ amd64		linux/amd64/server/prod/base		stable
 amd64		linux/amd64/server/prod/firebird	stable
 amd64		linux/amd64/server/prod/mail		stable
 amd64		linux/amd64/server/prod/smtp		stable
+amd64		linux/amd64/server/prod/www		stable
