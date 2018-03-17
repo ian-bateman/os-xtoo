@@ -27,11 +27,7 @@ Please read subsequent sections before usage. You may need to force pull
 from this overlay at times. That will be kept to a minimum and at some 
 point stop entirely. But does happen from time to time.
 
-The respository is in flux as we juggle finalizing packages for Java 9, 
-packaging Netbeans 9, and replacing remaining bits of Gentoo's Java 
-system, eclasses, etc. Due to such there maybe various issues that 
-did not exist before but do now. Please file issues for any problems 
-encounterd. They will be addressed ASAP!
+Please file issues for any problems encounterd. They will be addressed ASAP!
 
 ## Arch
 This repo is primarily amd64, no other archs are supported or tested, 
@@ -225,6 +221,10 @@ All ebuilds in this overlay meet at least step 1, and 1a. Step 2 is
 done when the package is used directly as a library in a project and/or 
 via an existing application that uses it directly. Step 3 is a 
 finalization step.
+
+## Profiles
+This repository features a few different profiles that are not based on 
+any profile in Gentoo's main repository. They are stand alone profiles.
 
 ## Stability
 Packages in this repository may never be marked stable. This is not 
