@@ -1690,8 +1690,6 @@ java-utils-2_pkg_preinst() {
 		if has_version dev-java/java-dep-check; then
 			local output=$(JEM_VM= java-dep-check --image "${D}" "${JAVA_PKG_ENV}")
 			[[ ${output} ]] && ewarn "${output}"
-		else
-			eerror "Install dev-java/java-dep-check for dependency checking"
 		fi
 	fi
 }
