@@ -4,9 +4,9 @@
 #
 language: python
 python:
-    - pypy
+    - pypy3
 before_install:
-    - pip install lxml==4.1.1
+    - pip install lxml
 before_script:
     - mkdir travis-overlay
     - shopt -s extglob
