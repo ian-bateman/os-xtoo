@@ -43,6 +43,7 @@ JAVA_SRC_DIR="
 	src/jdbc_42
 	src/jna-client
 	src/main
+	src/openoffice
 "
 JAVA_RES_DIR="src/resources"
 
