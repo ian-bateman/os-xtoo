@@ -6,8 +6,12 @@
 
 EAPI="6"
 
-MY_PV="v${PV:0:7}-${PV:8}"
-MY_PV="${MY_PV/_/.}"
+if [[ "${PV:7:1}" == "." ]]; then
+	MY_PV="v${PV:0:7}-${PV:8}"
+	MY_PV="${MY_PV/_/.}"
+else
+	MY_PV="v${PV/_/}"
+fi
 MY_P="${PN}-${MY_PV}"
 BASE_URI="https://github.com/${PN}/${PN}"
 
@@ -16,11 +20,6 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="${BASE_URI}.git"
 	EGIT_BRANCH="devel"
 	MY_S="${P}"
-elif [[ ${PV} == *36355 ]]; then
-	MY_SNAP="649cd61a174f9411a054ef30c07a63b20dae133d"
-	SRC_URI="https://github.com/Obsidian-StudiosInc/ansible//archive/${MY_SNAP}.tar.gz -> ${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
-	MY_S="${PN}-${MY_SNAP}"
 else
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
