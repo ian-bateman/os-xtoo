@@ -3,18 +3,13 @@
 
 EAPI="6"
 
-inherit java-netbeans
-
 BASE_URI="https://github.com/Revivius/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+inherit java-netbeans
+
+if [[ ${PV} != 9999 ]]; then
 	MY_SNAP="d00114bf060ae9ed3f438edb5b19ce7017cc94fe"
 	SRC_URI="${BASE_URI}/archive/${MY_SNAP}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_SNAP}"
 fi
 
@@ -51,18 +46,12 @@ S="${WORKDIR}/${MY_S}"
 
 JAVAC_ARGS+=" --add-exports=java.desktop/sun.swing=ALL-UNNAMED "
 
-src_unpack() {
-	default
-}
-
 src_prepare() {
-	mkdir src/main/resources/META-INF || die "Failed to create META-INF dir"
-	cp "${FILESDIR}/MANIFEST.MF" src/main/resources/META-INF \
-		|| die "Failed to copy MANIFEST.MF"
+	cp "${FILESDIR}/manifest.mf" "${S}" || die "Failed to copy manifest.mf"
 
 	sed -i -e "s|PV|${PV}|" -e "s|DATE|$(date +%Y%m%d%k%M)|" \
 		src/main/resources/META-INF/MANIFEST.MF \
 		|| die "Failed to sed PV/DATE in MANIFEST.MF"
 
-	java-utils-2_src_prepare
+	java-netbeans_src_prepare
 }
