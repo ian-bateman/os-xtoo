@@ -3,16 +3,12 @@
 
 EAPI="6"
 
-inherit java-netbeans
-
 BASE_URI="https://github.com/madflow/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+inherit java-netbeans
+
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 DESCRIPTION="A NetBeans IDE plugin which adds Markdown support"
@@ -68,10 +64,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
-
-src_unpack() {
-	default
-}
 
 src_prepare() {
 	local f
