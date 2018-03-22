@@ -37,15 +37,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-src_prepare() {
-	mkdir src/main/resources/META-INF || die "Failed to create META-INF dir"
-	cp "${FILESDIR}/MANIFEST.MF" src/main/resources/META-INF \
-		|| die "Failed to copy MANIFEST.MF"
-
-	sed -i -e "s|PV|${PV}|g" -e "s|DATE|$(date +%Y%m%d%k%M)|" \
-		src/main/resources/META-INF/MANIFEST.MF \
-		|| die "Failed to sed PV/DATE in MANIFEST.MF"
-
-	java-utils-2_src_prepare
-}
