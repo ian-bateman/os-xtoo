@@ -9,26 +9,26 @@
 if [[ -z ${_JAVA_NETBEANS_ECLASS} ]]; then
 _JAVA_NETBEANS_ECLASS=1
 
-MY_PN="incubator-${PN%%-*}"
-MY_PV="${PV//_/-}"
-MY_P="${MY_PN}-${MY_PV}"
-MY_MOD="${PN#*-}"
-MY_MOD="${MY_MOD//-/.}"
-BASE_URI="https://github.com/apache/${MY_PN}"
+: "${MY_PN:=incubator-${PN%%-*}}"
+: "${MY_PV:=incubator-${PV//_/-}}"
+: "${MY_P:=${MY_PN}-${MY_PV}}"
 
-if [[ ${PV} == 9999 ]]; then
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-	inherit git-r3
-else
+if [[ "${category}" == nb-ide ]]; then
+	MY_MOD="${PN#*-}"
+	MY_MOD="${MY_MOD//-/.}"
+fi
+
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
+: "${BASE_URI:=https://github.com/apache/${MY_PN}}"
+
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg
 
 DESCRIPTION="Netbeans IDE"
 HOMEPAGE="https://netbeans.org"
@@ -79,7 +79,10 @@ java-netbeans_pkg_setup() {
 # @DESCRIPTION:
 # Only unpack whats needed
 java-netbeans_src_unpack() {
-	if [[ "${PN}" != "${PN%%-*}" ]]; then
+	if [[ ${PV} == *9999* ]]; then
+		git-r3_src_unpack
+		default
+	elif [[ "${category}" == "nb-ide" ]]; then
 		local tgz
 		tgz="${MY_P}.tar.gz"
 		echo ">>> Unpacking ${tgz} to ${PWD}"

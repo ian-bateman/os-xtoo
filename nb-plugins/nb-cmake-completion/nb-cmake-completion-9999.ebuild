@@ -3,19 +3,15 @@
 
 EAPI="6"
 
-inherit java-netbeans
-
 MY_PN="NB-CMake-Completion"
 MY_PV="${PV}"
 MY_P="${MY_PN}-${MY_PV}"
 
 BASE_URI="https://github.com/offa/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+inherit java-netbeans
+
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
@@ -43,10 +39,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-src_unpack() {
-	default
-}
 
 src_prepare() {
 	mkdir src/main/resources/META-INF || die "Failed to create META-INF dir"
