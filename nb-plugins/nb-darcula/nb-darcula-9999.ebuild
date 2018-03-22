@@ -45,13 +45,3 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVAC_ARGS+=" --add-exports=java.desktop/sun.swing=ALL-UNNAMED "
-
-src_prepare() {
-	cp "${FILESDIR}/manifest.mf" "${S}" || die "Failed to copy manifest.mf"
-
-	sed -i -e "s|PV|${PV}|" -e "s|DATE|$(date +%Y%m%d%k%M)|" \
-		src/main/resources/META-INF/MANIFEST.MF \
-		|| die "Failed to sed PV/DATE in MANIFEST.MF"
-
-	java-netbeans_src_prepare
-}
