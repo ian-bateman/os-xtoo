@@ -11,13 +11,12 @@
 # Thomas Matthijs <axxo@gentoo.org>, Karl Trygve Kalleberg <karltk@gentoo.org>
 # @BLURB: Base eclass for Java packages
 # @DESCRIPTION:
-# This eclass provides functionality which is used by java-pkg-2.eclass,
+# This eclass provides functionality which is used by java-pkg.eclass,
 # java-pkg-opt-2.eclass and java-pkg-simple eclass, as well as from ebuilds.
 #
 # This eclass should not be inherited this directly from an ebuild. Instead,
-# you should inherit java-pkg-2 for Java packages or java-pkg-opt-2 for packages
-# that have optional Java support. In addition you can inherit
-# java-pkg-simple for all other packages.
+# you should inherit java-pkg for Java packages or java-pkg-opt-2 for packages
+# that have optional Java support.
 inherit eutils versionator multilib
 
 IUSE="elibc_FreeBSD"
@@ -1649,7 +1648,7 @@ ejunit4() {
 # @FUNCTION: java-utils-2_src_prepare
 # @DESCRIPTION:
 # src_prepare Searches for bundled jars
-# Don't call directly, but via java-pkg-2_src_prepare!
+# Don't call directly, but via java-pkg_src_prepare!
 java-utils-2_src_prepare() {
 	case ${EAPI:-0} in
 		[0-5]) ;;
@@ -1680,7 +1679,7 @@ java-utils-2_src_prepare() {
 # @FUNCTION: java-utils-2_pkg_preinst
 # @DESCRIPTION:
 # pkg_preinst Searches for missing and unneeded dependencies
-# Don't call directly, but via java-pkg-2_pkg_preinst!
+# Don't call directly, but via java-pkg_pkg_preinst!
 java-utils-2_pkg_preinst() {
 	if is-java-strict; then
 		if [[ ! -e "${JAVA_PKG_ENV}" ]]; then
