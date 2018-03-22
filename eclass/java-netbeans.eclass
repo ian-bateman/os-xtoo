@@ -138,6 +138,13 @@ java-netbeans_src_prepare() {
 			|| die "Failed to append to manifest"
 		mv manifest.mf ${JAVA_RES_DIR}/META-INF/MANIFEST.MF \
 			|| die "Failed to move manifest"
+	elif [[ -f "${FILESDIR}/MANIFEST.MF" ]]; then
+		cp "${FILESDIR}/MANIFEST.MF" "${JAVA_RES_DIR}/META-INF/" \
+			|| die "Failed to copy ${FILESDIR}/MANIFEST.MF"
+
+		sed -i -e "s|PV|${PV}|" -e "s|DATE|$(date +%Y%m%d%k%M)|" \
+			"${JAVA_RES_DIR}/META-INF/MANIFEST.MF" \
+			|| die "Failed to sed PV/DATE in MANIFEST.MF"
 	fi
 
 	# copy resources need to preserve paths? maybe delete sources?
