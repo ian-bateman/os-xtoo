@@ -1,9 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI="6"
 
-inherit eutils java-pkg-2 versionator
+inherit eutils java-pkg versionator
 
 RESTRICT="strip"
 QA_PREBUILT="opt/${PN}/bin/libbreakgen*.so opt/${PN}/bin/fsnotifier*"
@@ -84,7 +84,7 @@ src_install() {
 
 	# Replaced bundled jre with system vm/jdk
 	if use system-jvm; then
-		jvm="$(java-config --select-vm=oracle-jdk-bin-${JAVA_SLOT} -O)"
+		jvm="$(jem --select-vm=oracle-jdk-bin-${JAVA_SLOT} -O)"
 		dosym "..${jvm/#\/opt/}" "${dir}/jre"
 	fi
 
