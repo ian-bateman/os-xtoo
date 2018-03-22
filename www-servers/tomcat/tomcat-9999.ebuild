@@ -7,11 +7,7 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/apache/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != 9999 ]]; then
 	MY_PV="${PV/_beta/}"
 	MY_P="apache-${PN}-${MY_PV}-src"
 	SRC_URI="mirror://apache/${PN}/${PN}-${PV%%.*}/v${MY_PV}/src/${MY_P}.tar.gz"
@@ -19,7 +15,7 @@ else
 	MY_S="${MY_P}"
 fi
 
-inherit eutils java-pkg-2 prefix systemd user ${ECLASS}
+inherit eutils java-pkg prefix systemd user
 
 DESCRIPTION="Tomcat Servlet-4.0/JSP-2.3 Container"
 HOMEPAGE="https://${PN}.apache.org/"
@@ -67,7 +63,7 @@ RDEPEND="${CDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	java-pkg-2_pkg_setup
+	java-pkg_pkg_setup
 	enewgroup tomcat 265
 	enewuser tomcat 265 -1 /dev/null tomcat
 }
@@ -75,7 +71,7 @@ pkg_setup() {
 java_prepare() {
 	# For use of catalina.sh in netbeans
 	sed -i -e "/^# ----- Execute The Requested Command/ a\
-		CLASSPATH=\`java-config --classpath ${PN}-${SLOT}\`" \
+		CLASSPATH=\`jem --classpath ${PN}-${SLOT}\`" \
 		bin/catalina.sh || die
 }
 
