@@ -57,10 +57,12 @@ result in various preventable build issues. Please keep that in mind.
 
 This repository replaces entirely dev-java/*::gentoo, packages in 
 Gentoo's main repository. Work is mostly complete to replace any 
-packages still used as dependencys residing in the main tree. Initial 
-work has been done to replace the core java-config with 
-[jem](https://github.com/Obsidian-StudiosInc/jem). Along with 
-updating eclasses in preparation for new eclasses, entire re-writes.
+packages still used as dependencys residing in the main tree. The 
+core java-config has been mostly replaced with 
+[jem](https://github.com/Obsidian-StudiosInc/jem). Only remaining 
+piece of jeva-config still in use is 
+[gjl](https://github.com/gentoo/java-config/blob/master/src/gjl). Along 
+with updating eclasses in preparation for new eclasses, entire re-writes.
 
 We have added a [package to mask 
 dev-java/*::gentoo](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/app-portage/mask-gentoo-dev-java) 
@@ -69,7 +71,7 @@ dev-java/*::gentoo](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/a
 is not possible at this time. It is recommended to merge that package 
 and unmask any remaining pieces as needed/required.
 
-Please try not to mix Java packages from  Gentoo's main repository with 
+Please do not mix Java packages from Gentoo's main repository with 
 this repository. You will experience a varity of issues that will not be 
 addressed! This repository replaces entirely Java on Gentoo!!!
 
@@ -78,11 +80,16 @@ This repository requires Java 9 as your system vm now, and soon will
 require Java 10! We are no longer supporting any JDK < 9. Most things 
 have been fixed for Java 9!
 
-Please report issues for any package that does not build with Java 9.
 There are few packages remaining that need to be fixed or dialed in for 
-Java 9. There is initial support for Java 10. Initial testing for Java 
+Java 9. There is initial support for Java 11. Initial testing for Java 
 10 has begun. Most any package that builds under 9 should under 10, 
-less any new issues from Java 10.
+less any new issues from Java 10. Like removal of ```javah```, and 
+packages needing to be updated for ```javac -h```. The main blocker for 
+Java 10+ Java 11 requires moving from modules in the jdk to external 
+dependencies, which is in progress.
+
+Please report issues for any package that does not build or has 
+runtime issues with Java 9, 10, or 11.
 
 ### Java Versioning
 This overlay implements a brand new feature of no longer requiring Java 
