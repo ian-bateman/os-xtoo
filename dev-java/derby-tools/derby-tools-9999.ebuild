@@ -9,15 +9,12 @@ MY_PN="${PN:0:5}"
 MY_P="${MY_PN}-${PV}"
 BASE_URI="https://github.com/apache/${MY_PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Relational database implemented entirely in Java - ${PN:6}"
 HOMEPAGE="https://db.apache.org/${PN}/"
@@ -31,22 +28,29 @@ CP_DEPEND="
 
 DEPEND="${CP_DEPEND}
 	dev-java/javacc:0
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
-S="${WORKDIR}/${MY_P}/java/${PN:6}"
+S="${WORKDIR}/${MY_P}/java/${PN##*-}"
+
+# https://issues.apache.org/jira/browse/DERBY-5125
+PATCHES=( "${FILESDIR}/javacc6.diff" )
 
 # Needed to build, but do not include or compile
 # Not ideal, but do not want to include in this package
 JAVA_CLASSPATH_EXTRA="${S}/../drda/"
 
 java_prepare() {
+	local jj jjs
+
 	cd "${S}/org/apache/derby/impl/tools/ij/" || die
-	local jjs
 	jjs=( mtGrammar ij )
 	for jj in ${jjs[@]}; do
 		javacc "${jj}.jj" || die "javacc ${jj}.jj failed"
 	done
+
+	rm UCode_CharStream.java \
+		|| die "Failed to remove generated UCode_CharStream.java"
 }

@@ -1,0 +1,60 @@
+commit f48da11c4d89a6c63aad560bbc933f97c15ea817
+Author: Knut Anders Hatlen <kahatlen@apache.org>
+Date:   Tue Nov 5 08:52:59 2013 +0100
+
+    DERBY-5125: Upgrade to JavaCC 6.0
+
+diff --git a/org/apache/derby/impl/tools/ij/ij.jj b/org/apache/derby/impl/tools/ij/ij.jj
+index ea44df3..586c423 100644
+--- a/org/apache/derby/impl/tools/ij/ij.jj
++++ b/org/apache/derby/impl/tools/ij/ij.jj
+@@ -23,12 +23,11 @@ options {
+ 	DEBUG_TOKEN_MANAGER = false;
+ 	ERROR_REPORTING = true;
+ 	USER_TOKEN_MANAGER = false;
+-	USER_CHAR_STREAM = true;
+ 	JAVA_UNICODE_ESCAPE = false;
+ 	UNICODE_INPUT = true;
+ 	IGNORE_CASE = true;
+ 	CACHE_TOKENS = true;
+-    JDK_VERSION = "1.5";
++    JDK_VERSION = "1.6";
+ }
+ 
+ PARSER_BEGIN(ij)
+diff --git a/org/apache/derby/impl/tools/ij/mtGrammar.jj b/org/apache/derby/impl/tools/ij/mtGrammar.jj
+index 8cf6dbd..a3db3da 100644
+--- a/org/apache/derby/impl/tools/ij/mtGrammar.jj
++++ b/org/apache/derby/impl/tools/ij/mtGrammar.jj
+@@ -27,7 +27,7 @@ options {
+ 	IGNORE_CASE = true;
+ 	CACHE_TOKENS = true;
+ 	LOOKAHEAD = 1;
+-    JDK_VERSION = "1.5";
++    JDK_VERSION = "1.6";
+ }
+ 
+ PARSER_BEGIN(mtGrammar)
+diff --git a/org/apache/derby/impl/tools/ij/utilMain.java b/org/apache/derby/impl/tools/ij/utilMain.java
+index 30abc5f..960ae2f 100644
+--- a/org/apache/derby/impl/tools/ij/utilMain.java
++++ b/org/apache/derby/impl/tools/ij/utilMain.java
+@@ -54,7 +54,7 @@ import java.sql.PreparedStatement;
+ public class utilMain implements java.security.PrivilegedAction<Object> {
+ 
+ 	private StatementFinder[] commandGrabber;
+-	UCode_CharStream charStream;
++    SimpleCharStream charStream;
+ 	ijTokenManager ijTokMgr;
+ 	ij ijParser;
+ 	ConnectionEnv[] connEnv;
+@@ -134,8 +134,7 @@ public class utilMain implements java.security.PrivilegedAction<Object> {
+ 		/* init the parser; give it no input to start with.
+ 		 * (1 parser for entire test.)
+ 		 */
+-		charStream = new UCode_CharStream(
+-						new StringReader(" "), 1, 1);
++        charStream = new SimpleCharStream(new StringReader(" "), 1, 1);
+ 		ijTokMgr = new ijTokenManager(charStream);
+ 		ijParser = new ij(ijTokMgr, this);
+ 		this.out = out;
