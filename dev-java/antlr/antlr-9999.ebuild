@@ -12,18 +12,14 @@ BASE_URI="https://github.com/${PN}/${MY_PN}"
 # Sources from maven for pre-generated UnicodeData.java
 # Temporary, need to generate via stringtemplate
 # live will fail without generating UnicodeData.java
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${P}"
-else
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz
 		http://repo1.maven.org/maven2/org/${PN}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr.org/"
