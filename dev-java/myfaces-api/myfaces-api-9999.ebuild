@@ -12,8 +12,6 @@ MY_MOD="${PN##*-}"
 BASE_URI="https://github.com/apache/${PN%%-*}"
 
 if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
 	MY_S="${P}/${MY_MOD}"
 else
 	# github missing tags? upstream source tarball is rebundled, thus maven
@@ -23,7 +21,7 @@ else
 #	MY_S="${PN}-${MY_P}/${MY_MOD}"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Open-source JavaServer Faces implementation - ${MY_MOD}"
 HOMEPAGE="https://myfaces.apache.org/"
