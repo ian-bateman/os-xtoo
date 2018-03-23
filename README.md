@@ -67,7 +67,7 @@ dev-java/*::gentoo](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/a
 . Since
 [masking via overlay](https://bugs.gentoo.org/show_bug.cgi?id=641020) 
 is not possible at this time. It is recommended to merge that package 
-and unmask any remainig pieces as needed/required.
+and unmask any remaining pieces as needed/required.
 
 Please try not to mix Java packages from  Gentoo's main repository with 
 this repository. You will experience a varity of issues that will not be 
