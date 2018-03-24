@@ -56,7 +56,7 @@ src_compile() {
 	java-pkg-simple_src_compile
 
 	local cp f
-	cp="codegen.jar:$(java-config -p mchange-commons-java)"
+	cp="codegen.jar:$(jem -p mchange-commons-java)"
 	for f in DriverManager JndiRef PoolBacked WrapperConnectionPool; do
 		f="com/mchange/v2/c3p0/impl/${f}DataSourceBase"
 		java -cp "${cp}" \
