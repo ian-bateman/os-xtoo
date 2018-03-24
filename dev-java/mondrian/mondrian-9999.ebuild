@@ -69,7 +69,7 @@ java_prepare() {
 		|| die "javacc ${my_path}MdxParser.jj failed"
 
 	# compile class to generate other java files
-	ejavac -cp $(java-config -p eigenbase-properties) \
+	ejavac -cp $(jem -p eigenbase-properties) \
 		"${S}src/main/java/mondrian/util/PropertyUtil.java" \
 		|| die "Failed to compile PropertyUtil.java"
 
@@ -96,7 +96,7 @@ java_prepare() {
 	ejavac ${files[@]} || die "Failed to pre-compile exceptions"
 
 	# locales needs to be system
-	my_cp="$(java-config -p ant-core,eigenbase-resgen,eigenbase-xom)"
+	my_cp="$(jem -p ant-core,eigenbase-resgen,eigenbase-xom)"
 	java -cp "${my_cp}:${S}src/main/java" \
 		org.eigenbase.resgen.ResourceGen \
 			-locales "${L10N// /,}" \
