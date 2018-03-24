@@ -51,14 +51,15 @@ src_prepare() {
 	fi
 
 	java-pkg_src_prepare
+
+	# java 10+
+	eapply "${FILESDIR}/Function.java.patch"
 }
 
 src_compile() {
 	java-pkg-simple_src_compile
 
-# Fails no header output needed for 9+ no more javah
-#	javac -h native -cp ${PN}.jar src/com/sun/jna/{Function,Native}.java \
-	javah -d native -cp ${PN}.jar com.sun.jna.{Function,Native} \
+	javac -h native -cp ${PN}.jar src/com/sun/jna/{Function,Native}.java \
 		|| die "Failed to generate jni headers"
 	cd native || die "Failed to change directory for native compile"
 	emake DYNAMIC_LIBFFI=true || die "Failed to compile native code"
