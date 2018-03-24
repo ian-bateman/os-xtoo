@@ -78,6 +78,16 @@ S="${WORKDIR}"
 #	JAVA_RES_DIR="-not '*.java'"
 # @CODE
 
+# @ECLASS-VARIABLE: JAVA_RES_RM_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to any value to specify that java resources are in subdirectories
+# of sources that need the parent directory to be removed from the path.
+#
+# @CODE
+#	JAVA_RES_RM_DIR=0
+# @CODE
+
 # @ECLASS-VARIABLE: JAVA_SRC_DIR
 # @DEFAULT_AUTOSET
 # @DESCRIPTION:
@@ -136,6 +146,8 @@ java-pkg-simple_res_in_src() {
 		for f in "${files[@]}"; do
 			r="${f%/*}"
 			r="${r/+(java|src|src\/java|src\/main\/java)\//}"
+			[[ -n "${JAVA_RES_RM_DIR}" ]] \
+				&& r="$(echo ${r} | cut -d'/' -f2-)"
 			r="${JAVA_RES_DIR}/${r}"
 			if [[ ! -d "${r}" ]]; then
 				mkdir -p "${r}" || die "Failed to make dir ${r}"
