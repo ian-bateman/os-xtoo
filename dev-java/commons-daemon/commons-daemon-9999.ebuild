@@ -39,7 +39,7 @@ src_prepare() {
 
 src_configure() {
 	cd "${S}/src/native/unix" || die "Failed to change sources dir"
-	econf ${MY_ECONF} --with-java="${EPREFIX}/etc/java-config-2/current-system-vm/"
+	econf ${MY_ECONF} --with-java="${EPREFIX}/etc/jem/vm/"
 }
 
 src_compile() {
