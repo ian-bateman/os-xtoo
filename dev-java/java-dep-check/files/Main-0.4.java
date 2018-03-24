@@ -85,7 +85,7 @@ public final class Main extends ClassVisitor {
     private static Collection<String> getPackageJars(String pkg) {
         ArrayList<String> jars = new ArrayList<>();
         try {
-            Process p = Runtime.getRuntime().exec("java-config -p " + pkg);
+            Process p = Runtime.getRuntime().exec("jem -p " + pkg);
             p.waitFor();
             BufferedReader in;
             in = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -170,7 +170,7 @@ public final class Main extends ClassVisitor {
         boolean found = true;
         Collection<String> jars = new ArrayList<>();
         String[] bootClassPathJars = System.getProperty("sun.boot.class.path").split(":");
-        // Do we need "java-config -r" here?
+        // Do we need "jem -r" here?
         for (String jar : bootClassPathJars) {
             File jarFile = new File(jar);
             if (jarFile.exists()) {
