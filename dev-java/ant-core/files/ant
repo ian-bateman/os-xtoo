@@ -56,12 +56,12 @@ fi
 
 if [[ -z "${ANT_RESPECT_JAVA_HOME}" ]] || [[ -z "${JAVA_HOME}" ]]; then
 	export JAVA_HOME
-	JAVA_HOME="$(java-config -g JAVA_HOME)"
+	JAVA_HOME="$(jem -g JAVA_HOME)"
 fi
 
 if [[ -z ${JAVA_HOME} ]] ; then
 	echo 'Error: No JDK found!'
-	echo "Try using java-config script to set your JDK"
+	echo "Try using jem script to set your JDK"
 	echo "Remember that you need a JDK not a JRE"
 	exit 1
 fi
@@ -101,7 +101,7 @@ elif [[ "${ANT_TASKS[0]}" == "all" ]] || [[ "${ANT_TASKS[0]}" == "none" ]]; then
 	ANT_TASKS=()
 fi
 
-# construct the tasks list separated with commas to pass to java-config
+# construct the tasks list separated with commas to pass to jem
 TASKS_LIST=""
 for task in "${ANT_TASKS[@]}"; do
 	TASKS_LIST="${TASKS_LIST},$(basename "${task}")"
@@ -110,8 +110,8 @@ TASKS_LIST="${TASKS_LIST#,}"
 
 # get the classpath for optional tasks and their dependency .jar files
 if [[ -n "${TASKS_LIST}" ]] ; then
-	ANT_TASKS_CLASSPATH="-lib \"$(java-config -dp "${TASKS_LIST}")\""
-	ANT_TASKS_LIBPATH="-Djava.library.path=\"$(java-config -di "${TASKS_LIST}")\""
+	ANT_TASKS_CLASSPATH="-lib \"$(jem -dp "${TASKS_LIST}")\""
+	ANT_TASKS_LIBPATH="-Djava.library.path=\"$(jem -di "${TASKS_LIST}")\""
 else
 	ANT_TASKS_CLASSPATH=""
 	ANT_TASKS_LIBPATH=""
