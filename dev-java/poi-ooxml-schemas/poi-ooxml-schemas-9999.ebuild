@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -15,7 +15,7 @@ XSDS=( XAdES XAdESv141 ${PN}-xml ${PN}-xmldsig-core-schema
 	${PN}-encryptionCertificate ${PN}-encryptionInfo
 	${PN}-encryptionPassword ${PN}-signatureInfo ${PN}-visio )
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Java API for Microsoft Documents ${PN:4}"
 HOMEPAGE="https://poi.apache.org/"
@@ -42,10 +42,10 @@ CP_DEPEND="dev-java/xmlbeans:0"
 
 DEPEND="app-arch/unzip
 	${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${PN}/"
 
