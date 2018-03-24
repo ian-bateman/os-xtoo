@@ -10,17 +10,13 @@ MY_P="${MY_PN}_${MY_PV}"
 
 BASE_URI="https://github.com/apache/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-	MY_S="${PV}"
-else
+if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64"
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit autotools java-pkg-2 ${ECLASS}
+inherit autotools java-pkg
 
 DESCRIPTION="Allows Tomcat to use native resources for performance, compatibility, etc"
 HOMEPAGE="https://tomcat.apache.org/native-doc/"
@@ -73,4 +69,8 @@ src_configure() {
 src_compile() {
 	default
 	prune_libtool_files
+}
+
+src_install() {
+	default
 }
