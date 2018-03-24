@@ -7,15 +7,12 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/java-native-access/${PN}"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="git-r3"
-	EGIT_REPO_URI="${BASE_URI}.git"
-else
+if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg-2 java-pkg-simple ${ECLASS}
+inherit java-pkg
 
 DESCRIPTION="Java Native Access"
 HOMEPAGE="${BASE_URI}"
@@ -53,7 +50,7 @@ src_prepare() {
 			native/Makefile || die "Failed to sed native/Makefile"
 	fi
 
-	java-pkg-2_src_prepare
+	java-pkg_src_prepare
 }
 
 src_compile() {
