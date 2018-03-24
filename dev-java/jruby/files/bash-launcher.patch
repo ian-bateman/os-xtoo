@@ -71,7 +71,7 @@ index 0fc2f03a65..aa9d2d60d6 100755
 -    fi
 -    JRUBY_ALREADY_ADDED=true
 -done
-+JRUBY_CP="$(java-config-2 -d -p jruby)"
++JRUBY_CP="$(jem-2 -d -p jruby)"
  
  if $cygwin; then
      JRUBY_CP=`cygpath -p -w "$JRUBY_CP"`
