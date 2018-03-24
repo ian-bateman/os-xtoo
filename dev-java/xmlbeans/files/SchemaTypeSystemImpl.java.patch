@@ -1,0 +1,45 @@
+--- a/src/typeimpl/org/apache/xmlbeans/impl/schema/SchemaTypeSystemImpl.java	2018-03-23 21:12:47.202143563 -0400
++++ b/src/typeimpl/org/apache/xmlbeans/impl/schema/SchemaTypeSystemImpl.java	2018-03-23 21:14:12.688801377 -0400
+@@ -449,13 +449,18 @@
+ 
+                     case CONSTANT_CLASS:
+                     case CONSTANT_STRING:
++                    case CONSTANT_METHODTYPE:
++                    case CONSTANT_MODULE:
++                    case CONSTANT_PACKAGE:
+                         out.writeShort(in.readUnsignedShort());
+                         break;
+ 
+-                    case CONSTANT_NAMEANDTYPE:
+-                    case CONSTANT_METHOD:
+                     case CONSTANT_FIELD:
++                    case CONSTANT_METHOD:
+                     case CONSTANT_INTERFACEMETHOD:
++                    case CONSTANT_NAMEANDTYPE:
++                    case CONSTANT_METHODHANDLE:
++                    case CONSTANT_INVOKEDYNAMIC:
+                         out.writeShort(in.readUnsignedShort());
+                         out.writeShort(in.readUnsignedShort());
+                         break;
+@@ -472,7 +477,7 @@
+                         break;
+ 
+                     default:
+-                        throw new RuntimeException("Unexpected constant type: " + tag);
++			break;
+                 }
+             }
+ 
+@@ -517,6 +522,12 @@
+     private static final int CONSTANT_METHOD = 10;
+     private static final int CONSTANT_INTERFACEMETHOD = 11;
+     private static final int CONSTANT_NAMEANDTYPE = 12;
++    private static final int CONSTANT_METHODHANDLE = 15;
++    private static final int CONSTANT_METHODTYPE = 16;
++    private static final int CONSTANT_INVOKEDYNAMIC = 18;
++    private static final int CONSTANT_MODULE = 19;
++    private static final int CONSTANT_PACKAGE = 20;
++
+ 
+     // MAX_UNSIGNED_SHORT
+     private static final int MAX_UNSIGNED_SHORT = Short.MAX_VALUE * 2 + 1;

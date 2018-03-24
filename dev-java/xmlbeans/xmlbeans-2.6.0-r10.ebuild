@@ -18,7 +18,6 @@ CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/piccolo:0
 	dev-java/saxon:0
-	dev-java/xml-commons-resolver:0
 "
 
 DEPEND="${CP_DEPEND}
@@ -32,14 +31,14 @@ S="${WORKDIR}/${P}"
 PATCHES=(
 	"${FILESDIR}"/piccolo.patch
 	"${FILESDIR}"/SchemaCompiler.java.patch
+	"${FILESDIR}"/SchemaTypeSystemImpl.java.patch
 )
 
 JAVA_PKG_NO_CLEAN=1
-
-JAVAC_ARGS+=" --add-modules java.xml "
+JAVA_RES_RM_DIR=0
 
 java_prepare() {
-	local f files files1 my_cp
+	local c f files files1 my_cp name
 
 	rm -r src/xmlpublic/javax src/store/org/w3c \
 		|| die "Failed to remove java 9 dup classes and jam"
@@ -71,12 +70,30 @@ java_prepare() {
 		toolschema/xsdownload
 		configschema/schema/xmlconfig
 	)
+	c="classes/schemaorg_apache_xmlbeans/system"
+	mkdir -p "${c}" || die "Failed to mkdir ${ec}"
 	for f in "${files[@]}"; do
+		case ${f%%/*} in
+			config*) name="CONFIG";;
+			tool*) name="TOOLS";;
+			xml*) name="LANG";;
+			xsd*) name="SCHEMA";;
+		esac
+		name="sXML${name}"
 		java -cp ${my_cp} org.apache.xmlbeans.impl.tool.SchemaCompiler \
-			-srconly -src src \
+			-javasource "1.6" \
+			-name "${name}" -noann \
+			-d src/resources/ \
+			-src src/generated \
 			src/${f}.xsd \
 			src/${f}.xsdconfig \
 			|| die "Failed to generate java sources via bootstrap"
+		if [[ ! -d "${c}/${name}" ]]; then
+			mkdir "${c}/${name}" \
+				|| die "Failed to mkdir ${c}/${name}"
+		fi
+		mv {${c/classes/src/resources},${c}}/${name}/TypeSystemHolder.class \
+			|| die "Failed to mv ${name}/TypeSystemHolder.class"
 	done
 
 	files=( BindingConfig InterfaceExtension PrePostExtension UserType )
@@ -92,14 +109,31 @@ java_prepare() {
 			|| die "Failed to sed jam imports"
 	done
 
+	sed -i -e '41,50d' src/xmlpublic/org/apache/xmlbeans/XmlBeans.java \
+		|| die "Failed to sed/fix static returning null"
+
 	echo '#!/bin/bash
-cp="$(java-config -p piccolo,xmlbeans)"
-java="$(java-config -J)"
+cp="$(jem -p piccolo,xmlbeans)"
+java="$(jem -J)"
 "${java}" -Xmx256m -cp "${cp}" org.apache.xmlbeans.impl.tool.SchemaCompiler "$@"' > \
 "${S}/bin/scomp" || die "Failed to replace scomp"
 }
 
+src_compile() {
+	JAVA_NO_JAR=0
+	java-pkg-simple_src_compile
+	mv target/classes/org/apache/xmlbeans/impl/schema/TypeSystemHolder.{class,template} \
+		|| die "Failed to mv TypeSystemHolder.{class,template}"
+	mv classes/schemaorg_apache_xmlbeans target/classes \
+		|| die "Failed to mv generated classes from prepare"
+	java-pkg-simple_create-jar target/classes
+}
+
 src_install() {
 	java-pkg-simple_src_install
+
 	dobin bin/scomp
+#	java-pkg_dolauncher scomp \
+#		--main org.apache.xmlbeans.impl.tool.SchemaCompiler \
+#		--pkg_args "-Xmx256m"
 }
