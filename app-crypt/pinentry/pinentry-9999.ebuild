@@ -30,7 +30,7 @@ HOMEPAGE="http://gnupg.org/aegypten2/index.html"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="emacs efl gtk ncurses qt4 qt5 caps gnome-keyring static"
+IUSE="emacs efl fltk gtk ncurses qt4 qt5 caps gnome-keyring static"
 
 CDEPEND="
 	>=dev-libs/libgpg-error-1.17
@@ -38,6 +38,7 @@ CDEPEND="
 	>=dev-libs/libgcrypt-1.6.3
 	ncurses? ( sys-libs/ncurses:0= )
 	efl? ( dev-libs/efl:0 )
+	fltk? ( x11-libs/fltk:1 )
 	gtk? ( x11-libs/gtk+:2 )
 	qt4? (
 		>=dev-qt/qtgui-4.4.1:4
@@ -63,7 +64,7 @@ RDEPEND="
 "
 
 REQUIRED_USE="
-	|| ( ncurses efl gtk qt4 qt5 )
+	|| ( ncurses efl fltk gtk qt4 qt5 )
 	efl? ( !static )
 	gtk? ( !static )
 	qt4? ( !static )
@@ -111,6 +112,7 @@ src_configure() {
 		--enable-pinentry-tty \
 		$(use_enable emacs pinentry-emacs) \
 		$(use_enable efl pinentry-efl) \
+		$(use_enable fltk pinentry-fltk) \
 		$(use_enable gtk pinentry-gtk2) \
 		$(use_enable ncurses pinentry-curses) \
 		$(use_enable ncurses fallback-curses) \
