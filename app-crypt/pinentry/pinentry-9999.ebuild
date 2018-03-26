@@ -30,7 +30,7 @@ HOMEPAGE="http://gnupg.org/aegypten2/index.html"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="emacs efl fltk gtk ncurses qt4 qt5 caps gnome-keyring static"
+IUSE="emacs efl fltk gtk ncurses qt4 qt5 caps gnome3 gnome-keyring static"
 
 CDEPEND="
 	>=dev-libs/libgpg-error-1.17
@@ -39,6 +39,8 @@ CDEPEND="
 	ncurses? ( sys-libs/ncurses:0= )
 	efl? ( dev-libs/efl:0 )
 	fltk? ( x11-libs/fltk:1 )
+	gnome3? ( app-crypt/gcr )
+	gnome-keyring? ( app-crypt/libsecret )
 	gtk? ( x11-libs/gtk+:2 )
 	qt4? (
 		>=dev-qt/qtgui-4.4.1:4
@@ -50,7 +52,6 @@ CDEPEND="
 	caps? ( sys-libs/libcap )
 	static? ( >=sys-libs/ncurses-5.7-r5:0=[static-libs,-gpm] )
 	app-eselect/eselect-pinentry
-	gnome-keyring? ( app-crypt/libsecret )
 "
 
 DEPEND="${CDEPEND}
@@ -58,13 +59,11 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig
 "
 
-RDEPEND="
-	${CDEPEND}
-	gnome-keyring? ( app-crypt/gcr )
-"
+RDEPEND="${CDEPEND}"
 
 REQUIRED_USE="
-	|| ( ncurses efl fltk gtk qt4 qt5 )
+	|| ( ncurses efl fltk gnome3 gtk qt4 qt5 )
+	gnome-keyring? ( || ( gtk gnome3 ) )
 	efl? ( !static )
 	gtk? ( !static )
 	qt4? ( !static )

@@ -6,5 +6,6 @@
 	</maintainer>
 	<use>
 		<flag name="efl">Enable EFL (Enlightenment Foundation Libraries) UI</flag>
+		<flag name="gnome3">Enable Gnome3 UI</flag>
 	</use>
 </pkgmetadata>
