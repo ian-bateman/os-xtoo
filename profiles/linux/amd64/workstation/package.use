@@ -2,7 +2,7 @@ app-arch/bzip2 static-libs
 app-crypt/gcr gtk
 app-crypt/gpgme cxx
 app-crypt/heimdal -ssl -threads
-app-crypt/pinentry efl gnome-keyring ncurses
+app-crypt/pinentry efl ncurses
 app-emulation/libvirt -libvirtd python -qemu
 app-emulation/libvirt-glib python
 app-emulation/qemu -fdt -filecaps -pin-upstream-blobs
