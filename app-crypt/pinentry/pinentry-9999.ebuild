@@ -30,26 +30,20 @@ HOMEPAGE="http://gnupg.org/aegypten2/index.html"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="emacs efl fltk gtk ncurses qt4 qt5 caps gnome3 gnome-keyring static"
+IUSE="emacs efl fltk gtk ncurses qt5 caps gnome3 gnome-keyring static"
 
 CDEPEND="
 	>=dev-libs/libgpg-error-1.17
 	>=dev-libs/libassuan-2.1
 	>=dev-libs/libgcrypt-1.6.3
-	ncurses? ( sys-libs/ncurses:0= )
+	caps? ( sys-libs/libcap )
 	efl? ( dev-libs/efl:0 )
 	fltk? ( x11-libs/fltk:1 )
 	gnome3? ( app-crypt/gcr )
 	gnome-keyring? ( app-crypt/libsecret )
 	gtk? ( x11-libs/gtk+:2 )
-	qt4? (
-		>=dev-qt/qtgui-4.4.1:4
-	     )
-	qt5? (
-		dev-qt/qtgui:5
-		dev-qt/qtwidgets:5
-	     )
-	caps? ( sys-libs/libcap )
+	qt5? ( dev-qt/qtwidgets:5 )
+	ncurses? ( sys-libs/ncurses:0= )
 	static? ( >=sys-libs/ncurses-5.7-r5:0=[static-libs,-gpm] )
 	app-eselect/eselect-pinentry
 "
@@ -62,14 +56,12 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}"
 
 REQUIRED_USE="
-	|| ( ncurses efl fltk gnome3 gtk qt4 qt5 )
+	|| ( ncurses efl fltk gnome3 gtk qt5 )
 	gnome-keyring? ( || ( gtk gnome3 ) )
 	efl? ( !static )
 	gtk? ( !static )
-	qt4? ( !static )
 	qt5? ( !static )
 	static? ( ncurses )
-	?? ( qt4 qt5 )
 "
 
 S="${WORKDIR}/${MY_S}"
@@ -92,14 +84,7 @@ src_configure() {
 	use static && append-ldflags -static
 	append-cxxflags -std=gnu++11
 
-	if use qt4; then
-		myconf+=(
-			--enable-pinentry-qt
-			--disable-pinentry-qt5
-		)
-		export MOC="$(qt4_get_bindir)"/moc
-		export QTLIB="$(qt4_get_libdir)"
-	elif use qt5; then
+	if use qt5; then
 		myconf+=( --enable-pinentry-qt )
 		export MOC="$(qt5_get_bindir)"/moc
 		export QTLIB="$(qt5_get_libdir)"
@@ -125,9 +110,7 @@ src_install() {
 	default
 	rm -f "${ED}"/usr/bin/pinentry || die
 
-	if use qt4 || use qt5; then
-		dosym pinentry-qt /usr/bin/pinentry-qt4
-	fi
+	use qt5 && dosym pinentry-qt /usr/bin/pinentry-qt4
 }
 
 pkg_postinst() {
