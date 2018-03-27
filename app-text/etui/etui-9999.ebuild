@@ -1,11 +1,11 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 E_BASE_URI="https://github.com/vtorri/etui"
 E_GIT_URI="${E_BASE_URI}.git"
-E_SNAP="895eecd9086951f799d20b1ea4818b4a49836b2f"
+E_SNAP="eb01bd8f1fa01b1300fb5b41c9c11f7291108847"
 
 inherit e
 
