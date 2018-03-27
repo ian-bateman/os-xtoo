@@ -5,6 +5,8 @@
     <email>wlt@o-sinc.com</email>
   </maintainer>
   <use>
-    <flag name="grub2">Enable grub2 support</flag>
+    <flag name="consolekit">Enable support for consolekit</flag>
+    <flag name="logind">Enable support for logind/systemd or elogind</flag>
+    <flag name="pam">Enable support for pam</flag>
   </use>
 </pkgmetadata>
