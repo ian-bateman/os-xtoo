@@ -71,7 +71,7 @@ if [[ ! ${E_PYTHON} ]]; then
 fi
 
 if [[ "${E_BUILD}" == "cmake" ]]; then
-	CMAKE_MAKEFILE_GENERATOR="ninja"
+	: ${CMAKE_MAKEFILE_GENERATOR:="ninja"}
 	inherit cmake-utils
 elif [[ "${E_BUILD}" == "meson" ]]; then
 	inherit meson
