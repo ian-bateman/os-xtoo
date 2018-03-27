@@ -33,6 +33,7 @@ SLOT="0"
 IUSE="emacs efl fltk gtk ncurses qt5 caps gnome3 gnome-keyring static"
 
 CDEPEND="
+	app-eselect/eselect-lib-bin-symlink
 	>=dev-libs/libgpg-error-1.17
 	>=dev-libs/libassuan-2.1
 	>=dev-libs/libgcrypt-1.6.3
@@ -45,7 +46,7 @@ CDEPEND="
 	qt5? ( dev-qt/qtwidgets:5 )
 	ncurses? ( sys-libs/ncurses:0= )
 	static? ( >=sys-libs/ncurses-5.7-r5:0=[static-libs,-gpm] )
-	app-eselect/eselect-pinentry
+	!app-eselect/eselect-pinentry
 "
 
 DEPEND="${CDEPEND}
@@ -111,6 +112,9 @@ src_install() {
 	rm -f "${ED}"/usr/bin/pinentry || die
 
 	use qt5 && dosym pinentry-qt /usr/bin/pinentry-qt4
+
+	insinto /usr/share/eselect/modules
+	newins "${FILESDIR}/pinentry.eselect" pinentry.eselect
 }
 
 pkg_postinst() {

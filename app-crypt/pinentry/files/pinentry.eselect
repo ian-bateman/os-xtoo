@@ -1,0 +1,20 @@
+# Copyright 2018 Obsidian-Studios, Inc.
+# Distributed under the terms of the GNU General Public License v2
+
+DESCRIPTION="Manage /usr/bin/pinentry implementation"
+MAINTAINER="wlt@o-sinc.com"
+VERSION="0.8"
+
+SYMLINK_PATH=/usr/bin/pinentry
+SYMLINK_TARGETS=(
+	pinentry-efl
+	pinentry-fltk
+	pinentry-gnome3
+	pinentry-gtk-2
+	pinentry-qt
+	pinentry-curses
+	pinentry-tty
+)
+SYMLINK_DESCRIPTION='pinentry binary'
+
+inherit bin-symlink
