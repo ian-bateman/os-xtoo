@@ -156,7 +156,6 @@ e_src_configure() {
 		fi
 
 		mycmakeargs=(
-			-DCMAKE_INSTALL_PREFIX="${EROOT}"
 			-DCMAKE_BUILD_TYPE=${mytype}
 			-DCMAKE_DOC=$(usex doc)
 			-DCMAKE_NLS=$(usex nls)
