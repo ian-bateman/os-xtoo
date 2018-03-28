@@ -13,15 +13,19 @@ else
 	KEYWORDS="~amd64"
 fi
 
-inherit autotools ${ECLASS}
+CMAKE_MAKEFILE_GENERATOR="ninja"
+
+inherit cmake-utils ${ECLASS}
 
 DESCRIPTION="Anti-Spam Server Proxy Report"
 HOMEPAGE="https://www.o-sinc.com/#!/software/${PN}"
-
 LICENSE="GPL-2"
 SLOT="0"
+IUSE="debug"
 
-src_prepare() {
-	default
-	eautoreconf
+src_configure() {
+	local mytype="Release"
+	use debug && mytype="Debug"
+	local mycmakeargs=( -DCMAKE_BUILD_TYPE=${mytype} )
+	cmake-utils_src_configure
 }
