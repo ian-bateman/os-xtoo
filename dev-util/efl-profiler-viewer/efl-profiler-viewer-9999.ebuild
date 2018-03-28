@@ -1,8 +1,9 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
+CMAKE_MAKEFILE_GENERATOR="emake"
 E_BUILD="cmake"
 E_TYPE="devs/nikawhite"
 if [[ ${PV} != 9999 ]]; then
