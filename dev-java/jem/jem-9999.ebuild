@@ -52,7 +52,6 @@ src_configure() {
 	local mytype="Release"
 	use debug && mytype="Debug"
 	local mycmakeargs=(
-		-DCMAKE_INSTALL_PREFIX="${EROOT}"
 		-DCMAKE_BUILD_TYPE=${mytype}
 		-DCMAKE_DOC=$(usex doc)
 	)
@@ -74,30 +73,12 @@ src_install() {
 	insinto /usr/share/eselect/modules/
 	doins "${S}"/java-vm.eselect
 
-	# copy preference files from java-config-2 if exist if not use default
-	local jc_files="build/compilers.conf build/jdk.conf virtuals"
-	for file in ${jc_files}; do
+	local jc_files=( build/compilers.conf build/jdk.conf virtuals )
+	for file in "${jc_files[@]}"; do
 		if [[ ! -f "${ED}"/etc/jem/${file/ls/ls.conf} ]] ; then
-			if [[ -f "${EROOT}"/etc/java-config-2/${file} ]] ; then
-				cp "${EROOT}"/etc/java-config-2/${file} \
-					"${ED}"/etc/jem/${file/ls/ls.conf} || die
-			else
-				cp "${FILESDIR}"/${file/build\//} \
-					"${ED}"/etc/jem/${file/ls/ls.conf} || die
-			fi
+			cp "${FILESDIR}"/${file/build\//} \
+				"${ED}"/etc/jem/${file/ls/ls.conf} || die
 		fi
-	done
-
-	# copy virtuals and vms
-	local vv="virtuals vm"
-	for v in ${vv}; do
-		local jc_vfiles=$(ls "/usr/share/java-config-2/${v}/")
-		for file in ${jc_vfiles}; do
-			if [[ ! -f "${ED}"/etc/jem/${v/vm/vms}.d/${file} ]] ; then
-				cp "${EROOT}"/usr/share/java-config-2/${v}/${file} \
-					"${ED}"/etc/jem/${v/vm/vms}.d/${file} || die
-			fi
-		done
 	done
 
 	if ! use java-config ; then
@@ -105,8 +86,9 @@ src_install() {
 		dosym ../../usr/bin/jem /usr/bin/java-config-2
 	fi
 	if use source ; then
-		mkdir "${ED}"/usr/share/${PN}/sources || die
+		mkdir "${ED}"/usr/share/${PN}/sources \
+			|| die "Failed to mkdir for sources"
 		cp -R "${S}"/{include,src} "${ED}"/usr/share/${PN}/sources \
-		|| die
+			|| die "Failed to copy sources"
 	fi
 }
