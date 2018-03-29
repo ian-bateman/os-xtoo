@@ -16,9 +16,7 @@ Ebuilds in this overlay are to be current and latest available versions,
 including working live ebuilds. All ebuilds in this overlay should be 
 production quality and many are used in production, though some are 
 not. Contributions are welcome, but for the present time will only be 
-accepted on a limited basis. We are one a mission not documented, and not 
-much time to document to bring others on board. Though that will happen 
-soon as things settle. To much is in flux at the moment.
+accepted on a limited basis.
 
 This is the most comprehensive Java and Enlightenment repository!
 
@@ -95,20 +93,24 @@ runtime issues with Java 9, 10, or 11.
 This overlay implements a brand new feature of no longer requiring Java 
 versions in ebuilds. Java verions will be based on the version of Java 
 used during build time of any given package. This elimites the need to 
-update versions for newer versions of Java.
+update versions in ebuilds for newer versions of Java. This also 
+provides means to have all jars built for a specific Java release. 
+Rather than a mixed system with some jars for 6, 7, 8, 9, etc. 
 
-If needed this can be overriden globally for all packages in 
+If needed this can be overriden globally for all packages in make.conf, or
 [java-util-2.eclass](https://github.com/Obsidian-StudiosInc/os-xtoo/blob/master/eclass/java-utils-2.eclass#L70), 
 by setting ```JAVA_RELEASE``` to some value. Or adding that to any 
 ebuild individually as needed. Which is the main intended use. The 
 global usage is a backup for issues encountered with the new system.
+Or to enforce a specific Java release/version across all jars.
 
 This does make building a forward operation. Keep your system/build vm 
 set to an older version like 9, if running newer like 10+. If you build 
 under 10, and try to run under 9 without the above you will have issues.
 Otherwise moving forward should not require rebuild unless package has 
 runtime issues. Once you do, you will need to rebuild again if you 
-revert back to 9 from 10.
+revert back to 9 from 10. Unless you set ```RELEASE="9"``` when building 
+under 10+.
 
 Rebuild all installed from dev-java/*
 ```emerge -qv1O $(qlist -IC 'dev-java/*')```
