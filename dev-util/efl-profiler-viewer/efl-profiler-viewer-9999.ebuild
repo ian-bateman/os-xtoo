@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-CMAKE_MAKEFILE_GENERATOR="emake"
+#CMAKE_MAKEFILE_GENERATOR="emake"
 E_BUILD="cmake"
 E_TYPE="devs/nikawhite"
 if [[ ${PV} != 9999 ]]; then
