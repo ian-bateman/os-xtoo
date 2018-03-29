@@ -5,10 +5,9 @@ EAPI="6"
 
 inherit java-netbeans
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+DEPEND=">=virtual/jdk-9"
 
-RDEPEND="${CP_DEPEND}
+RDEPEND="dev-java/asm:6
 	>=virtual/jre-9"
 
 JAVA_NO_SRC=0
