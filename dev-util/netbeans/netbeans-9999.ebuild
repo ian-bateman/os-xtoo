@@ -24,6 +24,9 @@ RDEPEND="
 	dev-java/antlr:${ANTLR4_SLOT}
 	dev-java/asm:${ASM_SLOT}
 	dev-java/freemarker:0
+	dev-java/javax-activation:0
+	dev-java/javax-annotation:0
+	dev-java/jaxb-api:0
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
@@ -258,10 +261,11 @@ src_install() {
 	jars+=(
 		byte-buddy-dep darcula eclipse-jgit flow-netbeans-markdown
 		freemarker htmlparser iconloader intellij-platform-annotations
-		javaewah jsch json-simple junit-${JUNIT_SLOT}
-		lucene-core-${LUCENE_SLOT} nb-cmake-completion nb-darcula
-		osgi-core-api-${OSGI_SLOT} parboiled-core parboiled-java pegdown
-		xerces-${XERCES_SLOT} xml-commons-resolver slf4j-api
+		javaewah javax-activation javax-annotation jaxb-api jsch
+		json-simple junit-${JUNIT_SLOT} lucene-core-${LUCENE_SLOT}
+		nb-cmake-completion nb-darcula osgi-core-api-${OSGI_SLOT}
+		parboiled-core parboiled-java pegdown xerces-${XERCES_SLOT}
+		xml-commons-resolver slf4j-api
 	)
 	symlink_libs ${jars[@]}
 
