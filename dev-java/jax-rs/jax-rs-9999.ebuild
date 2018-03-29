@@ -27,12 +27,15 @@ if [[ ${PV} == 2.1* ]]; then
 else
 	SLOT="2"
 	S="${WORKDIR}/${MY_S}/src/${PN}-api"
-	JAVAC_ARGS="--add-modules java.xml.bind"
 fi
 
-DEPEND=">=virtual/jdk-1.9"
+CP_DEPEND="dev-java/jaxb-api:0"
 
-RDEPEND=">=virtual/jre-1.9"
+DEPEND="${CP_DEPEND}
+	>=virtual/jdk-9"
+
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 java_prepare() {
 	if [[ ${SLOT} == 2 ]]; then
