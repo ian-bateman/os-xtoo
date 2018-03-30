@@ -1703,10 +1703,13 @@ ejavac() {
 	local compiler_executable javac_args
 
 	compiler_executable=$(java-pkg_get-javac)
+	export JEM_COMPILER=${compiler_executable}
 
 	javac_args="$(java-pkg_javac-args)"
 	[[ -z ${JAVA_PKG_DEBUG} ]] && javac_args+=" -nowarn "
 	javac_args+=" -J-Djava.io.tmpdir=\"${T}\" "
+
+	export JAVAC_FLAGS="${javac_args}"
 
 	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
