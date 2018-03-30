@@ -13,7 +13,7 @@ _JAVA_NETBEANS_ECLASS=1
 : "${MY_PV:=${PV//_/-}}"
 : "${MY_P:=${MY_PN}-${MY_PV}}"
 
-if [[ "${category}" == nb-ide ]]; then
+if [[ "${CATEGORY}" == nb-ide ]]; then
 	MY_MOD="${PN#*-}"
 	MY_MOD="${MY_MOD//-/.}"
 fi
