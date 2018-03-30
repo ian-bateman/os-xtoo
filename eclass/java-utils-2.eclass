@@ -1491,7 +1491,7 @@ java-pkg_javac-args() {
 	local want_release release_str version
 	version="$(java-pkg_get-vm-version)"
 	want_release="$(java-pkg_get-release)"
-	if [[ ${version} -le 9 ]] &&
+	if [[ ${version} -le 9 ]] ||
 		[[ "${version}" != "${want_release}" ]]; then
 		release_str="--release ${want_release}"
 	fi
