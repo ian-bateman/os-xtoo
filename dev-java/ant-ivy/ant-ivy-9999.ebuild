@@ -47,9 +47,13 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 java_prepare() {
-	# update to commons-vfs:2
 	local f p
 
+	sed -i -e "s|public Object clone|public FileSet clone|" \
+		src/java/org/apache/ivy/ant/IvyCacheFileset.java \
+		|| die "Failed to sed/fix incompatible return type"
+
+	# update to commons-vfs:2
 	p="src/java/org/apache/ivy/plugins"
 	for f in Resource Repository; do
 		sed -i -e "s|commons.vfs|commons.vfs2|g" \
