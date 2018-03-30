@@ -43,3 +43,25 @@ S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
 JAVA_RELEASE="8"
 JAVA_SRC_DIR="container supplement"
+
+java_prepare() {
+	local f
+
+	for f in $(grep -l -m1 "Module" -r *);do
+		sed -i -e "/org.eclipse.osgi.container.Module;/d" \
+			-e "s| Module | org.eclipse.osgi.container.Module |g" \
+			-e "s| Module\.| org.eclipse.osgi.container.Module.|g" \
+			-e "s|(Module |(org.eclipse.osgi.container.Module |g" \
+			-e "s|(Module\.|(org.eclipse.osgi.container.Module\.|g" \
+			-e "s|!Module\.|!org.eclipse.osgi.container.Module\.|g" \
+			-e "s|<Module>|<org.eclipse.osgi.container.Module>|g" \
+			-e "s| Module>| org.eclipse.osgi.container.Module>|g" \
+			-e "s|\tModule |\torg.eclipse.osgi.container.Module |g" \
+			"${f}" \
+			|| die "Failed to sed/fix conflicting Module class"
+	done
+
+	sed -i -e "s|class org.eclipse.osgi.container.|class |" \
+		container/src/org/eclipse/osgi/container/Module.java \
+		|| die "Failed to revert previous sed"
+}
