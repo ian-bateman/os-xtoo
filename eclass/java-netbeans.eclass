@@ -100,8 +100,19 @@ java-netbeans_src_unpack() {
 java-netbeans_src_prepare() {
 	local f files iv sv
 
-	JAVA_RES_DIR="resources"
-	mkdir -p ${JAVA_RES_DIR} ||  die "Failed to make resorces dir"
+	if [[ -d src/main/java ]]; then
+		JAVA_SRC_DIR="src/main/java"
+	else
+		JAVA_SRC_DIR="src"
+	fi
+
+	if [[ -d src/main/resources ]]; then
+		JAVA_RES_DIR="src/main/resources"
+	else
+		JAVA_RES_DIR="resources"
+		mkdir -p ${JAVA_RES_DIR} ||  die "Failed to make resorces dir"
+	fi
+
 	if [[ -d src/META-INF ]]; then
 		mv src/META-INF ${JAVA_RES_DIR} || die "Failed to move META-INF"
 	else
@@ -148,12 +159,14 @@ java-netbeans_src_prepare() {
 	fi
 
 	# copy resources need to preserve paths? maybe delete sources?
-	cp -r src/* ${JAVA_RES_DIR} || die "Failed to copy resources"
-	find ${JAVA_RES_DIR} -name '*.java' -delete \
-		|| die "Failed to delete sources from resources"
+	if [[ ! -d src/main ]]; then
+		cp -r src/* ${JAVA_RES_DIR} || die "Failed to copy resources"
+		find ${JAVA_RES_DIR} -name '*.java' -delete \
+			|| die "Failed to delete sources from resources"
+	fi
 
 	# delete for re-generation of non static additions
-	find src/ -name Bundle.properties -delete \
+	find ${JAVA_SRC_DIR} -name Bundle.properties -delete \
 		|| die "Failed to remove Bundle.properties"
 
 	java-utils-2_src_prepare
@@ -371,7 +384,7 @@ java-netbeans_src_compile() {
 		# combine generated properties with static
 		props=( $(find target -name '*.properties') )
 		for p in "${props[@]}"; do
-			cat "${p}" >> resources/${p/target\/classes/} \
+			cat "${p}" >> ${JAVA_RES_DIR}/${p/target\/classes/} \
 				|| die "Failed to append to Bundle.properties"
 			rm "${p}" || die "Failed to remove ${p}"
 		done
