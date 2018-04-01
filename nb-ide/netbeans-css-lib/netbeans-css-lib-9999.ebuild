@@ -5,6 +5,10 @@ EAPI="6"
 
 inherit java-netbeans
 
+SRC_URI+="
+	http://hg.netbeans.org/releases/raw-file/tip/css.lib/src/org/netbeans/modules/css/lib/Css3.g -> ${MY_P}-Css3.g
+"
+
 CP_DEPEND="
 	dev-java/antlr:3
 	~nb-ide/netbeans-csl-api-${PV}:${SLOT}
@@ -25,6 +29,9 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 java_prepare() {
+	cp "${DISTDIR}/${MY_P}-Css3.g" src/org/netbeans/modules/css/lib/ \
+		|| die "Failed to copy missing Css3.g grammar file"
+
 	sed -i -e 's|, decisionCanBacktrack.*|);|g' \
 		src/org/netbeans/modules/css/lib/Css3Parser.java \
 		|| die "Failed to sed/fix argument length"
