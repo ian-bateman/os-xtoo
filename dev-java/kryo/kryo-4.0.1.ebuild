@@ -1,1 +1,0 @@
-kryo-9999.ebuild
