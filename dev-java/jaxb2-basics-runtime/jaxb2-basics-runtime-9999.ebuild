@@ -25,7 +25,8 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/javax-activation:0
-	dev-java/jaxb-core:0
+	dev-java/jaxb-api:0
+	dev-java/jaxb-runtime:0
 "
 
 DEPEND="${CP_DEPEND}
@@ -35,5 +36,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
