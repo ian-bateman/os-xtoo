@@ -27,6 +27,7 @@ CP_DEPEND="
 	dev-java/beanvalidation-api:2.0
 	dev-java/classmate:0
 	dev-java/eclipse-javax-persistence:2
+	dev-java/jaxb-api:0
 	dev-java/jboss-logging:0
 	dev-java/jboss-logging-annotations:2
 	dev-java/joda-time:0
@@ -43,8 +44,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/${PN:20}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	xjc -enableIntrospection \
