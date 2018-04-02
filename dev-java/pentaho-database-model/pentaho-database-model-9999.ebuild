@@ -23,7 +23,10 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="LGPL-2.1"
 SLOT="$(get_major_version)"
 
-CP_DEPEND="dev-java/commons-logging:0"
+CP_DEPEND="
+	dev-java/commons-logging:0
+	dev-java/jaxb-api:0
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -32,5 +35,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
-
-JAVAC_ARGS=" --add-modules java.xml.bind "
