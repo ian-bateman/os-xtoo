@@ -25,6 +25,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
+	dev-java/jaxb-api:0
 	dev-java/lz4-java:0
 	dev-java/slf4j-api:0
 "
@@ -36,5 +37,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
