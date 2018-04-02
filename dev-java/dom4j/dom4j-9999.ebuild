@@ -21,6 +21,7 @@ LICENSE="${PN}"
 SLOT="$(get_major_version)"
 
 CP_DEPEND="
+	dev-java/jaxb-api:0
 	dev-java/jaxen:0
 	dev-java/relaxng-datatype-java:0
 	dev-java/xpp:2
@@ -37,5 +38,3 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 PATCHES=( "${FILESDIR}/xpp3-add-removeAttribute.patch" )
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
