@@ -28,6 +28,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/javaewah:0
+	dev-java/jaxb-api:0
 	dev-java/jsch:0
 	dev-java/slf4j-api:0
 "
@@ -41,4 +42,3 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}/org.${PN//-/.}/"
 
 JAVA_RES_DIR="resources"
-JAVAC_ARGS+=" --add-modules java.xml.bind "
