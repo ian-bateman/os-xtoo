@@ -28,6 +28,7 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 	dev-java/jax-rs:2
 	dev-java/jax-rs:2.1
+	dev-java/jaxb-api:0
 	~dev-java/jersey-core-client-${PV}:${SLOT}
 	~dev-java/jersey-core-common-${PV}:${SLOT}
 	dev-java/jsr250:0
@@ -43,8 +44,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/${PN#*-*}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	# Generate org.glassfish.jersey.internal.LocalizationMessages
