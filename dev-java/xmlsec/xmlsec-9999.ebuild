@@ -23,6 +23,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/commons-codec:0
+	dev-java/jaxb-api:0
 	dev-java/slf4j-api:0
 	dev-java/xalan:0
 "
@@ -34,5 +35,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
