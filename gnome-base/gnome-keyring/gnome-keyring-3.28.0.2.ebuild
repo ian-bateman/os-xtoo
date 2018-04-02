@@ -17,7 +17,7 @@ RDEPEND="
 	>=app-crypt/gcr-3.28:=[gtk]
 	dev-libs/glib
 	app-misc/ca-certificates
-	dev-libs/libgcrypt
+	dev-libs/libgcrypt:=
 	caps? ( sys-libs/libcap-ng )
 	pam? ( virtual/pam )
 	selinux? ( sec-policy/selinux-gnome )
