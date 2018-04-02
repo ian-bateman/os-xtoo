@@ -29,6 +29,7 @@ CP_DEPEND="
 	dev-java/cglib:3
 	dev-java/commons-codec:0
 	dev-java/commons-logging:0
+	dev-java/jaxb-api:0
 	dev-java/jopt-simple:0
 	dev-java/log4j:0
 	dev-java/objenesis:2
@@ -41,8 +42,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVAC_ARGS=" --add-modules java.xml.bind "
 
 java_prepare() {
 	# Replaced repackaged with standard
