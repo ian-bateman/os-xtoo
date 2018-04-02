@@ -29,7 +29,8 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 java_prepare() {
-	cp "${DISTDIR}/${MY_P}-Css3.g" src/org/netbeans/modules/css/lib/ \
+	cp "${DISTDIR}/${MY_P}-Css3.g" \
+		resources/org/netbeans/modules/css/lib/Css3.g \
 		|| die "Failed to copy missing Css3.g grammar file"
 
 	sed -i -e 's|, decisionCanBacktrack.*|);|g' \
