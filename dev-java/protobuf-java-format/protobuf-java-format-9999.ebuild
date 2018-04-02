@@ -24,6 +24,7 @@ JACKSON_SLOT="2"
 CP_DEPEND="
 	dev-java/jackson-core:${JACKSON_SLOT}
 	dev-java/jackson-dataformat-smile:${JACKSON_SLOT}
+	dev-java/jaxb-api:0
 	dev-java/protobuf-java-core:0
 "
 
@@ -34,5 +35,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
