@@ -5,11 +5,14 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
-if [[ ${PV} == 9999 ]]; then
-	ECLASS="subversion"
-	ESVN_REPO_URI="svn://svn.forge.ow2.org/svnroot/asm"
-else
-	SRC_URI="http://download.forge.ow2.org/${PN}/${P}.tar.gz"
+MY_PN="${PN^^}"
+MY_PV="${PV//./_}"
+MY_P="${MY_PN}_${MY_PV}"
+
+BASE_URI="https://gitlab.ow2.org/asm/asm"
+
+if [[ ${PV} != 9999 ]]; then
+	SRC_URI="${BASE_URI}/repository/ASM_6_1_1/archive.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
@@ -32,3 +35,26 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
+
+JAVA_SRC_DIR="
+	asm/src/main/java
+	asm-analysis/src/main/java
+	asm-commons/src/main/java
+	asm-tree/src/main/java
+	asm-util/src/main/java
+	asm-xml/src/main/java
+"
+
+src_unpack() {
+	if [[ ${PV} == *9999* ]]; then
+		git-r3_src_unpack
+		default
+	else
+		local tgz
+		tgz="${P}.tar.gz"
+		mkdir -p "${S}" || die "Failed to mkdir ${S}"
+		echo ">>> Unpacking ${tgz} to ${PWD}"
+		tar -xzf "${DISTDIR}/${tgz}" --strip-components=1 -C "${S}" \
+			|| die "Failed to unpack ${DISTDIR}/${tgz}"
+	fi
+}
