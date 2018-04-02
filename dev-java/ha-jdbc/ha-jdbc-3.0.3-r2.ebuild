@@ -19,6 +19,7 @@ CP_DEPEND="
 	dev-java/commons-codec:0
 	dev-java/commons-logging:0
 	dev-java/commons-pool:0
+	dev-java/jaxb-api:0
 	dev-java/jboss-logging:0
 	dev-java/jgroups:3
 	dev-java/slf4j-api:0
@@ -38,9 +39,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}/"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
-JAVAC_ARGS+=" --add-exports=java.xml.bind/javax.xml.bind.annotation=ALL-UNNAMED "
 
 java_prepare() {
 	sed -i -e "s|\${project.version}|${PV}|" \
