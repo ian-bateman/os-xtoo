@@ -24,6 +24,7 @@ LICENSE="LGPL-2.1"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
+	dev-java/jaxb-api:0
 	dev-java/log4j:0
 	dev-java/log4j-api:0
 	dev-java/log4j-core:0
@@ -40,7 +41,6 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src"
-JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	sed -i -e "/Bundle-Required*/d" "${S}/conf/jgroups.bnd" \
