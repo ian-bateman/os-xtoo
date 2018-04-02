@@ -58,7 +58,7 @@ Gentoo's main repository. Work is mostly complete to replace any
 packages still used as dependencys residing in the main tree. The 
 core java-config has been mostly replaced with 
 [jem](https://github.com/Obsidian-StudiosInc/jem). Only remaining 
-piece of jeva-config still in use is 
+piece of java-config still in use is 
 [gjl](https://github.com/gentoo/java-config/blob/master/src/gjl). Along 
 with updating eclasses in preparation for new eclasses, entire re-writes.
 
