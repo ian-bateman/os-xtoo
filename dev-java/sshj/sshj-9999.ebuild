@@ -25,6 +25,7 @@ CP_DEPEND="
 	dev-java/bcpkix:${BCV}
 	dev-java/bcprov:${BCV}
 	dev-java/ed25519-java:0
+	dev-java/jaxb-api:0
 	dev-java/jzlib:0
 	dev-java/slf4j-api:0
 "
@@ -36,5 +37,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
-
-JAVAC_ARGS=" --add-modules java.xml.bind "
