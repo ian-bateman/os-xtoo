@@ -29,6 +29,8 @@ CP_DEPEND="
 	dev-java/castor-xml:0
 	dev-java/commons-logging:0
 	dev-java/core-reactor:0
+	dev-java/javax-activation:0
+	dev-java/jaxb-api:0
 	~dev-java/spring-beans-${PV}:${SLOT}
 	~dev-java/spring-core-${PV}:${SLOT}
 	dev-java/xmlbeans:0
@@ -42,5 +44,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
