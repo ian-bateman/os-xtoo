@@ -34,8 +34,10 @@ CP_DEPEND="
 	dev-java/guava:24
 	dev-java/guice:${GUICE_SLOT}
 	dev-java/guice-extensions-assistedinject:${GUICE_SLOT}
+	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
 	dev-java/jax-rs:2
+	dev-java/jaxb-api:0
 	dev-java/osgi-core-api:6
 "
 
@@ -46,8 +48,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind,java.xml.ws.annotation "
 
 java_prepare() {
 	local f
