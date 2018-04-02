@@ -24,6 +24,7 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
+	dev-java/jaxb-api:0
 	dev-java/jcache:0
 	dev-java/offheap-store:0
 	dev-java/sizeof:0
@@ -49,7 +50,6 @@ JAVA_SRC_DIR="
 "
 
 JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
-JAVAC_ARGS+=" --add-modules java.xml.bind "
 
 java_prepare() {
 	local f
