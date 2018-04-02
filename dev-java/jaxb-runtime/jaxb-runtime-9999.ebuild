@@ -26,6 +26,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/fastinfoset:0
 	dev-java/javax-activation:0
+	dev-java/jaxb-api:0
 	dev-java/istack-commons-runtime:0
 	dev-java/stax-ex:0
 	dev-java/txw2:0
@@ -40,4 +41,3 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN#*-}/impl"
 
 JAVA_RM_FILES=( src/main/java/module-info.java )
-JAVAC_ARGS+=" --add-modules java.xml.bind"
