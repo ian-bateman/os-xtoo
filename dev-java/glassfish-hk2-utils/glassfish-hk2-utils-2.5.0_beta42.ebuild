@@ -20,6 +20,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/beanvalidation-api:1.1
+	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
 	dev-java/hibernate-validator-engine:5
 "
@@ -31,5 +32,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}/${PN:10}"
-
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
