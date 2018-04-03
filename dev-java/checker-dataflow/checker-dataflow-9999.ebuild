@@ -23,7 +23,10 @@ HOMEPAGE="https://${MY_PN/-/}.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="~dev-java/checker-javacutil-${PV}:${SLOT}"
+CP_DEPEND="
+	~dev-java/checker-javacutil-${PV}:${SLOT}
+	dev-java/jaxws-api:0
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -33,7 +36,6 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
 
-JAVAC_ARGS+=" --add-modules java.xml.ws "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED "
