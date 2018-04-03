@@ -31,8 +31,9 @@ CP_DEPEND="
 	~dev-java/eclipse-e4-core-di-extensions-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-preferences-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-services-${PV}:${SLOT}
-	dev-java/osgi-core-api:6
+	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
+	dev-java/osgi-core-api:6
 "
 
 DEPEND="${CP_DEPEND}
@@ -42,5 +43,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
-
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
