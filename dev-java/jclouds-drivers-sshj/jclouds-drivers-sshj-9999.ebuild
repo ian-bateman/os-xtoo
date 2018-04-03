@@ -30,6 +30,7 @@ CP_DEPEND="
 	dev-java/guava:24
 	dev-java/guice:4
 	dev-java/javax-inject:0
+	dev-java/javax-annotation:0
 	~dev-java/jclouds-compute-${PV}:${SLOT}
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	dev-java/jsch:0
@@ -46,8 +47,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
-
-JAVAC_ARGS=" --add-modules java.xml.ws.annotation "
 
 java_prepare() {
 	local f
