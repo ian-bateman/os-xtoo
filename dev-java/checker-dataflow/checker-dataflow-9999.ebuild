@@ -25,6 +25,7 @@ SLOT="0"
 
 CP_DEPEND="
 	~dev-java/checker-javacutil-${PV}:${SLOT}
+	~dev-java/checker-qual-${PV}:${SLOT}
 	dev-java/jaxws-api:0
 "
 
@@ -44,7 +45,8 @@ JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
 
 java_prepare() {
-	sed -i -e "246s|);|,null);|" \
+#	sed -i -e "238s|);|,null);|" \
+	sed -i -e "s|typeProcessor));|typeProcessor),null);|" \
 		src/org/checkerframework/dataflow/cfg/JavaSource2CFGDOT.java \
 		|| die "Failed to sed/fix java 9+ arg count"
 }
