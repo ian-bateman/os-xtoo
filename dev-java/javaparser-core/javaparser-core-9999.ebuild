@@ -23,15 +23,18 @@ HOMEPAGE="https://javaparser.org/"
 LICENSE="|| ( Apache-2.0 LGPL-3 )"
 SLOT="0"
 
-DEPEND="dev-java/javacc:0
+CP_DEPEND="dev-java/javax-annotation:0"
+
+DEPEND="${CP_DEPEND}
+	dev-java/javacc:0
 	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
+RDEPEND="${CP_DEPEND}
+	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
 JAVA_SRC_DIR="src/main/java src/main/javacc-support"
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
 
 java_prepare() {
 	javacc -OUTPUT_DIRECTORY=src/main/java src/main/javacc/java.jj \
