@@ -33,6 +33,7 @@ CP_DEPEND="
 	~dev-java/eclipse-e4-core-services-${PV}:${SLOT}
 	~dev-java/eclipse-jface-${PV}:${SLOT}
 	~dev-java/eclipse-swt-${PV}:${SLOT}
+	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
 "
 
@@ -43,5 +44,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
-
-JAVAC_ARGS=" --add-modules java.xml.ws.annotation "
