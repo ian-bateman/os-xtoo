@@ -34,7 +34,9 @@ CP_DEPEND="
 	dev-java/javax-interceptor-api:0
 	dev-java/groovy:0
 	dev-java/hibernate-validator-engine:4
+	dev-java/javax-annotation:0
 	dev-java/javax-enterprise-concurrent-api:0
+	dev-java/jaxws-api:0
 	dev-java/joda-time:0
 	dev-java/jruby:0
 	dev-java/jsr354-api:0
@@ -57,7 +59,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}"
 
-JAVAC_ARGS+=" --add-modules java.corba,java.xml.ws,java.xml.ws.annotation"
+JAVAC_ARGS+=" --add-modules java.corba"
 
 java_prepare() {
 	#Fix jruby API change
