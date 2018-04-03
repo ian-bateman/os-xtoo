@@ -59,6 +59,7 @@ CP_DEPEND="
 	~dev-java/eclipse-jface-databinding-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
 	~dev-java/eclipse-swt-${PV}:${SLOT}
+	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
 	dev-java/icu4j:0
 	dev-java/osgi-core-api:${OSGI_SLOT}
@@ -74,4 +75,4 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
-JAVAC_ARGS+=" --add-modules=java.xml.ws.annotation,jdk.xml.dom "
+JAVAC_ARGS+=" --add-modules=jdk.xml.dom "
