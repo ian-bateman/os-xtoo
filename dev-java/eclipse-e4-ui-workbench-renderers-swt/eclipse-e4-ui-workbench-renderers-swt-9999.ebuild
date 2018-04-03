@@ -51,6 +51,7 @@ CP_DEPEND="
 	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-preferences-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
+	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
 	dev-java/osgi-compendium:${OSGI_SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
@@ -65,5 +66,3 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
 JAVA_SRC_DIR="src"
-JAVAC_ARGS+=" --add-modules=java.xml "
-JAVAC_ARGS+=" --add-modules=java.xml.ws.annotation "
