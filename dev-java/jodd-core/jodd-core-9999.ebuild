@@ -24,7 +24,10 @@ HOMEPAGE="https://jodd.org"
 LICENSE="BSD-2-clause"
 SLOT="0"
 
-CP_DEPEND="dev-java/javax-activation:0"
+CP_DEPEND="
+	dev-java/javax-activation:0
+	dev-java/javax-annotation:0
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -35,4 +38,3 @@ RDEPEND="${CP_DEPEND}
 S="${WORKDIR}/${MY_S}/${PN}"
 
 JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
