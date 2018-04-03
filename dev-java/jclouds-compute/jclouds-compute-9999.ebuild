@@ -32,6 +32,7 @@ CP_DEPEND="
 	dev-java/guava:24
 	dev-java/guice:${GUICE_SLOT}
 	dev-java/guice-extensions-assistedinject:${GUICE_SLOT}
+	dev-java/javax-annotation:0
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	~dev-java/jclouds-scriptbuilder-${PV}:${SLOT}
 	dev-java/javax-inject:0
@@ -44,8 +45,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
-
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
 
 java_prepare() {
 	sed -i -e "s|getHostText|getHost|g" \
