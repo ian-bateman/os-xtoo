@@ -27,7 +27,9 @@ SLOT="${PV%%.*}"
 CP_DEPEND="
 	dev-java/eclipse-javax-persistence:2
 	dev-java/javamail:0
+	dev-java/javax-annotation:0
 	dev-java/javax-ejb-api:0
+	dev-java/jaxws-api:0
 	~dev-java/tomcat-annotations-api-${PV}:${SLOT}
 	~dev-java/tomcat-api-${PV}:${SLOT}
 	~dev-java/tomcat-coyote-${PV}:${SLOT}
@@ -54,7 +56,6 @@ JAVA_RM_FILES=(
 	${JAVA_RM_FILES[@]/#/java/org/apache/catalina/}
 	java/org/apache/naming/factory/webservices
 )
-JAVAC_ARGS+=" --add-modules=java.xml.ws "
 
 java_prepare() {
 	sed -i -e "s|@VERSION@|${PV}-os-xtoo|" \
