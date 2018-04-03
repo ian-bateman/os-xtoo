@@ -24,7 +24,10 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 
-CP_DEPEND="dev-java/tomcat-servlet-api:4.0"
+CP_DEPEND="
+	dev-java/javax-xml-soap:0
+	dev-java/tomcat-servlet-api:4.0
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
@@ -33,5 +36,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVAC_ARGS+=" --add-modules=java.xml.ws "
