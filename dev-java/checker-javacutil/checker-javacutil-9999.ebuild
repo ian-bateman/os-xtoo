@@ -38,6 +38,7 @@ JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
+JAVA_RM_FILES=( src/org/checkerframework/javacutil/dist/ManualTaglet.java )
 
 PATCHES=( "${FILESDIR}/TypeAnnotationUtils-9+.patch" )
 
