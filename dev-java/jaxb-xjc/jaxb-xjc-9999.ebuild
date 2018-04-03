@@ -57,4 +57,13 @@ java_prepare() {
 			src/main/java/com/sun/tools/xjc/${f}.java \
 			|| die "Failed to make commons-xml-resolver external"
 	done
+
+	sed -i -e "s|\${version}|${PV}|g" \
+		src/main/resources/com/sun/tools/xjc/MessageBundle*.properties \
+		|| die "Failed to sed/set version"
+}
+
+src_install() {
+	java-pkg-simple_src_install
+	java-pkg_dolauncher xjc --main com.sun.tools.xjc.Driver
 }
