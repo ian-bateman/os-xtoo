@@ -42,7 +42,12 @@ CP_DEPEND="
 	dev-java/jackson-annotations:${JACKSON_SLOT}
 	dev-java/jackson-databind:${JACKSON_SLOT}
 	dev-java/jackson-dataformat-xml:${JACKSON_SLOT}
+	dev-java/javamail:0
 	dev-java/javax-activation:0
+	dev-java/javax-jws:0
+	dev-java/javax-xml-soap:0
+	dev-java/jaxb-api:0
+	dev-java/jaxws-api:0
 	dev-java/jdom:2
 	dev-java/log4j:0
 	dev-java/myfaces-api:0
@@ -55,7 +60,6 @@ CP_DEPEND="
 	dev-java/okhttp:0
 	dev-java/okhttp:3
 	dev-java/okio:0
-	dev-java/javamail:0
 	dev-java/portlet-api:2
 	dev-java/protobuf-java-core:0
 	dev-java/protobuf-java-format:0
@@ -77,5 +81,3 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind,java.xml.ws "
