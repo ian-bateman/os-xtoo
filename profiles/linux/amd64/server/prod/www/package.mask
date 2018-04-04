@@ -1,7 +1,4 @@
 =dev-java/java-config-2.2.1
-dev-java/oracle-jdk-bin:10
 dev-java/oracle-jdk-bin:11
-virtual/jdk:10
 virtual/jdk:11
 virtual/jre:11
-virtual/jre:10
