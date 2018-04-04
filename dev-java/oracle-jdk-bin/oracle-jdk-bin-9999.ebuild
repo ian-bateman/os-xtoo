@@ -136,7 +136,7 @@ src_prepare() {
 	rm lib/libavplugin* || die "Failed to remove libavplugin*.so"
 	rm lib/fontconfig.* || die "Failed to remove fontconfig.*"
 
-	if ! use alsa ; then
+	if ! use alsa && [[ -f lib/libjsoundalsa.* ]]; then
 		rm lib/libjsoundalsa.* \
 			|| die "Failed to remove unwanted alsa support"
 	fi
@@ -152,7 +152,7 @@ src_prepare() {
 
 	if ! use javafx ; then
 		rm jmods/javafx*  \
-			lib/lib*{decora,fx,glass,gstreamer,prism}* \
+			lib/*{decora,fx,glass,gstreamer,prism}* \
 			|| die "Failed to remove unwanted JavaFX support"
 	else
 		if ! use gtk2 ; then
