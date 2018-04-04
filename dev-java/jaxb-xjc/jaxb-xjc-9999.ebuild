@@ -47,6 +47,7 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN##*-}"
 
+JAVA_RES_DIR="src/main/resources src/main/schemas"
 JAVA_RM_FILES=( src/main/java/module-info.java )
 
 java_prepare() {
