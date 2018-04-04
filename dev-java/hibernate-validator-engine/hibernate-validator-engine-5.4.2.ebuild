@@ -39,6 +39,7 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
+	dev-java/jaxb-xjc:0
 	javafx? ( >=dev-java/oracle-jdk-bin-9[javafx] )
 	!javafx? ( >=virtual/jdk-9 )"
 

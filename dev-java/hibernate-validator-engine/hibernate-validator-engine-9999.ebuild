@@ -38,6 +38,7 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
+	dev-java/jaxb-xjc:0
 	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
