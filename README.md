@@ -73,21 +73,15 @@ Please do not mix Java packages from Gentoo's main repository with
 this repository. You will experience a varity of issues that will not be 
 addressed! This repository replaces entirely Java on Gentoo!!!
 
-### Java 9+
-This repository requires Java 9 as your system vm now, and soon will 
-require Java 10! We are no longer supporting any JDK < 9. Most things 
-have been fixed for Java 9!
-
-There are few packages remaining that need to be fixed or dialed in for 
-Java 9. There is initial support for Java 11. Initial testing for Java 
-10 has begun. Most any package that builds under 9 should under 10, 
-less any new issues from Java 10. Like removal of ```javah```, and 
-packages needing to be updated for ```javac -h```. The main blocker for 
-Java 10+ Java 11 requires moving from modules in the jdk to external 
-dependencies, which is in progress.
+### Java 10+
+This repository requires Java 10 as your system vm now, and in fall will 
+require Java 11! We are no longer supporting any JDK < 10. Most things 
+have been fixed for Java 11. There are few packages remaining that need 
+to be fixed or dialed in for Java 11. We recommend Java 10 for 
+production and Java 11 for development.
 
 Please report issues for any package that does not build or has 
-runtime issues with Java 9, 10, or 11.
+runtime issues with Java 10 or 11.
 
 ### Java Versioning
 This overlay implements a brand new feature of no longer requiring Java 
@@ -95,7 +89,7 @@ versions in ebuilds. Java verions will be based on the version of Java
 used during build time of any given package. This elimites the need to 
 update versions in ebuilds for newer versions of Java. This also 
 provides means to have all jars built for a specific Java release. 
-Rather than a mixed system with some jars for 6, 7, 8, 9, etc. 
+Rather than a mixed system with some jars for 6, 7, 8, 9, 10, 11, etc. 
 
 If needed this can be overriden globally for all packages in make.conf, or
 [java-util-2.eclass](https://github.com/Obsidian-StudiosInc/os-xtoo/blob/master/eclass/java-utils-2.eclass#L70), 
@@ -105,15 +99,18 @@ global usage is a backup for issues encountered with the new system.
 Or to enforce a specific Java release/version across all jars.
 
 This does make building a forward operation. Keep your system/build vm 
-set to an older version like 9, if running newer like 10+. If you build 
-under 10, and try to run under 9 without the above you will have issues.
+set to an older version like 10, if running newer like 11+. If you build 
+under 11, and try to run under 10 without the above you will have issues.
 Otherwise moving forward should not require rebuild unless package has 
 runtime issues. Once you do, you will need to rebuild again if you 
-revert back to 9 from 10. Unless you set ```RELEASE="9"``` when building 
-under 10+.
+revert back to 10 from 11. Unless you set ```RELEASE="10"``` when 
+building under 11+.
 
 Rebuild all installed from dev-java/*
 ```emerge -qv1O $(qlist -IC 'dev-java/*')```
+
+Show packages built with a given vm, add ```| wc-l``` for count
+```grep -l "MERGE_VM\=.*[4-9]" /usr/share/*/package.env```
 
 ### Setting system/user VM
 This overlay is in the process of switching to 
@@ -167,7 +164,7 @@ repository will be addressed ASAP.
 Work is underway to package 
 [Netbeans](https://github.com/apache/incubator-netbeans) 9 from source. 
 Netbeans is presently in a initial usable state. Working on addressing 
-Java 9 specific isssues. Which Java 9 fixes may come from upstream 
+Java 10/11 specific isssues. Which Java 10/11 fixes may come from upstream 
 and/or go to upstream, or maybe come from YOU! Those are welcome and are 
 general issues not related to ebuilds or how Netbeans is packaged in 
 this overlay. Just general Netbeans 9 porting issues.
