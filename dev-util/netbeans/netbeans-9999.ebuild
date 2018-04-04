@@ -166,6 +166,10 @@ NB_LAUNCHER="ide/launcher/unix/${PN}"
 
 src_prepare() {
 	default
+	sed -i -e 's/,\?java.\(activation\|xml.bind\),\?//g' \
+		ide/launcher/${PN}.conf \
+		|| die "Failed to sed/fix ${PN}.conf for java 11, drop mods"
+
 	sed -i -e 's|"${userdir}"/etc|/etc/'${PN}'-'${SLOT}'|' -e 's|$X/||g' \
 		-e '/-clusters/d' -e '/netbeans\.accept_license/d' \
 		${NB_LAUNCHER} \
