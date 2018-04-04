@@ -27,7 +27,12 @@ IUSE="systemd extra-webapps"
 ECJ_SLOT="4.7"
 SAPI_SLOT="4.0"
 
-CDEPEND="
+DEPEND="app-admin/pwgen
+	>=virtual/jdk-9:*
+"
+
+RDEPEND="
+	dev-java/eclipse-ecj:${ECJ_SLOT}
 	~dev-java/tomcat-annotations-api-${PV}:${SLOT}
 	~dev-java/tomcat-api-${PV}:${SLOT}
 	~dev-java/tomcat-bootstrap-${PV}:${SLOT}
@@ -43,19 +48,12 @@ CDEPEND="
 	~dev-java/tomcat-jaspic-api-${PV}:${SLOT}
 	~dev-java/tomcat-jni-${PV}:${SLOT}
 	~dev-java/tomcat-juli-${PV}:${SLOT}
+	!<dev-java/tomcat-native-1.1.24
 	~dev-java/tomcat-servlet-api-${PV}:${SAPI_SLOT}
 	~dev-java/tomcat-util-${PV}:${SLOT}
 	~dev-java/tomcat-util-scan-${PV}:${SLOT}
 	~dev-java/tomcat-websocket-${PV}:${SLOT}
 	~dev-java/tomcat-websocket-api-${PV}:${SLOT}
-"
-DEPEND="${CDEPEND}
-	app-admin/pwgen
-	>=virtual/jdk-9:*
-"
-RDEPEND="${CDEPEND}
-	dev-java/eclipse-ecj:${ECJ_SLOT}
-	!<dev-java/tomcat-native-1.1.24
 	>=virtual/jdk-9:*
 	systemd? ( sys-apps/systemd )
 "
@@ -95,7 +93,7 @@ src_install() {
 	# link to jars installed by tomcat-* packages
 	# bin
 	JARS=( tomcat-bootstrap tomcat-juli )
-	for jar in ${JARS[@]}; do
+	for jar in "${JARS[@]}"; do
 		dosym "../../${jar}-${SLOT}/lib/${jar}.jar" \
 			"${dest}/bin/${jar}.jar"
 	done
@@ -108,7 +106,7 @@ src_install() {
 		jasper jaspic-api jni util-scan util websocket websocket-api
 	)
 	JARS=( ${JARS[@]/#/${PN}-} )
-	for jar in ${JARS[@]}; do
+	for jar in "${JARS[@]}"; do
 		dosym "../../${jar}-${SLOT}/lib/${jar}.jar" \
 			"${dest}/lib/${jar}.jar"
 	done
@@ -130,7 +128,7 @@ src_install() {
 	# add missing docBase
 	local a apps
 	apps=(host-manager manager)
-	for a in ${apps[@]}; do
+	for a in "${apps[@]}"; do
 		sed -i -e "s|=\"true\" >|=\"true\" docBase=\"\${catalina.base}/webapps/${a}\" >|" \
 			-e 's/\d+|/10\\.\\d+\\.\\d+\\.\\d+|192\\.\\d+\\.\\d+\\.\\d+|/g' \
 			webapps/${a}/META-INF/context.xml \
@@ -144,10 +142,6 @@ src_install() {
 	# replace the default pw with a random one, see #92281
 	sed -i -e "s|SHUTDOWN|$(pwgen -s -B 15 1)|" conf/server.xml \
 		|| die "Failed to replace default pw with random"
-
-	# prepend gentoo.classpath to common.loader, see #453212
-#	sed -i -e 's/^common\.loader=/\0${gentoo.classpath},/' \
-#		conf/catalina.properties || die "Failed to sed classpath"
 
 	insinto "${dest}"
 	doins -r conf
