@@ -1,1 +1,0 @@
-netty-codec-memcache-9999.ebuild
