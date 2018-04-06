@@ -65,7 +65,8 @@ E_P="${E_P:=${E_PN}-${E_PV}}"
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
-inherit eutils
+inherit eutils xdg-utils
+
 if [[ ! ${E_PYTHON} ]]; then
 	inherit epunt-cxx libtool
 fi
@@ -192,6 +193,10 @@ e_src_configure() {
 # default src_compile for e ebuilds
 e_src_compile() {
 	debug-print-function ${FUNCNAME} $*
+
+	# ensure clean env, prevent access violations from XDG_RUNTIME_DIR
+	xdg_environment_reset
+
 	if [[ "${E_BUILD}" == "cmake" ]]; then
 		cmake-utils_src_compile
 	elif [[ "${E_BUILD}" == "meson" ]]; then
