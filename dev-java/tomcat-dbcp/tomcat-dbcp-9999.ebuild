@@ -23,7 +23,10 @@ HOMEPAGE="https://tomcat.apache.org/"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
-CP_DEPEND="~dev-java/tomcat-juli-${PV}:${SLOT}"
+CP_DEPEND="
+	dev-java/javax-transaction-api:0
+	~dev-java/tomcat-juli-${PV}:${SLOT}
+"
 
 DEPEND="${CP_DEPEND}
 	>=virtual/jdk-9"
