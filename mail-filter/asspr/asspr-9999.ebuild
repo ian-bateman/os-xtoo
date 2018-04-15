@@ -26,6 +26,9 @@ IUSE="debug"
 src_configure() {
 	local mytype="Release"
 	use debug && mytype="Debug"
-	local mycmakeargs=( -DCMAKE_BUILD_TYPE=${mytype} )
+	local mycmakeargs=(
+		-DCMAKE_INSTALL_PREFIX="${EROOT}"
+		-DCMAKE_BUILD_TYPE=${mytype}
+	)
 	cmake-utils_src_configure
 }
