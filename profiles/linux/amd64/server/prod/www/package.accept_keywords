@@ -4,14 +4,11 @@ app-portage/package-env-no-bin
 dev-java/animal-sniffer-annotations
 dev-java/ant-core
 dev-java/antlr
-dev-java/antlr
-dev-java/antlr
 dev-java/aopalliance
 dev-java/aqute-jpm-clnt
 dev-java/asm
 dev-java/bcpkix
 dev-java/bcprov
-dev-java/beanvalidation-api
 dev-java/beanvalidation-api
 dev-java/bnd-annotation
 dev-java/bndlib
@@ -54,6 +51,7 @@ dev-java/java-cup
 dev-java/javamail
 dev-java/javassist
 dev-java/javax-activation
+dev-java/javax-annotation
 dev-java/javax-ejb-api
 dev-java/javax-inject
 dev-java/javax-interceptor-api
@@ -62,8 +60,11 @@ dev-java/javax-json-api
 dev-java/javax-resource
 dev-java/javax-transaction-api
 dev-java/javax-xml-rpc-api
+dev-java/javax-xml-soap
 dev-java/jax-rs
 dev-java/jax-rs
+dev-java/jaxb-api
+dev-java/jaxws-api
 dev-java/jboss-logging
 dev-java/jboss-logging-annotations
 dev-java/jboss-logmanager
