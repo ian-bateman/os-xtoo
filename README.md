@@ -167,10 +167,13 @@ general issues not related to ebuilds or how Netbeans is packaged in
 this overlay. Just general Netbeans 9 porting issues.
 
 There is no ETA at this time when this work will be completed. We do 
-use Netbeans as our primary IDE for C and Java. We are eager to stop 
-using 8.2 and switch to 9 from source. Removing any packages brought in 
-by 8.2. Moving this overlay one step closer to being independent of Java 
-packages in tree, entirely!
+use Netbeans as our primary IDE for C and Java. Presently using Netbeans 
+9 snapshot builds under JDK 11. Till Oracle releases the rest of the 
+modules we need for packaging from source.
+
+See [Netbeans Apache Transition 
+page](https://cwiki.apache.org/confluence/display/NETBEANS/Apache+Transition) 
+for details on Oracle's code donations.
 
 Presently we are working on a single master Netbeans ebuild. Which will 
 later have function moved to eclass. Along with USE flags added to reduce 
