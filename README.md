@@ -143,17 +143,14 @@ If you have any issues with E packages in this repository. Let us know
 and we will address them ASAP. We take E seriously!
 
 Enlightenment and EFL is likely one of the most buggy window 
-managers, desktops and toolkits ever! Upstream is not responsive to 
+managers, desktops and toolkits ever! Upstream is not very responsive to 
 feedback or any critique. There are numerous bugs, and new versions 
 seem to get worse vs better. Things they do not care about; X, multiple 
 displays, copy and paste. Those tend to have major issues compared to  
 other window managers, desktops, and toolkits.
 
-You have been forewarned! Make sure to file [bugs 
-upstream](https://phab.enlightenment.org/). We are unable to due to a 
-[permanent ban](https://phab.enlightenment.org/T6222). Horrendously 
-rude community! There are a few who are professional and polite. Look at 
-the [bugs for ecrire being ignored...](https://github.com/Obsidian-StudiosInc/ecrire/issues)
+You have been forewarned! Make sure to file 
+[bugs upstream](https://phab.enlightenment.org/).
 
 It is recommended to not mix EFL/Enlightenment packages in tree with 
 this overlay. Those types of issues will likley not be addressed. Any 
