@@ -34,6 +34,7 @@ REQUIRED_USE="
 	sdl?		( opengl )
 	wayland?	( egl gles2 !opengl )
 	xim?		( X )
+	|| ( X wayland )
 "
 
 COMMON_DEP="
