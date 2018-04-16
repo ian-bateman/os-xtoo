@@ -41,10 +41,14 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/subprojects/${PN#*-}"
 
-JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports java.base/jdk.internal.misc=ALL-UNNAMED "
 
 java_prepare() {
 	sed -i -e "s|return composite(|return composite((Iterable<? extends Action<? super T>>)|" \
 		src/main/java/org/gradle/internal/Actions.java \
 		|| die "Failed to sed/fix no suitable method found"
+
+	sed -i -e "s|sun.m|jdk.internal.m|" \
+		src/main/java/org/gradle/internal/classloader/ClassLoaderUtils.java \
+		|| die "Failed to sed/fix class package move"
 }
