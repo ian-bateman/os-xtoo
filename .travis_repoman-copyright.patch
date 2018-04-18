@@ -1,8 +1,7 @@
 diff --git a/pym/repoman/copyrights.py b/pym/repoman/copyrights.py
-index 94257c942..18cade639 100644
---- a/pym/repoman/copyrights.py
-+++ b/pym/repoman/copyrights.py
-@@ -15,9 +15,9 @@ from portage import util
+--- a/pym/repoman/copyrights.py	2018-04-17 20:34:25.910613600 -0400
++++ b/pym/repoman/copyrights.py	2018-04-17 20:37:03.994433254 -0400
+@@ -15,10 +15,9 @@
  
  
  _copyright_re1 = \
@@ -10,15 +9,15 @@ index 94257c942..18cade639 100644
 +	re.compile(br'^(# Copyright \d\d\d\d)-\d\d\d\d( (Gentoo Foundation|Obsidian-Studios))\b')
  _copyright_re2 = \
 -	re.compile(br'^(# Copyright )(\d\d\d\d)( Gentoo Foundation)\b')
+-
 +	re.compile(br'^(# Copyright )(\d\d\d\d)( (Gentoo Foundation|Obsidian-Studios))\b')
  
- 
  class _copyright_repl(object):
-diff --git a/pym/repoman/modules/scan/ebuild/checks.py b/pym/repoman/modules/scan/ebuild/checks.py
-index de03bedd2..077f9f00e 100644
---- a/pym/repoman/modules/scan/ebuild/checks.py
-+++ b/pym/repoman/modules/scan/ebuild/checks.py
-@@ -86,6 +86,7 @@ class EbuildHeader(LineCheck):
+ 	__slots__ = ('year',)
+diff --git a/pym/repoman/modules/linechecks/gentoo_header/header.py b/pym/repoman/modules/linechecks/gentoo_header/header.py
+--- a/pym/repoman/modules/linechecks/gentoo_header/header.py	2018-04-17 20:34:25.920613209 -0400
++++ b/pym/repoman/modules/linechecks/gentoo_header/header.py	2018-04-17 20:39:28.098799434 -0400
+@@ -18,6 +18,7 @@
  	repoman_check_name = 'ebuild.badheader'
  
  	gentoo_copyright = r'^# Copyright ((1999|2\d\d\d)-)?%s Gentoo Foundation$'
@@ -26,7 +25,7 @@ index de03bedd2..077f9f00e 100644
  	gentoo_license = (
  		'# Distributed under the terms'
  		' of the GNU General Public License v2')
-@@ -100,12 +101,15 @@ class EbuildHeader(LineCheck):
+@@ -32,12 +33,15 @@
  			self.modification_year = str(time.gmtime(pkg.mtime)[0])
  		self.gentoo_copyright_re = re.compile(
  			self.gentoo_copyright % self.modification_year)
@@ -39,7 +38,7 @@ index de03bedd2..077f9f00e 100644
  		elif num == 0:
 -			if not self.gentoo_copyright_re.match(line):
 +			if not ( self.gentoo_copyright_re.match(line) or
-+				  self.os_copyright_re.match(line) ):
- 				return errors.COPYRIGHT_ERROR
++				 self.os_copyright_re.match(line) ):
+ 				return self.errors['COPYRIGHT_ERROR']
  		elif num == 1 and line.rstrip('\n') != self.gentoo_license:
- 			return errors.LICENSE_ERROR
+ 			return self.errors['LICENSE_ERROR']
