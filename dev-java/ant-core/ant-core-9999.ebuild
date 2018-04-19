@@ -80,8 +80,8 @@ java_prepare() {
 	done
 
 	# Remove junit tasks
-	rm -r "${S}/src/main/org/apache/tools/ant/taskdefs/optional/junit/" \
-		|| die "Failed to remove taskdefs/optional/junit/*"
+	rm -r "${S}/src/main/org/apache/tools/ant/taskdefs/optional/junit"* \
+		|| die "Failed to remove taskdefs/optional/junit*"
 
 	# Need to package NetRexx
 	rm "${S}/src/main/org/apache/tools/ant/taskdefs/optional/NetRexxC.java" \
