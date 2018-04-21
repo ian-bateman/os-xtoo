@@ -6,7 +6,7 @@ language: python
 python:
     - pypy
 before_install:
-    - pip install lxml yaml
+    - pip install lxml pyyaml
 before_script:
     - mkdir travis-overlay
     - shopt -s extglob
