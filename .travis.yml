@@ -4,7 +4,7 @@
 #
 language: python
 python:
-    - pypy
+    - pypy3
 before_install:
     - pip install lxml pyyaml
 before_script:
