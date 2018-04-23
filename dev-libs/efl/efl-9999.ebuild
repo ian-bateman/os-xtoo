@@ -58,7 +58,6 @@ COMMON_DEP="
 		x11-libs/libXext
 		x11-libs/libXfixes
 		x11-libs/libXinerama
-		x11-libs/libXp
 		x11-libs/libXrandr
 		x11-libs/libXrender
 		x11-libs/libXtst
