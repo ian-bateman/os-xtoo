@@ -24,7 +24,7 @@ HOMEPAGE="https://javaee.github.io/glassfish-corba/"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 
-DEPEND="~dev-java/idjl-${PV}:${SLOT}
+DEPEND="~dev-java/idlj-${PV}:${SLOT}
 	>=virtual/jdk-10"
 
 RDEPEND=">=virtual/jre-10"
