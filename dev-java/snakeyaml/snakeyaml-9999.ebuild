@@ -8,7 +8,7 @@ JAVA_PKG_IUSE="doc source"
 BASE_URI="https://bitbucket.org/asomov/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/get/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${BASE_URI}/get/${P}.tar.gz"
 	KEYWORDS="~amd64"
 	MY_S="${P}"
 fi
@@ -20,9 +20,8 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-10"
+RDEPEND=">=virtual/jre-10"
 
 S="${WORKDIR}/${MY_S}"
 
