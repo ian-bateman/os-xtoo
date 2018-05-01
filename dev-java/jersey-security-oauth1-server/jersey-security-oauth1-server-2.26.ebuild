@@ -1,1 +1,0 @@
-jersey-security-oauth1-server-9999.ebuild
