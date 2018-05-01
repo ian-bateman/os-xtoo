@@ -1,1 +1,0 @@
-jersey-media-json-jackson-9999.ebuild
