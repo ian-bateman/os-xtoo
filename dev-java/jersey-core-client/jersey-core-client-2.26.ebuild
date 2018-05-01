@@ -1,1 +1,0 @@
-jersey-core-client-9999.ebuild
