@@ -1,1 +1,0 @@
-jersey-core-server-9999.ebuild
