@@ -1,1 +1,0 @@
-jersey-security-oauth1-signature-9999.ebuild
