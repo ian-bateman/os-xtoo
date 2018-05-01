@@ -1,1 +1,0 @@
-jersey-container-jetty-servlet-9999.ebuild
