@@ -99,6 +99,7 @@ COMMON_DEP="
 		media-sound/pulseaudio
 		media-libs/libsndfile
 	)
+	rawphoto? ( media-libs/libraw )
 	scim?	( app-i18n/scim )
 	sdl? (
 		>=media-libs/libsdl2-2.0.0:0[opengl?,gles]
