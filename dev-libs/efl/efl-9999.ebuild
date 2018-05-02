@@ -191,6 +191,7 @@ src_configure() {
 		$(use_enable doc)
 		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
+		$(use_enable elogind systemd)
 		$(use_enable fbcon fb)
 		$(use_enable fontconfig)
 		$(use_enable fribidi)
