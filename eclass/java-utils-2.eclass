@@ -692,8 +692,8 @@ java-pkg_dolauncher() {
 		local var="${1}" value="${2}"
 		if [[ "${var:0:2}" == "--" ]]; then
 			local var=${var:2}
-			echo "gjl_${var}=\"${value}\"" >> "${var_tmp}"
-			local gjl_${var}="${value}"
+			echo "jl_${var}=\"${value}\"" >> "${var_tmp}"
+			local jl_${var}="${value}"
 		elif [[ "${var}" == "-into" ]]; then
 			target_dir="${value}"
 		elif [[ "${var}" == "-pre" ]]; then
@@ -705,10 +705,10 @@ java-pkg_dolauncher() {
 	# Test if no --jar and --main arguments were given and
 	# in that case check if the package only installs one jar
 	# and use that jar.
-	if [[ -z "${gjl_jar}" && -z "${gjl_main}" ]]; then
+	if [[ -z "${jl_jar}" && -z "${jl_main}" ]]; then
 		local cp="${JAVA_PKG_CLASSPATH}"
 		if [[ "${cp/:}" = "${cp}" && "${cp%.jar}" != "${cp}" ]]; then
-			echo "gjl_jar=\"${JAVA_PKG_CLASSPATH}\"" >> "${var_tmp}"
+			echo "jl_jar=\"${JAVA_PKG_CLASSPATH}\"" >> "${var_tmp}"
 		else
 			local msg="Not enough information to create a launcher given."
 			msg="${msg} Please give --jar or --main argument to ${FUNCNAME}."
@@ -725,10 +725,16 @@ java-pkg_dolauncher() {
 			die "-pre specified file '${pre}' does not exist"
 		fi
 	fi
-	echo "gjl_package=${JAVA_PKG_NAME}" >> "${target}"
+	echo "jl_package=${JAVA_PKG_NAME}" >> "${target}"
 	cat "${var_tmp}" >> "${target}"
 	rm -f "${var_tmp}"
-	echo "source /usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
+
+	# Test if no --jar and --main arguments were given and
+	# in that case check if the package only installs one jar
+	# and use that jar.
+	echo "[[ -n \"\${jl_pwd}\" ]] && cd \"\${jl_pwd}\"" >> "${target}"
+	echo "java -cp \$(jem -dp \${jl_package}) \${jl_java_args} " \
+		"\${jl_main} \${jl_pkg_args}" >> "${target}"
 
 	if [[ -n "${target_dir}" ]]; then
 		(
@@ -1230,7 +1236,7 @@ java-pkg_register-optional-dependency() {
 # @FUNCTION: java-pkg_register-environment-variable
 # @USAGE: <name> <value>
 # @DESCRIPTION:
-# Register an arbitrary environment variable into package.env. The gjl launcher
+# Register an arbitrary environment variable into package.env. The java launcher
 # for this package or any package depending on this will export it into
 # environement before executing java command.
 # Must only be called in src_install phase.
