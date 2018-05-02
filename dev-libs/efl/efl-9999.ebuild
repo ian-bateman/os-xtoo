@@ -19,17 +19,17 @@ HOMEPAGE="https://www.enlightenment.org/"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 SLOT="0"
 
-IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig
-	fribidi gif +gles2 glib gnutls gstreamer harfbuzz +ico ibus jpeg2k
-	libressl neon oldlua nls opengl ssl pdf physics pixman +png +ppm
-	postscript psd pulseaudio rawphoto scim sdl sound static-libs
-	+svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine
-	xpm"
+IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl elogind fbcon
+	+fontconfig fribidi gif +gles2 glib gnutls gstreamer harfbuzz +ico ibus
+	jpeg2k libressl neon oldlua nls opengl ssl pdf physics pixman +png +ppm
+	postscript psd pulseaudio rawphoto scim sdl sound static-libs +svg
+	systemd test tga tiff tslib v4l2 vlc wayland webp xim xine xpm"
 
 REQUIRED_USE="
 	X		( || ( gles2 opengl ) )
 	pulseaudio?	( sound )
 	opengl?		( || ( X sdl wayland ) )
+	|| ( elogind systemd )
 	gles2?		( egl !sdl || ( X wayland ) )
 	sdl?		( opengl )
 	wayland?	( egl gles2 !opengl )
@@ -72,6 +72,7 @@ COMMON_DEP="
 	)
 	avahi? ( net-dns/avahi )
 	debug? ( dev-util/valgrind )
+	elogind? ( sys-auth/elogind )
 	fontconfig? ( media-libs/fontconfig )
 	fribidi? ( dev-libs/fribidi )
 	gif? ( media-libs/giflib )
@@ -134,6 +135,11 @@ DEPEND="${COMMON_DEP}
 	!!media-libs/evas
 	doc? ( app-doc/doxygen )
 	test? ( dev-libs/check )"
+
+src_prepare() {
+	default
+	use elogind && eapply "${FILESDIR}/elogind.patch"
+}
 
 src_configure() {
 	local config=()
