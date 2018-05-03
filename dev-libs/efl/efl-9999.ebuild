@@ -145,6 +145,13 @@ src_prepare() {
 src_configure() {
 	local config=()
 
+	# elogind / systemd
+	if use elogind || use systemd; then
+		config+=( --enable-systemd )
+	else
+		config+=( --disable-systemd )
+	fi
+
 	# gnutls / openssl
 	if use gnutls; then
 		config+=( --with-crypto=gnutls )
@@ -192,7 +199,6 @@ src_configure() {
 		$(use_enable doc)
 		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
-		$(use_enable elogind systemd)
 		$(use_enable fbcon fb)
 		$(use_enable fontconfig)
 		$(use_enable fribidi)
@@ -227,7 +233,6 @@ src_configure() {
 		$(use_enable sdl)
 		$(use_enable static-libs static)
 		$(use_enable svg librsvg)
-		$(use_enable systemd)
 		$(use_enable tga image-loader-tga)
 		$(use_enable tiff image-loader-tiff)
 		$(use_enable tslib)
