@@ -19,7 +19,7 @@ IUSE_VOICEMAIL_STORAGE="
 	voicemail_storage_odbc
 	voicemail_storage_imap
 "
-IUSE="${IUSE_VOICEMAIL_STORAGE} alsa bluetooth calendar +caps cluster curl dahdi debug doc freetds gtalk http iconv ilbc xmpp ldap libedit libressl lua mysql newt +samples odbc osplookup oss pjproject portaudio postgres radius selinux snmp span speex srtp static syslog vorbis"
+IUSE="${IUSE_VOICEMAIL_STORAGE} alsa bluetooth calendar +caps cluster curl dahdi debug doc freetds gtalk http iconv ilbc xmpp ldap libedit libressl lua mysql newt +samples odbc osplookup oss pjproject portaudio postgres radius selinux snmp span srtp static syslog vorbis"
 IUSE_EXPAND="VOICEMAIL_STORAGE"
 REQUIRED_USE="gtalk? ( xmpp )
 	^^ ( ${IUSE_VOICEMAIL_STORAGE/+/} )
@@ -65,7 +65,6 @@ CDEPEND="dev-db/sqlite:3
 	radius? ( net-dialup/freeradius-client )
 	snmp? ( net-analyzer/net-snmp )
 	span? ( media-libs/spandsp )
-	speex? ( media-libs/speex )
 	srtp? ( net-libs/libsrtp:0 )
 	vorbis? ( media-libs/libvorbis )"
 
@@ -192,7 +191,6 @@ src_configure() {
 	use_select radius		{cdr,cel}_radius
 	use_select snmp			res_snmp
 	use_select span			res_fax_spandsp
-	use_select speex		{codec,func}_speex
 	use_select srtp			res_srtp
 	use_select syslog		cdr_syslog
 	use_select vorbis		format_ogg_vorbis
