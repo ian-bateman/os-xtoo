@@ -734,7 +734,7 @@ java-pkg_dolauncher() {
 	# and use that jar.
 	echo "[[ -n \"\${jl_pwd}\" ]] && cd \"\${jl_pwd}\"" >> "${target}"
 	echo "java -cp \$(jem -dp \${jl_package}) \${jl_java_args} " \
-		"\${jl_main} \${jl_pkg_args}" >> "${target}"
+		"\${jl_main} \${jl_pkg_args} \$@" >> "${target}"
 
 	if [[ -n "${target_dir}" ]]; then
 		(
