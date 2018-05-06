@@ -27,6 +27,9 @@ NETTY_SLOT="4.1"
 
 CP_DEPEND="
 	~dev-java/bson-${PV}:${SLOT}
+	dev-java/jnr-enxio:0
+	dev-java/jnr-unixsocket:0
+	dev-java/jsr305:0
 	dev-java/netty-buffer:${NETTY_SLOT}
 	dev-java/netty-common:${NETTY_SLOT}
 	dev-java/netty-codec:${NETTY_SLOT}
