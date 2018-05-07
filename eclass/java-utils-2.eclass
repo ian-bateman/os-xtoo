@@ -489,14 +489,8 @@ java-pkg_dohtml() {
 
 	[[ ${#} -lt 1 ]] &&  die "At least one argument required for ${FUNCNAME}"
 
-	# from /usr/lib/portage/bin/dohtml -h
-	#  -f   Set list of allowed extensionless file names.
-	dohtml -f package-list "$@"
-
-	# this probably shouldn't be here but it provides
-	# a reasonable way to catch # docs for all of the
-	# old ebuilds.
-	java-pkg_recordjavadoc
+	docinto html
+	dodoc "$@"
 }
 
 # @FUNCTION: java-pkg_dojavadoc
