@@ -25,8 +25,7 @@ inherit java-utils-2 java-pkg-simple
 # functions.
 IUSE="${JAVA_PKG_IUSE}"
 
-# Java packages need java-config, and a fairly new release of Portage.
-# JAVA_PKG_E_DEPEND is defined in java-utils.eclass.
+# JAVA_PKG_E_DEPEND is defined in java-utils-2.eclass.
 DEPEND="${JAVA_PKG_E_DEPEND}"
 
 # Nothing special for RDEPEND... just the same as DEPEND.
