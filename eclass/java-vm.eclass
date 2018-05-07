@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}"
 # @INTERNAL
 # @DESCRIPTION:
 # Where to place the vm env file.
-JAVA_VM_CONFIG_DIR="/etc/jem/vms.d /usr/share/java-config-2/vm"
+JAVA_VM_CONFIG_DIR="/etc/jem/vms.d"
 
 # @ECLASS-VARIABLE: JAVA_VM_DIR
 # @INTERNAL
@@ -60,19 +60,16 @@ java-vm_pkg_setup() {
 # Set the generation-2 system VM, if it isn't set or the setting is
 # invalid. Also update mime database.
 java-vm_pkg_postinst() {
-	if [[ ! -L "${EROOT}/etc/java-config-2/current-system-vm" ]] ||
-		[[ ! -L "${EROOT}/etc/jem/vm" ]]; then
+	if [[ ! -L "${EROOT}/etc/jem/vm" ]]; then
 		java_set_default_vm_
 	else
-		local d vm vm_path
+		local vm vm_path
 
-		for d in /etc/java-config-2/current-system-vm /etc/jem/vm; do
-			vm_path=$(readlink "${EROOT}${d}")
-			vm=$(basename "${ROOT}${vm_path}")
-			if [[ ! -L "${EROOT}${JAVA_VM_DIR}/${vm}" ]]; then
-				java_set_default_vm_
-			fi
-		done
+		vm_path=$(readlink "${EROOT}/etc/jem/vm")
+		vm=$(basename "${ROOT}${vm_path}")
+		if [[ ! -L "${EROOT}${JAVA_VM_DIR}/${vm}" ]]; then
+			java_set_default_vm_
+		fi
 	fi
 
 	xdg_desktop_database_update
@@ -111,7 +108,6 @@ java-vm_pkg_postrm() {
 # Set system-vm.
 
 java_set_default_vm_() {
-	java-config-2 --set-system-vm="${VMHANDLE}"
 	jem --set-system-vm="${VMHANDLE}"
 
 	einfo " ${P} set as the default system-vm."
@@ -131,41 +127,39 @@ java_set_default_vm_() {
 
 java-vm_install-env() {
 	debug-print-function ${FUNCNAME} $*
-	local env_file d java_home source_env_file
+	local env_file java_home source_env_file
 
 	source_env_file="${1-${FILESDIR}/${VMHANDLE}.env}"
 	if [[ ! -f ${source_env_file} ]]; then
 		die "Unable to find the env file: ${source_env_file}"
 	fi
 
-	for d in ${JAVA_VM_CONFIG_DIR[@]}; do
-		env_file="${ED}${d}/${VMHANDLE}"
-		dodir "${d}"
-		sed \
-			-e "s/@P@/${P}/g" \
-			-e "s/@PN@/${PN}/g" \
-			-e "s/@PV@/${PV}/g" \
-			-e "s/@SLOT@/${SLOT}/g" \
-			-e "s/@LIBDIR@/$(get_libdir)/g" \
-			< "${source_env_file}" \
-			> "${env_file}" || die "sed failed"
+	env_file="${ED}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
+	dodir "${JAVA_VM_CONFIG_DIR}"
+	sed \
+		-e "s/@P@/${P}/g" \
+		-e "s/@PN@/${PN}/g" \
+		-e "s/@PV@/${PV}/g" \
+		-e "s/@SLOT@/${SLOT}/g" \
+		-e "s/@LIBDIR@/$(get_libdir)/g" \
+		< "${source_env_file}" \
+		> "${env_file}" || die "sed failed"
 
-		(
-			echo "VMHANDLE=\"${VMHANDLE}\""
-			echo "BUILD_ONLY=\"${JAVA_VM_BUILD_ONLY}\""
-			[[ ${JAVA_PROVIDE} ]] && \
-				echo "PROVIDES=\"${JAVA_PROVIDE}\"" || true
-		) >> "${env_file}" || die "Failed to append to Java env file"
+	(
+		echo "VMHANDLE=\"${VMHANDLE}\""
+		echo "BUILD_ONLY=\"${JAVA_VM_BUILD_ONLY}\""
+		[[ ${JAVA_PROVIDE} ]] && \
+			echo "PROVIDES=\"${JAVA_PROVIDE}\"" || true
+	) >> "${env_file}" || die "Failed to append to Java env file"
 
-		eprefixify ${env_file}
+	eprefixify ${env_file}
 
-		java_home=$(unset JAVA_HOME; source "${env_file}"; echo ${JAVA_HOME})
-		[[ -z ${java_home} ]] && die "JAVA_HOME not defined in ${env_file}"
+	java_home=$(unset JAVA_HOME; source "${env_file}"; echo ${JAVA_HOME})
+	[[ -z ${java_home} ]] && die "JAVA_HOME not defined in ${env_file}"
 
-		# Make the symlink
-		dodir "${JAVA_VM_DIR}"
-		dosym "${java_home#${EPREFIX}}" "${JAVA_VM_DIR}/${VMHANDLE}"
-	done
+	# Make the symlink
+	dodir "${JAVA_VM_DIR}"
+	dosym "${java_home#${EPREFIX}}" "${JAVA_VM_DIR}/${VMHANDLE}"
 }
 
 
