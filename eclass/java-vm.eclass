@@ -13,7 +13,7 @@
 # virtual machines, and ensures that they are recognized by jem.
 
 case ${EAPI:-0} in
-	6) ;;
+	6|7) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
