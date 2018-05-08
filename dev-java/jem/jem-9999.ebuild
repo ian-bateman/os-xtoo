@@ -23,7 +23,7 @@ DESCRIPTION="A java environment manager"
 HOMEPAGE="https://www.o-sinc.com/#!/software/${PN}"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="debug doc +java-config source test"
+IUSE="debug doc source test"
 
 DEPEND="debug? (
 		dev-util/valgrind
@@ -33,10 +33,7 @@ DEPEND="debug? (
 "
 RDEPEND="
 	>=app-eselect/eselect-java-1
-	java-config? ( >dev-java/java-config-2.2.0 )
-	!java-config? (
-		<dev-java/java-config-2.2.1
-	)
+	!dev-java/java-config
 "
 
 src_prepare() {
@@ -81,10 +78,6 @@ src_install() {
 		fi
 	done
 
-	if ! use java-config ; then
-		dosym ../../usr/bin/jem /usr/bin/java-config
-		dosym ../../usr/bin/jem /usr/bin/java-config-2
-	fi
 	if use source ; then
 		mkdir "${ED}"/usr/share/${PN}/sources \
 			|| die "Failed to mkdir for sources"

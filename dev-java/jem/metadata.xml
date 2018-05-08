@@ -4,7 +4,4 @@
   <maintainer type="person">
     <email>wlt@o-sinc.com</email>
   </maintainer>
-  <use>
-    <flag name="java-config">Co-exist with java-config (replaces without)</flag>
-  </use>
 </pkgmetadata>
