@@ -33,8 +33,8 @@ CP_DEPEND="
 	dev-java/bson:${MONGO_SLOT}
 	~dev-java/jetty-server-${PV}:${SLOT}
 	~dev-java/jetty-util-${PV}:${SLOT}
-	dev-java/mongodb-driver:${MONGO_SLOT}
 	dev-java/mongodb-driver-core:${MONGO_SLOT}
+	dev-java/mongodb-driver-legacy:${MONGO_SLOT}
 "
 
 RDEPEND="${CP_DEPEND}
