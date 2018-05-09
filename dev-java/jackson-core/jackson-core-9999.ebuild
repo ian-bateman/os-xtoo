@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="Core part of Jackson Streaming API and basic shared abstractions"
 HOMEPAGE="https://wiki.fasterxml.com/JacksonHome"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 DEPEND=">=virtual/jdk-1.8"
 
