@@ -22,7 +22,7 @@ fi
 
 inherit java-pkg
 
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 HOMEPAGE="https://eclipse.org/jetty/"
 LICENSE="Apache-2.0"
 SLOT="${PV%*.*.*}"
