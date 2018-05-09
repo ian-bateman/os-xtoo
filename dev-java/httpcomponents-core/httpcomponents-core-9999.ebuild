@@ -14,7 +14,7 @@ fi
 
 inherit java-pkg
 
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 DESCRIPTION="Low level HTTP transport components"
 HOMEPAGE="https://hc.apache.org/${PN}-${SLOT}.x/"
 LICENSE="Apache-2.0"
