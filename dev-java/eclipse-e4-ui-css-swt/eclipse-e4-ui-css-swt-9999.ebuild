@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Eclipse E4 UI CSS SWT (org.${PN//-/.})"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 OSGI_SLOT="6"
 
