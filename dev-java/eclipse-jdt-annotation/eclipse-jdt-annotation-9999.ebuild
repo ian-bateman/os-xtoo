@@ -23,7 +23,7 @@ inherit java-pkg
 DESCRIPTION="Core part of Eclipse's Java development tools - ${MY_MOD}"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 DEPEND=">=virtual/jdk-9"
 RDEPEND=">=virtual/jre-9"
