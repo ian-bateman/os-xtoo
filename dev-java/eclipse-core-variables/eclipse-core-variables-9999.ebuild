@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Eclipse Core Variables (org.${PN//-/.})"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
 	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
