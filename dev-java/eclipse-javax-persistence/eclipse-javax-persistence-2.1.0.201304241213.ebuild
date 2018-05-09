@@ -7,7 +7,7 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg
 
-DESCRIPTION="Java Persistence API $(get_version_component_range 1-2) JSR-338 Implementation by Eclipselink"
+DESCRIPTION="Java Persistence API ${PV/.${PV#*.*.*}/} JSR-338 Implementation by Eclipselink"
 
 MY_PN="${PN:8}"
 MY_PN="${MY_PN/-/.}"
