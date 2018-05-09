@@ -11,7 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
 LICENSE="GPL-2+ LGPL-2+"
 KEYWORDS="~amd64"
 SLOT="0"
-IUSE="+caps pam selinux +ssh-agent test"
+IUSE="+caps pam prefix selinux +ssh-agent test"
 
 RDEPEND="
 	>=app-crypt/gcr-3.28:=[gtk]
