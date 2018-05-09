@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Spring Framework ${PN:7}"
 HOMEPAGE="https://spring.io/"
 LICENSE="Apache-2.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
 	dev-java/castor-core:0
