@@ -21,7 +21,7 @@ inherit java-pkg
 DESCRIPTION="${PN//-/ }"
 HOMEPAGE="${BASE_URI}"
 LICENSE="LGPL-2.1"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/commons-logging:0
