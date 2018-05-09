@@ -23,7 +23,7 @@ DESCRIPTION="A java environment manager"
 HOMEPAGE="https://www.o-sinc.com/#!/software/${PN}"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="debug doc source test"
+IUSE="debug doc elibc_glibc source test"
 
 DEPEND="debug? (
 		dev-util/valgrind
