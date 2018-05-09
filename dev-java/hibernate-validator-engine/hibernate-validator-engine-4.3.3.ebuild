@@ -16,7 +16,7 @@ HOMEPAGE="https://hibernate.org/validator"
 SRC_URI="https://github.com/${PN:0:9}/${MY_PN}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/beanvalidation-api:1.0
