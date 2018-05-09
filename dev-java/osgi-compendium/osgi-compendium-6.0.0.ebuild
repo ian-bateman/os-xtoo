@@ -9,7 +9,7 @@ inherit java-pkg
 
 DESCRIPTION="OSGi Service Platform Compendium API (Companion Code)"
 HOMEPAGE="https://www.osgi.org/developer/specifications/"
-SRC_URI="https://osgi.org/download/r$(get_major_version)/osgi.cmpn-${PV}.jar"
+SRC_URI="https://osgi.org/download/r${PV%%.*}/osgi.cmpn-${PV}.jar"
 
 LICENSE="Apache-2.0 OSGi-Specification-2.0"
 SLOT="6"
