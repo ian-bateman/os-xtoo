@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="Lightweight cross-platform POSIX emulation layer for Java"
 HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( CDDL GPL-2 LGPL-2.1 )"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/jnr-constants:0
