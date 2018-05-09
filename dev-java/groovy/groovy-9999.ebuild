@@ -6,7 +6,7 @@
 # TODO: REDO entire ebuild...
 # does not work with ebuild groovy-x.ebuild compile, and should
 
-EAPI="6"
+EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
