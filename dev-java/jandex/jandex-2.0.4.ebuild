@@ -13,7 +13,7 @@ MY_PN="wildfly"
 MY_PV="${PV}.Final"
 MY_P="${PN}-${MY_PV}"
 
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 HOMEPAGE="https://github.com/${MY_PN}/${PN}"
 SRC_URI="${HOMEPAGE}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64"
