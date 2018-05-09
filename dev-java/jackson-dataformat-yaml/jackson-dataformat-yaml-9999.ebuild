@@ -21,7 +21,7 @@ inherit java-pkg
 DESCRIPTION="Jackson module to add YAML backend (parser/generator adapters)"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	~dev-java/jackson-core-${PV}:${SLOT}
