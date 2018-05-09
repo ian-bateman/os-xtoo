@@ -18,7 +18,7 @@ SLOT="${PV%%.*}"
 SRC_URI="http://download.java.net/java/GA/jdk${SLOT}/${PV}/binaries/openjdk-${PV}_linux-x64_bin.tar.gz"
 LICENSE="CDDL"
 KEYWORDS="~amd64"
-IUSE="alsa cups doc elibc_glibc +fontconfig headless-awt javafx nsplugin pax_kernel selinux source"
+IUSE="alsa cups doc elibc_glibc +fontconfig headless-awt javafx nsplugin prefix pax_kernel selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig )"
 
 # NOTES:
