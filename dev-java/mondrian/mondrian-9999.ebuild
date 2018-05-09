@@ -21,7 +21,7 @@ inherit java-pkg
 DESCRIPTION="OLAP server to analyze large quantities of data in real-time"
 HOMEPAGE="http://${PN}.pentaho.com/"
 LICENSE="EPL-1.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/commons-collections:0
