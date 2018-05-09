@@ -11,7 +11,7 @@ HOMEPAGE="https://git.gnome.org/browse/gcr"
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0/1" # subslot = suffix of libgcr-3
 
-IUSE="debug gtk +introspection vala"
+IUSE="debug gtk +introspection prefix vala"
 REQUIRED_USE="vala? ( introspection )"
 
 KEYWORDS="~amd64"
