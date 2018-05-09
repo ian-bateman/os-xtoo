@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Uber-project for standard Jackson binary format backends"
 HOMEPAGE="https://wiki.fasterxml.com/SmileFormat"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="dev-java/jackson-core:${SLOT}"
 
