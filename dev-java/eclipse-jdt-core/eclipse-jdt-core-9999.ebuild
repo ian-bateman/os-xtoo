@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Core part of Eclipse's Java development tools"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
 	dev-java/ant-core:0
