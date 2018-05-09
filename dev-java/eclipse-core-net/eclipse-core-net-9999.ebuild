@@ -23,7 +23,7 @@ inherit java-pkg
 DESCRIPTION="Eclipse Team Core (${MY_MOD})"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 OSGI_SLOT="6"
 
