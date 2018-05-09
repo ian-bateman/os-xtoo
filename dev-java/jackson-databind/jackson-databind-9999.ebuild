@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="General data-binding package for Jackson"
 HOMEPAGE="https://wiki.fasterxml.com/JacksonHome"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	~dev-java/jackson-annotations-${PV}:${SLOT}
