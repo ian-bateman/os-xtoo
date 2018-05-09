@@ -15,7 +15,7 @@ HOMEPAGE="${BASE_URI}java.html"
 SRC_URI="${BASE_URI}download/${MY_P}.tar.gz"
 KEYWORDS="~amd64"
 LICENSE="BSD"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="~dev-java/bcprov-${PV}:${SLOT}"
 
