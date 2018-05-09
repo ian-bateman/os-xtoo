@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Eclipse Emf Ecore XMI (org.${PN//-/.})"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 ECLIPSE_SLOT="4.7"
 
