@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="An abstracted interface to invoking native functions from java"
 HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( Apache-2.0 LGPL-3 )"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/asm:6
