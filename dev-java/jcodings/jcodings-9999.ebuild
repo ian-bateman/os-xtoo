@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="Java-based codings helper classes for Joni and JRuby"
 HOMEPAGE="${BASE_URI}"
 LICENSE="MIT"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 DEPEND=">=virtual/jdk-9"
 
