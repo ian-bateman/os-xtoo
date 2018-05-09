@@ -10,7 +10,7 @@ inherit java-pkg
 DESCRIPTION="OSGi Core Annotation Code"
 HOMEPAGE="https://www.osgi.org/Specifications/HomePage"
 # Broken URL :(
-#SRC_URI="https://www.osgi.org/download/r$(get_major_version)/${PN/-/.}-${PV}.jar"
+#SRC_URI="https://www.osgi.org/download/r${PV%%.*}/${PN/-/.}-${PV}.jar"
 # Backup also :(
 SRC_URI="https://repo1.maven.org/maven2/org/osgi/org.${PN/-/.}/${PV}/org.${PN/-/.}-${PV}.jar -> ${PN/-/.}-${PV}.jar"
 
