@@ -21,7 +21,7 @@ inherit java-pkg
 DESCRIPTION="Module adds JAXB annotations alternative to Jackson annotations"
 HOMEPAGE="https://wiki.fasterxml.com/JacksonJAXBAnnotations"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	~dev-java/jackson-annotations-${PV}:${SLOT}
