@@ -16,7 +16,7 @@ MY_P="${MY_PN}-${MY_PV}"
 
 HOMEPAGE="https://github.com/eclipse/${MY_PN}"
 SRC_URI="https://github.com/eclipse/${MY_PN}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 KEYWORDS="~amd64"
 LICENSE="EDL-1.0 EPL-1.0"
 
