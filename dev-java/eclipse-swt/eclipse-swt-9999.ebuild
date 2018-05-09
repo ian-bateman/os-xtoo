@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Eclipse SWT (org.eclipse.swt)"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 DEPEND=">=virtual/jdk-1.8"
 
