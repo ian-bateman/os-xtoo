@@ -15,7 +15,7 @@ HOMEPAGE="https://java.net/projects/jms-spec/pages/Home"
 SRC_URI="https://repo1.maven.org/maven2/${PN:0:5}/${PN:6:3}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 
 LICENSE="|| ( CDDL GPL-2 )"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 KEYWORDS="~amd64"
 
 DEPEND="app-arch/unzip
