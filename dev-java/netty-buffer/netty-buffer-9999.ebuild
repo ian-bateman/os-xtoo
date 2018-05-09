@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Netty ${MY_MOD}"
 HOMEPAGE="https://${MY_PN}.io/"
 LICENSE="Apache-2.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="~dev-java/netty-common-${PV}:${SLOT}"
 
