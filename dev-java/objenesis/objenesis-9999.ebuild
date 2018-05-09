@@ -17,7 +17,7 @@ inherit java-pkg
 DESCRIPTION="Library to bypass the constructor when creating an object"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 DEPEND=">=virtual/jdk-9"
 
