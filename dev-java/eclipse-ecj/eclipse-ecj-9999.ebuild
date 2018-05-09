@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="JDT Core Compiler aka Eclipse Compiler for Java"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 # antadapter deps
 #CP_DEPEND="
