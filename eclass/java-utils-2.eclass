@@ -17,7 +17,7 @@
 # This eclass should not be inherited this directly from an ebuild. Instead,
 # you should inherit java-pkg for Java packages or java-pkg-opt-2 for packages
 # that have optional Java support.
-inherit eutils versionator multilib
+inherit eutils multilib
 
 IUSE="elibc_FreeBSD"
 
@@ -1329,8 +1329,8 @@ java-pkg_is-vm-version-eq() {
 
 	local vm_version="$(java-pkg_get-vm-version)"
 
-	vm_version="$(get_version_component_range 1-2 "${vm_version}")"
-	needed_version="$(get_version_component_range 1-2 "${needed_version}")"
+	vm_version="${vm_version/.${vm_version#*.*.*}/}"
+	needed_version="${needed_version/.${needed_version#*.*.*}/}"
 
 	if [[ -z "${vm_version}" ]]; then
 		debug-print "Could not get JDK version from DEPEND"
