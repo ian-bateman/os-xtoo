@@ -13,7 +13,7 @@ MY_PN="${PN:0:13}-tools"
 MY_PV="${PV}.Final"
 MY_P="${PN}-${MY_PV}"
 
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 HOMEPAGE="https://github.com/${PN:0:13}"
 SRC_URI="${HOMEPAGE}/${MY_PN}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64"
