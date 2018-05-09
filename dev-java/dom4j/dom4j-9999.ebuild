@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="Open source framework for processing XML"
 HOMEPAGE="https://${PN}.github.io"
 LICENSE="${PN}"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/jaxb-api:0
