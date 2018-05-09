@@ -36,7 +36,7 @@ DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="https://www.oracle.com/technetwork/java/javase/"
 LICENSE="Oracle-BCLA-JavaSE"
 
-IUSE="alsa cups elibc_glibc +fontconfig gtk2 gtk3 headless-awt javafx nsplugin selinux source"
+IUSE="alsa cups elibc_glibc +fontconfig gtk2 gtk3 headless-awt javafx nsplugin prefix selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig || ( gtk2 gtk3 ) )"
 QA_PREBUILT="*"
 
