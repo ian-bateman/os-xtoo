@@ -17,7 +17,7 @@ inherit java-pkg
 DESCRIPTION="HTTP client library"
 HOMEPAGE="https://hc.apache.org/${PN}-${SLOT}.x/"
 LICENSE="Apache-2.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
 	dev-java/commons-codec:0
