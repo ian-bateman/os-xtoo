@@ -18,7 +18,7 @@ fi
 inherit java-pkg
 
 DESCRIPTION="${PN/-/ }"
-HOMEPAGE="https://hc.apache.org/${PN:0:14}-${PN:19}-$(get_version_component_range 1-2).x/index.html"
+HOMEPAGE="https://hc.apache.org/${PN:0:14}-${PN:19}-${PV/.${PV#*.*.*}/}.x/index.html"
 LICENSE="Apache-2.0"
 SLOT="0"
 
