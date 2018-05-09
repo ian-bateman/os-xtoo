@@ -18,7 +18,7 @@ inherit java-pkg
 DESCRIPTION="Jackson support for serializing POJOs as XML"
 HOMEPAGE="https://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	~dev-java/jackson-annotations-${PV}:${SLOT}
