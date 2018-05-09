@@ -21,7 +21,7 @@ inherit java-pkg
 DESCRIPTION="Java-based indexing and search technology"
 HOMEPAGE="https://lucene.apache.org/"
 LICENSE="Apache-2.0"
-SLOT="$(get_major_version)"
+SLOT="${PV%%.*}"
 
 CP_DEPEND="~dev-java/lucene-core-${PV}:${SLOT}"
 
