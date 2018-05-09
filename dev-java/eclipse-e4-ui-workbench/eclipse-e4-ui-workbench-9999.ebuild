@@ -22,7 +22,7 @@ inherit java-pkg
 DESCRIPTION="Eclipse E4 UI Workbench (org.${PN//-/.})"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 EEMF_SLOT="2"
 OSGI_SLOT="6"
