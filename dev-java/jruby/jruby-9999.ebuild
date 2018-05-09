@@ -3,7 +3,7 @@
 
 # Copyright 1999-2014 Gentoo Foundation
 
-EAPI="6"
+EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
