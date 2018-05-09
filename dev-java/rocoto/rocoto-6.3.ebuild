@@ -8,7 +8,7 @@ JAVA_PKG_IUSE="doc source"
 inherit java-pkg
 
 DESCRIPTION="Rocoto is a small collection of reusable Modules for Google Guice"
-SLOT="$(get_version_component_range 1)"
+SLOT="${PV%%.*}"
 SRC_URI="https://github.com/99soft/${PN}/archive/${P}.tar.gz"
 HOMEPAGE="https://99soft.github.io/rocoto/"
 KEYWORDS="~amd64"
