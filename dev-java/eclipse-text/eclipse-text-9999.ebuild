@@ -9,6 +9,7 @@ MY_PN="${PN/-/-platform-}"
 MY_PN="${MY_PN//-/.}"
 MY_PV="R${PV//./_}"
 MY_PV="${MY_PV^^}"
+MY_PV="${MY_PV/A/_a}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/${PN:0:7}/${MY_PN}"
 
