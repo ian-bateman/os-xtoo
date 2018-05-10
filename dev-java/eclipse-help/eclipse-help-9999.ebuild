@@ -8,6 +8,7 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="eclipse.platform.ua"
 MY_PV="R${PV//./_}"
 MY_PV="${MY_PV^^}"
+MY_PV="${MY_PV/A/_a}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/${PN:0:7}/${MY_PN}"
 
