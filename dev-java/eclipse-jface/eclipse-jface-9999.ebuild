@@ -8,6 +8,7 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="eclipse.platform.ui"
 MY_PV="R${PV//./_}"
 MY_PV="${MY_PV^^}"
+MY_PV="${MY_PV/A/_a}"
 MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/${PN:0:7}/${MY_PN}"
 
@@ -43,7 +44,7 @@ S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 JAVA_SRC_DIR="src"
 
 java_prepare() {
-	if [[ ${PV} == 4.7 ]]; then
+	if [[ ${SLOT} == 4.7 ]]; then
 		sed -i -e "s|this::|(ImageDataProvider) this::|g" \
 			src/org/eclipse/jface/resource/ImageDescriptor.java \
 			|| die "Could not fix ambiguous reference"
