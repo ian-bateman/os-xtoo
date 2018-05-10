@@ -1,7 +1,7 @@
 # Copyright 2016-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
 MY_P="de.kalpatec.${PN/-/.}-${PV}"
 BASE_URI="https://github.com/lefou/pojosr"
