@@ -1,1 +1,0 @@
-eclipse-equinox-security-9999.ebuild
