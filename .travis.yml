@@ -22,7 +22,7 @@ before_script:
     - tar xzf portage.tar.gz -C /tmp
     - tar xzf portage-tree.tar.gz -C /usr/portage --strip-components=1
     - cp /tmp/portage*/cnf/repos.conf /etc/portage/
-    - ln -s /usr/portage/profiles/default/linux/amd64/13.0 /etc/portage/make.profile
+    - ln -s /tmp/travis-overlay/profiles/linux/amd64/workstation/ /etc/portage/make.profile
     - mv travis-overlay /tmp
     - cd /tmp/portage*/repoman
     - patch -p1 < /tmp/travis-overlay/.travis_repoman-copyright.patch
