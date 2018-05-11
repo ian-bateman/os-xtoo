@@ -12,7 +12,7 @@ else
 	E_TYPE="libs"
 fi
 
-inherit e versionator
+inherit autotools e versionator
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
@@ -139,7 +139,11 @@ DEPEND="${COMMON_DEP}
 
 src_prepare() {
 	default
-	use elogind && eapply "${FILESDIR}/elogind.patch"
+	if use elogind ; then
+		eapply "${FILESDIR}/elogind.patch"
+		rm configure || die "Remove configure for regeneration"
+		eautoreconf
+	fi
 }
 
 src_configure() {
