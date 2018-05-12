@@ -19,7 +19,7 @@ HOMEPAGE="https://www.enlightenment.org/"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 SLOT="0"
 
-IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl elogind fbcon
+IUSE="+X avahi +bmp cxx-bindings debug doc drm egl elogind fbcon
 	+fontconfig fribidi gif +gles2 glib gnutls gstreamer harfbuzz +ico ibus
 	jpeg2k libressl neon oldlua nls opengl ssl pdf physics pixman +png +ppm
 	postscript psd pulseaudio rawphoto scim sdl sound static-libs +svg
@@ -201,7 +201,6 @@ src_configure() {
 		$(use_enable drm)
 		$(use_enable drm gl-drm)
 		$(use_enable doc)
-		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
 		$(use_enable fbcon fb)
 		$(use_enable fontconfig)
@@ -247,7 +246,8 @@ src_configure() {
 		$(use_enable xim)
 		$(use_enable xine)
 
-		# image loders
+		# image loaders
+		--enable-image-loader-eet
 		--enable-image-loader-generic
 		--enable-image-loader-ico
 		--enable-image-loader-jpeg # required by ethumb
@@ -264,8 +264,6 @@ src_configure() {
 		#--disable-lua-old
 		--disable-tizen
 		--disable-gesture
-		#--disable-xinput2
-		#--enable-xinput2 # enable it
 		--enable-elput
 		--disable-xpresent
 
