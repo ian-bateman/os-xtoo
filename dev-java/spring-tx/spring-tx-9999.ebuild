@@ -49,8 +49,8 @@ JAVA_RM_FILES=(
 )
 
 java_prepare() {
-	sed -i -e '159i@\tOverride' \
-		-e '159i\\tpublic Class<?> getEndpointClass() { throw new java.lang.UnsupportedOperationException("Not supported yet."); } ' \
+	sed -i -e '162i@\tOverride' \
+		-e '162i\\tpublic Class<?> getEndpointClass() { throw new java.lang.UnsupportedOperationException("Not supported yet."); } ' \
 		src/main/java/org/springframework/jca/endpoint/GenericMessageEndpointFactory.java \
 		|| die "Failed to add missing abstract method"
 
