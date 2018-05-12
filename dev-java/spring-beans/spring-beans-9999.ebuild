@@ -34,22 +34,27 @@ CP_DEPEND="
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-10"
 
 RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+	>=virtual/jre-10"
 
 S="${WORKDIR}/${MY_S}"
 
-JAVA_SRC_DIR="src/main/java"
-
 java_prepare() {
+	cd src/main/java/org/springframework/beans/factory || die "cd failed"
+
 	# Replaced repackaged with standard
 	sed -i -e "s|org.springframework.cg|net.sf.cg|g" \
-		"${S}/${JAVA_SRC_DIR}/org/springframework/beans/factory/support/CglibSubclassingInstantiationStrategy.java" \
+		support/CglibSubclassingInstantiationStrategy.java \
 		|| die "Could not sed cglib"
 	# Reverse one import change, crude
 	sed -i -e "s|net.sf.cglib.core.SpringNamingPolicy|org.springframework.cglib.core.SpringNamingPolicy|g" \
-		"${S}/${JAVA_SRC_DIR}/org/springframework/beans/factory/support/CglibSubclassingInstantiationStrategy.java" \
+		support/CglibSubclassingInstantiationStrategy.java \
 		|| die "Could not sed cglib"
+	# update per changes in snakeyaml
+	sed -i -e "s| createDefaultMap()| createDefaultMap(int initSize)|" \
+		-e "s|.createDefaultMap()|.createDefaultMap(initSize)|" \
+		config/YamlProcessor.java \
+		|| die "Failed to sed/update snakeyaml changes"
 }
