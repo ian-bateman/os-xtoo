@@ -19,7 +19,4 @@ HOMEPAGE="https://jcommander.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}"
