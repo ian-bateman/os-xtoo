@@ -24,10 +24,6 @@ else
 	SLOT="${PV:0:3}"
 fi
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}"
 
 JAVA_SRC_DIR="src/"
