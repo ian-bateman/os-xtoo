@@ -19,10 +19,6 @@ HOMEPAGE="https://www.eclipse.org/${MY_PN}/documentation/current/alpn-chapter.ht
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-RDEPEND=">=virtual/jre-9"
-
-DEPEND=">=virtual/jdk-9"
-
 S="${WORKDIR}/${PN//-/.}-${MY_PN}-${MY_PV}/"
 
 JAVA_SRC_DIR="src/main/java"
