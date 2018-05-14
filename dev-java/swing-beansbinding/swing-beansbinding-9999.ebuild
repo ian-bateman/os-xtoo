@@ -19,7 +19,4 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="LGPL-2.1"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}"
