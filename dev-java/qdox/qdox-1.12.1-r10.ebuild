@@ -20,8 +20,6 @@ DEPEND="dev-java/byaccj:0
 	dev-java/jflex:0
 	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${PN}-${P}"
 
 java_prepare(){
