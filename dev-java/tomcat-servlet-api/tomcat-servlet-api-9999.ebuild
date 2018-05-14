@@ -30,9 +30,6 @@ case ${PV%%.*} in
 	*) SLOT="${PV%%.*}" ;;
 esac
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
