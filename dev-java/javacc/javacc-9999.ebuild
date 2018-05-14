@@ -24,9 +24,6 @@ HOMEPAGE="http://${PN}.org/"
 LICENSE="BSD-3-clause"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
 
 # keep bootstrap javacc.jar
