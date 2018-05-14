@@ -25,10 +25,6 @@ HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_ENCODING="ISO-8859-1"
