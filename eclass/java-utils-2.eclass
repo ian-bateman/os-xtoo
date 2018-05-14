@@ -21,6 +21,11 @@ inherit eutils multilib
 
 IUSE="elibc_FreeBSD"
 
+for _jdep in DEPEND RDEPEND; do
+	[[ ! "${!_jdep}" =~ .*virtual/j(dk|re).* ]] &&
+		declare ${_jdep}+=" >=virtual/jdk-10"
+done
+
 # @VARIABLE: JAVA_PKG_E_DEPEND
 # @INTERNAL
 # @DESCRIPTION:
