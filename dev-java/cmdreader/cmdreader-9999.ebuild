@@ -23,10 +23,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="MIT"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src"
