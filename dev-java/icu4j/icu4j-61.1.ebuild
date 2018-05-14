@@ -19,7 +19,4 @@ LICENSE="icu"
 KEYWORDS="~amd64"
 SLOT="0"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
+DEPEND="app-arch/unzip"
