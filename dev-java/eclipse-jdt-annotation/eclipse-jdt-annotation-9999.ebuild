@@ -26,7 +26,4 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}/${MY_MOD}/"
