@@ -21,8 +21,6 @@ KEYWORDS="~amd64"
 DEPEND="app-arch/unzip:0
 	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
-
 JAVA_SRC_DIR="OSGI-OPT/src"
 
 java_prepare() {
