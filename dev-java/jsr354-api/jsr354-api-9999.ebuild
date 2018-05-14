@@ -19,10 +19,6 @@ HOMEPAGE="https://javamoney.github.io/"
 LICENSE="JSR-354"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}"
 
 JAVA_SRC_DIR="src/main/java"
