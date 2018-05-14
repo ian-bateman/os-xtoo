@@ -21,10 +21,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-RDEPEND=">=virtual/jre-9"
-
-DEPEND=">=virtual/jdk-9"
-
 S="${WORKDIR}/${MY_S}/"
 
 JAVAC_ARGS="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED"
