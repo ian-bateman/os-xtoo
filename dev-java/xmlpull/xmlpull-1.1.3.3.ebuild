@@ -17,10 +17,6 @@ LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${PN}-${MY_P}"
 
 JAVA_SRC_DIR="${PN}/src/main/java/"
