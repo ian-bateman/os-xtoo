@@ -19,8 +19,4 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="GPL-3"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}"
