@@ -23,10 +23,6 @@ DESCRIPTION="Bean Validation API JSR 303 Slot 1.0 & JSR 380 Slot 1.1"
 LICENSE="Apache-2.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main/java"
