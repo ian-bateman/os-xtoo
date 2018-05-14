@@ -31,8 +31,4 @@ else
 	SLOT="${PV%%.*}"
 fi
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
