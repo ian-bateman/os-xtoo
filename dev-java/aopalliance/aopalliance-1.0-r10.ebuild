@@ -16,5 +16,3 @@ SLOT="1"
 
 DEPEND="app-arch/unzip
 	>=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
