@@ -19,10 +19,6 @@ case ${PV%%.*} in
 	4) SLOT="2.3" ;;
 esac
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_P}"
 
 java_prepare() {
