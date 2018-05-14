@@ -20,8 +20,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_PN}-${MY_PN}-parent-${PV}/${PN}"
 
 JAVA_SRC_DIR="src/main/java/"
