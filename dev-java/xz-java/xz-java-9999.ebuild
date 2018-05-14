@@ -18,7 +18,4 @@ HOMEPAGE="https://tukaani.org/xz/java.html"
 LICENSE="public-domain"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 JAVA_SRC_DIR="src/org"
