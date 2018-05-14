@@ -24,9 +24,6 @@ HOMEPAGE="https://hamcrest.org/JavaHamcrest/"
 LICENSE="BSD-3-clause"
 SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}/${PN}"
 
 JAVA_RELEASE="7"
