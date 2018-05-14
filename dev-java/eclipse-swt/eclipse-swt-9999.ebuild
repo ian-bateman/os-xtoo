@@ -25,10 +25,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
 JAVA_SRC_DIR="
