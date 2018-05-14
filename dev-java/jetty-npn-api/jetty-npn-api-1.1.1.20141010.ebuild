@@ -19,8 +19,6 @@ HOMEPAGE="https://wiki.eclipse.org/Jetty/Feature/NPN"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 
-RDEPEND=">=virtual/jre-9"
-
 DEPEND="
 	app-arch/unzip
 	>=virtual/jdk-9
