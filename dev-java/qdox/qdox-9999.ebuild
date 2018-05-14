@@ -23,11 +23,10 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
-DEPEND="dev-java/byaccj:0
+DEPEND="
+	dev-java/byaccj:0
 	dev-java/jflex:0
-	>=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
+"
 
 S="${WORKDIR}/${MY_S}"
 
