@@ -24,9 +24,6 @@ HOMEPAGE="https://javaee.github.io/glassfish-corba/"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-10"
-RDEPEND=">=virtual/jre-10"
-
 S="${WORKDIR}/${MY_S}/${PN}"
 
 src_install() {
