@@ -19,10 +19,6 @@ DESCRIPTION="Low level HTTP transport components"
 HOMEPAGE="https://hc.apache.org/${PN}-${SLOT}.x/"
 LICENSE="Apache-2.0"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}/http${PN:15}"
 
 if [[ ${SLOT} == 4.4 ]]; then
