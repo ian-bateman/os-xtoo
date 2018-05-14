@@ -16,8 +16,6 @@ KEYWORDS="~amd64"
 IUSE="netbeans"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.9"
-RDEPEND=">=virtual/jre-1.9"
 
 S="${WORKDIR}/${P}"
 
