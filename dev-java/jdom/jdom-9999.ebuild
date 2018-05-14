@@ -37,9 +37,6 @@ else
 	S+="core"
 fi
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 JAVA_RM_FILES="src/java/org/jdom${MY_SLOT}/xpath"
 
 java_prepare() {
