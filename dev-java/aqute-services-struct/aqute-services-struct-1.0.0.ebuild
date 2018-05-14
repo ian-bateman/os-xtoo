@@ -21,8 +21,6 @@ KEYWORDS="~amd64"
 DEPEND="app-arch/unzip:0
 	>=virtual/jdk-1.7"
 
-RDEPEND=">=virtual/jre-1.7"
-
 S="${WORKDIR}/"
 
 JAVA_SRC_DIR="OSGI-OPT/src/"
