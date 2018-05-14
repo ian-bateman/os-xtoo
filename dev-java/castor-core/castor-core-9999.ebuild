@@ -28,10 +28,7 @@ CP_DEPEND="
 	dev-java/commons-lang:2
 "
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
+DEPEND="${CP_DEPEND}"
+RDEPEND="${CP_DEPEND}"
 
 S="${WORKDIR}/${MY_P}/${PN:7}"
-
-JAVA_SRC_DIR="src/main/java"
