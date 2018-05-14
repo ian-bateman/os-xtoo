@@ -23,8 +23,4 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}/jaxb-ri/txw/runtime/"
