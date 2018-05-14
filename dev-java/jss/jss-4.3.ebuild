@@ -16,10 +16,6 @@ KEYWORDS="~amd64"
 LICENSE="MPL-1.1"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/mozilla/security/jss"
 
 JAVA_SRC_DIR="org"
