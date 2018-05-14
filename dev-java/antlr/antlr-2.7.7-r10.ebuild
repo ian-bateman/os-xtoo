@@ -14,10 +14,6 @@ KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="0"
 
-RDEPEND=">=virtual/jre-9"
-
-DEPEND=">=virtual/jdk-9"
-
 S="${WORKDIR}/${P}"
 
 JAVA_SRC_DIR="${PN}"
