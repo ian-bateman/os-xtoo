@@ -20,5 +20,3 @@ KEYWORDS="~amd64"
 
 DEPEND="app-arch/unzip
 	>=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
