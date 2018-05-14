@@ -23,9 +23,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="GPL-2"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND="!~dev-java/jformatstring-2.0.3:0
-	>=virtual/jre-1.8"
+RDEPEND="!~dev-java/jformatstring-2.0.3:0"
 
 S="${WORKDIR}/${MY_S}"
