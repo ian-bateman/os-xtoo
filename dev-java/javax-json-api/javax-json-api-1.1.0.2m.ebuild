@@ -19,8 +19,6 @@ SLOT="0"
 DEPEND="app-arch/unzip
 	>=virtual/jdk-9"
 
-RDEPEND=">=virtual/jre-9"
-
 java_prepare() {
 	# maybe rename vs remove?
 	rm module-info.java || die "Failed to remove improper class"
