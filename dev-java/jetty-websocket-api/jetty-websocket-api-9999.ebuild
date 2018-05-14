@@ -26,8 +26,4 @@ HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
 LICENSE="Apache-2.0"
 SLOT="${PV%*.*.*}"
 
-RDEPEND=">=virtual/jre-9"
-
-DEPEND=">=virtual/jdk-9"
-
 S="${WORKDIR}/${MY_PN}.project-${MY_P}/${PN:0:15}/${PN:6}"
