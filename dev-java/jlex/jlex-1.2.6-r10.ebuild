@@ -12,8 +12,6 @@ KEYWORDS="~amd64"
 LICENSE="jlex"
 SLOT="0"
 
-RDEPEND=">=virtual/jre-9"
-DEPEND=">=virtual/jdk-9"
 
 S="${WORKDIR}/${P}"
 
