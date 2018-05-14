@@ -23,9 +23,6 @@ HOMEPAGE="https://tomcat.apache.org/"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="java/org/apache/tomcat/jni"
