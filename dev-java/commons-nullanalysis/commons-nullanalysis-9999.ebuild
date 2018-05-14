@@ -20,6 +20,3 @@ DESCRIPTION="Annotations and utility classes for annotation-base null analysis"
 HOMEPAGE="http://unkrig.de/w/Commons.unkrig.de#${PN}"
 LICENSE="BSD"
 SLOT="0"
-
-DEPEND=">=virtual/jdk-9"
-RDEPEND=">=virtual/jre-9"
