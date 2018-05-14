@@ -20,10 +20,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="MIT"
 SLOT="${PV%%.*}"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/"
