@@ -19,10 +19,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="BSD-3-clause"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${P}"
 
 JAVA_SRC_DIR="src"
