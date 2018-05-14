@@ -54,20 +54,15 @@ Java packages in this respository are all or nothing. You MUST run
 result in various preventable build issues. Please keep that in mind.
 
 This repository replaces entirely dev-java/*::gentoo, packages in 
-Gentoo's main repository. Work is mostly complete to replace any 
-packages still used as dependencys residing in the main tree. The 
-core java-config has been mostly replaced with 
-[jem](https://github.com/Obsidian-StudiosInc/jem). Only remaining 
-piece of java-config still in use is 
-[gjl](https://github.com/gentoo/java-config/blob/master/src/gjl). Along 
-with updating eclasses in preparation for new eclasses, entire re-writes.
+Gentoo's main repository. The core java-config has been replaced with 
+[jem](https://github.com/Obsidian-StudiosInc/jem). Along with updating 
+eclasses in preparation for new eclasses, entire re-writes.
 
 We have added a [package to mask 
 dev-java/*::gentoo](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/app-portage/mask-gentoo-dev-java) 
-. Since
-[masking via overlay](https://bugs.gentoo.org/show_bug.cgi?id=641020) 
+. Since [masking via overlay](https://bugs.gentoo.org/show_bug.cgi?id=641020) 
 is not possible at this time. It is recommended to merge that package 
-and unmask any remaining pieces as needed/required.
+and unmask any remaining pieces as needed/required, outside of dev-java/.
 
 Please do not mix Java packages from Gentoo's main repository with 
 this repository. You will experience a varity of issues that will not be 
@@ -113,18 +108,12 @@ Show packages built with a given vm, add ```| wc-l``` for count
 ```grep -l "MERGE_VM\=.*[4-9]" /usr/share/*/package.env```
 
 ### Setting system/user VM
-This overlay is in the process of switching to 
+This overlay has switched to 
 [jem](https://github.com/Obsidian-StudiosInc/jem) from 
-[java-config](https://github.com/gentoo/java-config). At this time you 
-need to use both to set system and/or user VM. Changing one you need to 
-do the same with the other. There is no wrapper for both. java-config 
-will be removed as soon as gjl (replacement to be named jjl) is 
-replaced. That command is still provided by java-config.
-
-Otherwise jem is a drop in replacement for java-config, and has the same 
-syntax and features. jem is used in eclasses in this overlay. 
-java-config itself is really not used. Just need to set java-config 
-system/user vm for gjl. Thus it remaining for now.
+[java-config](https://github.com/gentoo/java-config). jem is a drop in 
+replacement for java-config, and has the same  syntax and features. jem 
+is used in eclasses in this overlay. This overlay does not use 
+java-config at all, or any related packages.
 
 ## E
 This repo has full and complete support for 
