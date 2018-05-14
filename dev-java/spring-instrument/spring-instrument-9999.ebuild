@@ -24,10 +24,6 @@ HOMEPAGE="https://spring.io/"
 LICENSE="Apache-2.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
-DEPEND=">=virtual/jdk-1.8"
-
-RDEPEND=">=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src/main/java"
