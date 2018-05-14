@@ -20,9 +20,6 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-10"
-RDEPEND=">=virtual/jre-10"
-
 S="${WORKDIR}/${MY_S}"
 
 src_unpack() {
