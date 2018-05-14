@@ -28,9 +28,6 @@ else
 	SLOT="2"
 fi
 
-RDEPEND=">=virtual/jre-9"
-DEPEND=">=virtual/jdk-9"
-
 S="${WORKDIR}/${MY_S}/${PN}"
 
 JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
