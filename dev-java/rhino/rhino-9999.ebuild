@@ -23,10 +23,6 @@ HOMEPAGE="https://www.mozilla.org/rhino/"
 LICENSE="MPL-2.0"
 SLOT="0"
 
-DEPEND=">=virtual/jdk-9"
-
-RDEPEND=">=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="src toolsrc xmlimplsrc"
