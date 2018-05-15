@@ -17,17 +17,19 @@ if [[ ${PV} != 9999 ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
+CP_DEPEND=""
+
+# Additional build dependencies, excluding CP_DEPEND and virtual/jdk-*
+#DEPEND="app-arch/unzip"
+
+# Likely never set, runtime dependencies not needed at build
+#RDEPEND=""
+
 inherit java-pkg
 
 DESCRIPTION=""
 HOMEPAGE=""
 LICENSE=""
 SLOT="0"
-
-CP_DEPEND=""
-
-DEPEND="${CP_DEPEND}"
-
-RDEPEND="${CP_DEPEND}"
 
 S="${WORKDIR}/${MY_S}"
