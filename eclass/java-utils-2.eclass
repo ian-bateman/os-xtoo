@@ -22,9 +22,9 @@ inherit eutils multilib
 IUSE="elibc_FreeBSD"
 
 for _jdep in DEPEND RDEPEND; do
-	[[ -n "${CP_DEPEND}" ]] && declare ${_jdep}+="${CP_DEPEND}"
+	[[ -n "${CP_DEPEND}" ]] && export ${_jdep}+="${CP_DEPEND}"
 	[[ ! "${!_jdep}" =~ .*virtual/j(dk|re).* ]] &&
-		declare ${_jdep}+=" >=virtual/jdk-10"
+		export ${_jdep}+=" >=virtual/jdk-10"
 done
 
 # @VARIABLE: JAVA_PKG_E_DEPEND
