@@ -23,12 +23,9 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="aQute Repository"
-HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
+
+OSGI_SLOT="7"
 
 # Order matters, fails if libg is further down
 CP_DEPEND="
@@ -39,24 +36,34 @@ CP_DEPEND="
 	~dev-java/bnd-annotation-${PV}:${SLOT}
 	~dev-java/bndlib-${PV}:${SLOT}
 	dev-java/osgi-annotation:0
-	dev-java/osgi-compendium:6
-	dev-java/osgi-core-api:6
+	dev-java/osgi-compendium:${OSGI_SLOT}
+	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-impl-bundle-bindex:0
-	~dev-java/osgi-impl-bundle-repoindex-api-${PV}:${SLOT}
-	~dev-java/osgi-impl-bundle-repoindex-lib-${PV}:${SLOT}
 	dev-java/osgi-util:0
 	dev-java/slf4j-api:0
 	dev-java/xz-java:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="aQute Repository"
+HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-if [[ ${PV} == 3.3.0* ]]; then
-	JAVA_RM_FILES=( src/test )
-fi
+java_prepare() {
+	local f
+
+	# add missing osgi 7 abstract methods...
+	for f in Null Reporter; do
+	sed -i -e '3iimport org.osgi.framework.Bundle;' \
+		-e '14i \\t\tpublic <L extends org.osgi.service.log.Logger> L getLogger(Bundle bundle, String name, Class<L> loggerType) { return null; }' \
+		-e '14i \\t\tpublic <L extends org.osgi.service.log.Logger> L getLogger(Class< ? > clazz, Class<L> loggerType) { return null; }' \
+		-e '14i \\t\tpublic <L extends org.osgi.service.log.Logger> L getLogger(String name, Class<L> loggerType) { return null; }' \
+		-e '14i \\t\tpublic org.osgi.service.log.Logger getLogger(Class< ? > clazz) { return null; }' \
+		-e '14i \\t\tpublic org.osgi.service.log.Logger getLogger(String name) { return null; }' \
+		src/aQute/bnd/deployer/repository/${f}LogService.java \
+		|| die "Failed to sed/add missing abstract method"
+	done
+}
