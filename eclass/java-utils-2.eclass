@@ -22,6 +22,9 @@ inherit eutils multilib
 IUSE="elibc_FreeBSD"
 
 for _jdep in DEPEND RDEPEND; do
+	if [[ -z "${!_jdep}" ]] && [[ -n "${CP_DEPEND}" ]]; then
+		declare ${_jdep}="${CP_DEPEND}"
+	fi
 	[[ ! "${!_jdep}" =~ .*virtual/j(dk|re).* ]] &&
 		declare ${_jdep}+=" >=virtual/jdk-10"
 done
