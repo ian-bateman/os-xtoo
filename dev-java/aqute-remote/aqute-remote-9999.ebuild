@@ -23,11 +23,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="aQute Remote provides remote debugging for bnd projects"
-HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -38,10 +33,16 @@ CP_DEPEND="
 	dev-java/osgi-core-api:6
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="aQute Remote provides remote debugging for bnd projects"
+HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
+
+java_prepare() {
+	sed -i -e "s|private static P|public static P|" \
+		src/aQute/remote/agent/RedirectOutput.java \
+		|| die "Failed to sed/fix weaker access"
+}
