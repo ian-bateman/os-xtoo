@@ -21,32 +21,19 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+SLOT="${PV%%.*}"
+
+CP_DEPEND="
+	dev-java/osgi-annotation:0
+	dev-java/osgi-compendium:7
+	dev-java/osgi-util:0
+	dev-java/slf4j-api:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Lots of small utilities for bnd, a swiss army knife for OSGi"
 HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
-
-CP_DEPEND="
-	dev-java/osgi-util:0
-	dev-java/slf4j-api:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/aQute.${PN}"
-
-if [[ ${PV} == 3.3.0* ]]; then
-	# Remove method that conflicts with super correct fix?
-	PATCHES=( "${FILESDIR}/${PN}-${SLOT}-rm_remove.patch" )
-fi
-
-java_prepare() {
-	sed -i -e "s|, List<T>||" src/aQute/lib/collections/SortedList.java \
-		|| die "Failed to sed/fix inherits unrelated defaults"
-}
