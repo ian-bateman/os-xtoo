@@ -26,15 +26,15 @@ S="${WORKDIR}/${P/_beta*/}"
 
 src_configure() {
 	if [[ "${PV}" != 0.6.0 ]]; then
-		local clang_path
+		local clang_path E_ECONF
 
 		clang_path="/usr/lib/llvm/${CLANG_SLOT}"
 		E_ECONF=( -Dbear=false )
 		if use clang; then
-			E_CONF+=(
+			E_ECONF+=(
 				-Dlibclang=true
 				-Dlibclang-libdir="${clang_path}/lib64"
-				-Dlibclang-libdir="${clang_path}/include"
+				-Dlibclang-headerdir="${clang_path}/include"
 			)
 		else
 			E_ECONF+=( -Dlibclang=false )
