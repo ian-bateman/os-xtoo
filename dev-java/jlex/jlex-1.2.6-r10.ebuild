@@ -12,7 +12,6 @@ KEYWORDS="~amd64"
 LICENSE="jlex"
 SLOT="0"
 
-
 S="${WORKDIR}/${P}"
 
 java_prepare() {
