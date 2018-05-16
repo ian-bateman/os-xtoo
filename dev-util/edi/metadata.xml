@@ -4,4 +4,7 @@
   <maintainer type="person">
     <email>wlt@o-sinc.com</email>
   </maintainer>
+  <use>
+    <flag name='clang'>Enable libclang support (not for build</flag>
+  </use>
 </pkgmetadata>
