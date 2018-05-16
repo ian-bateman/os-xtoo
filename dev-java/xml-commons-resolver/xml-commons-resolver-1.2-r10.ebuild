@@ -16,7 +16,6 @@ KEYWORDS="~amd64"
 IUSE="netbeans"
 SLOT="0"
 
-
 S="${WORKDIR}/${P}"
 
 java_prepare() {
