@@ -12,5 +12,4 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-
 S="${WORKDIR}/${P}"
