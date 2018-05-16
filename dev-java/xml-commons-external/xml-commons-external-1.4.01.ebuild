@@ -14,7 +14,5 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-
 JAVA_SRC_DIR="org/w3c/css/sac"
-#JAVA_RM_FILES=( "org/w3c/dom/" )
 JAVAC_ARGS+=" --add-modules=jdk.xml.dom "
