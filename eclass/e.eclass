@@ -71,7 +71,7 @@ E_ECONF=()
 # @ECLASS-VARIABLE: E_TARBALL
 # @DESCRIPTION:
 # the type of tarball
-: ${E_TARBALL:={"tar.xz"}
+: ${E_TARBALL:="tar.xz"}
 
 # @ECLASS-VARIABLE: E_TYPE
 # @DEFAULT_UNSET
