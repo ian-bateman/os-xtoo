@@ -3,16 +3,14 @@
 
 EAPI="6"
 
+E_BASE_URI="https://github.com/Obsidian-StudiosInc/${PN}"
 E_BUILD="meson"
-HOMEPAGE="https://github.com/Obsidian-StudiosInc/${PN}"
-EGIT_REPO_URI="${HOMEPAGE}"
+E_DISTFILE="v${PV}"
+E_SRC_URI="${E_BASE_URI}/archive"
+E_TARBALL="tar.gz"
 
 inherit e
 
 DESCRIPTION="A Clipboard module for E21+ desktop"
+HOMEPAGE="${E_BASE_URI}"
 LICENSE="GPL-3"
-
-if [[ ${PV} != 9999 ]]; then
-	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	S="${WORKDIR}/${P}"
-fi
