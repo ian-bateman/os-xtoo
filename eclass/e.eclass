@@ -21,6 +21,12 @@ _E_ECLASS=1
 # @DESCRIPTION:
 # Set to either "cmake" or "meson" to build instead of autotools
 
+# @ECLASS-VARIABLE: E_DISTFILE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to filename of package distribution/release file to be renamed
+# ${E_DISTFILE}.${E_TARBALL} -> ${E_P}.${E_TARBALL}
+
 # @ECLASS-VARIABLE: E_ECONF
 # @DESCRIPTION:
 # Array of flags to pass to econf, ecmake, or emeson
@@ -110,6 +116,8 @@ else
 		S="${WORKDIR}/${P%%_*}"
 	elif [[ -n "${E_TYPE}" ]]; then
 	        : ${SRC_URI:="${E_SRC_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
+	elif [[ -n "${E_DISTFILE}" ]]; then
+	        : ${SRC_URI:="${E_SRC_URI}/${E_DISTFILE}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
 	else
 	        : ${SRC_URI:="${E_SRC_URI}/${E_P}.${E_TARBALL}"}
 	fi
