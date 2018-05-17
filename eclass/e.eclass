@@ -14,7 +14,7 @@ _E_ECLASS=1
 # @ECLASS-VARIABLE: E_BASE_URI
 # @DESCRIPTION:
 # default url for enlightenment git repos
-E_BASE_URI=${E_BASE_URI:="enlightenment.org"}
+: ${E_BASE_URI:="enlightenment.org"}
 
 # @ECLASS-VARIABLE: E_BUILD
 # @DEFAULT_UNSET
@@ -30,7 +30,7 @@ E_ECONF=()
 # @ECLASS-VARIABLE: E_GIT_URI
 # @DESCRIPTION:
 # default url for enlightenment git repos
-E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
+: "${E_GIT_URI:=https://git.${E_BASE_URI}}"
 
 # @ECLASS-VARIABLE: E_PYTHON
 # @DEFAULT_UNSET
@@ -38,22 +38,19 @@ E_GIT_URI=${E_GIT_URI:="https://git.${E_BASE_URI}"}
 # Set to any value to enable support for python
 
 # @ECLASS-VARIABLE: E_PN
-# @DEFAULT_UNSET
 # @DESCRIPTION:
 # default package name for enlightenment packages
-E_PN="${E_PN:=${PN}}"
+: "${E_PN:=${PN}}"
 
 # @ECLASS-VARIABLE: E_PV
-# @DEFAULT_UNSET
 # @DESCRIPTION:
 # default package version for enlightenment packages
-E_PV="${E_PV:=${PV/_/-}}"
+: "${E_PV:=${PV/_/-}}"
 
 # @ECLASS-VARIABLE: E_PV
-# @DEFAULT_UNSET
 # @DESCRIPTION:
 # default package for enlightenment packages
-E_P="${E_P:=${E_PN}-${E_PV}}"
+: "${E_P:=${E_PN}-${E_PV}}"
 
 # @ECLASS-VARIABLE: E_SNAP
 # @DEFAULT_UNSET
@@ -87,27 +84,27 @@ fi
 
 
 if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
-	EGIT_REPO_URI=${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
+	: ${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
 fi
 
 if [[ ${E_PV} == 9999 ]]; then
 	inherit git-r3
 else
 	if [[ ${E_SNAP} ]]; then
-		SRC_URI=${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.xz -> ${E_P}.tar.xz"}
-		S=${S:="${WORKDIR}/${E_SNAP}"}
+		: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.xz -> ${E_P}.tar.xz"}
+		: ${S:="${WORKDIR}/${E_SNAP}"}
 	elif [[ ${PV} == *_* ]]; then
-	        SRC_URI=${SRC_URI:-"https://download.${E_BASE_URI}/pre-releases/${E_P}.tar.xz"}
+	        : ${SRC_URI:-"https://download.${E_BASE_URI}/pre-releases/${E_P}.tar.xz"}
 # s is set by something...
 #		S=${S:="${WORKDIR}/${P%%_*}"}
 		S="${WORKDIR}/${P%%_*}"
 	else
-	        SRC_URI=${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.xz"}
+	        : ${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.xz"}
 	fi
 	KEYWORDS="~amd64"
 fi
 
-SLOT="${SLOT:=0}"
+: "${SLOT:=0}"
 
 if [[ ${E_PYTHON} ]] && [[ "${PN}" != "python-efl" ]]; then
 	CDEPEND="dev-python/python-efl"
@@ -122,7 +119,7 @@ if [[ ! ${E_PYTHON} ]]; then
 	IUSE="debug doc nls static-libs"
 fi
 
-S="${S:=${WORKDIR}/${E_P}}"
+: "${S:=${WORKDIR}/${E_P}}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install
 
