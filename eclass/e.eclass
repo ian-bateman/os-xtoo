@@ -95,8 +95,8 @@ if [[ ${E_PV} != *9999* ]]; then
 			: ${SRC_URI:="${E_BASE_URI}/archive/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
 			: ${S:="${WORKDIR}/${E_PN}-${E_SNAP}"}
 		fi
-	elif [[ ${PV} == *_* ]]; then
-	        : ${SRC_URI:-"${E_SRC_URI}/pre-releases/${E_P}.${E_TARBALL}"}
+	elif [[ ${PV} == *_pre* ]]; then
+	        : ${SRC_URI:="${E_SRC_URI}/pre-releases/${E_P}.${E_TARBALL}"}
 		: ${S:="${WORKDIR}/${P%%_*}"}
 	elif [[ -n "${E_TYPE}" ]]; then
 	        : ${SRC_URI:="${E_SRC_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
