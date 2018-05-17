@@ -52,6 +52,11 @@ E_ECONF=()
 # default package for enlightenment packages
 : "${E_P:=${E_PN}-${E_PV}}"
 
+# @ECLASS-VARIABLE: E_SRC_URI
+# @DESCRIPTION:
+# default src url for enlightenment repos
+: "${E_SRC_URI:=https://download.${E_BASE_URI}}"
+
 # @ECLASS-VARIABLE: E_SNAP
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -99,12 +104,14 @@ else
 		: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
 		: ${S:="${WORKDIR}/${E_SNAP}"}
 	elif [[ ${PV} == *_* ]]; then
-	        : ${SRC_URI:-"https://download.${E_BASE_URI}/pre-releases/${E_P}.${E_TARBALL}"}
+	        : ${SRC_URI:-"${E_SRC_URI}/pre-releases/${E_P}.${E_TARBALL}"}
 # s is set by something...
 #		S=${S:="${WORKDIR}/${P%%_*}"}
 		S="${WORKDIR}/${P%%_*}"
+	elif [[ -n "${E_TYPE}" ]]; then
+	        : ${SRC_URI:="${E_SRC_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
 	else
-	        : ${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
+	        : ${SRC_URI:="${E_SRC_URI}/${E_P}.${E_TARBALL}"}
 	fi
 	KEYWORDS="~amd64"
 fi
