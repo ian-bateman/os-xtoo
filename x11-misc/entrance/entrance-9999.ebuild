@@ -3,13 +3,16 @@
 
 EAPI="6"
 
+E_BASE_URI="https://github.com/Obsidian-StudiosInc/${PN}"
 E_BUILD="meson"
-HOMEPAGE="https://github.com/Obsidian-StudiosInc/entrance"
-EGIT_REPO_URI="${HOMEPAGE}"
+E_DISTFILE="v${PV}"
+E_SRC_URI="${E_BASE_URI}/archive"
+E_TARBALL="tar.gz"
 
 inherit e
 
 DESCRIPTION="EFL Display manager for the X Window System"
+HOMEPAGE="${E_BASE_URI}"
 LICENSE="GPL-3"
 IUSE="consolekit logind pam"
 
@@ -26,8 +29,3 @@ DEPEND="
 "
 
 RDEPEND="${DEPEND}"
-
-if [[ ${PV} != 9999 ]]; then
-	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	S="${WORKDIR}/${P}"
-fi
