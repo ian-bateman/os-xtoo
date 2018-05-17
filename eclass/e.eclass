@@ -78,6 +78,28 @@ E_ECONF=()
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
+if [[ ${E_PV} != *9999* ]]; then
+	if [[ ${E_SNAP} ]]; then
+		if [[ -n "${E_TYPE}" ]]; then
+			: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
+			: ${S:="${WORKDIR}/${E_SNAP}"}
+		else
+			: ${SRC_URI:="${E_BASE_URI}/archive/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
+			: ${S:="${WORKDIR}/${E_PN}-${E_SNAP}"}
+		fi
+	elif [[ ${PV} == *_* ]]; then
+	        : ${SRC_URI:-"${E_SRC_URI}/pre-releases/${E_P}.${E_TARBALL}"}
+		: ${S:="${WORKDIR}/${P%%_*}"}
+	elif [[ -n "${E_TYPE}" ]]; then
+	        : ${SRC_URI:="${E_SRC_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
+	elif [[ -n "${E_DISTFILE}" ]]; then
+	        : ${SRC_URI:="${E_SRC_URI}/${E_DISTFILE}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
+	else
+	        : ${SRC_URI:="${E_SRC_URI}/${E_P}.${E_TARBALL}"}
+	fi
+	KEYWORDS="~amd64"
+fi
+
 inherit eutils xdg-utils
 
 if [[ ! ${E_PYTHON} ]]; then
@@ -98,43 +120,13 @@ elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	inherit autotools
 fi
 
-
 if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 	if [[ -n "${E_TYPE}" ]]; then
 		: ${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
 	else
 		: ${EGIT_REPO_URI:="${E_BASE_URI}.git"}
 	fi
-fi
-
-if [[ ${E_PV} == 9999 ]]; then
 	inherit git-r3
-else
-	if [[ ${E_SNAP} ]]; then
-		if [[ -n "${E_TYPE}" ]]; then
-			: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
-# s is set by something...
-#			: ${S:="${WORKDIR}/${E_SNAP}"}
-			S="${WORKDIR}/${E_SNAP}"
-		else
-			: ${SRC_URI:="${E_BASE_URI}/archive/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
-# s is set by something...
-#			: ${S:="${WORKDIR}/${E_PN}-${E_SNAP}"}
-			S="${WORKDIR}/${E_PN}-${E_SNAP}"
-		fi
-	elif [[ ${PV} == *_* ]]; then
-	        : ${SRC_URI:-"${E_SRC_URI}/pre-releases/${E_P}.${E_TARBALL}"}
-# s is set by something...
-#		S=${S:="${WORKDIR}/${P%%_*}"}
-		S="${WORKDIR}/${P%%_*}"
-	elif [[ -n "${E_TYPE}" ]]; then
-	        : ${SRC_URI:="${E_SRC_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
-	elif [[ -n "${E_DISTFILE}" ]]; then
-	        : ${SRC_URI:="${E_SRC_URI}/${E_DISTFILE}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
-	else
-	        : ${SRC_URI:="${E_SRC_URI}/${E_P}.${E_TARBALL}"}
-	fi
-	KEYWORDS="~amd64"
 fi
 
 : "${SLOT:=0}"
