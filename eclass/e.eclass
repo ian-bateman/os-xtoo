@@ -111,8 +111,17 @@ if [[ ${E_PV} == 9999 ]]; then
 	inherit git-r3
 else
 	if [[ ${E_SNAP} ]]; then
-		: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
-		: ${S:="${WORKDIR}/${E_SNAP}"}
+		if [[ -n "${E_TYPE}" ]]; then
+			: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
+# s is set by something...
+#			: ${S:="${WORKDIR}/${E_SNAP}"}
+			S="${WORKDIR}/${E_SNAP}"
+		else
+			: ${SRC_URI:="${E_BASE_URI}/archive/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
+# s is set by something...
+#			: ${S:="${WORKDIR}/${E_PN}-${E_SNAP}"}
+			S="${WORKDIR}/${E_PN}-${E_SNAP}"
+		fi
 	elif [[ ${PV} == *_* ]]; then
 	        : ${SRC_URI:-"${E_SRC_URI}/pre-releases/${E_P}.${E_TARBALL}"}
 # s is set by something...
