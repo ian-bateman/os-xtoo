@@ -78,6 +78,14 @@ E_ECONF=()
 # @DESCRIPTION:
 # if defined, the type of package, apps, bindings, tools
 
+if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
+	if [[ -n "${E_TYPE}" ]]; then
+		: ${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
+	else
+		: ${EGIT_REPO_URI:="${E_BASE_URI}.git"}
+	fi
+fi
+
 if [[ ${E_PV} != *9999* ]]; then
 	if [[ ${E_SNAP} ]]; then
 		if [[ -n "${E_TYPE}" ]]; then
@@ -121,11 +129,6 @@ elif [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
 fi
 
 if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
-	if [[ -n "${E_TYPE}" ]]; then
-		: ${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
-	else
-		: ${EGIT_REPO_URI:="${E_BASE_URI}.git"}
-	fi
 	inherit git-r3
 fi
 
