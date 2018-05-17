@@ -100,7 +100,11 @@ fi
 
 
 if [[ ${E_PV} == *9999* ]] || [[ ${E_SNAP} ]]; then
-	: ${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
+	if [[ -n "${E_TYPE}" ]]; then
+		: ${EGIT_REPO_URI:="${E_GIT_URI}/${E_TYPE}/${E_PN}.git"}
+	else
+		: ${EGIT_REPO_URI:="${E_BASE_URI}.git"}
+	fi
 fi
 
 if [[ ${E_PV} == 9999 ]]; then
