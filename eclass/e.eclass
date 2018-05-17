@@ -183,9 +183,6 @@ e_src_configure() {
 
 		mycmakeargs=(
 			-DCMAKE_BUILD_TYPE=${mytype}
-			-DCMAKE_DOC=$(usex doc)
-			-DCMAKE_NLS=$(usex nls)
-			-DCMAKE_STATIC=$(usex static-libs)
 			${E_ECONF[@]}
 		)
 		cmake-utils_src_configure
