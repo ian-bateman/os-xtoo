@@ -4,23 +4,16 @@
 EAPI="6"
 
 E_BASE_URI="https://github.com/vtorri/etui"
-E_GIT_URI="${E_BASE_URI}.git"
 E_SNAP="eb01bd8f1fa01b1300fb5b41c9c11f7291108847"
+E_TARBALL="tar.gz"
 
 inherit e
-
-if [[ ${PV} != 9999 ]]; then
-	MY_P="${PN}-${E_SNAP}"
-	SRC_URI="${E_BASE_URI}/archive/${E_SNAP}.tar.gz -> ${P}.tar.gz"
-fi
 
 DESCRIPTION="Multi-document rendering library using the EFL"
 HOMEPAGE="${E_BASE_URI}"
 LICENSE="LGPL-3 djvu? ( GPL-2 ) pdf? ( AGPL-3 )"
 SLOT="0"
 IUSE="cb djvu +pdf postscript tiff"
-
-S="${WORKDIR}/${MY_P}/"
 
 DEPEND="
 	dev-libs/efl
