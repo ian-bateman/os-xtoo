@@ -3,17 +3,16 @@
 
 EAPI="6"
 
-E_TYPE="apps"
-
-if [[ "${PV}" == 0.6.1 ]]; then
-	E_BUILD="meson"
-	SRC_URI="https://github.com/Enlightenment/${PN}/releases/download/v${PV}/${P}.tar.xz"
-fi
+E_BASE_URI="https://github.com/Enlightenment/${PN}"
+E_BUILD="meson"
+E_DISTFILE="v${PV}"
+E_SRC_URI="${E_BASE_URI}/archive"
+E_TARBALL="tar.gz"
 
 inherit e
 
 DESCRIPTION="An EFL based / focussed IDE"
-HOMEPAGE="https://phab.enlightenment.org/w/projects/${PN}/"
+HOMEPAGE="https://enlightenment.github.io/edi"
 LICENSE="BSD-2"
 IUSE+="clang"
 
@@ -25,20 +24,18 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${P/_beta*/}"
 
 src_configure() {
-	if [[ "${PV}" != 0.6.0 ]]; then
-		local clang_path E_ECONF
+	local clang_path
 
-		clang_path="/usr/lib/llvm/${CLANG_SLOT}"
-		E_ECONF=( -Dbear=false )
-		if use clang; then
-			E_ECONF+=(
-				-Dlibclang=true
-				-Dlibclang-libdir="${clang_path}/lib64"
-				-Dlibclang-headerdir="${clang_path}/include"
-			)
-		else
-			E_ECONF+=( -Dlibclang=false )
-		fi
+	clang_path="/usr/lib/llvm/${CLANG_SLOT}"
+	E_ECONF=( -Dbear=false )
+	if use clang; then
+		E_ECONF+=(
+			-Dlibclang=true
+			-Dlibclang-libdir="${clang_path}/lib64"
+			-Dlibclang-headerdir="${clang_path}/include"
+		)
+	else
+		E_ECONF+=( -Dlibclang=false )
 	fi
 	e_src_configure
 }
