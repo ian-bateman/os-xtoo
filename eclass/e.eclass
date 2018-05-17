@@ -57,6 +57,11 @@ E_ECONF=()
 # @DESCRIPTION:
 # if defined, use snap hash for git snapshot instead of versioned tarball
 
+# @ECLASS-VARIABLE: E_TARBALL
+# @DESCRIPTION:
+# the type of tarball
+: ${E_TARBALL:={"tar.xz"}
+
 # @ECLASS-VARIABLE: E_TYPE
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -91,15 +96,15 @@ if [[ ${E_PV} == 9999 ]]; then
 	inherit git-r3
 else
 	if [[ ${E_SNAP} ]]; then
-		: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.tar.xz -> ${E_P}.tar.xz"}
+		: ${SRC_URI:="${EGIT_REPO_URI}/snapshot/${E_SNAP}.${E_TARBALL} -> ${E_P}.${E_TARBALL}"}
 		: ${S:="${WORKDIR}/${E_SNAP}"}
 	elif [[ ${PV} == *_* ]]; then
-	        : ${SRC_URI:-"https://download.${E_BASE_URI}/pre-releases/${E_P}.tar.xz"}
+	        : ${SRC_URI:-"https://download.${E_BASE_URI}/pre-releases/${E_P}.${E_TARBALL}"}
 # s is set by something...
 #		S=${S:="${WORKDIR}/${P%%_*}"}
 		S="${WORKDIR}/${P%%_*}"
 	else
-	        : ${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.tar.xz"}
+	        : ${SRC_URI:="https://download.${E_BASE_URI}/rel/${E_TYPE}/${E_PN}/${E_P}.${E_TARBALL}"}
 	fi
 	KEYWORDS="~amd64"
 fi
