@@ -133,7 +133,9 @@ src_prepare() {
 		-e '/sun\/usagetracker/d' lib/classlist \
 		|| die "Failed to remove class for usage tracker"
 
-	rm lib/libavplugin* || die "Failed to remove libavplugin*.so"
+	if [[ "${SLOT}" == 10 ]]; then
+		rm lib/libavplugin* || die "Failed to remove libavplugin*.so"
+	fi
 	rm lib/fontconfig.* || die "Failed to remove fontconfig.*"
 
 	if ! use alsa && [[ -f lib/libjsoundalsa.* ]]; then
