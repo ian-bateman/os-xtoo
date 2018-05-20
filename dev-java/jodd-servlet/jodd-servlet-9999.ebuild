@@ -27,7 +27,6 @@ SLOT="0"
 CP_DEPEND="
 	~dev-java/jodd-bean-${PV}:${SLOT}
 	~dev-java/jodd-core-${PV}:${SLOT}
-	~dev-java/jodd-upload-${PV}:${SLOT}
 	dev-java/tomcat-servlet-api:4.0
 "
 
