@@ -8,6 +8,8 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="${PN}${PV%%.*}"
 MY_P="${MY_PN}-${PV}"
 
+CP_DEPEND="dev-java/stringtemplate:4"
+
 inherit java-pkg
 
 DESCRIPTION="A parser generator for many languages"
@@ -18,14 +20,6 @@ SRC_URI="https://github.com/${PN}/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.g
 KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="3.5"
-
-CP_DEPEND="dev-java/stringtemplate:4"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_P}"
 

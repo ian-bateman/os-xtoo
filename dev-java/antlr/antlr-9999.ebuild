@@ -19,24 +19,20 @@ if [[ ${PV} != 9999 ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/antlr:3
+	dev-java/icu4j:0
+	dev-java/javax-json-api:0
+	dev-java/stringtemplate:4
+	dev-java/treelayout:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr.org/"
 LICENSE="BSD"
 SLOT="${PV%%.*}"
-
-CP_DEPEND="dev-java/antlr:3
-	dev-java/icu4j:0
-	dev-java/javax-json-api:0
-	dev-java/stringtemplate:4
-	dev-java/treelayout:0"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}"
 

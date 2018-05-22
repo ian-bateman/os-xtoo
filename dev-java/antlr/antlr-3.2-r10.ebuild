@@ -5,6 +5,11 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
+CP_DEPEND="
+	dev-java/antlr:0
+	dev-java/stringtemplate:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="A parser generator for many languages"
@@ -14,17 +19,6 @@ SRC_URI="http://www.antlr3.org/download/${P}.tar.gz
 KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="3"
-
-CP_DEPEND="
-	dev-java/antlr:0
-	dev-java/stringtemplate:0
-"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 S="${WORKDIR}/${P}"
 
