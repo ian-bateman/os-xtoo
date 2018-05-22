@@ -16,13 +16,6 @@ if [[ ${PV} != 9999 ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Library and command-line tool to build Java applications"
-HOMEPAGE="https://ant.apache.org/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-bsf:0
 	dev-java/commons-bcel:0
@@ -41,11 +34,12 @@ CP_DEPEND="
 	dev-java/xz-java:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Library and command-line tool to build Java applications"
+HOMEPAGE="https://ant.apache.org/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/"
 
