@@ -5,10 +5,12 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg
-
 MY_PN=${PN/aqute/aQute}
 MY_PN=${MY_PN//-/.}
+
+CP_DEPEND="dev-java/bndlib:4"
+
+inherit java-pkg
 
 DESCRIPTION="aQute JPM Clnt"
 HOMEPAGE="https://github.com/bndtools/bnd/tree/4.0.0.DEV/cnf/repo/${MY_PN}"
@@ -17,14 +19,7 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-CP_DEPEND="dev-java/bndlib:4"
-
-DEPEND="app-arch/unzip:0
-	${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" app-arch/unzip:0"
 
 S="${WORKDIR}/OSGI-OPT"
 
