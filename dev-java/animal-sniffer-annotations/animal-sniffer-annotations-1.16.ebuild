@@ -12,14 +12,8 @@ MY_PN="${PN/-annotations/}"
 DESCRIPTION="Animal Sniffer Annotations"
 HOMEPAGE="https://www.mojohaus.org/animal-sniffer/"
 SRC_URI="https://github.com/mojohaus/${MY_PN}/archive/${MY_PN}-parent-${PV}.tar.gz -> ${P}.tar.gz"
-
 LICENSE="Apache-2.0"
-SLOT="0"
 KEYWORDS="~amd64"
-
-DEPEND="
-	>=virtual/jdk-9"
+SLOT="0"
 
 S="${WORKDIR}/${MY_PN}-${MY_PN}-parent-${PV}/${PN}"
-
-JAVA_SRC_DIR="src/main/java/"
