@@ -5,6 +5,11 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/qdox:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="A tool which helps you work with JSR175 annotations"
@@ -14,17 +19,7 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/ant-core:0
-	dev-java/qdox:0
-"
-
-DEPEND="app-arch/unzip
-	${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" app-arch/unzip"
 
 JAVAC_ARGS=" --add-modules jdk.javadoc "
 JAVA_RM_FILES=(
