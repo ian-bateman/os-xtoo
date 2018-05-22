@@ -14,5 +14,4 @@ LICENSE="public-domain"
 KEYWORDS="~amd64"
 SLOT="1"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
