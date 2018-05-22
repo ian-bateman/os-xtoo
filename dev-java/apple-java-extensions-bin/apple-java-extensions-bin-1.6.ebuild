@@ -17,12 +17,7 @@ LICENSE="Apple"
 KEYWORDS="~amd64"
 SLOT="0"
 
-DEPEND="app-arch/unzip
-	${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${MY_PN}"
 
