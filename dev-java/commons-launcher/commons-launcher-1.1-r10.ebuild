@@ -5,6 +5,11 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/commons-logging:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Dormant Java library to launch Java classes"
@@ -13,16 +18,5 @@ SRC_URI="https://archive.apache.org/dist/${PN%%-*}/${PN##*-}/source/${P}-src.tar
 LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/ant-core:0
-	dev-java/commons-logging:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${PN}"
