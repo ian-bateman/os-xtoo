@@ -16,22 +16,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/asm:6
+"
+
 inherit java-pkg
 
 DESCRIPTION="Byte Code Generation Library"
 HOMEPAGE="https://github.com/cglib/cglib/wiki"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
-
-CP_DEPEND="
-	dev-java/ant-core:0
-	dev-java/asm:6
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
