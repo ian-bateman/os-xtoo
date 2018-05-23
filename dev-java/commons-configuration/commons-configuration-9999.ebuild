@@ -18,6 +18,7 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
+JACKSON_SLOT="2"
 SPRING_SLOT="4.3"
 
 CP_DEPEND="
@@ -28,6 +29,9 @@ CP_DEPEND="
 	dev-java/commons-lang:3
 	dev-java/commons-logging:0
 	dev-java/commons-vfs:2
+	dev-java/jackson-core:${JACKSON_SLOT}
+	dev-java/jackson-databind:${JACKSON_SLOT}
+	dev-java/snakeyaml:0
 	dev-java/spring-beans:${SPRING_SLOT}
 	dev-java/spring-core:${SPRING_SLOT}
 	dev-java/xml-commons-resolver:0
