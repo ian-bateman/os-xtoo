@@ -18,13 +18,6 @@ if [[ ${PV} != 9999 ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="API exposing the Chain of Responsability design pattern"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-digester:2
 	dev-java/commons-logging:0
@@ -33,10 +26,11 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="API exposing the Chain of Responsability design pattern"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
