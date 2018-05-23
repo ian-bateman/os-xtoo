@@ -18,23 +18,17 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Component providing database connection pooling API"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
-
 CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/commons-pool:2
 	dev-java/javax-transaction-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Component providing database connection pooling API"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
+SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${MY_S}"
