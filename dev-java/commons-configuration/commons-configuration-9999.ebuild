@@ -18,13 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Generic interface to read configuration data from a variety of sources"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
-
 SPRING_SLOT="4.3"
 
 CP_DEPEND="
@@ -41,14 +34,16 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
+inherit java-pkg
+
+DESCRIPTION="Generic interface to read configuration data from a variety of sources"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
+SLOT="${PV%%.*}"
+
 JDK_VERSION="1.8"
 
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-${JDK_VERSION}"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-${JDK_VERSION}"
+DEPEND+="dev-java/javacc:0"
 
 S="${WORKDIR}/${MY_S}"
 
