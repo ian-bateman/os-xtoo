@@ -18,24 +18,18 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${P}-src"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Applies XPath expressions to graphs of objects of all kinds"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/jdom:0
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Applies XPath expressions to graphs of objects of all kinds"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
 
