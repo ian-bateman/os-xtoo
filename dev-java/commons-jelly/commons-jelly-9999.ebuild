@@ -14,13 +14,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jelly is a tool for turning XML into executable code"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/commons-cli:1
@@ -35,19 +28,14 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Jelly is a tool for turning XML into executable code"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
 
+JAVA_RM_FILES=( src/java/org/apache/commons/jelly/test )
 JAVA_SRC_DIR="src/java"
-
-java_prepare() {
-	local f
-
-	rm -r "${S}/src/java/org/apache/commons/jelly/test/" \
-		|| die "Failed to remove BaseJellyTest.java"
-}
