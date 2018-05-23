@@ -18,11 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Object-pooling API and a number of object pool implementations"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
 if [[ ${PV} == 1.6* ]]; then
 	SLOT="0"
 	JAVA_SRC_DIR="src/java"
@@ -31,10 +26,10 @@ else
 	CP_DEPEND="dev-java/cglib:3"
 fi
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Object-pooling API and a number of object pool implementations"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}"
