@@ -14,22 +14,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-rel-${PV}"
 fi
 
+CP_DEPEND="
+	dev-java/brotli:0
+	dev-java/xz-java:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Java API for working with archive files"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/brotli:0
-	dev-java/xz-java:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
