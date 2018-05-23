@@ -6,6 +6,13 @@ EAPI="7"
 JAVA_PKG_IUSE="doc source"
 JAVA_NO_COMMONS=1
 
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/asm:6
+	dev-java/commons-jci-core:0
+	dev-java/commons-logging:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Java continuation object creator"
@@ -15,16 +22,4 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/ant-core:0
-	dev-java/asm:6
-	dev-java/commons-jci-core:0
-	dev-java/commons-logging:0
-"
-
-DEPEND="app-arch/unzip
-	${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+="app-arch/unzip"
