@@ -18,22 +18,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/commons-collections:0
+	dev-java/commons-logging:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Wrappers around Reflection and Introspection APIs"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/commons-collections:0
-	dev-java/commons-logging:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}"
