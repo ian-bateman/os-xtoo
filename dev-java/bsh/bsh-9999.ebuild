@@ -17,6 +17,11 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/commons-bsf:0
+	java-virtuals/servlet-api:4.0
+"
+
 inherit java-pkg
 
 DESCRIPTION="A small embeddable Java source interpreter"
@@ -24,17 +29,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="LGPL-2.1"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/commons-bsf:0
-	java-virtuals/servlet-api:4.0
-"
-
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" dev-java/javacc:0"
 
 S="${WORKDIR}/${MY_S}"
 
