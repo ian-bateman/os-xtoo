@@ -17,8 +17,7 @@ KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="${PV/.${PV#*.*.*}/}"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${MY_P}"
 
