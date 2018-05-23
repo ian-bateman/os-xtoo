@@ -27,13 +27,7 @@ SLOT="${PV%%.*}"
 
 if [[ ${SLOT} == 2 ]]; then
 	JAVA_ENCODING="ISO-8859-1"
+	JAVA_RM_FILES=( "src/main/java/org/apache/commons/lang/enum" )
 fi
 
 S="${WORKDIR}/${MY_S}"
-
-java_prepare() {
-	if [[ ${SLOT} == 2 ]]; then
-		rm -r src/main/java/org/apache/commons/lang/enum \
-			|| die "Failed to remove enum dir"
-	fi
-}
