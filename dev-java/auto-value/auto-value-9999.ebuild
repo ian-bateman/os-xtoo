@@ -15,13 +15,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="auto-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Generated immutable value classes for Java 1.6+"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/auto-service:0
@@ -29,11 +22,11 @@ CP_DEPEND="
 	dev-java/javapoet:0
 "
 
-DEPEND="
-	${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Generated immutable value classes for Java 1.6+"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}/"
