@@ -17,23 +17,17 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/asm:6
+	dev-java/commons-logging:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Aspect-oriented programming (AOP) extension - ${MY_MOD}"
 HOMEPAGE="https://www.eclipse.org/aspectj/"
 LICENSE="EPL-1.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/asm:6
-	dev-java/commons-logging:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}"
 
