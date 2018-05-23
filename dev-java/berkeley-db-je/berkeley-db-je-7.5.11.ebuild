@@ -5,10 +5,15 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg
-
 MY_PN="${PN##*-}"
 MY_P="${MY_PN}-${PV}"
+
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/javax-resource:0
+"
+
+inherit java-pkg
 
 DESCRIPTION="Oracle Berkeley DB Java Edition"
 HOMEPAGE="https://www.oracle.com/technetwork/database/database-technologies/berkeleydb/"
@@ -17,17 +22,6 @@ KEYWORDS="~amd64"
 LICENSE="AGPL-3"
 RESTRICT="fetch"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/ant-core:0
-	dev-java/javax-resource:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_P}"
 
