@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="XML Infoset compliant object model implementation"
-HOMEPAGE="https://ws.apache.org/axiom/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/apache-mime4j-core:0
 	dev-java/commons-logging:0
@@ -32,11 +25,12 @@ CP_DEPEND="
 	dev-java/stax2-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="XML Infoset compliant object model implementation"
+HOMEPAGE="https://ws.apache.org/axiom/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
