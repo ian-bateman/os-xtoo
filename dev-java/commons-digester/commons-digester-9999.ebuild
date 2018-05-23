@@ -24,12 +24,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Reads XML configuration files to initialize Java objects"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-
 CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/commons-logging:0
@@ -41,10 +35,10 @@ elif [[ ${SLOT} == 3 ]]; then
 	CP_DEPEND+=" dev-java/cglib:3"
 fi
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Reads XML configuration files to initialize Java objects"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}"
