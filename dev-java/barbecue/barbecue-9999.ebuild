@@ -16,20 +16,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="dev-java/jdom:2"
+
 inherit java-pkg
 
 DESCRIPTION="Library to create barcodes for printing and display"
 HOMEPAGE="${BASE_URI}"
 LICENSE="IBC"
 SLOT="0"
-
-CP_DEPEND="dev-java/jdom:2"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
