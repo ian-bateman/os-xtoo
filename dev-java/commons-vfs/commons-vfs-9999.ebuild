@@ -18,12 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="A single API for accessing various different file systems"
-HOMEPAGE="https://commons.apache.org/proper/${PN}/"
-LICENSE="Apache-2.0"
-
 CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/commons-collections:4
@@ -35,20 +29,17 @@ CP_DEPEND="
 	dev-java/jsch:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="A single API for accessing various different file systems"
+HOMEPAGE="https://commons.apache.org/proper/${PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/core"
 
 PATCHES=( "${FILESDIR}/jackrabbit.patch" )
 
-java_prepare() {
-	# Need to package
-	#	org.apache.hadoop.conf.Configuration
-	#	org.apache.hadoop.fs.*
-	rm -r "${S}/src/main/java/org/apache/commons/vfs2/provider/hdfs" \
-		|| die "Failed to remove hadoop filesystem support"
-}
+# Need to package
+#	org.apache.hadoop.conf.Configuration
+#	org.apache.hadoop.fs.*
+JAVA_RM_FILES=( src/main/java/org/apache/commons/vfs2/provider/hdfs )
