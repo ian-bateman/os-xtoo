@@ -16,19 +16,16 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
+CP_DEPEND="
+	dev-java/commons-logging:0
+	dev-java/commons-lang:2
+"
+
 inherit java-pkg
 
 DESCRIPTION="Castor ${PN:7}"
 HOMEPAGE="https://${MY_PN}-data-binding.github.io/${MY_PN}/"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/commons-logging:0
-	dev-java/commons-lang:2
-"
-
-DEPEND="${CP_DEPEND}"
-RDEPEND="${CP_DEPEND}"
 
 S="${WORKDIR}/${MY_P}/${PN:7}"
