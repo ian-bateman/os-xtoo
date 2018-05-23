@@ -23,12 +23,4 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 SLOT="${PV%%.*}"
 
-CP_DEPEND=""
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}/${PN}"
