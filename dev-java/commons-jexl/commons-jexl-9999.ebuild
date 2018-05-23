@@ -18,6 +18,8 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
+CP_DEPEND="dev-java/commons-logging:0"
+
 inherit java-pkg
 
 DESCRIPTION="Library to facilitate dynamic and scripting features"
@@ -25,14 +27,7 @@ HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
-CP_DEPEND="dev-java/commons-logging:0"
-
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+="dev-java/javacc:0"
 
 S="${WORKDIR}/${MY_S}"
 
