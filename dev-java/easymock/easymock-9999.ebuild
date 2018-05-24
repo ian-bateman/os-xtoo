@@ -13,13 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Mocking easier"
-HOMEPAGE="http://easymock.org"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 #	dev-java/dexmaker:0
 CP_DEPEND="
 	dev-java/cglib:3
@@ -28,11 +21,12 @@ CP_DEPEND="
 	dev-java/testng:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Mocking easier"
+HOMEPAGE="http://easymock.org"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/core"
 
