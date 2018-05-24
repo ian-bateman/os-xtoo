@@ -16,6 +16,12 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/commons-beanutils:0
+	dev-java/commons-lang:2
+	dev-java/slf4j-api:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Simple Java library for transforming an Object to another Object"
@@ -23,21 +29,6 @@ HOMEPAGE="https://aalmiray.github.io/ezmorph/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/commons-beanutils:0
-	dev-java/commons-lang:2
-	dev-java/slf4j-api:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
-
 S="${WORKDIR}/${MY_S}"
 
-java_prepare() {
-	rm -r src/main/java/org/kordamp/ezmorph/test \
-		|| die "Failed to remove test"
-}
+JAVA_RM_FILES=( src/main/java/org/kordamp/ezmorph/test )
