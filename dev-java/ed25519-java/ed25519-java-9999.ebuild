@@ -27,3 +27,4 @@ fi
 S="${WORKDIR}/${P}"
 
 JAVA_SRC_DIR="src/"
+JAVAC_ARGS+="--add-exports=java.base/sun.security.x509=ALL-UNNAMED "
