@@ -14,11 +14,8 @@ KEYWORDS="~amd64"
 LICENSE="LGPL-2.1+"
 SLOT="0"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
+DEPEND+="app-arch/unzip"
 
 S="${WORKDIR}/${P}"
 
-java_prepare() {
-	rm -r src/com/enterprisedt/net/ftp/test || die "Failed to remove tests"
-}
+JAVA_RM_FILES=( src/com/enterprisedt/net/ftp/test )
