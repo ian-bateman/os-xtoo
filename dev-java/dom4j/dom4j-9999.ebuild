@@ -13,13 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${P/-/-version-}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Open source framework for processing XML"
-HOMEPAGE="https://${PN}.github.io"
-LICENSE="${PN}"
-SLOT="${PV%%.*}"
-
 CP_DEPEND="
 	dev-java/jaxb-api:0
 	dev-java/jaxen:0
@@ -29,11 +22,12 @@ CP_DEPEND="
 	dev-java/xsdlib:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Open source framework for processing XML"
+HOMEPAGE="https://${PN}.github.io"
+LICENSE="${PN}"
+SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${MY_S}"
 
