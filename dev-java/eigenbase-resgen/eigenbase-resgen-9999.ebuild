@@ -13,22 +13,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/eigenbase-xom:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Generator of type-safe wrappers for Java resource files"
 HOMEPAGE="https://www.hydromatic.net/${PN:10}/"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/ant-core:0
-	dev-java/eigenbase-xom:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}"
