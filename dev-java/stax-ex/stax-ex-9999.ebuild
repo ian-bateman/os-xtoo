@@ -16,6 +16,11 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/javax-activation:0
+	dev-java/jaxb-api:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="JSR-173 StAX API"
@@ -24,3 +29,5 @@ LICENSE="CDDL GPL-2"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+JAVA_RM_FILES=( src/java/module-info.java )
