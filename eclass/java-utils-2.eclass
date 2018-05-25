@@ -1384,10 +1384,10 @@ java-pkg_is-release-ge() {
 	local needed=$@
 	local release=$(java-pkg_get-release)
 	if [[ -z "${release}" ]]; then
-		debug-print "Could not get release from DEPEND"
+		debug-print "Could not get release from java-pkg_get-release"
 		return 1
 	else
-		if version_is_at_least "${needed}" "${release}"; then
+		if [[ "${needed}" -ge "${release}" ]]; then
 			debug-print "Detected release >= ${needed}"
 			return 0
 		else
