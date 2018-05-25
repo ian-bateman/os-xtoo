@@ -33,6 +33,4 @@ RDEPEND="${CP_DEPEND}
 
 S="${WORKDIR}/${MY_S}/${PN%-*}/${PN##*-}"
 
-java_prepare() {
-	rm -r src/main/resources || die "Failed to remove empty res dir"
-}
+JAVA_RM_FILES=( src/main/java/module-info.java src/main/resources )
