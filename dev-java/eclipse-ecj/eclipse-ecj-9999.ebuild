@@ -18,11 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="JDT Core Compiler aka Eclipse Compiler for Java"
-HOMEPAGE="${BASE_URI}"
-LICENSE="EPL-1.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
 # antadapter deps
@@ -31,11 +26,11 @@ SLOT="${PV/.${PV#*.*.*}/}"
 #	~dev-java/eclipse-jdt-core-${PV}:${SLOT}
 #"
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="JDT Core Compiler aka Eclipse Compiler for Java"
+HOMEPAGE="${BASE_URI}"
+LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/org.${MY_PN}/"
 
