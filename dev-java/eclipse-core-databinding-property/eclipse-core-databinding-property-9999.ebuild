@@ -18,29 +18,15 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+SLOT="${PV/.${PV#*.*.*}/}"
+
+CP_DEPEND="~dev-java/eclipse-core-databinding-observable-${PV}:${SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Eclipse Core Databinding Property (org.${PN//-/.})"
 HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
-SLOT="${PV/.${PV#*.*.*}/}"
-
-CP_DEPEND="~dev-java/eclipse-core-databinding-observable-${PV}:${SLOT}"
-#	~dev-java/eclipse-core-databinding-observable-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
-#	dev-java/icu4j:0
-#	~dev-java/eclipse-jface-${PV}:${SLOT}
-#	~dev-java/eclipse-swt-${PV}:${SLOT}
-#	~dev-java/eclipse-core-commands-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-bidi-${PV}:${SLOT}
-#	dev-java/osgi-core-api:6
-#"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
