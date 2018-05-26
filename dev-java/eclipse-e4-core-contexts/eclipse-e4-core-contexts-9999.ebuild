@@ -18,11 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Eclipse E4 Core Contexts (org.${PN//-/.})"
-HOMEPAGE="${BASE_URI}"
-LICENSE="EPL-1.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
@@ -32,11 +27,11 @@ CP_DEPEND="
 	dev-java/osgi-core-api:6
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Eclipse E4 Core Contexts (org.${PN//-/.})"
+HOMEPAGE="${BASE_URI}"
+LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
