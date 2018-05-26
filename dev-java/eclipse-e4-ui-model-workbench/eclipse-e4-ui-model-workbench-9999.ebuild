@@ -18,11 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Eclipse E4 UI Model Workbench (org.${PN//-/.})"
-HOMEPAGE="${BASE_URI}"
-LICENSE="EPL-1.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
 EEMF_SLOT="2"
@@ -36,24 +31,12 @@ CP_DEPEND="
 	dev-java/eclipse-emf-common:${EEMF_SLOT}
 	dev-java/eclipse-emf-ecore:${EEMF_SLOT}
 "
-#	~dev-java/eclipse-core-expressions-${PV}:${SLOT}
-#	~dev-java/eclipse-core-jobs-${PV}:${SLOT}
-#	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
-#	~dev-java/eclipse-jface-${PV}:${SLOT}
-#	~dev-java/eclipse-osgi-${PV}:${SLOT}
-#	~dev-java/eclipse-swt-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-app-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
-#	~dev-java/eclipse-equinox-registry-${PV}:${SLOT}
-#	dev-java/javax-inject:0
-#	dev-java/osgi-core-api:${OSGI_SLOT}
-#	dev-java/osgi-compendium:${OSGI_SLOT}
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Eclipse E4 UI Model Workbench (org.${PN//-/.})"
+HOMEPAGE="${BASE_URI}"
+LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
