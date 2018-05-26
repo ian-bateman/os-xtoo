@@ -18,11 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-wikitext.core-${PV}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Eclipse Mylyn Docs (${MY_MOD})"
-HOMEPAGE="${BASE_URI}"
-LICENSE="EPL-1.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -30,10 +25,10 @@ CP_DEPEND="
 	dev-java/jsoup:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Eclipse Mylyn Docs (${MY_MOD})"
+HOMEPAGE="${BASE_URI}"
+LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/wikitext/core/${MY_MOD}/"
