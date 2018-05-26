@@ -18,11 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Eclipse Mylyn Tasks (${MY_MOD})"
-HOMEPAGE="${BASE_URI}"
-LICENSE="EPL-1.0"
 SLOT="${PV%%.*}"
 
 ECLIPSE_SLOT="4.7"
@@ -44,13 +39,11 @@ CP_DEPEND="
 	dev-java/guava:24
 	dev-java/xerces:2
 "
-#	dev-java/icu4j:0
-#	dev-java/osgi-core-api:6
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Eclipse Mylyn Tasks (${MY_MOD})"
+HOMEPAGE="${BASE_URI}"
+LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}/"
