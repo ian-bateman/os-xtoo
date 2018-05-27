@@ -1,1 +1,0 @@
-eclipse-javax-persistence-9999.ebuild
