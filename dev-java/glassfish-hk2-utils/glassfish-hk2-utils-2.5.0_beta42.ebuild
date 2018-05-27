@@ -5,17 +5,10 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg
-
 MY_PN="${PN:10:3}"
 MY_PV="${PV%*_beta*}-b$( printf "%02d" ${PV#*_beta*})"
 MY_P="${MY_PN}-${MY_PV}"
 
-DESCRIPTION="Glassfish HK2 Implementation Utilities"
-HOMEPAGE="https://hk2.java.net/"
-SRC_URI="https://github.com/${MY_PN}-project/${MY_PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
-LICENSE="CDDL GPL-2-with-linking-exception"
-KEYWORDS="~amd64"
 SLOT="0"
 
 CP_DEPEND="
@@ -25,10 +18,12 @@ CP_DEPEND="
 	dev-java/hibernate-validator-engine:5
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Glassfish HK2 Implementation Utilities"
+HOMEPAGE="https://hk2.java.net/"
+SRC_URI="https://github.com/${MY_PN}-project/${MY_PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+LICENSE="CDDL GPL-2-with-linking-exception"
+KEYWORDS="~amd64"
 
 S="${WORKDIR}/${MY_P}/${PN:10}"
