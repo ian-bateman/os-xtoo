@@ -12,13 +12,6 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Guice is a lightweight dependency injection framework for Java 5 and above"
-HOMEPAGE="https://github.com/google/guice/"
-LICENSE="Apache-2.0"
-SLOT="4"
-
 CP_DEPEND="
 	dev-java/asm:6
 	dev-java/aopalliance:1
@@ -27,11 +20,13 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 "
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+inherit java-pkg
 
-DEPEND="${CP_DEPEND}
-	dev-java/bnd:4
-	>=virtual/jdk-9"
+DESCRIPTION="Guice is a lightweight dependency injection framework for Java 5 and above"
+HOMEPAGE="https://github.com/google/guice/"
+LICENSE="Apache-2.0"
+SLOT="${PV%%.*}"
+
+DEPEND+=" dev-java/bnd:4"
 
 S="${WORKDIR}/${P}/core"
