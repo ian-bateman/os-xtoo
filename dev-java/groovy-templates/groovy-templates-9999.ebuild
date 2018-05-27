@@ -18,25 +18,20 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PNL}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Groovy ${PN:8}"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
 	dev-java/asm:6
 	dev-java/antlr:0
-	~dev-java/groovy-${PV}:0
-	~dev-java/groovy-xml-${PV}:0
+	~dev-java/groovy-${PV}:${SLOT}
+	~dev-java/groovy-xml-${PV}:${SLOT}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Groovy ${PN:8}"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/subprojects/${PN}"
 
