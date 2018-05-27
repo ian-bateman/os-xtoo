@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="felix-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Felix Framework"
-HOMEPAGE="https://felix.apache.org/documentation/subprojects/apache-felix-framework.html"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/felix-resolver:0
 	dev-java/osgi-annotation:0
@@ -30,10 +23,11 @@ CP_DEPEND="
 	dev-java/osgi-core-api:6
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Felix Framework"
+HOMEPAGE="https://felix.apache.org/documentation/subprojects/apache-felix-framework.html"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
