@@ -20,7 +20,7 @@ SLOT="${PV%%.*}"
 
 CP_DEPEND="
 	dev-java/guava:24
-	dev-java/guice:${SLOT}
+	~dev-java/guice-${PV}:${SLOT}
 	dev-java/javax-inject:0
 "
 
