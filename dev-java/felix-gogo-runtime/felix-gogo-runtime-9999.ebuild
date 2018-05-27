@@ -14,23 +14,18 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="felix-${MY_P}"
 fi
 
+OSGI_SLOT="6"
+
+CP_DEPEND="
+	dev-java/osgi-compendium:${OSGI_SLOT}
+	dev-java/osgi-core-api:${OSGI_SLOT}
+"
+
 inherit java-pkg
 
 DESCRIPTION="Felix Gogo Runtime"
 HOMEPAGE="https://felix.apache.org/documentation/subprojects/apache-felix-gogo.html"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/osgi-compendium:6
-	dev-java/osgi-core-api:6
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8
-"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}"
