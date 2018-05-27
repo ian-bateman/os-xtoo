@@ -12,24 +12,18 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Easily usable Facebook Graph API binding library"
-HOMEPAGE="https://${PN}.github.io"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-logging:0
 	dev-java/log4j:0
 	dev-java/slf4j-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Easily usable Facebook Graph API binding library"
+HOMEPAGE="https://${PN}.github.io"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${P}/${PN}-core"
 
