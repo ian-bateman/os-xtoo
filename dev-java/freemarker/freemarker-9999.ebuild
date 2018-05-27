@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="A Java tool to generate text output based on templates"
-HOMEPAGE="https://freemarker.apache.org/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 #	dev-java/jdom:2
 CP_DEPEND="
 	dev-java/ant-core:0
@@ -39,12 +32,14 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	dev-java/javacc
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="A Java tool to generate text output based on templates"
+HOMEPAGE="https://freemarker.apache.org/"
+LICENSE="Apache-2.0"
+SLOT="0"
+
+DEPEND+=" dev-java/javacc"
 
 S="${WORKDIR}/${MY_S}/"
 
