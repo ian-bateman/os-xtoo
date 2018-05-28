@@ -7,6 +7,11 @@
 
 EAPI="7"
 
+CP_DEPEND="
+	dev-java/asm:6
+	dev-java/commons-cli:1
+"
+
 inherit java-pkg
 
 DESCRIPTION="Java Dependency checker"
@@ -14,16 +19,6 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Java"
 LICENSE="GPL-2"
 KEYWORDS="~amd64"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/asm:6
-	dev-java/commons-cli:1
-"
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 src_unpack() {
 	cp "${FILESDIR}/Main-${PV}.java" Main.java || die
