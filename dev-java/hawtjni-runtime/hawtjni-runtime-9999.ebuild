@@ -24,3 +24,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+if [[ ${PV} == 1.15* ]]; then
+	PATCHES=( "${FILESDIR}/Library_java.diff" )
+fi
