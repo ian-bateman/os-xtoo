@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Module adds JAXB annotations alternative to Jackson annotations"
-HOMEPAGE="https://wiki.fasterxml.com/JacksonJAXBAnnotations"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -31,11 +26,11 @@ CP_DEPEND="
 	dev-java/jaxb-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-8"
+DESCRIPTION="Module adds JAXB annotations alternative to Jackson annotations"
+HOMEPAGE="https://wiki.fasterxml.com/JacksonJAXBAnnotations"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/jaxb"
 
