@@ -5,15 +5,6 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg
-
-DESCRIPTION="High-Availability JDBC"
-HOMEPAGE="https://${PN}.github.io/"
-SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${PN}-${PV}.tar.gz"
-LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/berkeley-db-je:0
 	dev-java/commons-codec:0
@@ -32,11 +23,14 @@ CP_DEPEND="
 # java one for a reason
 #	sys-libs/db:6.0[java]
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="High-Availability JDBC"
+HOMEPAGE="https://${PN}.github.io/"
+SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${PN}-${PV}.tar.gz"
+LICENSE="Apache-2.0"
+KEYWORDS="~amd64"
+SLOT="0"
 
 S="${WORKDIR}/${P}/"
 
