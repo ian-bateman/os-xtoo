@@ -13,15 +13,8 @@ MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Glassfish JSR196 implementation"
 HOMEPAGE="https://www.jcp.org/en/jsr/detail?id=196"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/${MY_PN}/${PV}/${MY_P}-sources.jar"
-
 LICENSE="CDDL GPL-2-with-linking-exception"
-SLOT="0"
 KEYWORDS="~amd64"
+SLOT="0"
 
-DEPEND="app-arch/unzip:0
-	>=virtual/jdk-9"
-
-java_prepare() {
-	# Remove or ends up in the jar
-	rm pom.xml || die
-}
+DEPEND+=" app-arch/unzip:0"
