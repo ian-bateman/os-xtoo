@@ -30,6 +30,7 @@ DEPEND+=" dev-java/javacc:0"
 S="${WORKDIR}/${MY_S}/${PN}"
 
 JAVA_SRC_DIR="src/main/java src/main/javacc-support"
+JAVAC_ARGS+=" --add-exports java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED "
 
 java_prepare() {
 	javacc -OUTPUT_DIRECTORY=src/main/java src/main/javacc/java.jj \
