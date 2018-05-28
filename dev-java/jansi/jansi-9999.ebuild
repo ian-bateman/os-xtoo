@@ -15,7 +15,11 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-CP_DEPEND="dev-java/jansi-native:0"
+CP_DEPEND="
+	dev-java/hawtjni-runtime:0
+	dev-java/jansi-native:0
+	dev-java/jna:4
+"
 
 inherit java-pkg
 
