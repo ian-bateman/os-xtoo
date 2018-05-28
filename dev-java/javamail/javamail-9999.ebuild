@@ -19,20 +19,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
+CP_DEPEND="dev-java/javax-activation:0"
+
 inherit java-pkg
 
 DESCRIPTION="JavaMail API Reference Implementation"
 HOMEPAGE="https://javaee.github.io/javamail/"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
-
-CP_DEPEND="dev-java/javax-activation:0"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.9"
 
 S="${WORKDIR}/${MY_S}/mail"
 
