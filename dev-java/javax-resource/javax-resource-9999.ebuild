@@ -16,13 +16,13 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="dev-java/javax-transaction-api:0"
+
 inherit java-pkg
 
 DESCRIPTION="Java EE Connector Architecture API"
 HOMEPAGE="${BASE_URI}"
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
-
-CP_DEPEND="dev-java/javax-transaction-api:0"
 
 S="${WORKDIR}/${MY_S}"
