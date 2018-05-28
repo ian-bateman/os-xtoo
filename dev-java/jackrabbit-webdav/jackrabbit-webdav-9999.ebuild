@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Implementation of the Content Repository for Java Technology API - ${PN#*-}"
-HOMEPAGE="https://${MY_PN}.apache.org/"
-LICENSE="Apache-2.0"
 if [[ "${PV}" == 2.10.* ]]; then
 	SLOT="0"
 elif [[ "${PV}" == 2.14.* ]]; then
@@ -46,11 +41,10 @@ CP_DEPEND="${CP_DEPEND}
 	dev-java/slf4j-api:0
 	java-virtuals/servlet-api:2.3
 "
+inherit java-pkg
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Implementation of the Content Repository for Java Technology API - ${PN#*-}"
+HOMEPAGE="https://${MY_PN}.apache.org/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
