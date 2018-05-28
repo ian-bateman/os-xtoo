@@ -21,7 +21,7 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="sun-bcla-jai"
 SLOT="0"
 
-DEPEND="app-arch/unzip"
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${MY_P}"
 
