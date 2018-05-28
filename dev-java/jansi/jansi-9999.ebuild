@@ -18,7 +18,6 @@ fi
 CP_DEPEND="
 	dev-java/hawtjni-runtime:0
 	dev-java/jansi-native:0
-	dev-java/jna:4
 "
 
 inherit java-pkg
