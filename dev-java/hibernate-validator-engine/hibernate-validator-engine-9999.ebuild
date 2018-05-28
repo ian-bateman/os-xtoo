@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Hibernate Validator ${PN:20}"
-HOMEPAGE="https://hibernate.org/validator"
-LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
-
 CP_DEPEND="
 	dev-java/beanvalidation-api:2.0
 	dev-java/classmate:0
@@ -37,12 +30,14 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	dev-java/jaxb-xjc:0
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Hibernate Validator ${PN:20}"
+HOMEPAGE="https://hibernate.org/validator"
+LICENSE="Apache-2.0"
+SLOT="${PV%%.*}"
+
+DEPEND+=" dev-java/jaxb-xjc:0"
 
 S="${WORKDIR}/${MY_P}/${PN:20}"
 
