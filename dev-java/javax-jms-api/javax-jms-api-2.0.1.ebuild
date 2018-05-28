@@ -11,12 +11,11 @@ MY_PN="${PN/x-j/x.j}"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Java Message Service"
-HOMEPAGE="https://java.net/projects/jms-spec/pages/Home"
+HOMEPAGE="https://javaee.github.io/jms-spec/"
 SRC_URI="https://repo1.maven.org/maven2/${PN:0:5}/${PN:6:3}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 
 LICENSE="|| ( CDDL GPL-2 )"
-SLOT="${PV%%.*}"
 KEYWORDS="~amd64"
+SLOT="${PV%%.*}"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
