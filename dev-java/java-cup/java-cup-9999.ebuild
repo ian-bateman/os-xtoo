@@ -27,6 +27,10 @@ else
 	SLOT="${PV:3:1}"
 fi
 
+if [[ ${SLOT} != 0 ]]; then
+	CP_DEPEND="dev-java/ant-core:0"
+fi
+
 inherit java-pkg
 
 DESCRIPTION="CUP Parser Generator"
@@ -34,17 +38,12 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="GPL-2"
 
 if [[ ${SLOT} != 0 ]]; then
-	CP_DEPEND="dev-java/ant-core:0"
-	DEPEND="${CP_DEPEND}
+	DEPEND+="
 		dev-java/java-cup:0
-		dev-java/jflex:0"
+		dev-java/jflex:0
+	"
 fi
-DEPEND+="
-	!dev-java/javacup:*
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" !dev-java/javacup:*"
 
 java_prepare() {
 	if [[ ${SLOT} != 0 ]]; then
