@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jackson module to add YAML backend (parser/generator adapters)"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -29,11 +24,11 @@ CP_DEPEND="
 	dev-java/snakeyaml:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Jackson module to add YAML backend (parser/generator adapters)"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN:19}"
 
