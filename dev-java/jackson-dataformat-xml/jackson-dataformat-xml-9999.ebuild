@@ -13,11 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jackson support for serializing POJOs as XML"
-HOMEPAGE="https://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -28,11 +23,11 @@ CP_DEPEND="
 	dev-java/stax2-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Jackson support for serializing POJOs as XML"
+HOMEPAGE="https://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/"
 
