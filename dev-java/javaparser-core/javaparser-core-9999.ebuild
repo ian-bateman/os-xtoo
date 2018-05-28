@@ -16,6 +16,8 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN%%-*}-${MY_P}"
 fi
 
+CP_DEPEND="dev-java/javax-annotation:0"
+
 inherit java-pkg
 
 DESCRIPTION="Java 9 Parser and Abstract Syntax Tree"
@@ -23,14 +25,7 @@ HOMEPAGE="https://javaparser.org/"
 LICENSE="|| ( Apache-2.0 LGPL-3 )"
 SLOT="0"
 
-CP_DEPEND="dev-java/javax-annotation:0"
-
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" dev-java/javacc:0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
