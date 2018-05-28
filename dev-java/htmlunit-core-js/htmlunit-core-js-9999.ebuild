@@ -17,6 +17,11 @@ if [[ ${PV} != *9999* ]]; then
 #	MY_S="${PN}-${MY_P}"
 fi
 
+#CP_DEPEND="
+#	dev-java/junit:4
+#	dev-java/htmlunit-rhino-fork:0
+#"
+
 inherit java-pkg
 
 #DESCRIPTION="Tests and packaging for htmlunit-rhino-fork"
@@ -24,17 +29,6 @@ DESCRIPTION="HtmlUnit adaptation of Mozilla Rhino Javascript engine for Java."
 HOMEPAGE="${BASE_URI}"
 LICENSE="MPL-2.0"
 SLOT="0"
-
-#CP_DEPEND="
-#	dev-java/junit:4
-#	dev-java/htmlunit-rhino-fork:0
-#"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 #S="${WORKDIR}/${MY_S}"
 
