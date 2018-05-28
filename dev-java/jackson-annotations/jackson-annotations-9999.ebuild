@@ -13,19 +13,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
+SLOT="${PV%%.*}"
+
+CP_DEPEND="~dev-java/jackson-core-${PV}:${SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Core annotations for Jackson data processor"
 HOMEPAGE="https://wiki.fasterxml.com/JacksonHome"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
-
-CP_DEPEND="~dev-java/jackson-core-${PV}:${SLOT}"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/"
