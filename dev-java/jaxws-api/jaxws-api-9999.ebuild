@@ -16,23 +16,17 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${PN}-${MY_PV}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="JAX-WS (JSR 224) API"
-HOMEPAGE="${BASE_URI}"
-LICENSE="CDDL GPL-2-with-classpath-exception"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/javax-annotation:0
 	dev-java/javax-xml-soap:0
 	dev-java/jaxb-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="JAX-WS (JSR 224) API"
+HOMEPAGE="${BASE_URI}"
+LICENSE="CDDL GPL-2-with-classpath-exception"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN##*-}"
