@@ -15,6 +15,8 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="api-${MY_PV}"
 fi
 
+CP_DEPEND="dev-java/jaxb-api:0"
+
 inherit java-pkg
 
 DESCRIPTION="Reference implementation of the Java API for RESTful Services"
@@ -27,18 +29,5 @@ if [[ ${PV} == 2.1* ]]; then
 else
 	SLOT="2"
 	S="${WORKDIR}/${MY_S}/src/${PN}-api"
+	JAVA_RM_FILES=( src/test )
 fi
-
-CP_DEPEND="dev-java/jaxb-api:0"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-java_prepare() {
-	if [[ ${SLOT} == 2 ]]; then
-		rm -r src/test || die "Failed to remove tests"
-	fi
-}
