@@ -8,13 +8,20 @@ JAVA_PKG_IUSE="doc source"
 MY_PN="${PN%*-*}"
 MY_PN="${MY_PN//-/.}"
 MY_PV="${PV/_/-}"
-MY_P="${MY_PN}-${MY_PV}"
+MY_P="${MY_PN}-api-${MY_PV}"
+
 BASE_URI="https://github.com/javaee/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	if [[ ${PV} == 1.1.1 ]]; then
+		SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+		MY_S="${MY_P}"
+	else
+
+		SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+		MY_S="${MY_PN}-${MY_P}"
+	fi
 	KEYWORDS="~amd64"
-	MY_S="${MY_P}"
 fi
 
 CP_DEPEND="
