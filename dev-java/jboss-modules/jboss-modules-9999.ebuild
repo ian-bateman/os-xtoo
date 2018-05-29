@@ -27,3 +27,8 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
+
+java_prepare() {
+	cp -r src/main/java{9/org/jboss/${PN##*-}/*,/org/jboss/${PN##*-}/} \
+		|| die "Failed to copy over java9+ classes"
+}
