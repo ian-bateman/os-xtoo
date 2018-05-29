@@ -13,15 +13,9 @@ MY_P="${MY_PN}-api-${MY_PV}"
 BASE_URI="https://github.com/javaee/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	if [[ ${PV} == 1.1.1 ]]; then
-		SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-		MY_S="${MY_P}"
-	else
-
-		SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-		MY_S="${MY_PN}-${MY_P}"
-	fi
+	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
+	MY_S="${MY_PN}-${MY_P}"
 fi
 
 CP_DEPEND="
