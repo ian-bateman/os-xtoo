@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="JAXB Binding Compiler"
-HOMEPAGE="${BASE_URI}"
-LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 SLOT="0"
 
 CP_DEPEND="
@@ -39,11 +34,11 @@ CP_DEPEND="
 	dev-java/xml-commons-resolver:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="JAXB Binding Compiler"
+HOMEPAGE="${BASE_URI}"
+LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN##*-}"
 
