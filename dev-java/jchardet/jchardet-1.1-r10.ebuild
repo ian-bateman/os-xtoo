@@ -14,8 +14,7 @@ LICENSE="MPL-1.1"
 KEYWORDS="~amd64"
 SLOT="0"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${P}"
 
