@@ -1,1 +1,0 @@
-hibernate-commons-annotations-9999.ebuild
