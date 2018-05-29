@@ -5,43 +5,26 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-MY_PN="${PN}"
-MY_PV="${PV/000/}"
+MY_PN="jaxb-v2"
+MY_PV="${PV/.18/-b18}"
 MY_P="${MY_PN}-${MY_PV}"
-
-BASE_URI="https://github.com/kohsuke/${PN}"
+BASE_URI="https://github.com/javaee/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${PN}-${MY_P}"
+	MY_S="${MY_P}"
 fi
-
-inherit java-pkg
-
-DESCRIPTION="RELAX NG Object Model / Parser"
-HOMEPAGE="${BASE_URI}"
-LICENSE="MIT"
-SLOT="0"
 
 CP_DEPEND="dev-java/relaxng-datatype-java:0"
 
-JV="1.8"
+inherit java-pkg
 
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-${JV}"
+DESCRIPTION="RNGOM is a RelaxNG Object model library (XSOM for RelaxNG)."
+HOMEPAGE="${BASE_URI}"
+LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
+SLOT="0"
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-${JV}"
+S="${WORKDIR}/${MY_S}/jaxb-ri/external/${PN}/"
 
-S="${WORKDIR}/${MY_S}"
-
-JAVA_SRC_DIR="src"
-
-java_prepare() {
-	cd "${S}/src/org/kohsuke/rngom/parse/compact/" \
-		|| die "Failed to change directory"
-	javacc -JDK_VERSION="${JV}" CompactSyntax.jj \
-		|| die "javacc CompactSyntax.jj failed"
-}
+JAVA_RM_FILES=( src/main/java/module-info.java )
