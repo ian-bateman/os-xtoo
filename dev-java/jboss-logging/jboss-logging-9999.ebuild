@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="JBoss Logging"
-HOMEPAGE="http://community.jboss.org/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/jboss-logmanager:0
 	dev-java/log4j:0
@@ -30,16 +23,16 @@ CP_DEPEND="
 	dev-java/slf4j-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="JBoss Logging"
+HOMEPAGE="http://community.jboss.org/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
 
 java_prepare() {
-#	sed -i -e "s|map = .*|map = new Map<String, Object>();|" \
 	sed -i -e "s|map = .*|map = Collections.<String, Object>emptyMap();|" \
 		-e '66i\ \ \ \ \ \ \ \ map.putAll(MDC.getCopyOfContextMap());' \
 		src/main/java/org/jboss/logging/Slf4jLoggerProvider.java \
