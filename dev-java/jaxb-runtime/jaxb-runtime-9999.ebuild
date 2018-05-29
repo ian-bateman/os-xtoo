@@ -16,13 +16,6 @@ if [[ ${PV} != 9999 ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Java Architecture for XML Binding (JAXB)"
-HOMEPAGE="${BASE_URI}"
-LICENSE="CDDL GPL-2-with-linking-exception"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/fastinfoset:0
 	dev-java/javax-activation:0
@@ -32,11 +25,12 @@ CP_DEPEND="
 	dev-java/txw2:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Java Architecture for XML Binding (JAXB)"
+HOMEPAGE="${BASE_URI}"
+LICENSE="CDDL GPL-2-with-linking-exception"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/jaxb-ri/${PN#*-}/impl"
 
