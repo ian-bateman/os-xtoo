@@ -7,19 +7,15 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg
 
-DESCRIPTION="Jetty's NPN API"
-
 MY_PN="${PN/jetty-/}"
 MY_PV="${PV/2014/v2014}"
 MY_P="${MY_PN}-${MY_PV}"
 
-SLOT="0"
-SRC_URI="https://repo1.maven.org/maven2/org/eclipse/${PN:0:5}/npn/${MY_PN}/${MY_PV}/${MY_P}-sources.jar"
+DESCRIPTION="Jetty's NPN API"
 HOMEPAGE="https://wiki.eclipse.org/Jetty/Feature/NPN"
+SRC_URI="https://repo1.maven.org/maven2/org/eclipse/${PN:0:5}/npn/${MY_PN}/${MY_PV}/${MY_P}-sources.jar"
 KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
+SLOT="0"
 
-DEPEND="
-	app-arch/unzip
-	>=virtual/jdk-9
-"
+DEPEND+=" app-arch/unzip"
