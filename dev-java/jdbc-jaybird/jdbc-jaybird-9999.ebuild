@@ -18,24 +18,18 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="JDBC Type 4 driver for Firebird SQL server"
-HOMEPAGE="https://jaybirdwiki.firebirdsql.org/"
-LICENSE="LGPL-2"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/antlr:4
 	dev-java/jna:4
 	dev-java/javax-resource:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="JDBC Type 4 driver for Firebird SQL server"
+HOMEPAGE="https://jaybirdwiki.firebirdsql.org/"
+LICENSE="LGPL-2"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
 
