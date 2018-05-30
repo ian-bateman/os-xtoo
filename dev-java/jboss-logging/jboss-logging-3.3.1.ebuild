@@ -1,1 +1,0 @@
-jboss-logging-9999.ebuild
