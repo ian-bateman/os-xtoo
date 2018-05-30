@@ -5,8 +5,6 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-DESCRIPTION="Jetty's Utils"
-
 MY_PN="jetty"
 MY_PV="${PV/.201/.v201}"
 MY_PV="${MY_PV/_rc/.RC}"
@@ -20,12 +18,7 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}.project-${MY_P}"
 fi
 
-inherit java-pkg
-
 SLOT="${PV/.${PV#*.*.*}/}"
-HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
-LICENSE="Apache-2.0"
-SLOT="${PV%*.*.*}"
 
 MONGO_SLOT="3"
 
@@ -37,10 +30,10 @@ CP_DEPEND="
 	dev-java/mongodb-driver-legacy:${MONGO_SLOT}
 "
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+inherit java-pkg
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+DESCRIPTION="Jetty's Utils"
+HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
