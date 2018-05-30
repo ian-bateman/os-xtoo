@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jersey RESTful Web Services in Java Container Jetty Servlet"
-HOMEPAGE="https://jersey.github.io/"
-LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="${PV%%.*}"
 
 JETTY_SLOT="9.4"
@@ -39,10 +34,10 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Jersey RESTful Web Services in Java Container Jetty Servlet"
+HOMEPAGE="https://jersey.github.io/"
+LICENSE="CDDL GPL-2-with-linking-exception"
 
 S="${WORKDIR}/${MY_P}/containers/${PN#*-*-}"
