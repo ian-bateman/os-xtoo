@@ -21,12 +21,3 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
-
-java_prepare() {
-	sed -i -e "s|Object, Object> jnsToXns = new HashMap<Object|String, Object> jnsToXns = new HashMap<String|" \
-		-e "s|jnsToXns.put(|jnsToXns.put((String)|" \
-		-e "s|Iterator<Object>|Iterator<String>|g" \
-		-e "s|emptySet|<String>emptySet|" \
-		src/main/java/org/codehaus/jettison/mapped/MappedNamespaceConvention.java \
-		|| die "Failed to sed/fix java 10 type change"
-}
