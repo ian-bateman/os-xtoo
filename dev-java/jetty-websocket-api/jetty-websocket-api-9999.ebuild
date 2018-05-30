@@ -5,8 +5,6 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-DESCRIPTION="Jetty's WebSocket API"
-
 MY_PN="jetty"
 MY_PV="${PV/.201/.v201}"
 MY_PV="${MY_PV/_rc/.RC}"
@@ -22,8 +20,9 @@ fi
 
 inherit java-pkg
 
+DESCRIPTION="Jetty's WebSocket API"
 HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
 LICENSE="Apache-2.0"
-SLOT="${PV%*.*.*}"
+SLOT="${PV/.${PV#*.*.*}/}"
 
 S="${WORKDIR}/${MY_PN}.project-${MY_P}/${PN:0:15}/${PN:6}"
