@@ -5,8 +5,6 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-DESCRIPTION="Jetty's Plus"
-
 MY_PN="jetty"
 MY_PV="${PV/.201/.v201}"
 MY_PV="${MY_PV/_rc/.RC}"
@@ -20,14 +18,10 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}.project-${MY_P}"
 fi
 
-inherit java-pkg
-
 SLOT="${PV/.${PV#*.*.*}/}"
-HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
-LICENSE="Apache-2.0"
-SLOT="${PV%*.*.*}"
 
-CP_DEPEND="~dev-java/jetty-jndi-${PV}:${SLOT}
+CP_DEPEND="
+	~dev-java/jetty-jndi-${PV}:${SLOT}
 	~dev-java/jetty-security-${PV}:${SLOT}
 	~dev-java/jetty-server-${PV}:${SLOT}
 	~dev-java/jetty-servlet-${PV}:${SLOT}
@@ -35,12 +29,13 @@ CP_DEPEND="~dev-java/jetty-jndi-${PV}:${SLOT}
 	~dev-java/jetty-webapp-${PV}:${SLOT}
 	~dev-java/jetty-xml-${PV}:${SLOT}
 	dev-java/javax-transaction-api:0
-	java-virtuals/servlet-api:4.0"
+	java-virtuals/servlet-api:4.0
+"
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+inherit java-pkg
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+DESCRIPTION="Jetty's Plus"
+HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
