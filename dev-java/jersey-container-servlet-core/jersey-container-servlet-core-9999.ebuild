@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jersey RESTful Web Services in Java Core Servlet"
-HOMEPAGE="https://${MY_PN}.java.net/"
-LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="dev-java/eclipse-javax-persistence:2
@@ -32,12 +27,13 @@ CP_DEPEND="dev-java/eclipse-javax-persistence:2
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	dev-java/istack-commons-buildtools:0
-	>=virtual/jre-1.8"
+DESCRIPTION="Jersey RESTful Web Services in Java Core Servlet"
+HOMEPAGE="https://${MY_PN}.java.net/"
+LICENSE="CDDL GPL-2-with-linking-exception"
+
+DEPEND+=" dev-java/istack-commons-buildtools:0"
 
 S="${WORKDIR}/${MY_P}/containers/${PN/container-/}"
 
