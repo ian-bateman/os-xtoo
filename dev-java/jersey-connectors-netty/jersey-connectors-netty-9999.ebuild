@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jersey RESTful Web Services in Java Connector Netty"
-HOMEPAGE="https://jersey.github.io/"
-LICENSE="CDDL GPL-2-with-linking-exception"
 SLOT="${PV%%.*}"
 
 NETTY_SLOT="4.1"
@@ -39,13 +34,13 @@ CP_DEPEND="
 	dev-java/netty-handler-proxy:${NETTY_SLOT}
 	dev-java/netty-transport:${NETTY_SLOT}
 "
+inherit java-pkg
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+DESCRIPTION="Jersey RESTful Web Services in Java Connector Netty"
+HOMEPAGE="https://jersey.github.io/"
+LICENSE="CDDL GPL-2-with-linking-exception"
 
-RDEPEND="${CP_DEPEND}
-	dev-java/istack-commons-buildtools:0
-	>=virtual/jre-1.8"
+DEPEND+=" dev-java/istack-commons-buildtools:0"
 
 S="${WORKDIR}/${MY_P}/connectors/${PN#*-*-}-connector"
 
