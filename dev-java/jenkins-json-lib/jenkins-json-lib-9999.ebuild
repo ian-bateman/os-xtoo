@@ -19,12 +19,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Jenkins automation server ${PN:8}"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
-
 CP_DEPEND="
 	dev-java/xom:0
 	dev-java/commons-beanutils:0
@@ -35,11 +29,11 @@ CP_DEPEND="
 	dev-java/jakarta-oro:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Jenkins automation server ${PN:8}"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}"
 
