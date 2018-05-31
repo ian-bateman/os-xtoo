@@ -5,6 +5,8 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source examples"
 
+CP_DEPEND="dev-java/jzlib:0"
+
 inherit java-pkg
 
 DESCRIPTION="JSch is a pure Java implementation of SSH2"
@@ -14,12 +16,4 @@ KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="0"
 
-CP_DEPEND="dev-java/jzlib:0"
-
-DEPEND="${CP_DEPEND}
-	app-arch/unzip
-	>=virtual/jdk-9"
-
-RDEPEND="
-	${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" app-arch/unzip"
