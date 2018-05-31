@@ -17,19 +17,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+SLOT="0"
+
+CP_DEPEND="~dev-java/jodd-core-${PV}:${SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Light open-source Java micro-frameworks and tools"
 HOMEPAGE="https://jodd.org"
 LICENSE="BSD-2-clause"
-SLOT="0"
-
-CP_DEPEND="~dev-java/jodd-core-${PV}:${SLOT}"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${PN}"
