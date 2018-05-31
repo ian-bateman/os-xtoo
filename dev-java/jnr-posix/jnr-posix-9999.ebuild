@@ -13,11 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Lightweight cross-platform POSIX emulation layer for Java"
-HOMEPAGE="${BASE_URI}"
-LICENSE="|| ( CDDL GPL-2 LGPL-2.1 )"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -25,11 +20,11 @@ CP_DEPEND="
 	dev-java/jnr-ffi:2
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Lightweight cross-platform POSIX emulation layer for Java"
+HOMEPAGE="${BASE_URI}"
+LICENSE="|| ( CDDL GPL-2 LGPL-2.1 )"
 
 S="${WORKDIR}/${MY_S}"
 
