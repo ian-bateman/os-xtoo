@@ -14,11 +14,6 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit eutils java-pkg
-
-DESCRIPTION="Java-based Ruby interpreter implementation"
-HOMEPAGE="https://${PN}.org/"
-LICENSE="|| ( EPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="0"
 
 RUBY_VERSION=2.4
@@ -52,21 +47,18 @@ CP_DEPEND="
 	dev-java/unsafe-fences:0
 "
 
-DEPEND="${CP_DEPEND}
-	dev-lang/ruby:${RUBY_VERSION}
-	>=virtual/jdk-9
-"
+inherit eutils java-pkg
 
-RDEPEND="${CP_DEPEND}
-	dev-lang/ruby:${RUBY_VERSION}
-	>=virtual/jre-9
-"
+DESCRIPTION="Java-based Ruby interpreter implementation"
+HOMEPAGE="https://${PN}.org/"
+LICENSE="|| ( EPL-1.0 GPL-2 LGPL-2.1 )"
+
+DEPEND+=" dev-lang/ruby:${RUBY_VERSION}"
+RDEPEND+=" dev-lang/ruby:${RUBY_VERSION}"
 
 S="${WORKDIR}/${P}"
 
-PATCHES=(
-	"${FILESDIR}/bash-launcher.patch"
-)
+PATCHES=( "${FILESDIR}/bash-launcher.patch" )
 
 JAVA_SRC_DIR="core/src/main/resources core/src/main/java"
 JAVAC_ARGS+=" --add-exports java.base/sun.nio.cs=ALL-UNNAMED "
