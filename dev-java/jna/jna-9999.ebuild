@@ -12,6 +12,8 @@ if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64"
 fi
 
+CDEPEND="dev-libs/libffi"
+
 inherit java-pkg
 
 DESCRIPTION="Java Native Access"
@@ -20,14 +22,7 @@ LICENSE="|| ( Apache-2.0 LGPL-2.1 )"
 IUSE="+awt +nio-buffers"
 SLOT="${PV%%.*}"
 
-CDEPEND="dev-libs/libffi"
-
-DEPEND="${CDEPEND}
-	>=virtual/jdk-9
-	virtual/pkgconfig"
-
-RDEPEND="${CDEPEND}
-	>=virtual/jre-9"
+DEPEND+=" virtual/pkgconfig"
 
 S="${WORKDIR}/${P}"
 
