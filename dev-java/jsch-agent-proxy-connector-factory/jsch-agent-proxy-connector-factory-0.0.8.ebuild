@@ -5,16 +5,9 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg
-
 MY_PN="${PN:0:16}"
 MY_P="${MY_PN}-${PV}"
 
-DESCRIPTION="A proxy to ssh-agent and Pageant in Java"
-HOMEPAGE="https://github.com/ymnk/${MY_PN}"
-SRC_URI="${HOMEPAGE}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
-LICENSE="BSD-3-clause"
-KEYWORDS="~amd64"
 SLOT="0"
 
 CP_DEPEND="
@@ -24,11 +17,13 @@ CP_DEPEND="
 	~dev-java/jsch-agent-proxy-usocket-nc-${PV}:${SLOT}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="A proxy to ssh-agent and Pageant in Java"
+HOMEPAGE="https://github.com/ymnk/${MY_PN}"
+SRC_URI="${HOMEPAGE}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+LICENSE="BSD-3-clause"
+KEYWORDS="~amd64"
 
 S="${WORKDIR}/${MY_P}/${PN}"
 
