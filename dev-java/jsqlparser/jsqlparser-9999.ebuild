@@ -16,6 +16,11 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S=""
 fi
 
+#CP_DEPEND="
+#	dev-java/javacc:0
+#	dev-java/velocity-engine-core:0
+#"
+
 inherit java-pkg
 
 DESCRIPTION="Library to perform type arithemtic over the type system"
@@ -23,18 +28,7 @@ HOMEPAGE="${BASE_URI}/wiki"
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 
-#CP_DEPEND="
-#	dev-java/javacc:0
-#	dev-java/velocity-engine-core:0
-#"
-
 JDK_VERSION="1.8"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-${JDK_VERSION}"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-${JDK_VERSION}"
 
 S="${WORKDIR}/${MY_S}"
 
