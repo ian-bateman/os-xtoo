@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Light open-source Java micro-frameworks and tools"
-HOMEPAGE="https://jodd.org"
-LICENSE="BSD-2-clause"
 SLOT="0"
 
 CP_DEPEND="
@@ -30,10 +25,10 @@ CP_DEPEND="
 	dev-java/tomcat-servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Light open-source Java micro-frameworks and tools"
+HOMEPAGE="https://jodd.org"
+LICENSE="BSD-2-clause"
 
 S="${WORKDIR}/${MY_S}/${PN}"
