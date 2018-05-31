@@ -12,24 +12,18 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Simple json encoder/decoder for java"
-HOMEPAGE="https://jsonic.osdn.jp/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-beanutils:0
 	dev-java/guice:4
 	dev-java/tomcat-servlet-api:3.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Simple json encoder/decoder for java"
+HOMEPAGE="https://jsonic.osdn.jp/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${P}"
 
