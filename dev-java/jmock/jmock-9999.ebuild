@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="An expressive Mock Object library for Test Driven Development"
-HOMEPAGE="${BASE_URI}"
-LICENSE="BSD-3-clause"
 SLOT="0"
 
 HAMCREST_SLOT="2"
@@ -33,10 +28,10 @@ CP_DEPEND="
 	dev-java/junit:4
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="An expressive Mock Object library for Test Driven Development"
+HOMEPAGE="${BASE_URI}"
+LICENSE="BSD-3-clause"
 
 S="${WORKDIR}/${MY_S}/${PN}"
