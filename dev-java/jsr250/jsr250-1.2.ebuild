@@ -13,4 +13,4 @@ LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="app-arch/unzip"
+DEPEND+=" app-arch/unzip"
