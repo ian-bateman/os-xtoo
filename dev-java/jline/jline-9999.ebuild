@@ -5,12 +5,14 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-BASE_URI="https://github.com/${PN}/${PN}2"
+SLOT="${PV%%.*}"
+
+BASE_URI="https://github.com/${PN}/${PN}${SLOT}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${PN}2-${P}"
+	MY_S="${PN}${SLOT}-${P}"
 fi
 
 CP_DEPEND="
@@ -23,6 +25,5 @@ inherit java-pkg
 DESCRIPTION="Library for handling console input"
 HOMEPAGE="http://jline.github.io/jline2/"
 LICENSE="BSD-3-clause"
-SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${MY_S}"
