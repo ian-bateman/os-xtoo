@@ -19,12 +19,24 @@ else
 		MY_P="v${PV}"
 		MY_PN="${PN}"
 		MY_S="${P}"
-		CP_DEPEND+=" dev-java/java-cup:1"
 		SLOT="1"
 	fi
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
+
+JCUP_SLOT=1
+
+if [[ ${PV} == 1.4* ]]; then
+	JAVA_SRC_DIR="src/JFlex"
+	JAVA_RES_DIR="resources"
+	JCUP_SLOT=0
+fi
+
+CP_DEPEND="
+	dev-java/ant-core:0
+	dev-java/java-cup:${JCUP_SLOT}
+"
 
 inherit java-pkg
 
@@ -32,26 +44,9 @@ DESCRIPTION="Lexical analyzer generator (also known as scanner generator)"
 HOMEPAGE="${BASE_URI}"
 LICENSE="BSD-3-clause"
 
-JCUP_SLOT=1
-if [[ ${PV} == 1.4* ]]; then
-	JAVA_SRC_DIR="src/JFlex"
-	JAVA_RES_DIR="resources"
-	JCUP_SLOT=0
-fi
+[[ ${PV} != 1.4* ]] && DEPEND+=" dev-java/jflex:0"
 
-CP_DEPEND="dev-java/ant-core:0
-	dev-java/java-cup:${JCUP_SLOT}"
-
-DEPEND="${CP_DEPEND}
-	!=dev-java/jflex-1.6.1:0
-	>=virtual/jdk-9"
-
-if [[ ${PV} != 1.4* ]]; then
-	DEPEND+=" dev-java/jflex:0"
-fi
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" !=dev-java/jflex-1.6.1:0"
 
 S="${WORKDIR}/${MY_S}"
 
