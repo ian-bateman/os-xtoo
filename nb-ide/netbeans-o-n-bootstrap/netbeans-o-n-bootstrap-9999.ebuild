@@ -18,6 +18,8 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
+JAVA_RELEASE="10"
+
 java_prepare() {
 	# java 9 fix
 	sed -i -e '186i\ \ \ \@Override\n\ \ \ \ public boolean isModifiableModule(java.lang.Module m) { return false; }' \
