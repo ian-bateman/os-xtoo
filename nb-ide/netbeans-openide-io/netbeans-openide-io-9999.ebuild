@@ -5,9 +5,8 @@ EAPI="7"
 
 inherit java-netbeans
 
-NB_BUNDLE=0
-
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	dev-java/jsr305:0
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
 	~nb-ide/netbeans-api-intent-${PV}:${SLOT}
