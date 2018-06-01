@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-releases-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Java-based indexing and search technology ${PN:7}"
-HOMEPAGE="https://lucene.apache.org/"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -29,12 +24,10 @@ CP_DEPEND="
 	~dev-java/lucene-sandbox-${PV}:${SLOT}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Java-based indexing and search technology ${PN:7}"
+HOMEPAGE="https://lucene.apache.org/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN//-//}"
-
-JAVA_SRC_DIR="src/java"
