@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/jaxb-api:0
 	~nb-ide/netbeans-editor-mimelookup-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-util-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-filesystems-${PV}:${SLOT}
@@ -18,5 +19,3 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
-
-JAVAC_ARGS+=" --add-modules java.xml.bind "
