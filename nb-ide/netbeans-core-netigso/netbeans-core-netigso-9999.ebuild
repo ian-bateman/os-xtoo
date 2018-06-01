@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-core-startup-${PV}:${SLOT}
 	~nb-ide/netbeans-o-n-bootstrap-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-modules-${PV}:${SLOT}
