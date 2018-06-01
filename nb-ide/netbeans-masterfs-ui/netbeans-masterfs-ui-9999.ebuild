@@ -5,9 +5,8 @@ EAPI="7"
 
 inherit java-netbeans
 
-NB_BUNDLE=0
-
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-masterfs-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-awt-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-filesystems-${PV}:${SLOT}
