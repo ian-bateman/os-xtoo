@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="A generic, reliable, fast & flexible logging framework ${PN#*-}"
-HOMEPAGE="https://logback.qos.ch"
-LICENSE="|| ( EPL-1.0 LGPL-2.1 )"
 SLOT="0"
 
 JANINO_SLOT="0"
@@ -33,10 +28,10 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="A generic, reliable, fast & flexible logging framework ${PN#*-}"
+HOMEPAGE="https://logback.qos.ch"
+LICENSE="|| ( EPL-1.0 LGPL-2.1 )"
 
 S="${WORKDIR}/${MY_S}/${PN}"
