@@ -16,20 +16,13 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="logging-log4j2-${MY_P}"
 fi
 
+CP_DEPEND="dev-java/osgi-core-api:6"
+
 inherit java-pkg
 
 DESCRIPTION="Apache Logging Log4J2 Api"
-
 HOMEPAGE="https://logging.apache.org/log4j/"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="dev-java/osgi-core-api:6"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
