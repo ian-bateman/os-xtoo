@@ -5,6 +5,11 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
+CP_DEPEND="
+	dev-java/jakarta-oro:0
+	dev-java/jss:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Netscape Directory SDK for Java"
@@ -13,17 +18,6 @@ SRC_URI="https://www-archive.mozilla.org/directory/ldapsdk_java_20020819.tar.gz"
 KEYWORDS="~amd64"
 LICENSE="MPL-1.1"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/jakarta-oro:0
-	dev-java/jss:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}//mozilla/directory/java-sdk/"
 
