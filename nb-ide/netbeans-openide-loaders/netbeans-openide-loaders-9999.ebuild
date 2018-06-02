@@ -3,11 +3,10 @@
 
 EAPI="7"
 
-NB_BUNDLE=0
-
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
 	~nb-ide/netbeans-api-progress-${PV}:${SLOT}
 	~nb-ide/netbeans-api-progress-nb-${PV}:${SLOT}
