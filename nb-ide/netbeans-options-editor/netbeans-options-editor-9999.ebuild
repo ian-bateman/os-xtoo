@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-editor-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-document-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-indent-${PV}:${SLOT}
