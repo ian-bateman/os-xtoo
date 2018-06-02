@@ -8,6 +8,7 @@ inherit java-netbeans
 CP_DEPEND="
 	dev-java/eclipse-equinox-common:4.7
 	dev-java/eclipse-mylyn-tasks-core:3
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-bugtracking-${PV}:${SLOT}
 	~nb-ide/netbeans-bugtracking-commons-${PV}:${SLOT}
 	~nb-ide/netbeans-mylyn-util-${PV}:${SLOT}
