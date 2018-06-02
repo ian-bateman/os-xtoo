@@ -5,9 +5,8 @@ EAPI="7"
 
 inherit java-netbeans
 
-NB_BUNDLE=0
-
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-o-n-bootstrap-${PV}:${SLOT}
 	~nb-ide/netbeans-o-n-swing-plaf-${PV}:${SLOT}
 	~nb-ide/netbeans-core-startup-${PV}:${SLOT}
