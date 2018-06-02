@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-mimelookup-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-tools-storage-${PV}:${SLOT}
