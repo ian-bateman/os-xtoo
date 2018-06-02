@@ -5,8 +5,8 @@ EAPI="7"
 
 inherit java-netbeans
 
-#	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-extexecution-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-filesystems-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-util-${PV}:${SLOT}
