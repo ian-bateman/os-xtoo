@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	nb-plugins/net-java-html:0
 	nb-plugins/net-java-html-boot:0
 	nb-plugins/net-java-html-boot-fx:0
