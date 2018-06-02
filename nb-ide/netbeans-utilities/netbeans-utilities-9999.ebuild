@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-openide-awt-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-actions-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-dialogs-${PV}:${SLOT}
