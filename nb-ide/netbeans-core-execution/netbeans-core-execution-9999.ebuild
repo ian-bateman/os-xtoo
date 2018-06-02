@@ -5,8 +5,6 @@ EAPI="7"
 
 inherit java-netbeans
 
-NB_BUNDLE=0
-
 CP_DEPEND="
 	~nb-ide/netbeans-api-progress-${PV}:${SLOT}
 	~nb-ide/netbeans-core-startup-${PV}:${SLOT}
@@ -32,3 +30,8 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	sed -i -e "89d" src/org/netbeans/core/execution/SecMan.java \
+		|| die "Failed to remove @Override"
+}
