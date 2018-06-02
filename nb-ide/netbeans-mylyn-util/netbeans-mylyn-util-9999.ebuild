@@ -15,6 +15,7 @@ CP_DEPEND="
 	dev-java/eclipse-mylyn-commons-net:${MYLYN_SLOT}
 	dev-java/eclipse-mylyn-tasks-core:${MYLYN_SLOT}
 	dev-java/eclipse-mylyn-wikitext:3
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-bugtracking-${PV}:${SLOT}
 	~nb-ide/netbeans-keyring-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-awt-${PV}:${SLOT}
