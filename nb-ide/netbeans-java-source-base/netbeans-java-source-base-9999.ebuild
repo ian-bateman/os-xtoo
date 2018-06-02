@@ -7,6 +7,7 @@ inherit java-netbeans
 
 CP_DEPEND="
 	dev-java/asm:6
+	dev-java/javax-annotation:0
 	dev-java/lucene-core:3
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
 	~nb-ide/netbeans-api-java-${PV}:${SLOT}
@@ -44,6 +45,7 @@ DEPEND="${CP_DEPEND}
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
+JAVAC_ARGS+=" --add-exports=java.base/jdk.internal.misc=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.javadoc/com.sun.tools.javadoc.main=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED "
@@ -56,4 +58,13 @@ JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED 
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util.swing=ALL-UNNAMED "
-JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
+
+java_prepare() {
+	sed -i -e "s|, unit.toplevelScope||" \
+		src/org/netbeans/api/java/source/SourceUtils.java \
+		|| die "Failed to sed/fix for java 11"
+
+	sed -i -e "s|sun.misc|jdk.internal.misc|" \
+		src/org/netbeans/modules/java/source/NoJavacHelper.java \
+		|| die "Failed to sed/fix for java 11"
+}
