@@ -7,7 +7,9 @@ inherit java-netbeans
 
 CP_DEPEND="
 	dev-java/byte-buddy-dep:0
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
+	~nb-ide/netbeans-api-java-${PV}:${SLOT}
 	~nb-ide/netbeans-api-java-classpath-${PV}:${SLOT}
 	~nb-ide/netbeans-api-progress-${PV}:${SLOT}
 	~nb-ide/netbeans-api-progress-nb-${PV}:${SLOT}
