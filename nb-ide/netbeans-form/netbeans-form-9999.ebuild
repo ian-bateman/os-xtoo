@@ -40,7 +40,6 @@ RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
 
 JAVAC_ARGS+=" --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED "
-PATCHES=( "${FILESDIR}/java9.patch" )
 
 java_prepare() {
 	mv {release/sources,src}/org/netbeans/lib \
