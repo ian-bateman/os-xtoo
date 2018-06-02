@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-api-debugger-${PV}:${SLOT}
 	~nb-ide/netbeans-api-debugger-jpda-${PV}:${SLOT}
 	~nb-ide/netbeans-api-io-${PV}:${SLOT}
