@@ -6,6 +6,7 @@ EAPI="7"
 inherit java-netbeans
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-api-java-classpath-${PV}:${SLOT}
 	~nb-ide/netbeans-autoupdate-services-${PV}:${SLOT}
 	~nb-ide/netbeans-autoupdate-ui-${PV}:${SLOT}
