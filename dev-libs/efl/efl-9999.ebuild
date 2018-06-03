@@ -231,6 +231,7 @@ src_configure() {
 		$(use_enable psd image-loader-psd)
 		$(use_enable pulseaudio)
 		$(use_enable pulseaudio audio)
+		$(use_enable pulseaudio multisense)
 		$(use_enable rawphoto libraw)
 		$(use_enable scim)
 		$(use_enable sdl)
@@ -256,7 +257,6 @@ src_configure() {
 
 		--enable-cserve
 		--enable-libmount
-		--enable-multisense
 		--enable-threads
 		--enable-xinput22
 
