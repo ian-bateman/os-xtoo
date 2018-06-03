@@ -7,6 +7,7 @@ inherit java-netbeans
 
 CP_DEPEND="
 	dev-java/eclipse-jgit:0
+	dev-java/javax-annotation:0
 	~nb-ide/netbeans-api-progress-${PV}:${SLOT}
 	~nb-ide/netbeans-api-progress-nb-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-document-${PV}:${SLOT}
