@@ -1,1 +1,0 @@
-netbeans-properties-syntax-9999.ebuild
