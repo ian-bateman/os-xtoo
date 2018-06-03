@@ -71,7 +71,6 @@ RDEPEND="
 	~nb-ide/${PN}-editor-tools-storage-${PV}:${SLOT}
 	~nb-ide/${PN}-extbrowser-${PV}:${SLOT}
 	~nb-ide/${PN}-extexecution-impl-${PV}:${SLOT}
-	~nb-ide/${PN}-form-binding-${PV}:${SLOT}
 	~nb-ide/${PN}-form-refactoring-${PV}:${SLOT}
 	~nb-ide/${PN}-git-${PV}:${SLOT}
 	~nb-ide/${PN}-gsf-codecoverage-${PV}:${SLOT}
@@ -335,7 +334,7 @@ src_install() {
 	jars_short=( browser execution execution-base execution-impl )
 	jars+=( ${jars_short[@]/#/ext} )
 
-	jars_short=( "" "-binding" "-nb" "-refactoring" )
+	jars_short=( "" "-nb" "-refactoring" )
 	jars+=( ${jars_short[@]/#/form} )
 
 	jars_short=( codecoverage testrunner testrunner-ui )
