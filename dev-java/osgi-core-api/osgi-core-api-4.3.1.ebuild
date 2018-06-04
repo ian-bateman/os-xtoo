@@ -10,16 +10,11 @@ inherit java-pkg
 DESCRIPTION="OSGi Service Platform Core API (Companion Code)"
 HOMEPAGE="https://www.osgi.org/Specifications/HomePage"
 SRC_URI="https://www.osgi.org/download/r${PV%%.*}v43/osgi.core-${PV}.jar"
-
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
 KEYWORDS="~amd64"
+SLOT="${PV%%.*}"
 
-DEPEND="app-arch/unzip:0
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
 
 JAVA_SRC_DIR="OSGI-OPT/src"
-
-java_prepare() {
-	rm -r org || die
-}
+JAVA_RM_FILES=( org )
