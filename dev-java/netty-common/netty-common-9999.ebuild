@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Netty ${MY_MOD}"
-HOMEPAGE="https://${MY_PN}.io/"
-LICENSE="Apache-2.0"
 SLOT="${PV/.${PV#*.*.*}/}"
 
 ASM_SLOT="6"
@@ -46,13 +41,13 @@ if [[ "${SLOT}" != "4.0" ]] ; then
 		dev-java/groovy-ant:0
 	"
 fi
+inherit java-pkg
 
-DEPEND="${GROOVY_DEPS}
-	${CP_DEPEND}
-	>=virtual/jdk-9"
+DESCRIPTION="Netty ${MY_MOD}"
+HOMEPAGE="https://${MY_PN}.io/"
+LICENSE="Apache-2.0"
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" ${GROOVY_DEPS}"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
