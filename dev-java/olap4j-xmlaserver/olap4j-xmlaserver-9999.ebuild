@@ -13,11 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="XML for Analysis (XMLA) server based upon an olap4j connection"
-HOMEPAGE="https://www.${PN}.org/"
-LICENSE="EPL-1.0"
 SLOT="0"
 
 CP_DEPEND="
@@ -30,11 +25,11 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="XML for Analysis (XMLA) server based upon an olap4j connection"
+HOMEPAGE="https://www.${PN}.org/"
+LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}"
 
