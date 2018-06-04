@@ -21,11 +21,6 @@ else
 #	MY_S="${PN}-${MY_P}/${MY_MOD}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Open-source JavaServer Faces implementation - ${MY_MOD}"
-HOMEPAGE="https://myfaces.apache.org/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
@@ -37,11 +32,12 @@ CP_DEPEND="
 	dev-java/tomcat-servlet-api:4.0
 "
 
-DEPEND="app-arch/unzip
-	${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Open-source JavaServer Faces implementation - ${MY_MOD}"
+HOMEPAGE="https://myfaces.apache.org/"
+LICENSE="Apache-2.0"
+
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${MY_S}"
