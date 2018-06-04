@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="The basis for model description, reading, and plugins system"
-HOMEPAGE="http://codehaus-plexus.github.io/modello/"
-LICENSE="MIT"
 SLOT="0"
 
 CP_DEPEND="
@@ -30,11 +25,11 @@ CP_DEPEND="
 	dev-java/plexus-utils:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="The basis for model description, reading, and plugins system"
+HOMEPAGE="http://codehaus-plexus.github.io/modello/"
+LICENSE="MIT"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
