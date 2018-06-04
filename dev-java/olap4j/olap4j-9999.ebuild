@@ -16,6 +16,8 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${P}"
 fi
 
+CP_DEPEND="dev-java/xerces:2"
+
 inherit java-pkg
 
 DESCRIPTION="Open Java API for OLAP"
@@ -23,16 +25,9 @@ HOMEPAGE="https://www.${PN}.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="dev-java/xerces:2"
-
 JDK_VERSION="1.8"
 
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-${JDK_VERSION}"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-${JDK_VERSION}"
+DEPEND+=" dev-java/javacc:0"
 
 S="${WORKDIR}/${MY_S}"
 
