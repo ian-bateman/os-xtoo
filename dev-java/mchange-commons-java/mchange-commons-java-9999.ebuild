@@ -13,13 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Library used by c3p0"
-HOMEPAGE="${BASE_URI}"
-LICENSE="|| ( LGPL-2.1 EPL-1.0 )"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/log4j:0
 	dev-java/log4j-api:0
@@ -28,11 +21,12 @@ CP_DEPEND="
 	dev-java/typesafe-config:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Library used by c3p0"
+HOMEPAGE="${BASE_URI}"
+LICENSE="|| ( LGPL-2.1 EPL-1.0 )"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
 
