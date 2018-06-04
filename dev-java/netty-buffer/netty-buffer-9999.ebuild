@@ -17,21 +17,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
+SLOT="${PV/.${PV#*.*.*}/}"
+
+CP_DEPEND="~dev-java/netty-common-${PV}:${SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Netty ${MY_MOD}"
 HOMEPAGE="https://${MY_PN}.io/"
 LICENSE="Apache-2.0"
-SLOT="${PV/.${PV#*.*.*}/}"
-
-CP_DEPEND="~dev-java/netty-common-${PV}:${SLOT}"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
-
-JAVA_SRC_DIR="src/main/java"
