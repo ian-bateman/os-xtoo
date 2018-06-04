@@ -83,6 +83,7 @@ java_prepare() {
 		api/internal/changedetection/rules/PreviousSuccessTaskStateChanges
 		api/internal/changedetection/state/DefaultFileCollectionSnapshot
 		api/internal/changedetection/state/OrderInsensitiveTaskFilePropertyCompareStrategy
+		api/internal/file/CompositeFileCollection
 		api/internal/tasks/CompositeTaskOutputPropertySpec
 		plugin/management/internal/DefaultPluginRequests
 	)
