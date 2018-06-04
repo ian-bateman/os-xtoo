@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Java PDF library, forked from iText"
-HOMEPAGE="${BASE_URI}"
-LICENSE="MPL-2.0"
 SLOT="0"
 
 BCV="1.59"
@@ -30,12 +25,10 @@ CP_DEPEND="
 	dev-java/bcprov:${BCV}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Java PDF library, forked from iText"
+HOMEPAGE="${BASE_URI}"
+LICENSE="MPL-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
-
-JAVA_SRC_DIR="src/main/java"
