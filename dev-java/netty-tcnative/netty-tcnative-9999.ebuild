@@ -27,11 +27,8 @@ CDEPEND="
 	dev-libs/openssl:0=
 "
 
-RDEPEND="${CDEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CDEPEND}
-	>=virtual/jdk-9"
+RDEPEND+="${CDEPEND}"
+DEPEND+="${CDEPEND}"
 
 S="${WORKDIR}/${MY_S}/openssl-dynamic"
 NATIVE_DIR="src/main/native-package"
