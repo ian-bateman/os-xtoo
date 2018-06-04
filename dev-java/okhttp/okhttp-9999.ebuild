@@ -13,11 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${P/${PN}/${PN}-parent}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="HTTP client that's efficient by default"
-HOMEPAGE="https://square.github.io/okhttp/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="dev-java/okio:0"
@@ -30,11 +25,11 @@ if [[ ${PV} == 3* ]]; then
 	"
 fi
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="HTTP client that's efficient by default"
+HOMEPAGE="https://square.github.io/okhttp/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
