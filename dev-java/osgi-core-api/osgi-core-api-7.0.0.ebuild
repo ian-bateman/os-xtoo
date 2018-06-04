@@ -7,7 +7,6 @@ JAVA_PKG_IUSE="doc source"
 
 CP_DEPEND="dev-java/osgi-annotation:0"
 
-DEPEND="app-arch/unzip:0"
 SLOT="${PV%%.*}"
 
 inherit java-pkg
@@ -17,5 +16,7 @@ HOMEPAGE="https://www.osgi.org/Specifications/HomePage"
 SRC_URI="https://www.osgi.org/download/r${SLOT}/osgi.core-${PV}.jar"
 LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
+
+DEPEND+=" app-arch/unzip"
 
 JAVA_SRC_DIR="OSGI-OPT/src"
