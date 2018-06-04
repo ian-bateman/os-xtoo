@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="OLAP server to analyze large quantities of data in real-time"
-HOMEPAGE="http://${PN}.pentaho.com/"
-LICENSE="EPL-1.0"
-SLOT="${PV%%.*}"
-
 CP_DEPEND="
 	dev-java/commons-collections:0
 	dev-java/commons-dbcp:2
@@ -42,14 +35,16 @@ CP_DEPEND="
 	java-virtuals/servlet-api:2.4
 "
 
+inherit java-pkg
+
+DESCRIPTION="OLAP server to analyze large quantities of data in real-time"
+HOMEPAGE="http://${PN}.pentaho.com/"
+LICENSE="EPL-1.0"
+SLOT="${PV%%.*}"
+
 JDK_VERSION="9"
 
-DEPEND="${CP_DEPEND}
-	dev-java/ant-core:0
-	>=virtual/jdk-${JDK_VERSION}"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-${JDK_VERSION}"
+DEPEND+=" dev-java/ant-core:0"
 
 S="${WORKDIR}/${MY_S}/"
 
