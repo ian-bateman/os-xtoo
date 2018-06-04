@@ -16,21 +16,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+SLOT="0"
+
+CP_DEPEND="~dev-java/openpdf-${PV}:${SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Java PDF library, forked from iText ${PN:4} module"
 HOMEPAGE="${BASE_URI}"
 LICENSE="MPL-2.0"
-SLOT="0"
-
-CP_DEPEND="~dev-java/openpdf-${PV}:${SLOT}"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${PN:4}"
-
-JAVA_SRC_DIR="src/main/java"
