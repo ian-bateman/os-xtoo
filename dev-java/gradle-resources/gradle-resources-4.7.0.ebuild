@@ -1,1 +1,0 @@
-gradle-resources-9999.ebuild
