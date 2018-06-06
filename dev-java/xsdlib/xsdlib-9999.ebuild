@@ -13,22 +13,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="msv-${P}"
 fi
 
+CP_DEPEND="
+	dev-java/relaxng-datatype-java:0
+	dev-java/xerces:2
+"
+
 inherit java-pkg
 
 DESCRIPTION="XML Schema datatypes library"
 HOMEPAGE="${BASE_URI}"
 LICENSE="BSD"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/relaxng-datatype-java:0
-	dev-java/xerces:2
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
