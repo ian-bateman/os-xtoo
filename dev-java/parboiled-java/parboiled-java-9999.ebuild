@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Elegant parsing - lightweight, easy-to-use, powerful."
-HOMEPAGE="${BASE_URI}/wiki"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
@@ -28,10 +23,10 @@ CP_DEPEND="
 	~dev-java/parboiled-core-${PV}:${SLOT}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Elegant parsing - lightweight, easy-to-use, powerful."
+HOMEPAGE="${BASE_URI}/wiki"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
