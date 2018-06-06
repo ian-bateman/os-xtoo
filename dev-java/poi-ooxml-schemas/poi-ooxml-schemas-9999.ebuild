@@ -15,6 +15,8 @@ XSDS=( XAdES XAdESv141 ${PN}-xml ${PN}-xmldsig-core-schema
 	${PN}-encryptionCertificate ${PN}-encryptionInfo
 	${PN}-encryptionPassword ${PN}-signatureInfo ${PN}-visio )
 
+CP_DEPEND="dev-java/xmlbeans:0"
+
 inherit java-pkg
 
 DESCRIPTION="Java API for Microsoft Documents ${PN:4}"
@@ -38,14 +40,7 @@ SRC_URI="
 	https://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd -> ${PN}-xmldsig-core-schema.xsd
 "
 
-CP_DEPEND="dev-java/xmlbeans:0"
-
-DEPEND="app-arch/unzip
-	${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${PN}/"
 
