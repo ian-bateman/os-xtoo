@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_PN}-${PV}/${PN}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Simple OAuth library for Java Http Client using Okhttp"
-HOMEPAGE="${BASE_URI}"
-LICENSE="MIT"
 SLOT="0"
 
 CP_DEPEND="
@@ -29,12 +24,10 @@ CP_DEPEND="
 	~dev-java/${MY_PN}-core-${PV}:${SLOT}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Simple OAuth library for Java Http Client using Okhttp"
+HOMEPAGE="${BASE_URI}"
+LICENSE="MIT"
 
 S="${WORKDIR}/${MY_S}"
-
-JAVA_SRC_DIR="src/main/java/"
