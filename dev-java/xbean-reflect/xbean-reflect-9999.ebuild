@@ -16,24 +16,18 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="geronimo-${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Create objects and graphs of objects for DI frameworks"
-HOMEPAGE="https://geronimo.apache.org/xbean/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/asm:6
 	dev-java/commons-logging:0
 	dev-java/log4j:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Create objects and graphs of objects for DI frameworks"
+HOMEPAGE="https://geronimo.apache.org/xbean/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
