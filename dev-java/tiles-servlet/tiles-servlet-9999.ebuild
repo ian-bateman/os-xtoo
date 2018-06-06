@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN:0:5}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Templating framework for modern Java applications ${PN:6}"
-HOMEPAGE="https://tiles.apache.org/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 TILESREQ_SLOT="0"
@@ -34,10 +29,10 @@ CP_DEPEND="
 	java-virtuals/servlet-api:2.5
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Templating framework for modern Java applications ${PN:6}"
+HOMEPAGE="https://tiles.apache.org/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
