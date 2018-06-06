@@ -23,12 +23,10 @@ HOMEPAGE="https://tomcat.apache.org/native-doc/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-DEPEND="
+DEPEND+="
 	dev-libs/apr:1
 	dev-libs/openssl:=
-	>=virtual/jdk-9:*
 "
-RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_S}/native"
 
