@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Set of tools that ease Velocity integration ${PN:15}"
-HOMEPAGE="https://velocity.apache.org/tools/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
@@ -35,11 +30,11 @@ CP_DEPEND="
 	java-virtuals/servlet-api:2.5
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Set of tools that ease Velocity integration ${PN:15}"
+HOMEPAGE="https://velocity.apache.org/tools/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}"
 
