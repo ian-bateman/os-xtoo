@@ -14,5 +14,4 @@ LICENSE="LGPL-3"
 KEYWORDS="~amd64"
 SLOT="0"
 
-DEPEND="app-arch/unzip
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
