@@ -13,13 +13,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Provides a means to locate assets within WebJars"
-HOMEPAGE="${BASE_URI}"
-LICENSE="MIT"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/commons-compress:0
 	dev-java/commons-lang:3
@@ -27,10 +20,11 @@ CP_DEPEND="
 	dev-java/slf4j-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Provides a means to locate assets within WebJars"
+HOMEPAGE="${BASE_URI}"
+LICENSE="MIT"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
