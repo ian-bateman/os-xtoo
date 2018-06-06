@@ -11,21 +11,16 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
+CP_DEPEND="
+	dev-java/osgi-compendium:4
+	dev-java/osgi-core-api:4
+"
+
 inherit java-pkg
 
 DESCRIPTION="Service registry that enables OSGi style service registry programs"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/osgi-compendium:4
-	dev-java/osgi-core-api:4"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/pojosr-${MY_P}"
