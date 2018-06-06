@@ -36,9 +36,7 @@ esac
 #	java-virtuals/servlet-api:4.0
 #"
 
-DEPEND="
-	app-arch/unzip:*
-	>=virtual/jdk-9"
+DEPEND+=" app-arch/unzip"
 
 #S="${WORKDIR}/${MY_S}/${PN}"
 
