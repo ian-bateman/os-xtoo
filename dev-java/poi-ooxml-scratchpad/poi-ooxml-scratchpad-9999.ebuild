@@ -18,19 +18,14 @@ if [[ ${PV} != 9999 ]]; then
 	MY_S="${PN:0:3}-${MY_P}"
 fi
 
+SLOT="0"
+
+CP_DEPEND="~dev-java/poi-${PV}:${SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Java API for Microsoft Documents"
 HOMEPAGE="https://poi.apache.org/"
 LICENSE="Apache-2.0"
-SLOT="0"
-
-CP_DEPEND="~dev-java/poi-${PV}:${SLOT}"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${MY_S}/src/${PN#*-*-}"
