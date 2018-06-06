@@ -17,11 +17,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}/${PN}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Spring Framework ${PN##*-}"
-HOMEPAGE="https://spring.io/"
-LICENSE="Apache-2.0"
 SLOT="${PV%*.*}"
 
 HTTPCORE_SLOT="4.4"
@@ -74,10 +69,10 @@ CP_DEPEND="
 	java-virtuals/servlet-api:3.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Spring Framework ${PN##*-}"
+HOMEPAGE="https://spring.io/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}"
