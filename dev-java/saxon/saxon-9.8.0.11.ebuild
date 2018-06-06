@@ -7,15 +7,6 @@ JAVA_PKG_IUSE="doc source examples"
 
 MY_P="${PN}${PV//./-}"
 
-inherit java-pkg
-
-DESCRIPTION="The XSLT and XQuery Processor"
-HOMEPAGE="https://sourceforge.net/projects/saxon"
-SRC_URI="mirror://sourceforge/${PN}/Saxon-HE/${PV%.*.*}/${MY_P}source.zip"
-KEYWORDS="~amd64"
-LICENSE="BSD"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/axiom-api:0
 	dev-java/dom4j:2
@@ -27,13 +18,16 @@ CP_DEPEND="
 	dev-java/xml-commons-resolver:0
 "
 
-DEPEND="${CP_DEPEND}
-	app-arch/unzip
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="
-	${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="The XSLT and XQuery Processor"
+HOMEPAGE="https://sourceforge.net/projects/saxon"
+SRC_URI="mirror://sourceforge/${PN}/Saxon-HE/${PV%.*.*}/${MY_P}source.zip"
+KEYWORDS="~amd64"
+LICENSE="BSD"
+SLOT="0"
+
+DEPEND+=" app-arch/unzip"
 
 java_prepare() {
 	sed -i -e "s|<Node> atts|<Attribute> atts|" \
