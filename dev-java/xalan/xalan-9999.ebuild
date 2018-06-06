@@ -16,6 +16,12 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/commons-bcel:0
+	dev-java/java-cup:0
+	dev-java/xerces:2
+"
+
 inherit java-pkg
 
 DESCRIPTION="Transform XML documents using XSLT standard stylesheets"
@@ -23,18 +29,7 @@ HOMEPAGE="https://xalan.apache.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/commons-bcel:0
-	dev-java/java-cup:0
-	dev-java/xerces:2
-"
-
-DEPEND="${CP_DEPEND}
-	dev-java/jlex:0
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" dev-java/jlex:0"
 
 S="${WORKDIR}/${MY_S}"
 
