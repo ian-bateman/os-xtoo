@@ -17,6 +17,11 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/gson:0
+	dev-java/guava:24
+"
+
 inherit java-pkg
 
 DESCRIPTION="Protocol Buffers - ${MY_MOD}"
@@ -24,17 +29,7 @@ HOMEPAGE="https://developers.google.com/protocol-buffers/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/gson:0
-	dev-java/guava:24
-"
-
-DEPEND="${CP_DEPEND}
-	~dev-libs/protobuf-${PV}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND+=" ~dev-libs/protobuf-${PV}"
 
 S="${WORKDIR}/${MY_S}/java/${MY_MOD}"
 
