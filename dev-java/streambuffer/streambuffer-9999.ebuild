@@ -16,6 +16,11 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${P}"
 fi
 
+CP_DEPEND="
+	dev-java/javax-activation:0
+	dev-java/stax-ex:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Stream based representation for XML infoset"
@@ -23,20 +28,7 @@ HOMEPAGE="https://javaee.github.io/${MY_PN}/"
 LICENSE="CDDL GPL-2"
 SLOT="0"
 
-CP_DEPEND="
-	dev-java/javax-activation:0
-	dev-java/stax-ex:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
 S="${WORKDIR}/${MY_S}"
-
-JAVA_SRC_DIR="src"
 
 if [[ ${PN} = 9999 ]]; then
 	S+="/${PN}"
