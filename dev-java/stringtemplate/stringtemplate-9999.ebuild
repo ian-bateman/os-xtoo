@@ -16,21 +16,15 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+ANTLR_SLOT="3"
+
+CP_DEPEND="dev-java/antlr:${ANTLR_SLOT}"
+
 inherit java-pkg
 
 DESCRIPTION="Template engine"
 HOMEPAGE="https://www.stringtemplate.org/"
 LICENSE="BSD"
-
-ANTLR_SLOT="3"
-
-CP_DEPEND="dev-java/antlr:${ANTLR_SLOT}"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}"
 
