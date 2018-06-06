@@ -12,13 +12,7 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Markdown processor based on a parboiled PEG parser supporting extensions"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
 SLOT="0"
-
 PARBOILED_SLOT="0"
 
 CP_DEPEND="
@@ -26,10 +20,10 @@ CP_DEPEND="
 	dev-java/parboiled-java:${PARBOILED_SLOT}
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Markdown processor based on a parboiled PEG parser supporting extensions"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${P}"
