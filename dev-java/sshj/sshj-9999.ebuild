@@ -12,13 +12,7 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="SSHv2 library ssh, scp, and sftp for java"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
 SLOT="0"
-
 BCV="1.59"
 
 CP_DEPEND="
@@ -30,10 +24,10 @@ CP_DEPEND="
 	dev-java/slf4j-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="SSHv2 library ssh, scp, and sftp for java"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${P}"
