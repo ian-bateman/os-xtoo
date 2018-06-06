@@ -16,22 +16,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
+CP_DEPEND="
+	dev-java/reactive-streams:0
+	dev-java/rxjava:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Adapter between RxJava and ReactiveStreams"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/reactive-streams:0
-	dev-java/rxjava:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}/${PN}"
