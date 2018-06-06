@@ -12,11 +12,6 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Java framework for RSS and Atom feeds"
-HOMEPAGE="https://${PN}tools.github.io/${PN}/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 CP_DEPEND="
@@ -25,12 +20,10 @@ CP_DEPEND="
 	dev-java/slf4j-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Java framework for RSS and Atom feeds"
+HOMEPAGE="https://${PN}tools.github.io/${PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${P}/${PN}"
-
-JAVA_SRC_DIR="src/main/java"
