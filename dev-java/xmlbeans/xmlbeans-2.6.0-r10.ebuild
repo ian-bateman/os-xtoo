@@ -4,6 +4,13 @@
 EAPI="7"
 JAVA_PKG_IUSE="doc source"
 
+CP_DEPEND="
+	dev-java/annogen:0
+	dev-java/ant-core:0
+	dev-java/piccolo:0
+	dev-java/saxon:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="An XML-Java binding tool - Retired EOL project"
@@ -12,19 +19,6 @@ SRC_URI="https://archive.apache.org/dist/${PN}/source/${P}-src.tgz"
 LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/annogen:0
-	dev-java/ant-core:0
-	dev-java/piccolo:0
-	dev-java/saxon:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
 
