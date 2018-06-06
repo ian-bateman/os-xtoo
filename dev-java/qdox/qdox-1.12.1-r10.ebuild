@@ -5,6 +5,8 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
+CP_DEPEND="dev-java/ant-core:0"
+
 inherit java-pkg
 
 DESCRIPTION="Extractor of Java class/interface/method definitions"
@@ -14,11 +16,10 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 SLOT="0"
 
-CP_DEPEND="dev-java/ant-core:0"
-
-DEPEND="dev-java/byaccj:0
+DEPEND+="
+	dev-java/byaccj:0
 	dev-java/jflex:0
-	>=virtual/jdk-9"
+"
 
 S="${WORKDIR}/${PN}-${P}"
 
