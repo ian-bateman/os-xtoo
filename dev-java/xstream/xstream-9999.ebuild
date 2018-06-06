@@ -16,13 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Serialize Java objects to XML and back again."
-HOMEPAGE="https://x-stream.github.io/"
-LICENSE="BSD-3-clause"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/cglib:3
 	dev-java/dom4j:2
@@ -37,11 +30,12 @@ CP_DEPEND="
 	dev-java/xpp:3
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Serialize Java objects to XML and back again."
+HOMEPAGE="https://x-stream.github.io/"
+LICENSE="BSD-3-clause"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
 
