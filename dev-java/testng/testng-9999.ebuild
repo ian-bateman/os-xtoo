@@ -12,13 +12,6 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="TestNG testing framework"
-HOMEPAGE="https://testng.org/"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/bsh:0
@@ -29,10 +22,11 @@ CP_DEPEND="
 	dev-java/snakeyaml:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="TestNG testing framework"
+HOMEPAGE="https://testng.org/"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${P}"
