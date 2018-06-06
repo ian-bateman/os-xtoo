@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="The Velocity Engine core module"
-HOMEPAGE="https://velocity.apache.org/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
@@ -51,12 +46,13 @@ fi
 
 CP_DEPEND+=" dev-java/commons-lang:${LANG_SLOT}"
 
-DEPEND="${CP_DEPEND}
-	dev-java/javacc:0
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="The Velocity Engine core module"
+HOMEPAGE="https://velocity.apache.org/"
+LICENSE="Apache-2.0"
+
+DEPEND+=" dev-java/javacc:0"
 
 java_prepare() {
 	local d f files
