@@ -16,22 +16,16 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${P}"
 fi
 
+CP_DEPEND="
+	dev-java/plexus-container-default:0
+	dev-java/plexus-utils:0
+"
+
 inherit java-pkg
 
 DESCRIPTION="Plexus Build Api"
 HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 SLOT="0"
-
-CP_DEPEND="
-	dev-java/plexus-container-default:0
-	dev-java/plexus-utils:0
-"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_S}"
