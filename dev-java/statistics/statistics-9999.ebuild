@@ -12,11 +12,6 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Statistics framework used inside Ehcache and Terracotta products"
-HOMEPAGE="${BASE_URI}"
-LICENSE="Apache-2.0"
 if [[ ${PV} == 1.* ]]; then
 	SLOT="0"
 	CP_DEPEND="dev-java/spotbugs-annotations:0 "
@@ -26,10 +21,10 @@ fi
 
 CP_DEPEND+="dev-java/slf4j-api:0"
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Statistics framework used inside Ehcache and Terracotta products"
+HOMEPAGE="${BASE_URI}"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${P}"
