@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Apache Request microframework project ${PN:14}"
-HOMEPAGE="https://tiles.apache.org/${MY_PN}/"
-LICENSE="Apache-2.0"
 SLOT="0"
 
 SPRING_SLOT="4.3"
@@ -33,10 +28,10 @@ CP_DEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-1.8"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-1.8"
+DESCRIPTION="Apache Request microframework project ${PN:14}"
+HOMEPAGE="https://tiles.apache.org/${MY_PN}/"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
