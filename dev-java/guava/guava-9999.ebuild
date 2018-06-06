@@ -15,6 +15,7 @@ fi
 CP_DEPEND="
 	dev-java/animal-sniffer-annotations:0
 	dev-java/checker-compatqual:0
+	dev-java/checker-qual:0
 	dev-java/error-prone-annotations:0
 	>=dev-java/j2objc-annotations-1.2:0
 	dev-java/javax-inject:0
