@@ -14,15 +14,7 @@ KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-CP_DEPEND=""
-
-DEPEND="${CP_DEPEND}
-	app-arch/unzip
-	>=virtual/jdk-9"
-
-RDEPEND="
-	${CP_DEPEND}
-	>=virtual/jre-9"
+DEPEND=" app-arch/unzip"
 
 S="${WORKDIR}/${P}"
 
