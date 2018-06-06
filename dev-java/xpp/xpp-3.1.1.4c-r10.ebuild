@@ -12,12 +12,6 @@ MY_P="${MY_PN}-${MY_PV}"
 
 BASE_URI="https://www.extreme.indiana.edu/"
 
-inherit java-pkg
-
-DESCRIPTION="Xml Pull Parser"
-HOMEPAGE="${BASE_URI}xgws/xsoap/xpp/"
-LICENSE="Apache-1.1 IBM"
-KEYWORDS="~amd64"
 case ${SLOT} in
 	2)	MY_PN="PullParser${SLOT}"
 		MY_P="${MY_PN}.${MY_PV}"
@@ -31,11 +25,12 @@ case ${SLOT} in
 		;;
 esac
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Xml Pull Parser"
+HOMEPAGE="${BASE_URI}xgws/xsoap/xpp/"
+LICENSE="Apache-1.1 IBM"
+KEYWORDS="~amd64"
 
 S="${WORKDIR}/${MY_P}"
 
