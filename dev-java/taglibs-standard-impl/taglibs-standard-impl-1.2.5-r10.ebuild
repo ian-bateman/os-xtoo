@@ -7,13 +7,6 @@ JAVA_PKG_IUSE="doc source"
 
 MY_P="${PN%-*}-${PV}"
 
-inherit java-pkg
-
-DESCRIPTION="An implementation of the JSP Standard Tag Library (JSTL) ${PN##*-}"
-HOMEPAGE="https://tomcat.apache.org/taglibs/standard/"
-SRC_URI="mirror://apache/tomcat/${PN}/${MY_P}/${MY_P}-source-release.zip"
-LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 CP_DEPEND="
@@ -22,11 +15,14 @@ CP_DEPEND="
 	dev-java/xalan:0
 "
 
-DEPEND="app-arch/unzip
-	${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="An implementation of the JSP Standard Tag Library (JSTL) ${PN##*-}"
+HOMEPAGE="https://tomcat.apache.org/taglibs/standard/"
+SRC_URI="mirror://apache/tomcat/${PN}/${MY_P}/${MY_P}-source-release.zip"
+LICENSE="Apache-2.0"
+KEYWORDS="~amd64"
+
+DEPEND+=" app-arch/unzip"
 
 S="${WORKDIR}/${MY_P}/${PN##*-}"
