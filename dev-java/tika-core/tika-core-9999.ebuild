@@ -17,23 +17,17 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Toolkit detects and extracts metadata and text from various file types ${PN#*-}"
-HOMEPAGE="https://tika.apache.org"
-LICENSE="Apache-2.0"
-SLOT="0"
-
 CP_DEPEND="
 	dev-java/bnd-annotation:4
 	dev-java/jaxb-api:0
 	dev-java/osgi-core-api:6
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Toolkit detects and extracts metadata and text from various file types ${PN#*-}"
+HOMEPAGE="https://tika.apache.org"
+LICENSE="Apache-2.0"
+SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
