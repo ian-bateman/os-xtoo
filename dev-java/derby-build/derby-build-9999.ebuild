@@ -29,9 +29,17 @@ HOMEPAGE="https://db.apache.org/${PN}/"
 LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_P}/java/${PN:6}"
+# File moved to derby-engine
+JAVA_RM_FILES=( org/apache/derbyPreBuild/ReleaseProperties.java )
 
 java_prepare() {
-	# File moved to derby-engine
-	rm -v "${S}/org/apache/derbyPreBuild/ReleaseProperties.java" \
-		|| die "Could not remove ReleaseProperties.java"
+	local f
+
+	for f in DiskLayout EndFormat FormatId Purpose Upgrade; do
+		sed -i -e "s|com.sun.tools.doclets|jdk.javadoc.doclet|" \
+			-e '/Taglet;/iimport java.util.List;\nimport java.util.Set;\nimport javax.lang.model.element.Element;\nimport com.sun.source.doctree.DocTree;' \
+			-e '/^}/i\\ \ \ \public String toString(List<? extends DocTree> tags, Element element) { return new String(); }\n\ \ \ \  public Set<Location> getAllowedLocations() { return null; }' \
+			org/apache/derbyBuild/javadoc/${f}Taglet.java \
+			|| die "Failed to sed/fix class package change"
+	done
 }
