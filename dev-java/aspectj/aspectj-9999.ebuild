@@ -45,6 +45,7 @@ JAVA_SRC_DIR="
 	weaver/src
 	weaver5/java5-src
 "
+JAVAC_ARGS+=" --add-exports=java.base/jdk.internal.misc=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=java.xml/com.sun.org.apache.bcel.internal=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=java.xml/com.sun.org.apache.bcel.internal.generic=ALL-UNNAMED "
 JAVA_RM_FILES=( loadtime/src/org/aspectj/weaver/loadtime/JRockitAgent.java )
@@ -53,4 +54,8 @@ java_prepare() {
 	sed -i -e "s|aj.org.object|org.object|" \
 		weaver/src/org/aspectj/weaver/bcel/asm/StackMapAdder.java \
 		|| die "Failed to sed/fix asm import"
+
+	sed -i -e "s|sun.misc|jdk.internal.misc|" \
+		loadtime/src/org/aspectj/weaver/loadtime/ClassLoaderWeavingAdaptor.java \
+		|| die "Failed to sed/fix Unsafe import"
 }
