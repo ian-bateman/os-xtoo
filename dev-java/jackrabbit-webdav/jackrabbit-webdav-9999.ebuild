@@ -26,22 +26,27 @@ else
 fi
 
 if [[ "${PV}" == 2.10.* ]] || [[ "${PV}" == 2.14.* ]]; then
-	CP_DEPEND="dev-java/commons-httpclient:0"
+	CP_DEPEND="
+		dev-java/commons-httpclient:0
+		java-virtuals/servlet-api:2.3
+	"
+else
+	CP_DEPEND+=" java-virtuals/servlet-api:2.4"
 fi
 
 if [[ "${PV}" != 2.10.* ]]; then
-	CP_DEPEND="${CP_DEPEND}
+	CP_DEPEND+="
 		dev-java/osgi-annotation:0
 		dev-java/httpcomponents-client:4.5
 		dev-java/httpcomponents-core:4.4
 	"
 fi
 
-CP_DEPEND="${CP_DEPEND}
+CP_DEPEND+="
 	dev-java/bnd-annotation:4
 	dev-java/slf4j-api:0
-	java-virtuals/servlet-api:2.4
 "
+
 inherit java-pkg
 
 DESCRIPTION="Implementation of the Content Repository for Java Technology API - ${PN#*-}"
