@@ -31,6 +31,7 @@ fi
 
 if [[ "${PV}" != 2.10.* ]]; then
 	CP_DEPEND="${CP_DEPEND}
+		dev-java/osgi-annotation:0
 		dev-java/httpcomponents-client:4.5
 		dev-java/httpcomponents-core:4.4
 	"
@@ -39,7 +40,7 @@ fi
 CP_DEPEND="${CP_DEPEND}
 	dev-java/bnd-annotation:4
 	dev-java/slf4j-api:0
-	java-virtuals/servlet-api:2.3
+	java-virtuals/servlet-api:2.4
 "
 inherit java-pkg
 
