@@ -40,8 +40,10 @@ IUSE="javafx"
 
 DEPEND+="
 	dev-java/jaxb-xjc:0
-	javafx? ( dev-java/oracle-jdk-bin[javafx] )
+	javafx? ( dev-java/javafx-base:0 )
 "
+
+RDEPEND+=" javafx? ( dev-java/javafx-base:0 )"
 
 S="${WORKDIR}/${MY_P}/${PN:20}"
 

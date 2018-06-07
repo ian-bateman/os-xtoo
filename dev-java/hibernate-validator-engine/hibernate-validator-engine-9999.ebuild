@@ -20,6 +20,7 @@ CP_DEPEND="
 	dev-java/beanvalidation-api:2.0
 	dev-java/classmate:0
 	dev-java/eclipse-javax-persistence:2
+	dev-java/javafx-base:0
 	dev-java/jaxb-api:0
 	dev-java/jboss-logging:0
 	dev-java/jboss-logging-annotations:2
