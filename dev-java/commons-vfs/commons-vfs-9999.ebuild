@@ -35,7 +35,7 @@ DESCRIPTION="A single API for accessing various different file systems"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 LICENSE="Apache-2.0"
 
-S="${WORKDIR}/${MY_S}/core"
+S="${WORKDIR}/${MY_S}/${PN}${SLOT}"
 
 PATCHES=( "${FILESDIR}/jackrabbit.patch" )
 

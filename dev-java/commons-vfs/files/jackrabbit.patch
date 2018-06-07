@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/vfs2/provider/webdav/ExceptionConverter.java b/src/main/java/org/apache/commons/vfs2/provider/webdav/ExceptionConverter.java
-index 122feb02..33783bb3 100644
+index 528d5cc1..853ba132 100644
 --- a/src/main/java/org/apache/commons/vfs2/provider/webdav/ExceptionConverter.java
 +++ b/src/main/java/org/apache/commons/vfs2/provider/webdav/ExceptionConverter.java
 @@ -23,6 +23,7 @@ import org.apache.jackrabbit.webdav.DavConstants;
@@ -10,40 +10,53 @@ index 122feb02..33783bb3 100644
  import org.w3c.dom.Element;
  
  /**
-@@ -49,7 +50,7 @@ public final class ExceptionConverter
-         {
-             try
-             {
+@@ -42,11 +43,15 @@ public final class ExceptionConverter {
+     public static FileSystemException generate(final DavException davExc, final DavMethod method)
+             throws FileSystemException {
+         String msg = davExc.getMessage();
+-        if (davExc.hasErrorCondition()) {
+-            try {
 -                final Element error = davExc.toXml(DomUtil.BUILDER_FACTORY.newDocumentBuilder().newDocument());
+-                if (DomUtil.matches(error, DavException.XML_ERROR, DavConstants.NAMESPACE)) {
+-                    if (DomUtil.hasChildElement(error, "exception", null)) {
++        if (davExc.hasErrorCondition())
++        {
++            try
++            {
 +                final Element error = davExc.toXml((new DavDocumentBuilderFactory()).newDocumentBuilder().newDocument());
-                 if (DomUtil.matches(error, DavException.XML_ERROR, DavConstants.NAMESPACE))
-                 {
-                     if (DomUtil.hasChildElement(error, "exception", null))
++                if (DomUtil.matches(error, DavException.XML_ERROR, DavConstants.NAMESPACE))
++                {
++                    if (DomUtil.hasChildElement(error, "exception", null))
++                    {
+                         final Element exc = DomUtil.getChildElement(error, "exception", null);
+                         if (DomUtil.hasChildElement(exc, "message", null)) {
+                             msg = DomUtil.getChildText(exc, "message", null);
 diff --git a/src/main/java/org/apache/commons/vfs2/provider/webdav/WebdavFileObject.java b/src/main/java/org/apache/commons/vfs2/provider/webdav/WebdavFileObject.java
-index 92dc0699..387d758d 100644
+index 0dc77068..46895564 100644
 --- a/src/main/java/org/apache/commons/vfs2/provider/webdav/WebdavFileObject.java
 +++ b/src/main/java/org/apache/commons/vfs2/provider/webdav/WebdavFileObject.java
-@@ -317,21 +317,13 @@ public class WebdavFileObject extends HttpFileObject<WebdavFileSystem>
+@@ -261,18 +261,15 @@ public class WebdavFileObject extends HttpFileObject<WebdavFileSystem> {
              final URLFileName fileName = (URLFileName) getName();
              DavPropertySet properties = getProperties(fileName, DavConstants.PROPFIND_ALL_PROP,
                      new DavPropertyNameSet(), false);
 -            @SuppressWarnings("unchecked") // iterator() is documented to return DavProperty instances
--            final
--            Iterator<DavProperty> iter = properties.iterator();
--            while (iter.hasNext())
-+            for(DavProperty property: properties)
-             {
+-            final Iterator<DavProperty> iter = properties.iterator();
+-            while (iter.hasNext()) {
 -                final DavProperty property = iter.next();
++            for(DavProperty property: properties)
++            {
                  attributes.put(property.getName().toString(), property.getValue());
              }
              properties = getPropertyNames(fileName);
 -            @SuppressWarnings("unchecked") // iterator() is documented to return DavProperty instances
--            final
--            Iterator<DavProperty> iter2 = properties.iterator();
--            while (iter2.hasNext())
-+            for(DavProperty property: properties)
-             {
+-            final Iterator<DavProperty> iter2 = properties.iterator();
+-            while (iter2.hasNext()) {
 -                DavProperty property = iter2.next();
-                 if (!attributes.containsKey(property.getName().getName()))
-                 {
+-                if (!attributes.containsKey(property.getName().getName())) {
++            for(DavProperty property: properties)
++            {
++                if (!attributes.containsKey(property.getName().getName()))
++                {
                      property = getProperty(fileName, property.getName());
+                     if (property != null) {
+                         final Object name = property.getName();
