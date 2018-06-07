@@ -18,11 +18,21 @@ fi
 
 CP_DEPEND="dev-java/jboss-modules:0"
 
+case ${PV} in
+	2.0*) SLOT="0" ;;
+	*)
+		SLOT="${PV%%-*}"
+		CP_DEPEND+="
+			dev-java/javax-json-api:0
+			dev-java/wildfly-common:0
+		"
+		;;
+esac
+
 inherit java-pkg
 
 DESCRIPTION="JBoss Log Manager"
 HOMEPAGE="http://community.jboss.org/"
 LICENSE="Apache-2.0"
-SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
