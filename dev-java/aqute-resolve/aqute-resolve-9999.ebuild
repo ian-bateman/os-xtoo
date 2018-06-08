@@ -23,11 +23,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="aQute Resolve"
-HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 OSGI_SLOT="5"
@@ -41,10 +36,10 @@ CP_DEPEND="~dev-java/aqute-repository-${PV}:${SLOT}
 	dev-java/slf4j-api:0
 "
 
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="aQute Resolve"
+HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
+LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
