@@ -135,8 +135,8 @@ src_prepare() {
 
 	if [[ "${SLOT}" == 10 ]]; then
 		rm lib/libavplugin* || die "Failed to remove libavplugin*.so"
+		rm lib/fontconfig.* || die "Failed to remove fontconfig.*"
 	fi
-	rm lib/fontconfig.* || die "Failed to remove fontconfig.*"
 
 	if ! use alsa && [[ -f lib/libjsoundalsa.* ]]; then
 		rm lib/libjsoundalsa.* \
