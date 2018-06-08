@@ -20,19 +20,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}.project-${MY_P}"
 fi
 
+SLOT="${PV%*.*.*}"
+
+CP_DEPEND="~dev-java/jetty-util-${PV}:${SLOT}"
+
 inherit java-pkg
 
 SLOT="${PV/.${PV#*.*.*}/}"
 HOMEPAGE="https://www.eclipse.org/${MY_PN}/"
 LICENSE="Apache-2.0"
-SLOT="${PV%*.*.*}"
-
-CP_DEPEND="~dev-java/jetty-util-${PV}:${SLOT}"
-
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
-
-DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
 
 S="${WORKDIR}/${MY_S}/${PN}"
