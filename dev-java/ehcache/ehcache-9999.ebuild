@@ -16,11 +16,6 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_P}"
 fi
 
-inherit java-pkg
-
-DESCRIPTION="Open source, standards-based cache"
-HOMEPAGE="https://www.${PN}.org"
-LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
@@ -33,12 +28,13 @@ CP_DEPEND="
 	dev-java/statistics:2
 "
 
-DEPEND="${CP_DEPEND}
-	dev-java/jaxb-xjc:0
-	>=virtual/jdk-9"
+inherit java-pkg
 
-RDEPEND="${CP_DEPEND}
-	>=virtual/jre-9"
+DESCRIPTION="Open source, standards-based cache"
+HOMEPAGE="https://www.${PN}.org"
+LICENSE="Apache-2.0"
+
+DEPEND+=" dev-java/jaxb-xjc:0"
 
 S="${WORKDIR}/${MY_S}"
 
