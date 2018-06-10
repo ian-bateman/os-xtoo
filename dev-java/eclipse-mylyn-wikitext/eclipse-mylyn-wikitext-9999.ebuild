@@ -21,7 +21,7 @@ fi
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
-	dev-java/guava:24
+	dev-java/guava:25
 	dev-java/jsoup:0
 "
 
