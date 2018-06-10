@@ -22,7 +22,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/plexus-classworlds:0
 	dev-java/plexus-utils:0
-	dev-java/guava:24
+	dev-java/guava:25
 	dev-java/xbean-reflect:0
 "
 
