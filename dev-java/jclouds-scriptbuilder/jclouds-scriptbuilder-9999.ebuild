@@ -20,7 +20,7 @@ fi
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/guava:24
+	dev-java/guava:25
 	dev-java/javax-inject:0
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	dev-java/osgi-core-api:6
