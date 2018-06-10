@@ -25,7 +25,7 @@ CP_DEPEND="
 	~dev-java/gradle-base-services-groovy-${PV}:${SLOT}
 	~dev-java/gradle-model-core-${PV}:${SLOT}
 	dev-java/groovy:0
-	dev-java/guava:24
+	dev-java/guava:25
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
 "
