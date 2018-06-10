@@ -46,7 +46,7 @@ CP_DEPEND="
 	dev-java/groovy-json:0
 	dev-java/groovy-templates:0
 	dev-java/groovy-xml:0
-	dev-java/guava:24
+	dev-java/guava:25
 	dev-java/javax-inject:0
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
