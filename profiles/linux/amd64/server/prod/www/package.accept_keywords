@@ -15,6 +15,7 @@ dev-java/bndlib
 dev-java/cdi-api
 dev-java/cglib
 dev-java/checker-compatqual
+dev-java/checker-qual
 dev-java/classmate
 dev-java/codemodel
 dev-java/commonmark-parent
