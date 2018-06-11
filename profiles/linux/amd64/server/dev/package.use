@@ -26,7 +26,6 @@ sys-apps/portage python3
 sys-apps/util-linux ncurses static-libs udev
 sys-devel/gcc cxx
 sys-devel/gdb python
-sys-libs/db java
 sys-libs/gdbm berkdb
 sys-libs/glibc debug
 sys-libs/ldb -ldap -python
