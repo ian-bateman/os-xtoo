@@ -144,19 +144,19 @@ src_prepare() {
 	fi
 
 	if use headless-awt ; then
-		rm lib/lib*{awt,splashscreen}* bin/{appletviewer,javaws} \
+		rm lib/lib*{awt,splashscreen}* \
 			|| die "Failed to remove unwanted UI support"
-		if [[ ${SLOT} == 9 ]]; then
-			rm bin/policytool \
+		if [[ ${SLOT} == 10 ]]; then
+			rm bin/{appletviewer,javaws} \
 				|| die "Failed to remove unwanted UI support"
 		fi
 	fi
 
-	if ! use javafx ; then
+	if ! use javafx && [[ ${SLOT} == 10 ]] ; then
 		rm jmods/javafx*  \
 			lib/*{decora,fx,glass,gstreamer,prism}* \
 			|| die "Failed to remove unwanted JavaFX support"
-	else
+	elif [[ ${SLOT} == 10 ]]; then
 		if ! use gtk2 ; then
 			rm lib/libglassgtk2.* || die
 		elif ! use gtk3 ; then
@@ -164,7 +164,7 @@ src_prepare() {
 		fi
 	fi
 
-	if ! use nsplugin ; then
+	if ! use nsplugin && [[ ${SLOT} == 10 ]]; then
 		rm lib/libnpjp2.so || die "Failed to remove unwanted nsplugin"
 	fi
 
