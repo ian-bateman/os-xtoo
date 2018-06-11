@@ -5,6 +5,7 @@
 *app-forensics/chkrootkit
 *app-portage/esearch
 *app-portage/mask-gentoo-dev-java
+*app-portage/package-env-no-bin
 *app-portage/repoman
 *dev-db/firebird
 *dev-db/odbcfb
