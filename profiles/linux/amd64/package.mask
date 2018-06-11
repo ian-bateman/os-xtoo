@@ -1,3 +1,3 @@
 >=dev-libs/icu-59
 sys-fs/udev
->=sys-kernel/gentoo-sources-4.15.10
+sys-kernel/gentoo-sources
