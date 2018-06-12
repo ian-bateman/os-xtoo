@@ -102,7 +102,7 @@ dev-java/log4j
 dev-java/log4j-api
 dev-java/mimepull
 dev-java/openpdf
-dev-java/oracle-jdk-bin
+dev-java/oracle-jdk-bin:10
 dev-java/osgi-annotation
 dev-java/osgi-compendium
 dev-java/osgi-core-api
