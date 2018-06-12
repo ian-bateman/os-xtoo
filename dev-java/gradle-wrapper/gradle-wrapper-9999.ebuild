@@ -54,6 +54,7 @@ versionNumber=${PV}" \
 		|| die "Failed to copy wrapper for prep"
 
 	my_pv="${MY_PV/.0-RC/-rc-}"
+	[[ ${PV} == *.*.0 ]] && my_pv="${my_pv%*.0}"
 	sed -i -e "s|PV|${my_pv}|" "${T}/gradle-wrapper.properties" \
 		|| die "Failed to copy wrapper to sed/set version"
 }
