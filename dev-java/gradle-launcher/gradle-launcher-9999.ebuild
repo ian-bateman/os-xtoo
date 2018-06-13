@@ -29,3 +29,13 @@ CP_DEPEND="
 "
 
 inherit gradle
+
+java_prepare() {
+	echo "Manifest-Version: 1.0
+Implementation-Title: Gradle
+Implementation-Version: ${PV}
+Class-Path: gradle-base-services.jar gradle-core-api.jar gradle-core.jar
+Main-Class: org.gradle.launcher.GradleMain" \
+		> src/main/resources/META-INF/MANIFEST.MF \
+		|| die "Failed to generate MANIFEST.MF"
+}
