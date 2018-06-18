@@ -11,7 +11,7 @@
 *dev-db/odbcfb
 *dev-java/asm
 *dev-java/commonmark-parent
-*dev-java/commons-collections
+*dev-java/commons-collections:0
 *dev-java/commons-dbcp
 *dev-java/commons-discovery
 *dev-java/commons-fileupload
