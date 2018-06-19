@@ -25,7 +25,7 @@ CP_DEPEND="
 	dev-java/sizeof:0
 	dev-java/slf4j-api:0
 	dev-java/spotbugs-annotations:0
-	dev-java/statistics:2
+	dev-java/statistics:0
 "
 
 inherit java-pkg
