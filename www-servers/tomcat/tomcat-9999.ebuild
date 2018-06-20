@@ -5,14 +5,14 @@ EAPI="6"
 
 JAVA_PKG_IUSE="doc source"
 
+MY_PV="${PV//./_}"
+MY_P="${PN^^}_${MY_PV}"
 BASE_URI="https://github.com/apache/${PN}"
 
 if [[ ${PV} != 9999 ]]; then
-	MY_PV="${PV/_beta/}"
-	MY_P="apache-${PN}-${MY_PV}-src"
-	SRC_URI="mirror://apache/${PN}/${PN}-${PV%%.*}/v${MY_PV}/src/${MY_P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${MY_P}"
+	MY_S="${PN}-${MY_P}"
 fi
 
 inherit eutils java-pkg prefix systemd user
@@ -58,7 +58,7 @@ RDEPEND="
 	systemd? ( sys-apps/systemd )
 "
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${MY_S}"
 
 pkg_setup() {
 	java-pkg_pkg_setup
