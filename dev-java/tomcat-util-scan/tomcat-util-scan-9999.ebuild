@@ -36,3 +36,4 @@ S="${WORKDIR}/${MY_S}"
 JAVA_SRC_DIR=( descriptor digester scan )
 JAVA_SRC_DIR="${JAVA_SRC_DIR[@]/#/java/org/apache/tomcat/util/}"
 JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
+JAVA_RES_RM_DIR=0
