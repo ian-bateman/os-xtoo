@@ -4,6 +4,7 @@ amd64		linux/amd64/server			stable
 amd64		linux/amd64/server/dev			stable
 amd64		linux/amd64/server/prod			stable
 amd64		linux/amd64/server/prod/base		stable
+amd64		linux/amd64/server/prod/dns		stable
 amd64		linux/amd64/server/prod/firebird	stable
 amd64		linux/amd64/server/prod/mail		stable
 amd64		linux/amd64/server/prod/smtp		stable
