@@ -33,3 +33,4 @@ LICENSE="Apache-2.0"
 S="${WORKDIR}/${MY_S}"
 
 JAVA_SRC_DIR="java/org/apache/catalina/ant"
+JAVA_RES_RM_DIR=0
