@@ -54,9 +54,10 @@ gradle_src_prepare() {
 		dep="${dep/*dev-java\//}"
 		dep="${dep/-${PV}/}"
 		dep="${dep/:*/}"
+		dep="${dep/ant-core/ant}"
 		case "${dep}" in
 			gradle-*) projects+="${dep}," ;;
-			*) runtime+="${dep}," ;;
+			*) runtime+="${dep}.jar," ;;
 		esac
 	done
 	echo "projects=${projects%*,}
