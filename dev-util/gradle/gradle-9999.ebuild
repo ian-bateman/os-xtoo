@@ -25,10 +25,17 @@ LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/"
 
+GROOVY_SLOT="0"
+MAVEN_SLOT="0"
+PLEXUS_SLOT="0"
+SLF4j_SLOT="0"
+
 LIB_DEPEND="
 	dev-java/ant-core:0
 	dev-java/asm:6
 	dev-java/commons-io:0
+	dev-java/commons-collections:0
+	dev-java/commons-compress:0
 	dev-java/commons-lang:2
 	dev-java/fastutil:0
 	~dev-java/gradle-base-services-${PV}:${SLOT}
@@ -43,23 +50,29 @@ LIB_DEPEND="
 	~dev-java/gradle-logging-${PV}:${SLOT}
 	~dev-java/gradle-messaging-${PV}:${SLOT}
 	~dev-java/gradle-model-core-${PV}:${SLOT}
+	~dev-java/gradle-model-groovy-${PV}:${SLOT}
 	~dev-java/gradle-native-${PV}:${SLOT}
 	~dev-java/gradle-persistent-cache-${PV}:${SLOT}
 	~dev-java/gradle-process-services-${PV}:${SLOT}
+	~dev-java/gradle-resources-${PV}:${SLOT}
 	~dev-java/gradle-tooling-api-${PV}:${SLOT}
 	~dev-java/gradle-wrapper-${PV}:${SLOT}
-	dev-java/groovy:0
+	dev-java/groovy:${GROOVY_SLOT}
+	dev-java/groovy-ant:${GROOVY_SLOT}
+	dev-java/groovy-json:${GROOVY_SLOT}
+	dev-java/groovy-templates:${GROOVY_SLOT}
+	dev-java/groovy-xml:${GROOVY_SLOT}
 	dev-java/guava:25
 	dev-java/jansi:0
+	dev-java/jansi-native:0
 	dev-java/javax-inject:0
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
 	dev-java/kryo:0
-	dev-java/slf4j-api:0
+	dev-java/native-platform:0
+	dev-java/slf4j-api:${SLF4j_SLOT}
+	dev-java/slf4j-jul-to-slf4j:${SLF4j_SLOT}
 "
-
-MAVEN_SLOT="0"
-PLEXUS_SLOT="0"
 
 PLUGINS_DEPEND="
 	dev-java/ant-ivy:0
