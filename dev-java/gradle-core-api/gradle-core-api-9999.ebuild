@@ -26,6 +26,11 @@ CP_DEPEND="
 inherit gradle
 
 java_prepare() {
+	sed -i -e '45,48d;50d' \
+		-e "s|GradleInstallation(dir|GradleInstallation(new File(\"${EROOT}/usr/share/gradle\")|" \
+		src/main/java/org/gradle/internal/installation/CurrentGradleInstallationLocator.java \
+		|| die "Failed to sed/hard code gradle installation path"
+
 	sed -i -e "19iimport com.google.common.base.MoreObjects;" \
 		-e "s|Objects.to|MoreObjects.to|g" \
 		src/main/java/org/gradle/api/tasks/util/internal/CachingPatternSpecFactory.java \
