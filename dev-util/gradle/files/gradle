@@ -23,6 +23,9 @@ warn () {
 }
 
 CLASSPATH=$APP_HOME/lib/gradle-launcher.jar
+CLASSPATH+=:$APP_HOME/lib/gradle-core.jar
+CLASSPATH+=:$APP_HOME/lib/gradle-core-api.jar
+CLASSPATH+=:$APP_HOME/lib/gradle-base-services.jar
 
 JAVACMD="java"
 
