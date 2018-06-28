@@ -24,3 +24,10 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+java_prepare() {
+	sed -e "s|\${project.version}|${PV}|" \
+		src/main/java-templates/com/google/gson/internal/GsonBuildConfig.java \
+		> src/main/java/com/google/gson/internal/GsonBuildConfig.java \
+		|| die "Failed to sed/set version"
+}
