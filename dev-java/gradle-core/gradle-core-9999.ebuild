@@ -45,6 +45,10 @@ inherit gradle
 java_prepare() {
 	local f files
 
+	sed -i -e "s|-\\\|(-\\\|" -e "s|\\\\\\\.jar|)?\\\\\\\.jar|" \
+		src/main/java/org/gradle/api/internal/classpath/DefaultModuleRegistry.java \
+		|| die "Failed to modify jar regex"
+
 	sed -i -e "/import static.*com.google.common.collect.Iterators.*/d" \
 		-e "26iimport java.util.Collections;" \
 		-e "26iimport java.util.Set;" \
