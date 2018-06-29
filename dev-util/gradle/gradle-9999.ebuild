@@ -101,6 +101,7 @@ PLUGINS_DEPEND="
 	~dev-java/gradle-osgi-${PV}:${SLOT}
 	~dev-java/gradle-platform-base-${PV}:${SLOT}
 	~dev-java/gradle-platform-jvm-${PV}:${SLOT}
+	~dev-java/gradle-platform-native-${PV}:${SLOT}
 	~dev-java/gradle-plugins-${PV}:${SLOT}
 	~dev-java/gradle-plugin-use-${PV}:${SLOT}
 	~dev-java/gradle-publish-${PV}:${SLOT}
