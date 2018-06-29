@@ -25,3 +25,9 @@ LICENSE="EPL-1.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+java_prepare() {
+	sed -i -e "s|RemoteRepository( Builder|public RemoteRepository( Builder|" \
+		src/main/java/org/eclipse/aether/repository/RemoteRepository.java \
+		|| die "Failed to sed/fix access modifier"
+}
