@@ -37,3 +37,9 @@ HOMEPAGE="https://www.eclipse.org/aether/"
 LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+java_prepare() {
+	sed -i -e "s|class Simple|public class Simple|" \
+		src/main/java/org/eclipse/aether/internal/impl/SimpleLocalRepositoryManager.java \
+		|| die "Failed to sed/fix access modifier"
+}
