@@ -24,3 +24,12 @@ LICENSE="MIT"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+src_compile() {
+	JAVA_NO_JAR=0
+	java-pkg-simple_src_compile
+	# Needed per https://github.com/Obsidian-StudiosInc/os-xtoo/issues/43
+	rm -r target/classes/org/slf4j/impl/ \
+		|| die "Remove code that should never make it into the jar"
+	java-pkg-simple_create-jar target/classes
+}
