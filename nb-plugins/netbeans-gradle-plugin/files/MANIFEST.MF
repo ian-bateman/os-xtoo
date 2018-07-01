@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Implementation-Version: PV
+OpenIDE-Module-Specification-Version: PV
+OpenIDE-Module-Build-Version: DATE
+OpenIDE-Module-Localizing-Bundle: org/netbeans/gradle/project/Bundle.properties
+OpenIDE-Module-Install: org/netbeans/gradle/project/NbGradleModuleInstall.class
+OpenIDE-Module-Layer: org/netbeans/gradle/project/layer.xml
+OpenIDE-Module-Public-Packages: -
+OpenIDE-Module-Display-Category: Base IDE
+OpenIDE-Module: org.netbeans.gradle.project
