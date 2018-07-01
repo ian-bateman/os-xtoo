@@ -30,7 +30,6 @@ RDEPEND="
 	dev-java/jsr305:0
 	dev-java/lucene-core:${LUCENE_SLOT}
 	dev-java/osgi-core-api:${OSGI_SLOT}
-	~nb-ide/${PN}-ant-browsetask-${PV}:${SLOT}
 	~nb-ide/${PN}-ant-grammar-${PV}:${SLOT}
 	~nb-ide/${PN}-ant-kit-${PV}:${SLOT}
 	~nb-ide/${PN}-api-htmlui-${PV}:${SLOT}
@@ -288,7 +287,7 @@ src_install() {
 #	java-netbeans_create-module-xml "osgi-core-api" lib 0
 
 	# symlink jars in modules
-	jars_short=( browsetask freeform grammar kit )
+	jars_short=( browsetask debugger freeform grammar kit )
 	jars=( ${jars_short[@]/#/ant-} )
 
 	jars_short=(
