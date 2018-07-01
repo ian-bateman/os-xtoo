@@ -362,9 +362,10 @@ java-netbeans_get-processors() {
 # @DESCRIPTION:
 # Wrapper for java-pkg-simple_src_compile to set common JAVAC_ARGS
 java-netbeans_src_compile() {
-	local p procs props
+	local p procs props res_src
 
-	JAVAC_ARGS+=" -parameters --source-path resources:src "
+	res_src="${JAVA_RES_DIR// /:}:${JAVA_SRC_DIR// /:}"
+	JAVAC_ARGS+=" -parameters --source-path ${res_src} "
 	[[ -z ${NB_NO_PROC} ]] &&
 		procs="$(java-netbeans_get-processors)"
 	if [[ -n ${procs} ]]; then
@@ -375,7 +376,7 @@ java-netbeans_src_compile() {
 		JAVAC_ARGS+=" -processor ${procs} "
 
 		# for resources
-		JAVA_CLASSPATH_EXTRA="resources:src"
+		JAVA_CLASSPATH_EXTRA="${res_src}"
 
 		# skip jar creation
 		JAVA_NO_JAR=0
