@@ -34,11 +34,8 @@ RDEPEND="
 	~nb-ide/${PN}-ant-kit-${PV}:${SLOT}
 	~nb-ide/${PN}-api-htmlui-${PV}:${SLOT}
 	~nb-ide/${PN}-api-visual-${PV}:${SLOT}
-	~nb-ide/${PN}-apisupport-ant-${PV}:${SLOT}
-	~nb-ide/${PN}-apisupport-harness-${PV}:${SLOT}
-	~nb-ide/${PN}-apisupport-project-${PV}:${SLOT}
+	~nb-ide/${PN}-apisupport-kit-${PV}:${SLOT}
 	~nb-ide/${PN}-apisupport-refactoring-${PV}:${SLOT}
-	~nb-ide/${PN}-apisupport-wizards-${PV}:${SLOT}
 	~nb-ide/${PN}-autoupdate-cli-${PV}:${SLOT}
 	~nb-ide/${PN}-autoupdate-pluginimporter-${PV}:${SLOT}
 	~nb-ide/${PN}-bugtracking-bridge-${PV}:${SLOT}
@@ -296,7 +293,7 @@ src_install() {
 	)
 	jars+=( ${jars_short[@]/#/api-} )
 
-	jars_short=( ant harness project refactoring wizards )
+	jars_short=( ant harness installer kit project refactoring wizards )
 	jars+=( ${jars_short[@]/#/apisupport-} )
 
 	jars_short=( cli pluginimporter services ui )
