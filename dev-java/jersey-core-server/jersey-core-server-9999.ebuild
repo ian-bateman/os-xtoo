@@ -26,7 +26,7 @@ CP_DEPEND="
 	dev-java/jaxb-api:0
 	~dev-java/jersey-core-client-${PV}:${SLOT}
 	~dev-java/jersey-core-common-${PV}:${SLOT}
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 	dev-java/osgi-core-api:6
 	dev-java/beanvalidation-api:2.0
 "
