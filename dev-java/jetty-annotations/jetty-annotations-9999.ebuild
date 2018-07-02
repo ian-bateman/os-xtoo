@@ -29,7 +29,7 @@ CP_DEPEND="
 	~dev-java/jetty-servlet-${PV}:${SLOT}
 	~dev-java/jetty-util-${PV}:${SLOT}
 	~dev-java/jetty-webapp-${PV}:${SLOT}
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 	java-virtuals/servlet-api:4.0
 "
 
