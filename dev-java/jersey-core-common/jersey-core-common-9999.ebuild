@@ -25,7 +25,7 @@ CP_DEPEND="
 	dev-java/javax-inject:0
 	dev-java/jax-rs:2
 	dev-java/jax-rs:2.1
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 	dev-java/osgi-core-api:6
 "
 
