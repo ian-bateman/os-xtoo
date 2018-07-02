@@ -24,7 +24,7 @@ CP_DEPEND="
 	dev-java/jax-rs:2
 	~dev-java/jersey-core-common-${PV}:${SLOT}
 	~dev-java/jersey-security-oauth1-signature-${PV}:${SLOT}
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 "
 
 inherit java-pkg
