@@ -25,7 +25,7 @@ CP_DEPEND="
 	dev-java/jaxb-api:0
 	~dev-java/jersey-core-common-${PV}:${SLOT}
 	~dev-java/jersey-core-server-${PV}:${SLOT}
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 "
 
 inherit java-pkg
