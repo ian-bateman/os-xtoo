@@ -1,3 +1,4 @@
+dev-libs/openssl -sslv3
 net-misc/ntp openntpd
 sys-apps/busybox -pam
 sys-apps/sandbox abi_x86_32
