@@ -30,7 +30,7 @@ CP_DEPEND="
 	dev-java/jax-rs:2.1
 	~dev-java/jersey-core-common-${PV}:${SLOT}
 	~dev-java/jersey-entity-filtering-${PV}:${SLOT}
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 "
 
 inherit java-pkg
