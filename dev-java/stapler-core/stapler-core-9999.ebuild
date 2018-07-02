@@ -28,7 +28,7 @@ CP_DEPEND="
 	dev-java/groovy:0
 	dev-java/guava:25
 	dev-java/jenkins-json-lib:2
-	dev-java/jsr250:0
+	dev-java/javax-annotation:0
 	dev-java/jsr305:0
 	dev-java/localizer:0
 	dev-java/metainf-services:0
