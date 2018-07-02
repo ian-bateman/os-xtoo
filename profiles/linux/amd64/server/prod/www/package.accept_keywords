@@ -92,7 +92,6 @@ dev-java/joda-time
 dev-java/jsch
 dev-java/json-simple
 dev-java/jsoup
-dev-java/jsr250
 dev-java/jsr305
 dev-java/jsr354-api
 dev-java/jtsys
