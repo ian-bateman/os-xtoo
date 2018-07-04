@@ -7,10 +7,6 @@ inherit java-netbeans
 
 DEPEND=">=virtual/jdk-9"
 #	~nb-ide/netbeans-html-validation-${PV}:${SLOT}
-#	~nb-ide/netbeans-image-${PV}:${SLOT}
-#	~nb-ide/netbeans-languages-diff-${PV}:${SLOT}
-#	~nb-ide/netbeans-languages-manifest-${PV}:${SLOT}
-#	~nb-ide/netbeans-languages-yaml-${PV}:${SLOT}
 RDEPEND="
 	~nb-ide/netbeans-css-visual-${PV}:${SLOT}
 	~nb-ide/netbeans-editor-actions-${PV}:${SLOT}
@@ -18,6 +14,10 @@ RDEPEND="
 	~nb-ide/netbeans-editor-search-${PV}:${SLOT}
 	~nb-ide/netbeans-html-${PV}:${SLOT}
 	~nb-ide/netbeans-html-parser-${PV}:${SLOT}
+	~nb-ide/netbeans-image-${PV}:${SLOT}
+	~nb-ide/netbeans-languages-diff-${PV}:${SLOT}
+	~nb-ide/netbeans-languages-manifest-${PV}:${SLOT}
+	~nb-ide/netbeans-languages-yaml-${PV}:${SLOT}
 	~nb-ide/netbeans-parsing-api-${PV}:${SLOT}
 	~nb-ide/netbeans-properties-${PV}:${SLOT}
 	~nb-ide/netbeans-xml-core-${PV}:${SLOT}
