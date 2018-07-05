@@ -23,4 +23,4 @@ HOMEPAGE="https://${MY_PN/-/}.org/"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-S="${WORKDIR}/${MY_S}/checker/src/org/${MY_PN/-/}/checker/nullness/${PN##*-}"
+S="${WORKDIR}/${MY_S}/checker/src/main/java/org/${MY_PN/-/}/checker/nullness/${PN##*-}"
