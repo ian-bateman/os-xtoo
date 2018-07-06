@@ -40,8 +40,7 @@ JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
 
 java_prepare() {
-#	sed -i -e "238s|);|,null);|" \
 	sed -i -e "s|typeProcessor));|typeProcessor),null);|" \
-		src/org/checkerframework/dataflow/cfg/JavaSource2CFGDOT.java \
+		src/main/java/org/checkerframework/dataflow/cfg/JavaSource2CFGDOT.java \
 		|| die "Failed to sed/fix java 9+ arg count"
 }
