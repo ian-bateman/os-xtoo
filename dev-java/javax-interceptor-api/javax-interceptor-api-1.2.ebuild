@@ -1,1 +1,0 @@
-javax-interceptor-api-9999.ebuild
