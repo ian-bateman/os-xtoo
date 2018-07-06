@@ -29,3 +29,8 @@ LICENSE="Apache-2.0"
 SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+java_prepare() {
+	sed -i -e "20d" src/main/java/net/sf/cglib/reflect/MethodDelegate.java \
+		|| die "Failed to remove empty package"
+}
