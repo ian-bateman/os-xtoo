@@ -38,12 +38,11 @@ JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
-JAVA_RM_FILES=( src/org/checkerframework/javacutil/dist/ManualTaglet.java )
 
 PATCHES=( "${FILESDIR}/TypeAnnotationUtils-9+.patch" )
 
 java_prepare() {
 	sed -i -e "s|Kinds.|Kinds.Kind.|g" \
-		src/org/checkerframework/javacutil/Resolver.java \
+		src/main/java/org/checkerframework/javacutil/Resolver.java \
 		|| die "Failed to sed/change java 9+ imports"
 }

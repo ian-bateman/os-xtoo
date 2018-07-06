@@ -1,7 +1,7 @@
-diff --git a/src/org/checkerframework/javacutil/TypeAnnotationUtils.java b/javacutil/src/org/checkerframework/javacutil/TypeAnnotationUtils.java
+diff --git a/src/main/java/org/checkerframework/javacutil/TypeAnnotationUtils.java b/javacutil/src/main/java/org/checkerframework/javacutil/TypeAnnotationUtils.java
 index 7849803ec..d0f88c963 100644
---- a/src/org/checkerframework/javacutil/TypeAnnotationUtils.java
-+++ b/src/org/checkerframework/javacutil/TypeAnnotationUtils.java
+--- a/src/main/java/org/checkerframework/javacutil/TypeAnnotationUtils.java
++++ b/src/main/java/org/checkerframework/javacutil/TypeAnnotationUtils.java
 @@ -86,7 +86,7 @@ public class TypeAnnotationUtils {
              TypeAnnotationPosition p1, TypeAnnotationPosition p2) {
          return p1.isValidOffset == p2.isValidOffset
