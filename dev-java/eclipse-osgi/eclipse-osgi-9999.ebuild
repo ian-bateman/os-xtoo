@@ -21,7 +21,7 @@ fi
 
 SLOT="${PV/.${PV#*.*.*}/}"
 
-OSGI_SLOT="6"
+OSGI_SLOT="7"
 
 CP_DEPEND="
 	dev-java/felix-resolver:0
@@ -37,7 +37,6 @@ LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
-JAVA_RELEASE="8"
 JAVA_SRC_DIR="container supplement"
 
 java_prepare() {
