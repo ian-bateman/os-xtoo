@@ -23,7 +23,7 @@ SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
 	~dev-java/eclipse-osgi-services-${PV}:${SLOT}
-	dev-java/osgi-core-api:6
+	dev-java/osgi-core-api:7
 "
 
 inherit java-pkg
@@ -43,4 +43,8 @@ java_prepare() {
 			src/org/eclipse/equinox/internal/util/${f}.java \
 			|| die "Failed to sed Java 9 keyword _ -> e"
 	done
+
+	sed -i -e "s|Timer.class, |Timer.class, (ServiceFactory)|" \
+		src/org/eclipse/equinox/internal/util/UtilActivator.java \
+		|| die "Failed to sed/fix ambiguous reference"
 }
