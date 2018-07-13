@@ -16,7 +16,10 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="felix-${MY_P}"
 fi
 
-CP_DEPEND="dev-java/osgi-core-api:6"
+CP_DEPEND="
+	dev-java/osgi-annotation:0
+	dev-java/osgi-core-api:6
+"
 
 inherit java-pkg
 
