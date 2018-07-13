@@ -42,10 +42,6 @@ JAVA_RES_DIR="resources"
 java_prepare() {
 	local f p
 
-	sed -i -e "13d;85,87d" \
-		compiler/org/eclipse/jdt/internal/compiler/env/IModulePathEntry.java \
-		|| die "Failed to sed/remove additional import and code"
-
 	p="org/eclipse/jdt/internal/compiler"
 	mkdir -p resources/${p}/{batch,parser,parser/unicode,parser/unicode6,parser/unicode6_2,problem} \
 		|| die "Failed to make resources directories"
