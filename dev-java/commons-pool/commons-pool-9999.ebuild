@@ -6,9 +6,15 @@ EAPI="7"
 JAVA_PKG_IUSE="doc source"
 JAVA_NO_COMMONS=1
 
-MY_PN="POOL"
-MY_PV="${PV//./_}"
-MY_P="${MY_PN}_${MY_PV}"
+if [[ ${PV} == 1* ]] || [[ ${PV} == 2.5* ]]; then
+	MY_PN="POOL"
+	MY_PV="${PV//./_}"
+	MY_P="${MY_PN}_${MY_PV}"
+else
+	MY_PN="${PN}"
+	MY_PV="${PV}"
+	MY_P="${MY_PN}-${MY_PV}"
+fi
 
 BASE_URI="https://github.com/apache/${PN}"
 
