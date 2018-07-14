@@ -26,6 +26,7 @@ CP_DEPEND="
 	~dev-java/eclipse-core-resources-${PV}:${SLOT}
 	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
+	~dev-java/eclipse-equinox-preferences-${PV}:${SLOT}
 	~dev-java/eclipse-jdt-core-${PV}:${SLOT}
 	~dev-java/eclipse-jdt-launching-${PV}:${SLOT}
 	~dev-java/eclipse-ltk-core-refactoring-${PV}:${SLOT}
