@@ -44,6 +44,7 @@ CP_DEPEND="
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
 	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
+	dev-java/osgi-core-api:${OSGI_SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
 "
 
