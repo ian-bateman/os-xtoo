@@ -49,6 +49,7 @@ CP_DEPEND="
 	~dev-java/eclipse-jface-text-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
 	~dev-java/eclipse-swt-${PV}:${SLOT}
+	~dev-java/eclipse-text-${PV}:${SLOT}
 	~dev-java/eclipse-ui-forms-${PV}:${SLOT}
 	~dev-java/eclipse-ui-views-${PV}:${SLOT}
 	~dev-java/eclipse-ui-workbench-${PV}:${SLOT}
