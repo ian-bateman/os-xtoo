@@ -29,7 +29,7 @@ CP_DEPEND="
 	~dev-java/eclipse-swt-${PV}:${SLOT}
 	~dev-java/eclipse-text-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
-	dev-java/osgi-core-api:6
+	dev-java/osgi-core-api:7
 	dev-java/icu4j:0
 "
 
@@ -42,3 +42,18 @@ LICENSE="EPL-1.0"
 S="${WORKDIR}/${MY_S}/org.${PN//-/.}/"
 
 JAVA_SRC_DIR="projection src"
+
+java_prepare() {
+	# bad temporary hack to work around for the following!!!!
+	# CodeMiningManager.java:185: error: incompatible types:
+	# inferred type does not conform to lower bound(s)
+	# return codeMinings.stream().collect(Collectors.groupingBy(ICodeMining::getPosition, LinkedHashMap::new,
+	#
+	# inferred: CAP#1
+	# lower bound(s): ICodeMining
+	# where CAP#1 is a fresh type-variable:
+	# CAP#1 extends ICodeMining from capture of ? extends ICodeMining
+	sed -i -e '185,186d' -e '187i\\t\treturn null;' \
+		src/org/eclipse/jface/internal/text/codemining/CodeMiningManager.java \
+		|| die "Failed to sed/remove troublesome code"
+}
