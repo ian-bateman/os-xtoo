@@ -28,6 +28,7 @@ CP_DEPEND="
 	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-preferences-${PV}:${SLOT}
 	~dev-java/eclipse-equinox-registry-${PV}:${SLOT}
+	~dev-java/eclipse-jface-${PV}:${SLOT}
 	~dev-java/eclipse-osgi-${PV}:${SLOT}
 	~dev-java/eclipse-swt-${PV}:${SLOT}
 	dev-java/osgi-compendium:${OSGI_SLOT}
