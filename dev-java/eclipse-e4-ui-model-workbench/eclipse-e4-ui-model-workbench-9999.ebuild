@@ -25,11 +25,14 @@ OSGI_SLOT="6"
 
 CP_DEPEND="
 	~dev-java/eclipse-core-commands-${PV}:${SLOT}
+	~dev-java/eclipse-core-runtime-${PV}:${SLOT}
 	~dev-java/eclipse-e4-core-contexts-${PV}:${SLOT}
 	~dev-java/eclipse-e4-core-services-${PV}:${SLOT}
 	~dev-java/eclipse-e4-emf-xpath-${PV}:${SLOT}
 	dev-java/eclipse-emf-common:${EEMF_SLOT}
 	dev-java/eclipse-emf-ecore:${EEMF_SLOT}
+	~dev-java/eclipse-equinox-common-${PV}:${SLOT}
+	dev-java/osgi-core-api:${OSGI_SLOT}
 "
 
 inherit java-pkg
@@ -39,5 +42,3 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
-
-JAVA_SRC_DIR="src"
