@@ -58,4 +58,8 @@ LICENSE="EPL-1.0"
 
 S="${WORKDIR}/${MY_S}/bundles/org.${PN//-/.}/"
 
-JAVA_SRC_DIR="src"
+java_prepare() {
+	sed -i -e "s|Arrays.asList(checked)|new ArrayList(Arrays.asList(checked))|" \
+		src/org/eclipse/team/internal/ui/mapping/ModelEnablementPreferencePage.java \
+		|| die "Failed to sed/fix incompatible types"
+}
