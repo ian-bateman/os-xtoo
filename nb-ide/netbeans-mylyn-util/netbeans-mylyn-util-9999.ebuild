@@ -5,7 +5,7 @@ EAPI="7"
 
 inherit java-netbeans
 
-ECLIPSE_SLOT="4.7"
+ECLIPSE_SLOT="4.8"
 MYLYN_SLOT="3"
 
 CP_DEPEND="
