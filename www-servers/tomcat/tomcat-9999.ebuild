@@ -24,7 +24,7 @@ SLOT="${PV%%.*}"
 
 IUSE="systemd extra-webapps"
 
-ECJ_SLOT="4.7"
+ECJ_SLOT="4.8"
 SAPI_SLOT="4.0"
 
 DEPEND="app-admin/pwgen
