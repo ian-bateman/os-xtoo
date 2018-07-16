@@ -1,1 +1,0 @@
-eclipse-swt-9999.ebuild
