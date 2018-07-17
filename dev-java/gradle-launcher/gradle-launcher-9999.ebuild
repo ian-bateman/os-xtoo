@@ -9,6 +9,7 @@ CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/asm:6
 	dev-java/commons-io:0
+	dev-java/commons-lang:2
 	~dev-java/gradle-base-services-${PV}:${SLOT}
 	~dev-java/gradle-build-option-${PV}:${SLOT}
 	~dev-java/gradle-cli-${PV}:${SLOT}
