@@ -35,7 +35,12 @@ CP_DEPEND="
 inherit gradle
 
 java_prepare() {
-	sed -i -e '83i\ \ \ \ @Override\n\ \ \ \ public void addModules(Iterable<String> moduleNames) {\n\ \ \ \ \ \ \ \ throw new UnsupportedOperationException("Not implemented");\n\ \ \ \ }\n' \
-		src/main/java/org/gradle/api/internal/tasks/compile/IncrementalAnnotationProcessingCompileTask.java \
-		|| die "Failed to sed/add java 11 method"
+	local f
+
+	for f in AnnotationProcessingCompile \
+		ResourceCleaningCompilation ; do
+	sed -i -e '59i\ \ \ \ @Override\n\ \ \ \ public void addModules(Iterable<String> moduleNames) {\n\ \ \ \ }\n' \
+			src/main/java/org/gradle/api/internal/tasks/compile/${f}Task.java \
+			|| die "Failed to sed/add java 11 method"
+	done
 }
