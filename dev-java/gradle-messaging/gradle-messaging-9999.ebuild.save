@@ -21,9 +21,11 @@ inherit gradle
 java_prepare() {
 	local f
 
-	for f in StringDeduplicating ""; do
-		sed -i -e "s|output.total()|new Long(output.total()).intValue()|" \
-			src/main/java/org/gradle/internal/serialize/kryo/${f}KryoBackedEncoder.java \
-			|| die "Failed to sed/fix lossy conversion"
-	done
+
+
+	for f in {}StringDeduplicating 
+
+	sed -i -e "s|output.total()|new Long(output.total()).intValue()|" \
+		src/main/java/org/gradle/internal/serialize/kryo/KryoBackedEncoder.java \
+		|| die "Failed to sed/fix lossy conversion"
 }
