@@ -1,1 +1,0 @@
-gradle-resources-http-9999.ebuild
