@@ -20,8 +20,8 @@ elif [[ ${PV} == *_rc* ]]; then
 	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_rc}/BCL"
 	MY_PV="${PV%%_*}+${PV##*_rc}"
 else
-	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"
-	BASE_URI="http://download.oracle.com/otn-pub/java/jdk/${PV}+11/"
+	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html"
+	BASE_URI="http://download.oracle.com/otn-pub/java/jdk/${PV}+13/"
 	MY_PV="${PV}"
 	RESTRICT+=" fetch"
 fi
