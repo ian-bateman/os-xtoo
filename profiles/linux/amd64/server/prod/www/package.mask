@@ -1,3 +1,5 @@
 dev-java/java-config
 virtual/jdk:11
+virtual/jdk:12
 virtual/jre:11
+virtual/jre:12
