@@ -5,8 +5,6 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg
-
 MY_PN="${PN/-/.}"
 MY_PN="${MY_PN%%-*}"
 MY_P="${MY_PN}-${PV}"
@@ -18,6 +16,8 @@ if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
+
+inherit java-pkg
 
 DESCRIPTION="Project GlassFish Interceptor API"
 HOMEPAGE="https://javaee.github.io/glassfish/"
