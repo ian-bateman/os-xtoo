@@ -23,7 +23,6 @@ CP_DEPEND="
 	~dev-java/netty-buffer-${PV}:${SLOT}
 	~dev-java/netty-codec-${PV}:${SLOT}
 	~dev-java/netty-common-${PV}:${SLOT}
-	dev-java/netty-common:4.0
 	~dev-java/netty-transport-${PV}:${SLOT}
 "
 
