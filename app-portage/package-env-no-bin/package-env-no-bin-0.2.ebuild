@@ -1,4 +1,4 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -25,6 +25,7 @@ src_prepare() {
 
 	pkgs=(
 		app-office/openoffice-bin
+		dev-java/openjdk-bin
 		dev-java/oracle-jdk-bin
 		dev-util/android-studio-bin
 		sys-kernel/gentoo-sources
