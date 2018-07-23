@@ -22,7 +22,7 @@ fi
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/bcprov:1.59
+	dev-java/bcprov:1.60
 	dev-java/javax-inject:0
 	~dev-java/jclouds-core-${PV}:${SLOT}
 	dev-java/guice:4
