@@ -80,7 +80,7 @@ runtime issues with Java 10 or 11.
 
 ### Java Versioning
 This overlay implements a brand new feature of no longer requiring Java 
-versions in ebuilds. Java verions will be based on the version of Java 
+versions in ebuilds. Java versions will be based on the version of Java 
 used during build time of any given package. This elimites the need to 
 update versions in ebuilds for newer versions of Java. This also 
 provides means to have all jars built for a specific Java release. 
