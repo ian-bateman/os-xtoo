@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>wlt@o-sinc.com</email>
+  </maintainer>
+  <longdescription>Oracle Java SE Development Kit, Official Binary Distribution</longdescription>
+  <use>
+    <flag name="headless-awt">Do not install the X backend for AWT, needed by some GUIs (used to be X flag)</flag>
+    <flag name="source">Install JVM (and optionally JavaFX) sources</flag>
+  </use>
+</pkgmetadata>
