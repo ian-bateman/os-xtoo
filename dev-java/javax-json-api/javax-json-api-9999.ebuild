@@ -3,8 +3,6 @@
 
 EAPI="7"
 
-inherit java-pkg
-
 MY_PN="jsonp"
 MY_PV="${PV/.2m/-M2}"
 MY_P="${MY_PN}-${MY_PV}"
@@ -16,6 +14,8 @@ if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-${MY_P}"
 fi
+
+inherit java-pkg
 
 DESCRIPTION="API module of JSR 374:Java API for Processing JSON"
 HOMEPAGE="https://javaee.github.io/jsonp/"
