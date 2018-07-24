@@ -29,7 +29,7 @@ else
 	KEYWORDS="-amd64"
 fi
 
-DESCRIPTION="OpenJDK Development Kit"
+DESCRIPTION="Open Java Development Kit"
 HOMEPAGE="${JDK_URI}"
 LICENSE="GPL-2-with-classpath-exception"
 
@@ -59,42 +59,6 @@ DEPEND="app-arch/zip"
 
 S="${WORKDIR}/jdk"
 
-check_tarballs_available() {
-	local dl unavailable uri
-
-	uri=$1; shift
-	for dl in "${@}" ; do
-		[[ ! -f "${DISTDIR}/${dl}" ]] && unavailable+=" ${dl}"
-	done
-
-	if [[ -n "${unavailable}" ]] ; then
-		if [[ -z ${_check_tarballs_available_once} ]] ; then
-			einfo
-			einfo "Oracle requires you to download the needed files manually after"
-			einfo "accepting their license through a javascript capable web browser."
-			einfo
-			_check_tarballs_available_once=1
-		fi
-		einfo "Download the following files:"
-		for dl in ${unavailable}; do
-			einfo "  ${dl}"
-		done
-		einfo "at '${uri}'"
-		einfo "and move them to '${DISTDIR}'"
-		einfo
-		einfo "If the above mentioned urls do not point to the correct version anymore,"
-		einfo "please download the files from Oracle's java download archive:"
-		einfo
-		einfo "http://www.oracle.com/technetwork/java/javase/archive-139210.html"
-		einfo
-	fi
-}
-
-#pkg_nofetch() {
-#	local distfiles=( $(eval "echo \${$(echo AT_${ARCH/-/_})}") )
-#	check_tarballs_available "${JDK_URI}" "${distfiles[@]}"
-#}
-
 src_unpack() {
 	default
 	mv "${WORKDIR}"/jdk* "${S}" || die "Failed to move/rename source dir"
@@ -122,10 +86,6 @@ src_install() {
 
 	dest="/opt/${P}"
 	ddest="${ED}${dest#/}"
-	# Create files used as storage for system preferences.
-#	mkdir .systemPrefs || die
-#	touch .systemPrefs/.system.lock || die
-#	touch .systemPrefs/.systemRootModFile || die
 
 	dodoc -r legal
 	dodir "${dest}"
