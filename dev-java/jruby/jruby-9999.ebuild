@@ -27,6 +27,7 @@ CP_DEPEND="
 	dev-java/dirgra:0
 	dev-java/options:0
 	dev-java/invokebinder:0
+	dev-java/javax-annotation:0
 	dev-java/jcodings:1
 	dev-java/jitescript:0
 	dev-java/jffi:0
@@ -63,7 +64,6 @@ PATCHES=( "${FILESDIR}/bash-launcher.patch" )
 JAVA_SRC_DIR="core/src/main/resources core/src/main/java"
 JAVAC_ARGS+=" --add-exports java.base/sun.nio.cs=ALL-UNNAMED "
 JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
-JAVAC_ARGS+=" --add-modules java.xml.ws.annotation "
 
 RUBY_HOME=/usr/share/${PN}/lib/ruby
 SITE_RUBY=${RUBY_HOME}/site_ruby
@@ -71,7 +71,7 @@ GEMS=${RUBY_HOME}/gems
 
 pkg_setup() {
 	export RUBYOPT=""
-	java-pkg
+	java-pkg_pkg_setup
 
 	local fail
 	for directory in "${GEMS}" "${SITE_RUBY}"; do
