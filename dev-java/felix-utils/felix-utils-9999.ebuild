@@ -16,10 +16,12 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="felix-${MY_P}"
 fi
 
+OSGI_SLOT="5"
+
 CP_DEPEND="
 	dev-java/felix-gogo-runtime:0
-	dev-java/osgi-compendium:6
-	dev-java/osgi-core-api:6
+	dev-java/osgi-compendium:${OSGI_SLOT}
+	dev-java/osgi-core-api:${OSGI_SLOT}
 "
 
 inherit java-pkg
@@ -30,5 +32,3 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}"
-
-PATCHES=( "${FILESDIR}/java9-filter.patch" )
