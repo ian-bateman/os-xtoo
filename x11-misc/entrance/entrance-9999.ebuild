@@ -6,6 +6,7 @@ EAPI="6"
 E_BASE_URI="https://github.com/Obsidian-StudiosInc/${PN}"
 E_BUILD="meson"
 E_DISTFILE="v${PV}"
+E_PV="${PV}"
 E_SRC_URI="${E_BASE_URI}/archive"
 E_TARBALL="tar.gz"
 
