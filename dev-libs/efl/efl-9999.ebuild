@@ -118,24 +118,12 @@ COMMON_DEP="
 	webp? ( media-libs/libwebp )
 	xine? ( >=media-libs/xine-lib-1.1.1 )
 	xpm? ( x11-libs/libXpm )"
-RDEPEND="${COMMON_DEP}"
 DEPEND="${COMMON_DEP}
-	!!dev-libs/ecore
-	!!dev-libs/edbus
-	!!dev-libs/eet
-	!!dev-libs/eeze
-	!!dev-libs/efreet
-	!!dev-libs/eina
-	!!dev-libs/eio
-	!!dev-libs/embryo
-	!!dev-libs/eobj
-	!!dev-libs/ephysics
-	!!media-libs/edje
-	!!media-libs/emotion
-	!!media-libs/ethumb
-	!!media-libs/evas
 	doc? ( app-doc/doxygen )
 	test? ( dev-libs/check )"
+RDEPEND="${COMMON_DEP}"
+
+S="${WORKDIR}/${E_P}"
 
 src_prepare() {
 	default
