@@ -39,6 +39,7 @@
 *app-office/gnucash
 *app-office/openoffice-bin
 *app-portage/mask-gentoo-dev-java
+*app-portage/package-debug
 *app-portage/package-env-no-bin
 *app-portage/portage-utils
 *app-portage/repoman
@@ -209,7 +210,7 @@
 *sys-process/iotop
 *sys-process/lsof
 *www-client/firefox
-*www-plugins/adobe-flash
+#*www-plugins/adobe-flash
 *x11-apps/mesa-progs
 *x11-drivers/xf86-video-ati
 *x11-misc/clipboard
