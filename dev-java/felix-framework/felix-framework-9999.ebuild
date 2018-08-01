@@ -16,11 +16,14 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="felix-${MY_P}"
 fi
 
+OSGI_SLOT="6"
+
 CP_DEPEND="
+	dev-java/animal-sniffer-annotations:0
 	dev-java/felix-resolver:0
 	dev-java/osgi-annotation:0
-	dev-java/osgi-compendium:6
-	dev-java/osgi-core-api:6
+	dev-java/osgi-compendium:${OSGI_SLOT}
+	dev-java/osgi-core-api:${OSGI_SLOT}
 "
 
 inherit java-pkg
