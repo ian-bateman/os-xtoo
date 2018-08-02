@@ -39,6 +39,7 @@
 *app-office/gnucash
 *app-office/openoffice-bin
 *app-portage/mask-gentoo-dev-java
+*app-portage/mask-gentoo-efl-pkgs
 *app-portage/package-env-debug
 *app-portage/package-env-no-bin
 *app-portage/portage-utils
