@@ -117,34 +117,28 @@ java-config at all, or any related packages.
 
 ## E
 This repo has full and complete support for 
-[Enlightenment](https://www.enlightenment.org/) desktop. This is 
-presently the official desktop being used by Obsidian-Studios, Inc. The 
-ebuilds in this repository are not perfect. They should be some of if 
-not the best quality ones around.
+[Enlightenment Foundation Libraries](https://www.enlightenment.org/about-efl), 
+[Enlightenment](https://www.enlightenment.org/) desktop, and various EFL 
+applications. E is presently the official desktop being used by 
+Obsidian-Studios, Inc. The ebuilds in this repository are not perfect. 
+They should be some of if not the best quality ones around. 
 
-We develop and maintain a few E applications:
+We develop and maintain a few EFL applications:
 * [Ecrire](https://github.com/Obsidian-StudiosInc/ecrire) - General Text Editor
 * [Entrance](https://github.com/Obsidian-StudiosInc/entrance) - Login/Display Manager
 * [clipboard](https://github.com/Obsidian-StudiosInc/clipboard) - Clipboard module
 * [Eminence](https://github.com/Obsidian-StudiosInc/eminence) - dark purple theme for E
 
-If you have any issues with E packages in this repository. Let us know 
-and we will address them ASAP. We take E seriously!
+It is recommended to not mix EFL/Enlightenment packages in Gentoo's 
+repository with this overlay. Those types of issues will likley not be 
+addressed. Therefore we recommend you merge 
+app-portage/mask-gentoo-efl-pkgs to avoid mixing EFL ebuilds in 
+Gentoo's main repository with ones in this overlay.
 
-Enlightenment and EFL is likely one of the most buggy window 
-managers, desktops and toolkits ever! Upstream is not very responsive to 
-feedback or any critique. There are numerous bugs, and new versions 
-seem to get worse vs better. Things they do not care about; X, multiple 
-displays, copy and paste. Those tend to have major issues compared to  
-other window managers, desktops, and toolkits.
+If you have any issues with EFL packages in this repository. Let us know 
+and we will address them ASAP. We take EFL seriously!
 
-You have been forewarned! Make sure to file 
-[bugs upstream](https://phab.enlightenment.org/).
-
-It is recommended to not mix EFL/Enlightenment packages in tree with 
-this overlay. Those types of issues will likley not be addressed. Any 
-issue with an ebuild relating to EFL or Enlightenment within this 
-repository will be addressed ASAP.
+Contributions are welcomed!
 
 ## Netbeans IDE
 Work is underway to package 
