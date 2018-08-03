@@ -232,7 +232,7 @@ We run [openrc](https://github.com/OpenRC/openrc) not
 Systemd users may experience new issues with packages in this overlay, 
 specifically 
 [efl](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/dev-libs/efl), 
-[englightenment](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/x11-wm/enlightenment) 
+[enlightenment](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/x11-wm/enlightenment) 
 and/or 
 [tomcat](https://github.com/Obsidian-StudiosInc/os-xtoo/tree/master/www-servers/tomcat). 
 All untested under systemd. Not to likely to have problems with other  
