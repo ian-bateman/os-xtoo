@@ -4,7 +4,7 @@
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit fcaps gnome2 pam  versionator virtualx
+inherit fcaps gnome2 pam virtualx
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
