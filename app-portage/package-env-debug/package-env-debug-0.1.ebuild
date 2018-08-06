@@ -1,7 +1,7 @@
 # Copyright 2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
 DESCRIPTION="Install package env files in /etc/portage for debug symbols"
 HOMEPAGE="https://github.com/Obsidian-StudiosInc/os-xtoo/"
