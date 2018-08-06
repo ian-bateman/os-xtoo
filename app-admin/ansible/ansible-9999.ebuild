@@ -4,7 +4,7 @@
 # Based on ebuild from gentoo main tree
 # Copyright 1999-2017 Gentoo Foundation
 
-EAPI="6"
+EAPI="7"
 
 if [[ "${PV:7:1}" == "." ]]; then
 	MY_PV="v${PV:0:7}-${PV:8}"
