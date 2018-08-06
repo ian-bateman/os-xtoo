@@ -1,24 +1,22 @@
-# Copyright 2017 Obsidian-Studios, Inc.
+# Copyright 2017-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-inherit eutils versionator
+inherit eutils
 
-MY_P="Linux_Upgrade_Tool_v${PV}"
+MY_PN="Linux_Upgrade_Tool"
+MY_P="${MY_PN}_v${PV}"
 
 DESCRIPTION="Rockchip Flash tool for Linux (upgrade_tool)"
-HOMEPAGE="http://linux-rockchip.org/"
-SRC_URI="${HOMEPAGE/l/dl.l}/rockchip/Linux_Upgrade_Tool_v${PV}.zip"
-
+HOMEPAGE="https://github.com/rockchip-linux/tools/tree/master/linux"
+SRC_URI="https://github.com/rockchip-linux/tools/raw/master/linux/${MY_PN}/${MY_P}.zip"
 LICENSE="Apache-2.0"
+KEYWORDS="~amd64"
 SLOT="0"
 IUSE="doc"
-KEYWORDS="~amd64"
 
 DEPEND="app-arch/unzip"
-
-RDEPEND=""
 
 S=${WORKDIR}/${MY_P}
 
