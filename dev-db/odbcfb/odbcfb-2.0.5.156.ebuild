@@ -1,11 +1,11 @@
-# Copyright 2015-2016 Obsidian-Studios, Inc.
+# Copyright 2015-2018 Obsidian-Studios, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-inherit eutils versionator flag-o-matic
+inherit eutils flag-o-matic
 
-MY_PV="$(get_version_component_range 1-3)"
+MY_PV="${PV%.*}"
 MY_PN="OdbcJdbc"
 MY_P="${MY_PN}-src-${PV}"
 
