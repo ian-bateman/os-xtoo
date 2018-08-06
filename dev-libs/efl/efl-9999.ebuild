@@ -12,7 +12,7 @@ else
 	E_TYPE="libs"
 fi
 
-inherit autotools e versionator
+inherit autotools e
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
