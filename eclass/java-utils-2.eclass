@@ -27,6 +27,10 @@ for _jdep in DEPEND RDEPEND; do
 		export ${_jdep}+=" >=virtual/jdk-10:*"
 done
 
+if [[ "${SRC_URI}" == *.zip ]] && [[ "${DEPEND}" != "unzip"  ]]; then
+	export DEPEND+=" app-arch/unzip"
+fi
+
 # @VARIABLE: JAVA_PKG_E_DEPEND
 # @INTERNAL
 # @DESCRIPTION:
