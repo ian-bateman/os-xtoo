@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 PYTHON_COMPAT=( python2_7 )
 USE_RUBY="ruby22 ruby23 ruby24"
 
-inherit autotools check-reqs flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs versionator virtualx
+inherit autotools check-reqs flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs virtualx
 
 MY_P="webkitgtk-${PV}"
 DESCRIPTION="Open source web browser engine"
@@ -16,7 +16,8 @@ LICENSE="LGPL-2+ BSD"
 SLOT="2" # no usable subslot
 KEYWORDS="~amd64"
 
-IUSE="aqua coverage debug +egl +geoloc gles2 gnome-keyring +gstreamer +introspection +jit +opengl spell +webgl +X"
+IUSE="aqua coverage debug +egl +geoloc gles2 gnome-keyring +gstreamer
+	+introspection +jit +opengl prefix spell +webgl +X"
 # bugs 372493, 416331
 REQUIRED_USE="
 	geoloc? ( introspection )
@@ -166,24 +167,12 @@ src_prepare() {
 }
 
 src_configure() {
-	# Respect CC, otherwise fails on prefix #395875
+	# Respect CC, otherwise fails #395875
 	tc-export CC
 
 	# Arches without JIT support also need this to really disable it in all places
 	use jit || append-cppflags -DENABLE_JIT=0 -DENABLE_YARR_JIT=0 -DENABLE_ASSEMBLER=0
 
-	# It does not compile on alpha without this in LDFLAGS
-	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=648761
-	use alpha && append-ldflags "-Wl,--no-relax"
-
-	# Sigbuses on SPARC with mcpu and co., bug #???
-	use sparc && filter-flags "-mvis"
-
-	# https://bugs.webkit.org/show_bug.cgi?id=42070 , #301634
-	use ppc64 && append-flags "-mminimal-toc"
-
-	# Try to use less memory, bug #469942 (see Fedora .spec for reference)
-	# --no-keep-memory doesn't work on ia64, bug #502492
 	if ! use ia64; then
 		append-ldflags "-Wl,--no-keep-memory"
 	fi
