@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-inherit eapi7-ver eutils java-pkg
+inherit desktop eapi7-ver eutils java-pkg
 
 RESTRICT="strip"
 QA_PREBUILT="
