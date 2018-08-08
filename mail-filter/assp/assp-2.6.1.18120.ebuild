@@ -3,11 +3,12 @@
 
 EAPI="6"
 
-inherit eutils user versionator
+inherit eutils user
+
+MY_PN=ASSP_${PV%.*}_${PV##*.}_install
 
 DESCRIPTION="Anti-Spam SMTP Proxy written in Perl"
 HOMEPAGE="https://${PN}.sourceforge.net/"
-MY_PN=ASSP_$(replace_version_separator 3 '_')_install
 SRC_URI="mirror://sourceforge/${PN}/${MY_PN}.zip"
 LICENSE="GPL-2"
 SLOT="0"
@@ -15,9 +16,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 IUSE="ipv6 ldap sasl snmp spf srs ssl syslog"
-
-DEPEND="app-arch/unzip
-	${RDEPEND}"
 
 #	dev-perl/Schedule-Cron
 RDEPEND="dev-lang/perl[ithreads]
@@ -65,9 +63,14 @@ RDEPEND="dev-lang/perl[ithreads]
 	ssl? ( dev-perl/IO-Socket-SSL
 		dev-perl/Net-SMTP-SSL )
 	syslog? ( virtual/perl-Sys-Syslog )
-	ldap? ( dev-perl/perl-ldap )"
+	ldap? ( dev-perl/perl-ldap )
+"
 
-S=${WORKDIR}/${PN}
+DEPEND="app-arch/unzip
+	${RDEPEND}
+"
+
+S="${WORKDIR}/${PN}"
 
 pkg_setup() {
 	enewgroup assp
