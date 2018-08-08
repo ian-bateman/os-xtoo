@@ -3,19 +3,29 @@
 
 EAPI="6"
 
-inherit eutils java-pkg versionator
+inherit eapi7-ver eutils java-pkg
 
 RESTRICT="strip"
-QA_PREBUILT="opt/${PN}/bin/libbreakgen*.so opt/${PN}/bin/fsnotifier*"
-if [[ $(get_version_component_count) -eq 7 ]]; then
-	STUDIO_V=$(get_version_component_range 1-4)
-	BUILD_V=$(get_version_component_range 6-7)
-elif [[ $(get_version_component_count) -eq 6 ]]; then
-	STUDIO_V=$(get_version_component_range 1-4)
-	BUILD_V=$(get_version_component_range 5-6)
+QA_PREBUILT="
+	opt/${PN}/bin/libbreakgen*.so
+	opt/${PN}/bin/fsnotifier*
+	opt/${PN}/lib/libpty/linux/x86*/libpty.so
+	opt/${PN}/plugins/android/lib/libwebp_jni*.so
+	opt/${PN}/plugins/android/resources/perfa/*/libperfa.so
+	opt/${PN}/plugins/android/resources/perfd/*/perfd
+	opt/${PN}/plugins/android/resources/simpleperf/*/simpleperf
+"
+
+VER_CMP=( $(ver_rs 1- ' ') )
+if [[ ${#VER_CMP[@]} -eq 7 ]]; then
+	STUDIO_V=$(ver_cut 1-4)
+	BUILD_V=$(ver_cut 6-7)
+elif [[ ${#VER_CMP[@]} -eq 6 ]]; then
+	STUDIO_V=$(ver_cut 1-4)
+	BUILD_V=$(ver_cut 5-6)
 else
-	STUDIO_V=$(get_version_component_range 1-3)
-	BUILD_V=$(get_version_component_range 4-5)
+	STUDIO_V=$(ver_cut 1-3)
+	BUILD_V=$(ver_cut 4-5)
 fi
 
 MY_PN="${PN/-bin/}"
