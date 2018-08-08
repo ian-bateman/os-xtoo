@@ -71,7 +71,6 @@ RDEPEND="
 S=${WORKDIR}/${MY_PN}
 
 JAVA_PKG_NO_CLEAN=1
-JAVA_PKG_FORCE_VM="dev-java/oracle-jdk-bin-${JAVA_SLOT}"
 
 java_prepare() {
 	# This is really a bundled jdk not a jre
