@@ -38,7 +38,7 @@ KEYWORDS="~amd64"
 IUSE="kvm selinux system-jvm"
 SLOT="0"
 
-JAVA_SLOT="1.8"
+JAVA_SLOT="11"
 
 DEPEND="app-arch/unzip"
 
