@@ -27,6 +27,7 @@ REQUIRED_USE="|| ( elementary terminology )"
 
 RDEPEND="
 	elementary? ( dev-libs/efl )
+	media-fonts/noto[X]
 	terminology? ( x11-terms/terminology )
 "
 
