@@ -3,13 +3,12 @@
 
 EAPI="6"
 
-inherit autotools eutils flag-o-matic multilib readme.gentoo-r1 user versionator
+inherit autotools eutils flag-o-matic multilib readme.gentoo-r1 user
 
 MY_PN="${PN^}"
 MY_PV="${PV%*.*.*}"
 MY_PV="${MY_PV//./_}"
-MY_P=${MY_PN}-$(replace_version_separator 4 -)
-MY_P=${MY_P/rc/ReleaseCandidate}
+MY_P="${MY_PN}-${PV%.*}-${PV##*.}"
 MY_MM="${PV%.*.*.*}"
 
 DESCRIPTION="A relational database offering many ANSI SQL:2003 and some SQL:2008 features"
