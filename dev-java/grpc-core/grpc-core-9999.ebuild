@@ -22,7 +22,7 @@ CP_DEPEND="
 	dev-java/error-prone-annotations:0
 	~dev-java/grpc-context-${PV}:${SLOT}
 	dev-java/gson:0
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/jsr305:0
 	dev-java/opencensus-api:${OPENCENSUS_SLOT}
 	dev-java/opencensus-contrib-grpc-metrics:${OPENCENSUS_SLOT}
