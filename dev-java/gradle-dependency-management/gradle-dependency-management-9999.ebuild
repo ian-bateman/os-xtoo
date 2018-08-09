@@ -28,7 +28,7 @@ CP_DEPEND="
 	~dev-java/gradle-resources-http-${PV}:${SLOT}
 	~dev-java/gradle-version-control-${PV}:${SLOT}
 	dev-java/groovy:0
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/javax-inject:0
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
