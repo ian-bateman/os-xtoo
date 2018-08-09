@@ -43,6 +43,7 @@ dev-libs/libpcre2 pcre16
 dev-libs/popt static-libs
 dev-libs/protobuf java
 dev-libs/pwlib ldap
+dev-libs/weston wayland-compositor xwayland
 dev-qt/qtcore icu
 dev-scheme/guile deprecated
 dev-util/android-studio-bin system-jvm
