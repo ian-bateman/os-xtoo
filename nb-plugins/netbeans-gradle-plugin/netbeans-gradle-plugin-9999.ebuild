@@ -28,7 +28,7 @@ CP_DEPEND="
 	dev-java/jsr305:0
 	dev-java/gradle-base-services:${GRADLE_SLOT}
 	dev-java/gradle-tooling-api:${GRADLE_SLOT}
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/javax-annotation:0
 	dev-java/jtrim-collections:${JTRIM_SLOT}
 	dev-java/jtrim-concurrent:${JTRIM_SLOT}
