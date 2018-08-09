@@ -12,7 +12,7 @@ CP_DEPEND="
 	~dev-java/gradle-core-api-${PV}:${SLOT}
 	~dev-java/gradle-logging-${PV}:${SLOT}
 	~dev-java/gradle-persistent-cache-${PV}:${SLOT}
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/jsr305:0
 	dev-java/slf4j-api:0
 "
