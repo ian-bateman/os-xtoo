@@ -12,7 +12,7 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-CP_DEPEND="dev-java/guava:25"
+CP_DEPEND="dev-java/guava:26"
 
 inherit java-pkg
 
