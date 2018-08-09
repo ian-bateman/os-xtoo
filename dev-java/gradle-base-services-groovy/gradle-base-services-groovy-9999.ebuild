@@ -9,7 +9,7 @@ CP_DEPEND="
 	dev-java/asm:6
 	~dev-java/gradle-base-services-${PV}:${SLOT}
 	dev-java/groovy:0
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/jsr305:0
 "
 
