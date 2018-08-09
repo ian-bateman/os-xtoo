@@ -95,6 +95,7 @@
 *dev-java/scribejava-core
 *dev-java/tomcat-catalina
 *dev-libs/efl
+*dev-libs/weston
 *dev-perl/Gtk2-AppIndicator
 #*dev-util/android-studio-bin
 *dev-util/android-tools
