@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-inherit java-netbeans
+inherit desktop java-netbeans
 
 DEPEND=">=virtual/jdk-9:*"
 
