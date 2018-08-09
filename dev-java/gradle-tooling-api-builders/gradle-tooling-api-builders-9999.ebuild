@@ -20,7 +20,7 @@ CP_DEPEND="
 	~dev-java/gradle-testing-jvm-${PV}:${SLOT}
 	~dev-java/gradle-tooling-api-${PV}:${SLOT}
 	dev-java/groovy:0
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/jsr305:0
 	dev-java/slf4j-api:0
 "
