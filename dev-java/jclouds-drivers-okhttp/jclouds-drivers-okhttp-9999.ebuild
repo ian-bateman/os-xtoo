@@ -24,7 +24,7 @@ SLOT="0"
 CP_DEPEND="
 	dev-java/javax-inject:0
 	~dev-java/jclouds-core-${PV}:${SLOT}
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/guice:4
 	dev-java/okhttp:0
 	dev-java/okio:0
