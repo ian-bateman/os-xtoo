@@ -20,7 +20,7 @@ CP_DEPEND="
 	~dev-java/gradle-process-services-${PV}:${SLOT}
 	~dev-java/gradle-reporting-${PV}:${SLOT}
 	dev-java/groovy:0
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/javax-inject:0
 	dev-java/jsr305:0
 	dev-java/kryo:0
