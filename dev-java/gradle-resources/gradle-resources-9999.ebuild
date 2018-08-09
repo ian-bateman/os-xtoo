@@ -10,7 +10,7 @@ CP_DEPEND="
 	~dev-java/gradle-base-services-${PV}:${SLOT}
 	~dev-java/gradle-model-core-${PV}:${SLOT}
 	~dev-java/gradle-native-${PV}:${SLOT}
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/jsr305:0
 "
 
