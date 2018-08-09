@@ -12,7 +12,7 @@ CP_DEPEND="
 	~dev-java/gradle-base-services-${PV}:${SLOT}
 	~dev-java/gradle-messaging-${PV}:${SLOT}
 	~dev-java/gradle-native-${PV}:${SLOT}
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
 	dev-java/slf4j-api:0
