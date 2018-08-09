@@ -27,7 +27,7 @@ CP_DEPEND="
 	~dev-java/gradle-testing-base-${PV}:${SLOT}
 	dev-java/groovy:${GROOVY_SLOT}
 	dev-java/groovy-xml:${GROOVY_SLOT}
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/javax-inject:0
 	dev-java/jsr305:0
 	dev-java/junit:4
