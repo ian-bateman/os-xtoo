@@ -19,7 +19,7 @@ fi
 SLOT="${PV%%.*}"
 
 CP_DEPEND="
-	dev-java/guava:25
+	dev-java/guava:26
 	~dev-java/guice-${PV}:${SLOT}
 	dev-java/javax-inject:0
 	java-virtuals/servlet-api:4.0
