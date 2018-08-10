@@ -23,6 +23,11 @@ BCV="1.60"
 CP_DEPEND="
 	dev-java/bcpkix:${BCV}
 	dev-java/bcprov:${BCV}
+	dev-java/commons-compress:0
+	dev-java/commons-imaging:0
+	dev-java/commons-io:0
+	dev-java/commons-text:0
+	dev-java/juniversalchardet:0
 "
 
 inherit java-pkg
@@ -32,3 +37,13 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="MPL-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+java_prepare() {
+	local f
+
+	for f in $(grep -l -m1 sanselan -r src/main/java); do
+		sed -i -e "s|.sanselan.|.commons.imaging.|g" "${f}" \
+			-e "s|.byteSources.|.bytesource.|g" \
+			|| die "Failed to sed/replace import"
+	done
+}
