@@ -34,7 +34,7 @@ CP_DEPEND="
 	dev-java/metainf-services:0
 	dev-java/tiger-types:0
 	dev-java/txw2:0
-	java-virtuals/servlet-api:4.0
+	java-virtuals/servlet-api:3.0
 "
 
 inherit java-pkg
@@ -47,13 +47,20 @@ SLOT="0"
 S="${WORKDIR}/${MY_S}/${PN##*-}"
 
 java_prepare() {
-	local f
+	local f files
 
 	sed -i -e "s|org.kohsuke.asm5|org.objectweb.asm|g" \
 		"${S}/src/main/java/org/kohsuke/stapler/ClassDescriptor.java" \
 		|| die "Could not sed asm"
 
-	for f in export/TypeUtil Function RequestImpl; do
+	files=(
+		export/Model
+		export/Property
+		export/TypeUtil
+		Function
+		RequestImpl
+	)
+	for f in "${files[@]}"; do
 		sed -i -e "s| _)| vvar)|g" \
 			src/main/java/org/kohsuke/stapler/${f}.java \
 			|| die "Failed to sed/fix Java 9 keyword _ -> vvar"
