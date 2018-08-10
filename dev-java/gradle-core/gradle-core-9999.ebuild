@@ -32,7 +32,7 @@ CP_DEPEND="
 	dev-java/groovy-json:0
 	dev-java/groovy-templates:0
 	dev-java/groovy-xml:0
-	dev-java/guava:25
+	dev-java/guava:26
 	dev-java/javax-inject:0
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
@@ -78,9 +78,16 @@ java_prepare() {
 			|| die "Failed to sed/fix guava api changes"
 	done
 
-	# add back import removed, switch to collectoins?
+	# add back import removed, switch to collections?
 	sed -i -e "/java.util.Collection;/a import com.google.common.collect.Iterators;" \
 		src/main/java/org/gradle/api/internal/CompositeDomainObjectSet.java \
 		|| die "Failed to sed/fix guava api changes"
 
+	sed -i -e 'N;s|});\n.*return|},com.google.common.util.concurrent.MoreExecutors.directExecutor());\n            return|;P;D' \
+		src/main/java/org/gradle/internal/filewatch/jdk7/WatchServiceFileWatcherBacking.java \
+		|| die "Failed to sed/fix guava api changes"
+
+	sed -i -e "s|JAVA_ISO_CONTROL|javaIsoControl()|" \
+		src/main/java/org/gradle/api/internal/tasks/userinput/DefaultUserInputHandler.java \
+		|| die "Failed to sed/fix guava api changes"
 }
