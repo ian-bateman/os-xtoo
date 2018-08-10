@@ -30,7 +30,7 @@ dev-java/swing-layout source
 dev-lang/python ncurses tk
 dev-libs/DirectFB -egl nvidia video_cards_i965 video_cards_intel video_cards_nvidia video_cards_radeon
 dev-libs/boost icu python
-dev-libs/efl egl elogind harfbuzz -opengl physics postscript psd -sdl -static-libs wayland
+dev-libs/efl egl elogind harfbuzz -opengl physics postscript psd -sdl -static-libs xpm wayland
 dev-libs/gmp cxx
 dev-libs/libcdio cddb
 dev-libs/libdbusmenu gtk gtk3
