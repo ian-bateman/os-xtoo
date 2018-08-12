@@ -6,9 +6,13 @@ EAPI="7"
 JAVA_PKG_IUSE="doc source"
 JAVA_NO_COMMONS=1
 
-MY_PN="DBCP"
-MY_PV="${PV//./_}"
-MY_P="${MY_PN}_${MY_PV^^}"
+if [[ ${PV} == 2.3.0 ]]; then
+	MY_PN="DBCP"
+	MY_PV="${PV//./_}"
+	MY_P="${MY_PN}_${MY_PV^^}"
+else
+	MY_P="${P}"
+fi
 
 BASE_URI="https://github.com/apache/${PN}"
 
