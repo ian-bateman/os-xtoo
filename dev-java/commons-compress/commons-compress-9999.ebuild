@@ -17,6 +17,7 @@ fi
 CP_DEPEND="
 	dev-java/brotli:0
 	dev-java/xz-java:0
+	dev-java/zstd-jni:0
 "
 
 inherit java-pkg
