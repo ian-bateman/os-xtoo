@@ -14,7 +14,6 @@ DESCRIPTION="EOL Stub classes representing Apple eAWT and eIO APIs for OS X"
 HOMEPAGE="${BASE_URI}/Introduction/Intro.html"
 SRC_URI="${BASE_URI}/${MY_PN}.zip -> ${P}.zip"
 LICENSE="Apple"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
