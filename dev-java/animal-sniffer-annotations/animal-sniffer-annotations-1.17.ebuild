@@ -13,7 +13,6 @@ DESCRIPTION="Animal Sniffer Annotations"
 HOMEPAGE="https://www.mojohaus.org/animal-sniffer/"
 SRC_URI="https://github.com/mojohaus/${MY_PN}/archive/${MY_PN}-parent-${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${MY_PN}-${MY_PN}-parent-${PV}/${PN}"
