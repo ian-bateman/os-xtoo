@@ -17,7 +17,6 @@ HOMEPAGE="http://www.antlr.org/"
 # jar used for bootstrap not installed
 SRC_URI="https://github.com/${PN}/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz
 	http://www.antlr3.org/download/${P}-complete.jar"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="3.5"
 
