@@ -9,7 +9,6 @@ BASE_URI="https://github.com/google/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${P}"
 fi
 
