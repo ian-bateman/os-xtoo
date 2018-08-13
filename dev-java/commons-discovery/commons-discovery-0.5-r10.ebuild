@@ -13,7 +13,6 @@ DESCRIPTION="Commons Discovery: Service Discovery component"
 HOMEPAGE="https://commons.apache.org/proper/${PN}/"
 SRC_URI="mirror://apache/${PN/-///}/source/${P}-src.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${P}-src"
