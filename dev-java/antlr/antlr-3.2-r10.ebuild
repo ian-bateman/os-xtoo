@@ -16,7 +16,6 @@ DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr.org/"
 SRC_URI="http://www.antlr3.org/download/${P}.tar.gz
 	http://www.antlr3.org/download/${P}.jar"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="3"
 
