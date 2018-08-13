@@ -38,6 +38,10 @@ if [[ ${PV} == *9999* ]] && \
         inherit git-r3
 fi
 
+if [[ ${PV} != *9999* ]]; then
+	: ${KEYWORDS:="~amd64"}
+fi
+
 EXPORT_FUNCTIONS pkg_setup src_prepare pkg_preinst
 
 # @FUNCTION: java-pkg_pkg_setup
