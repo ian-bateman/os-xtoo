@@ -12,7 +12,6 @@ if [[ ${PV} != *9999* ]]; then
 	[[ ${PV} == 1.0.0 ]] && MY_PV="${PV}.GA"
 	MY_P="${PN}-${MY_PV}"
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
