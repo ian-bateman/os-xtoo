@@ -11,7 +11,6 @@ BASE_URI="https://github.com/google/auto/"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="auto-${MY_P}"
 fi
 
