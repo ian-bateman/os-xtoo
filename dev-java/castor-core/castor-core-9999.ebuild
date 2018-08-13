@@ -13,7 +13,6 @@ BASE_URI="https://github.com/${MY_PN}-data-binding/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="
