@@ -14,7 +14,6 @@ BASE_URI="https://github.com/${MY_PN}-data-binding/${MY_PN}"
 if [[ ${PV} != *9999* ]]; then
 #	SRC_URI="${BASE_URI}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	SRC_URI="https://repo1.maven.org/maven2/org/codehaus/${MY_PN}/${PN/-/-xml-}/${PV}/${P/r-s/r-xml-s}-sources.jar"
-	KEYWORDS="~amd64"
 fi
 
 SLOT="0"
