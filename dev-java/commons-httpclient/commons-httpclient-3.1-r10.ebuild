@@ -17,7 +17,6 @@ DESCRIPTION="EOL Commons HttpClient library"
 HOMEPAGE="https://hc.apache.org/httpclient-3.x/"
 SRC_URI="mirror://apache/httpcomponents/${PN}/source/${P}-src.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${P}"
