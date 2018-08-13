@@ -18,7 +18,6 @@ DESCRIPTION="EOL Java logging toolkit"
 HOMEPAGE="https://excalibur.apache.org/"
 SRC_URI="https://archive.apache.org/dist/excalibur/excalibur-logkit/source/${P}-src.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${P}"
