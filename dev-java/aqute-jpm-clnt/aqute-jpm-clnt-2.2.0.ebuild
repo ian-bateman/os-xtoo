@@ -16,7 +16,6 @@ DESCRIPTION="aQute JPM Clnt"
 HOMEPAGE="https://github.com/bndtools/bnd/tree/4.0.0.DEV/cnf/repo/${MY_PN}"
 SRC_URI="${HOMEPAGE/tree/blob}/${MY_PN}-${PV}.jar?raw=true -> ${P}.jar"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip:0"
