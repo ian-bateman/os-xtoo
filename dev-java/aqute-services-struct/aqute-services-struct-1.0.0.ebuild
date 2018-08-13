@@ -16,7 +16,6 @@ DESCRIPTION="aQute Services Struct"
 HOMEPAGE="https://github.com/pkriens/aQute.repo/"
 SRC_URI="https://github.com/pkriens/aQute.repo/blob/master/repo/${MY_PN}/${MY_PN}-${PV}.jar?raw=true -> ${P}.jar"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/"
