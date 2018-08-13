@@ -10,7 +10,6 @@ inherit java-pkg
 DESCRIPTION="A parser generator for many languages"
 HOMEPAGE="http://www.antlr2.org/"
 SRC_URI="http://www.antlr2.org/download/${P}.tar.gz"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="0"
 
