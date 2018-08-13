@@ -19,7 +19,6 @@ DESCRIPTION="Java continuation object creator"
 HOMEPAGE="https://commons.apache.org/sandbox/${PN}/"
 SRC_URI="https://repo1.maven.org/maven2/com/google/code/maven-play-plugin/org/apache/${PN:0:7}/${PN}/1590792-patched-play-${PV}/${PN}-1590792-patched-play-${PV}-sources.jar"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+="app-arch/unzip"
