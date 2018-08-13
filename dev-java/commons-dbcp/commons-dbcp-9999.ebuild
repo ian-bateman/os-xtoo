@@ -4,22 +4,13 @@
 EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
-JAVA_NO_COMMONS=1
-
-if [[ ${PV} == 2.3.0 ]]; then
-	MY_PN="DBCP"
-	MY_PV="${PV//./_}"
-	MY_P="${MY_PN}_${MY_PV^^}"
-else
-	MY_P="${P}"
-fi
 
 BASE_URI="https://github.com/apache/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	KEYWORDS="~amd64"
-	MY_S="${PN}-${MY_P}"
+	MY_S="${PN}-${P}"
 fi
 
 CP_DEPEND="
