@@ -15,7 +15,6 @@ BASE_URI="https://github.com/${PN}/${MY_PN}"
 if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz
 		http://repo1.maven.org/maven2/org/${PN}/${MY_PN}/${PV}/${MY_P}-sources.jar"
-	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
