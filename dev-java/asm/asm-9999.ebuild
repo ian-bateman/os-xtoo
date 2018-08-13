@@ -13,7 +13,6 @@ BASE_URI="https://gitlab.ow2.org/asm/asm"
 
 if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/repository/${MY_P}/archive.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="
