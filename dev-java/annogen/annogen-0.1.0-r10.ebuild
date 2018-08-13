@@ -16,7 +16,6 @@ DESCRIPTION="A tool which helps you work with JSR175 annotations"
 HOMEPAGE="https://github.com/codehaus/${PN}"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.zip"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
