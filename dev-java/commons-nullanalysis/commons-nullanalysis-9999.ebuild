@@ -11,7 +11,6 @@ if [[ ${PV} == 9999 ]]; then
 	S="${WORKDIR}/${P}"
 else
 	SRC_URI="http://repo1.maven.org/maven2/de/unkrig/${PN%%-*}/${PN}/${PV}/${P}-sources.jar"
-	KEYWORDS="~amd64"
 fi
 
 inherit java-pkg ${ECLASS}
