@@ -17,7 +17,6 @@ inherit java-pkg
 DESCRIPTION="Java cryptography APIs"
 HOMEPAGE="${BASE_URI}java.html"
 SRC_URI="${BASE_URI}download/${MY_P}.tar.gz"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 
 DEPEND+=" app-arch/unzip"
