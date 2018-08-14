@@ -14,7 +14,6 @@ BASE_URI="https://github.com/${PN%%-*}/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/wikitext.core-${PV}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-wikitext.core-${PV}"
 fi
 
