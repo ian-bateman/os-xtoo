@@ -9,7 +9,6 @@ BASE_URI="https://github.com/LMAX-Exchange/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 inherit java-pkg
