@@ -13,7 +13,6 @@ BASE_URI="https://github.com/Obsidian-StudiosInc/JavaHamcrest"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="JavaHamcrest-${MY_P}"
 fi
 
