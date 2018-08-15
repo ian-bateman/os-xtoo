@@ -8,7 +8,6 @@ BASE_URI="https://github.com/bulenkov/${PN}"
 if [[ ${PV} != *9999* ]]; then
 	MY_SNAP="d993b829d8b37c23fdbc492afc784ac3d4e41410"
 	SRC_URI="${BASE_URI}/archive/${MY_SNAP}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_SNAP}"
 fi
 
