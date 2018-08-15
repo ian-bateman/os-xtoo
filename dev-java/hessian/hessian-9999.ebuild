@@ -9,7 +9,6 @@ BASE_URI="https://github.com/ebourg/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="dev-java/tomcat-servlet-api:4.0"
