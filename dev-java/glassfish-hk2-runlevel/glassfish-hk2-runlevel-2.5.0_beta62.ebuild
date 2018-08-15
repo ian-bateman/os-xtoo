@@ -24,6 +24,5 @@ HOMEPAGE="https://hk2.java.net/"
 SRC_URI="https://github.com/${MY_PN}-project/${MY_PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="CDDL GPL-2-with-linking-exception"
-KEYWORDS="~amd64"
 
 S="${WORKDIR}/${MY_P}/${PN:10}/"
