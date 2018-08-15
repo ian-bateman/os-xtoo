@@ -15,7 +15,6 @@ BASE_URI="https://github.com/javaee/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_P}"
 fi
 
