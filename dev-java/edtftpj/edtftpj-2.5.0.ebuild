@@ -10,7 +10,6 @@ inherit java-pkg
 DESCRIPTION="FTP client library"
 HOMEPAGE="https://enterprisedt.com/products/${PN}/"
 SRC_URI="${HOMEPAGE}download/${PN}.zip -> ${P}.zip"
-KEYWORDS="~amd64"
 LICENSE="LGPL-2.1+"
 SLOT="0"
 
