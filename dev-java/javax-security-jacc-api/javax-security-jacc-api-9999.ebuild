@@ -13,7 +13,6 @@ BASE_URI="https://github.com/javaee/jacc-spec"
 
 if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="jacc-spec-${MY_P}"
 fi
 
