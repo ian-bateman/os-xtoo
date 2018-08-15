@@ -15,7 +15,6 @@ HOMEPAGE="https://javaee.github.io/jms-spec/"
 SRC_URI="https://repo1.maven.org/maven2/${PN:0:5}/${PN:6:3}/${MY_PN}/${PV}/${MY_P}-sources.jar"
 
 LICENSE="|| ( CDDL GPL-2 )"
-KEYWORDS="~amd64"
 SLOT="${PV%%.*}"
 
 DEPEND+=" app-arch/unzip"
