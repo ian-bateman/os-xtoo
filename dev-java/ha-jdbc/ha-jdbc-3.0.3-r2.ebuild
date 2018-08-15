@@ -29,7 +29,6 @@ DESCRIPTION="High-Availability JDBC"
 HOMEPAGE="https://${PN}.github.io/"
 SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${PN}-${PV}.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${P}/"
