@@ -16,7 +16,6 @@ HOMEPAGE="http://www.${PN}.de/"
 SRC_URI="http://www.java2html.de/${MY_P}.zip"
 
 LICENSE="|| ( GPL-1 CPL-1.0 )"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
