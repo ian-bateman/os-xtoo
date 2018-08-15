@@ -23,7 +23,6 @@ else
 		MY_P="${MY_PN}-src-${MY_PV}"
 	fi
 	SRC_URI="${BASE_URI}/releases/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	SLOT="${PV:3:1}"
 fi
 
