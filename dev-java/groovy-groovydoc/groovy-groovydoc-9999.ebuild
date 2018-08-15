@@ -14,7 +14,6 @@ BASE_URI="https://github.com/apache/${MY_PNL}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_PNL}-${MY_P}"
 fi
 
