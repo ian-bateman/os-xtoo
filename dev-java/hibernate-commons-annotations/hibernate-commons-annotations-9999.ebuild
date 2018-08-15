@@ -13,7 +13,6 @@ BASE_URI="https://github.com/${MY_PN}/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="
