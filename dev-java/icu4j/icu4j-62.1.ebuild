@@ -16,7 +16,6 @@ SRC_URI="http://download.icu-project.org/files/${PN}/${PV}/${MY_P}-src.jar
 	doc? ( http://download.icu-project.org/files/${PN}/${PV}/${MY_P}-docs.jar )"
 
 LICENSE="icu"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND="app-arch/unzip"
