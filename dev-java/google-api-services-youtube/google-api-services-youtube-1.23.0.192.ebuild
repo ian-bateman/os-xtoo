@@ -10,7 +10,6 @@ MY_PV="v3-rev${PV#*.*.*.}-${PV%*\.*}"
 MY_P="${PN}-${MY_PV}"
 
 SRC_URI="https://repo1.maven.org/maven2/com/google/apis/${PN}/${MY_PV}/${MY_P}-sources.jar"
-KEYWORDS="~amd64"
 
 SLOT="0"
 
