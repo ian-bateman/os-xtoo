@@ -9,7 +9,6 @@ BASE_URI="https://github.com/arenn/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/raw/master/${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${PN}-${MY_P}"
 fi
 
