@@ -13,7 +13,6 @@ DESCRIPTION="Library that implements the CIFS/SMB networking protocol in Java"
 HOMEPAGE="${BASE_URI}"
 SRC_URI="${BASE_URI}src/${P}.tgz"
 LICENSE="LGPL-2.1"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${P/-/_}"
