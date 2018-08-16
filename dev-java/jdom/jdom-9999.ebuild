@@ -18,7 +18,6 @@ if [[ ${PV} != *9999* ]]; then
 		SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 		MY_S+="-${MY_P}"
 	fi
-	KEYWORDS="~amd64"
 fi
 
 inherit java-pkg
