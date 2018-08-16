@@ -8,7 +8,6 @@ inherit java-pkg
 DESCRIPTION="A lexical analyzer generator for Java"
 HOMEPAGE="https://www.cs.princeton.edu/~appel/modern/java/JLex/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
-KEYWORDS="~amd64"
 LICENSE="jlex"
 SLOT="0"
 
