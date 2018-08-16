@@ -11,7 +11,6 @@ DESCRIPTION="Port of Mozilla's Automatic Charset Detection algorithm"
 HOMEPAGE="https://jchardet.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${PN}/${P}.zip"
 LICENSE="MPL-1.1"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
