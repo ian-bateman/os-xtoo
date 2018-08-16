@@ -9,7 +9,6 @@ BASE_URI="https://github.com/jfree/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="java-virtuals/servlet-api:4.0"
