@@ -22,7 +22,6 @@ else
 		SLOT="1"
 	fi
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 JCUP_SLOT=1
