@@ -14,7 +14,6 @@ MY_P="${MY_PN}-${MY_PV}"
 DESCRIPTION="Jetty's NPN API"
 HOMEPAGE="https://wiki.eclipse.org/Jetty/Feature/NPN"
 SRC_URI="https://repo1.maven.org/maven2/org/eclipse/${PN:0:5}/npn/${MY_PN}/${MY_PV}/${MY_P}-sources.jar"
-KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 SLOT="0"
 
