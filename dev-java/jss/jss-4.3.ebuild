@@ -12,7 +12,6 @@ inherit java-pkg
 DESCRIPTION="Netscape Directory SDK for Java"
 HOMEPAGE="https://www-archive.mozilla.org/directory/javasdk.html"
 SRC_URI="http://ftp.mozilla.org/pub/security/jss/releases/${MY_P}_RTM/src/${P}.tar.bz2"
-KEYWORDS="~amd64"
 LICENSE="MPL-1.1"
 SLOT="0"
 
