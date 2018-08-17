@@ -11,7 +11,6 @@ DESCRIPTION="LZMA library for Java EOL"
 
 SRC_URI="https://github.com/jponge/${PN}/archive/${P}.tar.gz"
 HOMEPAGE="https://jponge.github.io/${PN}/"
-KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 SLOT="0"
 
