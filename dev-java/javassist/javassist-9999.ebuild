@@ -31,4 +31,10 @@ SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${MY_S}"
 
-JAVA_NEEDS_TOOLS=1
+JAVAC_ARGS+=" --add-exports=java.base/jdk.internal.misc=ALL-UNNAMED "
+
+java_prepare() {
+	sed -i -e "s|sun.misc|jdk.internal.misc|g" \
+		src/main/javassist/util/proxy/DefineClassHelper.java \
+		|| die "Failed to sed/fix Unsafe import"
+}
