@@ -16,7 +16,6 @@ DESCRIPTION="Java-based logging utility"
 HOMEPAGE="https://logging.apache.org/log4j/"
 SRC_URI="https://archive.apache.org/dist/logging/${PN}/${PV}/${P}.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/apache-${P}"
