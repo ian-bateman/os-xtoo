@@ -12,7 +12,6 @@ inherit java-pkg
 DESCRIPTION="JSch is a pure Java implementation of SSH2"
 HOMEPAGE="https://www.jcraft.com/jsch/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.zip"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="0"
 
