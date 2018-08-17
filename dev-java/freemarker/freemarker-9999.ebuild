@@ -57,8 +57,7 @@ java_prepare() {
 
 	# fix javacc keyword
 	sed -i -e "s|template|TOKEN_TEMPLATE|g" \
-		-e '901i    <TOKEN_TEMPLATE: "template" }>' \
-		-e '902i    |' \
+		-e '908i    <TOKEN_TEMPLATE: "template" >\n    |' \
 		src/main/javacc/FTL.jj \
 		|| die "Failed to sed FTL.jj keyword template for javacc"
 
