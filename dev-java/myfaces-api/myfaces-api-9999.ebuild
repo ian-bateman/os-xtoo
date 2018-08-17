@@ -17,7 +17,6 @@ else
 	# github missing tags? upstream source tarball is rebundled, thus maven
 	SRC_URI="http://repo1.maven.org/maven2/org/apache/${PN%%-*}/core/${PN}/${PV/_/-}/${PN}-${PV/_/-}-sources.jar"
 #	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 #	MY_S="${PN}-${MY_P}/${MY_MOD}"
 fi
 
