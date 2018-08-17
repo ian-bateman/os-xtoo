@@ -18,8 +18,6 @@ fi
 
 SLOT="0"
 
-S="${WORKDIR}/${MY_S}"
-
 CP_DEPEND="
 	dev-java/commons-io:0
 	dev-java/slf4j-api:0
@@ -27,7 +25,6 @@ CP_DEPEND="
 
 if [[ ${PV} != 1* ]]; then
 	SLOT="${PV%%.*}"
-	S+="/${PN}"
 	LANG_SLOT="3"
 else
 	CP_DEPEND+="
@@ -54,25 +51,34 @@ LICENSE="Apache-2.0"
 
 DEPEND+=" dev-java/javacc:0"
 
-java_prepare() {
-	local d f files
+S="${WORKDIR}/${MY_S}"
 
+if [[ ${SLOT} != 0 ]]; then
+	S+="/${PN}"
+fi
+
+java_prepare() {
+	local d f files parser
+
+	d="${S}/src/main/java/org/apache/velocity/runtime/parser"
+	parser="src/main/parser/Parser.jjt"
 	if [[ ${SLOT} == 0 ]]; then
 		rm -r src/java/org/apache/velocity/anakia \
 			|| die "Failed to remove anakia"
-		return 0;
+		d="${d/main\//}"
+		parser="${parser/main\//}"
 	fi
-	d="${S}/src/main/java/org/apache/velocity/runtime/parser"
+
 	sed -i -e "s|Template template|Template t|" \
 		-e "s|Template = template|Template = t|" \
 		-e "s| template.getName| t.getName|" \
-		src/main/parser/Parser.jjt \
+		"${parser}" \
 		|| die "Failed to sed Parser.jjt keyword template -> t"
 
 	jjtree -STATIC=false -MULTI=true -NODE_USES_PARSER=true \
 		-OUTPUT_DIRECTORY="${d}/node" \
 		-NODE_PACKAGE="org.apache.velocity.runtime.parser.node" \
-		src/main/parser/Parser.jjt \
+		"${parser}" \
 		|| die "jjtree Parser.jjt failed"
 
 	javacc -LOOKAHEAD=2 \
@@ -84,4 +90,10 @@ java_prepare() {
 
 	sed -i -e '51d' "${d}/node/ParserVisitor.java" \
 		|| die "Failed to remove extra abstract method"
+
+	if [[ ${SLOT} == 0 ]]; then
+		sed -i -e "s|curChar,|(char)curChar,|" \
+			src/java/org/apache/velocity/runtime/parser/ParserTokenManager.java \
+			|| die "Failed to sed/fix lossy conversion"
+	fi
 }
