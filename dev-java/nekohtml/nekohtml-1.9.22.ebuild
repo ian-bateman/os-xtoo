@@ -11,7 +11,6 @@ DESCRIPTION="HTML scanner and tag balancer"
 HOMEPAGE="https://sourceforge.net/projects/nekohtml"
 #SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 SRC_URI="https://repo1.maven.org/maven2/net/sourceforge/${PN}/${PN}/${PV}/${P}-sources.jar"
-KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 SLOT="0"
 
