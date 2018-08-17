@@ -18,7 +18,6 @@ inherit java-pkg
 DESCRIPTION="Oracle Berkeley DB Java Edition"
 HOMEPAGE="https://www.oracle.com/technetwork/database/database-technologies/berkeleydb/"
 SRC_URI="https://download.oracle.com/otn/${PN%-*}/${MY_P}.tar.gz"
-KEYWORDS="~amd64"
 LICENSE="AGPL-3"
 RESTRICT="fetch"
 SLOT="0"
