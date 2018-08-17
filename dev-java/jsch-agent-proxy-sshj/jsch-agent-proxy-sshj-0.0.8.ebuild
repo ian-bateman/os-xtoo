@@ -22,6 +22,5 @@ DESCRIPTION="A proxy to ssh-agent and Pageant in Java"
 HOMEPAGE="https://github.com/ymnk/${MY_PN}"
 SRC_URI="${HOMEPAGE}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 LICENSE="BSD-3-clause"
-KEYWORDS="~amd64"
 
 S="${WORKDIR}/${MY_P}/${PN}"
