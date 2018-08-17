@@ -95,5 +95,9 @@ java_prepare() {
 		sed -i -e "s|curChar,|(char)curChar,|" \
 			src/java/org/apache/velocity/runtime/parser/ParserTokenManager.java \
 			|| die "Failed to sed/fix lossy conversion"
+
+		sed -i -e "/ASTIndex/d" -e "/ASTTextblock/d" \
+			src/java/org/apache/velocity/runtime/parser/node/ParserVisitor.java \
+			|| die "Failed to sed/remove method"
 	fi
 }
