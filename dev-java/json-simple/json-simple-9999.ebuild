@@ -15,7 +15,6 @@ if [[ ${PV} == 9999 ]]; then
 	CP_DEPEND="dev-java/jax-rs:2"
 	MY_S="${P}"
 else
-	KEYWORDS="~amd64"
 	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
 	MY_S="${PN}-${P}"
 fi
