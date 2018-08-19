@@ -8,7 +8,6 @@ BASE_URI="https://github.com/lefou/pojosr"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="https://github.com/lefou/pojosr/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="
