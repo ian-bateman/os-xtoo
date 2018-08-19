@@ -23,7 +23,6 @@ inherit java-pkg
 DESCRIPTION="The XSLT and XQuery Processor"
 HOMEPAGE="https://sourceforge.net/projects/saxon"
 SRC_URI="mirror://sourceforge/${PN}/Saxon-HE/${PV%.*.*}/${MY_P}source.zip"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="0"
 
