@@ -12,7 +12,6 @@ BASE_URI="https://github.com/codehaus-plexus/${PN}"
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="http://repo1.maven.org/maven2/org/sonatype/plexus/${PN}/${PV}/${P}-sources.jar"
 	#SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${P}"
 fi
 
