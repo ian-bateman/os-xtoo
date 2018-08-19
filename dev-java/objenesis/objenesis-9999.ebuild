@@ -21,4 +21,13 @@ SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${P}/main"
 
-JAVAC_ARGS+=" --add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
+JAVAC_ARGS+=" --add-exports=java.base/jdk.internal.misc=ALL-UNNAMED "
+
+java_prepare() {
+	local f
+
+	for f in $(grep -l -m1 misc.Unsafe -r *); do
+		sed -i -e "s|sun.misc|jdk.internal.misc|g" "${f}" \
+			|| die "Failed to sed/fix Unsafe import"
+	done
+}
