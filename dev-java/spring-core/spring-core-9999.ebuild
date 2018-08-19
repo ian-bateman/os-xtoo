@@ -13,7 +13,6 @@ BASE_URI="https://github.com/spring-projects/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.RELEASE.tar.gz -> ${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_P}/${PN}"
 fi
 
