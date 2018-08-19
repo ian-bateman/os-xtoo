@@ -11,7 +11,6 @@ MY_P="${MY_PN}_${MY_PV}"
 BASE_URI="https://github.com/apache/${PN}"
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64"
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
 	MY_S="${PN}-${MY_P}"
 fi
