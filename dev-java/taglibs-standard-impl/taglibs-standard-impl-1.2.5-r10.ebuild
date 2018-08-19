@@ -19,7 +19,7 @@ inherit java-pkg
 
 DESCRIPTION="An implementation of the JSP Standard Tag Library (JSTL) ${PN##*-}"
 HOMEPAGE="https://tomcat.apache.org/taglibs/standard/"
-SRC_URI="mirror://apache/tomcat/${PN}/${MY_P}/${MY_P}-source-release.zip"
+SRC_URI="https://archive.apache.org/dist/tomcat/taglibs/${MY_P}/${MY_P}-source-release.zip"
 LICENSE="Apache-2.0"
 KEYWORDS="~amd64"
 
