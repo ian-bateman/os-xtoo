@@ -17,7 +17,6 @@ DESCRIPTION="An XML-Java binding tool - Retired EOL project"
 HOMEPAGE="https://${PN}.apache.org/"
 SRC_URI="https://archive.apache.org/dist/${PN}/source/${P}-src.tgz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${P}"
