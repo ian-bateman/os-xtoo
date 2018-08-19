@@ -30,7 +30,6 @@ HOMEPAGE="${BASE_URI}tree/master/org.osgi.impl.bundle.bindex"
 SRC_URI="${BASE_URI}raw/master/${MY_PN}/${MY_PN}-${PV}.jar -> ${P}.jar"
 
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 
 DEPEND+=" app-arch/unzip"
 
