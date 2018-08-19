@@ -23,7 +23,6 @@ DESCRIPTION="OSGi Service Platform Compendium API (Companion Code)"
 HOMEPAGE="https://www.osgi.org/developer/specifications/"
 SRC_URI="https://osgi.org/download/r${SLOT}/osgi.cmpn-${PV}.jar"
 LICENSE="Apache-2.0 OSGi-Specification-2.0"
-KEYWORDS="~amd64"
 
 DEPEND+=" app-arch/unzip"
 
