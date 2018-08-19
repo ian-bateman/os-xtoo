@@ -12,13 +12,11 @@ BASE_URI="https://github.com/apache/${MY_PN}"
 
 if [[ ${PV} == 9.* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-${MY_P}"
 elif [[ ${PV} != *9999* ]]; then
 	MY_PV="${PV/_beta/}"
 	MY_P="apache-${MY_PN}-${MY_PV}-src"
 	SRC_URI="mirror://apache/${MY_PN}/${MY_PN}-${PV%%.*}/v${MY_PV}/src/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_P}"
 fi
 
