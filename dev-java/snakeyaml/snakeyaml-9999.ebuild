@@ -9,7 +9,6 @@ BASE_URI="https://bitbucket.org/asomov/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/get/${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${P}"
 fi
 
