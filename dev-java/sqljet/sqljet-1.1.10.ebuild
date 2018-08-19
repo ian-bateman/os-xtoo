@@ -12,7 +12,6 @@ inherit java-pkg
 DESCRIPTION="SQLJet pure Java implementation of SQLite."
 SRC_URI="https://${PN}.com/files/${P}-src.zip"
 HOMEPAGE="https://${PN}.com/"
-KEYWORDS="~amd64"
 LICENSE="GPL-2"
 SLOT="0"
 
