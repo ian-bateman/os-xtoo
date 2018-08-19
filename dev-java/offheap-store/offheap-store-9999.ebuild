@@ -9,7 +9,6 @@ BASE_URI="https://github.com/Terracotta-OSS/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 fi
 
 CP_DEPEND="dev-java/slf4j-api:0"
