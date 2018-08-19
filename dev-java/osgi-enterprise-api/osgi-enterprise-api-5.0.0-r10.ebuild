@@ -20,7 +20,6 @@ DESCRIPTION="OSGi Service Platform Enterprise API (Companion Code)"
 HOMEPAGE="https://www.osgi.org/Specifications/HomePage"
 SRC_URI="https://www.osgi.org/download/r${PV%%.*}/osgi.enterprise-${PV}.jar"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 
 DEPEND+=" app-arch/unzip:0"
 
