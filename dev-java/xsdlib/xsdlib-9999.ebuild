@@ -9,7 +9,6 @@ BASE_URI="https://github.com/kohsuke/msv"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="msv-${P}"
 fi
 
