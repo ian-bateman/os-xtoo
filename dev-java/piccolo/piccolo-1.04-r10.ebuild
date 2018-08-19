@@ -10,7 +10,6 @@ inherit java-pkg
 DESCRIPTION="A small, extremely fast XML parser"
 HOMEPAGE="https://sourceforge.net/projects/piccolo/"
 SRC_URI="mirror://sourceforge/${PN}/${P}-src.zip"
-KEYWORDS="~amd64"
 LICENSE="Apache-2.0"
 SLOT="0"
 
