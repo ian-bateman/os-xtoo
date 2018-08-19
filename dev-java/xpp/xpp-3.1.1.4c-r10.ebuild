@@ -30,7 +30,6 @@ inherit java-pkg
 DESCRIPTION="Xml Pull Parser"
 HOMEPAGE="${BASE_URI}xgws/xsoap/xpp/"
 LICENSE="Apache-1.1 IBM"
-KEYWORDS="~amd64"
 
 S="${WORKDIR}/${MY_P}"
 
