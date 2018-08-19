@@ -17,7 +17,6 @@ HOMEPAGE="https://felix.apache.org"
 SRC_URI="mirror://apache/dist/felix/${MY_P}-project.tar.gz"
 
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 S="${WORKDIR}/${MY_P}"
