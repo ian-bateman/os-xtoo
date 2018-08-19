@@ -12,7 +12,6 @@ DESCRIPTION="EOL Tomcat's Servlet API"
 HOMEPAGE="https://tomcat.apache.org/"
 SRC_URI="https://archive.apache.org/dist/${MY_PN}/${MY_PN}-${PV%%.*}/v${PV}/src/${MY_P}.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 
 case ${PV%%.*} in
 	5) SLOT="2.4" ;;
