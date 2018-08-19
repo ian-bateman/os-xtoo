@@ -12,7 +12,6 @@ BASE_URI="https://github.com/takari/${MY_PN}-maven"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${MY_PN}-maven-${MY_P}"
 fi
 
