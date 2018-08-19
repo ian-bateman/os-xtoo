@@ -12,7 +12,6 @@ inherit java-pkg
 DESCRIPTION="Template engine"
 HOMEPAGE="https://www.stringtemplate.org/"
 SRC_URI="https://github.com/antlr/website-st4/raw/gh-pages/download/${P}.tar.gz"
-KEYWORDS="~amd64"
 LICENSE="BSD"
 SLOT="0"
 
