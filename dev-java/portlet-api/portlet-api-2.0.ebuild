@@ -9,7 +9,6 @@ SLOT="${PV%%.*}"
 DESCRIPTION="Portlet API version ${SLOT}.0"
 HOMEPAGE="https://www.jcp.org/en/jsr/detail?id="
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 
 MY_PN="${PN%%-*}"
 SRC_URI="http://download.oracle.com/otn-pub/jcp"
