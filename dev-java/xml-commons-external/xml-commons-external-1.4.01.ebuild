@@ -11,7 +11,6 @@ DESCRIPTION="Interfaces defined by external standards organizations"
 HOMEPAGE="https://xerces.apache.org/xml-commons/components/external/"
 SRC_URI="https://archive.apache.org/dist/xml/commons/${P}-src.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 JAVA_SRC_DIR="org/w3c/css/sac"
