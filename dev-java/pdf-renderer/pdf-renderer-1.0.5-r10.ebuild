@@ -11,7 +11,6 @@ DESCRIPTION="A PDF renderer and viewer"
 HOMEPAGE="https://repo1.maven.org/maven2/org/swinglabs/${PN}/${PV}/"
 SRC_URI="${HOMEPAGE}${P}-sources.jar"
 LICENSE="LGPL-3"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
