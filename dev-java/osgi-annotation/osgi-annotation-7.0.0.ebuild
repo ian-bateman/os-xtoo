@@ -11,7 +11,6 @@ DESCRIPTION="OSGi Core Annotation Code"
 HOMEPAGE="https://www.osgi.org/Specifications/HomePage"
 SRC_URI="https://www.osgi.org/download/r${PV%%.*}/${PN/-/.}-${PV}.jar"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
