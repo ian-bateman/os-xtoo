@@ -8,7 +8,6 @@ EGIT_REPO_URI="https://git.tukaani.org/xz-java.git"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="https://tukaani.org/xz/${P}.zip"
-	KEYWORDS="~amd64"
 fi
 
 inherit java-pkg
