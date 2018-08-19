@@ -9,7 +9,6 @@ BASE_URI="https://github.com/square/${PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/parent-${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
 	MY_S="${P/${PN}/${PN}-parent}"
 fi
 
