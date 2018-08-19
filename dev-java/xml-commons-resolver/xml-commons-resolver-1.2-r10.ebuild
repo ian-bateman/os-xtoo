@@ -12,7 +12,6 @@ HOMEPAGE="https://xml.apache.org/commons/"
 SRC_URI="mirror://apache/xml/commons/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 IUSE="netbeans"
 SLOT="0"
 
