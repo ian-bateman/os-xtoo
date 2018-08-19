@@ -18,7 +18,6 @@ SRC_URI="https://osgi.org/download/r6/osgi.cmpn-6.0.0.jar"
 # This package is found within sources for another see SRC_URI
 
 LICENSE="Apache-2.0 OSGi-Specification-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+=" app-arch/unzip"
