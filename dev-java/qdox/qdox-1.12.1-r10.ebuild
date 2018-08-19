@@ -13,7 +13,6 @@ DESCRIPTION="Extractor of Java class/interface/method definitions"
 HOMEPAGE="https://github.com/codehaus/qdox"
 SRC_URI="${HOMEPAGE}/archive/${P}.tar.gz"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64"
 SLOT="0"
 
 DEPEND+="
