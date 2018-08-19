@@ -6,7 +6,7 @@ EAPI="7"
 MY_PN="org.${PN//-/.}"
 MY_PV="${PV}"
 MY_P="${MY_PN}-${MY_PV}"
-BASE_URI="https://github.com/apache/felix/"
+BASE_URI="https://github.com/apache/felix"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz"
