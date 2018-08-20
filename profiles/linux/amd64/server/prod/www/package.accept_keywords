@@ -12,6 +12,7 @@ dev-java/bcprov
 dev-java/beanvalidation-api
 dev-java/bnd-annotation
 dev-java/bndlib
+dev-java/brotli
 dev-java/cdi-api
 dev-java/cglib
 dev-java/checker-compatqual
@@ -23,13 +24,17 @@ dev-java/commons-bcel
 dev-java/commons-bsf
 dev-java/commons-codec
 dev-java/commons-collections
+dev-java/commons-compress
 dev-java/commons-dbcp
 dev-java/commons-discovery
 dev-java/commons-fileupload
+dev-java/commons-imaging
 dev-java/commons-io
+dev-java/commons-lang
 dev-java/commons-logging
 dev-java/commons-net
 dev-java/commons-pool
+dev-java/commons-text
 dev-java/eclipse-ecj
 dev-java/eclipse-javax-persistence
 dev-java/edtftpj
@@ -95,6 +100,7 @@ dev-java/jsoup
 dev-java/jsr305
 dev-java/jsr354-api
 dev-java/jtsys
+dev-java/juniversalchardet
 dev-java/jzlib
 dev-java/libg
 dev-java/log4j
@@ -141,6 +147,7 @@ dev-java/xalan
 dev-java/xerces
 dev-java/xml-commons-resolver
 dev-java/xz-java
+dev-java/zstd-jni
 java-virtuals/servlet-api
 virtual/jdk
 virtual/jre
