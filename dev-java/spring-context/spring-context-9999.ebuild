@@ -58,7 +58,11 @@ S="${WORKDIR}/${MY_S}"
 java_prepare() {
 	#Fix jruby API change
 	sed -i -e 's|rubyEx.message|rubyEx.getMessage()|' \
-		"${S}/${JAVA_SRC_DIR}/org/springframework/scripting/jruby/JRubyScriptFactory.java" \
+		"${JAVA_SRC_DIR}/org/springframework/scripting/jruby/JRubyScriptFactory.java" \
+		|| die "Could not fix jruby"
+
+	sed -i -e 's|node.getName()|node.getName().toString()|' \
+		"${JAVA_SRC_DIR}/org/springframework/scripting/jruby/JRubyScriptUtils.java" \
 		|| die "Could not fix jruby"
 
 	local files
@@ -70,17 +74,16 @@ java_prepare() {
 		# Replaced repackaged with standard
 		sed -i -e "s|springframework.asm|objectweb.asm|g" \
 			-e "s|org.springframework.cg|net.sf.cg|g" \
-			"${S}/${JAVA_SRC_DIR}/${file}" \
+			"${JAVA_SRC_DIR}/${file}" \
 			|| die "Could not sed asm/cglib"
 	done
 	# Reverse one import change, crude
 	sed -i -e "s|net.sf.cglib.core.SpringNamingPolicy|org.springframework.cglib.core.SpringNamingPolicy|g" \
-		"${S}/${JAVA_SRC_DIR}/${files[1]}" \
+		"${JAVA_SRC_DIR}/${files[1]}" \
 		|| die "Could not reverse sed cglib"
 
 	# Replaced repackaged with standard
-	sed -i -e "s|g.springframework.o|g.o|g" \
-		"${S}/${JAVA_SRC_DIR}/${files[1]}" \
+	sed -i -e "s|g.springframework.o|g.o|g" "${JAVA_SRC_DIR}/${files[1]}" \
 		|| die "Could not sed objenesis"
 
 }
