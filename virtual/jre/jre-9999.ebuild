@@ -13,5 +13,8 @@ SLOT="${PV%%.*}"
 
 RDEPEND="dev-java/openjdk-bin:${SLOT}"
 if [[ ${SLOT} != 12 ]]; then
-	RDEPEND+=" dev-java/oracle-jdk-bin:${SLOT}"
+	RDEPEND="|| (
+		 dev-java/oracle-jdk-bin:${SLOT}
+		${RDEPEND}
+	)"
 fi
