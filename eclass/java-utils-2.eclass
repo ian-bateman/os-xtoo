@@ -1299,7 +1299,7 @@ java-pkg_is-vm-version-sufficient() {
 	[[ -z ${JAVA_RELEASE} ]] && return 0
 
 	supported=( $(javac --help | \
-			sed -n 's/^.*Supported targets\: \([^ ].*\).*$/\1/p' ) )
+			sed -n 's/^.*Supported.*\: \([^ ].*\).*$/\1/p' ) )
 
 	IFS=', '
 	for t in ${supported[@]}; do
