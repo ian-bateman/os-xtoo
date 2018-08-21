@@ -24,6 +24,7 @@ dev-java/jdbc-jaybird doc
 dev-java/jdom doc
 dev-java/jexcelapi doc
 dev-java/junit source
+dev-java/openjfx-bin gtk2 gtk3
 dev-java/oracle-jdk-bin gtk2 gtk3 javafx nsplugin
 dev-java/protobuf-java nano
 dev-java/swing-layout source
