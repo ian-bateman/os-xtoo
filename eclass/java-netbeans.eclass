@@ -11,6 +11,13 @@ _JAVA_NETBEANS_ECLASS=1
 
 : "${MY_PN:=incubator-${PN%%-*}}"
 : "${MY_PV:=${PV//_/-}}"
+
+# Due to release being -vc3
+# https://lists.apache.org/thread.html/2aedd00af7ae24b8b4c23f62afeacbaeeb9ea22145252b1d2638df3c@%3Cdev.netbeans.apache.org%3E
+if [[ ${PV} == 9.0 ]]; then
+	MY_PV=${PV}-vc3
+fi
+
 : "${MY_P:=${MY_PN}-${MY_PV}}"
 
 if [[ "${CATEGORY}" == nb-ide ]]; then
