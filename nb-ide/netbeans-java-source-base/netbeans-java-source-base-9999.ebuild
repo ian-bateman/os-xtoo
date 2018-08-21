@@ -67,4 +67,8 @@ java_prepare() {
 	sed -i -e "s|sun.misc|jdk.internal.misc|" \
 		src/org/netbeans/modules/java/source/NoJavacHelper.java \
 		|| die "Failed to sed/fix for java 11"
+
+	sed -i -e "/\.\*;/d" \
+		src/org/netbeans/modules/java/source/JavadocHelper.java \
+		|| die "Failed to sed/remove import not needed"
 }
