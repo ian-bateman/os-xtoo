@@ -25,7 +25,7 @@ fi
 
 SLOT="${PV%%.*}"
 
-OSGI_SLOT="5"
+OSGI_SLOT="6"
 
 CP_DEPEND="~dev-java/aqute-repository-${PV}:${SLOT}
 	~dev-java/bndlib-${PV}:${SLOT}
@@ -43,3 +43,5 @@ HOMEPAGE="https://www.aqute.biz/Bnd/Bnd"
 LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
+
+PATCHES=( "${FILESDIR}/BndResolver.patch" )
