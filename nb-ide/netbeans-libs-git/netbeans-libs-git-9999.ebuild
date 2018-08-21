@@ -31,6 +31,19 @@ java_prepare() {
 		src/org/netbeans/libs/git/jgit/utils/CheckoutIndex.java \
 		|| die "Failed to sed/fix number of arguments"
 
+	# https://github.com/eclipse/jgit/commit/50436cc
+	sed -i -e "/io.SafeBufferedOutputStream;/d" -e "s|Safe||" \
+		-e '/while (treeWalk.next())/i\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boolean hasAttributeNodeProvider = treeWalk.getAttributesNodeProvider() != null;' \
+		-e 's|ignoreConflicts))|ignoreConflicts, hasAttributeNodeProvider ? treeWalk.getAttributes(): new org.eclipse.jgit.attributes.Attributes()))|' \
+		src/org/netbeans/libs/git/jgit/commands/CherryPickCommand.java \
+		|| die "Failed to sed/fix removed class and method changes"
+
+	# https://github.com/eclipse/jgit/commit/e1cfe09
+	for f in $(grep -l -m1 getRef\( -r *); do
+		sed -i -e "s|getRef(|findRef(|g" "${f}" \
+			|| die "Failed to sed/change removed method"
+	done
+
 	files=(
 		Add CheckoutRevision Compare ExportCommit ExportDiff
 		GetCommonAncestor GetPreviousCommit ListTag Log Revert
