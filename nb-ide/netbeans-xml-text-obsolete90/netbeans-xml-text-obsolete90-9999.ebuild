@@ -16,6 +16,7 @@ CP_DEPEND="
 	~nb-ide/netbeans-openide-util-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-util-lookup-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-util-ui-${PV}:${SLOT}
+	~nb-ide/netbeans-projectuiapi-${PV}:${SLOT}
 	~nb-ide/netbeans-xml-core-${PV}:${SLOT}
 	~nb-ide/netbeans-xml-lexer-${PV}:${SLOT}
 	~nb-ide/netbeans-xml-text-${PV}:${SLOT}
@@ -26,3 +27,9 @@ DEPEND="${CP_DEPEND}
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"
+
+java_prepare() {
+	sed -i -e "/xml\.\*;/d" \
+		src/org/netbeans/modules/xml/text/syntax/dom/AttrImpl.java \
+		|| die "Failed to sed/remove import not needed"
+}
