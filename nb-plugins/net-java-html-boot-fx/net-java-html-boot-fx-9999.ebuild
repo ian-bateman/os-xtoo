@@ -49,7 +49,6 @@ src_compile() {
 		JAVAC_ARGS+=" --module-path=${openjfx}"
 		JAVAC_ARGS+=" --add-modules=javafx.graphics "
 		JAVAC_ARGS+=" --add-modules=javafx.web "
-		einfo ${JAVAC_ARGS}
 	fi
 	java-pkg-simple_src_compile
 }
