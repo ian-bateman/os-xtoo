@@ -20,6 +20,7 @@ NB_SLOT="9"
 PARBOILED_SLOT="0"
 
 CP_DEPEND="
+	dev-java/javax-annotation:0
 	dev-java/parboiled-core:${PARBOILED_SLOT}
 	dev-java/parboiled-java:${PARBOILED_SLOT}
 	dev-java/pegdown:0
@@ -57,10 +58,15 @@ CP_DEPEND="
 	nb-ide/netbeans-spi-navigator:${NB_SLOT}
 "
 
+# Not ideal, binds to jdk 11, some may use 10, which this is ingored
+COMMON_DEPEND="dev-java/openjfx-bin:11"
+
 DEPEND="${CP_DEPEND}
+	${COMMON_DEPEND}
 	>=virtual/jdk-9"
 
 RDEPEND="${CP_DEPEND}
+	${COMMON_DEPEND}
 	>=virtual/jre-9"
 
 S="${WORKDIR}/${P}"
@@ -75,4 +81,17 @@ src_prepare() {
 	done
 
 	java-netbeans_src_prepare
+}
+
+src_compile() {
+	local openjfx
+
+	if [[ java-pkg_get-vm-version != 10 ]]; then
+		# not ideal but works, makes version moot
+		openjfx=$( echo /opt/openjfx-bin-11*/lib/ )
+		JAVAC_ARGS+=" --module-path=${openjfx}"
+		JAVAC_ARGS+=" --add-modules=javafx.swing "
+		JAVAC_ARGS+=" --add-modules=javafx.web "
+	fi
+	java-netbeans_src_compile
 }
