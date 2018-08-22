@@ -23,6 +23,7 @@ NB_SLOT="9"
 CP_DEPEND="
 	dev-java/darcula:0
 	dev-java/iconloader:0
+	dev-java/javax-annotation:0
 	nb-ide/netbeans-o-n-swing-plaf:${NB_SLOT}
 	nb-ide/netbeans-openide-awt:${NB_SLOT}
 	nb-ide/netbeans-openide-dialogs:${NB_SLOT}
