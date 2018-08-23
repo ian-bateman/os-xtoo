@@ -22,7 +22,7 @@ CP_DEPEND="
 	dev-java/jsoup:0
 	dev-java/httpcomponents-client:4.5
 	dev-java/httpcomponents-core:4.4
-	~dev-java/maven-wagon-provider-api-${PV}:${SLOT}
+	~dev-java/wagon-provider-api-${PV}:${SLOT}
 	dev-java/plexus-utils:0
 "
 
