@@ -57,18 +57,25 @@ DEPEND+=" dev-java/modello-plugin-java:0"
 
 #S="${WORKDIR}/${MY_S}/${PN}"
 
+JAVA_SRC_DIR="src"
+JAVA_RES_RM_DIR=0
+
 java_prepare() {
 #	local f
 
+	mkdir src || die "Failed to make src dir"
+	mv META-INF org src || die "Failed to move sources"
+
 	# set version etc
-#	sed -i -e "s|\${buildNumber}|0|" \
-#		-e "s|\${timestamp}|$(date +%s)|" \
-#		-e "s|\${project.version}|${PV}|" \
-#		-e "s|\${distributionId}|apache-maven|" \
-#		-e "s|\${distributionShortName}|Maven|" \
-#		-e "s|\${distributionName}|Apache Maven|" \
+	sed -i -e "s|\${buildNumber}|os-xtoo|" \
+		-e "s|\${timestamp}|$(date +%s)|" \
+		-e "s|\${project.version}|${PV}|" \
+		-e "s|\${distributionId}|apache-maven|" \
+		-e "s|\${distributionShortName}|Maven|" \
+		-e "s|\${distributionName}|Apache Maven|" \
+		src/org/apache/maven/messages/build.properties \
+		|| die "Failed to sed version and other"
 #		src/main/resources/org/apache/maven/messages/build.properties \
-#		|| die "Failed to sed version and other"
 
 #	for f in extension toolchains; do
 #		modello "src/main/mdo/${f}.mdo" java src/main/java \
@@ -78,6 +85,6 @@ java_prepare() {
 
 	sed -i -e '436d' -e "s|, new SessionScopeModule( container ),|);|" \
 		-e "s/ComponentLookupException |/PlexusConfigurationException |/" \
-		org/apache/maven/plugin/internal/DefaultMavenPluginManager.java \
+		src/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java \
 		|| die "Failed to sed/fix argument list"
 }
