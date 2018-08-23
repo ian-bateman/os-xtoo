@@ -22,7 +22,7 @@ CP_DEPEND="
 	~dev-java/maven-resolver-api-${PV}:${SLOT}
 	~dev-java/maven-resolver-spi-${PV}:${SLOT}
 	~dev-java/maven-resolver-util-${PV}:${SLOT}
-	dev-java/maven-wagon-provider-api:0
+	dev-java/wagon-provider-api:0
 	dev-java/plexus-classworlds:0
 	dev-java/plexus-component-annotations:0
 	dev-java/plexus-container-default:0
