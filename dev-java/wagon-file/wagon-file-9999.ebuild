@@ -18,7 +18,7 @@ fi
 SLOT="0"
 
 CP_DEPEND="
-	~dev-java/maven-wagon-provider-api-${PV}:${SLOT}
+	~dev-java/wagon-provider-api-${PV}:${SLOT}
 	dev-java/plexus-utils:0
 "
 
