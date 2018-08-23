@@ -31,7 +31,7 @@ CP_DEPEND="
 	dev-java/maven-resolver-util:${MR_SLOT}
 	~dev-java/maven-settings-${PV}:${SLOT}
 	~dev-java/maven-settings-builder-${PV}:${SLOT}
-	dev-java/maven-wagon-provider-api:0
+	dev-java/wagon-provider-api:0
 	dev-java/plexus-component-annotations:0
 	dev-java/plexus-interpolation:0
 	dev-java/plexus-utils:0
