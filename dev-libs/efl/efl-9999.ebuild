@@ -45,6 +45,7 @@ COMMON_DEP="
 		>=x11-libs/libxkbcommon-0.3.0
 	)
 	dev-lang/luajit:2
+	net-misc/curl
 	sys-apps/dbus
 	sys-libs/zlib
 	virtual/jpeg:*
