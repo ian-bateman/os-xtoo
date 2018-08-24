@@ -17,7 +17,7 @@ if [[ ${PV} == *_pre* ]]; then
 	MY_PV="${PV%%_*}-ea+${PV##*_pre}"
 elif [[ ${PV} == *_rc* ]]; then
 	JDK_URI="http://jdk.java.net/${SLOT}/"
-	BASE_URI+=".java.net/java/jdk${SLOT}/archive/${PV##*_rc}/BCL"
+	BASE_URI+=".java.net/java/early_access/jdk${SLOT}/${PV##*_rc}/BCL"
 	MY_PV="${PV%%_*}+${PV##*_rc}"
 else
 	JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html"
