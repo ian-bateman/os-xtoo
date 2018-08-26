@@ -36,4 +36,10 @@ SLOT="0"
 
 S="${WORKDIR}/${MY_S}/org.eclipse.${MY_PN}"
 
+JAVA_RES_DIR="resources"
 JAVA_RM_FILES=( src/org/codehaus/plexus/PlexusTestCase.java )
+
+java_prepare() {
+	mkdir resources || die "Failed to make resources directory"
+	mv META-INF resources || die "Failed to move resources into directory"
+}
