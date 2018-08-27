@@ -20,8 +20,9 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/plexus-build-api:0
-	dev-java/plexus-container-default:0
 	dev-java/plexus-utils:0
+	dev-java/sisu-plexus:0
+	dev-java/slf4j-simple:0
 "
 
 inherit java-pkg
@@ -34,5 +35,7 @@ S="${WORKDIR}/${MY_S}/${PN}"
 
 src_install() {
 	java-pkg-simple_src_install
-	java-pkg_dolauncher ${MY_PN} --main org.codehaus.modello.ModelloCli
+	java-pkg_dolauncher ${MY_PN} \
+		--main org.codehaus.modello.ModelloCli \
+		--java_args "--add-opens java.base/java.lang=ALL-UNNAMED"
 }
