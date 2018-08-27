@@ -21,7 +21,7 @@ case ${SLOT} in
 		;;
 	3)	LICENSE+=" JDOM LGPL-2.1+"
 		SRC_URI="${BASE_URI}dist/java-repository/"
-		SRC_URI+="${MY_PN}/distributions/${MY_P}_src.tgz"
+		SRC_URI+="${MY_PN}/distributions/${MY_P}_src.zip"
 		;;
 esac
 
@@ -32,6 +32,10 @@ HOMEPAGE="${BASE_URI}xgws/xsoap/xpp/"
 LICENSE="Apache-1.1 IBM"
 
 S="${WORKDIR}/${MY_P}"
+
+if [[ ${SLOT} == 3 ]]; then
+	DEPEND+=" app-arch/unzip"
+fi
 
 JAVA_ENCODING="ISO-8859-1"
 JAVAC_ARGS+=" --add-modules java.xml "
