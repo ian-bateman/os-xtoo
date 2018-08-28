@@ -26,7 +26,6 @@ CP_DEPEND="
 	~dev-java/gradle-persistent-cache-${PV}:${SLOT}
 	~dev-java/gradle-resources-${PV}:${SLOT}
 	~dev-java/gradle-resources-http-${PV}:${SLOT}
-	~dev-java/gradle-version-control-${PV}:${SLOT}
 	dev-java/groovy:0
 	dev-java/guava:26
 	dev-java/javax-inject:0
