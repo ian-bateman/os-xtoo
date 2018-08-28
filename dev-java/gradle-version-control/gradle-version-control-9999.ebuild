@@ -10,9 +10,13 @@ CP_DEPEND="
 	~dev-java/gradle-base-services-${PV}:${SLOT}
 	~dev-java/gradle-core-${PV}:${SLOT}
 	~dev-java/gradle-core-api-${PV}:${SLOT}
+	~dev-java/gradle-dependency-management-${PV}:${SLOT}
 	~dev-java/gradle-logging-${PV}:${SLOT}
+	~dev-java/gradle-messaging-${PV}:${SLOT}
 	~dev-java/gradle-persistent-cache-${PV}:${SLOT}
+	~dev-java/gradle-resources-${PV}:${SLOT}
 	dev-java/guava:26
+	dev-java/javax-inject:0
 	dev-java/jsr305:0
 	dev-java/slf4j-api:0
 "
