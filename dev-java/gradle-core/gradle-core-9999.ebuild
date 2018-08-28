@@ -49,14 +49,6 @@ java_prepare() {
 		src/main/java/org/gradle/api/internal/classpath/DefaultModuleRegistry.java \
 		|| die "Failed to modify jar regex"
 
-	sed -i -e "/import static.*com.google.common.collect.Iterators.*/d" \
-		-e "26iimport java.util.Collections;" \
-		-e "26iimport java.util.Set;" \
-		-e "s|emptyIterator|Collections.emptyIterator|g" \
-		-e "s|singletonIterator|(Iterator<TaskStateChange>)Collections.singleton|g" \
-		src/main/java/org/gradle/api/internal/changedetection/state/TaskFilePropertyCompareStrategy.java \
-		|| die "Failed to sed/fix guava api changes"
-
 	sed -i -e "s|Iterators.singletonIterator|(Iterator<TaskStateChange>)Collections.singleton|g" \
 		src/main/java/org/gradle/api/internal/changedetection/rules/PreviousSuccessTaskStateChanges.java \
 		|| die "Failed to sed/fix guava api changes"
@@ -65,8 +57,6 @@ java_prepare() {
 		api/internal/CompositeDomainObjectSet
 		api/internal/DefaultDomainObjectCollection
 		api/internal/changedetection/rules/PreviousSuccessTaskStateChanges
-		api/internal/changedetection/state/DefaultFileCollectionSnapshot
-		api/internal/changedetection/state/OrderInsensitiveTaskFilePropertyCompareStrategy
 		api/internal/file/CompositeFileCollection
 		api/internal/tasks/CompositeTaskOutputPropertySpec
 		plugin/management/internal/DefaultPluginRequests
