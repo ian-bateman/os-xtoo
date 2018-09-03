@@ -40,3 +40,19 @@ HOMEPAGE="https://mongodb.github.io/${MY_PN}/"
 LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${PN#*-}"
+
+java_prepare() {
+	local p
+
+	p="src/main/com/mongodb/internal/build"
+	mkdir "${p}" || die "Failed to make dir ${p}"
+	echo "package com.mongodb.internal.build;
+
+public final class MongoDriverVersion
+{
+	public static final String VERSION = \"${PV}\";
+	public static final String NAME = \"mongo-java-driver\";
+}
+" > "${p}/MongoDriverVersion.java" \
+	|| die "Failed to create ${p}/MongoDriverVersion.java"
+}
