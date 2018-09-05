@@ -41,7 +41,8 @@ JAVAC_ARGS+=" --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
 PATCHES=( "${FILESDIR}/TypeAnnotationUtils-9+.patch" )
 
 java_prepare() {
-	sed -i -e "s|Kinds.|Kinds.Kind.|g" \
+	sed -i -e "s|Kinds\.|Kind\.|g" \
+		-e "s|code\.Kinds|code.Kinds.Kind|" \
 		src/main/java/org/checkerframework/javacutil/Resolver.java \
 		|| die "Failed to sed/change java 9+ imports"
 }
