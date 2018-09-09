@@ -21,8 +21,8 @@ SLOT="0"
 CP_DEPEND="
 	~dev-java/modello-core-${PV}:${SLOT}
 	dev-java/plexus-build-api:0
-	dev-java/plexus-container-default:0
 	dev-java/plexus-utils:0
+	dev-java/sisu-plexus:0
 "
 
 inherit java-pkg
