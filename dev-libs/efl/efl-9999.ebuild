@@ -124,7 +124,7 @@ DEPEND="${COMMON_DEP}
 	test? ( dev-libs/check )"
 RDEPEND="${COMMON_DEP}"
 
-S="${WORKDIR}/${E_P}"
+S="${WORKDIR}/${E_P/-pre/}"
 
 src_prepare() {
 	default
