@@ -1,0 +1,1 @@
+guice-extensions-assistedinject-9999.ebuild
