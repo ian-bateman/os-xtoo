@@ -11,8 +11,10 @@ MY_P="${MY_PN}-${MY_PV}"
 
 BASE_URI="https://github.com/${MY_PN}-data-binding/${MY_PN}"
 
-if [[ ${PV} != *9999* ]]; then
+if [[ ${PV} == 1.4.0 ]]; then
 	SRC_URI="${BASE_URI}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+elif [[ ${PV} != *9999* ]]; then
+	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 fi
 
 SLOT="0"
