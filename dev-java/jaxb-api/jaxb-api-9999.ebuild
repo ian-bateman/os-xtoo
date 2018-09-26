@@ -25,3 +25,5 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 S="${WORKDIR}/${MY_S}/${PN}"
+
+JAVA_RM_FILES=( src/main/java/module-info.java )
