@@ -21,7 +21,7 @@ SLOT="0"
 CP_DEPEND="
 	~dev-java/castor-core-${PV}:${SLOT}
 	dev-java/commons-logging:0
-	dev-java/commons-lang:2
+	dev-java/commons-lang:3
 	dev-java/jakarta-oro:0
 	dev-java/jakarta-regexp:0
 	dev-java/javax-inject:0
