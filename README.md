@@ -25,7 +25,7 @@ Please read subsequent sections before usage. You may need to force pull
 from this overlay at times. That will be kept to a minimum and at some 
 point stop entirely. But does happen from time to time.
 
-Please file issues for any problems encounterd. They will be addressed ASAP!
+Please file issues for any problems encountered. They will be addressed ASAP!
 
 ## Arch
 This repo is primarily amd64, no other archs are supported or tested, 
