@@ -26,3 +26,5 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="MIT"
 
 S="${WORKDIR}/${MY_S}/src"
+
+JAVA_RM_FILES=( module-info.java )
