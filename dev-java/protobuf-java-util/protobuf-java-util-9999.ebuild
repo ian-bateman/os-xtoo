@@ -9,7 +9,7 @@ MY_PN="${PN%%-*}"
 MY_PV="${PV}"
 MY_P="${MY_PN}-${MY_PV}"
 MY_MOD="${PN##*-}"
-BASE_URI="https://github.com/google/${MY_PN}"
+BASE_URI="https://github.com/protocolbuffers/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${MY_P}.tar.gz"
