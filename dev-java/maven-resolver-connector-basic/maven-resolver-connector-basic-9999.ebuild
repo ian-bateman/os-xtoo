@@ -22,6 +22,7 @@ CP_DEPEND="
 	~dev-java/maven-resolver-api-${PV}:${SLOT}
 	~dev-java/maven-resolver-spi-${PV}:${SLOT}
 	~dev-java/maven-resolver-util-${PV}:${SLOT}
+	dev-java/slf4j-api:0
 "
 
 inherit java-pkg
