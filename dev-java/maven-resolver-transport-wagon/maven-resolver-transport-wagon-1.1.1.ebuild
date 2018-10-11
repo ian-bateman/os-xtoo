@@ -1,1 +1,0 @@
-maven-resolver-transport-wagon-9999.ebuild
