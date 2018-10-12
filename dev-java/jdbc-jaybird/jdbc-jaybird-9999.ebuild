@@ -19,7 +19,7 @@ fi
 
 CP_DEPEND="
 	dev-java/antlr:4
-	dev-java/jna:4
+	dev-java/jna:5
 	dev-java/javax-resource:0
 "
 
