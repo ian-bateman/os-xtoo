@@ -47,9 +47,9 @@ java_prepare() {
 
 	sed -i -e "/setDOMLevel/d" \
 		-e 's|(contextVar,|(new StructuredQName("", "",contextVar),|' \
-		-e 's|(key,|(new StructuredQName("", "",key), (Sequence)|' \
+		-e 's|(key,|(new StructuredQName("", "",key), (GroundedValue)|' \
 		-e 's|, paramObject|, (paramObject)|' \
-		-e "31iimport net.sf.saxon.om.Sequence;" \
+		-e "31iimport net.sf.saxon.om.GroundedValue;" \
 		-e "31iimport net.sf.saxon.om.StructuredQName;" \
 		src/xpath_xquery/org/apache/xmlbeans/impl/xquery/saxon/XBeansXQuery.java \
 		|| die "Failed to sed/update saxon"
