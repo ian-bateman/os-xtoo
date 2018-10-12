@@ -3,10 +3,12 @@
 
 EAPI="7"
 
+NB_CLUSTER="platform"
+
 inherit java-netbeans
 
 CP_DEPEND="
-	dev-java/jna:4
+	dev-java/jna:5
 	~nb-ide/netbeans-masterfs-${PV}:${SLOT}
 	~nb-ide/netbeans-openide-util-lookup-${PV}:${SLOT}
 "
