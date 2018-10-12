@@ -6,6 +6,17 @@
 # @AUTHOR: William L. Thomson Jr. <wlt@o-sinc.com>
 # @BLURB: Netbeans IDE common code
 
+# @ECLASS-VARIABLE: NB_CLUSTER
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Specifies the Netbeans cluster subdirectory for the module.
+# This variable MUST preceed the eclass inherit line!
+#
+# @CODE
+#       NB_CLUSTER="platform"
+# @CODE
+
+
 if [[ -z ${_JAVA_NETBEANS_ECLASS} ]]; then
 _JAVA_NETBEANS_ECLASS=1
 
@@ -23,6 +34,7 @@ fi
 if [[ "${CATEGORY}" == nb-ide ]]; then
 	MY_MOD="${PN#*-}"
 	MY_MOD="${MY_MOD//-/.}"
+	[[ ${PV} != 9.0 ]] && MY_MOD="${NB_CLUSTER}/${MY_MOD}"
 fi
 
 : "${BASE_URI:=https://github.com/apache/${MY_PN}}"
