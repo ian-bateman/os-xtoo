@@ -47,7 +47,7 @@ src_prepare() {
 	java-pkg_src_prepare
 
 	# java 10+
-	eapply "${FILESDIR}/Function.java.patch"
+	[[ ${PV} == 4.5.2 ]] && eapply "${FILESDIR}/Function.java.patch"
 }
 
 src_compile() {
