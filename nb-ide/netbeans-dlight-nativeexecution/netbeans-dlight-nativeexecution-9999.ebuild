@@ -3,12 +3,14 @@
 
 EAPI="7"
 
+NB_CLUSTER="ide"
+
 inherit java-netbeans
 
 CP_DEPEND="
 	dev-java/javax-annotation:0
 	dev-java/jsch:0
-	dev-java/jna:4
+	dev-java/jna:5
 	~nb-ide/netbeans-api-progress-${PV}:${SLOT}
 	~nb-ide/netbeans-extexecution-${PV}:${SLOT}
 	~nb-ide/netbeans-keyring-${PV}:${SLOT}
