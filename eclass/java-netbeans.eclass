@@ -27,6 +27,9 @@ _JAVA_NETBEANS_ECLASS=1
 # https://lists.apache.org/thread.html/2aedd00af7ae24b8b4c23f62afeacbaeeb9ea22145252b1d2638df3c@%3Cdev.netbeans.apache.org%3E
 if [[ ${PV} == 9.0 ]]; then
 	MY_PV=${PV}-vc3
+# https://lists.apache.org/thread.html/df162f1a62a8d14b0d01e0712162080b03a25a0af03bf4c2adab0cfe@%3Cdev.netbeans.apache.org%3E
+elif [[ ${PV} == 10.0_rc* ]]; then
+	MY_PV=${PV/_pre/-vc}
 fi
 
 : "${MY_P:=${MY_PN}-${MY_PV}}"
