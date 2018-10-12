@@ -17,7 +17,7 @@ fi
 
 CP_DEPEND="
 	dev-java/intellij-platform-annotations:0
-	dev-java/jna:4
+	dev-java/jna:5
 	dev-java/jsr305:0
 	dev-java/slf4j-api:0
 	dev-java/reactive-streams:0
