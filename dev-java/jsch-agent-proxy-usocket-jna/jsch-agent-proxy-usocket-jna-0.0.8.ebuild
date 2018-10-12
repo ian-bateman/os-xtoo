@@ -11,7 +11,7 @@ MY_P="${MY_PN}-${PV}"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/jna:4
+	dev-java/jna:5
 	~dev-java/jsch-agent-proxy-core-${PV}:${SLOT}
 "
 
