@@ -21,6 +21,9 @@ elif [[ ${PV} == *_rc* ]]; then
 elif [[ ${PV} == 10.0.2 ]]; then
 	BASE_URI+="GA/jdk${SLOT}/${PV}/19aef61b38124481863b1413dce1855f/13"
 	MY_PV="${PV}"
+elif [[ ${PV} == 11.0.1 ]]; then
+	BASE_URI+="GA/jdk${SLOT}/13/GPL"
+	MY_PV="${PV}"
 else
 	BASE_URI+="ga/jdk${SLOT}"
 	MY_PV="${PV}"
