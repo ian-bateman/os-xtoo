@@ -3,6 +3,8 @@
 
 EAPI="7"
 
+NB_CLUSTER="platform"
+
 inherit java-netbeans
 
 NB_NO_PROC=0
