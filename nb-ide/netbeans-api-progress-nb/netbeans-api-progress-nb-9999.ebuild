@@ -2,6 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
+
+NB_CLUSTER="platform"
+
 inherit java-netbeans
 
 CP_DEPEND="
