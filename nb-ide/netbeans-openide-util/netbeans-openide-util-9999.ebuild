@@ -3,6 +3,8 @@
 
 EAPI="7"
 
+NB_CLUSTER="platform"
+
 inherit java-netbeans
 
 CP_DEPEND="~nb-ide/netbeans-openide-util-lookup-${PV}:${SLOT}"
