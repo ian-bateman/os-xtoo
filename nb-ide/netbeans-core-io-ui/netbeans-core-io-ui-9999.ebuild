@@ -3,9 +3,9 @@
 
 EAPI="7"
 
-inherit java-netbeans
+NB_CLUSTER="platform"
 
-NB_BUNDLE=0
+inherit java-netbeans
 
 CP_DEPEND="
 	~nb-ide/netbeans-openide-awt-${PV}:${SLOT}
