@@ -3,6 +3,8 @@
 
 EAPI="7"
 
+NB_CLUSTER="extide"
+
 inherit java-netbeans
 
 CP_DEPEND="
