@@ -3,6 +3,8 @@
 
 EAPI="7"
 
+NB_CLUSTER="platform"
+
 inherit java-netbeans
 
 DEPEND=">=virtual/jdk-9"
