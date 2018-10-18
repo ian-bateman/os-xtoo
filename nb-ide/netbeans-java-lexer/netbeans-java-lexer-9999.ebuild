@@ -3,6 +3,8 @@
 
 EAPI="7"
 
+NB_CLUSTER="java"
+
 inherit java-netbeans
 
 CP_DEPEND="~nb-ide/netbeans-lexer-${PV}:${SLOT}"
