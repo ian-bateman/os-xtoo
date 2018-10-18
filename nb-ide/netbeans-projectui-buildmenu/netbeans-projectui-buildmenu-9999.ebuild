@@ -3,6 +3,8 @@
 
 EAPI="7"
 
+NB_CLUSTER="ide"
+
 inherit java-netbeans
 
 JAVA_NO_SRC=0
