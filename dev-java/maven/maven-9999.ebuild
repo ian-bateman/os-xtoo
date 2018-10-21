@@ -32,7 +32,7 @@ RDEPEND="
 	dev-java/commons-cli:1
 	dev-java/commons-io:0
 	dev-java/commons-lang:3
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/guice:4
 	dev-java/httpcomponents-client:4.5
 	dev-java/httpcomponents-core:4.4
