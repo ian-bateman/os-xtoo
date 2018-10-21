@@ -11,7 +11,7 @@ if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
-CP_DEPEND="dev-java/guava:26"
+CP_DEPEND="dev-java/guava:27"
 
 inherit java-pkg
 
