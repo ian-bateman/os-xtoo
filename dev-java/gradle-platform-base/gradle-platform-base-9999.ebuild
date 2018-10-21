@@ -15,7 +15,7 @@ CP_DEPEND="
 	~dev-java/gradle-dependency-management-${PV}:${SLOT}
 	~dev-java/gradle-model-core-${PV}:${SLOT}
 	dev-java/groovy:0
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/jsr305:0
 "
 
