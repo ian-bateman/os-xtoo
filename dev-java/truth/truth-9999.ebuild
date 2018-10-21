@@ -16,7 +16,7 @@ fi
 CP_DEPEND="
 	dev-java/checker-compatqual:0
 	dev-java/error-prone-annotations:0
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/hamcrest-core:2
 	dev-java/java-diff-utils:0
 	dev-java/junit:4
