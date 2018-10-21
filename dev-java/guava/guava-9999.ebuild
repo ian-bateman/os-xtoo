@@ -7,6 +7,8 @@ JAVA_PKG_IUSE="doc source"
 
 BASE_URI="https://github.com/google/${PN}"
 
+SLOT="${PV%%.*}"
+
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
@@ -21,12 +23,15 @@ CP_DEPEND="
 	dev-java/jsr305:0
 "
 
+if [[ ${PV} != 2[1,5,6]* ]]; then
+	CP_DEPEND+=" ~dev-java/failureaccess-${PV}:${SLOT}"
+fi
+
 inherit java-pkg
 
 DESCRIPTION="A collection of Google's core Java libraries"
 HOMEPAGE="https://code.google.com/p/guava-libraries/ https://github.com/google/guava"
 LICENSE="Apache-2.0"
-SLOT="${PV%%.*}"
 
 S="${WORKDIR}/${P}/${PN}"
 
