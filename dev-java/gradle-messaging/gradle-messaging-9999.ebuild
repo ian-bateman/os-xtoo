@@ -9,7 +9,7 @@ CP_DEPEND="
 	dev-java/commons-lang:2
 	dev-java/fastutil:0
 	~dev-java/gradle-base-services-${PV}:${SLOT}
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/jcip-annotations:0
 	dev-java/jsr305:0
 	dev-java/kryo:0
