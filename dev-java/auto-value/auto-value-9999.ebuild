@@ -18,7 +18,7 @@ CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/auto-service:0
 	dev-java/escapevelocity:0
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/javapoet:0
 "
 
