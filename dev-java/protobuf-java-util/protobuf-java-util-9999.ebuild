@@ -20,7 +20,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/gson:0
-	dev-java/guava:26
+	dev-java/guava:27
 	~dev-java/protobuf-java-core-${PV}:${SLOT}
 "
 
