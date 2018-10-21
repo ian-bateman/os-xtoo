@@ -21,7 +21,7 @@ fi
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/guice:4
 	dev-java/javax-annotation:0
 	dev-java/javax-inject:0
