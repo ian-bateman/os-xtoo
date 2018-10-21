@@ -21,7 +21,7 @@ CP_DEPEND="
 	~dev-java/gradle-tooling-api-${PV}:${SLOT}
 	dev-java/groovy:${GROOVY_SLOT}
 	dev-java/groovy-xml:${GROOVY_SLOT}
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/javax-inject:0
 "
 
