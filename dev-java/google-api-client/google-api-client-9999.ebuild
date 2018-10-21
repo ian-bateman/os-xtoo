@@ -17,7 +17,7 @@ fi
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/guava:26
+	dev-java/guava:27
 	~dev-java/google-http-client-${PV}:${SLOT}
 	~dev-java/google-http-client-jackson2-${PV}:${SLOT}
 	~dev-java/google-oauth-client-${PV}:${SLOT}
