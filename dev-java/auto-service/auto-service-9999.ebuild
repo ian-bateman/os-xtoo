@@ -16,7 +16,7 @@ fi
 
 CP_DEPEND="
 	dev-java/auto-common:0
-	dev-java/guava:26
+	dev-java/guava:27
 "
 
 inherit java-pkg
