@@ -14,7 +14,7 @@ if [[ ${PV} != *9999* ]]; then
 fi
 
 CP_DEPEND="
-	dev-java/guava:26
+	dev-java/guava:27
 	dev-java/javapoet:0
 "
 
