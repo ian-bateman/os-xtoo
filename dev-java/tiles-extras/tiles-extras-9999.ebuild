@@ -20,7 +20,7 @@ SLOT="0"
 TILESREQ_SLOT="0"
 
 CP_DEPEND="
-	dev-java/guava:21
+	dev-java/guava:27
 	dev-java/mvel:0
 	dev-java/ognl:0
 	dev-java/slf4j-api:0
