@@ -25,7 +25,7 @@ CP_DEPEND="
 	dev-java/antlr:${ANTLR_SLOT}
 	dev-java/asm:6
 	dev-java/commons-compress:0
-	dev-java/guava:25
+	dev-java/guava:27
 	dev-java/jffi:0
 	dev-java/jline:2
 	dev-java/jnr-constants:0
@@ -59,6 +59,12 @@ java_prepare() {
 #			src/org/python/${f}/*.java \
 #			|| die "Failed to sed upgrade antlr -> antlr4"
 #	done
+
+	for f in "" BaseCode Unicode; do
+		sed -i -e "s|CharMatcher.ASCII|CharMatcher.ascii()|g" \
+			src/org/python/core/Py${f}.java \
+			|| die "Failed to sed update guava"
+	done
 }
 
 src_install() {
