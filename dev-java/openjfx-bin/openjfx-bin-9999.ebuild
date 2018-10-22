@@ -8,28 +8,19 @@ inherit eutils java-vm prefix
 SLOT="${PV%%.*}"
 [[ ${SLOT} == *_* ]] && SLOT="${PV%%_*}"
 
-MY_PN="${PN%%-*}${SLOT}"
-BASE_URI="https://download"
+MY_PN="${PN%%-*}"
+BASE_URI="http://download2.gluonhq.com/openjfx/"
 RESTRICT="preserve-libs strip"
 
-if [[ ${PV} == *_pre* ]]; then
-	JDK_URI="http://jdk.java.net/${SLOT}/"
-	BASE_URI+=".java.net/java/early_access/${MY_PN}/${PV##*_pre}/binaries"
-	MY_PV="${PV%%_*}-ea+${PV##*_pre}"
-elif [[ ${PV} == *_rc* ]]; then
-	JDK_URI="http://jdk.java.net/${SLOT}/"
-	BASE_URI+=".java.net/java/${MY_PN}/archive/${PV##*_rc}/binaries"
-	MY_PV="${PV%%_*}+${PV##*_rc}"
-fi
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/${PN%%-*}-${MY_PV}_linux-x64_bin-sdk.zip"
+	SRC_URI="${BASE_URI}/${SLOT}/${PN%%-*}-${PV}_linux-x64_bin-sdk.zip"
 	KEYWORDS="-* ~amd64"
 else
 	KEYWORDS="-amd64"
 fi
 
 DESCRIPTION="OpenJFX client application platform for desktop and embedded"
-HOMEPAGE="https://wiki.openjdk.java.net/display/OpenJFX/Main"
+HOMEPAGE="https://openjfx.io/"
 LICENSE="GPL-2-with-classpath-exception"
 
 IUSE="gtk2 gtk3"
