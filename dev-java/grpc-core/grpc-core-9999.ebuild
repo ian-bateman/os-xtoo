@@ -15,13 +15,15 @@ if [[ ${PV} != *9999* ]]; then
 fi
 
 SLOT="0"
+GUAVA_SLOT="27"
 OPENCENSUS_SLOT="0"
 
 CP_DEPEND="
 	dev-java/error-prone-annotations:0
+	dev-java/failureaccess:${GUAVA_SLOT}
 	~dev-java/grpc-context-${PV}:${SLOT}
 	dev-java/gson:0
-	dev-java/guava:26
+	dev-java/guava:${GUAVA_SLOT}
 	dev-java/jsr305:0
 	dev-java/opencensus-api:${OPENCENSUS_SLOT}
 	dev-java/opencensus-contrib-grpc-metrics:${OPENCENSUS_SLOT}
