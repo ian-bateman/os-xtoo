@@ -15,6 +15,8 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_PN}-parent-${PV}"
 fi
 
+GUAVA_SLOT="27"
+
 CP_DEPEND="
 	dev-java/annotation-indexer:0
 	dev-java/asm:6
@@ -24,8 +26,9 @@ CP_DEPEND="
 	dev-java/commons-io:0
 	dev-java/jzlib:0
 	dev-java/commons-lang:2
+	dev-java/failureaccess:${GUAVA_SLOT}
 	dev-java/groovy:0
-	dev-java/guava:26
+	dev-java/guava:${GUAVA_SLOT}
 	dev-java/jenkins-json-lib:2
 	dev-java/javax-annotation:0
 	dev-java/jsr305:0
