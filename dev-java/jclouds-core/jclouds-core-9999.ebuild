@@ -25,7 +25,7 @@ CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/error-prone-annotations:0
 	dev-java/gson:0
-	dev-java/guava:25
+	dev-java/guava:27
 	dev-java/guice:${GUICE_SLOT}
 	dev-java/guice-extensions-assistedinject:${GUICE_SLOT}
 	dev-java/javax-annotation:0
@@ -63,4 +63,8 @@ java_prepare() {
 	sed -i -e "s|NANOSECONDS, true|NANOSECONDS|" \
 		src/main/java/org/jclouds/rest/internal/InvokeHttpMethod.java \
 		|| die "Failed to sed/fix guava method argument change"
+
+	sed -i -e "s|CharMatcher.JAVA.*|Character.isLetterOrDigit(name.charAt(0)))|" \
+		src/main/java/org/jclouds/predicates/validators/DnsNameValidator.java \
+		|| die "Failed to sed/swap guava for plain java"
 }
