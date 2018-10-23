@@ -1,1 +1,0 @@
-eclipse-mylyn-wikitext-9999.ebuild
