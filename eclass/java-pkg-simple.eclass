@@ -118,7 +118,7 @@ S="${WORKDIR}"
 # The name of the jar file to create and install.
 : ${JAVA_JAR_FILENAME:=${PN}.jar}
 
-# @FUNCTION: java-pkg-simple_create-jar
+# @FUNCTION: java-pkg-simple_res_in_src
 # @DESCRIPTION:
 # Finds resources in sources and copies them to resources directory.
 # If a resource directory is not set and exists, a default one will be created.
