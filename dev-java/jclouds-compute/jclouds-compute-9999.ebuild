@@ -18,12 +18,14 @@ fi
 
 SLOT="0"
 
+GUAVA_SLOT="27"
 GUICE_SLOT="4"
 
 CP_DEPEND="
 	dev-java/auto-common:0
 	dev-java/auto-service:0
-	dev-java/guava:25
+	dev-java/failureaccess:${GUAVA_SLOT}
+	dev-java/guava:${GUAVA_SLOT}
 	dev-java/guice:${GUICE_SLOT}
 	dev-java/guice-extensions-assistedinject:${GUICE_SLOT}
 	dev-java/javax-annotation:0
@@ -54,4 +56,9 @@ java_prepare() {
 		-e "s|or(predi|Predicates.or(predi|" \
 		src/main/java/org/jclouds/compute/domain/internal/NullEqualToIsParentOrIsGrandparentOfCurrentLocation.java \
 		|| die "Failed to sed/fix java 8+ guava static import"
+
+	sed -i -e '/util.Map/aimport java.util.concurrent.Executors;' \
+		-e "s|});|}, Executors.newSingleThreadExecutor());|g" \
+		src/main/java/org/jclouds/compute/extensions/internal/DelegatingImageExtension.java \
+		|| die "Failed to sed/fix guava changes"
 }
