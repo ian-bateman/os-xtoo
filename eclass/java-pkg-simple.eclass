@@ -12,13 +12,8 @@
 # Java maintainers (java@gentoo.org)
 # @BLURB: Eclass for packaging Java software with ease.
 # @DESCRIPTION:
-# This class is intended to build pure Java packages from Java sources
-# without the use of any build instructions shipped with the sources.
-# There is no support for resources besides the generated class files,
-# or for generating source files, or for controlling the META-INF of
-# the resulting jar, although these issues may be addressed by an
-# ebuild by putting corresponding files into the target directory
-# before calling the src_compile function of this eclass.
+# This eclass is intended to build pure Java packages from Java sources
+# without the use of any build instructions or system shipped with the sources.
 
 inherit java-utils-2
 
