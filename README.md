@@ -47,7 +47,21 @@ source, such as
 ```
 
 ## Java
-This is the most comprehensive Java ebuild repository!
+This is the most comprehensive Java ebuild repository! This overlay is 
+maintained by a former Gentoo Java Developer. No other has a better 
+understanding of Java on Gentoo than the maintainer of this overlay, 
+period!
+
+Java is heavily neglected on Gentoo and has been for over a decade. Of 
+the current Gentoo Java team, only 1 is a Java programmer by trade. The 
+rest do not run Java on Gentoo or do anything with Java professionally 
+or do anything with Java as a hobby. Despite these facts current Gentoo 
+Java Developers insist on handling Java in a particular way. Such that 
+they are unable to maintain the vast majority of packages. It is just a 
+hobby to them. Nothing relating to their profession or how they make a 
+living. They have only stood in the way of progress for to long. The 
+result is this overlay, bypassing their stagnation and opinions. 
+This overlay moves Java on Gentoo forward faster!
 
 Java packages in this respository are all or nothing. You MUST run 
 "@world" update when first adding this overlay. Failure to do such will 
@@ -68,15 +82,14 @@ Please do not mix Java packages from Gentoo's main repository with
 this repository. You will experience a varity of issues that will not be 
 addressed! This repository replaces entirely Java on Gentoo!!!
 
-### Java 10+
-This repository requires Java 10 as your system vm now, and in fall will 
-require Java 11! We are no longer supporting any JDK < 10. Most things 
-have been fixed for Java 11. There are few packages remaining that need 
-to be fixed or dialed in for Java 11. We recommend Java 10 for 
-production and Java 11 for development.
+### Java 11+
+This repository requires Java 11 as your system vm now! We are no longer 
+supporting any JDK < 11. Most things have been fixed for Java 11. There 
+are few packages remaining that need to be fixed or dialed in for Java 
+11. We recommend Java 11 for production and Java 12 for development.
 
 Please report issues for any package that does not build or has 
-runtime issues with Java 10 or 11.
+runtime issues with Java 11 or 12.
 
 ### Java Versioning
 This overlay implements a brand new feature of no longer requiring Java 
