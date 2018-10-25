@@ -44,4 +44,6 @@ LICENSE="Apache-2.0"
 
 S="${WORKDIR}/${MY_S}/${MY_MOD}"
 
-PATCHES=( "${FILESDIR}/BndResolver.patch" )
+if [[ ${PV} == 4.0.0 ]]; then
+	PATCHES=( "${FILESDIR}/BndResolver.patch" )
+fi
