@@ -31,6 +31,7 @@ CP_DEPEND="
 	~dev-java/aqute-resolve-${PV}:${SLOT}
 	~dev-java/bnd-annotation-${PV}:${SLOT}
 	~dev-java/bndlib-${PV}:${SLOT}
+	dev-java/jline:2
 	~dev-java/libg-${PV}:${SLOT}
 	dev-java/osgi-compendium:5
 	dev-java/osgi-core-api:6
@@ -38,6 +39,10 @@ CP_DEPEND="
 	dev-java/slf4j-simple:0
 	dev-java/snakeyaml:0
 "
+
+if [[ ${PV} == 4.1.0* ]]; then
+	CP_DEPEND+=" ~dev-java/bnd-exporters-${PV}:${SLOT}"
+fi
 
 inherit java-pkg
 
