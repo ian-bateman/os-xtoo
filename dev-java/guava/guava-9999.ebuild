@@ -15,17 +15,13 @@ fi
 
 CP_DEPEND="
 	dev-java/animal-sniffer-annotations:0
-	dev-java/checker-compatqual:0
 	dev-java/checker-qual:0
 	dev-java/error-prone-annotations:0
+	~dev-java/failureaccess-${PV}:${SLOT}
 	>=dev-java/j2objc-annotations-1.2:0
 	dev-java/javax-inject:0
 	dev-java/jsr305:0
 "
-
-if [[ ${PV} != 2[1,5,6]* ]]; then
-	CP_DEPEND+=" ~dev-java/failureaccess-${PV}:${SLOT}"
-fi
 
 inherit java-pkg
 
