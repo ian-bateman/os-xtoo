@@ -16,7 +16,7 @@ if [[ ${PV} != *9999* ]]; then
 fi
 
 CP_DEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/spotbugs-annotations:0
 "
 
