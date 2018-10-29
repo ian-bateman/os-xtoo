@@ -19,7 +19,7 @@ fi
 SLOT="${PV/.${PV#*.*.*}/}"
 
 CP_DEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/aspectj:0
 	dev-java/bsh:0
 	dev-java/bytelist:0
