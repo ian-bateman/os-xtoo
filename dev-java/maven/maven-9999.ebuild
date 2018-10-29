@@ -25,7 +25,7 @@ SLF4J_SLOT="0"
 WAGON_SLOT="0"
 
 RDEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/aopalliance:1
 	dev-java/cdi-api:0
 	dev-java/cglib:3
