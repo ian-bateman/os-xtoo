@@ -6,7 +6,7 @@ EAPI="7"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	~dev-java/gradle-base-services-${PV}:${SLOT}
 	~dev-java/gradle-base-services-groovy-${PV}:${SLOT}
 	~dev-java/gradle-model-core-${PV}:${SLOT}
