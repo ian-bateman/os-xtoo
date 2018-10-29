@@ -20,7 +20,7 @@ fi
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/antlr:0
 	~dev-java/groovy-${PV}:${SLOT}
 	~dev-java/groovy-xml-${PV}:${SLOT}
