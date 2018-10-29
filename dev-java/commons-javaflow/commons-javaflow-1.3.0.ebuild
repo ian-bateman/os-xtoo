@@ -8,7 +8,7 @@ JAVA_NO_COMMONS=1
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/commons-jci-core:0
 	dev-java/commons-logging:0
 "
