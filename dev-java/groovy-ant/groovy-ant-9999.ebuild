@@ -21,7 +21,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/commons-cli:1
 	~dev-java/groovy-${PV}:0
 	~dev-java/groovy-groovydoc-${PV}:0
