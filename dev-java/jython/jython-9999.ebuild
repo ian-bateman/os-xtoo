@@ -23,7 +23,7 @@ ANTLR_SLOT="3"
 CP_DEPEND="
 	dev-java/ant-core:0
 	dev-java/antlr:${ANTLR_SLOT}
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/commons-compress:0
 	dev-java/guava:27
 	dev-java/jffi:0
