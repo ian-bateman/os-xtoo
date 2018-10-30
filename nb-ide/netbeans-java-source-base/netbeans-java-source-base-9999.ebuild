@@ -8,7 +8,7 @@ NB_CLUSTER="java"
 inherit java-netbeans
 
 CP_DEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/javax-annotation:0
 	dev-java/lucene-core:3
 	~nb-ide/netbeans-api-annotations-common-${PV}:${SLOT}
