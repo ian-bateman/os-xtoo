@@ -8,7 +8,7 @@ NB_CLUSTER="platform"
 inherit java-netbeans
 
 CP_DEPEND="
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/javax-annotation:0
 	~nb-ide/netbeans-core-startup-base-${PV}:${SLOT}
 	~nb-ide/netbeans-o-n-bootstrap-${PV}:${SLOT}
