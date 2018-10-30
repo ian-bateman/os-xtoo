@@ -9,7 +9,7 @@ inherit java-netbeans
 
 DEPEND=">=virtual/jdk-9"
 
-RDEPEND="dev-java/asm:6
+RDEPEND="dev-java/asm:7
 	>=virtual/jre-9"
 
 JAVA_NO_SRC=0
