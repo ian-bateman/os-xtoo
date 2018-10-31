@@ -17,7 +17,7 @@ fi
 
 CP_DEPEND="
 	dev-java/ant-core:0
-	dev-java/asm:6
+	dev-java/asm:7
 "
 
 inherit java-pkg
