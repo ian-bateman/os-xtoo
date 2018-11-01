@@ -11,7 +11,10 @@ MY_P="${MY_PN}-${MY_PV}"
 BASE_URI="https://github.com/LibrePDF/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P,,}.tar.gz"
+	SRC_URI="${BASE_URI}/archive/${PN%-*}-${PV}.tar.gz"
+	MY_S="${MY_PN}-${PN%-*}-${PV}"
+elif [[ ${PV} == 1.2.4 ]]; then
+	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	MY_S="${MY_P}"
 fi
 
