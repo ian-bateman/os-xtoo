@@ -18,7 +18,7 @@ fi
 
 SLOT="${PV/.${PV#*.*.*}/}"
 
-ASM_SLOT="6"
+ASM_SLOT="7"
 CLI_SLOT="1"
 
 CP_DEPEND="
