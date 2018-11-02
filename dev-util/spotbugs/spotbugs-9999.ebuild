@@ -25,7 +25,7 @@ SLOT="0"
 
 CP_DEPEND="
 	dev-java/apple-java-extensions-bin:0
-	dev-java/asm:6
+	dev-java/asm:7
 	dev-java/commons-bcel:0
 	dev-java/commons-lang:2
 	dev-java/dom4j:2
@@ -53,4 +53,8 @@ java_prepare() {
 	sed -i -e "s|node.select|(List<T>)node.select|" \
 		src/main/java/edu/umd/cs/findbugs/xml/XMLUtil.java \
 		|| die "Failed to fix/sed incompatible types"
+
+	sed -i -e "s|ASM7_EXPERIMENTAL|ASM7|" \
+		src/main/java/edu/umd/cs/findbugs/classfile/engine/asm/FindBugsASM.java \
+		|| die "Failed to sed/fix asm changes"
 }
