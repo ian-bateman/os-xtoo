@@ -24,7 +24,7 @@ fi
 
 SLOT="0"
 
-ASM_SLOT="6"
+ASM_SLOT="7"
 CLI_SLOT="1"
 
 CP_DEPEND="
