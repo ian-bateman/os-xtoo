@@ -20,6 +20,7 @@ DESCRIPTION="Project Management and Comprehension Tool for Java"
 HOMEPAGE="https://maven.apache.org"
 LICENSE="Apache-2.0"
 
+GUAVA_SLOT="27"
 MR_SLOT="0"
 SLF4J_SLOT="0"
 WAGON_SLOT="0"
@@ -32,7 +33,8 @@ RDEPEND="
 	dev-java/commons-cli:1
 	dev-java/commons-io:0
 	dev-java/commons-lang:3
-	dev-java/guava:27
+	dev-java/failureaccess:${GUAVA_SLOT}
+	dev-java/guava:${GUAVA_SLOT}
 	dev-java/guice:4
 	dev-java/httpcomponents-client:4.5
 	dev-java/httpcomponents-core:4.4
