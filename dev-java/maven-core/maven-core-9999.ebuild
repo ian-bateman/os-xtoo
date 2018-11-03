@@ -41,10 +41,10 @@ CP_DEPEND="
 	dev-java/maven-shared-utils:0
 	dev-java/plexus-classworlds:0
 	dev-java/plexus-component-annotations:${PC_SLOT}
-	dev-java/plexus-container-default:${PC_SLOT}
 	dev-java/plexus-sec-dispatcher:0
 	dev-java/plexus-utils:0
 	dev-java/sisu-inject:0
+	dev-java/sisu-plexus:0
 "
 
 inherit java-pkg
@@ -83,8 +83,8 @@ java_prepare() {
 #			|| die "Failed to generate .java files via modello cli"
 #	done
 
-	sed -i -e '436d' -e "s|, new SessionScopeModule( container ),|);|" \
-		-e "s/ComponentLookupException |/PlexusConfigurationException |/" \
-		src/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java \
-		|| die "Failed to sed/fix argument list"
+#	sed -i -e '436d' -e "s|, new SessionScopeModule( container ),|);|" \
+#		-e "s/ComponentLookupException |/PlexusConfigurationException |/" \
+#		src/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java \
+#		|| die "Failed to sed/fix argument list"
 }
