@@ -32,3 +32,16 @@ JAVA_RES_FIND=" -not -name LocalStrings_*.properties "
 JAVA_RES_RM_DIR=0
 JAVA_RM_FILES=( bcel descriptor digester http log modeler net scan )
 JAVA_RM_FILES=( ${JAVA_RM_FILES[@]/#/java/org/apache/tomcat/util/} )
+
+
+src_prepare() {
+	local p
+
+	p=java/org/apache/tomcat/util/net/
+
+	mv "${p}Constants.java" "${S}" || die "Failed to move Constants.java"
+	java-pkg_src_prepare
+	mkdir -p "${p}" || die "Failed to make dir ${p}"
+	mv "${S}/Constants.java" "${p}" \
+		|| die "Failed to restore Constants.java"
+}
