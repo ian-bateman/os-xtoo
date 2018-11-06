@@ -17,7 +17,11 @@ fi
 
 SLOT="${PV%%.*}"
 
-CP_DEPEND="~dev-java/tomcat-juli-${PV}:${SLOT}"
+CP_DEPEND="
+	~dev-java/tomcat-coyote-${PV}:${SLOT}
+	~dev-java/tomcat-juli-${PV}:${SLOT}
+	~dev-java/tomcat-util-${PV}:${SLOT}
+"
 
 inherit java-pkg
 
