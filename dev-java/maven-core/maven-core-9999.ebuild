@@ -83,8 +83,4 @@ java_prepare() {
 #			|| die "Failed to generate .java files via modello cli"
 #	done
 
-#	sed -i -e '436d' -e "s|, new SessionScopeModule( container ),|);|" \
-#		-e "s/ComponentLookupException |/PlexusConfigurationException |/" \
-#		src/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java \
-#		|| die "Failed to sed/fix argument list"
 }
