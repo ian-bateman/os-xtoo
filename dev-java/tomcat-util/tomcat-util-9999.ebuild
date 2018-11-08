@@ -33,7 +33,6 @@ JAVA_RES_RM_DIR=0
 JAVA_RM_FILES=( bcel descriptor digester http log modeler net scan )
 JAVA_RM_FILES=( ${JAVA_RM_FILES[@]/#/java/org/apache/tomcat/util/} )
 
-
 src_prepare() {
 	local p
 
