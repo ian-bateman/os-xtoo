@@ -1,1 +1,0 @@
-scribejava-httpclient-okhttp-9999.ebuild
