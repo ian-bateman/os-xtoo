@@ -4,7 +4,7 @@
 EAPI="6"
 
 E_BASE_URI="https://github.com/vtorri/etui"
-E_SNAP="eb01bd8f1fa01b1300fb5b41c9c11f7291108847"
+E_SNAP="0459933cebb700f37ce726bf846ebb075c731651"
 E_TARBALL="tar.gz"
 
 inherit e
