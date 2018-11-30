@@ -36,13 +36,24 @@ RDEPEND="
 	!dev-java/java-config
 "
 
-src_prepare() {
-	default
+PATCHES=( "${FILESDIR}/${P}-use-popen.patch"
+	"${FILESDIR}/${P}-link-against-largp.patch" )
 
+src_prepare() {
 	cp "${FILESDIR}"/java-vm.eselect "${S}" \
 		|| die "Failed to copy eselect module"
 	sed -i -e "s|VERSION=\".*\"|VERSION=\"${PV}\"|" "${S}/java-vm.eselect" \
 		|| die "Failed to sed eselect module version"
+
+	cmake-utils_src_prepare
+
+	# fix DESTDIR on musl
+	if use elibc_musl; then
+		PATCHES+=( "${FILESDIR}/${P}-use-popen.patch"
+			"${FILESDIR}/${P}-link-against-largp.patch" )
+		sed -i -e "s|#IGNORE ||" "${S}"/CMakeLists.txt \
+			|| die "Failed to sed DESTDIR fix"
+	fi
 }
 
 src_configure() {

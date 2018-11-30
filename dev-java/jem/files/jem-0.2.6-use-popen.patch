@@ -1,0 +1,32 @@
+--- a/src/vm.c	2018-11-30 11:30:09.701670987 -0800
++++ b/src/vm.c	2018-11-30 11:31:00.832329075 -0800
+@@ -403,7 +403,7 @@
+     free(buffer_cpy_ptr);
+     free(buffer);
+     free(dirs);
+-    int sym_fd = open(target, O_RDONLY);
++    int sym_fd = popen(target, O_RDONLY);
+     if(sym_fd!=-1) { // if symlinks exists, lock and remove
+         if(flock(sym_fd, LOCK_SH)!=-1) {
+             unlink(target);
+--- a/src/vm.c	2018-11-30 11:39:34.829114185 -0800
++++ b/src/vm.c	2018-11-30 11:39:54.262707771 -0800
+@@ -28,6 +28,7 @@
+ #include <sys/dir.h>
+ #include <sys/file.h>
+ #include <sys/stat.h>
++#include <fcntl.h>
+ #include <unistd.h>
+ 
+ #include "../include/package.h"
+--- a/src/env_manager.c	2018-11-30 11:54:01.570641410 -0800
++++ b/src/env_manager.c	2018-11-30 11:56:25.812545076 -0800
+@@ -22,7 +22,7 @@
+  */
+ 
+ #include <errno.h>
+-#include <error.h>
++#include <err.h>
+ #include <libgen.h>
+ #include <stdio.h>
+ #include <unistd.h>
