@@ -16,7 +16,10 @@ if [[ ${PV} != *9999* ]]; then
 	MY_S="${MY_PN}-${MY_P}"
 fi
 
-CP_DEPEND="dev-java/plexus-utils:0"
+CP_DEPEND="
+	dev-java/plexus-utils:0
+	dev-java/junit:4
+"
 
 inherit java-pkg
 
