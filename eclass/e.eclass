@@ -108,7 +108,7 @@ if [[ ${E_PV} != *9999* ]]; then
 	KEYWORDS="~amd64"
 fi
 
-inherit eutils xdg-utils
+inherit estack eutils xdg-utils
 
 if [[ ! ${E_PYTHON} ]]; then
 	inherit epunt-cxx libtool

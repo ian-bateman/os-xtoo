@@ -151,6 +151,7 @@ java-pkg-simple_res_in_src() {
 				|| die "Failed to copy ${f} to resources"
 		done
 	done
+	eshopts_pop
 
 }
 

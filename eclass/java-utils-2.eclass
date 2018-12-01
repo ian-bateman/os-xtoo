@@ -17,7 +17,7 @@
 # This eclass should not be inherited this directly from an ebuild. Instead,
 # you should inherit java-pkg for Java packages or java-pkg-opt-2 for packages
 # that have optional Java support.
-inherit eutils multilib
+inherit estack eutils multilib
 
 IUSE="elibc_FreeBSD"
 
