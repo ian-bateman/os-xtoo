@@ -13,11 +13,13 @@ if [[ ${PV} != *9999* ]]; then
 fi
 
 CP_DEPEND="
+	dev-java/jaxb-api:0
 	dev-java/commons-httpclient:0
 	dev-java/commons-codec:0
 	dev-java/ws-commons-util:0
 	dev-java/commons-logging:0
 	java-virtuals/servlet-api:2.4
+	dev-java/junit:4
 "
 
 inherit java-pkg
@@ -32,7 +34,6 @@ IUSE=""
 DEPEND=">=virtual/jdk-9
 	test? (
 		dev-java/ant-junit:0
-		dev-java/junit:4
 	)
 	${CP_DEPEND}"
 
@@ -41,22 +42,31 @@ RDEPEND=">=virtual/jre-9
 
 S="${WORKDIR}/${MY_S}"
 
-JAVA_ANT_REWRITE_CLASSPATH="true"
-EANT_GENTOO_CLASSPATH="commons-httpclient-3,commons-codec,ws-commons-util"
-EANT_GENTOO_CLASSPATH+=",commons-logging" # client
-EANT_GENTOO_CLASSPATH+=",servlet-api-2.4" # server
-EANT_GENTOO_CLASSPATH_EXTRA="${S}/common/target/${PN}-common.jar"
-
 java_prepare() {
 	# Doesn't work.
 	rm -v \
 		server/src/test/java/org/apache/xmlrpc/test/SerializerTest.java
 }
 
-EANT_TEST_GENTOO_CLASSPATH="${EANT_GENTOO_CLASSPATH},junit-4,ant-junit"
+src_compile() {
+	JAVA_JAR_FILENAME="${S}/${PN}-common.jar"
+	JAVA_SRC_DIR="common/src"
+	java-pkg-simple_src_compile
+
+	JAVA_CLASSPATH_EXTRA="${S}/${PN}-common.jar"
+	JAVA_JAR_FILENAME="${S}/${PN}-client.jar"
+	JAVA_SRC_DIR="client/src"
+	JAVA_RES_DIR="${S}/src/main/resources/client"
+	java-pkg-simple_src_compile
+
+	JAVA_CLASSPATH_EXTRA="${S}/${PN}-common.jar:${S}/${PN}-client.jar"
+	JAVA_JAR_FILENAME="${S}/${PN}-server.jar"
+	JAVA_SRC_DIR="server/src"
+	java-pkg-simple_src_compile
+}
 
 src_install() {
-	java-pkg_dojar common/target/xmlrpc-common.jar server/target/xmlrpc-server.jar client/target/xmlrpc-client.jar
+	java-pkg_dojar xmlrpc-common.jar xmlrpc-server.jar xmlrpc-client.jar
 
 	use doc && java-pkg_dojavadoc {common,server,client}/target/site/apidocs
 	use source && java-pkg_dosrc {common,server,client}/src/main/java/*
