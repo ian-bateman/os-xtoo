@@ -29,13 +29,14 @@ SLOT="3.1"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-DEPEND=">=virtual/jdk-1.6
+DEPEND=">=virtual/jdk-9
 	test? (
 		dev-java/ant-junit:0
 		dev-java/junit:4
 	)
 	${CP_DEPEND}"
-RDEPEND=">=virtual/jre-1.6
+
+RDEPEND=">=virtual/jre-9
 	${CP_DEPEND}"
 
 S="${WORKDIR}/${MY_S}"
