@@ -24,14 +24,17 @@ IUSE="test"
 SLOT="0"
 
 CP_DEPEND="
-	dev-java/junit:4
-	dev-java/jmock:0
 	dev-java/paranamer:0
 	dev-java/commons-collections:0
 "
 
 DEPEND="${CP_DEPEND}
-	>=virtual/jdk-9"
+	>=virtual/jdk-9
+	test? (
+		dev-java/junit:4
+		dev-java/jmock:0
+	)
+"
 
 RDEPEND="${CP_DEPEND}
 	>=virtual/jre-9"

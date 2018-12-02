@@ -13,7 +13,7 @@ if [[ ${PV} != *9999* ]]; then
 fi
 
 CP_DEPEND="
-	dev-java/commons-httpclient:3
+	dev-java/commons-httpclient:0
 	dev-java/commons-codec:0
 	dev-java/ws-commons-util:0
 	dev-java/commons-logging:0
@@ -25,7 +25,7 @@ inherit java-pkg
 DESCRIPTION="Apache XML-RPC is a Java implementation of XML-RPC"
 HOMEPAGE="http://ws.apache.org/xmlrpc/"
 LICENSE="Apache-2.0"
-SLOT="3"
+SLOT="3.1"
 KEYWORDS="amd64 x86"
 IUSE=""
 
