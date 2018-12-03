@@ -1,0 +1,15 @@
+--- a/pom.xml	2018-11-30 17:08:21.184131524 -0800
++++ b/pom.xml	2018-11-30 17:07:06.107795157 -0800
+@@ -46,6 +46,12 @@
+ 
+ 
+     <dependencies>
++    <!-- https://mvnrepository.com/artifact/org.robotframework/javalib-core -->
++        <dependency>
++            <groupId>org.robotframework</groupId>
++            <artifactId>javalib-core</artifactId>
++            <version>1.2.1</version>
++        </dependency>
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
