@@ -17,15 +17,20 @@ HOMEPAGE="${BASE_URI}"
 LICENSE="Apache-2.0"
 IUSE="test"
 SLOT="0"
+JETTY_SLOT="9.4"
 
 CP_DEPEND="
-	dev-java/jetty-servlet:9.4
-	dev-java/commons-lang:0
+	dev-java/jetty-servlet:${JETTY_SLOT}
+	dev-java/jetty-server:${JETTY_SLOT}
+	dev-java/jetty-util:${JETTY_SLOT}
+	dev-java/jetty-http:${JETTY_SLOT}
+	dev-java/commons-lang:3
 	dev-java/log4j:0
 	dev-java/javalib-core:0
-	dev-java/testng:0
 	dev-java/commons-logging:0
-	dev-java/xmlrpc:3
+	dev-java/xmlrpc:3.1
+	java-virtuals/servlet-api:4.0
+	dev-java/testng:0
 "
 
 inherit java-pkg
