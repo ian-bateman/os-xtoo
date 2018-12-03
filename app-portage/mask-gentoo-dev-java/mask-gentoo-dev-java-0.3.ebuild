@@ -13,7 +13,8 @@ S="${WORKDIR}"
 
 src_prepare() {
 	default
-	echo 'dev-java/*::gentoo' > "${PN}" || die "Failed to create ${PV}"
+	echo 'dev-java/*::gentoo' > "${PN}" || die "Failed to create ${PN}"
+	echo 'java-virtuals/*::gentoo' >> "${PN}" || die "Failed to create ${PN}"
 }
 
 src_install() {
