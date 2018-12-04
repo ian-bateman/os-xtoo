@@ -4,7 +4,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
-JAVA_PKG_IUSE=""
+JAVA_PKG_IUSE="source examples"
 
 inherit distutils-r1
 
@@ -15,6 +15,7 @@ HOMEPAGE="https://github.com/rainmanwy/robotframework-SikuliLibrary
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/rainmanwy/robotframework-SikuliLibrary"
 	EGIT_BRANCH="master"
+	# this commit is supposed to be 1.1.4-snapshot
 	EGIT_COMMIT="b29685fded0cae234cd96e135abe5df5398e0cd2"
 	inherit git-r3
 	KEYWORDS=""
@@ -25,10 +26,12 @@ fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE=""
+IUSE="doc"
 
 CP_DEPEND="
-        dev-java/javalib:0
+        dev-java/javalib-core:0
+	dev-java/sikulixapi-bin:0
+	dev-java/jrobotremoteserver-bin:0
 "
 
 inherit java-pkg
@@ -58,7 +61,10 @@ JAVA_SRC_DIR="src/java/"
 
 src_prepare() {
 	sed -i '0,/1.1.2/{s/1.1.2/1.1.4-SNAPSHOT/}' "${S}"/pom.xml \
-		|| die "sed failed!"
+		|| die "sed pom.xml failed!"
+
+	sed -i -e "s|DEV|1.1.4|" "${S}"/src/python/version.py \
+		|| die "sed version.py failed!"
 
 	eapply "${FILESDIR}/${PN}-add-javalibcore-to-pom_xml.patch"
 
@@ -67,18 +73,36 @@ src_prepare() {
 }
 
 src_compile() {
-	#elog $(java-pkg_getjars javalib)
-	JAVA_CLASSPATH="javalib"
 	JAVA_SRC_DIR="src/java"
-	java-pkg_jar-from --into src/java/com/github/rainmanwy/robotframework/sikulilib javalib
+	JAVA_JAR_FILENAME=SikuliLibrary.jar
 	java-pkg-simple_src_compile
 
-	default
+	# need to move things around...
+	lib_path="${S}/target/src/SikuliLibrary/lib/"
+	mkdir -p ${lib_path}
+	mv "${S}"/SikuliLibrary.jar ${lib_path}
+	cp src/python/*.py "${S}"/target/src/SikuliLibrary/
+
+	python_setup
+	distutils-r1_src_compile
+}
+
+python_install() {
+	distutils-r1_python_install
 }
 
 python_install_all() {
 	local DOCS=( README.md )
 	use doc && local HTML_DOCS=( docs/. )
 
+	python_export EPYTHON
 	distutils-r1_python_install_all
+}
+
+src_install() {
+	python_install
+	python_install_all
+
+	use examples && java-pkg_doexamples demo
+	use source && java-pkg_dosrc src/java/
 }
