@@ -32,6 +32,7 @@ CP_DEPEND="
 	dev-java/jcip-annotations:0
 	<dev-java/jformatstring-2.0:0
 	dev-java/jsr305:0
+	dev-java/slf4j-api:0
 	~dev-java/spotbugs-annotations-${PV}:${SLOT}
 "
 
