@@ -13,7 +13,11 @@ JDK_URI="https://jdk.java.net/${SLOT}/"
 RESTRICT="preserve-libs strip"
 
 if [[ ${PV} == *_pre* ]]; then
-	BASE_URI+="early_access/jdk${SLOT}/${PV##*_pre}/GPL"
+	if [[ ${PV} = 12_pre20 ]]; then
+		BASE_URI+="early_access/alpine/${PV##*_pre}/binaries"
+	else
+		BASE_URI+="early_access/jdk${SLOT}/${PV##*_pre}/GPL"
+	fi
 	MY_PV="${PV%%_*}-ea+${PV##*_pre}"
 elif [[ ${PV} == *_rc* ]]; then
 	BASE_URI+="early_access/jdk${SLOT}/${PV##*_rc}/GPL"
