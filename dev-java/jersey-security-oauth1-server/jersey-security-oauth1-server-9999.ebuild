@@ -6,14 +6,14 @@ EAPI="7"
 JAVA_PKG_IUSE="doc source"
 
 MY_PN="${PN%%-*}"
-MY_PV="${PV/_beta/-b}"
+MY_PV="${PV}-RELEASE"
 MY_P="${MY_PN}-${MY_PV}"
 
-BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
+BASE_URI="https://github.com/eclipse-ee4j/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
-	MY_S="${PN}-${MY_P}"
+	MY_S="${MY_PN}-${PV}"
 fi
 
 SLOT="${PV%%.*}"
@@ -33,4 +33,4 @@ DESCRIPTION="Jersey RESTful Web Services in Java Security OAuth1 Server"
 HOMEPAGE="https://jersey.github.io/"
 LICENSE="CDDL GPL-2-with-linking-exception"
 
-S="${WORKDIR}/${MY_P}/security/${PN#*-*-}"
+S="${WORKDIR}/${MY_S}/security/${PN#*-*-}"
