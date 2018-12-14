@@ -27,7 +27,7 @@ IUSE="debug doc elibc_glibc prefix source test"
 
 DEPEND="debug? (
 		dev-util/valgrind
-		!prefix? ( elibc_glibc? ( sys-libs/glibc[debug] ) )
+		!prefix? ( elibc_glibc? ( sys-libs/glibc ) )
 	)
 	doc? ( app-doc/doxygen )
 "
