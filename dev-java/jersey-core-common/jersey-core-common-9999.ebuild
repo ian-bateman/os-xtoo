@@ -6,14 +6,14 @@ EAPI="7"
 JAVA_PKG_IUSE="doc source"
 
 MY_PN="${PN%%-*}"
-MY_PV="${PV/_beta/-b}"
+MY_PV="${PV}-RELEASE"
 MY_P="${MY_PN}-${MY_PV}"
 
-BASE_URI="https://github.com/${MY_PN}/${MY_PN}"
+BASE_URI="https://github.com/eclipse-ee4j/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="${BASE_URI}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
-	MY_S="${PN}-${MY_P}"
+	MY_S="${MY_PN}-${PV}"
 fi
 
 SLOT="${PV%%.*}"
@@ -36,7 +36,7 @@ LICENSE="CDDL GPL-2-with-linking-exception"
 
 DEPEND+=" dev-java/istack-commons-buildtools:0"
 
-S="${WORKDIR}/${MY_P}/${PN#*-*}"
+S="${WORKDIR}/${MY_S}/${PN#*-*}"
 
 JAVAC_ARGS+="--add-exports java.base/jdk.internal.vm.annotation=ALL-UNNAMED "
 JAVAC_ARGS+="--add-exports jdk.unsupported/sun.misc=ALL-UNNAMED "
@@ -53,7 +53,7 @@ java_prepare() {
 		-p "org.glassfish.jersey.internal.l10n" \
 		|| die "Failed to generate java files from resources"
 
-	sed -i -e '409d' \
+	sed -i -e '385d' \
 		"src/main/java/org/glassfish/jersey/message/internal/OutboundJaxrsResponse.java" \
 		|| die "Could not remove @Override"
 
