@@ -5,21 +5,21 @@ EAPI="7"
 
 JAVA_PKG_IUSE="doc source"
 
-MY_PN="${PN}-project"
-MY_PV="${PV}"
+MY_PN="jaxb-ri"
+MY_PV="${PV}-RELEASE"
 MY_P="${MY_PN}-${MY_PV}"
-BASE_URI="https://github.com/kohsuke/${PN}"
+BASE_URI="https://github.com/eclipse-ee4j/${MY_PN}"
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="${BASE_URI}/archive/${MY_P}.tar.gz -> ${P}.tar.gz"
-	MY_S="${PN}-${MY_P}"
+	SRC_URI="${BASE_URI}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+	MY_S="${MY_P}"
 fi
 
 inherit java-pkg
 
 DESCRIPTION="The core of the CodeModel java source code generation library"
 HOMEPAGE="${BASE_URI}"
-LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
-SLOT="${PV%%.*}"
+LICENSE="EDL-1.0"
+SLOT="0"
 
-S="${WORKDIR}/${MY_S}/${PN}"
+S="${WORKDIR}/${MY_S}/${MY_PN}/${PN}/${PN}"
