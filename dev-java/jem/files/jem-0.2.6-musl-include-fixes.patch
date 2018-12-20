@@ -1,0 +1,23 @@
+--- a/src/env_manager.c	2018-11-30 11:54:01.570641410 -0800
++++ b/src/env_manager.c	2018-11-30 11:56:25.812545076 -0800
+@@ -22,7 +22,7 @@
+  */
+
+ #include <errno.h>
+-#include <error.h>
++#include <err.h>
+ #include <libgen.h>
+ #include <stdio.h>
+ #include <unistd.h>
+--- a/src/vm.c	2018-12-19 19:51:30.076623543 -0800
++++ b/src/vm.c	2018-12-19 19:52:02.103161652 -0800
+@@ -27,7 +27,9 @@
+ #include <stdio.h>
+ #include <sys/dir.h>
+ #include <sys/file.h>
++#include <sys/types.h>
+ #include <sys/stat.h>
++#include <fcntl.h>
+ #include <unistd.h>
+
+ #include "../include/package.h"

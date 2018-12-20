@@ -36,7 +36,7 @@ RDEPEND="
 	!dev-java/java-config
 "
 
-PATCHES=( "${FILESDIR}/${P}-use-popen.patch"
+PATCHES=( "${FILESDIR}/${P}-musl-include-fixes.patch"
 	"${FILESDIR}/${P}-link-against-largp.patch" )
 
 src_prepare() {
